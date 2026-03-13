@@ -1,81 +1,77 @@
-@import '../../common/abstracts/variable';
-@import '../../common/abstracts/mixin';
-
-.wot-theme-dark {
-  @include b(month-panel) {
-    @include e(title) {
-      color: $-dark-color;
-    }
-
-    @include e(weeks) {
-      box-shadow: 0px 4px 8px 0 rgba(255, 255, 255, 0.02);
-      color: $-dark-color;
-    }
-
-    @include e(time-label) {
-      color: $-dark-color;
-      &::after{
-        background: $-dark-background4;
-      }
-    }
-  }
-}
+@use '../../styles/mixin/mixin.scss'as *;
+@use '../index.scss'as *;
 
 @include b(month-panel) {
-  font-size: $-calendar-fs;
+  font-size: $calendar-view-font-size;
+
+  @include e(controls) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: $calendar-view-controls-padding;
+  }
+
+  @include e(controls-title){
+    font-size: $calendar-view-panel-title-font-size;
+    line-height: $calendar-view-panel-title-line-height;
+    color: $calendar-view-panel-title-color;
+    font-weight: $calendar-view-panel-title-font-weight;
+  }
+
+  @include edeep(control-icon){
+    color: $calendar-view-control-icon-color;
+    font-size: $calendar-view-control-icon-size;
+    line-height: $calendar-view-control-icon-size;
+
+    &:not(:last-child){
+      margin-right: $calendar-view-control-icon-spacing;
+    }
+    @include when(disabled){
+      color: $calendar-view-control-disabled-color;
+      cursor: not-allowed;
+    }
+  }
 
   @include e(title) {
-    padding: 5px 0;
-    text-align: center;
-    font-size: $-calendar-panel-title-fs;
-    color: $-calendar-panel-title-color;
-    padding: $-calendar-panel-padding;
+    font-size: $calendar-view-panel-title-font-size;
+    line-height: $calendar-view-panel-title-line-height;
+    color: $calendar-view-panel-title-color;
+    padding: $calendar-view-panel-title-padding;
+    font-weight: $calendar-view-panel-title-font-weight;
+    margin: $calendar-view-panel-title-margin;
   }
 
   @include e(weeks) {
     display: flex;
-    height: $-calendar-week-height;
-    line-height: $-calendar-week-height;
-    box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.02);
-    color: $-calendar-week-color;
-    font-size: $-calendar-week-fs;
-    padding: $-calendar-panel-padding;
+    padding: $calendar-view-weeks-padding;
   }
 
   @include e(week) {
     flex: 1;
     text-align: center;
+    color: $calendar-view-week-color;
+    font-size: $calendar-view-week-font-size;
+    line-height: $calendar-view-week-line-height;
   }
 
   @include e(container) {
-    padding: $-calendar-panel-padding;
     box-sizing: border-box;
   }
 
   @include e(time) {
     display: flex;
-    box-shadow: 0px -4px 8px 0px rgba(0, 0, 0, 0.02);
+    box-shadow: $calendar-view-time-box-shadow;
   }
 
   @include e(time-label) {
     position: relative;
     flex: 1;
-    font-size: $-picker-column-fs;
-    text-align: center;
-    line-height: 125px;
-    color: $-picker-column-color;
-
-    &::after {
-      position: absolute;
-      content: '';
-      height: 35px;
-      top: 50%;
-      left: 0;
-      right: 0;
-      transform: translateY(-50%);
-      background: $-picker-column-select-bg;
-      z-index: 0;
-    }
+    font-size: $calendar-view-time-picker-font-size;
+    color: $calendar-view-time-picker-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   @include e(time-text) {

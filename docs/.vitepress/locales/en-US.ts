@@ -503,6 +503,10 @@ export default defineConfig({
             {
               link: '/en-US/component/table',
               text: 'Table'
+            },
+            {
+              link: '/en-US/component/image-preview',
+              text: 'ImagePreview'
             }
           ]
         },

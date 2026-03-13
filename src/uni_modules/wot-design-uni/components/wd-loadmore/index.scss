@@ -1,39 +1,59 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-.wot-theme-dark {
-  @include b(loadmore) {
-    color: $-dark-color;
-  }
-}
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
+
+// ============================================================
+// loadmore 组件变量定义
+// ============================================================
+
+// 基础尺寸和颜色变量
+$loadmore-height: var(--wot-loadmore-height, $n48) !default; // loadmore 高度
+$loadmore-padding: var(--wot-loadmore-padding, $spacing-main $spacing-loose) !default; // loadmore 内边距
+$loadmore-color: var(--wot-loadmore-color, $text-secondary) !default; // 默认文字颜色
+$loadmore-font-size: var(--wot-loadmore-font-size, $typography-body-size-main) !default; // 文字字号
+$loadmore-line-height: var(--wot-loadmore-line-height, $typography-body-line--height-size-main) !default; // 文字行高
+
+// 加载中状态相关变量
+$loadmore-loading-size: var(--wot-loadmore-loading-size, $n28) !default; // loading 图标尺寸
+$loadmore-loading-spacing: var(--wot-loadmore-loading-spacing, $spacing-tight) !default; // loading 图标与文字间距
+
+// 错误/重试状态相关变量
+$loadmore-refresh-color: var(--wot-loadmore-refresh-color, $primary-6) !default; // 错误提示颜色
+$loadmore-refresh-font-size: var(--wot-loadmore-refresh-font-size, $typography-body-size-extra-large) !default; // 刷新按钮字号
+$loadmore-retry-spacing: var(--wot-loadmore-retry-spacing, 0 $spacing-extra-tight) !default; // 重试文字与图标间距
 
 @include b(loadmore) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
   width: 100%;
-  height: $-loadmore-height;
-  line-height: $-loadmore-height;
-  text-align: center;
-  color: $-loadmore-color;
+  min-height: $loadmore-height;
+  padding: $loadmore-padding;
+  color: $loadmore-color;
+
+  @include edeep(divider) {
+    width: 100%;
+    margin: $spacing-zero;
+  }
 
   @include edeep(loading) {
-    display: inline-block;
-    margin-right: 8px;
-    vertical-align:  middle;
-    width: $-loadmore-loading-size;
-    height: $-loadmore-loading-size;
+    margin-right: $loadmore-loading-spacing;
+    font-size: $loadmore-loading-size;
   }
-  @include e(text) {
-    display: inline-block;
-    font-size: $-loadmore-fs;
-    vertical-align: middle;
 
-    @include when(light) {
-      margin: 0 6px;
-      color: $-loadmore-error-color;
-    }
+  @include e(text,refresh-text) {
+    font-size: $loadmore-font-size;
+    line-height: $loadmore-line-height;
   }
+
+  @include e(refresh-text) {
+    margin: $loadmore-retry-spacing;
+    color: $loadmore-refresh-color;
+  }
+
   @include edeep(refresh) {
-    display: inline-block;
-    color: $-loadmore-error-color;
+    color: $loadmore-refresh-color;
     vertical-align: middle;
-    font-size: $-loadmore-refresh-fs;
+    font-size: $loadmore-refresh-font-size;
   }
 }

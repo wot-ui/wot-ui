@@ -3,7 +3,7 @@
   <view class="fab" @click="closeOutside">
     <page-wraper>
       <demo-block :title="$t('xuan-fu-an-niu-zhu-ti-se')">
-        <wd-radio-group v-model="type" inline shape="dot">
+        <wd-radio-group v-model="type" type="dot">
           <wd-radio value="primary" custom-class="custom-radio">{{ $t('zhu-yao-an-niu') }}</wd-radio>
           <wd-radio value="success" custom-class="custom-radio">{{ $t('cheng-gong-an-niu-0') }}</wd-radio>
           <wd-radio value="warning" custom-class="custom-radio">{{ $t('jing-gao-an-niu-0') }}</wd-radio>
@@ -12,7 +12,7 @@
         </wd-radio-group>
       </demo-block>
       <demo-block :title="$t('xuan-fu-an-niu-wei-zhi')">
-        <wd-radio-group v-model="position" inline shape="dot">
+        <wd-radio-group v-model="position" type="dot">
           <wd-radio value="left-top" custom-class="custom-radio">{{ $t('zuo-shang') }}</wd-radio>
           <wd-radio value="right-top" custom-class="custom-radio">{{ $t('you-shang') }}</wd-radio>
           <wd-radio value="left-center" custom-class="custom-radio">{{ $t('zuo-zhong') }}</wd-radio>
@@ -24,7 +24,7 @@
         </wd-radio-group>
       </demo-block>
       <demo-block :title="$t('cai-dan-dan-chu-fang-xiang')">
-        <wd-radio-group v-model="direction" inline shape="dot">
+        <wd-radio-group v-model="direction" type="dot">
           <wd-radio value="top" custom-class="custom-radio">{{ $t('xiang-shang') }}</wd-radio>
           <wd-radio value="bottom" custom-class="custom-radio">{{ $t('xiang-xia') }}</wd-radio>
           <wd-radio value="right" custom-class="custom-radio">{{ $t('xiang-you') }}</wd-radio>
@@ -44,17 +44,22 @@
 
       <demo-block :title="$t('qie-huan-zhan-shi')">
         <view @click.stop="">
-          <wd-button type="primary" @click="active = !active" round>{{ $t('qie-huan') }}</wd-button>
+          <wd-button type="primary" @click="active = !active">{{ $t('qie-huan') }}</wd-button>
         </view>
       </demo-block>
 
       <demo-block :title="$t('zi-ding-yi-chu-fa-qi')">
-        <view @click.stop="">
-          <wd-switch v-model="useTriggerSlot" size="22px" />
-        </view>
+        <wd-radio-group v-model="customType" type="dot" @click.stop="">
+          <wd-radio value="default" custom-class="custom-radio">默认样式</wd-radio>
+          <wd-radio value="withText" custom-class="custom-radio">带文字按钮</wd-radio>
+          <wd-radio value="plain" custom-class="custom-radio">plain 变体</wd-radio>
+          <wd-radio value="text" custom-class="custom-radio">text 变体</wd-radio>
+        </wd-radio-group>
       </demo-block>
+
+      <!-- 默认 FAB 示例 -->
       <wd-fab
-        v-if="!useTriggerSlot"
+        v-if="!useTriggerSlot && !useVariantSlot && !useTextSlot"
         v-model:active="active"
         :disabled="disabled"
         :type="type"
@@ -63,44 +68,67 @@
         :draggable="draggable"
         @click="showToast('我被点了')"
       >
-        <wd-button @click="showToast('一键三连')" :disabled="disabled" custom-class="custom-button" type="primary" round>
-          <wd-icon name="github-filled" size="22px"></wd-icon>
-        </wd-button>
-        <wd-button @click="showToast('我要收藏')" :disabled="disabled" custom-class="custom-button" type="success" round>
-          <wd-icon name="star" size="22px"></wd-icon>
-        </wd-button>
-
-        <wd-button @click="showToast('我要投币')" :disabled="disabled" custom-class="custom-button" type="error" round>
-          <wd-icon name="money-circle" size="22px"></wd-icon>
-        </wd-button>
-        <wd-button @click="showToast('我要点赞')" :disabled="disabled" custom-class="custom-button" type="warning" round>
-          <wd-icon name="thumb-up" size="22px"></wd-icon>
-        </wd-button>
+        <wd-button
+          @click="showToast('一键三连')"
+          icon="heart-fill"
+          :disabled="disabled"
+          custom-class="custom-button"
+          type="primary"
+          round
+        ></wd-button>
+        <wd-button @click="showToast('我要收藏')" icon="star" :disabled="disabled" custom-class="custom-button" type="success" round></wd-button>
+        <wd-button @click="showToast('我要投币')" icon="gift" :disabled="disabled" custom-class="custom-button" type="danger" round></wd-button>
+        <wd-button @click="showToast('我要点赞')" icon="thumb-up" :disabled="disabled" custom-class="custom-button" type="warning" round></wd-button>
       </wd-fab>
 
-      <wd-fab v-else position="left-bottom" :draggable="draggable" :expandable="false">
-        <template #trigger>
-          <wd-button @click="handleCustomClick" icon="share" type="error">{{ $t('fen-xiang-gei-peng-you') }}</wd-button>
+      <!-- 自定义触发器：带文字的按钮 -->
+      <wd-fab v-else-if="useTriggerSlot" position="left-bottom" :disabled="disabled" :draggable="draggable" :expandable="false">
+        <template #trigger="{ disabled }">
+          <wd-button @click="handleCustomClick" icon="share-alt" type="danger" :disabled="disabled">{{ $t('fen-xiang-gei-peng-you') }}</wd-button>
         </template>
+      </wd-fab>
+
+      <!-- 自定义触发器：plain 变体 -->
+      <wd-fab v-else-if="useVariantSlot" position="right-bottom" :disabled="disabled" :draggable="draggable" v-model:active="active2">
+        <template #trigger="{ disabled }">
+          <wd-button icon="menu" variant="plain" type="primary" round :disabled="disabled"></wd-button>
+        </template>
+        <wd-button @click="showToast('设置')" icon="settings" custom-class="custom-button" variant="plain" type="info" round></wd-button>
+        <wd-button @click="showToast('分享')" icon="share-alt" custom-class="custom-button" variant="plain" type="success" round></wd-button>
+        <wd-button @click="showToast('编辑')" icon="edit" custom-class="custom-button" variant="plain" type="warning" round></wd-button>
+      </wd-fab>
+
+      <!-- 自定义触发器：text 变体 -->
+      <wd-fab v-else-if="useTextSlot" position="right-bottom" :disabled="disabled" :draggable="draggable" direction="bottom" v-model:active="active3">
+        <template #trigger="{ disabled }">
+          <wd-button icon="heart-fill" variant="text" :disabled="disabled" type="primary" round size="large"></wd-button>
+        </template>
+        <wd-button @click="showToast('复制')" icon="copy" custom-class="custom-button" variant="text" type="info" round></wd-button>
+        <wd-button @click="showToast('删除')" icon="delete" custom-class="custom-button" variant="text" type="danger" round></wd-button>
       </wd-fab>
     </page-wraper>
   </view>
 </template>
 <script lang="ts" setup>
 import { useQueue, useToast } from '@/uni_modules/wot-design-uni'
-import { ref } from 'vue'
+import { type FabPosition, type FabType } from '@/uni_modules/wot-design-uni/components/wd-fab/types'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const { show: showToast } = useToast()
 const active = ref<boolean>(false)
-const type = ref<'primary' | 'success' | 'info' | 'warning' | 'error' | 'default'>('primary')
-const position = ref<'left-top' | 'right-top' | 'left-bottom' | 'right-bottom' | 'left-center' | 'right-center' | 'top-center' | 'bottom-center'>(
-  'left-bottom'
-)
+const type = ref<FabType>('primary')
+const position = ref<FabPosition>('left-bottom')
 const direction = ref<'top' | 'right' | 'bottom' | 'left'>('top')
 const disabled = ref<boolean>(false)
 const draggable = ref<boolean>(false)
-const useTriggerSlot = ref<boolean>(false)
+const customType = ref<string>('default')
+const active2 = ref<boolean>(false)
+const active3 = ref<boolean>(false)
+
+const useTriggerSlot = computed(() => customType.value === 'withText')
+const useVariantSlot = computed(() => customType.value === 'plain')
+const useTextSlot = computed(() => customType.value === 'text')
 
 const { closeOutside } = useQueue()
 
@@ -128,6 +156,12 @@ function handleCustomClick() {
   :deep(.custom-radio) {
     height: 32px !important;
     line-height: 32px !important;
+  }
+
+  .custom-demo-text {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.6;
   }
 }
 </style>

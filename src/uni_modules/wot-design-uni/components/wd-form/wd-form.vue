@@ -10,7 +10,9 @@ export default {
   name: 'wd-form',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }

@@ -1,18 +1,17 @@
-<!--
- * @Author: North
- * @Date: 2026-01-01
- * @LastEditTime: 2026-01-01
- * @LastEditors: North
- * @Description: AvatarGroup 头像组组件，用于将多个头像组合展示
- * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-avatar-group/wd-avatar-group.vue
--->
 <template>
   <view :class="rootClass" :style="customStyle">
     <slot></slot>
     <!-- 折叠头像 -->
-    <view v-if="showCollapse" class="wd-avatar-group__item wd-avatar-group__collapse" :style="collapseStyle">
-      <wd-avatar _internal :text="collapseText" :shape="props.shape" :size="props.size" bg-color="#ebedf0" color="#969799" />
-    </view>
+    <wd-avatar
+      v-if="showCollapse"
+      :custom-style="collapseStyle"
+      _internal
+      :text="collapseText"
+      :shape="shape"
+      :size="size"
+      bg-color="#ebedf0"
+      color="#969799"
+    />
   </view>
 </template>
 
@@ -21,21 +20,25 @@ export default {
   name: 'wd-avatar-group',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
 </script>
 
 <script lang="ts" setup>
-import { computed, type CSSProperties, type ComponentPublicInstance } from 'vue'
+import { computed, useSlots, type CSSProperties } from 'vue'
 import wdAvatar from '../wd-avatar/wd-avatar.vue'
-import { avatarGroupProps, AVATAR_GROUP_KEY, type AvatarGroupProvide } from './types'
+import { avatarGroupProps, AVATAR_GROUP_KEY } from './types'
 import { useChildren } from '../composables/useChildren'
+import { objToStyle, addUnit, isString } from '../common/util'
 
 const props = defineProps(avatarGroupProps)
+const slots = useSlots()
 
-const { children, linkChildren } = useChildren<ComponentPublicInstance, AvatarGroupProvide>(AVATAR_GROUP_KEY)
+const { children, linkChildren } = useChildren(AVATAR_GROUP_KEY)
 
 linkChildren({ props })
 
@@ -43,7 +46,7 @@ linkChildren({ props })
  * 根节点类名
  */
 const rootClass = computed(() => {
-  return `wd-avatar-group wd-avatar-group--${props.cascading} ${props.customClass}`
+  return `wd-avatar-group wd-avatar-group--${props.cascading} ${props.customClass} ${props.vertical ? 'is-vertical' : ''}`
 })
 
 const maxCountValue = computed(() => {
@@ -79,6 +82,11 @@ const collapseText = computed(() => {
 })
 
 /**
+ * 是否有默认插槽
+ */
+const hasDefaultSlot = computed(() => !!slots.default)
+
+/**
  * 折叠头像样式
  */
 const collapseStyle = computed(() => {
@@ -89,10 +97,19 @@ const collapseStyle = computed(() => {
   } else {
     style.zIndex = 0
   }
-  return style
+  if (hasDefaultSlot.value) {
+    const isBuiltIn = isString(props.size) && ['large', 'medium', 'normal', 'small'].includes(props.size)
+    const margin = isBuiltIn ? 'var(--wot-avatar-overlap)' : `calc(${addUnit(props.size)} * -0.25)`
+    if (props.vertical) {
+      style.marginTop = margin
+    } else {
+      style.marginLeft = margin
+    }
+  }
+  return objToStyle(style)
 })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

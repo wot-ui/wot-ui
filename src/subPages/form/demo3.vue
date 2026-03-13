@@ -62,14 +62,13 @@
           />
           <wd-calendar :label="$t('ri-qi')" label-width="100px" :placeholder="$t('qing-xuan-ze-ri-qi')" prop="date" v-model="model.date" />
 
-          <wd-col-picker
+          <wd-cascader
             :label="$t('di-zhi')"
             :placeholder="$t('qing-xuan-ze-di-zhi')"
             label-width="100px"
             prop="address"
             v-model="model.address"
-            :columns="area"
-            :column-change="areaChange"
+            :options="area"
           />
         </wd-cell-group>
         <wd-cell-group custom-class="group" :title="$t('qi-ta-xin-xi')" border>
@@ -140,12 +139,12 @@
 <script lang="ts" setup>
 import { useToast } from '@/uni_modules/wot-design-uni'
 import { isArray } from '@/uni_modules/wot-design-uni/components/common/util'
-import type { ColPickerColumnChange } from '@/uni_modules/wot-design-uni/components/wd-col-picker/types'
+import { useCascaderAreaData } from '@vant/area-data'
 import { type FormInstance, type FormRules } from '@/uni_modules/wot-design-uni/components/wd-form/types'
 import type { UploadFileItem } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
-import { useColPickerData } from '@/hooks/useColPickerData'
+import { useCascaderData } from '@/hooks/useCascaderData'
 const { t } = useI18n()
-const { colPickerData, findChildrenByCode } = useColPickerData()
+const { cascaderData, findChildrenByCode } = useCascaderData()
 
 import { reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -158,7 +157,7 @@ const model = reactive<{
   price: string
   time: number | string
   date: null | number
-  address: string[]
+  address: string
   count: number
   content: string
   switchVal: boolean
@@ -175,7 +174,7 @@ const model = reactive<{
   price: '',
   date: null,
   time: '',
-  address: [],
+  address: '',
   count: 1,
   content: '',
   switchVal: true,
@@ -284,7 +283,7 @@ const rules: FormRules = {
       required: true,
       message: t('qing-xuan-ze-di-zhi-0'),
       validator: (value) => {
-        if (isArray(value) && value.length) {
+        if (value) {
           return Promise.resolve()
         } else {
           return Promise.reject(t('qing-xuan-ze-di-zhi-1'))
@@ -400,29 +399,7 @@ const promotionlist = ref<any[]>([
   }
 ])
 
-const area = ref<any[]>([
-  colPickerData.map((item) => {
-    return {
-      value: item.value,
-      label: item.text
-    }
-  })
-])
-const areaChange: ColPickerColumnChange = ({ selectedItem, resolve, finish }) => {
-  const areaData = findChildrenByCode(colPickerData, selectedItem.value)
-  if (areaData && areaData.length) {
-    resolve(
-      areaData.map((item) => {
-        return {
-          value: item.value,
-          label: item.text
-        }
-      })
-    )
-  } else {
-    finish()
-  }
-}
+const area = ref(useCascaderAreaData())
 const toast = useToast()
 const form = ref<FormInstance>()
 

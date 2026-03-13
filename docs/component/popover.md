@@ -126,7 +126,10 @@ function link(e) {
 | placement     | popover 的出现位置                         | string                                                       | top / top-start / top-end / bottom / bottom-start / bottom-end / left / left-start / left-end / right / right-start / right-end | bottom | -        |
 | visible-arrow | 是否显示 popover 箭头                      | boolean                                                      | -                                                                                                                               | true   | -        |
 | disabled      | popover 是否可用                           | boolean                                                      | -                                                                                                                               | false  | -        |
-| offset        | 出现位置的偏移量                           | number                                                       | -                                                                                                                               | 0      | -        |
+| show-close    | 是否显示关闭按钮                           | boolean                                                      | -                                                                                                                               | false  | -        |
+| use-content-slot | 是否使用 content 插槽传入内容            | boolean                                                      | -                                                                                                                               | false  | -        |
+| offset        | 出现位置的偏移量                           | number / number[] / { x: number, y: number }                                                      | -                                                                                                                               | 0      | -        |
+
 
 ## Slot
 

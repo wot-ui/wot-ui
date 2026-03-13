@@ -1,34 +1,47 @@
-@import "../common/abstracts/variable.scss";
-@import "../common/abstracts/_mixin.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
+
+$video-preview-bg: var(--wot-video-preview-bg, $opac-9_75) !default; // 预览背景色
+$video-preview-close-size: var(--wot-video-preview-close-size, $n24) !default;
+$video-preview-close-color: var(--wot-video-preview-close-color, $icon-white) !default;
+$video-preview-close-margin: var(--wot-video-preview-close-margin, $spacing-extra-loose) !default;
+$video-preview-video-height: var(--wot-video-preview-video-height, $n248) !default;
+$video-preview-z-index: var(--wot-video-preview-z-index, 1000) !default;
+$video-preview-close-z-index: var(--wot-video-preview-close-z-index, 10) !default;
 
 @include b(video-preview) {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: $video-preview-z-index;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: $-video-preview-bg;
+  background: $video-preview-bg;
 
   @include e(video) {
     width: 100%;
-    height: 242px;
+    height: $video-preview-video-height;
     transition: all 0.3s ease;
   }
 
-  @include edeep(close) {
+  @include e(close) {
     position: absolute;
-    box-sizing: border-box;
-    top: 0px;
-    right: 0px;
-    padding: 12px;
-    text-align: center;
+    z-index: $video-preview-close-z-index;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: $video-preview-close-margin;
+    right: $video-preview-close-margin;
     cursor: pointer;
-    font-size: $-video-preview-close-font-size;
-    color: $-video-preview-close-color;
+  }
+
+  @include edeep(close-icon) {
+    font-size: $video-preview-close-size;
+    line-height: $video-preview-close-size;
+    color: $video-preview-close-color;
   }
 }

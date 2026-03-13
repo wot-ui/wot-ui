@@ -28,6 +28,13 @@ export default defineConfig({
       '@vite-plugins': resolve(__dirname, './vite-plugins')
     }
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler'
+      }
+    }
+  },
   test: {
     environment: 'jsdom',
     globals: true,

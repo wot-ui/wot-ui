@@ -48,8 +48,6 @@ $divider-padding-default: var(--wot-divider-padding-default, $spacing-zero) !def
     border-width: $divider-line-height 0 0;
   }
 
-
-
   &::before {
     content: '';
   }

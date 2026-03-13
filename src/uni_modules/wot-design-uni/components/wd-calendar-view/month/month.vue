@@ -1,26 +1,24 @@
 <template>
   <view>
     <wd-toast selector="wd-month" />
-    <view class="month">
-      <view class="wd-month">
-        <view class="wd-month__title" v-if="showTitle">{{ monthTitle(date) }}</view>
-        <view class="wd-month__days">
-          <view
-            v-for="(item, index) in days"
-            :key="index"
-            :class="`wd-month__day ${item.disabled ? 'is-disabled' : ''} ${item.isLastRow ? 'is-last-row' : ''} ${
-              item.type ? dayTypeClass(item.type) : ''
-            }`"
-            :style="index === 0 ? firstDayStyle : ''"
-            @click="handleDateClick(index)"
-          >
-            <view class="wd-month__day-container">
-              <view class="wd-month__day-top">{{ item.topInfo }}</view>
-              <view class="wd-month__day-text">
-                {{ item.text }}
-              </view>
-              <view class="wd-month__day-bottom">{{ item.bottomInfo }}</view>
+    <view class="wd-month">
+      <view class="wd-month__title" v-if="showTitle">{{ monthTitle(date) }}</view>
+      <view class="wd-month__days">
+        <view
+          v-for="(item, index) in days"
+          :key="index"
+          :class="`wd-month__day ${item.disabled ? 'is-disabled' : ''} ${item.isLastRow ? 'is-last-row' : ''} ${
+            item.type ? dayTypeClass(item.type) : ''
+          } ${item.customClass || ''}`"
+          :style="index === 0 ? firstDayStyle : ''"
+          @click="handleDateClick(index)"
+        >
+          <view class="wd-month__day-container">
+            <view class="wd-month__day-top">{{ item.topInfo }}</view>
+            <view class="wd-month__day-text">
+              {{ item.text }}
             </view>
+            <view class="wd-month__day-bottom">{{ item.bottomInfo }}</view>
           </view>
         </view>
       </view>
@@ -32,7 +30,9 @@
 export default {
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -384,6 +384,6 @@ function getFormatterDate(date: number, day: string | number, type?: CalendarDay
   return dayObj
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

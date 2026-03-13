@@ -1,7 +1,7 @@
 <template>
   <view>
     <wd-popup
-      custom-class="wd-action-sheet__popup"
+      custom-class="wd-action-sheet-popup"
       :custom-style="`${(actions && actions.length) || (panels && panels.length) ? 'background: transparent;' : ''}`"
       v-model="showPopup"
       :duration="duration"
@@ -10,52 +10,51 @@
       :safe-area-inset-bottom="safeAreaInsetBottom"
       :lazy-render="lazyRender"
       :root-portal="rootPortal"
-      @enter="handleOpen"
       @close="close"
-      @after-enter="handleOpened"
-      @after-leave="handleClosed"
+      @enter="emit('enter')"
+      @after-enter="emit('after-enter')"
+      @leave="emit('leave')"
+      @after-leave="emit('after-leave')"
       @click-modal="handleClickModal"
       :z-index="zIndex"
     >
       <view
         :class="`wd-action-sheet ${customClass}`"
-        :style="`${
-          (actions && actions.length) || (panels && panels.length)
-            ? 'margin: 0 10px calc(var(--window-bottom) + 10px) 10px; border-radius: 16px;'
-            : 'margin-bottom: var(--window-bottom);'
-        } ${customStyle}`"
+        :style="`${(actions && actions.length) || (panels && panels.length) ? ' ' : ''} ${customStyle}`"
       >
-        <view v-if="title" :class="`wd-action-sheet__header ${customHeaderClass}`">
+        <view v-if="title" :class="`wd-action-sheet__title ${customTitleClass}`">
           {{ title }}
-          <wd-icon custom-class="wd-action-sheet__close" name="add" @click="close" />
+          <wd-icon custom-class="wd-action-sheet__close" name="close" @click="close" />
         </view>
-        <view class="wd-action-sheet__actions" v-if="actions && actions.length">
-          <button
-            v-for="(action, rowIndex) in actions"
-            :key="rowIndex"
-            :class="`wd-action-sheet__action ${action.disabled ? 'wd-action-sheet__action--disabled' : ''}  ${
-              action.loading ? 'wd-action-sheet__action--loading' : ''
-            }`"
-            :style="`color: ${action.color}`"
-            @click="select(rowIndex, 'action')"
-          >
-            <wd-loading custom-class="`wd-action-sheet__action-loading" v-if="action.loading" />
-            <view v-else class="wd-action-sheet__name">{{ action.name }}</view>
-            <view v-if="!action.loading && action.subname" class="wd-action-sheet__subname">{{ action.subname }}</view>
-          </button>
-        </view>
-        <view v-if="formatPanels && formatPanels.length">
-          <view v-for="(panel, rowIndex) in formatPanels" :key="rowIndex" class="wd-action-sheet__panels">
-            <view class="wd-action-sheet__panels-content">
-              <view v-for="(col, colIndex) in panel" :key="colIndex" class="wd-action-sheet__panel" @click="select(rowIndex, 'panels', colIndex)">
-                <image class="wd-action-sheet__panel-img" :src="(col as any).iconUrl" />
-                <view class="wd-action-sheet__panel-title">{{ (col as any).title }}</view>
+
+        <slot>
+          <view class="wd-action-sheet__actions" v-if="actions && actions.length">
+            <view
+              v-for="(action, rowIndex) in actions"
+              :key="rowIndex"
+              :class="`wd-action-sheet__action ${action.disabled ? 'wd-action-sheet__action--disabled' : ''}  ${
+                action.loading ? 'wd-action-sheet__action--loading' : ''
+              }`"
+              :style="`color: ${action.color}`"
+              @click="select(rowIndex, 'action')"
+            >
+              <wd-loading custom-class="`wd-action-sheet__action-loading" v-if="action.loading" />
+              <view v-else class="wd-action-sheet__name">{{ action.name }}</view>
+              <view v-if="!action.loading && action.description" class="wd-action-sheet__description">{{ action.description }}</view>
+            </view>
+          </view>
+          <view v-if="isArray(formatPanels) && formatPanels.length" class="wd-action-sheet__panels-wrap">
+            <view v-for="(panel, rowIndex) in formatPanels" :key="rowIndex" class="wd-action-sheet__panels">
+              <view class="wd-action-sheet__panels-content">
+                <view v-for="(col, colIndex) in panel" :key="colIndex" class="wd-action-sheet__panel" @click="select(rowIndex, 'panels', colIndex)">
+                  <wd-icon custom-class="wd-action-sheet__panel-img" :name="col.icon" />
+                  <view class="wd-action-sheet__panel-title">{{ col.title }}</view>
+                </view>
               </view>
             </view>
           </view>
-        </view>
-        <slot />
-        <button v-if="cancelText" class="wd-action-sheet__cancel" @click="handleCancel">{{ cancelText }}</button>
+        </slot>
+        <view v-if="cancelText" class="wd-action-sheet__cancel" @click="handleCancel">{{ cancelText }}</view>
       </view>
     </wd-popup>
   </view>
@@ -65,7 +64,9 @@ export default {
   name: 'wd-action-sheet',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -80,9 +81,9 @@ import { actionSheetProps, type Panel } from './types'
 import { isArray } from '../common/util'
 
 const props = defineProps(actionSheetProps)
-const emit = defineEmits(['select', 'click-modal', 'cancel', 'closed', 'close', 'open', 'opened', 'update:modelValue'])
+const emit = defineEmits(['select', 'click-modal', 'cancel', 'leave', 'after-leave', 'close', 'enter', 'after-enter', 'update:modelValue'])
 
-const formatPanels = ref<Array<Panel> | Array<Panel[]>>([])
+const formatPanels = ref<Array<Panel[]>>([])
 
 const showPopup = ref<boolean>(false)
 
@@ -96,13 +97,26 @@ watch(
   { deep: true, immediate: true }
 )
 
+/**
+ * 判断 panels 是否为一维数组
+ */
 function isPanelArray() {
   return props.panels.length && !isArray(props.panels[0])
 }
+
+/**
+ * 计算面板数据
+ */
 function computedValue() {
   formatPanels.value = isPanelArray() ? [props.panels as Panel[]] : (props.panels as Panel[][])
 }
 
+/**
+ * 点击选项
+ * @param rowIndex 行索引
+ * @param type 类型
+ * @param colIndex 列索引
+ */
 function select(rowIndex: number, type: 'action' | 'panels', colIndex?: number) {
   if (type === 'action') {
     if (props.actions[rowIndex].disabled || props.actions[rowIndex].loading) {
@@ -125,31 +139,34 @@ function select(rowIndex: number, type: 'action' | 'panels', colIndex?: number) 
     })
   }
   if (props.closeOnClickAction) {
-    close()
+    emit('update:modelValue', false)
   }
 }
+
+/**
+ * 点击遮罩层
+ */
 function handleClickModal() {
   emit('click-modal')
 }
+
+/**
+ * 点击取消按钮
+ */
 function handleCancel() {
   emit('cancel')
-  close()
+  emit('update:modelValue', false)
 }
+
+/**
+ * 关闭动作面板
+ */
 function close() {
   emit('update:modelValue', false)
   emit('close')
 }
-function handleOpen() {
-  emit('open')
-}
-function handleOpened() {
-  emit('opened')
-}
-function handleClosed() {
-  emit('closed')
-}
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

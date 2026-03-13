@@ -2,31 +2,44 @@
 @use '../styles/mixin/mixin' as *;
 @use '../styles/iconfont/iconfont.scss' as *;
 
-$-icon-font-size: var(--icon-font-size, $typography-body-size-main);
+$icon-font-size: var(--icon-font-size, $typography-body-size-main) !default;
 
 @include b(icon) {
   display: inline-block;
-  font-family: 'wd-icons' !important;
+  font-family: 'wd-icons';
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
   text-transform: none;
-  /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: $-icon-font-size;
+  font-size: $icon-font-size;
+  line-height: 1;
 
   &::before {
     display: inline-block;
   }
 
   @include m(image) {
-    width: $-icon-font-size;
-    height: $-icon-font-size;
+    width: $icon-font-size;
+    height: $icon-font-size;
   }
 
   @include e(image) {
     width: 100%;
     height: 100%;
+  }
+
+  // CSS 图标模式（UnoCSS 等 CSS class 图标库）
+  @include m(css) {
+    font-family: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    width: $icon-font-size;
+    height: $icon-font-size;
+
+    &::before {
+      display: none;
+    }
   }
 }

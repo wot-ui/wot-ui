@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { baseProps, makeNumberProp, numericProp } from '../common/props'
+import { baseProps, numericProp } from '../common/props'
 import type { BadgeProps } from '../wd-badge/types'
 
 /**
@@ -27,17 +27,11 @@ export const tabbarItemProps = {
   /**
    * 徽标显示值
    */
-  value: {
-    type: [Number, String, null] as PropType<number | string | null>,
-    default: null
-  },
+  value: [Number, String] as PropType<number | string>,
   /**
    * 是否点状徽标
    */
-  isDot: {
-    type: Boolean,
-    default: undefined
-  },
+  isDot: Boolean,
   /**
    * 徽标最大值
    */

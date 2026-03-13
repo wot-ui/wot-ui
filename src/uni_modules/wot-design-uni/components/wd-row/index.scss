@@ -1,10 +1,6 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
 
 @include b(row) {
-  &::after {
-    display: table;
-    clear: both;
-    content: "";
-  }
+  display: flex;
+  flex-wrap: wrap;
 }

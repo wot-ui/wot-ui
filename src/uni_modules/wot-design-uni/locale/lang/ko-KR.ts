@@ -44,7 +44,7 @@ export default {
     expand: '확장',
     retract: '축소'
   },
-  colPicker: {
+  cascader: {
     title: '선택',
     placeholder: '선택',
     select: '선택'
@@ -64,6 +64,12 @@ export default {
     retry: '재시도'
   },
   messageBox: {
+    inputPlaceholder: '정보를 입력해주세요',
+    confirm: '확인',
+    cancel: '취소',
+    inputNoValidate: '유효한 정보를 입력해주세요'
+  },
+  dialog: {
     inputPlaceholder: '정보를 입력해주세요',
     confirm: '확인',
     cancel: '취소',

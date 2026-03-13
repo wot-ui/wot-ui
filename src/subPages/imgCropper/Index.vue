@@ -1,70 +1,97 @@
 <template>
+  <page-meta :page-style="`overflow:${croppers.some((v) => v.show) ? 'hidden' : 'visible'};`"></page-meta>
   <page-wraper>
     <!-- #ifdef MP-WEIXIN -->
     <wd-privacy-popup></wd-privacy-popup>
     <!-- #endif -->
-    <demo-block :title="$t('jiBenYongFa')" style="text-align: center">
+    <demo-block :title="$t('jiBenYongFa')" class="img-cropper-demo" style="text-align: center">
       <wd-img-cropper
-        v-model="show"
-        :img-src="src"
-        @confirm="handleConfirm"
+        v-model="croppers[CROPPER_MAIN].show"
+        :img-src="croppers[CROPPER_MAIN].imageSrc"
+        @confirm="handleMainConfirm"
         @cancel="handleCancel"
-        @imgloaderror="imgLoaderror"
-        @imgloaded="imgLoaded"
+        @imgloaderror="handleImageLoadError"
+        @imgloaded="handleImageLoaded"
       ></wd-img-cropper>
-      <view class="profile">
-        <view v-if="!imgSrc" class="img" @click="upload">
-          <wd-icon name="fill-camera" custom-class="img-icon"></wd-icon>
-        </view>
-        <wd-img v-if="imgSrc" round width="200px" height="200px" :src="imgSrc" mode="aspectFit" custom-class="profile-img" @click="upload" />
-        <view style="font-size: 14px">{{ $t('dian-ji-shang-chuan-tou-xiang') }}</view>
-      </view>
-    </demo-block>
-
-    <demo-block :title="$t('zi-ding-yi-cai-jian-bi-li')" style="text-align: center">
-      <view class="profile-grid">
-        <view v-for="(ratio, index) in ['3:2', '16:9', '16:10']" :key="index" class="profile-item">
-          <wd-img-cropper
-            v-model="showCustom[index]"
-            :img-src="srcCustom[index]"
-            :aspect-ratio="ratio"
-            @confirm="handleCustomConfirm(index, $event)"
-            @cancel="handleCustomCancel"
-          ></wd-img-cropper>
-          <view v-if="!imgSrcCustom[index]" class="img" @click="uploadCustom(index)">
-            <wd-icon name="fill-camera" custom-class="img-icon"></wd-icon>
-          </view>
-          <wd-img
-            v-if="imgSrcCustom[index]"
-            width="300px"
-            :height="getHeight(ratio)"
-            :src="imgSrcCustom[index]"
-            mode="aspectFit"
-            custom-class="profile-img"
-            @click="uploadCustom(index)"
-          />
-          <view style="font-size: 14px">{{ ratio }}{{ $t('bi-li-cai-jian') }}</view>
-        </view>
-      </view>
-    </demo-block>
-
-    <demo-block :title="$t('cai-jian-hou-shang-chuan')" style="text-align: center">
-      <wd-img-cropper v-model="showUpload" :img-src="srcUpload" @confirm="handleConfirmUpload" @cancel="handleCancel"></wd-img-cropper>
-      <view class="profile">
-        <view v-if="!imgSrcUpload" class="img" @click="uploadWithCrop">
-          <wd-icon name="fill-camera" custom-class="img-icon"></wd-icon>
+      <view class="img-cropper-demo__profile img-cropper-demo__profile--main">
+        <view
+          v-if="!croppers[CROPPER_MAIN].imageResult"
+          class="img-cropper-demo__image-placeholder img-cropper-demo__image-placeholder--circular"
+          @click="chooseCropperImage(CROPPER_MAIN)"
+        >
+          <wd-icon name="fill-camera" custom-class="img-cropper-demo__image-icon"></wd-icon>
         </view>
         <wd-img
-          v-if="imgSrcUpload"
+          v-if="croppers[CROPPER_MAIN].imageResult"
           round
           width="200px"
           height="200px"
-          :src="imgSrcUpload"
+          :src="croppers[CROPPER_MAIN].imageResult"
           mode="aspectFit"
-          custom-class="profile-img"
-          @click="uploadWithCrop"
+          custom-class="img-cropper-demo__profile-image"
+          @click="chooseCropperImage(CROPPER_MAIN)"
         />
-        <view style="font-size: 14px">{{ $t('dian-ji-shang-chuan-cai-jian-hou-de-tou-xiang') }}</view>
+        <view class="img-cropper-demo__image-label">{{ $t('dian-ji-shang-chuan-tou-xiang') }}</view>
+      </view>
+    </demo-block>
+
+    <demo-block :title="$t('zi-ding-yi-cai-jian-bi-li')" class="img-cropper-demo" style="text-align: center">
+      <view class="img-cropper-demo__grid">
+        <view v-for="(ratio, index) in ['3:2', '16:9', '16:10']" :key="index" class="img-cropper-demo__grid-item">
+          <wd-img-cropper
+            v-model="croppers[CROPPER_RATIO_3_2 + index].show"
+            :img-src="croppers[CROPPER_RATIO_3_2 + index].imageSrc"
+            :aspect-ratio="ratio"
+            @confirm="handleCustomConfirm(index, $event)"
+            @cancel="handleCancel"
+          ></wd-img-cropper>
+          <view
+            v-if="!croppers[CROPPER_RATIO_3_2 + index].imageResult"
+            class="img-cropper-demo__image-placeholder img-cropper-demo__image-placeholder--rectangular"
+            @click="chooseCropperImage(CROPPER_RATIO_3_2 + index)"
+          >
+            <wd-icon name="fill-camera" custom-class="img-cropper-demo__image-icon"></wd-icon>
+          </view>
+          <wd-img
+            v-if="croppers[CROPPER_RATIO_3_2 + index].imageResult"
+            width="300px"
+            :height="getHeight(ratio)"
+            :src="croppers[CROPPER_RATIO_3_2 + index].imageResult"
+            mode="aspectFit"
+            custom-class="img-cropper-demo__grid-image"
+            @click="chooseCropperImage(CROPPER_RATIO_3_2 + index)"
+          />
+          <view class="img-cropper-demo__image-label">{{ ratio }}{{ $t('bi-li-cai-jian') }}</view>
+        </view>
+      </view>
+    </demo-block>
+
+    <demo-block :title="$t('cai-jian-hou-shang-chuan')" class="img-cropper-demo" style="text-align: center">
+      <wd-img-cropper
+        v-model="croppers[CROPPER_UPLOAD].show"
+        :img-src="croppers[CROPPER_UPLOAD].imageSrc"
+        @confirm="handleUploadConfirm"
+        @cancel="handleCancel"
+      ></wd-img-cropper>
+      <view class="img-cropper-demo__profile img-cropper-demo__profile--upload">
+        <view
+          v-if="!croppers[CROPPER_UPLOAD].imageResult"
+          class="img-cropper-demo__image-placeholder img-cropper-demo__image-placeholder--circular"
+          @click="chooseCropperImage(CROPPER_UPLOAD)"
+        >
+          <wd-icon name="fill-camera" custom-class="img-cropper-demo__image-icon"></wd-icon>
+        </view>
+        <wd-img
+          v-if="croppers[CROPPER_UPLOAD].imageResult"
+          round
+          width="200px"
+          height="200px"
+          :src="croppers[CROPPER_UPLOAD].imageResult"
+          mode="aspectFit"
+          custom-class="img-cropper-demo__profile-image"
+          @click="chooseCropperImage(CROPPER_UPLOAD)"
+        />
+        <view class="img-cropper-demo__image-label">{{ $t('dian-ji-shang-chuan-cai-jian-hou-de-tou-xiang') }}</view>
       </view>
     </demo-block>
   </page-wraper>
@@ -75,71 +102,90 @@ import { ref } from 'vue'
 import { useUpload, useToast } from '@/uni_modules/wot-design-uni'
 import { type UploadFileItem } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
 import { useI18n } from 'vue-i18n'
+
 const { t } = useI18n()
 const { startUpload, UPLOAD_STATUS } = useUpload()
-
 const { show: showToast } = useToast()
 
-const src = ref<string>('')
-const imgSrc = ref<string>('')
-const show = ref<boolean>(false)
+/**
+ * 裁剪器状态接口
+ */
+interface CropperState {
+  // 裁剪框是否显示
+  show: boolean
+  // 图片源路径
+  imageSrc: string
+  // 裁剪后的图片结果
+  imageResult: string
+  // 裁剪比例（可选）
+  aspectRatio?: string
+}
 
-// 自定义裁剪比例相关变量
-const showCustom = ref<boolean[]>([false, false, false])
-const srcCustom = ref<string[]>(['', '', ''])
-const imgSrcCustom = ref<string[]>(['', '', ''])
+// 裁剪器数组，按顺序为：主裁剪器、3:2比例、16:9比例、16:10比例、上传裁剪器
+const croppers = ref<CropperState[]>([
+  { show: false, imageSrc: '', imageResult: '', aspectRatio: '1:1' },
+  { show: false, imageSrc: '', imageResult: '', aspectRatio: '3:2' },
+  { show: false, imageSrc: '', imageResult: '', aspectRatio: '16:9' },
+  { show: false, imageSrc: '', imageResult: '', aspectRatio: '16:10' },
+  { show: false, imageSrc: '', imageResult: '' }
+])
 
-// 裁剪上传相关变量
-const showUpload = ref<boolean>(false)
-const srcUpload = ref<string>('')
-const imgSrcUpload = ref<string>('')
+// 裁剪器索引常量
+const CROPPER_MAIN = 0
+const CROPPER_RATIO_3_2 = 1
+const CROPPER_RATIO_16_9 = 2
+const CROPPER_RATIO_16_10 = 3
+const CROPPER_UPLOAD = 4
 
-function upload() {
+/**
+ * 打开图片选择框并进行裁剪
+ * @param {number} cropperIndex 裁剪器索引
+ */
+function chooseCropperImage(cropperIndex: number) {
   uni.chooseImage({
     count: 1,
     success: (res) => {
-      const tempFilePaths = res.tempFilePaths[0]
-      src.value = tempFilePaths
-      show.value = true
+      croppers.value[cropperIndex].imageSrc = res.tempFilePaths[0]
+      croppers.value[cropperIndex].show = true
     }
   })
 }
 
-function uploadCustom(index: number) {
-  uni.chooseImage({
-    count: 1,
-    success: (res) => {
-      const tempFilePaths = res.tempFilePaths[0]
-      srcCustom.value[index] = tempFilePaths
-      showCustom.value[index] = true
-    }
-  })
-}
-
-function uploadWithCrop() {
-  uni.chooseImage({
-    count: 1,
-    success: (res) => {
-      srcUpload.value = res.tempFilePaths[0]
-      showUpload.value = true
-    }
-  })
-}
-
-function handleConfirm(event: any) {
+/**
+ * 处理裁剪确认
+ * @param {number} cropperIndex 裁剪器索引
+ * @param {any} event 裁剪结果事件
+ */
+function handleConfirm(cropperIndex: number, event: any) {
   const { tempFilePath } = event
-  imgSrc.value = tempFilePath
+  croppers.value[cropperIndex].imageResult = tempFilePath
 }
 
+/**
+ * 处理裁剪确认（通用，用于主裁剪器）
+ * @param {any} event 裁剪结果事件
+ */
+function handleMainConfirm(event: any) {
+  handleConfirm(CROPPER_MAIN, event)
+}
+
+/**
+ * 处理自定义裁剪比例的图片确认
+ * @param {number} index 裁剪框索引（0-2，对应 3:2, 16:9, 16:10）
+ * @param {any} event 裁剪结果事件
+ */
 function handleCustomConfirm(index: number, event: any) {
-  const { tempFilePath } = event
-  imgSrcCustom.value[index] = tempFilePath
+  // 自定义裁剪框在数组中的下标是 1-3
+  handleConfirm(CROPPER_RATIO_3_2 + index, event)
 }
 
-async function handleConfirmUpload(event: any) {
+/**
+ * 处理上传前的图片裁剪确认
+ * @param {any} event 裁剪结果事件
+ */
+async function handleUploadConfirm(event: any) {
   const { tempFilePath } = event
 
-  // 构建上传文件对象
   const file: UploadFileItem = {
     url: tempFilePath,
     status: UPLOAD_STATUS.PENDING,
@@ -148,11 +194,10 @@ async function handleConfirmUpload(event: any) {
   }
 
   try {
-    // 开始上传
     await startUpload(file, {
-      action: 'https://mockapi.eolink.com/zhTuw2P8c29bc981a741931bdd86eb04dc1e8fd64865cb5/upload', // 替换为实际的上传地址
+      action: 'https://mockapi.eolink.com/zhTuw2P8c29bc981a741931bdd86eb04dc1e8fd64865cb5/upload',
       onSuccess() {
-        imgSrcUpload.value = tempFilePath
+        croppers.value[CROPPER_UPLOAD].imageResult = tempFilePath
         showToast({
           msg: t('shang-chuan-cheng-gong')
         })
@@ -171,22 +216,34 @@ async function handleConfirmUpload(event: any) {
   }
 }
 
-function imgLoaderror(res: any) {
+/**
+ * 处理图片加载错误
+ * @param {any} res 错误信息
+ */
+function handleImageLoadError(res: any) {
   console.log('加载失败', res)
 }
 
-function imgLoaded(res: any) {
+/**
+ * 处理图片加载成功
+ * @param {any} res 加载成功的图片信息
+ */
+function handleImageLoaded(res: any) {
   console.log('加载成功', res)
 }
 
-function handleCancel(event: any) {
-  console.log('取消', event)
+/**
+ * 处理裁剪取消
+ */
+function handleCancel() {
+  console.log('取消裁剪')
 }
 
-function handleCustomCancel(event: any) {
-  console.log('取消', event)
-}
-
+/**
+ * 根据裁剪比例计算图片高度
+ * @param {string} ratio 裁剪比例，格式: 'width:height'
+ * @returns {string} 计算后的高度
+ */
 function getHeight(ratio: string): string {
   const [w, h] = ratio.split(':').map(Number)
   if (ratio === '1:1') return '200px'
@@ -195,66 +252,89 @@ function getHeight(ratio: string): string {
 </script>
 
 <style lang="scss" scoped>
-.wot-theme-dark {
-  :deep(.profile-img) {
-    border: 1px solid $-dark-border-color;
+.img-cropper-demo {
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 300px;
+    gap: $spacing-main;
   }
-  .img {
-    background-color: $-dark-background4;
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-super-loose;
+    align-items: center;
+    padding: $padding-loose;
   }
-}
 
-.profile {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 300px;
-}
+  &__grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-tight;
 
-:deep(.profile-img) {
-  border: 1px solid rgba(0, 0, 0, 0.09);
-}
-.img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.04);
-  position: relative;
-}
-:deep(.img-icon) {
-  font-size: 60px;
-  color: #fff;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
+    // 自定义裁剪比例的网格项样式
+    &:nth-child(1) {
+      .img-cropper-demo__image-placeholder--rectangular {
+        height: 200px;
+      }
+    }
+  }
 
-.profile-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: center;
-  padding: 20px;
-}
+  // 图片占位符
+  &__image-placeholder {
+    position: relative;
+    background-color: $filled-bottom;
+    border: $stroke-main solid $border-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 200ms ease;
 
-.profile-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
+    // 圆形占位符
+    &--circular {
+      width: 200px;
+      height: 200px;
+      border-radius: $radius-radius-full;
+    }
 
-.profile-item .img {
-  width: 300px;
-  height: 169px; // 16:9的默认高度
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.04);
-  position: relative;
-}
+    // 矩形占位符
+    &--rectangular {
+      width: 300px;
+      height: calc(300px * 9 / 16);
+      border-radius: $radius-large;
+    }
+  }
 
-.profile-item:nth-child(1) .img {
-  height: 200px;
+  // 图片图标
+  &__image-icon {
+    font-size: $n60;
+    color: $text-white;
+  }
+
+  // 图片标签/描述
+  &__image-label {
+    font-size: $typography-label-size-main;
+    color: $text-auxiliary;
+    line-height: $typography-label-line--height-size-super-small;
+    margin-top: $spacing-tight;
+  }
+
+  // 个人资料页面的图片样式
+  &__profile-image {
+    border: $stroke-main solid $border-light;
+    border-radius: $radius-radius-full;
+    transition: border-color 200ms ease;
+  }
+
+  // 网格中的图片样式
+  &__grid-image {
+    border: $stroke-main solid $border-light;
+    border-radius: $radius-large;
+    transition: border-color 200ms ease;
+  }
 }
 </style>

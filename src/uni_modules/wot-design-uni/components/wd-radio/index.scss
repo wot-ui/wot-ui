@@ -9,7 +9,7 @@ $radio-label-fs: var(--wot-radio-label-fs, $typography-body-size-main) !default;
 $radio-label-color: var(--wot-radio-label-color, $text-main) !default; // 文字颜色
 $radio-label-line-height: var(--wot-radio-label-line-height, $typography-body-line--height-size-main) !default; // 文字行高
 $radio-disabled: var(--wot-radio-disabled, $opacity-disabled) !default; // 禁用
-$radio-vertical-margin: var(--wot-radio-vertical-margin, 0 0 $spacing-extra-loose 0) !default; // 垂直模式多个单选框距离
+$radio-vertical-padding: var(--wot-radio-vertical-margin, $spacing-extra-loose $padding-zero) !default; // 垂直模式多个单选框距离
 $radio-horizontal-margin: var(--wot-radio-horizontal-margin, 0 $spacing-extra-loose 0 0) !default; // 水平模式多个单选框距离
 $radio-button-margin: var(--wot-radio-button-margin, 0 $spacing-extra-loose $spacing-extra-loose 0) !default; // 按钮模式多个单选框距离
 $radio-button-border-width: var(--wot-radio-border-width, $n1) !default; // 边框宽度
@@ -34,9 +34,7 @@ $radio-button-icon-color: var(--wot-radio-button-icon-color, $icon-white) !defau
   overflow: hidden;
 
   @include m(vertical) {
-    &:not(:last-child) {
-      margin: $radio-vertical-margin;
-    }
+    padding: $radio-vertical-padding;
   }
 
   @include m(horizontal) {

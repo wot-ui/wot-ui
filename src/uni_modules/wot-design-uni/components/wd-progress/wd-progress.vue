@@ -1,15 +1,38 @@
 <template>
-  <view :class="`wd-progress ${customClass}`" :style="customStyle">
+  <view
+    :class="`wd-progress ${percentPosition.type === 'inner' ? 'wd-progress--inner' : ''} ${status ? 'wd-progress--' + status : ''} ${
+      percentage === 0 ? 'is-zero' : ''
+    } ${customClass}`"
+    :style="customStyle"
+  >
     <view class="wd-progress__outer">
-      <view :class="`wd-progress__inner ${innerClass}`" :style="rootStyle"></view>
+      <view class="wd-progress__inner" :style="rootStyle">
+        <!-- inner 渲染到 progress__inner 内部 -->
+        <template v-if="percentPosition.type === 'inner'">
+          <view v-if="!hideText" :class="['wd-progress__label', percentPosition.align ? `is-align-${percentPosition.align}` : '']">
+            {{ percentage }}%
+          </view>
+          <wd-icon
+            v-else-if="status"
+            :custom-class="`wd-progress__label wd-progress__icon ${hideText ? 'is-hide-text' : ''} ${
+              percentPosition.align ? `is-align-${percentPosition.align}` : ''
+            }`"
+            :name="iconName"
+            :color="isString(color) ? color : ''"
+          ></wd-icon>
+        </template>
+      </view>
     </view>
-    <view v-if="!hideText" class="wd-progress__label">{{ percentage }}%</view>
-    <wd-icon
-      v-else-if="status"
-      :custom-class="`wd-progress__label wd-progress__icon ${innerClass}`"
-      :name="iconName"
-      :color="typeof color === 'string' ? color : ''"
-    ></wd-icon>
+    <!-- outer 渲染到外侧 -->
+    <template v-if="percentPosition.type === 'outer'">
+      <view v-if="!hideText" class="wd-progress__label">{{ percentage }}%</view>
+      <wd-icon
+        v-else-if="status"
+        :custom-class="`wd-progress__label wd-progress__icon ${hideText ? 'is-hide-text' : ''}`"
+        :name="iconName"
+        :color="isString(color) ? color : ''"
+      ></wd-icon>
+    </template>
   </view>
 </template>
 
@@ -17,7 +40,9 @@
 export default {
   name: 'wd-progress',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -27,36 +52,47 @@ export default {
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
 import { computed, ref, watch } from 'vue'
-import { isArray, isDef, isObj, objToStyle, pause } from '../common/util'
+import { isArray, isDef, isObj, isString, objToStyle, pause } from '../common/util'
 import { progressProps, type ProgressColor } from './types'
 
 const props = defineProps(progressProps)
-const showColor = ref<string>('')
-const showPercent = ref<number>(0)
-const changeCount = ref<number>(0)
-let timer: ReturnType<typeof setTimeout> | null = null
+// 进度条渲染颜色
+const displayColor = ref<string>('')
 
+// 进度条渲染进度比例
+const displayPercentage = ref<number>(0)
+
+// 百分比变更差值
+const percentageDiff = ref<number>(0)
+
+// 进度条延迟定时器
+let animationTimer: ReturnType<typeof setTimeout> | null = null
+
+/**
+ * 根节点样式，控制进度条底色、宽度及过渡动画
+ */
 const rootStyle = computed(() => {
   return objToStyle({
-    background: showColor.value,
-    width: `${showPercent.value}%`,
-    'transition-duration': `${changeCount.value * props.duration * 0.001}s`
+    background: displayColor.value,
+    width: `${displayPercentage.value}%`,
+    'transition-duration': `${percentageDiff.value * props.duration * 0.001}s`
   })
 })
 
-const innerClass = computed(() => (props.status ? `is-${props.status}` : ''))
-
+/**
+ * 内置或外置图标的名称，根据状态不同返回对应图标
+ */
 const iconName = computed(() => {
   let icon: string = ''
   switch (props.status) {
     case 'danger':
-      icon = 'close-outline'
+      icon = 'close-circle-fill'
       break
     case 'success':
-      icon = 'check-outline'
+      icon = 'check-circle-fill'
       break
     case 'warning':
-      icon = 'warn-bold'
+      icon = 'exclamation-circle-fill'
       break
     default:
       break
@@ -73,6 +109,10 @@ watch(
   { immediate: true }
 )
 
+/**
+ * 校验 percentage 是否合法
+ * @param {number} value 百分比值
+ */
 function validatePercentage(value: number) {
   if (Number.isNaN(value) || value < 0 || value > 100) {
     console.error('The value of percentage must be between 0 and 100')
@@ -80,57 +120,61 @@ function validatePercentage(value: number) {
 }
 
 /**
- * 进度条前进
- * @param partList 颜色数组
- * @param percentage 进度值
+ * 进度条前进算法
+ * @param {ProgressColor[]} partList 颜色及对应进度断点数组
+ * @param {number} percentage 目标进度值
+ * @returns {boolean}
  */
 function updateProgressForward(partList: ProgressColor[], percentage: number) {
   return partList.some((part, index) => {
-    if (showPercent.value < part.percentage && part.percentage <= percentage) {
-      update(part.percentage, part.color)
+    if (displayPercentage.value < part.percentage && part.percentage <= percentage) {
+      renderProgressStep(part.percentage, part.color)
       return true
     } else if (index === partList.length - 1) {
-      update(percentage, part.color)
+      renderProgressStep(percentage, part.color)
     }
   })
 }
 
 /**
- * 进度条后退
- * @param partList 颜色数组
- * @param percentage 进度值
+ * 进度条后退算法
+ * @param {ProgressColor[]} partList 颜色及对应进度断点数组
+ * @param {number} percentage 目标进度值
+ * @returns {boolean}
  */
 function updateProgressBackward(partList: ProgressColor[], percentage: number) {
   return partList.some((part) => {
     if (percentage <= part.percentage) {
-      update(percentage, part.color)
+      renderProgressStep(percentage, part.color)
       return true
     }
   })
 }
 
 /**
- * 更新进度条
+ * 更新进度条的显示逻辑主入口
+ * @returns {Promise<void>}
  */
 async function updateProgress() {
   const { percentage, color } = props
   if (!isDef(color) || (isArray(color) && color.length === 0)) {
-    changeCount.value = Math.abs(percentage - showPercent.value)
+    percentageDiff.value = Math.abs(percentage - displayPercentage.value)
     await pause()
-    showPercent.value = percentage
+    displayPercentage.value = percentage
     return
   }
-  if (showPercent.value === percentage) return
+  if (displayPercentage.value === percentage) return
 
   const colorArray = isArray(color) ? color : [color]
   validateColorArray(colorArray)
   const partList = createPartList(colorArray)
-  showPercent.value > percentage ? updateProgressBackward(partList, percentage) : updateProgressForward(partList, percentage)
+  displayPercentage.value > percentage ? updateProgressBackward(partList, percentage) : updateProgressForward(partList, percentage)
 }
 
 /**
- * 判断是否是颜色数组
- * @param array 颜色数组
+ * 判断是否是复合类型的颜色及进度数组
+ * @param {string[] | ProgressColor[]} array 要判断的数组
+ * @returns {array is ProgressColor[]} 判定依据
  */
 function isProgressColorArray(array: string[] | ProgressColor[]): array is ProgressColor[] {
   return array.every(
@@ -139,16 +183,18 @@ function isProgressColorArray(array: string[] | ProgressColor[]): array is Progr
 }
 
 /**
- * 判断是否是字符串数组
- * @param array 颜色数组
+ * 判断是否是纯字符串形式的颜色数组
+ * @param {string[] | ProgressColor[]} array 要判断的数组
+ * @returns {array is string[]} 判定依据
  */
 function isStringArray(array: string[] | ProgressColor[]): array is string[] {
   return array.every((item) => typeof item === 'string')
 }
 
 /**
- * 颜色数组校验
- * @param colorArray 颜色数组
+ * 校验颜色数组结构安全性
+ * @param {string[] | ProgressColor[]} colorArray 颜色数组
+ * @throws {Error} 未遵循 ProgressColor | String 的数组格式将引发错误
  */
 function validateColorArray(colorArray: string[] | ProgressColor[]) {
   const isStrArray = isStringArray(colorArray)
@@ -162,9 +208,9 @@ function validateColorArray(colorArray: string[] | ProgressColor[]) {
 }
 
 /**
- * 创建颜色数组
- * @param colorArray 颜色数组
- * @return 颜色数组
+ * 创建基于刻度的颜色渲染流
+ * @param {string[] | ProgressColor[]} colorArray 颜色数组
+ * @returns {ProgressColor[]} 对齐进度标识后的颜色数组
  */
 function createPartList(colorArray: string[] | ProgressColor[]) {
   const partNum = 100 / colorArray.length
@@ -176,22 +222,28 @@ function createPartList(colorArray: string[] | ProgressColor[]) {
       }))
 }
 
-function update(targetPercent: number, color: string) {
-  if (timer) return
+/**
+ * 内部驱动方法更新渲染视图及进度
+ * @param {number} targetPercent 阶段目标进度
+ * @param {string} color 颜色描述
+ * @returns {void}
+ */
+function renderProgressStep(targetPercent: number, color: string) {
+  if (animationTimer) return
   const { duration } = props
-  changeCount.value = Math.abs(targetPercent - showPercent.value)
+  percentageDiff.value = Math.abs(targetPercent - displayPercentage.value)
   setTimeout(() => {
-    showPercent.value = targetPercent
-    showColor.value = color
-    timer = setTimeout(() => {
-      timer && clearTimeout(timer)
-      timer = null
+    displayPercentage.value = targetPercent
+    displayColor.value = color
+    animationTimer = setTimeout(() => {
+      animationTimer && clearTimeout(animationTimer)
+      animationTimer = null
       updateProgress()
-    }, changeCount.value * duration)
+    }, percentageDiff.value * duration)
   }, 50)
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

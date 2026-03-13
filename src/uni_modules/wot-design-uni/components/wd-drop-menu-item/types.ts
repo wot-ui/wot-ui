@@ -1,3 +1,12 @@
+/*
+ * @Author: weisheng
+ * @Date: 2025-09-28 20:02:55
+ * @LastEditTime: 2026-03-06 15:26:18
+ * @LastEditors: weisheng
+ * @Description:
+ * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-drop-menu-item/types.ts
+ * 记得注释
+ */
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeArrayProp, makeBooleanProp, makeNumericProp, makeStringProp, numericProp } from '../common/props'
 
@@ -43,7 +52,7 @@ export const dorpMenuItemProps = {
   /**
    * 菜单图标
    */
-  icon: makeStringProp('arrow-down'),
+  icon: makeStringProp('caret-down'),
   /**
    * 菜单图标大小
    */

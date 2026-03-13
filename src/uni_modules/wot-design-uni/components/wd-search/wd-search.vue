@@ -4,10 +4,10 @@
       <slot name="prefix"></slot>
       <view class="wd-search__field">
         <view v-if="!placeholderLeft" :style="coverStyle" class="wd-search__cover" @click="closeCover">
-          <wd-icon name="search" custom-class="wd-search__search-icon"></wd-icon>
+          <wd-icon name="search-line" custom-class="wd-search__search-icon"></wd-icon>
           <text :class="`wd-search__placeholder-txt ${placeholderClass}`">{{ placeholder || translate('search') }}</text>
         </view>
-        <wd-icon v-if="showInput || inputValue || placeholderLeft" name="search" custom-class="wd-search__search-left-icon"></wd-icon>
+        <wd-icon v-if="showInput || inputValue || placeholderLeft" name="search-line" custom-class="wd-search__search-left-icon"></wd-icon>
         <input
           v-if="showInput || inputValue || placeholderLeft"
           :placeholder="placeholder || translate('search')"
@@ -24,7 +24,8 @@
           :maxlength="maxlength"
           :focus="isFocused"
         />
-        <wd-icon v-if="inputValue" custom-class="wd-search__clear wd-search__clear-icon" name="error-fill" @click="handleClear" />
+        <wd-icon v-if="inputValue" custom-class="wd-search__clear-icon" name="close-circle-fill" @click="handleClear" />
+        <slot name="input-suffix"></slot>
       </view>
     </view>
 
@@ -40,7 +41,9 @@
 export default {
   name: 'wd-search',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -93,7 +96,9 @@ onMounted(() => {
 })
 
 const rootClass = computed(() => {
-  return `wd-search  ${props.light ? 'is-light' : ''}  ${props.hideCancel ? 'is-without-cancel' : ''} ${props.customClass}`
+  const isLight = props.variant === 'light'
+  const isPlain = props.variant === 'plain'
+  return `wd-search ${isLight ? 'is-light' : ''} ${isPlain ? 'is-plain' : ''} ${props.hideCancel ? 'is-without-cancel' : ''} ${props.customClass}`
 })
 
 const coverStyle = computed(() => {
@@ -188,6 +193,6 @@ function handleClick() {
   }
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

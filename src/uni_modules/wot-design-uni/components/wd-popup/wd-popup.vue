@@ -27,7 +27,7 @@
         @after-leave="emit('after-leave')"
       >
         <slot />
-        <wd-icon v-if="closable" custom-class="wd-popup__close" name="add" @click="close" />
+        <wd-icon v-if="closable" custom-class="wd-popup__close" name="close" @click="close" />
       </wd-transition>
     </view>
   </wd-root-portal>
@@ -60,7 +60,7 @@
       @after-leave="emit('after-leave')"
     >
       <slot />
-      <wd-icon v-if="closable" custom-class="wd-popup__close" name="add" @click="close" />
+      <wd-icon v-if="closable" custom-class="wd-popup__close" name="close" @click="close" />
     </wd-transition>
   </view>
 </template>
@@ -69,7 +69,9 @@
 export default {
   name: 'wd-popup',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -165,6 +167,6 @@ function close() {
 function noop() {}
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

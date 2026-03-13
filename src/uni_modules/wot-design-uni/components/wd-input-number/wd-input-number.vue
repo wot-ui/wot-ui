@@ -1,13 +1,18 @@
 <template>
-  <view :class="`wd-input-number ${customClass} ${disabled ? 'is-disabled' : ''} ${withoutInput ? 'is-without-input' : ''}`" :style="customStyle">
+  <view
+    :class="`wd-input-number wd-input-number--${theme} ${customClass} ${disabled ? 'is-disabled' : ''} ${withoutInput ? 'is-without-input' : ''} ${
+      round ? 'is-round' : ''
+    }`"
+    :style="customStyle"
+  >
     <!-- 减号按钮 -->
     <view
-      :class="`wd-input-number__action ${minDisabled || disableMinus ? 'is-disabled' : ''}`"
+      :class="`wd-input-number__action wd-input-number__sub ${minDisabled || disableMinus ? 'is-disabled' : ''}`"
       @click="handleClick('sub')"
       @touchstart="handleTouchStart('sub')"
       @touchend.stop="handleTouchEnd"
     >
-      <wd-icon name="decrease" custom-class="wd-input-number__action-icon"></wd-icon>
+      <view class="wd-input-number__action-divider" />
     </view>
     <!-- 输入框 -->
     <view v-if="!withoutInput" class="wd-input-number__inner" @click.stop="">
@@ -24,16 +29,15 @@
         @focus="handleFocus"
         @blur="handleBlur"
       />
-      <view class="wd-input-number__input-border"></view>
     </view>
     <!-- 加号按钮 -->
     <view
-      :class="`wd-input-number__action ${maxDisabled || disablePlus ? 'is-disabled' : ''}`"
+      :class="`wd-input-number__action wd-input-number__add ${maxDisabled || disablePlus ? 'is-disabled' : ''}`"
       @click="handleClick('add')"
       @touchstart="handleTouchStart('add')"
       @touchend.stop="handleTouchEnd"
     >
-      <wd-icon name="add" custom-class="wd-input-number__action-icon"></wd-icon>
+      <view class="wd-input-number__action-divider" />
     </view>
   </view>
 </template>
@@ -42,7 +46,9 @@
 export default {
   name: 'wd-input-number',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -50,7 +56,6 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import wdIcon from '../wd-icon/wd-icon.vue'
 import { computed, nextTick, ref, watch } from 'vue'
 import { isDef, isEqual } from '../common/util'
 import { inputNumberProps, type OperationType } from './types'
@@ -459,6 +464,6 @@ function clearLongPressTimer() {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

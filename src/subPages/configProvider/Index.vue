@@ -55,15 +55,7 @@
       </wd-cell-group>
       <wd-cell-group custom-class="group" :title="$t('shi-jian-he-di-zhi')" border>
         <wd-datetime-picker :label="$t('shi-jian')" label-width="100px" name="date" v-model="date" @confirm="handleDate" />
-        <wd-col-picker
-          :label="$t('di-zhi')"
-          label-width="100px"
-          name="address"
-          v-model="address"
-          :columns="area"
-          :column-change="areaChange"
-          @confirm="handleAddress"
-        />
+        <wd-cascader :label="$t('di-zhi')" label-width="100px" name="address" v-model="address" :options="area" @confirm="handleAddress" />
       </wd-cell-group>
       <wd-cell-group custom-class="group" :title="$t('qi-ta-xin-xi')" border>
         <wd-input
@@ -117,12 +109,12 @@
 </template>
 <script setup lang="ts">
 import { useToast, useMessage } from '@/uni_modules/wot-design-uni'
-import type { ColPickerColumnChangeOption } from '@/uni_modules/wot-design-uni/components/wd-col-picker/types'
 import { ref } from 'vue'
-import { useColPickerData } from '@/hooks/useColPickerData'
+import { useCascaderAreaData } from '@vant/area-data'
+import { useCascaderData } from '@/hooks/useCascaderData'
 import { useI18n } from 'vue-i18n'
 import { type Action } from '@/uni_modules/wot-design-uni/components/wd-action-sheet/types'
-const { colPickerData, findChildrenByCode } = useColPickerData()
+const { cascaderData, findChildrenByCode } = useCascaderData()
 
 const { t } = useI18n()
 
@@ -176,33 +168,11 @@ const promotionlist = ref<any[]>([
 const threshold = ref<string>('')
 const price = ref<string>('')
 const date = ref<number>(new Date().getTime())
-const address = ref<any[]>([])
+const address = ref<string>('')
 
 const count = ref<number>(1)
 
-const area = ref<any[]>([
-  colPickerData.map((item) => {
-    return {
-      value: item.value,
-      label: item.text
-    }
-  })
-])
-const areaChange = ({ selectedItem, resolve, finish }: ColPickerColumnChangeOption) => {
-  const areaData = findChildrenByCode(colPickerData, selectedItem.value)
-  if (areaData && areaData.length) {
-    resolve(
-      areaData.map((item) => {
-        return {
-          value: item.value,
-          label: item.text
-        }
-      })
-    )
-  } else {
-    finish()
-  }
-}
+const area = ref(useCascaderAreaData())
 const content = ref<string>('')
 const coun = ref<number>(1)
 const read = ref<boolean>(false)
@@ -224,7 +194,7 @@ function showActions() {
     },
     {
       name: t('xuanXiang_3-0'),
-      subname: t('miaoShuXinXi-0')
+      description: t('miaoShuXinXi-0')
     }
   ]
 }

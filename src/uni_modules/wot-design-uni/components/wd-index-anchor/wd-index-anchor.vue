@@ -30,12 +30,12 @@ const { proxy } = getCurrentInstance()!
 const top = ref<number>(0)
 
 const isSticky = computed(() => {
-  return indexBar && indexBar.props.sticky && indexBar.anchorState.activeIndex === props.index
+  return indexBar.value && indexBar.value.props.sticky && indexBar.value.anchorState.activeIndex === props.index
 })
 
 function getInfo() {
   getRect(`#${indexAnchorId.value}`, false, proxy).then((res) => {
-    if (isDef(indexBar)) {
+    if (isDef(indexBar.value)) {
       top.value = Math.floor(res.top!)
     }
   })
@@ -50,6 +50,6 @@ defineExpose({
 })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

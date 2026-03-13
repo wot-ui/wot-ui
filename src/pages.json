@@ -306,6 +306,21 @@
           }
         },
         {
+          "path": "dialog/Index",
+          "name": "dialog",
+          "style": {
+            "mp-alipay": {
+              "allowsBounceVertical": "NO"
+            },
+            // #ifdef MP
+            "navigationBarTitleText": "Dialog 对话框",
+            // #endif
+            // #ifndef MP
+            "navigationBarTitleText": "%dialog-title%"
+            // #endif
+          }
+        },
+        {
           "path": "toast/Index",
           "name": "toast",
           "style": {
@@ -651,14 +666,14 @@
           }
         },
         {
-          "path": "colPicker/Index",
-          "name": "colPicker",
+          "path": "cascader/Index",
+          "name": "cascader",
           "style": {
             "mp-alipay": {
               "allowsBounceVertical": "NO"
             },
             // #ifdef MP
-            "navigationBarTitleText": "ColPicker 多列选择器",
+            "navigationBarTitleText": "Cascader 级联选择器",
             // #endif
             // #ifndef MP
             "navigationBarTitleText": "%colpicker-title%"
@@ -767,6 +782,21 @@
             // #endif
             // #ifndef MP
             "navigationBarTitleText": "%steps-title%"
+            // #endif
+          }
+        },
+        {
+          "path": "videoPreview/Index",
+          "name": "videoPreview",
+          "style": {
+            "mp-alipay": {
+              "allowsBounceVertical": "NO"
+            },
+            // #ifdef MP
+            "navigationBarTitleText": "VideoPreview 视频预览",
+            // #endif
+            // #ifndef MP
+            "navigationBarTitleText": "%videopreview-title%"
             // #endif
           }
         },
@@ -1369,6 +1399,21 @@
             // #endif
             // #ifndef MP
             "navigationBarTitleText": "%tour-title%"
+            // #endif
+          }
+        },
+        {
+          "path": "imagePreview/Index",
+          "name": "imagePreview",
+          "style": {
+            "mp-alipay": {
+              "allowsBounceVertical": "NO"
+            },
+            // #ifdef MP
+            "navigationBarTitleText": "ImagePreview 图片预览",
+            // #endif
+            // #ifndef MP
+            "navigationBarTitleText": "%imagepreview-title%"
             // #endif
           }
         }

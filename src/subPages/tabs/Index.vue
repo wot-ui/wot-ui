@@ -33,14 +33,17 @@
       </wd-tabs>
     </demo-block>
 
-    <demo-block :title="$t('zi-dong-tiao-zheng-di-bu-tiao-kuan-du')" transparent>
-      <wd-tabs v-model="autoLineWidthTab" @change="handleChange" auto-line-width>
-        <block v-for="item in autoLineWidthTabs" :key="item">
-          <wd-tab :title="item" :name="item">
-            <view class="content">{{ $t('nei-rong') }}{{ autoLineWidthTab }}</view>
-          </wd-tab>
-        </block>
-      </wd-tabs>
+    <demo-block title="底部条样式" transparent>
+      <view v-for="theme in lineThemes" :key="theme" style="margin-bottom: 20px">
+        <view style="margin-bottom: 10px; padding-left: 15px; font-size: 14px; color: #666">Theme: {{ theme }}</view>
+        <wd-tabs v-model="tabLineTheme[theme]" :line-theme="theme" @change="handleChange">
+          <block v-for="item in 4" :key="item">
+            <wd-tab :title="`${theme} ${item}`">
+              <view class="content">{{ $t('nei-rong') }}{{ item }}</view>
+            </wd-tab>
+          </block>
+        </wd-tabs>
+      </view>
     </demo-block>
 
     <demo-block :title="$t('nian-xing-bu-ju')" transparent>
@@ -123,7 +126,7 @@
       </wd-tabs>
     </demo-block>
 
-    <demo-block :title="$t('zai-dan-chu-kuang-zhong-shi-yong-0')" transparent>
+    <demo-block :title="$t('zai-dan-chu-kuang-zhong-shi-yong-0')">
       <view class="section">
         <wd-button @click="handleOpenClick">{{ $t('da-kai-dan-chuang') }}</wd-button>
       </view>
@@ -142,7 +145,7 @@
 <script lang="ts" setup>
 import { useToast } from '@/uni_modules/wot-design-uni'
 import type { TabsInstance } from '@/uni_modules/wot-design-uni/components/wd-tabs/types'
-import { computed, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
@@ -179,8 +182,13 @@ const tabsWithBadge = computed(() => {
   ]
 })
 
-const autoLineWidthTabs = ref(['Wot', 'Design', 'Uni'])
-const autoLineWidthTab = ref('Design')
+const lineThemes = ['normal', 'text', 'underline', 'dot'] as const
+const tabLineTheme = reactive<Record<(typeof lineThemes)[number], number>>({
+  normal: 0,
+  text: 0,
+  underline: 0,
+  dot: 0
+})
 
 const tab1 = ref<number>(0)
 const tab2 = ref<number>(0)

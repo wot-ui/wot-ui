@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2023-06-19 12:47:57
- * @LastEditTime: 2025-11-23 18:34:33
+ * @LastEditTime: 2026-01-22 23:52:18
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-toast/types.ts
@@ -117,11 +117,11 @@ export const toastProps = {
   /**
    * 加载颜色
    * @type {string}
-   * @default '#4D80F0'
+   * @default '#ffffff'
    */
   loadingColor: {
     type: String,
-    default: '#4D80F0'
+    default: '#ffffff'
   },
   /**
    * 加载大小
@@ -136,9 +136,9 @@ export const toastProps = {
   /**
    * 位置
    * @type {'top' | 'middle-top' | 'middle' | 'bottom'}
-   * @default 'middle-top'
+   * @default 'middle'
    */
-  position: makeStringProp<ToastPositionType>('middle-top'),
+  position: makeStringProp<ToastPositionType>('middle'),
   /**
    * 层级
    * @type {number}

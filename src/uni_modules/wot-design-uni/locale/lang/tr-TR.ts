@@ -49,7 +49,7 @@ export default {
     expand: 'Genişlet',
     retract: 'Daralt'
   },
-  colPicker: {
+  cascader: {
     title: 'Lütfen seçin',
     placeholder: 'Lütfen seçin',
     select: 'Seç'
@@ -69,6 +69,12 @@ export default {
     retry: 'Tekrar deneyin'
   },
   messageBox: {
+    inputPlaceholder: 'Lütfen girin',
+    confirm: 'Tamam',
+    cancel: 'İptal',
+    inputNoValidate: 'Girilen veriler geçerli değil'
+  },
+  dialog: {
     inputPlaceholder: 'Lütfen girin',
     confirm: 'Tamam',
     cancel: 'İptal',

@@ -1,25 +1,25 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(sidebar) {
-    background: $-dark-background;
-    @include e(padding){
-      background: $-dark-background2;
-    }
-  }
-}
+// 侧边栏宽度
+$sidebar-width: var(--wot-sidebar-width, 114px) !default;
+// 侧边栏高度
+$sidebar-height: var(--wot-sidebar-height, 100%) !default;
+// 侧边栏背景色
+$sidebar-bg: var(--wot-sidebar-bg, $filled-oppo) !default;
+// 内容区背景色
+$sidebar-padding-bg: var(--wot-sidebar-padding-bg, $filled-oppo) !default;
 
 @include b(sidebar) {
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  width: $-sidebar-width;
-  height: $-sidebar-height;
-  background: $-color-white;
-  
-  @include e(padding){
+  width: $sidebar-width;
+  height: $sidebar-height;
+  background: $sidebar-bg;
+
+  @include e(padding) {
     flex: 1 1 auto;
-    background: $-sidebar-bg;
+    background: $sidebar-padding-bg;
   }
 }

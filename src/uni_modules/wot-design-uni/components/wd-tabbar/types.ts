@@ -1,4 +1,4 @@
-import { type ExtractPropTypes, type InjectionKey } from 'vue'
+import { type ExtractPropTypes, type InjectionKey, type PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp } from '../common/props'
 import type { TabbarItem } from '../wd-tabbar-item/types'
 
@@ -43,7 +43,7 @@ export const tabbarProps = {
   /**
    * 是否显示顶部边框
    */
-  bordered: makeBooleanProp(true),
+  bordered: makeBooleanProp(false),
   /**
    * 是否设置底部安全距离（iPhone X 类型的机型）
    */
@@ -67,7 +67,13 @@ export const tabbarProps = {
   /**
    * 自定义组件的层级
    */
-  zIndex: makeNumberProp(99)
+  zIndex: makeNumberProp(10),
+  /**
+   * 切换前的回调函数，返回 false 可阻止切换，支持返回 Promise
+   */
+  beforeChange: Function as PropType<TabbarBeforeChange>
 }
+
+export type TabbarBeforeChange = (value: number | string) => boolean | Promise<boolean>
 
 export type TabbarProps = ExtractPropTypes<typeof tabbarProps>

@@ -18,7 +18,7 @@
         :next-margin="addUnit(nextMargin)"
         :snap-to-edge="snapToEdge"
         :display-multiple-items="displayMultipleItems"
-        :style="{ height: addUnit(height) }"
+        :style="swiperStyle"
         @change="handleChange"
         @animationfinish="handleAnimationfinish"
       >
@@ -46,6 +46,7 @@
               :class="`wd-swiper__image ${customImageClass} ${customItemClass} ${getCustomItemClass(currentValue, index, list)}`"
               :style="{ height: addUnit(height) }"
               :mode="imageMode"
+              :show-menu-by-longpress="showMenuByLongpress"
               @click="handleClick(index, item)"
             />
             <text v-if="isObj(item) && item[textKey]" :class="`wd-swiper__text ${customTextClass}`" :style="customTextStyle">
@@ -80,7 +81,9 @@ export default {
   name: 'wd-swiper',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -88,9 +91,9 @@ export default {
 
 <script lang="ts" setup>
 import wdSwiperNav from '../wd-swiper-nav/wd-swiper-nav.vue'
-import { computed, watch, ref, getCurrentInstance, useSlots } from 'vue'
-import { addUnit, isObj, isImageUrl, isVideoUrl, uuid, isDef } from '../common/util'
-import { swiperProps, type SwiperList } from './types'
+import { computed, watch, ref, getCurrentInstance, useSlots, type CSSProperties } from 'vue'
+import { addUnit, isObj, isImageUrl, isVideoUrl, uuid, isDef, objToStyle } from '../common/util'
+import { swiperProps, type SwiperItem } from './types'
 import type { SwiperNavProps } from '../wd-swiper-nav/types'
 const slots = useSlots()
 
@@ -131,6 +134,17 @@ watch(
   }
 )
 
+const swiperStyle = computed(() => {
+  const style: CSSProperties = {
+    height: addUnit(props.height)
+  }
+
+  if (isDef(props.radius)) {
+    style.borderRadius = addUnit(props.radius)
+  }
+  return objToStyle(style)
+})
+
 const swiperItemClass = computed(() => {
   return `wd-swiper__item ${slots.default ? 'wd-swiper__item--slot' : ''}`
 })
@@ -151,7 +165,7 @@ const swiperIndicator = computed(() => {
   return swiperIndicator
 })
 
-const getMediaType = (item: string | SwiperList, type: 'video' | 'image') => {
+const getMediaType = (item: string | SwiperItem, type: 'video' | 'image') => {
   const checkType = (url: string) => (type === 'video' ? isVideoUrl(url) : isImageUrl(url))
 
   if (isObj(item)) {
@@ -161,11 +175,11 @@ const getMediaType = (item: string | SwiperList, type: 'video' | 'image') => {
   }
 }
 
-const isVideo = (item: string | SwiperList) => {
+const isVideo = (item: string | SwiperItem) => {
   return getMediaType(item, 'video')
 }
 
-const isImage = (item: string | SwiperList) => {
+const isImage = (item: string | SwiperItem) => {
   return getMediaType(item, 'image')
 }
 
@@ -198,7 +212,7 @@ function handleVideoPause() {
  * @param index
  * @param list
  */
-function isPrev(current: number, index: number, list: string[] | SwiperList[]) {
+function isPrev(current: number, index: number, list: string[] | SwiperItem[]) {
   return (current - 1 + list.length) % list.length === index
 }
 
@@ -208,11 +222,11 @@ function isPrev(current: number, index: number, list: string[] | SwiperList[]) {
  * @param index
  * @param list
  */
-function isNext(current: number, index: number, list: string[] | SwiperList[]) {
+function isNext(current: number, index: number, list: string[] | SwiperItem[]) {
   return (current + 1 + list.length) % list.length === index
 }
 
-function getCustomItemClass(current: number, index: number, list: string[] | SwiperList[]) {
+function getCustomItemClass(current: number, index: number, list: string[] | SwiperItem[]) {
   let customItemClass: string = ''
   if (isPrev(current, index, list)) {
     customItemClass = props.customPrevClass || props.customPrevImageClass
@@ -295,7 +309,7 @@ function handleAnimationfinish(e: { detail: { current: any; source: string } }) 
  * @param index 点击的滑块下标
  * @param item 点击的滑块内容
  */
-function handleClick(index: number, item: string | SwiperList) {
+function handleClick(index: number, item: string | SwiperItem) {
   emit('click', { index, item })
 }
 
@@ -313,6 +327,6 @@ function handleIndicatorChange({ dir }: { dir: 'prev' | 'next' }) {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

@@ -11,7 +11,17 @@
     @enter="onOpened"
   >
     <view class="wd-notify" :class="[`wd-notify--${state.type}`]" :style="{ color: state.color, background: state.background }" @click="onClick">
-      <slot>{{ state.message }}</slot>
+      <slot name="prefix">
+        <wd-icon v-if="iconName" :name="iconName" custom-class="wd-notify__prefix"></wd-icon>
+      </slot>
+      <view class="wd-notify__content">
+        <slot>
+          <text>{{ state.message }}</text>
+        </slot>
+      </view>
+      <slot name="close" v-if="state.closable">
+        <wd-icon name="close" custom-class="wd-notify__close" @click="handleClose"></wd-icon>
+      </slot>
     </view>
   </wd-popup>
 </template>
@@ -19,7 +29,9 @@
 export default {
   name: 'wd-notify',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -42,6 +54,26 @@ const emits = defineEmits<{
 }>()
 const state = inject(getNotifyOptionKey(props.selector), ref<NotifyProps>(props))
 
+/**
+ * 根据消息类型获取对应的图标
+ */
+const iconName = computed(() => {
+  const { type } = state.value
+  switch (type) {
+    case 'success':
+      return 'check-circle-fill'
+    case 'warning':
+      return 'exclamation-circle-fill'
+    case 'danger':
+      return 'close-circle-fill'
+    default:
+      return 'info-circle-fill'
+  }
+})
+
+/**
+ * 计算通知的自定义样式
+ */
 const customStyle = computed(() => {
   const { safeHeight, position } = state.value
   let customStyle: string = ''
@@ -58,17 +90,33 @@ const customStyle = computed(() => {
   return customStyle
 })
 
+/**
+ * 处理点击事件
+ * @param {MouseEvent} event 鼠标事件
+ */
 const onClick = (event: MouseEvent) => {
   if (isFunction(state.value.onClick)) return state.value.onClick(event)
   emits('click', event)
 }
+/**
+ * 处理关闭动画结束事件
+ */
 const onClosed = () => {
   if (isFunction(state.value.onClosed)) return state.value.onClosed()
   emits('closed')
 }
+/**
+ * 处理打开动画结束事件
+ */
 const onOpened = () => {
   if (isFunction(state.value.onOpened)) return state.value.onOpened()
   emits('opened')
+}
+/**
+ * 点击关闭按钮处理
+ */
+const handleClose = () => {
+  state.value.visible = false
 }
 
 watch(
@@ -80,6 +128,6 @@ watch(
 )
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

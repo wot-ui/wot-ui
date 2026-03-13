@@ -15,7 +15,7 @@ export const radioProps = {
   value: makeRequiredProp([String, Number, Boolean]),
   /**
    * 单选框类型
-   * 可选值: 'dot' | 'circle' | 'square' | 'button'
+   * 可选值: dot | circle | square | button
    * 默认值: 继承自 radio-group
    */
   type: String as PropType<RadioType>,

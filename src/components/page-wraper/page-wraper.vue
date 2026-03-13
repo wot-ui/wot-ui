@@ -1,5 +1,5 @@
 <template>
-  <wd-config-provider :theme="theme">
+  <wd-config-provider :custom-class="customClass" :custom-style="customStyle" :theme="theme">
     <view class="page-wraper" @click="closeOutside">
       <wd-cell :title="$t('qie-huan-an-hei')" title-width="240px" center v-if="showDarkMode">
         <wd-switch v-model="isDark" />
@@ -25,8 +25,8 @@
     <wd-notify />
     <wd-toast />
     <!-- #ifdef MP-WEIXIN -->
-    <wd-fab v-model:active="fabActive" draggable type="error" :gap="{ bottom: 58 }" direction="left" v-if="enableRewardFab">
-      <wd-button type="error" round @click="goToReward">
+    <wd-fab v-model:active="fabActive" draggable type="danger" :gap="{ bottom: 58 }" direction="left" v-if="enableRewardFab">
+      <wd-button type="danger" round @click="goToReward">
         <view style="display: flex; align-items: center">
           <wd-icon name="thumb-up" size="22px"></wd-icon>
           <text>{{ $t('kan-shi-pin-mian-guang-gao') }}</text>
@@ -40,7 +40,9 @@
 export default {
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -56,6 +58,8 @@ interface Props {
   safeAreaInsetBottom?: boolean
   useWxAd?: boolean
   useRewardFab?: boolean
+  customClass?: string
+  customStyle?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -125,13 +129,9 @@ onMounted(() => {
 })
 </script>
 <style lang="scss" scoped>
-.wot-theme-dark {
-  .page-wraper {
-    background: #000;
-  }
-}
 .page-wraper {
-  min-height: calc(100vh - var(--window-top));
+  min-height: calc(100vh - var(--window-top) - var(--window-bottom));
   box-sizing: border-box;
+  background: $filled-bottom;
 }
 </style>

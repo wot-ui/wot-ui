@@ -1,63 +1,90 @@
-@import '../common/abstracts/_mixin.scss';
-@import '../common/abstracts/variable.scss';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(search) {
-    background: $-dark-background4;
+// 组件整体内边距
+$search-padding: var(--wot-search-padding, $padding-tight $padding-loose) !default;
+// 输入框圆角
+$search-input-radius: var(--wot-search-input-radius, $radius-radius-full) !default;
+// 输入框高度
+$search-input-height: var(--wot-search-input-height, $n36) !default;
+// 输入框内边距
+$search-field-padding: var(--wot-search-field-padding, $padding-zero $padding-loose) !default;
+// 输入框左侧搜索图标向右间距
+$search-left-icon-margin-right: var(--wot-search-left-icon-margin-right, $spacing-super-tight) !default;
+// --------------------- filled variant (default) --------------------- //
+// 输入框背景色 (filled)
+$search-input-bg: var(--wot-search-input-bg, $filled-bottom) !default;
+// 组件容器背景色 (filled)
+$search-bg: var(--wot-search-bg, $filled-oppo) !default;
+// 组件覆盖层背景色 (filled)
+$search-cover-bg: var(--wot-search-cover-bg, $filled-bottom) !default;
 
-    @include e(block) {
-      background-color: $-dark-background;
-    }
+// --------------------- light variant --------------------- //
+// light 模式容器背景色
+$search-light-bg: var(--wot-search-light-bg, $filled-bottom) !default;
+// light 模式内容块背景色
+$search-light-block-bg: var(--wot-search-light-block-bg, $filled-oppo) !default;
+// light 模式覆盖层背景色
+$search-light-cover-bg: var(--wot-search-light-cover-bg, $filled-oppo) !default;
 
-    @include e(input) {
-      color: $-dark-color;
-    }
+// --------------------- plain variant --------------------- //
+// plain 模式容器背景色
+$search-plain-bg: var(--wot-search-plain-bg, $filled-oppo) !default;
+// plain 模式内容块背景色
+$search-plain-block-bg: var(--wot-search-plain-block-bg, $filled-oppo) !default;
+// plain 模式内容块边框
+$search-plain-block-border-color: var(--wot-search-plain-block-border-color, $border-light) !default;
+// plain 模式覆盖层背景色
+$search-plain-cover-bg: var(--wot-search-plain-cover-bg, $filled-oppo) !default;
+// block 向右间距
+$search-block-margin-right: var(--wot-search-block-margin-right, $spacing-extra-tight) !default;
 
-    @include e(cover) {
-      background-color: $-dark-background;
-    }
+// 输入框字号
+$search-input-font-size: var(--wot-search-input-font-size, $typography-body-size-main) !default;
+// 输入框文字颜色
+$search-input-color: var(--wot-search-input-color, $text-main) !default;
+// 输入框文字行高
+$search-input-line-height: var(--wot-search-input-line-height, $typography-body-line--height-size-main) !default;
 
-    @include e(search-icon) {
-      color: $-dark-color;
-    }
-    @include e(search-left-icon) {
-      color: $-dark-color;
-    }
-    @include e(clear) {
-      color: $-dark-color;
-    }
-    @include e(cancel) {
-      color: $-dark-color;
-    }
-
-    @include when(light) {
-      background: $-dark-background4;
-  
-      .wd-search__block {
-        background: $-dark-background7;
-      }
-  
-      .wd-search__cover {
-        background: $-dark-background7;
-      }
-    }
-  }
-}
+// 搜索图标颜色
+$search-icon-color: var(--wot-search-icon-color, $icon-secondary) !default;
+// 搜索图标大小
+$search-icon-size: var(--wot-search-icon-size, $typography-title-size-main) !default;
+// 清除图标大小
+$search-clear-icon-size: var(--wot-search-clear-icon-size, $n20) !default;
+// 清除图标颜色
+$search-clear-icon-color: var(--wot-search-clear-icon-color, $icon-disabled) !default;
+// 清除图标向右间距
+$search-clear-icon-margin-left: var(--wot-search-clear-icon-margin-left, $spacing-super-tight) !default;
+// 占位符颜色
+$search-placeholder-color: var(--wot-search-placeholder-color, $text-placeholder) !default;
+// 占位符字号
+$search-placeholder-font-size: var(--wot-search-placeholder-font-size, $typography-body-size-main) !default;
+// 占位符行高
+$search-placeholder-line-height: var(--wot-search-placeholder-line-height, $typography-body-line--height-size-main) !default;
+// 取消按钮字号
+$search-cancel-font-size: var(--wot-search-cancel-font-size, $typography-body-size-main) !default;
+// 取消按钮行高
+$search-cancel-line-height: var(--wot-search-cancel-line-height, $typography-body-line--height-size-main) !default;
+// 取消按钮颜色
+$search-cancel-color: var(--wot-search-cancel-color, $primary-6) !default;
 
 @include b(search) {
   display: flex;
-  padding: $-search-padding;
+  padding: $search-padding;
   align-items: center;
-  background: #fff;
+  background: $search-bg;
 
   @include e(block) {
     flex: 1;
-    background-color: $-search-input-bg;
-    border-radius: $-search-input-radius;
+    background-color: $search-input-bg;
+    border-radius: $search-input-radius;
     display: flex;
     flex-direction: row;
     align-items: center;
     position: relative;
+    box-sizing: border-box;
+    margin-right: $search-block-margin-right;
   }
   @include e(field) {
     flex: 1;
@@ -65,18 +92,19 @@
     flex-direction: row;
     align-items: center;
     position: relative;
+    padding: $search-field-padding;
   }
   @include e(input) {
     flex: 1;
-    height: $-search-input-height;
+    height: $search-input-height;
+    font-size: $search-input-font-size;
+    line-height: $search-input-line-height;
+    color: $search-input-color;
     box-sizing: border-box;
-    padding: $-search-input-padding;
     border: none;
     background: transparent;
-    font-size: $-search-input-fs;
     -webkit-appearance: none;
     outline: none;
-    color: $-search-input-color;
     z-index: 0;
 
     @include lineEllipsis;
@@ -87,62 +115,64 @@
   }
   @include e(cover) {
     width: 100%;
-    height: $-search-input-height;
-    background-color: $-search-input-bg;
-    line-height: $-search-input-height;
-    font-size: $-search-input-fs;
-    border-radius: $-search-input-radius;
+    height: $search-input-height;
+    background-color: $search-cover-bg;
+    line-height: $search-input-height;
+    font-size: $search-input-font-size;
+    border-radius: $search-input-radius;
     flex-direction: row;
     justify-content: center;
     align-items: center;
   }
   @include edeep(search-icon) {
-    margin-right: 8px;
-    color: $-search-icon-color;
-    font-size: $-search-icon-size;
+    margin-right: $search-left-icon-margin-right;
+    color: $search-icon-color;
+    font-size: $search-icon-size;
   }
   @include edeep(search-left-icon) {
-    position: absolute;
-    font-size: $-search-icon-size;
-    top: 50%;
-    left: 16px;
-    transform: translateY(-50%);
-    color: $-search-icon-color;
+    margin-right: $search-left-icon-margin-right;
+    font-size: $search-icon-size;
+    color: $search-icon-color;
   }
   @include e(placeholder-txt) {
-    color: $-search-placeholder-color;
-    font-size: $-search-input-fs;
-  }
-  @include edeep(clear) {
-    position: absolute;
-    right: 0;
-    padding: 6px 9px 6px 7px;
-    color: $-search-cancel-color;
+    color: $search-placeholder-color;
+    font-size: $search-placeholder-font-size;
+    line-height: $search-placeholder-line-height;
   }
   @include edeep(clear-icon) {
-    vertical-align: middle;
-    font-size: $-search-clear-icon-size;
+    font-size: $search-clear-icon-size;
+    color: $search-clear-icon-color;
+    margin-left: $search-clear-icon-margin-left;
   }
   @include e(cancel) {
-    padding: $-search-cancel-padding;
-    height: $-search-input-height;
-    line-height: $-search-input-height;
-    font-size: $-search-cancel-fs;
-    color: $-search-cancel-color;
-    -webkit-tap-highlight-color: transparent;
+    line-height: $search-cancel-line-height;
+    font-size: $search-cancel-font-size;
+    color: $search-cancel-color;
   }
   @include when(light) {
-    background: $-search-light-bg;
+    background: $search-light-bg;
 
     .wd-search__block {
-      background: #fff;
+      background: $search-light-block-bg;
     }
 
     .wd-search__cover {
-      background: #fff;
+      background: $search-light-cover-bg;
+    }
+  }
+  @include when(plain) {
+    background: $search-plain-bg;
+
+    .wd-search__block {
+      background: $search-plain-block-bg;
+      @include pixelBorderSurround($search-plain-block-border-color)
+    }
+
+    .wd-search__cover {
+      background: $search-plain-cover-bg;
     }
   }
   @include when(without-cancel) {
-    padding-right: $-search-side-padding;
+    // padding-right: $search-side-padding;
   }
 }

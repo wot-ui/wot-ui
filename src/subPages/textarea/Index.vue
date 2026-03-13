@@ -18,87 +18,38 @@
     <demo-block :title="$t('dian-ji-qing-chu-an-niu-shi-bu-zi-dong-ju-jiao')" transparent>
       <wd-textarea v-model="value15" :focus-when-clear="false" :maxlength="120" clearable show-word-limit />
     </demo-block>
-    <demo-block :title="$t('da-chi-cun')" transparent>
-      <wd-textarea v-model="value7" size="large" :maxlength="120" clearable show-word-limit></wd-textarea>
-    </demo-block>
-    <demo-block :title="$t('gao-du-zi-shi-ying')">
+    <demo-block :title="$t('gao-du-zi-shi-ying')" transparent>
       <wd-textarea v-model="value3" auto-height clearable></wd-textarea>
     </demo-block>
 
-    <demo-block :title="$t('cell-lei-xing')" transparent>
-      <wd-cell-group border>
-        <wd-textarea
-          :label="$t('gao-du-zi-shi-ying-0')"
-          auto-height
-          clearable
-          v-model="value5"
-          :placeholder="$t('qing-shu-ru-0')"
-          prefix-icon="location"
-        />
-        <wd-textarea :label="$t('qing-kong-an-niu')" clearable v-model="value4" :placeholder="$t('qing-shu-ru-0')" required />
-
-        <wd-textarea
-          :label="$t('bi-tian-xing-hao-zai-you-ce')"
-          clearable
-          v-model="value16"
-          :placeholder="$t('qing-shu-ru-0')"
-          required
-          marker-side="after"
-        />
-        <wd-textarea
-          :label="$t('zi-shu-xian-zhi-0')"
-          :maxlength="240"
-          clearable
-          show-word-limit
-          v-model="value6"
-          :placeholder="$t('qing-shu-ru-0')"
-          required
-        />
-        <wd-textarea
-          :label="$t('zhi-du')"
-          readonly
-          clearable
-          :maxlength="240"
-          show-word-limit
-          v-model="value12"
-          :placeholder="$t('qing-shu-ru-0')"
-          required
-        />
-        <wd-textarea
-          :label="$t('jinYong')"
-          disabled
-          clearable
-          :maxlength="240"
-          show-word-limit
-          v-model="value13"
-          :placeholder="$t('qing-shu-ru-0')"
-          required
-        />
-      </wd-cell-group>
+    <demo-block title="紧凑布局" transparent>
+      <wd-textarea v-model="value7" compact :placeholder="$t('qing-tian-xie-ping-jia')" />
     </demo-block>
 
-    <demo-block :title="$t('da-chi-cun')" transparent>
-      <wd-cell-group border>
-        <wd-textarea
-          :label="$t('gao-du-zi-shi-ying-1')"
-          auto-height
-          size="large"
-          clearable
-          v-model="value9"
-          :placeholder="$t('qing-shu-ru-0')"
-          required
-        />
-        <wd-textarea
-          :label="$t('zi-shu-xian-zhi-0')"
-          size="large"
-          :maxlength="240"
-          clearable
-          show-word-limit
-          v-model="value10"
-          :placeholder="$t('qing-shu-ru-0')"
-          required
-        />
-      </wd-cell-group>
+    <demo-block title="结合表单使用" transparent>
+      <wd-form :model="formData" border title-width="98px">
+        <wd-form-item title="基本用法" prop="basic">
+          <wd-textarea v-model="formData.basic" placeholder="请输入" compact />
+        </wd-form-item>
+        <wd-form-item title="禁用" prop="disabled">
+          <wd-textarea v-model="formData.disabled" disabled placeholder="请输入" compact />
+        </wd-form-item>
+        <wd-form-item title="清空按钮" prop="clearable">
+          <wd-textarea v-model="formData.clearable" clearable placeholder="请输入" compact />
+        </wd-form-item>
+        <wd-form-item title="高度自适应" prop="autoHeight">
+          <wd-textarea v-model="formData.autoHeight" auto-height clearable placeholder="请输入" compact />
+        </wd-form-item>
+        <wd-form-item title="字数限制" prop="limit">
+          <wd-textarea v-model="formData.limit" :maxlength="240" show-word-limit clearable compact placeholder="请输入" />
+        </wd-form-item>
+        <wd-form-item title="必填" prop="required" required>
+          <wd-textarea v-model="formData.required" placeholder="请输入" compact />
+        </wd-form-item>
+        <wd-form-item title="只读" prop="readonly">
+          <wd-textarea v-model="formData.readonly" readonly :maxlength="240" show-word-limit placeholder="请输入" compact />
+        </wd-form-item>
+      </wd-form>
     </demo-block>
   </page-wraper>
 </template>
@@ -111,19 +62,22 @@ const { t } = useI18n()
 const value1 = ref<string>('')
 const value2 = ref<string>(t('zhi-chi-qing-kong-he-zi-shu-xian-zhi-de-wen-ben-yu'))
 const value3 = ref<string>(t('shu-ru-wen-zi-hou-shu-ru-kuang-gao-du-gen-sui-zi-shu-duo-shao-bian-hua'))
-const value4 = ref<string>('')
-const value5 = ref<string>('')
-const value6 = ref<string>('')
 const value7 = ref<string>('')
 const value8 = ref<string>(t('zhi-du-zhi-du-zhi-du'))
-const value9 = ref<string>('')
-const value10 = ref<string>('')
 const value11 = ref<string>(t('jin-yong-jin-yong-jin-yong'))
-const value12 = ref<string>(t('zhi-du-zhi-du-zhi-du-0'))
-const value13 = ref<string>(t('jin-yong-jin-yong-jin-yong-0'))
 const value14 = ref<string>('')
 const value15 = ref<string>('')
-const value16 = ref<string>('')
+
+// 表单数据
+const formData = ref({
+  basic: '',
+  disabled: t('gai-shu-ru-kuang-jin-yong'),
+  clearable: '',
+  autoHeight: '',
+  limit: '',
+  required: '',
+  readonly: t('zhi-du-zhi-du-zhi-du-0')
+})
 </script>
 <style lang="scss" scoped>
 .wot-theme-dark {

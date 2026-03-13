@@ -9,7 +9,7 @@ $checkbox-label-fs: var(--wot-checkbox-label-fs, $typography-body-size-main) !de
 $checkbox-label-color: var(--wot-checkbox-label-color, $text-main) !default; // 文字颜色
 $checkbox-label-line-height: var(--wot-checkbox-label-line-height, $typography-body-line--height-size-main) !default; // 文字行高
 $checkbox-disabled: var(--wot-checkbox-disabled, $opacity-disabled) !default; // 禁用
-$checkbox-vertical-margin: var(--wot-checkbox-vertical-margin, 0 0 $spacing-extra-loose 0) !default; // 垂直模式多个单选框距离
+$checkbox-vertical-padding: var(--wot-checkbox-vertical-margin, $spacing-extra-loose $padding-zero) !default; // 垂直模式多个单选框距离
 $checkbox-horizontal-margin: var(--wot-checkbox-horizontal-margin, 0 $spacing-extra-loose 0 0) !default; // 水平模式多个单选框距离
 $checkbox-button-margin: var(--wot-checkbox-button-margin, 0 $spacing-extra-loose $spacing-extra-loose 0) !default; // 按钮模式多个单选框距离
 $checkbox-button-border-width: var(--wot-checkbox-border-width, $n1) !default; // 边框宽度
@@ -34,9 +34,7 @@ $checkbox-button-icon-color: var(--wot-checkbox-button-icon-color, $icon-white) 
   overflow: hidden;
 
   @include m(vertical) {
-    &:not(:last-child) {
-      margin: $checkbox-vertical-margin;
-    }
+    padding: $checkbox-vertical-padding;
   }
 
   @include m(horizontal) {

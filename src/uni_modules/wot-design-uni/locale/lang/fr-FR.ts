@@ -44,7 +44,7 @@ export default {
     expand: 'Développer',
     retract: 'Réduire'
   },
-  colPicker: {
+  cascader: {
     title: 'Sélectionner',
     placeholder: 'Sélectionner',
     select: 'Sélectionner'
@@ -64,6 +64,12 @@ export default {
     retry: 'Réessayer'
   },
   messageBox: {
+    inputPlaceholder: 'Veuillez entrer des informations',
+    confirm: 'Confirmer',
+    cancel: 'Annuler',
+    inputNoValidate: 'Veuillez entrer des informations valides'
+  },
+  dialog: {
     inputPlaceholder: 'Veuillez entrer des informations',
     confirm: 'Confirmer',
     cancel: 'Annuler',

@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2023-03-21 22:49:24
- * @LastEditTime: 2025-05-07 22:06:37
+ * @LastEditTime: 2026-03-06 14:35:48
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: /wot-design-uni/vite.config.ts
@@ -24,6 +24,14 @@ export default defineConfig({
     viteCompression()
     // #endif
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api']
+      }
+    }
+  },
   build: {
     target: 'es2015',
     //   关闭生成map文件 可以达到缩小打包体积

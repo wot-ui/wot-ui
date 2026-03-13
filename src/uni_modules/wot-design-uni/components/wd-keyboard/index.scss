@@ -1,36 +1,31 @@
-@import './../common/abstracts/_mixin.scss';
-@import './../common/abstracts/variable.scss';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(keyboard) {
-    background: $-dark-background5;
-
-    @include e(header) {
-      color: $-dark-color;
-    }
-  }
-}
+$keyboard-bg: var(--wot-keyboard-bg, $filled-content) !default;
+$keyboard-color: var(--wot-keyboard-color, $text-main) !default;
+$keyboard-padding: var(--wot-keyboard-padding, $padding-tight) !default;
+$keyboard-header-height: var(--wot-keyboard-header-height, $n40) !default;
+$keyboard-title-color: var(--wot-keyboard-title-color, $text-secondary) !default;
+$keyboard-title-font-size: var(--wot-keyboard-title-font-size, $typography-body-size-main) !default;
+$keyboard-close-color: var(--wot-keyboard-close-color, $primary-6) !default;
+$keyboard-close-hover-opacity: var(--wot-keyboard-close-hover-opacity, $opacity-dimmer) !default;
+$keyboard-close-font-size: var(--wot-keyboard-close-font-size, $typography-body-size-main) !default;
+$keyboard-close-padding: var(--wot-keyboard-close-padding, $padding-zero $padding-loose) !default;
 
 @include b(keyboard) {
   width: 100%;
-  background: $-keyboard-background;
-  color: $-color-black;
+  background: $keyboard-bg;
+  color: $keyboard-color;
   user-select: none;
-
-  @include m(with-title) {
-    border-radius: 20px 20px 0 0;
-  }
 
   @include e(header) {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: content-box;
-    height: $-keyboard-title-height;
-    padding-top: 6px;
-    color: $-keyboard-title-color;
-    font-size: $-keyboard-title-font-size;
+    height: $keyboard-header-height;
+    color: $keyboard-title-color;
+    font-size: $keyboard-title-font-size;
   }
 
   @include e(title) {
@@ -45,7 +40,12 @@
 
   @include e(body) {
     display: flex;
-    padding: 6px 0 0 6px;
+    padding-left: $keyboard-padding;
+    padding-top: $keyboard-padding;
+
+    .wd-keyboard__header + & {
+      padding-top: 0;
+    }
   }
 
   @include e(keys) {
@@ -54,26 +54,16 @@
     flex-wrap: wrap;
   }
 
-  &-car {
-    @include e(body) {
-      display: flex;
-      padding: 6px 0 0 6px;
-    }
-  }
+  @include e(car-keys) {
+    display: flex;
+    flex: 10;
+    flex-wrap: wrap;
 
-  &-car {
-    @include e(keys) {
-      display: flex;
-      flex: 10;
-      flex-wrap: wrap;
+    .wd-key-wrapper {
+      flex-basis: 10%;
 
-      .wd-key-wrapper {
-        --wot-keyboard-key-font-size: 18px;
-        flex-basis: 10%;
-
-        @include m(wider) {
-          flex-basis: 20%;
-        }
+      @include m(wider) {
+        flex-basis: 20%;
       }
     }
   }
@@ -84,14 +74,16 @@
     align-items: center;
     right: 0;
     height: 100%;
-    padding: $-keyboard-close-padding;
-    color: $-keyboard-close-color;
-    font-size: $-keyboard-close-font-size;
+    padding: $keyboard-close-padding;
+    color: $keyboard-close-color;
+    font-size: $keyboard-close-font-size;
     background-color: transparent;
     border: none;
-    @include m(hover) {
-      opacity: 0.6;
+
+    &:active {
+      opacity: $keyboard-close-hover-opacity;
     }
+
   }
 
   @include e(sidebar) {

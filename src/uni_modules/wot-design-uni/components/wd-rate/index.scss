@@ -22,7 +22,7 @@ $rate-item-space: var(--wd-rate-item-space, $spacing-extra-tight);
     }
   }
 
-  @include e(item-star) {
+  @include edeep(item-star) {
     -webkit-background-clip: text !important;
     color: transparent;
     background: $rate-color;

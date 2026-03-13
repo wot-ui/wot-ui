@@ -9,12 +9,14 @@
         :key="index"
         :class="`wd-year__month ${item.disabled ? 'is-disabled' : ''} ${item.isLastRow ? 'is-last-row' : ''} ${
           item.type ? monthTypeClass(item.type) : ''
-        }`"
+        } ${item.customClass || ''}`"
         @click="handleDateClick(index)"
       >
-        <view class="wd-year__month-top">{{ item.topInfo }}</view>
-        <view class="wd-year__month-text">{{ getMonthLabel(item.date) }}</view>
-        <view class="wd-year__month-bottom">{{ item.bottomInfo }}</view>
+        <view class="wd-year__month-container">
+          <view class="wd-year__month-top">{{ item.topInfo }}</view>
+          <view class="wd-year__month-text">{{ getMonthLabel(item.date) }}</view>
+          <view class="wd-year__month-bottom">{{ item.bottomInfo }}</view>
+        </view>
       </view>
     </view>
   </view>
@@ -23,7 +25,9 @@
 export default {
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -36,7 +40,7 @@ import { deepClone, isArray, isFunction } from '../../common/util'
 import { compareMonth, formatYearTitle, getDateByDefaultTime, getItemClass, getMonthByOffset, getMonthOffset } from '../utils'
 import { useToast } from '../../wd-toast'
 import { useTranslate } from '../../composables/useTranslate'
-import dayjs from '../../../dayjs'
+import { formatDate } from '../../common/formatDate'
 import { yearProps } from './types'
 import type { CalendarDayItem, CalendarDayType } from '../types'
 
@@ -72,7 +76,7 @@ watch(
 )
 
 function getMonthLabel(date: number) {
-  return dayjs(date).format(translate('month', date))
+  return formatDate(date, translate('month', date))
 }
 
 function setMonths() {
@@ -197,6 +201,6 @@ function getFormatterDate(date: number, month: number, type?: CalendarDayType) {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

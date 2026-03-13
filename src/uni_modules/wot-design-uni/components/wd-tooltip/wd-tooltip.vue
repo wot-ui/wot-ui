@@ -1,20 +1,25 @@
 <template>
-  <view :class="`wd-tooltip ${customClass}`" :style="customStyle" id="tooltip" @click.stop="popover.noop">
-    <!-- 用于为渲染获取宽高的元素 -->
+  <view :class="`wd-tooltip ${customClass}`" :style="customStyle" id="tooltip" @click.stop>
     <view class="wd-tooltip__pos wd-tooltip__hidden" id="pos">
-      <view class="wd-tooltip__container custom-pop">
-        <view v-if="!useContentSlot" class="wd-tooltip__inner">{{ content }}</view>
+      <view :class="`wd-tooltip__container ${customPop}`">
+        <view v-if="!$slots.content" class="wd-tooltip__inner">{{ content }}</view>
       </view>
     </view>
-    <wd-transition custom-class="wd-tooltip__pos" :custom-style="popover.popStyle.value" :show="showTooltip" name="fade" :duration="200">
-      <view class="wd-tooltip__container custom-pop">
+    <wd-transition
+      custom-class="wd-tooltip__pos"
+      :custom-style="popover.popStyle.value"
+      :show="showTooltip"
+      name="fade"
+      :duration="200"
+      @after-enter="handleAfterEnter"
+    >
+      <view :class="`wd-tooltip__container ${customPop}`" id="content">
         <view v-if="visibleArrow" :class="`wd-tooltip__arrow ${popover.arrowClass.value} ${customArrow}`" :style="popover.arrowStyle.value"></view>
-        <!-- 普通模式 -->
-        <view v-if="!useContentSlot" class="wd-tooltip__inner">{{ content }}</view>
-        <!-- 用户自定义样式 -->
-        <slot name="content" v-else />
+        <slot name="content">
+          <view class="wd-tooltip__inner">{{ content }}</view>
+        </slot>
+        <wd-icon v-if="showClose" name="close" custom-class="wd-tooltip__close-icon" @click="toggle"></wd-icon>
       </view>
-      <wd-icon v-if="showClose" name="close" custom-class="wd-tooltip__close-icon" @click="toggle"></wd-icon>
     </wd-transition>
     <view @click="toggle" class="wd-tooltip__target" id="target">
       <slot />
@@ -27,7 +32,9 @@ export default {
   name: 'wd-tooltip',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -102,7 +109,7 @@ onBeforeMount(() => {
   } else {
     pushToQueue(proxy)
   }
-  popover.showStyle.value = props.modelValue ? 'opacity: 1;' : 'opacity: 0;'
+  popover.showStyle.value = props.modelValue ? 'display: inline-block;' : 'display: none;'
 })
 
 onBeforeUnmount(() => {
@@ -113,19 +120,39 @@ onBeforeUnmount(() => {
   }
 })
 
+/**
+ * 切换 tooltip 的显示状态
+ */
 function toggle() {
   if (props.disabled) return
   updateModelValue(!showTooltip.value)
 }
 
+/**
+ * 打开 tooltip
+ */
 function open() {
   updateModelValue(true)
 }
 
+/**
+ * 关闭 tooltip
+ */
 function close() {
   updateModelValue(false)
 }
 
+/**
+ * 过渡动画完成后重新测量弹出层尺寸并更新定位
+ */
+function handleAfterEnter() {
+  popover.updatePosition(props.placement, props.offset)
+}
+
+/**
+ * 更新 tooltip 显示状态
+ * @param {boolean} value 显示状态
+ */
 function updateModelValue(value: boolean) {
   showTooltip.value = value
   emit('update:modelValue', value)
@@ -133,9 +160,10 @@ function updateModelValue(value: boolean) {
 
 defineExpose<TooltipExpose>({
   open,
-  close
+  close,
+  updatePosition: () => popover.updatePosition(props.placement, props.offset)
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

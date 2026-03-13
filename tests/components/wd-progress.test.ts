@@ -36,9 +36,8 @@ describe('进度条组件', () => {
       props: { status }
     })
 
-    // 状态类名应该应用在 .wd-progress__inner 元素上，而不是根元素
-    const inner = wrapper.find('.wd-progress__inner')
-    expect(inner.classes()).toContain(`is-${status}`)
+    // 状态类名现在应用在 .wd-progress 根元素上，并且遵循 BEM modifier 规范
+    expect(wrapper.classes()).toContain(`wd-progress--${status}`)
   })
 
   // 测试自定义颜色
@@ -124,7 +123,7 @@ describe('进度条组件', () => {
     const icon = wrapper.find('.wd-progress__icon')
     expect(icon.exists()).toBe(true)
 
-    // 检查图标类名
-    expect(icon.classes()).toContain('is-success')
+    // 检查状态类名是否正确应用在根元素，遵循 BEM modifier 规范
+    expect(wrapper.classes()).toContain('wd-progress--success')
   })
 })

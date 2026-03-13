@@ -1,0 +1,15 @@
+@use '../styles/mixin/mixin.scss'as *;
+
+@use '../wd-table/index.scss' as *;
+
+@include b(table-column) {
+  display: contents;
+
+  .wd-table__cell:last-child {
+    @include when(border) {
+      &::before {
+        border-bottom: none;
+      }
+    }
+  }
+}

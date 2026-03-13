@@ -1,5 +1,5 @@
-@use '../styles/mixin/mixin.scss' as *;
-@use '../styles/variable.scss' as *;
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
 /* ================================ 组件SCSS变量 ================================ */
 
@@ -21,6 +21,8 @@ $loading-spinner-dot-height: var(--wot-loading-spinner-dot-height, 25%) !default
 $loading-spinner-dot-radius: var(--wot-loading-spinner-dot-radius, $radius-radius-full) !default;
 $loading-spinner-dots-dot-size: var(--wot-loading-spinner-dots-dot-size, 20%) !default;
 $loading-spinner-dots-dot-radius: var(--wot-loading-spinner-dots-dot-radius, $radius-radius-full) !default;
+$loading-spinner-padding: var(--wot-loading-spinner-padding, $padding-ultra-tight) !default;
+
 
 /* 间距变量 */
 $loading-text-spacing: var(--wot-loading-text-spacing, $spacing-extra-tight) !default;
@@ -59,34 +61,40 @@ $loading-text-font-size: var(--wot-loading-text-font-size, $n14) !default;
   @include m(horizontal) {
     flex-direction: row;
 
-    .wd-loading__text {
+    @include me(text){
       margin-left: $loading-text-spacing;
+      
     }
   }
 
   @include m(vertical) {
     flex-direction: column;
 
-    .wd-loading__text {
+    @include me(text){
       margin-top: $loading-text-spacing;
     }
   }
 
   @include e(spinner) {
+    flex: none;
     position: relative;
     font-size: inherit;
     width: $loading-size-width;
     height: $loading-size-height;
     animation: wd-rotate $loading-spinner-animation-duration linear infinite;
+    padding: $loading-spinner-padding;
+    box-sizing: border-box;
 
     @include m(circular) {
-      border-radius: $loading-spinner-circle-radius;
-      border: none;
-      mask: radial-gradient(closest-side,
-          transparent calc(100% - $loading-spinner-circle-stroke-width),
-          $base-white calc(100% - $loading-spinner-circle-stroke-width),
-          $base-white 100%);
-      background: conic-gradient(from 0deg at 50% 50%, $base-transparent 0deg, $base-transparent 90deg, currentColor 330deg,$base-transparent 360deg);
+      @include me(spinner-wraper) {
+        border-radius: $loading-spinner-circle-radius;
+        border: none;
+        mask: radial-gradient(closest-side,
+            transparent calc(100% - $loading-spinner-circle-stroke-width),
+            $base-white calc(100% - $loading-spinner-circle-stroke-width),
+            $base-white 100%);
+        background: conic-gradient(from 0deg at 50% 50%, $base-transparent 0deg, $base-transparent 90deg, currentColor 330deg, currentColor 360deg);
+      }
     }
 
     @include m(spinner) {
@@ -94,10 +102,13 @@ $loading-text-font-size: var(--wot-loading-text-font-size, $n14) !default;
     }
 
     @include m(dots) {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       animation: none;
+
+      @include me(spinner-wraper) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
       @include me(spinner-dot) {
         position: static;
@@ -136,6 +147,12 @@ $loading-text-font-size: var(--wot-loading-text-font-size, $n14) !default;
       border-radius: $loading-spinner-dot-radius;
       content: ' ';
     }
+  }
+
+  @include e(spinner-wraper) {
+    position: relative;
+    width: 100%;
+    height: 100%;
   }
 
   @include e(text) {

@@ -1,13 +1,20 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(index-bar) {
-    @include e(index) {
-      color: $-color-white;
-    }
-  }
-}
+$index-bar-sidebar-right: var(--wot-index-bar-sidebar-right, $spacing-super-tight) !default;
+$index-bar-index-font-size: var(--wot-index-bar-index-font-size, $typography-label-size-main) !default;
+$index-bar-index-width: var(--wot-index-bar-index-width, $typography-label-line--height-size-main) !default;
+$index-bar-index-height: var(--wot-index-bar-index-height, $typography-label-line--height-size-main) !default;
+$index-bar-index-font-weight: var(--wot-index-bar-index-font-weight, $font-weight-medium) !default;
+$index-bar-index-color: var(--wot-index-bar-index-color, $text-auxiliary) !default;
+$index-bar-index-border-radius: var(--wot-index-bar-index-border-radius, $radius-radius-full) !default;
+$index-bar-index-active-color: var(--wot-index-bar-index-active-color, $text-white) !default;
+$index-bar-index-active-bg: var(--wot-index-bar-index-active-bg, $primary-6) !default;
+$index-bar-current-index-size: var(--wot-index-bar-current-index-size, $n56) !default;
+$index-bar-current-index-bg: var(--wot-index-bar-current-index-bg, $primary-6) !default;
+$index-bar-current-index-color: var(--wot-index-bar-current-index-color, $text-white) !default;
+$index-bar-current-index-font-size: var(--wot-index-bar-current-index-font-size, $typography-title-size-extra-large) !default;
+$index-bar-current-index-z-index: var(--wot-index-bar-current-index-z-index, 10) !default;
 
 @include b(index-bar) {
   position: relative;
@@ -19,21 +26,43 @@
     height: 100%;
   }
 
+  @include e(current-index) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: $index-bar-current-index-z-index;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $index-bar-current-index-size;
+    height: $index-bar-current-index-size;
+    font-size: $index-bar-current-index-font-size;
+    color: $index-bar-current-index-color;
+    background-color: $index-bar-current-index-bg;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   @include e(sidebar) {
     position: absolute;
     top: 50%;
-    right: 4px;
+    right: $index-bar-sidebar-right;
     transform: translateY(-50%);
   }
 
   @include e(index) {
-    font-size: 12px;
-    font-weight: $-fw-medium;
-    color: $-color-title;
-    padding: 4px 6px;
-
+    color: $index-bar-index-color;
+    font-size: $index-bar-index-font-size;
+    font-weight: $index-bar-index-font-weight;
+    height: $index-bar-index-height;
+    width: $index-bar-index-width;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: $index-bar-index-border-radius;
     @include when(active) {
-      color: $-color-theme;
+      color: $index-bar-index-active-color;
+      background: $index-bar-index-active-bg;
     }
   }
 }

@@ -17,25 +17,24 @@
             {{ cancelButtonText || translate('cancel') }}
           </view>
           <view v-if="title" class="wd-picker__title">{{ title }}</view>
-          <view :class="`wd-picker__action ${isLoading ? 'is-loading' : ''}`" @click="onConfirm">
+          <view class="wd-picker__action wd-picker__action--confirm" @click="onConfirm">
             {{ confirmButtonText || translate('done') }}
           </view>
         </view>
         <wd-picker-view
-          ref="pickerViewWd"
           :custom-class="customViewClass"
           v-model="pickerValue"
           :columns="displayColumns"
-          :loading="isLoading"
-          :loading-color="loadingColor"
-          :columns-height="columnsHeight"
+          :item-height="itemHeight"
+          :visible-item-count="visibleItemCount"
           :value-key="valueKey"
           :label-key="labelKey"
+          :cascade="cascade"
+          :children-key="childrenKey"
           :immediate-change="immediateChange"
           @change="pickerViewChange"
           @pickstart="onPickStart"
           @pickend="onPickEnd"
-          :column-change="columnChange"
         />
       </view>
     </wd-popup>
@@ -46,7 +45,9 @@
 export default {
   name: 'wd-picker',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -56,50 +57,30 @@ export default {
 <script lang="ts" setup>
 import wdPopup from '../wd-popup/wd-popup.vue'
 import wdPickerView from '../wd-picker-view/wd-picker-view.vue'
-import { getCurrentInstance, onBeforeMount, ref, watch, computed, onMounted } from 'vue'
-import { deepClone, isArray, isDef, isFunction } from '../common/util'
-import { type ColumnItem, type PickerViewInstance } from '../wd-picker-view/types'
+import { getCurrentInstance, onBeforeMount, ref, watch, onMounted } from 'vue'
+import { deepClone, isFunction } from '../common/util'
+import { type PickerOption } from '../wd-picker-view/types'
 import { useTranslate } from '../composables/useTranslate'
 import { pickerProps, type PickerExpose } from './types'
+import { type Numeric } from '../common/props'
 const { translate } = useTranslate('picker')
 
 const props = defineProps(pickerProps)
 const emit = defineEmits(['confirm', 'open', 'cancel', 'update:modelValue', 'update:visible'])
 
-const pickerViewWd = ref<PickerViewInstance | null>(null)
-
-const innerLoading = ref<boolean>(false) // 内部控制是否loading
-
 // 弹出层是否显示
 const popupShow = ref<boolean>(false)
 
-const pickerValue = ref<string | number | boolean | string[] | number[] | boolean[]>('')
-const displayColumns = ref<Array<string | number | ColumnItem | Array<string | number | ColumnItem>>>([]) // 传入 pickerView 的columns
-const resetColumns = ref<Array<string | number | ColumnItem | Array<string | number | ColumnItem>>>([]) // 保存之前的 columns，当取消时，将数据源回滚，避免多级联动数据源不正确的情况
+const pickerValue = ref<Numeric[]>([])
+const pickerSelectedOptions = ref<PickerOption[]>([]) // 缓存选中的选项对象
+const displayColumns = ref<Array<PickerOption | Array<PickerOption>>>([]) // 传入 pickerView 的columns
 const isPicking = ref<boolean>(false) // 判断pickview是否还在滑动中
 const hasConfirmed = ref<boolean>(false) // 判断用户是否点击了确认按钮
-
-const isLoading = computed(() => {
-  return props.loading || innerLoading.value
-})
-
-watch(
-  () => props.displayFormat,
-  (fn) => {
-    if (fn && !isFunction(fn)) {
-      console.error('The type of displayFormat must be Function')
-    }
-  },
-  {
-    immediate: true,
-    deep: true
-  }
-)
 
 watch(
   () => props.modelValue,
   (newValue) => {
-    pickerValue.value = newValue
+    pickerValue.value = newValue as Numeric[]
   },
   {
     deep: true,
@@ -111,23 +92,9 @@ watch(
   () => props.columns,
   (newValue) => {
     displayColumns.value = deepClone(newValue)
-    resetColumns.value = deepClone(newValue)
     if (newValue.length === 0) {
       // 当 columns 变为空时，清空 pickerValue
-      pickerValue.value = isArray(props.modelValue) ? [] : ''
-    }
-  },
-  {
-    deep: true,
-    immediate: true
-  }
-)
-
-watch(
-  () => props.columnChange,
-  (newValue) => {
-    if (newValue && !isFunction(newValue)) {
-      console.error('The type of columnChange must be Function')
+      pickerValue.value = []
     }
   },
   {
@@ -161,7 +128,6 @@ onMounted(() => {
 
 onBeforeMount(() => {
   displayColumns.value = deepClone(props.columns)
-  resetColumns.value = deepClone(props.columns)
 })
 
 // 对外暴露方法，打开弹框
@@ -179,7 +145,7 @@ function showPopup() {
   emit('open')
   popupShow.value = true
   pickerValue.value = props.modelValue
-  displayColumns.value = resetColumns.value
+  displayColumns.value = deepClone(props.columns)
 }
 
 /**
@@ -188,17 +154,11 @@ function showPopup() {
 function onCancel() {
   popupShow.value = false
   emit('cancel')
-  let timmer = setTimeout(() => {
-    clearTimeout(timmer)
-    isDef(pickerViewWd.value) && pickerViewWd.value.resetColumns(resetColumns.value)
-  }, 300)
 }
 /**
  * 点击确定按钮触发。展示选中值，触发cancel事件。
  */
 function onConfirm() {
-  if (isLoading.value) return
-
   // 如果当前还在滑动且未停止下来，则锁住先不确认，等滑完再自动确认，避免pickview值未更新
   if (isPicking.value) {
     hasConfirmed.value = true
@@ -219,17 +179,11 @@ function onConfirm() {
   }
 }
 function handleConfirm() {
-  if (isLoading.value) {
-    popupShow.value = false
-    return
-  }
+  // 使用 change 事件缓存的数据，避免重复调用
+  const values = pickerValue.value
+  const selects = pickerSelectedOptions.value
 
-  const selects = pickerViewWd.value!.getSelects()
-  const values = pickerViewWd.value!.getValues()
-  // 获取当前的数据源，并设置给 resetColumns，用于取消时可以回退数据源
-  const columns = pickerViewWd.value!.getColumnsData()
   popupShow.value = false
-  resetColumns.value = deepClone(columns)
   emit('update:modelValue', values)
 
   emit('confirm', {
@@ -238,11 +192,12 @@ function handleConfirm() {
   })
 }
 /**
- * 初始change事件
+ * picker-view change事件
  * @param event
  */
-function pickerViewChange({ value }: any) {
-  pickerValue.value = value
+function pickerViewChange({ selectedValues, selectedOptions }: any) {
+  pickerValue.value = selectedValues
+  pickerSelectedOptions.value = selectedOptions
 }
 
 function noop() {}
@@ -258,20 +213,11 @@ function onPickEnd() {
   }
 }
 
-/**
- * 外部设置是否loading
- * @param loading 是否loading
- */
-function setLoading(loading: boolean) {
-  innerLoading.value = loading
-}
-
 defineExpose<PickerExpose>({
   close,
-  open,
-  setLoading
+  open
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

@@ -48,7 +48,7 @@ export default {
     expand: '展开',
     retract: '收起'
   },
-  colPicker: {
+  cascader: {
     title: '请选择',
     placeholder: '请选择',
     select: '请选择'
@@ -68,6 +68,12 @@ export default {
     retry: '点击重试'
   },
   messageBox: {
+    inputPlaceholder: '请输入',
+    confirm: '确定',
+    cancel: '取消',
+    inputNoValidate: '输入的数据不合法'
+  },
+  dialog: {
     inputPlaceholder: '请输入',
     confirm: '确定',
     cancel: '取消',

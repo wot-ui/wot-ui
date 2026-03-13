@@ -67,7 +67,7 @@
           <view class="custom-content">VIP</view>
         </wd-avatar>
         <wd-avatar>
-          <wd-icon name="star-on" size="24px" color="#f0883a" />
+          <wd-icon name="star-fill" size="24px" color="#f0883a" />
         </wd-avatar>
       </view>
     </demo-block>
@@ -75,8 +75,8 @@
     <!-- 可点击 -->
     <demo-block title="可点击">
       <view class="demo-avatar-row">
-        <wd-avatar :src="avatarURL" @click="handleClick" />
-        <wd-avatar text="点我" bg-color="#1E90FF" @click="handleClick" />
+        <wd-avatar size="large" :src="avatarURL" @click="handleClick" />
+        <wd-avatar size="large" text="点我" bg-color="#1E90FF" @click="handleClick" />
       </view>
     </demo-block>
 
@@ -84,7 +84,7 @@
     <demo-block title="头像组 - 基础用法">
       <wd-avatar-group>
         <wd-avatar :src="avatarURL" />
-        <wd-avatar icon="star-on" />
+        <wd-avatar icon="star-fill" />
         <wd-avatar text="A" bg-color="#1E90FF" />
         <wd-avatar text="B" bg-color="#228B22" />
       </wd-avatar-group>
@@ -94,7 +94,7 @@
     <demo-block title="头像组 - 最大数量">
       <wd-avatar-group :max-count="3">
         <wd-avatar :src="avatarURL" />
-        <wd-avatar icon="star-on" />
+        <wd-avatar icon="star-fill" />
         <wd-avatar text="A" bg-color="#1E90FF" />
         <wd-avatar text="B" bg-color="#228B22" />
         <wd-avatar text="C" bg-color="#DC143C" />
@@ -106,14 +106,14 @@
       <view class="demo-avatar-column">
         <wd-avatar-group cascading="left-up" :max-count="4">
           <wd-avatar :src="avatarURL" />
-          <wd-avatar icon="star-on" />
+          <wd-avatar icon="star-fill" />
           <wd-avatar text="A" bg-color="#1E90FF" />
           <wd-avatar text="B" bg-color="#228B22" />
           <wd-avatar text="C" bg-color="#DC143C" />
         </wd-avatar-group>
         <wd-avatar-group cascading="right-up" :max-count="4">
           <wd-avatar :src="avatarURL" />
-          <wd-avatar icon="star-on" />
+          <wd-avatar icon="star-fill" />
           <wd-avatar text="A" bg-color="#1E90FF" />
           <wd-avatar text="B" bg-color="#228B22" />
           <wd-avatar text="C" bg-color="#DC143C" />
@@ -121,32 +121,24 @@
       </view>
     </demo-block>
 
-    <!-- 头像组 - 统一尺寸 -->
-    <demo-block title="头像组 - 统一尺寸">
+    <!-- 头像组 - 垂直堆叠 -->
+    <demo-block title="头像组 - 垂直堆叠">
       <view class="demo-avatar-row">
-        <wd-avatar-group size="large" :max-count="3">
+        <wd-avatar-group vertical :max-count="4">
           <wd-avatar :src="avatarURL" />
-          <wd-avatar icon="star-on" />
+          <wd-avatar icon="star-fill" />
           <wd-avatar text="A" bg-color="#1E90FF" />
           <wd-avatar text="B" bg-color="#228B22" />
+          <wd-avatar text="C" bg-color="#DC143C" />
         </wd-avatar-group>
-        <wd-avatar-group size="small" :max-count="3">
+        <wd-avatar-group vertical cascading="right-up" :max-count="4">
           <wd-avatar :src="avatarURL" />
-          <wd-avatar icon="star-on" />
+          <wd-avatar icon="star-fill" />
           <wd-avatar text="A" bg-color="#1E90FF" />
           <wd-avatar text="B" bg-color="#228B22" />
+          <wd-avatar text="C" bg-color="#DC143C" />
         </wd-avatar-group>
       </view>
-    </demo-block>
-
-    <!-- 头像组 - 统一形状 -->
-    <demo-block title="头像组 - 统一形状">
-      <wd-avatar-group shape="square" :max-count="3" :collapseAvatar="'+N'">
-        <wd-avatar :src="avatarURL" />
-        <wd-avatar icon="star-on" />
-        <wd-avatar text="A" bg-color="#1E90FF" />
-        <wd-avatar text="B" bg-color="#228B22" />
-      </wd-avatar-group>
     </demo-block>
   </page-wraper>
 </template>

@@ -1,44 +1,22 @@
-@import "../common/abstracts/variable";
-@import "../common/abstracts/mixin";
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(grid-item) {
-
-    @include when(border) {
-      &::before {
-        background-color: $-dark-border-color;
-      }
-      &::after {
-        background-color: $-dark-border-color;
-      }
-    }
-
-      // 第一行元素
-  @include when(first) {
-    &::after {
-      background-color: $-dark-border-color;
-    }
-  }
-
-
-    @include e(content) {
-      background-color: $-dark-background2;
-
-      @include m(hover) {
-        background-color: $-grid-item-hover-bg-dark !important;
-      }
-    }
-  }
-}
+// 组件级 CSS 变量定义
+$grid-item-font-size: var(--wot-grid-item-font-size, $typography-body-size-extra-large) !default; // 字体大小
+$grid-item-line-height: var(--wot-grid-item-line-height, $typography-body-line--height-size-extra-large) !default; // 行高
+$grid-item-bg: var(--wot-grid-item-bg, $filled-oppo) !default; // 背景颜色
+$grid-item-padding: var(--wot-grid-item-padding, $padding-loose $padding-loose) !default; // 内容的 padding
+$grid-item-hover-bg: var(--wot-grid-item-hover-bg, $feedback-hover) !default; // hover 背景色
+$grid-item-icon-size: var(--wot-grid-item-icon-size, $n32) !default; // 图标大小
+$grid-item-icon-color: var(--wot-grid-item-icon-color, $icon-secondary) !default; // 图标颜色
+$grid-item-border-width: var(--wot-grid-item-border-width, $stroke-main) !default; // 边框宽度
+$grid-item-border-color: var(--wot-grid-item-border-color, $border-main) !default; // 边框颜色
+$grid-item-text-color: var(--wot-grid-item-text-color, $text-main) !default; // 文字颜色
+$grid-item-text-spacing: var(--wot-grid-item-text-spacing, $spacing-super-tight) !default; // 文字间距
 
 @include b(grid-item) {
-  height: 100%;
-  font-size: $-grid-item-fs;
   box-sizing: border-box;
-
   position: relative;
-  float: left;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,20 +28,21 @@
       content: "";
       position: absolute;
       width: 100%;
-      height: 1px;
+      height: $grid-item-border-width;
       transform: scaleY(0.5);
-      background-color: $-grid-item-border-color;
+      background-color: $grid-item-border-color;
       top: 0;
       left: 0;
       z-index: 1;
     }
+
     &::after {
       content: "";
       position: absolute;
-      width: 1px;
+      width: $grid-item-border-width;
       transform: scaleX(0.5);
       height: 100%;
-      background-color: $-grid-item-border-color;
+      background-color: $grid-item-border-color;
       bottom: 0;
       right: 0;
     }
@@ -74,10 +53,10 @@
     &::after {
       content: "";
       position: absolute;
-      width: 1px;
+      width: $grid-item-border-width;
       transform: scaleX(0.5);
       height: 100%;
-      background-color: $-grid-item-border-color;
+      background-color: $grid-item-border-color;
       bottom: 0;
       right: 0;
     }
@@ -95,15 +74,20 @@
       display: none;
     }
   }
+
   @include e(wrapper) {
-    display: inline-block;
-    margin: 0 auto;
+    display: inline-flex;
+
+    // 当 wrapper 后面紧跟 text 时，给 text 添加间距
+    + .wd-grid-item__text {
+      margin-top: $grid-item-text-spacing;
+    }
   }
 
   @include e(content) {
     height: 100%;
-    padding: $-grid-item-padding;
-    background-color: $-grid-item-bg;
+    padding: $grid-item-padding;
+    background: $grid-item-bg;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -115,11 +99,43 @@
       top: 0;
       right: 0;
       left: 0;
-      padding: 0;
       height: 100%;
     }
 
-    @include when(round) {
+    @include when(center) {
+      align-items: center;
+      justify-content: center;
+    }
+
+    @include when(horizontal) {
+      flex-direction: row;
+
+      .wd-grid-item__wrapper + .wd-grid-item__text {
+        margin-top: 0;
+        margin-left: $grid-item-text-spacing;
+      }
+    }
+
+    @include when(reverse) {
+      flex-direction: column-reverse;
+
+      .wd-grid-item__wrapper + .wd-grid-item__text {
+        margin-top: 0;
+        margin-bottom: $grid-item-text-spacing;
+      }
+
+      &.is-horizontal {
+        flex-direction: row-reverse;
+
+        .wd-grid-item__wrapper + .wd-grid-item__text {
+          margin-left: 0;
+          margin-right: $grid-item-text-spacing;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    @include when(around) {
       &::after {
         content: " ";
         position: absolute;
@@ -127,7 +143,7 @@
         left: 0;
         width: 200%;
         height: 200%;
-        border: 1px solid $-grid-item-border-color;
+        border: $grid-item-border-width solid $grid-item-border-color;
         transform-origin: top left;
         transform: scale(0.5);
         box-sizing: border-box;
@@ -135,14 +151,22 @@
     }
 
     @include m(hover) {
-      background-color: $-grid-item-hover-bg !important;
+      background-color: $grid-item-hover-bg !important;
     }
   }
 
   @include e(text) {
-    margin-top: 8px;
-    font-size: $-grid-item-fs;
-    line-height: $-grid-item-fs;
-    @include lineEllipsis;
+    font-size: $grid-item-font-size;
+    line-height: $grid-item-line-height;
+    color: $grid-item-text-color;
+  }
+
+  @include edeep(icon) {
+    font-size: $grid-item-icon-size;
+    color: $grid-item-icon-color;
+  }
+
+  @include e(badge) {
+    display: inline-flex;
   }
 }

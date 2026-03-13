@@ -332,7 +332,7 @@ const isLoop = ref(false)
 | easingFunction            | 切换缓动动画类型（微信小程序、快手小程序、京东小程序）             | `EasingType`                      | -                                                                                                      | default      | 0.1.22           |
 | height                    | 轮播的高度                                                         | `string / number`                | -                                                                                                      | 192          | 0.1.22           |
 | interval                  | 轮播间隔时间                                                       | `number`                          | -                                                                                                      | 5000         | 0.1.22           |
-| list                      | 图片列表                                                           | `string[] / SwiperList[]`        | -                                                                                                      | -            | 0.1.22           |
+| list                      | 图片列表                                                           | `string[] / SwiperItem[]`        | -                                                                                                      | -            | 0.1.22           |
 | loop                      | 是否循环播放                                                       | `boolean`                         | -                                                                                                      | true         | 0.1.22           |
 | nextMargin                | 后边距                                                             | `string / number`                | -                                                                                                      | 0            | 0.1.22           |
 | indicatorPosition         | 指示器展示位置                                                     | `IndicatorPositionType`           | `left, top-left, top, top-right, bottom-left, bottom, bottom-right, right`                             | bottom       | 0.1.22           |
@@ -365,7 +365,7 @@ const isLoop = ref(false)
 
 页码信息展示位置，可选值为 `'left'`、`'top-left'`、`'top'`、`'top-right'`、`'bottom-left'`、`'bottom'`、`'bottom-right'` 和 `'right'`。
 
-### SwiperList
+### SwiperItem
 
 轮播图项的列表配置，包括 图片或视频地址`value`、视频封面`poster` 、文件资源的类型`type`等属性，支持扩展属性。指定`type`后组件将不在内部判断文件类型，以`type`为准。
 | name      | 说明          | 最低版本 |
@@ -397,7 +397,7 @@ const isLoop = ref(false)
 
 | 事件名称 | 说明             | 参数                                                        | 最低版本 |
 | -------- | ---------------- | ----------------------------------------------------------- | -------- |
-| click    | 点击轮播项时触发 | `(index: number, item: SwiperList \| string)`                                           | 0.1.22   |
+| click    | 点击轮播项时触发 | `(index: number, item: SwiperItem \| string)`                                           | 0.1.22   |
 | change   | 轮播切换时触发   | `(current: number, source: 'autoplay' \| 'touch' \| 'nav')	` | 0.1.22   |
 
 ## Slot
@@ -405,7 +405,7 @@ const isLoop = ref(false)
 | name      | 说明         | 参数                                 | 最低版本 |
 | --------- | ------------ | ------------------------------------ | -------- |
 | indicator | 自定义指示器 | `{ current: number, total: number }` | 1.13.0   |
-| default   | item展示内容 | `{ item: string \| SwiperList, index: number }`       | 1.13.0   |
+| default   | item展示内容 | `{ item: string \| SwiperItem, index: number }`       | 1.13.0   |
 
 
 ## 外部样式类

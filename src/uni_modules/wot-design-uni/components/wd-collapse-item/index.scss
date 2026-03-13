@@ -1,34 +1,28 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(collapse-item) {
-    @include halfPixelBorder('top', 0, $-dark-border-color);
-
-
-    @include e(title) {
-      color: $-dark-color;
-    }
-
-    @include e(body) {
-      color: $-dark-color3;
-    }
-
-    @include when(disabled) {
-      .wd-collapse-item__title {
-        color: $-dark-color-gray;
-      }
-      .wd-collapse-item__arrow {
-        color: $-dark-color-gray;
-      }
-    }
-  }
-}
-
+$collapse-item-header-padding: var(--wot-collapse-item-header-padding, $padding-extra-loose) !default;
+$collapse-item-title-color: var(--wot-collapse-item-title-color, $text-main) !default;
+$collapse-item-title-fs: var(--wot-collapse-item-title-fs, $typography-body-size-extra-large) !default;
+$collapse-item-title-line-height: var(--wot-collapse-item-title-line-height, $typography-body-line--height-size-extra-large) !default;
+$collapse-item-arrow-size: var(--wot-collapse-item-arrow-size, $n16) !default;
+$collapse-item-arrow-color: var(--wot-collapse-item-arrow-color, $icon-secondary) !default;
+$collapse-item-body-color: var(--wot-collapse-item-body-color, $text-auxiliary) !default;
+$collapse-item-body-fs: var(--wot-collapse-item-body-fs, $typography-label-size-large) !default;
+$collapse-item-body-padding: var(--wot-collapse-item-body-padding, $padding-loose $padding-extra-loose) !default;
 
 @include b(collapse-item) {
   position: relative;
-  @include halfPixelBorder('top');
+
+  @include when(border) {
+    @include halfPixelBorder('top');
+
+    .#{$B}__header {
+      @include when(expanded) {
+        @include halfPixelBorder('bottom');
+      }
+    }
+  }
 
 
   @include e(header) {
@@ -36,29 +30,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $-collapse-header-padding;
+    padding: $collapse-item-header-padding;
     overflow: hidden;
     user-select: none;
-
-    @include when(expanded) {
-      @include halfPixelBorder('bottom');
-    }
-
+    
     @include when(custom) {
       display: block;
     }
   }
 
   @include e(title) {
-    color: $-collapse-title-color;
-    font-weight: $-fw-medium;
-    font-size: $-collapse-title-fs;
+    color: $collapse-item-title-color;
+    font-weight: $font-weight-medium;
+    font-size: $collapse-item-title-fs;
+    line-height: $collapse-item-title-line-height;
   }
 
   @include edeep(arrow) {
     display: block;
-    font-size: $-collapse-arrow-size;
-    color: $-collapse-arrow-color;
+    font-size: $collapse-item-arrow-size;
+    color: $collapse-item-arrow-color;
     transition: transform 0.3s;
 
     @include when(retract) {
@@ -73,18 +64,12 @@
   }
 
   @include e(body) {
-    color: $-collapse-body-color;
-    font-size: $-collapse-body-fs;
-    padding: $-collapse-body-padding;
-    line-height: 1.43;
+    color: $collapse-item-body-color;
+    font-size: $collapse-item-body-fs;
+    padding: $collapse-item-body-padding;
   }
 
   @include when(disabled) {
-    .wd-collapse-item__title {
-      color: $-collapse-disabled-color;
-    }
-    .wd-collapse-item__arrow {
-      color: $-collapse-disabled-color;
-    }
+    opacity: $opacity-disabled;
   }
 }

@@ -1,37 +1,38 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  background-color: $-dark-background2;
-  @include b(status-tip) {
-    @include e(text) {
-      color: $-dark-color3;
-    }
-  }
-}
+// 组件级 CSS 变量定义
+$statustip-icon-color: var(--wot-statustip-icon-color, $icon-disabled) !default; // 图标颜色
+$statustip-tip-font-size: var(--wot-statustip-tip-font-size, $typography-body-size-extra-large) !default; // 字号
+$statustip-tip-line-height: var(--wot-statustip-tip-line-height, $typography-body-line--height-size-extra-large) !default; // 文字行高
+$statustip-tip-font-weight: var(--wot-statustip-tip-font-weight, $typography-body-font-weight-strong) !default; // 文字字重
+$statustip-tip-color: var(--wot-statustip-tip-color, $text-main) !default; // 文字颜色
+$statustip-tip-margin-top: var(--wot-statustip-tip-margin-top, $spacing-extra-tight) !default; // 文字上边距
+$statustip-icon-size: var(--wot-statustip-icon-size, $n98) !default; // 图标尺寸
 
 @include b(status-tip) {
-  padding: $-statustip-padding;
   width: 100%;
   margin: 0 auto;
-  color: $-statustip-color;
-  font-size: $-statustip-fs;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 24px;
 
-  @include edeep(image) {
+  @include edeep(icon) {
     margin: 0 auto;
-    width: 160px;
-    height: 160px;
+    width: $statustip-icon-size;
+    height: $statustip-icon-size;
+    font-size: $statustip-icon-size;
+    color: $statustip-icon-color;
   }
   @include e(text) {
-    margin: 20px auto 0;
-    font-size: $-statustip-fs;
-    line-height: $-statustip-line-height;
-    color: $-statustip-color;
+    margin-top: $statustip-tip-margin-top;
+    font-size: $statustip-tip-font-size;
+    line-height: $statustip-tip-line-height;
+    font-weight: $statustip-tip-font-weight;
+    color: $statustip-tip-color;
     text-align: center;
-    overflow-wrap: break-word;
+    word-break: break-all;
   }
 }

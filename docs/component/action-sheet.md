@@ -11,7 +11,7 @@
 | 参数    | 类型   | 说明     | 最低版本 |
 | ------- | ------ | -------- | -------- |
 | name    | string | 选项名称 | -        |
-| subname | string | 描述信息 | -        |
+| description | string | 描述信息 | -        |
 | color   | string | 颜色     | -        |
 
 ```html
@@ -31,7 +31,7 @@ const actions = ref([
   },
   {
     name: '选项3',
-    subname: '描述信息'
+    description: '描述信息'
   }
 ])
 
@@ -97,7 +97,7 @@ function close() {
 
 | 参数    | 类型   | 说明     | 最低版本 |
 | ------- | ------ | -------- | -------- |
-| iconUrl | string | 图片地址 | -        |
+| icon | string | 图片地址 | -        |
 | title   | string | 标题     | -        |
 
 ```html
@@ -109,7 +109,7 @@ function close() {
 const show = ref<boolean>(false)
 const panels = ref([
   {
-    iconUrl: '//img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
+    icon: '//img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
     title: '微信好友'
   }
 ])
@@ -133,7 +133,7 @@ function select({ item, index }) {
 
 | 参数    | 类型   | 说明     | 最低版本 |
 | ------- | ------ | -------- | -------- |
-| iconUrl | string | 图片地址 | -        |
+| icon | string | 图片地址 | -        |
 | title   | string | 标题     | -        |
 
 ```html
@@ -146,13 +146,13 @@ const show = ref<boolean>(false)
 const panels = ref([
   [
     {
-      iconUrl: '//img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
+      icon: '//img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
       title: '微信好友'
     }
   ],
   [
     {
-      iconUrl: '//img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
+      icon: '//img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
       title: '微信好友'
     }
   ]
@@ -215,7 +215,7 @@ function select({ item, index }) {
 | 键名     | 说明       | 类型    | 最低版本 |
 | -------- | ---------- | ------- | -------- |
 | name     | 选项名称   | string  | -        |
-| subname  | 描述信息   | string  | -        |
+| description  | 描述信息   | string  | -        |
 | color    | 颜色       | string  | -        |
 | disabled | 禁用       | boolean | -        |
 | loading  | 加载中状态 | boolean | -        |
@@ -224,7 +224,7 @@ function select({ item, index }) {
 
 | 键名    | 说明     | 类型   | 最低版本 |
 | ------- | -------- | ------ | -------- |
-| iconUrl | 图片地址 | string | -        |
+| icon | 图片地址 | string | -        |
 | title   | 标题内容 | string | -        |
 
 ## 外部样式类

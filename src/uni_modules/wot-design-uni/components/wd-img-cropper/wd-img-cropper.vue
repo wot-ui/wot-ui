@@ -6,35 +6,30 @@
       <!-- 画出裁剪框 -->
       <view class="wd-img-cropper__cut">
         <!-- 上方阴影块 -->
-        <view :class="`wd-img-cropper__cut--top ${IS_TOUCH_END ? '' : 'is-hightlight'}`" :style="`height: ${cutTop}px;`"></view>
-        <view class="wd-img-cropper__cut--middle" :style="`height: ${cutHeight}px;`">
+        <view :class="`wd-img-cropper__overlay ${moving ? 'is-highlight' : ''}`" :style="`height: ${cutTop}px;`"></view>
+        <view class="wd-img-cropper__cut-middle" :style="`height: ${cutHeight}px;`">
           <!-- 左侧阴影块 -->
-          <view
-            :class="`wd-img-cropper__cut--left ${IS_TOUCH_END ? '' : 'is-hightlight'}`"
-            :style="`width: ${cutLeft}px; height: ${cutHeight}px;`"
-          ></view>
+          <view :class="`wd-img-cropper__overlay ${moving ? 'is-highlight' : ''}`" :style="`width: ${cutLeft}px; height: ${cutHeight}px;`"></view>
           <!-- 裁剪框 -->
-          <view class="wd-img-cropper__cut--body" :style="`width: ${cutWidth}px; height: ${cutHeight}px;`">
+          <view class="wd-img-cropper__cut-body" :style="`width: ${cutWidth}px; height: ${cutHeight}px;`">
             <!-- 内部网格线 -->
-            <view class="is-gridlines-x"></view>
-            <view class="is-gridlines-y"></view>
+            <view class="wd-img-cropper__gridline wd-img-cropper__gridline--x"></view>
+            <view class="wd-img-cropper__gridline wd-img-cropper__gridline--y"></view>
             <!-- 裁剪窗体四个对角 -->
-            <view class="is-left-top"></view>
-            <view class="is-left-bottom"></view>
-            <view class="is-right-top"></view>
-            <view class="is-right-bottom"></view>
+            <view class="wd-img-cropper__corner wd-img-cropper__corner--left-top"></view>
+            <view class="wd-img-cropper__corner wd-img-cropper__corner--left-bottom"></view>
+            <view class="wd-img-cropper__corner wd-img-cropper__corner--right-top"></view>
+            <view class="wd-img-cropper__corner wd-img-cropper__corner--right-bottom"></view>
           </view>
           <!-- 右侧阴影块 -->
-          <view :class="`wd-img-cropper__cut--right ${IS_TOUCH_END ? '' : 'is-hightlight'}`"></view>
+          <view :class="`wd-img-cropper__overlay wd-img-cropper__overlay-right ${moving ? 'is-highlight' : ''}`"></view>
         </view>
 
         <!-- 底部阴影块 -->
-        <view :class="`wd-img-cropper__cut--bottom ${IS_TOUCH_END ? '' : 'is-hightlight'}`"></view>
+        <view :class="`wd-img-cropper__overlay wd-img-cropper__overlay-bottom ${moving ? 'is-highlight' : ''}`"></view>
       </view>
       <!-- 展示的传过来的图片: 控制图片的旋转角度(rotate)、缩放程度(imgScale)、移动位置(translate) -->
       <image
-        :prop="isAnimation"
-        :change:prop="animation ? animation.setAnimation : ''"
         class="wd-img-cropper__img"
         :src="imgSrc"
         :style="imageStyle"
@@ -56,10 +51,13 @@
     />
     <!-- 下方按钮 -->
     <view class="wd-img-cropper__footer">
-      <wd-icon custom-class="wd-img-cropper__rotate" v-if="!disabledRotate" name="rotate" @click="handleRotate"></wd-icon>
-      <view class="wd-img-cropper__footer--button">
-        <view class="is-cancel" @click="handleCancel">{{ cancelButtonText || translate('cancel') }}</view>
-        <wd-button size="small" :custom-style="buttonStyle" @click="handleConfirm">{{ confirmButtonText || translate('confirm') }}</wd-button>
+      <wd-icon custom-class="wd-img-cropper__rotate" v-if="!disabledRotate" name="refresh" @click="handleRotate"></wd-icon>
+      <view class="wd-img-cropper__footer-btn">
+        <wd-button custom-class="wd-img-cropper__cancel" size="large" type="info" variant="text" @click="handleCancel">
+          {{ cancelButtonText || translate('cancel') }}
+        </wd-button>
+
+        <wd-button size="large" @click="handleConfirm">{{ confirmButtonText || translate('confirm') }}</wd-button>
       </view>
     </view>
   </view>
@@ -69,7 +67,9 @@
 export default {
   name: 'wd-img-cropper',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -83,21 +83,29 @@ import { computed, getCurrentInstance, ref, watch } from 'vue'
 import { addUnit, getSystemInfo, objToStyle, uuid } from '../common/util'
 import { useTranslate } from '../composables/useTranslate'
 import { imgCropperProps, type ImgCropperExpose } from './types'
+// #ifdef H5
+import { useLockScroll } from '../composables/useLockScroll'
+// #endif
+
+/** 顶部裁剪框占比 */
+const TOP_PERCENT = 0.85
+/** 动画过渡时长（毫秒） */
+const ANIMATION_DURATION = 300
+/** 节流频率（毫秒） */
+const THROTTLE_INTERVAL = 1000 / 40
 
 const canvasId = ref<string>(`cropper${uuid()}`) // canvas 组件的唯一标识符
 
 // 延时动画设置
-let CHANGE_TIME: any | null = null
-// 移动节流
-let MOVE_THROTTLE: any | null = null
+let animationTimer: any | null = null
+// 移动节流定时器
+let moveThrottleTimer: any | null = null
 // 节流标志
-let MOVE_THROTTLE_FLAG: boolean = true
-// 图片设置尺寸,此值不变（记录最初设定的尺寸）
-let INIT_IMGWIDTH: null | number | string = null
-// 图片设置尺寸,此值不变（记录最初设定的尺寸）
-let INIT_IMGHEIGHT: null | number | string = null
-// 顶部裁剪框占比
-const TOP_PERCENT = 0.85
+let isThrottleActive: boolean = true
+// 记录初始图片宽度
+let initImgWidth: null | number | string = null
+// 记录初始图片高度
+let initImgHeight: null | number | string = null
 
 const props = defineProps(imgCropperProps)
 const emit = defineEmits(['imgloaded', 'imgloaderror', 'cancel', 'confirm', 'update:modelValue'])
@@ -108,10 +116,6 @@ const { translate } = useTranslate('img-cropper')
 const imgAngle = ref<number>(0)
 // 是否开启动画
 const isAnimation = ref<boolean>(false)
-// #ifdef MP-ALIPAY || APP-PLUS || H5
-// hack 避免钉钉小程序、支付宝小程序、app抛出相关异常
-const animation: any = null
-// #endif
 
 // 裁剪框的宽高
 const picWidth = ref<number>(0)
@@ -122,38 +126,41 @@ const offset = ref<number>(20)
 // 裁剪框的距顶距左
 const cutLeft = ref<number>(0)
 const cutTop = ref<number>(0)
-// canvas最终成像宽高
+// Canvas 最终成像宽高
 const canvasWidth = ref<string | number>('')
 const canvasHeight = ref<string | number>('')
 const canvasScale = ref<number>(2)
-// 当前缩放大小
+// 图片当前缩放比例
 const imgScale = ref<number>(1)
-// // 图片宽高
-// imgWidth: null,
-// imgHeight: null,
 // 图片中心轴点距左的距离
 const imgLeft = ref<number>(getSystemInfo().windowWidth / 2)
+// 图片中心轴点距顶的距离
 const imgTop = ref<number>((getSystemInfo().windowHeight / 2) * TOP_PERCENT)
 
+// 获取的原始图片信息
 const imgInfo = ref<UniApp.GetImageInfoSuccessData | null>(null)
+// 系统信息缓存（窗口大小、平台等）
 const info = ref(getSystemInfo())
 
-// 是否移动中设置 同时控制背景颜色是否高亮
-const IS_TOUCH_END = ref<boolean>(true)
-// 记录移动中的双指位置 [0][1]分别代表两根手指 [1]做待用参数
-const movingPosRecord = ref<Record<string, string | number>[]>([
-  {
-    x: '',
-    y: ''
-  },
-  {
-    x: '',
-    y: ''
-  }
+// 是否处于移动/缩放中，用于控制裁剪框背景是否高亮
+const moving = ref<boolean>(false)
+
+/**
+ * 记录触摸位置信息
+ * [0] 存储第一根手指位置，[1] 预留给第二根手指（缩放时使用）
+ */
+interface TouchPosition {
+  x: string | number
+  y: string | number
+}
+const movingPosRecord = ref<TouchPosition[]>([
+  { x: '', y: '' },
+  { x: '', y: '' }
 ])
-// 双指缩放时 两个坐标点斜边长度
+// 双指缩放时两触点间的距离（用于计算缩放比例）
 const fingerDistance = ref<string | number>('')
 
+// Canvas 绘图上下文
 const ctx = ref<UniApp.CanvasContext | null>(null)
 
 const { proxy } = getCurrentInstance() as any
@@ -162,8 +169,8 @@ watch(
   () => props.modelValue,
   (newValue) => {
     if (newValue) {
-      INIT_IMGWIDTH = props.imgWidth
-      INIT_IMGHEIGHT = props.imgHeight
+      initImgWidth = props.imgWidth
+      initImgHeight = props.imgHeight
       info.value = getSystemInfo()
 
       // 根据aspectRatio计算裁剪框尺寸
@@ -179,7 +186,6 @@ watch(
       canvasScale.value = props.exportScale
       canvasHeight.value = tempCutHeight
       canvasWidth.value = tempCutWidth
-
       // 根据开发者设置的图片目标尺寸计算实际尺寸
       initImageSize()
       // 初始化canvas
@@ -222,13 +228,13 @@ watch(
 watch(
   () => isAnimation.value,
   (newValue) => {
-    // 开启过渡300毫秒之后自动关闭
-    CHANGE_TIME && clearTimeout(CHANGE_TIME)
+    // 开启过渡之后自动关闭
+    animationTimer && clearTimeout(animationTimer)
     if (newValue) {
-      CHANGE_TIME = setTimeout(() => {
+      animationTimer = setTimeout(() => {
         revertIsAnimation(false)
-        clearTimeout(CHANGE_TIME)
-      }, 300)
+        clearTimeout(animationTimer)
+      }, ANIMATION_DURATION)
     }
   },
   {
@@ -237,19 +243,6 @@ watch(
   }
 )
 
-const buttonStyle = computed(() => {
-  const style: Record<string, string | number> = {
-    position: 'absolute',
-    right: 0,
-    // height: 32px;
-    width: '56px',
-    'border-radius': '16px',
-    'font-size': '16px'
-  }
-
-  return objToStyle(style)
-})
-
 const imageStyle = computed(() => {
   const style: Record<string, string | number> = {
     width: picWidth.value ? addUnit(picWidth.value) : 'auto',
@@ -257,13 +250,14 @@ const imageStyle = computed(() => {
     transform: `translate(${addUnit(imgLeft.value - picWidth.value / 2)}, ${addUnit(imgTop.value - picHeight.value / 2)}) scale(${
       imgScale.value
     }) rotate(${imgAngle.value}deg)`,
-    'transition-duration': (isAnimation.value ? 0.4 : 0) + 's'
+    'transition-duration': (isAnimation.value ? ANIMATION_DURATION : 0) + 'ms'
   }
   return objToStyle(style)
 })
 
 /**
- * 逆转是否使用动画
+ * 切换图片过渡动画状态
+ * @param {boolean | { value: boolean }} animation 动画状态：true 启用，false 禁用，或包含 value 属性的对象
  */
 function revertIsAnimation(animation: boolean | { value: boolean }) {
   if (typeof animation === 'boolean') {
@@ -274,10 +268,10 @@ function revertIsAnimation(animation: boolean | { value: boolean }) {
 }
 
 /**
- * 控制旋转角度
- * @param angle 角度
+ * 旋转图片
+ * @param {number} angle 旋转角度（建议使用 90 的倍数）
  */
-function setRoate(angle: number) {
+function setRotate(angle: number) {
   if (!angle || props.disabledRotate) return
   revertIsAnimation(true)
   imgAngle.value = angle
@@ -302,7 +296,8 @@ function setRoate(angle: number) {
 }
 
 /**
- * 初始化图片的大小和角度以及距离
+ * 重置图片到初始状态
+ * 恢复：缩放比例、旋转角度、位置信息
  */
 function resetImg() {
   const { windowHeight, windowWidth } = getSystemInfo()
@@ -313,7 +308,7 @@ function resetImg() {
 }
 
 /**
- *  加载图片资源文件，并初始化裁剪框内图片信息
+ * 加载图片资源文件，获取图片基本信息
  */
 function loadImg() {
   if (!props.imgSrc) return
@@ -321,27 +316,24 @@ function loadImg() {
   uni.getImageInfo({
     src: props.imgSrc,
     success: (res) => {
-      // 存储img图片信息
       imgInfo.value = res
-      // 计算最后图片尺寸
       computeImgSize()
-      // 初始化尺寸
       resetImg()
     },
     fail: () => {
-      // this.setData({ imgSrc: '' })
+      emit('imgloaderror', { src: props.imgSrc })
     }
   })
 }
 
 /**
- *  设置图片尺寸，使其短边完全显示并填满裁剪框
+ * 计算图片尺寸以填满裁剪框
  */
 function computeImgSize() {
   let tempPicWidth: number = picWidth.value
   let tempPicHeight: number = picHeight.value
 
-  if (!INIT_IMGHEIGHT && !INIT_IMGWIDTH) {
+  if (!initImgHeight && !initImgWidth) {
     // 计算图片与裁剪框的宽高比
     const imgRatio = imgInfo.value!.width / imgInfo.value!.height
     const cropRatio = cutWidth.value / cutHeight.value
@@ -355,11 +347,11 @@ function computeImgSize() {
       tempPicWidth = cutWidth.value
       tempPicHeight = tempPicWidth / imgRatio
     }
-  } else if (INIT_IMGHEIGHT && !INIT_IMGWIDTH) {
-    tempPicHeight = Number(INIT_IMGHEIGHT)
+  } else if (initImgHeight && !initImgWidth) {
+    tempPicHeight = Number(initImgHeight)
     tempPicWidth = (imgInfo.value!.width / imgInfo.value!.height) * tempPicHeight
-  } else if ((!INIT_IMGHEIGHT && INIT_IMGWIDTH) || (INIT_IMGHEIGHT && INIT_IMGWIDTH)) {
-    tempPicWidth = Number(INIT_IMGWIDTH)
+  } else if ((!initImgHeight && initImgWidth) || (initImgHeight && initImgWidth)) {
+    tempPicWidth = Number(initImgWidth)
     tempPicHeight = (imgInfo.value!.height / imgInfo.value!.width) * tempPicWidth
   }
 
@@ -375,7 +367,7 @@ function computeImgSize() {
 }
 
 /**
- *  canvas 初始化
+ * 初始化 Canvas 上下文
  */
 function initCanvas() {
   if (!ctx.value) {
@@ -384,29 +376,30 @@ function initCanvas() {
 }
 
 /**
- *  图片初始化,处理宽高特殊单位
+ * 初始化图片尺寸，处理百分比等特殊单位
  */
 function initImageSize() {
-  // 处理宽高特殊单位 %>px
-  if (INIT_IMGWIDTH && typeof INIT_IMGWIDTH === 'string' && INIT_IMGWIDTH.indexOf('%') !== -1) {
-    const width: string = INIT_IMGWIDTH.replace('%', '')
-    INIT_IMGWIDTH = (info.value.windowWidth / 100) * Number(width)
-    picWidth.value = INIT_IMGWIDTH
-  } else if (INIT_IMGWIDTH && typeof INIT_IMGWIDTH === 'number') {
-    picWidth.value = INIT_IMGWIDTH
+  // 处理宽度：支持百分比和像素值
+  if (initImgWidth && typeof initImgWidth === 'string' && initImgWidth.indexOf('%') !== -1) {
+    const width: string = initImgWidth.replace('%', '')
+    initImgWidth = (info.value.windowWidth / 100) * Number(width)
+    picWidth.value = initImgWidth as number
+  } else if (initImgWidth && typeof initImgWidth === 'number') {
+    picWidth.value = initImgWidth
   }
-  if (INIT_IMGHEIGHT && typeof INIT_IMGHEIGHT === 'string' && INIT_IMGHEIGHT.indexOf('%') !== -1) {
+  // 处理高度：支持百分比和像素值
+  if (initImgHeight && typeof initImgHeight === 'string' && initImgHeight.indexOf('%') !== -1) {
     const height = (props.imgHeight as string).replace('%', '')
-    // INIT_IMGHEIGHT = this.data.imgHeight = (info.value.windowHeight / 100) * Number(height)
-    INIT_IMGHEIGHT = (info.value.windowHeight / 100) * Number(height)
-    picWidth.value = INIT_IMGHEIGHT
-  } else if (INIT_IMGHEIGHT && typeof INIT_IMGHEIGHT === 'number') {
-    picWidth.value = Number(INIT_IMGWIDTH)
+    initImgHeight = (info.value.windowHeight / 100) * Number(height)
+    picHeight.value = initImgHeight as number
+  } else if (initImgHeight && typeof initImgHeight === 'number') {
+    picHeight.value = Number(initImgHeight)
   }
 }
 
 /**
- *  图片拖动边缘检测：检测移动或缩放时 是否触碰到图片边缘位置
+ * 检测图片位置是否已到达裁剪框边缘
+ * @param {number} [scale] 缩放比例，默认使用当前 imgScale.value
  */
 function detectImgPosIsEdge(scale?: number) {
   const currentScale = scale || imgScale.value
@@ -443,7 +436,7 @@ function detectImgPosIsEdge(scale?: number) {
 }
 
 /**
- *  缩放边缘检测：检测移动或缩放时 是否触碰到图片边缘位置
+ * 检测并校正图片缩放，防止缩放后露出背景
  */
 function detectImgScaleIsEdge() {
   let tempPicWidth = picWidth.value
@@ -465,25 +458,26 @@ function detectImgScaleIsEdge() {
 }
 
 /**
- *  节流
+ * 节流处理，用于优化移动事件的处理频率
  */
 function throttle() {
   if (info.value.platform === 'android') {
-    MOVE_THROTTLE && clearTimeout(MOVE_THROTTLE)
-    MOVE_THROTTLE = setTimeout(() => {
-      MOVE_THROTTLE_FLAG = true
-    }, 1000 / 40)
+    moveThrottleTimer && clearTimeout(moveThrottleTimer)
+    moveThrottleTimer = setTimeout(() => {
+      isThrottleActive = true
+    }, THROTTLE_INTERVAL)
   } else {
-    !MOVE_THROTTLE_FLAG && (MOVE_THROTTLE_FLAG = true)
+    !isThrottleActive && (isThrottleActive = true)
   }
 }
 
 /**
- *  {图片区} 开始拖动
+ * 处理图片触摸开始事件，支持单指拖动和双指缩放
+ * @param {TouchEvent} event 触摸事件
  */
 function handleImgTouchStart(event: any) {
   // 如果处于在拖动中，背景为淡色展示全部，拖动结束则为 0.85 透明度
-  IS_TOUCH_END.value = false
+  moving.value = true
   if (event.touches.length === 1) {
     // 单指拖动
     movingPosRecord.value[0] = {
@@ -499,12 +493,10 @@ function handleImgTouchStart(event: any) {
 }
 
 /**
- *  {图片区} 拖动中
+ * 处理图片触摸移动事件，实现单指拖动和双指缩放功能
+ * @param {TouchEvent} event 触摸事件
  */
 function handleImgTouchMove(event: any) {
-  if (IS_TOUCH_END.value || !MOVE_THROTTLE_FLAG) return
-  // 节流
-  throttle()
   if (event.touches.length === 1) {
     // 单指拖动
     const { x, y } = movingPosRecord.value[0]
@@ -526,35 +518,37 @@ function handleImgTouchMove(event: any) {
 }
 
 /**
- *  {图片区} 拖动结束
+ * 处理图片触摸结束事件
  */
 function handleImgTouchEnd() {
-  IS_TOUCH_END.value = true
+  moving.value = false
 }
 
 /**
- *  图片已加载完成
+ * 处理图片加载完成事件
+ * @param {any} res 图片加载结果
  */
 function handleImgLoaded(res: any) {
   emit('imgloaded', res)
 }
 
 /**
- *  图片加载失败
+ * 处理图片加载失败事件
+ * @param {any} err 错误信息
  */
 function handleImgLoadError(err: any) {
   emit('imgloaderror', err)
 }
 
 /**
- *  旋转图片
+ * 处理旋转按钮点击，逆时针旋转 90 度
  */
 function handleRotate() {
-  setRoate(imgAngle.value - 90)
+  setRotate(imgAngle.value - 90)
 }
 
 /**
- *  取消裁剪图片
+ * 处理取消按钮点击
  */
 function handleCancel() {
   emit('cancel')
@@ -562,14 +556,14 @@ function handleCancel() {
 }
 
 /**
- *  完成裁剪
+ * 处理确认按钮点击，触发图片裁剪和导出流程
  */
 function handleConfirm() {
   draw()
 }
 
 /**
- *  canvas 绘制图片输出成文件类型
+ * 将 Canvas 画布转换为图片文件
  */
 function canvasToImage() {
   const { fileType, quality, exportScale } = props
@@ -598,21 +592,26 @@ function canvasToImage() {
 }
 
 /**
- *  canvas绘制，用canvas模拟裁剪框 对根据图片当前的裁剪信息进行模拟
+ * 使用 Canvas 绘制裁剪后的图片
+ *
+ * 流程：
+ * 1. 计算导出图片的实际像素尺寸（考虑缩放倍数）
+ * 2. 计算图片在 Canvas 中的位置（相对于裁剪框）
+ * 3. 应用几何变换：位移 + 旋转
+ * 4. 绘制图片，自动裁剪超出部分
  */
 function draw() {
   if (!props.imgSrc) return
   const draw = () => {
-    // 图片真实大小
+    // 计算导出时的图片实际像素尺寸（考虑 exportScale 倍数）
     const width = picWidth.value * imgScale.value * props.exportScale
     const height = picHeight.value * imgScale.value * props.exportScale
-    // 取裁剪框和图片的交集
+    // 计算图片左上角在 Canvas 中的位置（裁剪框坐标系内）
     const x = imgLeft.value - cutLeft.value
     const y = imgTop.value - cutTop.value
-    // 如果直接使用canvas绘制的图片会有锯齿，因此需要*设备像素比
-    // 设置（x, y）设置图片在canvas中的位置
+    // Canvas 绘图：位移变换（设置绘制原点到裁剪框中心）
     ctx.value!.translate(x * props.exportScale, y * props.exportScale)
-    // 设置 旋转角度
+    // Canvas 绘图：旋转变换（如未禁用旋转功能）
     if (!props.disabledRotate) {
       ctx.value!.rotate((imgAngle.value * Math.PI) / 180)
     }
@@ -631,34 +630,24 @@ function draw() {
   canvasWidth.value = cutWidth.value
   draw()
 }
+
+/**
+ * 阻止裁剪区域外的页面滚动
+ * 仅在裁剪框内触摸移动时禁用页面滚动
+ */
 function preventTouchMove() {}
+
+// #ifdef H5
+useLockScroll(() => props.modelValue)
+// #endif
 
 defineExpose<ImgCropperExpose>({
   revertIsAnimation,
-  setRoate,
+  setRotate,
   resetImg
 })
 </script>
 
-<!-- #ifdef MP-WEIXIN || MP-QQ  -->
-<script module="animation" lang="wxs">
-
-function setAnimation(newValue, oldValue, ownerInstance){
-  if (newValue) {
-    var id = ownerInstance.setTimeout(function() {
-    ownerInstance.callMethod('revertIsAnimation',{value:false})
-    ownerInstance.clearTimeout(id)
-  },300)
-  }
-
-}
-
-module.exports= {
-  setAnimation:setAnimation,
-}
-</script>
-<!-- #endif -->
-
 <style lang="scss" scoped>
-@import './index.scss';
+@use './index.scss';
 </style>

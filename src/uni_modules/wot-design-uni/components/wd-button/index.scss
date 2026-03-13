@@ -14,13 +14,13 @@ $button-color-primary-plain-bg-active: var(--wot-button-color-primary-plain-bg-a
 $button-color-primary-plain-border: var(--wot-button-color-primary-plain-border, $primary-6) !default;
 $button-color-primary-plain-border-active: var(--wot-button-color-primary-plain-border-active, $primary-7) !default;
 /* 成功色 */
-$button-color-success-bg: var(--wot-button-color-success-bg, $success-normal) !default;
+$button-color-success-bg: var(--wot-button-color-success-bg, $success-main) !default;
 $button-color-success-bg-active: var(--wot-button-color-success-bg-active, $success-clicked) !default;
-$button-color-success-text: var(--wot-button-color-success-text, $success-normal) !default;
+$button-color-success-text: var(--wot-button-color-success-text, $success-main) !default;
 $button-color-success-text-active: var(--wot-button-color-success-text-active, $success-clicked) !default;
 $button-color-success-plain-bg: var(--wot-button-color-success-plain-bg, $filled-zero) !default;
 $button-color-success-plain-bg-active: var(--wot-button-color-success-plain-bg-active, $success-surface) !default;
-$button-color-success-plain-border: var(--wot-button-color-success-plain-border, $success-normal) !default;
+$button-color-success-plain-border: var(--wot-button-color-success-plain-border, $success-main) !default;
 $button-color-success-plain-border-active: var(--wot-button-color-success-plain-border-active, $success-clicked) !default;
 /* 危险色 */
 $button-color-danger-bg: var(--wot-button-color-danger-bg, $danger-main) !default;
@@ -32,19 +32,19 @@ $button-color-danger-plain-bg-active: var(--wot-button-color-danger-plain-bg-act
 $button-color-danger-plain-border: var(--wot-button-color-danger-plain-border, $danger-main) !default;
 $button-color-danger-plain-border-active: var(--wot-button-color-danger-plain-border-active, $danger-clicked) !default;
 /* 警告色 */
-$button-color-warning-bg: var(--wot-button-color-warning-bg, $warning-normal) !default;
+$button-color-warning-bg: var(--wot-button-color-warning-bg, $warning-main) !default;
 $button-color-warning-bg-active: var(--wot-button-color-warning-bg-active, $warning-clicked) !default;
-$button-color-warning-text: var(--wot-button-color-warning-text, $warning-normal) !default;
+$button-color-warning-text: var(--wot-button-color-warning-text, $warning-main) !default;
 $button-color-warning-text-active: var(--wot-button-color-warning-text-active, $warning-clicked) !default;
 $button-color-warning-plain-bg: var(--wot-button-color-warning-plain-bg, $filled-zero) !default;
 $button-color-warning-plain-bg-active: var(--wot-button-color-warning-plain-bg-active, $warning-surface) !default;
-$button-color-warning-plain-border: var(--wot-button-color-warning-plain-border, $warning-normal) !default;
+$button-color-warning-plain-border: var(--wot-button-color-warning-plain-border, $warning-main) !default;
 $button-color-warning-plain-border-active: var(--wot-button-color-warning-plain-border-active, $warning-clicked) !default;
 /* 信息色 */
 $button-color-info-bg: var(--wot-button-color-info-bg, $filled-content) !default;
 $button-color-info-bg-active: var(--wot-button-color-info-bg-active, $filled-strong) !default;
 $button-color-info-text: var(--wot-button-color-info-text, $text-main) !default;
-$button-color-info-text-active: var(--wot-button-color-info-text-active, $text-main) !default;
+$button-color-info-text-active: var(--wot-button-color-info-text-active, $text-secondary) !default;
 $button-color-info-plain-bg: var(--wot-button-color-info-plain-bg, $filled-zero) !default;
 $button-color-info-plain-bg-active: var(--wot-button-color-info-plain-bg-active, $filled-bottom) !default;
 $button-color-info-plain-border: var(--wot-button-color-info-plain-border, $border-main) !default;
@@ -180,6 +180,12 @@ $button-sizes: ("mini": ("padding-y": $button-up-down-padding-mini,
     "spacing": $button-spacing-large,
     "icon-padding": $button-only-icon-padding-large));
 
+// Variant 配置 - 控制按钮的视觉变体
+$button-variants: ("text": ("hide-border": true),
+  "plain": ("show-border": true),
+  "dashed": ("show-border": true,
+    "border-style": dashed));
+
 @include b(button) {
   position: relative;
   display: inline-flex;
@@ -192,6 +198,8 @@ $button-sizes: ("mini": ("padding-y": $button-up-down-padding-mini,
   border: none;
   user-select: none;
   font-weight: normal;
+  margin-left: initial;
+  margin-right: initial;
   border-radius: $button-radius-main;
 
   &::after {
@@ -218,6 +226,7 @@ $button-sizes: ("mini": ("padding-y": $button-up-down-padding-mini,
 
   @include when(disabled) {
     opacity: $button-disabled;
+    cursor: not-allowed;
   }
 
   @include edeep(loading) {
@@ -238,69 +247,96 @@ $button-sizes: ("mini": ("padding-y": $button-up-down-padding-mini,
     }
   }
 
-  @include when(text) {
-    color: $button-color-primary-text;
-
-    &::after {
-      display: none;
-    }
-
-    &.wd-button--active {
-      color: $button-color-primary-text-active;
-    }
-  }
-
-  @include when(plain) {
-
-    @each $type,
-    $conf in $button-types {
-      @include when($type) {
-        background: map.get($conf, "plain-bg");
-        color: map.get($conf, "plain-text");
-
+  // Variant 样式处理
+  @each $variant,
+  $variant-conf in $button-variants {
+    @include when($variant) {
+      @if map.get($variant-conf, "hide-border") {
         &::after {
-          border-color: map.get($conf, "plain-border");
+          display: none;
         }
+      }
 
-        &.wd-button--active {
-          background: map.get($conf, "plain-bg-active");
-          color: map.get($conf, "plain-text-active");
-
-          &::after {
-            border-color: map.get($conf, "plain-border-active");
-          }
-        }
-
-        @include when(hairline) {
-          @include halfPixelBorderSurround(map.get($conf, "plain-border"));
-
-          &::before {
-            border-radius: inherit;
+      @each $type,
+      $type-conf in $button-types {
+        @include when($type) {
+          @if map.get($variant-conf, "transparent-bg") {
+            background: transparent;
           }
 
-          &::after {
-            border-color: map.get($conf, "plain-border");
-            border-radius: calc(2 * $button-radius-main);
+          @else {
+            background: map.get($type-conf, "plain-bg");
           }
 
-          &.is-round {
+          color: map.get($type-conf, "plain-text");
+
+          @if map.get($variant-conf, "show-border") {
             &::after {
-              border-radius: $button-radius-full !important;
+              border-color: map.get($type-conf, "plain-border");
+
+              @if map.get($variant-conf, "border-style") {
+                border-style: map.get($variant-conf, "border-style");
+              }
+            }
+          }
+
+          &.wd-button--active {
+            @if map.get($variant-conf, "transparent-bg") {
+              background: transparent;
+            }
+
+            @else {
+              background: map.get($type-conf, "plain-bg-active");
+            }
+
+            color: map.get($type-conf, "plain-text-active");
+
+            @if map.get($variant-conf, "show-border") {
+              &::after {
+                border-color: map.get($type-conf, "plain-border-active");
+              }
+            }
+          }
+
+          @include when(hairline) {
+            @if map.get($variant-conf, "show-border") {
+              @include halfPixelBorderSurround(map.get($type-conf, "plain-border"));
+
+              &::before {
+                border-radius: inherit;
+              }
+
+              &::after {
+                border-color: map.get($type-conf, "plain-border");
+
+                @if map.get($variant-conf, "border-style") {
+                  border-style: map.get($variant-conf, "border-style");
+                }
+
+                border-radius: calc(2 * $button-radius-main);
+              }
+
+              &.is-round {
+                &::after {
+                  border-radius: $button-radius-full !important;
+                }
+              }
             }
           }
         }
       }
+
+      @include when(round) {
+        &::after {
+          border-radius: $button-radius-full;
+        }
+      }
+
     }
   }
 
   @include when(round) {
     border-radius: $button-radius-full;
-
-    &.is-plain {
-      &::after {
-        border-radius: $button-radius-full;
-      }
-    }
   }
 
 
@@ -330,6 +366,7 @@ $button-sizes: ("mini": ("padding-y": $button-up-down-padding-mini,
 
   @include when(block) {
     display: flex;
+    width: 100%;
   }
 
   @include e(text) {

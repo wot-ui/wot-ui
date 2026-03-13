@@ -1,9 +1,9 @@
 <!--
  * @Author: weisheng
- * @Date: 2023-06-12 18:40:58
- * @LastEditTime: 2026-01-09 15:59:43
+ * @Date: 2026-01-09 16:05:24
+ * @LastEditTime: 2026-02-26 14:41:35
  * @LastEditors: weisheng
- * @Description:
+ * @Description: 
  * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-steps/wd-steps.vue
  * 记得注释
 -->
@@ -17,7 +17,9 @@ export default {
   name: 'wd-steps',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -32,6 +34,6 @@ const { linkChildren } = useChildren(STEPS_KEY)
 
 linkChildren({ props })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

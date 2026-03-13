@@ -1,40 +1,47 @@
 <template>
-  <view :class="`wd-pager ${customClass}`" :style="customStyle" v-if="!(hideIfOnePage && totalPageNum === 1)">
-    <view class="wd-pager__content">
-      <wd-button :plain="modelValue > 1" type="info" size="small" :disabled="modelValue <= 1" custom-class="wd-pager__nav" @click="sub">
-        <text v-if="!showIcon">{{ prevText || translate('prev') }}</text>
-        <wd-icon
-          v-else
-          :custom-class="`wd-pager__left wd-pager__icon ${modelValue <= 1 ? 'wd-pager__nav--disabled' : 'wd-pager__nav--active'}`"
-          name="arrow-right"
-        ></wd-icon>
-      </wd-button>
-      <view class="wd-pager__size">
-        <text class="wd-pager__current">{{ modelValue }}</text>
-        <text class="wd-pager__separator">/</text>
-        <text>{{ totalPageNum }}</text>
+  <view :class="`wd-pagination ${customClass}`" :style="customStyle" v-if="!(hideIfOnePage && totalPageNum === 1)">
+    <view class="wd-pagination__content">
+      <slot name="prev" :modelValue="modelValue" :totalPageNum="totalPageNum" :total="total" :pageSize="pageSize">
+        <wd-button
+          :plain="modelValue > 1"
+          type="info"
+          :variant="buttonVariant"
+          size="small"
+          :disabled="modelValue <= 1"
+          :custom-class="`wd-pagination__nav`"
+          :icon="showIcon ? 'left' : ''"
+          :text="showIcon ? '' : prevText || translate('prev')"
+          @click="sub"
+        ></wd-button>
+      </slot>
+      <slot name="size" :modelValue="modelValue" :totalPageNum="totalPageNum" :total="total" :pageSize="pageSize">
+        <view class="wd-pagination__size">
+          <text class="wd-pagination__current">{{ modelValue }}</text>
+          <text class="wd-pagination__separator">/</text>
+          <text class="wd-pagination__total">{{ totalPageNum }}</text>
+        </view>
+      </slot>
+      <slot name="next" :modelValue="modelValue" :totalPageNum="totalPageNum" :total="total" :pageSize="pageSize">
+        <wd-button
+          :plain="modelValue < totalPageNum"
+          type="primary"
+          :variant="buttonVariant"
+          size="small"
+          :disabled="modelValue >= totalPageNum"
+          :custom-class="`wd-pagination__nav`"
+          :icon="showIcon ? 'right' : ''"
+          :text="showIcon ? '' : nextText || translate('next')"
+          @click="add"
+        ></wd-button>
+      </slot>
+    </view>
+    <slot name="message" :modelValue="modelValue" :totalPageNum="totalPageNum" :total="total" :pageSize="pageSize" v-if="showMessage">
+      <view class="wd-pagination__message">
+        <text>{{ translate('page', modelValue) }}，</text>
+        <text v-if="total">{{ translate('total', total) }}，</text>
+        <text>{{ translate('size', pageSize) }}</text>
       </view>
-      <wd-button
-        :plain="modelValue < totalPageNum"
-        type="info"
-        size="small"
-        :disabled="modelValue >= totalPageNum"
-        custom-class="wd-pager__nav"
-        @click="add"
-      >
-        <text v-if="!showIcon">{{ nextText || translate('next') }}</text>
-        <wd-icon
-          v-else
-          :custom-class="`wd-pager__icon ${modelValue >= totalPageNum ? 'wd-pager__nav--disabled' : 'wd-pager__nav--active'}`"
-          name="arrow-right"
-        ></wd-icon>
-      </wd-button>
-    </view>
-    <view class="wd-pager__message" v-if="showMessage">
-      <text>{{ translate('page', modelValue) }}，</text>
-      <text v-if="total">{{ translate('total', total) }}，</text>
-      <text>{{ translate('size', pageSize) }}</text>
-    </view>
+    </slot>
   </view>
 </template>
 
@@ -42,7 +49,9 @@
 export default {
   name: 'wd-pagination',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -50,7 +59,6 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import wdIcon from '../wd-icon/wd-icon.vue'
 import wdButton from '../wd-button/wd-button.vue'
 import { ref, watch } from 'vue'
 import { useTranslate } from '../composables/useTranslate'
@@ -105,6 +113,6 @@ function updateTotalPage() {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

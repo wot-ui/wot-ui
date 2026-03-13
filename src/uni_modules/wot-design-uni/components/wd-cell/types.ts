@@ -1,123 +1,203 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeStringProp, makeNumericProp, numericProp } from '../common/props'
 
+/**
+ * 必填星号位置
+ * 可选值: 'start' | 'end'
+ */
 export type CellAsteriskPosition = 'start' | 'end'
 
+/**
+ * 单元格布局方式
+ * 可选值: 'horizontal' | 'vertical'
+ */
 export type CellLayout = 'horizontal' | 'vertical'
 
+/**
+ * 右侧内容对齐方式
+ * 可选值: 'left' | 'right' | 'center'
+ */
 export type CellValueAlign = 'left' | 'right' | 'center'
 
+/**
+ * 箭头方向
+ * 可选值: 'left' | 'up' | 'down' | 'right'
+ */
 export type CellArrowDirection = 'left' | 'up' | 'down' | 'right'
+
+/**
+ * 单元格大小
+ * 可选值: 'large'
+ */
+export type CellSize = 'large'
 
 export const cellProps = {
   ...baseProps,
   /**
-   * 标题
+   * 左侧标题
+   * 类型: string
    */
   title: String,
   /**
    * 右侧内容
+   * 类型: string | number
+   * 默认值: ''
    */
   value: makeNumericProp(''),
   /**
-   * 占位符
+   * 占位符，仅在 value 为空时显示
+   * 类型: string
    */
   placeholder: String,
   /**
-   * 图标类名
+   * 前置图标类名
+   * 类型: string
    */
-  icon: String,
+  prefixIcon: String,
+  /**
+   * 后置图标类名
+   * 类型: string
+   */
+  suffixIcon: String,
   /**
    * 图标大小
+   * 类型: string | number
    */
   iconSize: numericProp,
   /**
-   * 类名前缀，用于使用自定义图标
+   * 图标类名前缀，用于使用自定义图标
+   * 类型: string
    */
-  iconPrefix: makeStringProp('wd-icon'),
+  iconPrefix: String,
   /**
-   * 描述信息
+   * 标题下方的描述信息
+   * 类型: string
    */
   label: String,
   /**
-   * 跳转地址
+   * 点击后跳转的链接地址
+   * 类型: string
    */
   to: String,
   /**
-   * 跳转时是否替换栈顶页面
+   * 跳转时是否替换当前页面历史
+   * 类型: boolean
+   * 默认值: false
    */
   replace: makeBooleanProp(false),
   /**
    * 是否开启点击反馈
+   * 类型: boolean
+   * 默认值: false
    */
   clickable: makeBooleanProp(false),
   /**
    * 是否展示右侧箭头并开启点击反馈
+   * 类型: boolean
+   * 默认值: false
    */
   isLink: makeBooleanProp(false),
   /**
-   * 设置单元格大小，可选值：large
+   * 单元格大小
+   * 类型: CellSize
+   * 可选值: 'large'
    */
-  size: String,
+  size: String as PropType<CellSize>,
   /**
-   * 是否展示边框线
+   * 是否显示内边框
+   * 类型: boolean
+   * 默认值: 继承自 CellGroup
    */
   border: makeBooleanProp(void 0),
   /**
-   * 设置左侧标题宽度
+   * 左侧标题宽度
+   * 类型: string | number
    */
-  titleWidth: String,
+  titleWidth: numericProp,
   /**
-   * 是否使内容垂直居中，默认顶部居中
+   * 是否垂直居中
+   * 类型: boolean
+   * 默认值: 继承自 CellGroup
    */
-  center: makeBooleanProp(false),
+  center: makeBooleanProp(void 0),
   /**
-   * 是否必填
+   * 是否显示表单必填星号
+   * 类型: boolean
+   * 默认值: false
    */
   required: makeBooleanProp(false),
   /**
-   * 表单布局方式，可选值：horizontal、vertical
+   * 单元格布局方式
+   * 类型: CellLayout
+   * 可选值: 'horizontal' | 'vertical'
    */
-  layout: makeStringProp<CellLayout>('horizontal'),
+  layout: String as PropType<CellLayout>,
   /**
-   * value 文字对齐方式，可选值：left、right、center
+   * 右侧内容对齐方式
+   * 类型: CellValueAlign
+   * 可选值: 'left' | 'right' | 'center'
    */
-  valueAlign: makeStringProp<CellValueAlign>('right'),
+  valueAlign: String as PropType<CellValueAlign>,
   /**
-   * 是否超出隐藏，显示省略号
+   * 是否超出隐藏显示省略号
+   * 类型: boolean
+   * 默认值: false
    */
   ellipsis: makeBooleanProp(false),
   /**
-   * 是否启用title插槽，默认启用，用来解决插槽传递时v-slot和v-if冲突问题。
-   * 问题见：https://github.com/dcloudio/uni-app/issues/4847
+   * 是否启用 title 插槽
+   * 类型: boolean
+   * 默认值: true
    */
   useTitleSlot: makeBooleanProp(true),
   /**
-   * 必填星号位置，可选值：start（title前）、end（title后）
+   * 必填星号位置
+   * 类型: CellAsteriskPosition
+   * 可选值: 'start' | 'end'
+   * 默认值: 'start'
    */
   asteriskPosition: makeStringProp<CellAsteriskPosition>('start'),
   /**
    * 是否隐藏必填星号
+   * 类型: boolean
+   * 默认值: false
    */
   hideAsterisk: makeBooleanProp(false),
   /**
-   * 箭头方向,可选值:left、up、down、right,只在 is-link 为 true 时生效
+   * 箭头方向，仅在 isLink 为 true 时生效
+   * 类型: CellArrowDirection
+   * 可选值: 'left' | 'up' | 'down' | 'right'
+   * 默认值: 'right'
    */
   arrowDirection: makeStringProp<CellArrowDirection>('right'),
   /**
-   * icon 使用 slot 时的自定义样式
+   * 前置图标自定义样式类
+   * 类型: string
+   * 默认值: ''
    */
-  customIconClass: makeStringProp(''),
+  customPrefixClass: makeStringProp(''),
   /**
-   * label 使用 slot 时的自定义样式
+   * 后置图标自定义样式类
+   * 类型: string
+   * 默认值: ''
+   */
+  customSuffixClass: makeStringProp(''),
+  /**
+   * label 插槽的自定义样式类
+   * 类型: string
+   * 默认值: ''
    */
   customLabelClass: makeStringProp(''),
   /**
-   * value 使用 slot 时的自定义样式
+   * value 插槽的自定义样式类
+   * 类型: string
+   * 默认值: ''
    */
   customValueClass: makeStringProp(''),
   /**
-   * title 使用 slot 时的自定义样式
+   * title 插槽的自定义样式类
+   * 类型: string
+   * 默认值: ''
    */
   customTitleClass: makeStringProp('')
 }

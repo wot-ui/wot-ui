@@ -1,19 +1,10 @@
 <template>
   <view :class="rootClass" :style="rootStyle" @click="handleClick">
-    <view v-if="useIconSlot" class="wd-tag__icon">
-      <slot name="icon" />
-    </view>
-    <wd-icon v-else-if="icon" :name="icon" custom-class="wd-tag__icon" />
-    <view class="wd-tag__text" :style="textStyle">
-      <slot />
-    </view>
-    <view class="wd-tag__close" v-if="closable && round" @click.stop="handleClose">
-      <wd-icon name="error-fill" />
-    </view>
     <input
       v-if="dynamicInput && dynamic"
-      class="wd-tag__add-text"
+      class="wd-tag__input"
       :placeholder="translate('placeholder')"
+      placeholder-class="wd-tag__placeholder"
       type="text"
       :focus="true"
       v-model="dynamicValue"
@@ -21,12 +12,23 @@
       @confirm="handleConfirm"
     />
     <view v-else-if="dynamic" class="wd-tag__text" :style="textStyle" @click.stop="handleAdd">
-      <slot name="add" v-if="$slots.add"></slot>
-      <template v-else>
-        <wd-icon name="add" custom-class="wd-tag__add wd-tag__icon" />
+      <slot name="add">
+        <wd-icon name="plus" custom-class="wd-tag__add" />
         <text>{{ translate('add') }}</text>
-      </template>
+      </slot>
     </view>
+
+    <template v-else>
+      <slot name="icon" v-if="$slots.icon || icon">
+        <wd-icon :name="icon" custom-class="wd-tag__icon" />
+      </slot>
+      <text class="wd-tag__text" :style="textStyle" v-if="$slots.default">
+        <slot />
+      </text>
+      <view class="wd-tag__close" v-if="closable" @click.stop="handleClose">
+        <wd-icon name="close" custom-class="wd-tag__close-icon"></wd-icon>
+      </view>
+    </template>
   </view>
 </template>
 
@@ -35,7 +37,9 @@ export default {
   name: 'wd-tag',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -43,7 +47,7 @@ export default {
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
 import { objToStyle } from '../common/util'
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useTranslate } from '../composables/useTranslate'
 import { tagProps } from './types'
 
@@ -52,45 +56,29 @@ const emit = defineEmits(['click', 'close', 'confirm'])
 
 const { translate } = useTranslate('tag')
 
-const tagClass = ref<string>('')
 const dynamicValue = ref<string>('')
 const dynamicInput = ref<boolean>(false)
 
-watch(
-  [() => props.useIconSlot, () => props.icon, () => props.plain, () => props.dynamic, () => props.round, () => props.mark],
-  () => {
-    computeTagClass()
-  },
-  { deep: true, immediate: true }
-)
-
-watch(
-  () => props.type,
-  (newValue) => {
-    if (!newValue) return
-    // type: 'primary', 'danger', 'warning', 'success'
-    const type = ['primary', 'danger', 'warning', 'success', 'default']
-    if (type.indexOf(newValue) === -1) console.error(`type must be one of ${type.toString()}`)
-    computeTagClass()
-  },
-  { immediate: true }
-)
-
-watch(
-  () => dynamicInput.value,
-  () => {
-    computeTagClass()
-  },
-  { immediate: true }
-)
-
-const rootClass = computed(() => {
-  return `wd-tag ${props.customClass} ${tagClass.value}`
+/**
+ * 根节点类名
+ */
+const rootClass = computed<string>(() => {
+  const { type, variant, size, round, mark, customClass } = props
+  const classList: string[] = []
+  type && classList.push(`is-${type}`)
+  variant && classList.push(`is-${variant}`)
+  size && classList.push(`is-${size}`)
+  round && classList.push('is-round')
+  mark && classList.push('is-mark')
+  return `wd-tag ${customClass} ${classList.join(' ')}`
 })
 
-const rootStyle = computed(() => {
+/**
+ * 根节点样式
+ */
+const rootStyle = computed<string>(() => {
   const rootStyle: Record<string, any> = {}
-  if (!props.plain && props.bgColor) {
+  if (props.variant !== 'plain' && props.variant !== 'dashed' && props.variant !== 'text' && props.bgColor) {
     rootStyle['background'] = props.bgColor
   }
   if (props.bgColor) {
@@ -99,7 +87,10 @@ const rootStyle = computed(() => {
   return `${objToStyle(rootStyle)}${props.customStyle}`
 })
 
-const textStyle = computed(() => {
+/**
+ * 文本样式
+ */
+const textStyle = computed<string>(() => {
   const textStyle: Record<string, any> = {}
   if (props.color) {
     textStyle['color'] = props.color
@@ -107,42 +98,61 @@ const textStyle = computed(() => {
   return objToStyle(textStyle)
 })
 
-function computeTagClass() {
-  const { type, plain, round, mark, dynamic, icon, useIconSlot } = props
-  let tagClassList: string[] = []
-  type && tagClassList.push(`is-${type}`)
-  plain && tagClassList.push('is-plain')
-  round && tagClassList.push('is-round')
-  mark && tagClassList.push('is-mark')
-  dynamic && tagClassList.push('is-dynamic')
-  dynamicInput.value && tagClassList.push('is-dynamic-input')
-  if (icon || useIconSlot) tagClassList.push('is-icon')
-  tagClass.value = tagClassList.join(' ')
-}
-
-function handleClick(event: any) {
+/**
+ * 处理点击事件
+ * @param {MouseEvent} event 鼠标事件对象
+ * @returns {void}
+ */
+function handleClick(event: MouseEvent) {
   emit('click', event)
 }
-function handleClose(event: any) {
+
+/**
+ * 处理关闭事件
+ * @param {MouseEvent} event 鼠标事件对象
+ * @returns {void}
+ */
+function handleClose(event: MouseEvent): void {
   emit('close', event)
 }
-function handleAdd() {
+
+/**
+ * 处理添加事件
+ * @returns {void}
+ */
+function handleAdd(): void {
   dynamicInput.value = true
   dynamicValue.value = ''
 }
-function handleBlur() {
+
+/**
+ * 处理输入框失焦事件
+ * @returns {void}
+ */
+function handleBlur(): void {
   setDynamicInput()
 }
-function handleConfirm(event: any) {
+
+/**
+ * 处理输入完成事件
+ * @param {any} event 回车或完成事件对象
+ * @returns {void}
+ */
+function handleConfirm(event: any): void {
   setDynamicInput()
   emit('confirm', {
     value: event.detail.value
   })
 }
+
+/**
+ * 重置动态输入框状态
+ * @returns {void}
+ */
 function setDynamicInput() {
   dynamicInput.value = false
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

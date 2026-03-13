@@ -1,14 +1,23 @@
-@import './../common/abstracts/_mixin.scss';
-@import './../common/abstracts/variable.scss';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(badge) {
-    @include e(content) {
-      border-color: $-dark-background2;
-    }
-  }
-}
-
+$badge-height: var(--wot-badge-height, $n16) !default; // 高度
+$badge-min-width: var(--wot-badge-min-width, $n16) !default; // 最小宽度
+$badge-padding: var(--wot-badge-padding, $padding-zero $padding-super-tight) !default; // 内边距
+$badge-danger-bg: var(--wot-badge-danger-bg, $danger-main) !default; // 危险背景颜色
+$badge-success-bg: var(--wot-badge-success-bg, $success-main) !default; // 成功背景颜色
+$badge-warning-bg: var(--wot-badge-warning-bg, $warning-main) !default; // 警告背景颜色
+$badge-info-bg: var(--wot-badge-info-bg, $filled-content) !default; // 信息背景颜色
+$badge-primary-bg: var(--wot-badge-primary-bg, $primary-6) !default; // 主要背景颜色
+$badge-color: var(--wot-badge-color, $text-white) !default; // 文本颜色
+$badge-info-color: var(--wot-badge-info-color, $text-secondary) !default; // 信息色文本颜色
+$badge-font-size: var(--wot-badge-font-size, $typography-label-size-extra-small) !default; // 字体大小
+$badge-border-radius: var(--wot-badge-border-radius, $radius-radius-full) !default; // 边框圆角
+$badge-square-border-radius: var(--wot-badge-square-border-radius, $radius-main) !default; // 方形边框圆角
+$badge-bubble-border-radius: var(--wot-badge-bubble-border-radius, $radius-large $radius-large $radius-large $radius-zero) !default; // 气泡边框圆角
+$badge-dot-size: var(--wot-badge-dot-size, $n6) !default; // 点大小
+$badge-font-weight: var(--wot-badge-font-weight, $font-weight-medium) !default; // 字体粗细
+$badge-transform: var(--wot-badge-transform, translateY(-50%) translateX(50%)) !default; // 偏移
 
 @include b(badge) {
   position: relative;
@@ -16,46 +25,69 @@
   display: inline-block;
 
   @include e(content) {
-    display: inline-block;
-    box-sizing: content-box;
-    height: $-badge-height;
-    line-height: $-badge-height;
-    padding: $-badge-padding;
-    background-color: $-badge-bg;
-    border-radius: calc($-badge-height / 2 + 2px);
-    color: $-badge-color;
-    font-size: $-badge-fs;
-    text-align: center;
-    white-space: nowrap;
-    border: $-badge-border;
-    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: $badge-height;
+    line-height: $badge-height;
+    padding: $badge-padding;
+    background: $badge-danger-bg;
+    border-radius: $badge-border-radius;
+    color: $badge-color;
+    font-size: $badge-font-size;
+    font-weight: $badge-font-weight;
+    min-width: $badge-min-width;
 
     @include when(fixed) {
       position: absolute;
       top: 0px;
       right: 0px;
-      transform: translateY(-50%) translateX(50%);
+      z-index: 1;
+      transform: $badge-transform;
     }
 
     @include when(dot) {
-      height: $-badge-dot-size;
-      width: $-badge-dot-size;
+      height: $badge-dot-size;
+      width: $badge-dot-size;
+      min-width: $badge-dot-size;
       padding: 0;
-      border-radius: 50%;
+      border-radius: $badge-border-radius;
+    }
+
+    @include when(square) {
+      border-radius: $badge-square-border-radius;
+    }
+
+    @include when(bubble) {
+      border-radius: $badge-bubble-border-radius;
+    }
+
+    @include when(border) {
+      border: 1px solid #fff;
     }
 
     @each $type in (primary, success, warning, info, danger) {
       @include m($type) {
-        @if $type == primary {
-          background-color: $-badge-primary;
-        } @else if $type == success {
-          background-color: $-badge-success;
-        } @else if $type == warning {
-          background-color: $-badge-warning;
-        } @else if $type == info {
-          background-color: $-badge-info;
-        } @else {
-          background-color: $-badge-danger;
+        @if $type==primary {
+          background: $badge-primary-bg;
+        }
+
+        @else if $type==success {
+          background: $badge-success-bg;
+        }
+
+        @else if $type==warning {
+          background: $badge-warning-bg;
+        }
+
+        @else if $type==info {
+          background: $badge-info-bg;
+          color: $badge-info-color;
+        }
+
+        @else {
+          background: $badge-danger-bg;
         }
       }
     }

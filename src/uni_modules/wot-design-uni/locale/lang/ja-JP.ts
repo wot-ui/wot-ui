@@ -44,7 +44,7 @@ export default {
     expand: '展開',
     retract: '折りたたむ'
   },
-  colPicker: {
+  cascader: {
     title: '選択してください',
     placeholder: '選択してください',
     select: '選択'
@@ -64,6 +64,12 @@ export default {
     retry: '再試行'
   },
   messageBox: {
+    inputPlaceholder: '入力してください',
+    confirm: '確認',
+    cancel: 'キャンセル',
+    inputNoValidate: '無効なデータが入力されました'
+  },
+  dialog: {
     inputPlaceholder: '入力してください',
     confirm: '確認',
     cancel: 'キャンセル',

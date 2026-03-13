@@ -1,24 +1,43 @@
-@import '../../common/abstracts/variable';
-@import '../../common/abstracts/mixin';
-
-.wot-theme-dark {
-  @include b(year-panel) {
-    @include e(title) {
-      color: $-dark-color;
-      box-shadow: 0px 4px 8px 0 rgba(255, 255,255, 0.02);
-    }
-  }
-}
+@use '../../styles/mixin/mixin.scss' as *;
+@use '../index.scss' as *;
 
 @include b(year-panel) {
-  font-size: $-calendar-fs;
-  padding: $-calendar-panel-padding;
+  font-size: $calendar-view-font-size;
+
+  @include e(controls) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: $calendar-view-controls-padding;
+  }
+
+  @include e(controls-title) {
+    font-size: $calendar-view-panel-title-font-size;
+    line-height: $calendar-view-panel-title-line-height;
+    color: $calendar-view-panel-title-color;
+    font-weight: $calendar-view-panel-title-font-weight;
+  }
+
+  @include edeep(control-icon) {
+    color: $calendar-view-control-icon-color;
+    font-size: $calendar-view-control-icon-size;
+    line-height: $calendar-view-control-icon-size;
+    &:not(:last-child) {
+      margin-right: $calendar-view-control-icon-spacing;
+    }
+    @include when(disabled){
+      color: $calendar-view-control-disabled-color;
+      cursor: not-allowed;
+    }
+  }
 
   @include e(title) {
-    padding: 5px 0;
-    text-align: center;
-    font-size: $-calendar-panel-title-fs;
-    color: $-calendar-panel-title-color;
-    box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.02);
+    font-size: $calendar-view-panel-title-font-size;
+    line-height: $calendar-view-panel-title-line-height;
+    color: $calendar-view-panel-title-color;
+    padding: $calendar-view-panel-title-padding;
+    font-weight: $calendar-view-panel-title-font-weight;
+    margin: $calendar-view-panel-title-margin;
   }
 }

@@ -372,9 +372,9 @@ export type textareaThemeVars = {
 export type loadmoreThemeVars = {
   loadmoreHeight?: string
   loadmoreColor?: string
-  loadmoreFs?: string
+  loadmoreFontSize?: string
   loadmoreErrorColor?: string
-  loadmoreRefreshFs?: string
+  loadmoreRefreshFontSize?: string
   loadmoreLoadingSize?: string
 }
 
@@ -453,26 +453,26 @@ export type pickerThemeVars = {
   pickerRegionFs?: string
 }
 
-export type colPickerThemeVars = {
-  colPickerSelectedHeight?: string
-  colPickerSelectedPadding?: string
-  colPickerSelectedFs?: string
-  colPickerSelectedColor?: string
-  colPickerSelectedFw?: string
-  colPickerLineWidth?: string
-  colPickerLineHeight?: string
-  colPickerLineColor?: string
-  colPickerLineBoxShadow?: string
-  colPickerListHeight?: string
-  colPickerListPaddingBottom?: string
-  colPickerListColor?: string
-  colPickerListColorDisabled?: string
-  colPickerListColorTip?: string
-  colPickerListFs?: string
-  colPickerListFsTip?: string
-  colPickerListItemPadding?: string
-  colPickerListCheckedIconSize?: string
-  colPickerListColorChecked?: string
+export type cascaderThemeVars = {
+  cascaderSelectedHeight?: string
+  cascaderSelectedPadding?: string
+  cascaderSelectedFs?: string
+  cascaderSelectedColor?: string
+  cascaderSelectedFw?: string
+  cascaderLineWidth?: string
+  cascaderLineHeight?: string
+  cascaderLineColor?: string
+  cascaderLineBoxShadow?: string
+  cascaderListHeight?: string
+  cascaderListPaddingBottom?: string
+  cascaderListColor?: string
+  cascaderListColorDisabled?: string
+  cascaderListColorTip?: string
+  cascaderListFs?: string
+  cascaderListFsTip?: string
+  cascaderListItemPadding?: string
+  cascaderListCheckedIconSize?: string
+  cascaderListColorChecked?: string
 }
 
 export type overlayThemeVars = {
@@ -1071,7 +1071,7 @@ export type ConfigProviderThemeVars = baseThemeVars &
   noticeBarThemeVars &
   paginationThemeVars &
   pickerThemeVars &
-  colPickerThemeVars &
+  cascaderThemeVars &
   overlayThemeVars &
   popupThemeVars &
   progressThemeVars &

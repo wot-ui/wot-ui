@@ -1,19 +1,33 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(tabbar) {
-    background: $-dark-background;
-  }
-}
+// 高度
+$tabbar-height: var(--wot-tabbar-height, $n50) !default;
+// 背景色
+$tabbar-bg: var(--wot-tabbar-bg, $filled-oppo) !default;
+// 固定定位层级
+$tabbar-z-index: var(--wot-tabbar-z-index, 10) !default;
+
+// round 变体
+// round 变体水平外边距
+$tabbar-round-margin-horizontal: var(--wot-tabbar-round-margin-horizontal, $spacing-extra-loose) !default;
+// round 变体圆角
+$tabbar-round-radius: var(--wot-tabbar-round-radius, $radius-radius-full) !default;
+// round 变体阴影
+$tabbar-round-shadow: var(
+  --wot-tabbar-round-shadow,
+  0 5px 5px -3px $opac-3_08,
+  0 8px 10px 1px $opac-2_04,
+  0 3px 14px 2px $opac-2_04
+) !default;
 
 @include b(tabbar) {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
   position: relative;
-  background: $-color-white;
-  height: $-tabbar-height;
+  background: $tabbar-bg;
+  height: $tabbar-height;
 
   @include e(placeholder) {
     box-sizing: content-box;
@@ -22,10 +36,10 @@
   }
 
   @include m(round) {
-    margin-left: 32rpx;
-    margin-right: 32rpx;
-    border-radius: 999px;
-    box-shadow: $-tabbar-box-shadow;
+    margin-left: $tabbar-round-margin-horizontal;
+    margin-right: $tabbar-round-margin-horizontal;
+    border-radius: $tabbar-round-radius;
+    box-shadow: $tabbar-round-shadow;
 
     @include when(fixed) {
       @include when(safe) {
@@ -33,11 +47,9 @@
         bottom: env(safe-area-inset-bottom);
       }
     }
-
   }
 
   @include m(default) {
-
     @include when(fixed) {
       @include when(safe) {
         box-sizing: content-box;
@@ -45,7 +57,6 @@
         padding-bottom: env(safe-area-inset-bottom);
       }
     }
-
 
     @include when(border) {
       @include halfPixelBorder('top');
@@ -57,6 +68,6 @@
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 500;
+    z-index: $tabbar-z-index;
   }
 }

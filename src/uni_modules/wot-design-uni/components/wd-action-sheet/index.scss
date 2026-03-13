@@ -1,65 +1,55 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(action-sheet) {
-    background-color: $-dark-background2;
-    color: $-dark-color;
+$action-sheet-bg: var(--wot-action-sheet-bg, $filled-bottom) !default;
+$action-sheet-radius: var(--wot-action-sheet-radius, $radius-large) !default;
+$action-sheet-action-bg: var(--wot-action-sheet-action-bg, $filled-oppo) !default;
+$action-sheet-action-font-size: var(--wot-action-sheet-action-font-size, $typography-title-size-main) !default;
+$action-sheet-action-line-height: var(--wot-action-sheet-action-line-height, $typography-title-line--height-size-main) !default;
+$action-sheet-action-color: var(--wot-action-sheet-action-color, $text-main) !default;
+$action-sheet-action-padding: var(--wot-action-sheet-action-padding, $padding-extra-loose $padding-loose) !default;
+$action-sheet-cancel-bg: var(--wot-action-sheet-cancel-bg, $filled-oppo) !default;
+$action-sheet-cancel-font-size: var(--wot-action-sheet-cancel-font-size, $typography-title-size-main) !default;
+$action-sheet-cancel-line-height: var(--wot-action-sheet-cancel-line-height, $typography-title-line--height-size-main) !default;
+$action-sheet-cancel-color: var(--wot-action-sheet-cancel-color, $text-main) !default;
+$action-sheet-cancel-padding: var(--wot-action-sheet-cancel-padding, $padding-extra-loose $padding-loose) !default;
+$action-sheet-cancel-margin-top: var(--wot-action-sheet-cancel-margin-top, $spacing-tight) !default;
+$action-sheet-description-font-size: var(--wot-action-sheet-description-font-size, $typography-body-size-main) !default;
+$action-sheet-description-line-height: var(--wot-action-sheet-description-line-height, $typography-body-line--height-size-main) !default;
+$action-sheet-description-color: var(--wot-action-sheet-description-color, $text-auxiliary) !default;
+$action-sheet-description-margin-top: var(--wot-action-sheet-description-margin-top, $spacing-tight) !default;
+$action-sheet-panel-bg: var(--wot-action-sheet-panel-bg, $filled-oppo) !default;
+$action-sheet-panels-wrap-padding: var(--wot-action-sheet-panels-wrap-padding, $padding-main 0) !default;
+$action-sheet-panels-padding: var(--wot-action-sheet-panels-padding, 0 $padding-main) !default;
+$action-sheet-panel-width: var(--wot-action-sheet-panel-width, $n88) !default;
+$action-sheet-panel-padding: var(--wot-action-sheet-panel-padding, $padding-main 0) !default;
+$action-sheet-panel-img-size: var(--wot-action-sheet-panel-img-size, $n24) !default;
+$action-sheet-panel-img-spacing: var(--wot-action-sheet-panel-img-spacing, 0 auto $spacing-tight) !default;
+$action-sheet-panel-img-radius: var(--wot-action-sheet-panel-img-radius, $radius-main) !default;
+$action-sheet-panel-title-font-size: var(--wot-action-sheet-panel-title-font-size, $typography-label-size-main) !default;
+$action-sheet-panel-title-line-height: var(--wot-action-sheet-panel-title-line-height, $typography-label-line--height-size-main) !default;
+$action-sheet-panel-title-color: var(--wot-action-sheet-panel-title-color, $text-auxiliary) !default;
+$action-sheet-title-color: var(--wot-action-sheet-title-color, $text-main) !default;
+$action-sheet-title-height: var(--wot-action-sheet-title-height, $n56) !default;
+$action-sheet-title-font-size: var(--wot-action-sheet-title-font-size, $typography-title-size-main) !default;
+$action-sheet-title-line-height: var(--wot-action-sheet-title-line-height, $typography-title-line--height-size-main) !default;
+$action-sheet-title-font-weight: var(--wot-action-sheet-title-font-weight, $font-weight-medium) !default;
+$action-sheet-close-right: var(--wot-action-sheet-close-right, $spacing-loose) !default;
+$action-sheet-close-color: var(--wot-action-sheet-close-color, $icon-secondary) !default;
+$action-sheet-close-font-size: var(--wot-action-sheet-close-font-size, $n24) !default;
+$action-sheet-active-bg: var(--wot-action-sheet-active-bg, $filled-content) !default;
+$action-sheet-disabled-color: var(--wot-action-sheet-disabled-color, $text-disabled) !default;
+$action-sheet-loading-size: var(--wot-action-sheet-loading-size, $n20) !default;
 
-    @include e(action) {
-      color: $-dark-color;
-      background: $-dark-background2;
-
-      &:not(.wd-action-sheet__action--disabled):not(.wd-action-sheet__action--loading):active {
-        background: $-dark-background4;
-      }
-
-      @include m(disabled) {
-        color: $-dark-color-gray;
-      }
-    }
-
-    @include e(subname) {
-      color: $-dark-color3;
-    }
-
-    @include e(cancel) {
-      color: $-dark-color;
-      background: $-dark-background4;
-
-      &:active {
-        background: $-dark-background5;
-      }
-    }
-
-    :deep(.wd-action-sheet__close) {
-      color: $-dark-color3;
-    }
-
-    @include e(panel-title) {
-      color: $-dark-color;
-    }
-
-    @include e(header) {
-      color: $-dark-color;
-    }
-  }
-}
-
-:deep(.wd-action-sheet__popup) {
-  border-radius: $-action-sheet-radius $-action-sheet-radius 0 0;
+:deep(.wd-action-sheet-popup) {
+  border-radius: $action-sheet-radius $action-sheet-radius 0 0;
 }
 
 @include b(action-sheet) {
-  background-color: $-color-white;
-  padding-bottom: 1px;
-
-  @include edeep(popup) {
-    border-radius: $-action-sheet-radius $-action-sheet-radius 0 0;
-  }
+  background: $action-sheet-bg;
+  border-radius: $action-sheet-radius $action-sheet-radius 0 0;
 
   @include e(actions) {
-    padding: 8px 0;
     max-height: 50vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -67,27 +57,25 @@
 
   @include e(action) {
     position: relative;
-    display: block;
-    width: 100%;
-    height: $-action-sheet-action-height;
-    line-height: $-action-sheet-action-height;
-    color: $-action-sheet-color;
-    font-size: $-action-sheet-fs;
-    text-align: center;
-    border: none;
-    background: $-action-sheet-bg;
-    outline: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: $action-sheet-action-font-size;
+    line-height: $action-sheet-action-line-height;
+    color: $action-sheet-action-color;
+    background: $action-sheet-action-bg;
+    padding: $action-sheet-action-padding;
+    box-sizing: border-box;
 
-    &:after {
-      display: none;
-    }
+    @include pixelBorder;
 
     &:not(&--disabled):not(&--loading):active {
-      background: $-action-sheet-active-color;
+      background: $action-sheet-active-bg;
     }
 
     @include m(disabled) {
-      color: $-action-sheet-disabled-color;
+      color: $action-sheet-disabled-color;
       cursor: not-allowed;
     }
 
@@ -98,79 +86,67 @@
       line-height: initial;
     }
   }
-  
-  @include edeep(action-loading){
-    width: $-action-sheet-loading-size;
-    height: $-action-sheet-loading-size;
+
+  @include edeep(action-loading) {
+    width: $action-sheet-loading-size;
+    height: $action-sheet-loading-size;
   }
 
-  @include e(name) {
-    display: inline-block;
-  }
-
-  @include e(subname) {
-    display: inline-block;
-    margin-left: 4px;
-    font-size: $-action-sheet-subname-fs;
-    color: $-action-sheet-subname-color;
+  @include e(description) {
+    margin-top: $action-sheet-description-margin-top;
+    font-size: $action-sheet-description-font-size;
+    line-height: $action-sheet-description-line-height;
+    color: $action-sheet-description-color;
   }
 
   @include e(cancel) {
-    display: block;
-    width: calc(100% - 48px);
-    line-height: $-action-sheet-cancel-height;
-    padding: 0;
-    color: $-action-sheet-cancel-color;
-    font-size: $-action-sheet-fs;
-    text-align: center;
-    border-radius: $-action-sheet-cancel-radius;
-    border: none;
-    background: $-action-sheet-cancel-bg;
-    outline: none;
-    margin: 0 auto 24px;
-    font-weight: $-action-sheet-weight;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-top: $action-sheet-cancel-margin-top;
+    background: $action-sheet-cancel-bg;
+    color: $action-sheet-cancel-color;
+    font-size: $action-sheet-cancel-font-size;
+    line-height: $action-sheet-cancel-line-height;
+    padding: $action-sheet-cancel-padding;
 
     &:active {
-      background: $-action-sheet-active-color;
-    }
-
-    &:after {
-      display: none;
+      background: $action-sheet-active-bg;
     }
   }
 
-  @include e(header) {
-    color: $-action-sheet-color;
+  @include e(title) {
     position: relative;
-    height: $-action-sheet-title-height;
-    line-height: $-action-sheet-title-height;
-    text-align: center;
-    font-size: $-action-sheet-title-fs;
-    font-weight: $-action-sheet-weight;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $action-sheet-title-color;
+    height: $action-sheet-title-height;
+    font-size: $action-sheet-title-font-size;
+    font-weight: $action-sheet-title-font-weight;
+    line-height: $action-sheet-title-line-height;
   }
 
   @include edeep(close) {
     position: absolute;
-    top: $-action-sheet-close-top;
-    right: $-action-sheet-close-right;
-    color: $-action-sheet-close-color;
-    font-size: $-action-sheet-close-fs;
-    transform: rotate(-45deg);
-    line-height: 1.1;
+    top: 50%;
+    right: $action-sheet-close-right;
+    color: $action-sheet-close-color;
+    font-size: $action-sheet-close-font-size;
+    transform: translateY(-50%);
+  }
+
+
+  @include e(panels-wrap) {
+    padding: $action-sheet-panels-wrap-padding;
+    background: $action-sheet-panel-bg;
   }
 
   @include e(panels) {
-    height: 84px;
-    overflow-y: hidden;
-
-    &:first-of-type {
-      margin-top: 20px;
-    }
-
-    &:last-of-type {
-      margin-bottom: 12px;
-    }
+    padding: $action-sheet-panels-padding;
   }
+
 
   @include e(panels-content) {
     display: flex;
@@ -179,26 +155,26 @@
   }
 
   @include e(panel) {
-    width: 88px;
+    width: $action-sheet-panel-width;
     flex: 0 0 auto;
-    display: inline-block;
-    padding: $-action-sheet-panel-padding;
+    padding: $action-sheet-panel-padding;
   }
 
   @include e(panel-img) {
     display: block;
-    width: $-action-sheet-panel-img-fs;
-    height: $-action-sheet-panel-img-fs;
-    margin: 0 auto;
-    margin-bottom: 7px;
-    border-radius: $-action-sheet-panel-img-radius;
+    font-size: $action-sheet-panel-img-size;
+    width: $action-sheet-panel-img-size;
+    height: $action-sheet-panel-img-size;
+    margin: $action-sheet-panel-img-spacing;
+    border-radius: $action-sheet-panel-img-radius;
   }
 
   @include e(panel-title) {
-    font-size: $-action-sheet-subname-fs;
-    line-height: 1.2;
+    font-size: $action-sheet-panel-title-font-size;
+    line-height: $action-sheet-panel-title-line-height;
+    color: $action-sheet-panel-title-color;
     text-align: center;
-    color: $-action-sheet-color;
+
     @include lineEllipsis;
   }
 }

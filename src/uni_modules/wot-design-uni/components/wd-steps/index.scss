@@ -1,5 +1,4 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
 
 @include b(steps) {
   font-size: 0;

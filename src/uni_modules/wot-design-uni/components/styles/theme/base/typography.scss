@@ -1,17 +1,17 @@
 :root,
 page,
-.root-portal {
+.wd-root-portal {
   /* title */
   --wot-typography-title-font-family: PingFang SC;
   --wot-typography-title-size-main: var(--wot-n18);
   --wot-typography-title-size-large: var(--wot-n20);
-  --wot-typography-title-size-small: var(--wot-n24);
+  --wot-typography-title-size-extra-large: var(--wot-n24);
   --wot-typography-title-font-weight-light: var(--wot-font-weight-regular);
   --wot-typography-title-font-weight-main: var(--wot-font-weight-medium);
   --wot-typography-title-font-weight-strong: var(--wot-font-weight-semibold);
   --wot-typography-title-line--height-size-main: var(--wot-n26);
   --wot-typography-title-line--height-size-large: var(--wot-n28);
-  --wot-typography-title-line--height-size-small: var(--wot-n34);
+  --wot-typography-title-line--height-size-extra-large: var(--wot-n34);
   /* body */
   --wot-typography-body-font-family: PingFang SC;
   --wot-typography-body-size-main: var(--wot-n14);

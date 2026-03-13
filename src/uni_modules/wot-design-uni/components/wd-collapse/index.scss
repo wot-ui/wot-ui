@@ -1,52 +1,55 @@
-@import "../common/abstracts/variable";
-@import "../common/abstracts/mixin";
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(collapse) {
-    background: $-dark-background2;
-
-    @include e(content) {
-      color: $-dark-color3;
-    }
-  }
-}
+$collapse-bg-color: var(--wot-collapse-bg-color, $filled-oppo) !default; // 背景颜色
+$collapse-body-color: var(--wot-collapse-body-color, $text-auxiliary) !default; // 内容颜色
+$collapse-body-fs: var(--wot-collapse-body-fs, $typography-label-size-large) !default; // 内容字号
+$collapse-padding: var(--wot-collapse-padding, $padding-loose) !default; // 左右间距
+$collapse-body-padding: var(--wot-collapse-body-padding, $padding-extra-loose $padding-loose) !default; // body padding
+$collapse-title-color: var(--wot-collapse-title-color, $text-main) !default; // 标题颜色
+$collapse-title-fs: var(--wot-collapse-title-fs, $typography-body-size-extra-large) !default; // 标题字号
+$collapse-arrow-size: var(--wot-collapse-arrow-size, $n16) !default; // 箭头大小
+$collapse-arrow-color: var(--wot-collapse-arrow-color, $icon-main) !default; // 箭头颜色
+$collapse-more-fs: var(--wot-collapse-retract-fs, $typography-body-size-main) !default; // 更多按钮文字字号
+$collapse-more-color: var(--wot-collapse-more-color, $primary-6) !default; // 更多按钮文字颜色
+$collapse-more-margin-top: var(--wot-collapse-more-margin-top, $spacing-main) !default; // 更多按钮向上的间距
+$collapse-more-text-margin-right: var(--wot-collapse-more-text-margin-right, $spacing-super-tight) !default; // 更多按钮文字向右的间距
 
 @include b(collapse) {
-  background: $-color-white;
+  background: $collapse-bg-color;
 
   @include when(viewmore) {
-    padding: $-collapse-side-padding;
+    padding: $collapse-padding;
   }
   @include e(content) {
-    font-size: $-collapse-body-fs;
-    color: $-collapse-body-color;
+    font-size: $collapse-body-fs;
+    color: $collapse-body-color;
 
     @include when(retract) {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      font-size: $-collapse-retract-fs;
     }
   }
   @include e(more) {
     display: inline-block;
-    font-size: $-collapse-retract-fs;
-    margin-top: 8px;
-    color: $-collapse-more-color;
+    font-size: $collapse-more-fs;
+    margin-top: $collapse-more-margin-top;
+    color: $collapse-more-color;
     user-select: none;
   }
   @include e(more-txt) {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 4px;
+    margin-right: $collapse-more-text-margin-right;
   }
   @include e(arrow) {
     display: inline-block;
     vertical-align: middle;
     transition: transform 0.1s;
-    font-size: $-collapse-arrow-size;
-    height: $-collapse-arrow-size;
-    line-height: $-collapse-arrow-size;
+    font-size: $collapse-arrow-size;
+    height: $collapse-arrow-size;
+    line-height: $collapse-arrow-size;
 
     @include when(retract) {
       transform: rotate(-180deg);

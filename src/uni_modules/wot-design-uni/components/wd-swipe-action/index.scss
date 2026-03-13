@@ -1,5 +1,5 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
 @include b(swipe-action) {
   position: relative;

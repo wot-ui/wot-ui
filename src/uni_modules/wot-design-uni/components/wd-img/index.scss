@@ -1,5 +1,17 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
+
+$img-border-radius: var(--wot-img-border-radius, $radius-radius-full) !default;
+$img-loading-color: var(--wot-img-loading-color, $text-placeholder) !default;
+$img-loading-bg: var(--wot-img-loading-bg, $filled-bottom) !default;
+$img-loading-font-size: var(--wot-img-loading-font-size, $typography-body-size-main) !default;
+$img-loading-icon-color: var(--wot-img-loading-icon-color, $text-placeholder) !default;
+$img-loading-icon-size: var(--wot-img-loading-icon-size, $n32) !default;
+$img-error-color: var(--wot-img-error-color, $text-placeholder) !default;
+$img-error-bg: var(--wot-img-error-bg, $filled-bottom) !default;
+$img-error-font-size: var(--wot-img-error-font-size, $typography-body-size-main) !default;
+$img-error-icon-color: var(--wot-img-error-icon-color, $text-placeholder) !default;
+$img-error-icon-size: var(--wot-img-error-icon-size, $n32) !default;
 
 @include b(img) {
   position: relative;
@@ -12,8 +24,48 @@
     box-sizing: border-box;
   }
 
+  @include e(loading) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: $img-loading-color;
+    font-size: $img-loading-font-size;
+    background-color: $img-loading-bg;
+
+    @include edeep(loading-icon) {
+      color: $img-loading-icon-color;
+      font-size: $img-loading-icon-size;
+    }
+  }
+
+  @include e(error) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: $img-error-color;
+    font-size: $img-error-font-size;
+    background-color: $img-error-bg;
+
+    @include edeep(error-icon) {
+      color: $img-error-icon-color;
+      font-size: $img-error-icon-size;
+    }
+  }
+
   @include when(round) {
     overflow: hidden;
-    border-radius: 50%;
+    border-radius: $img-border-radius;
   }
 }

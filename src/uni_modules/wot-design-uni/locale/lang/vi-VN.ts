@@ -1,9 +1,9 @@
 /*
  * @Author: 810505339
  * @Date: 2025-02-11 21:17:21
- * @LastEditors: 810505339
- * @LastEditTime: 2025-02-15 21:32:57
- * @FilePath: \wot-design-uni\src\uni_modules\wot-design-uni\locale\lang\vi-VN.ts
+ * @LastEditors: weisheng
+ * @LastEditTime: 2026-01-30 00:24:57
+ * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/locale/lang/vi-VN.ts
  * 记得注释
  */
 /**
@@ -45,7 +45,7 @@ export default {
     second: (value: number) => `${value} giây`
   },
   collapse: { expand: 'Mở rộng', retract: 'Thu gọn' },
-  colPicker: { title: 'Vui lòng chọn', placeholder: 'Vui lòng chọn', select: 'Vui lòng chọn' },
+  cascader: { title: 'Vui lòng chọn', placeholder: 'Vui lòng chọn', select: 'Vui lòng chọn' },
   datetimePicker: {
     start: 'Thời gian bắt đầu',
     end: 'Thời gian kết thúc',
@@ -56,6 +56,7 @@ export default {
   },
   loadmore: { loading: 'Đang tải...', finished: 'Đã tải xong', error: 'Tải thất bại', retry: 'Nhấp để thử lại' },
   messageBox: { inputPlaceholder: 'Vui lòng nhập', confirm: 'Xác nhận', cancel: 'Hủy bỏ', inputNoValidate: 'Dữ liệu không hợp lệ' },
+  dialog: { inputPlaceholder: 'Vui lòng nhập', confirm: 'Xác nhận', cancel: 'Hủy bỏ', inputNoValidate: 'Dữ liệu không hợp lệ' },
   numberKeyboard: { confirm: 'Hoàn thành' },
   pagination: {
     prev: 'Trang trước',

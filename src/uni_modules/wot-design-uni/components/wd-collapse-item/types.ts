@@ -7,28 +7,42 @@ export const collapseItemProps = {
   ...baseProps,
   /**
    * 自定义折叠栏内容容器样式类名
+   * 类型: string
    */
   customBodyClass: makeStringProp(''),
   /**
    * 自定义折叠栏内容容器样式
+   * 类型: string
    */
   customBodyStyle: makeStringProp(''),
   /**
-   * 折叠栏的标题, 可通过 slot 传递自定义内容
+   * 标题，可通过 slot 传递自定义内容
+   * 类型: string
    */
   title: makeStringProp(''),
   /**
-   * 禁用折叠栏
+   * 是否禁用
+   * 类型: boolean
+   * 默认值: false
    */
   disabled: makeBooleanProp(false),
   /**
-   * 折叠栏的标识符
+   * 唯一标识符
+   * 类型: string
+   * 必填
    */
   name: makeRequiredProp(String),
   /**
-   * 打开前的回调函数，返回 false 可以阻止打开，支持返回 Promise
+   * 展开前的回调函数，返回 false 可以阻止展开，支持返回 Promise
+   * 类型: function
    */
-  beforeExpend: Function as PropType<CollapseItemBeforeExpand>
+  beforeExpend: Function as PropType<CollapseItemBeforeExpand>,
+  /**
+   * 是否显示边框
+   * 类型: boolean
+   * 默认值: true
+   */
+  border: makeBooleanProp(true)
 }
 
 export type CollapseItemProps = ExtractPropTypes<typeof collapseItemProps>

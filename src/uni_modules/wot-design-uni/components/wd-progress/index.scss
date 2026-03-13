@@ -1,68 +1,138 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(progress) {
-    @include e(label) {
-      color: $-dark-color3;
-    }
-  }
-}
+// 组件级 CSS 变量定义
+$progress-bg: var(--wot-progress-bg, $filled-content) !default; // 进度条底色
+$progress-danger-color: var(--wot-progress-danger-color, $danger-main) !default; // 进度条danger颜色
+$progress-success-color: var(--wot-progress-success-color, $success-main) !default; // 进度条success进度条颜色
+$progress-warning-color: var(--wot-progress-warning-color, $warning-main) !default; // 进度条warning进度条颜色
+$progress-color: var(--wot-progress-color, $primary-6) !default; // 进度条颜色
+$progress-bar-height: var(--wot-progress-bar-height, $n8) !default; // 外部文字进度条高度
+$progress-height: var(--wot-progress-height, $n18) !default; // 内部文字进度条高度
+$progress-label-color: var(--wot-progress-label-color, $text-main) !default; // 外部文字颜色
+$progress-label-width: var(--wot-progress-label-width, $n34) !default; // 外部文字宽度
+$progress-label-margin-left: var(--wot-progress-label-margin-left, $spacing-tight) !default; // 外部文字间距
+$progress-inner-label-color: var(--wot-progress-inner-label-color, $text-white) !default; // 内部文字颜色
+$progress-inner-zero-bg: var(--wot-progress-inner-zero-bg, $primary-2) !default; // 内部0%或者无内容底色
+$progress-inner-zero-color: var(--wot-progress-inner-zero-color, $text-secondary) !default; // 内部0%或者无内容文字颜色
+$progress-inner-padding: var(--wot-progress-inner-label-color, $padding-zero $padding-tight) !default; // 内部文字颜色
+$progress-label-font-size: var(--wot-progress-label-font-size, $typography-label-size-large) !default; // 文字字号
+$progress-label-line-height: var(--wot-progress-label-line-height, $typography-label-line--height-size-large) !default; // 文字行高
+$progress-icon-size: var(--wot-progress-icon-size, $n18) !default; // 图标字号
+$progress-radius: var(--wot-progress-radius, $radius-radius-full) !default; // 进度条圆角
 
 @include b(progress) {
   width: 100%;
-  height: $-progress-height;
   display: flex;
   align-items: center;
-  padding: $-progress-padding;
+  height: $progress-height;
 
   @include e(outer) {
     display: block;
     position: relative;
     flex: 1;
-    height: $-progress-height;
-    border-radius: calc($-progress-height / 2);
-    background: $-progress-bg;
+    background: $progress-bg;
+    overflow: hidden;
+    height: $progress-bar-height;
+    border-radius: $progress-radius;
   }
+
   @include e(inner) {
-    display: block;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    border-radius: calc($-progress-height / 2);
-    background: $-progress-color;
+    border-radius: inherit;
+    background: $progress-color;
     transition-property: width;
     transition-timing-function: linear;
-    font-size: $-progress-icon-fs;
-
-    @include when(danger) {
-      background: $-progress-danger-color;
-    }
-    @include when(success) {
-      background: $-progress-success-color;
-    }
-    @include when(warning) {
-      background: $-progress-warning-color;
-    }
+    font-size: $progress-icon-size;
+    display: flex;
+    align-items: center;
+    min-width: max-content;
   }
+
   @include edeep(label) {
-    width: 30px;
-    margin-left: 9px;
-    color: $-progress-label-color;
-    font-size: $-progress-label-fs;
-  }
-  @include edeep(icon) {
-    font-size: $-progress-icon-fs;
+    color: $progress-label-color;
+    font-size: $progress-label-font-size;
+    line-height: $progress-label-line-height;
+    width: $progress-label-width;
+    margin-left: $progress-label-margin-left;
 
-    @include when(danger) {
-      color: $-progress-danger-color;
+    @include when(hide-text){
+      width: auto;
     }
-    @include when(success) {
-      color: $-progress-success-color;
+  }
+
+  @include edeep(icon) {
+    font-size: $progress-icon-size;
+  }
+
+  @include m(danger) {
+    @include me(inner) {
+      background: $progress-danger-color;
     }
-    @include when(warning) {
-      color: $-progress-warning-color;
+    @include me(icon) {
+      color: $progress-danger-color;
+    }
+  }
+
+  @include m(success) {
+    @include me(inner) {
+      background: $progress-success-color;
+    }
+    @include me(icon) {
+      color: $progress-success-color;
+    }
+  }
+
+  @include m(warning) {
+    @include me(inner) {
+      background: $progress-warning-color;
+    }
+    @include me(icon) {
+      color: $progress-warning-color;
+    }
+  }
+
+  @include m(inner) {
+    @include me(outer) {
+      height: 100%;
+      border-radius: $progress-radius;
+    }
+
+    @include me(label) {
+      width: auto;
+      margin-left: 0;
+      color: $progress-inner-label-color;
+      padding: $progress-inner-padding;
+      white-space: nowrap;
+
+      @include when(align-left) {
+        margin-right: auto;
+      }
+      @include when(align-center) {
+        margin: 0 auto;
+      }
+      @include when(align-right) {
+        margin-left: auto;
+      }
+    }
+
+    @include me(icon) {
+      color: $progress-inner-label-color !important;
+    }
+
+    @include when(zero) {
+      @include me(inner) {
+        background: $progress-inner-zero-bg;
+      }
+      @include me(label) {
+        color: $progress-inner-zero-color !important;
+      }
+      @include me(icon) {
+        color: $progress-inner-zero-color !important;
+      }
     }
   }
 }

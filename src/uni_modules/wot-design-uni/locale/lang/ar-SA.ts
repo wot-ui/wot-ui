@@ -52,7 +52,7 @@ export default {
     expand: 'توسيع',
     retract: 'طي'
   },
-  colPicker: {
+  cascader: {
     title: 'حدد لون',
     placeholder: 'حدد لون',
     select: 'حدد'
@@ -68,6 +68,12 @@ export default {
     cancel: 'إلغاء'
   },
   messageBox: {
+    inputPlaceholder: 'الرجاء إدخال المعلومات',
+    confirm: 'تأكيد',
+    cancel: 'إلغاء',
+    inputNoValidate: 'الرجاء التأكد من إدخال المعلومات الصحيحة'
+  },
+  dialog: {
     inputPlaceholder: 'الرجاء إدخال المعلومات',
     confirm: 'تأكيد',
     cancel: 'إلغاء',

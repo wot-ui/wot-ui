@@ -52,7 +52,7 @@ export default {
     expand: 'Expand',
     retract: 'Fold'
   },
-  colPicker: {
+  cascader: {
     title: 'Select',
     placeholder: 'Select',
     select: 'Select'
@@ -68,6 +68,12 @@ export default {
     cancel: 'Cancel'
   },
   messageBox: {
+    inputPlaceholder: 'Please input information',
+    confirm: 'OK',
+    cancel: 'Cancel',
+    inputNoValidate: 'Please ensure you input correct information'
+  },
+  dialog: {
     inputPlaceholder: 'Please input information',
     confirm: 'OK',
     cancel: 'Cancel',

@@ -1,64 +1,23 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(select-picker) {
-    :deep(.wd-select-picker__arrow),
-    :deep(.wd-select-picker__close),
-    :deep(.wd-select-picker__clear) {
-      color: $-dark-color;
-    }
-
-    :deep(.wd-select-picker__cell--placeholder) {
-      .wd-cell__value {
-        color: $-dark-color-gray;
-      }
-    }
-  }
-}
+$select-picker-bg: var(--wot-select-picker-bg, $filled-oppo) !default;
+// loading 状态下透明度
+$select-picker-loading-opacity: var(--wot-select-picker-loading-opacity, $opacity-disabled) !default;
+// loading 图标尺寸
+$select-picker-loading-icon-size: var(--wot-select-picker-loading-icon-size, $n48) !default;  
+// 内容区水平内边距
+$select-picker-wrapper-padding-horizontal: var(--wot-select-picker-wrapper-padding-horizontal, $padding-main) !default;
+// 内容区最大高度
+$select-picker-wrapper-max-height: var(--wot-select-picker-wrapper-max-height, $n375) !default;
+// 选中态文字颜色
+$select-picker-text-active-color: var(--wot-select-picker-text-active-color, $primary-6) !default;
+// 底部内边距
+$select-picker-footer-padding: var(--wot-select-picker-footer-padding, $padding-tight $padding-loose) !default;
+// 确认区域上边框颜色
+$select-picker-footer-border-color: var(--wot-select-picker-footer-border-color, $border-light) !default;
 
 @include b(select-picker) {
-   @include edeep(cell) {
-    @include when(disabled) {
-      .wd-cell__value {
-        color: $-input-disabled-color;
-        cursor: not-allowed;
-      }
-    }
-    @include when(error) {
-      .wd-cell__value {
-        color: $-input-error-color;
-      }
-      .wd-select-picker__arrow {
-        color: $-input-error-color;
-      }
-    }
-
-    @include m(placeholder) {
-      .wd-cell__value {
-        color: $-input-placeholder-color;
-      }
-    }
-
-    @include when(large) {
-      .wd-select-picker__arrow,
-      .wd-select-picker__clear {
-        font-size: $-cell-icon-size-large;
-      }
-    }
-  }
-  
-  @include edeep(arrow, clear) {
-    display: block;
-    font-size: $-cell-icon-size;
-    color: $-cell-arrow-color;
-    line-height: $-cell-line-height;
-  }
-
-  @include edeep(clear) {
-    color: $-cell-clear-color;
-  }
- 
   @include e(loading) {
     position: absolute;
     display: flex;
@@ -69,34 +28,41 @@
     align-items: center;
     justify-content: center;
     z-index: 3;
-    background: $-picker-loading-bg;
   }
-  
-  @include edeep(header) {
-    height: 72px;
-    line-height: 72px;
+
+  @include edeep(loading-icon){
+    opacity: 1;
+    font-size: $select-picker-loading-icon-size;
   }
+
+  @include edeep(popup) {
+    background: $select-picker-bg;
+  }
+
   @include e(wrapper) {
-    padding: 0 10px;
+    padding: 0 $select-picker-wrapper-padding-horizontal;
     position: relative;
-    max-height: 356px;
+    max-height: $select-picker-wrapper-max-height;
     box-sizing: border-box;
     overflow: auto;
 
-    @include when(filterable) {
-      height: 314px;
-      max-height: 314px;
-    }
-
     @include when(loading) {
       overflow: hidden;
+      .wd-select-picker__checkbox,
+      .wd-select-picker__radio{
+        opacity: $select-picker-loading-opacity;
+      }
     }
   }
   @include e(text-active) {
-    color: $-color-theme;
+    color: $select-picker-text-active-color;
   }
 
   @include e(footer) {
-    padding: 24px 15px;
+    display: flex;
+    align-items: center;
+    padding: $select-picker-footer-padding;
+    @include pixelBorder(top, 0, $select-picker-footer-border-color);
+
   }
 }

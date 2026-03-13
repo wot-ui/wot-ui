@@ -360,4 +360,113 @@ describe('WdKeyboard', () => {
     expect(emitted['update:visible']).toBeTruthy()
     expect(emitted['update:visible']?.[0]).toEqual([false])
   })
+
+  test('车牌键盘 - 语言切换', async () => {
+    const wrapper = mount(WdKeyboard, {
+      props: {
+        visible: true,
+        modelValue: '',
+        mode: 'car'
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    // 初始状态为中文（省份）
+    let keys = wrapper.findAllComponents(WdKey)
+    expect(keys.length).toBe(38)
+    const switchKey = keys.find((k) => k.props('text') === 'ABC')
+    expect(switchKey).toBeTruthy()
+
+    if (switchKey) {
+      // 点击切换键
+      await switchKey.vm.$emit('press', 'ABC', 'extra')
+      await nextTick()
+
+      // 验证切换到英文模式
+      keys = wrapper.findAllComponents(WdKey)
+      expect(keys.length).toBe(36)
+      const backKey = keys.find((k) => k.props('text') === '省份')
+      expect(backKey).toBeTruthy()
+
+      // 再次点击切换回中文
+      if (backKey) {
+        await backKey.vm.$emit('press', '省份', 'extra')
+        await nextTick()
+        keys = wrapper.findAllComponents(WdKey)
+        expect(keys.length).toBe(38)
+      }
+    }
+  })
+
+  test('车牌键盘 - 自动切换语言', async () => {
+    const wrapper = mount(WdKeyboard, {
+      props: {
+        visible: true,
+        modelValue: '',
+        mode: 'car',
+        autoSwitchLang: true
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    // 模拟点击省份（例如：粤）
+    const provinceKey = wrapper.findAllComponents(WdKey).find((k) => k.props('text') === '粤')
+    expect(provinceKey).toBeTruthy()
+
+    if (provinceKey) {
+      await provinceKey.vm.$emit('press', '粤', 'default') // 假设普通按键类型为空或default，这里用 index.vue 的逻辑实际 press 只传 text 和 type
+      await nextTick()
+
+      // 验证是否已切换到英文模式
+      const keys = wrapper.findAllComponents(WdKey)
+      expect(keys.length).toBe(36) // 英文模式按键数量
+      expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['粤'])
+    }
+  })
+
+  test('额外按键点击', async () => {
+    const wrapper = mount(WdKeyboard, {
+      props: {
+        visible: true,
+        modelValue: '',
+        mode: 'custom',
+        extraKey: 'X'
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    const extraKey = wrapper.findAllComponents(WdKey).find((k) => k.props('text') === 'X')
+    expect(extraKey).toBeTruthy()
+
+    if (extraKey) {
+      await extraKey.vm.$emit('press', 'X', 'extra')
+      expect(wrapper.emitted('input')).toBeTruthy()
+      expect(wrapper.emitted('input')?.[0]).toEqual(['X'])
+    }
+  })
+
+  test('关闭按钮加载状态', async () => {
+    const wrapper = mount(WdKeyboard, {
+      props: {
+        visible: true,
+        modelValue: '',
+        mode: 'custom',
+        closeButtonLoading: true
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    // 找到侧边栏的关闭按钮
+    const closeKey = wrapper.findAllComponents(WdKey).find((k) => k.props('type') === 'close')
+    expect(closeKey).toBeTruthy()
+    expect(closeKey?.props('loading')).toBe(true)
+  })
 })

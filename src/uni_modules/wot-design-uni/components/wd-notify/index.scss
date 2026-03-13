@@ -1,34 +1,70 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/variable.scss' as *;
+@use '../styles/mixin/mixin.scss' as *;
+
+// ============================================================
+// notify 组件变量
+// ============================================================
+
+$notify-text-color: var(--wot-notify-text-color, $text-white) !default; // 文字颜色
+$notify-padding: var(--wot-notify-padding, $padding-tight $padding-loose) !default; // 内边距
+$notify-font-size: var(--wot-notify-font-size, $typography-body-size-large) !default; // 字体大小
+$notify-line-height: var(--wot-notify-line-height, $typography-body-line--height-size-large) !default; // 行高
+$notify-primary-bg: var(--wot-notify-primary-bg, $primary-1) !default; // 主要类型背景
+$notify-primary-color: var(--wot-notify-primary-color, $primary-6) !default; // 主要类型文字颜色
+$notify-success-bg: var(--wot-notify-success-bg, $success-surface) !default; // 成功类型背景
+$notify-success-color: var(--wot-notify-success-color, $success-main) !default; // 成功类型文字颜色
+$notify-danger-bg: var(--wot-notify-danger-bg, $danger-surface) !default; // 危险类型背景
+$notify-danger-color: var(--wot-notify-danger-color, $danger-main) !default; // 危险类型文字颜色
+$notify-warning-bg: var(--wot-notify-warning-bg, $warning-surface) !default; // 警告类型背景
+$notify-warning-color: var(--wot-notify-warning-color, $warning-main) !default; // 警告类型文字颜色
+$notify-icon-size: var(--wot-notify-icon-size, $n18) !default; // 图标大小
+$notify-icon-spacing: var(--wot-notify-icon-spacing, $spacing-tight) !default; // 图标间距
+
 
 @include b(notify) {
   display: flex;
   align-items: center;
-  justify-content: center;
   box-sizing: border-box;
-  padding: $-notify-padding;
-  font-size: $-notify-font-size;
-  line-height: $-notify-line-height;
-  color: $-notify-text-color;
-  
-  // allow newline character
-  white-space: pre-wrap;
-  text-align: center;
-  word-wrap: break-word;
+  padding: $notify-padding;
+  font-size: $notify-font-size;
+  line-height: $notify-line-height;
+  color: $notify-text-color;
 
   @include m(primary) {
-    background: $-notify-primary-background;
+    background: $notify-primary-bg;
+    color: $notify-primary-color;
   }
 
   @include m(success) {
-    background: $-notify-success-background;
+    background: $notify-success-bg;
+    color: $notify-success-color;
   }
 
   @include m(danger) {
-    background: $-notify-danger-background;
+    background: $notify-danger-bg;
+    color: $notify-danger-color;
   }
 
   @include m(warning) {
-    background: $-notify-warning-background;
+    background: $notify-warning-bg;
+    color: $notify-warning-color;
+  }
+
+  @include e(prefix) {
+    font-size: $notify-icon-size;
+    margin-right: $notify-icon-spacing;
+    flex: 0 0 auto;
+  }
+
+  @include e(close) {
+    font-size: $notify-icon-size;
+    margin-left: $notify-icon-spacing;
+    flex: 0 0 auto;
+    cursor: pointer;
+  }
+
+  @include e(content) {
+    flex: 1 1 auto;
+    @include lineEllipsis;
   }
 }

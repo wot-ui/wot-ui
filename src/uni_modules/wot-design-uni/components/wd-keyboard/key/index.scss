@@ -1,27 +1,30 @@
-@import './../../common/abstracts/_mixin.scss';
-@import './../../common/abstracts/variable.scss';
+@use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(key) {
-    background: $-dark-background2;
-    color: $-dark-color;
-
-    &:active {
-      background-color: $-dark-background4;
-    }
-
-    @include m(active) {
-      background-color: $-dark-background4;
-    }
-  }
-}
+$keyboard-key-height: var(--wot-keyboard-key-height, $n48) !default;
+$keyboard-key-padding: var(--wot-keyboard-key-padding, $padding-tight) !default;
+$keyboard-key-font-size: var(--wot-keyboard-key-font-size, $typography-title-size-extra-large) !default;
+$keyboard-key-line-height: var(--wot-keyboard-key-line-height, $typography-title-line--height-size-extra-large) !default;
+$keyboard-key-car-font-size: var(--wot-keyboard-key-car-font-size, $typography-title-size-main) !default;
+$keyboard-key-car-line-height: var(--wot-keyboard-key-car-line-height, $typography-title-line--height-size-main) !default;
+$keyboard-key-font-weight: var(--wot-keyboard-key-font-weight, $font-weight-medium) !default;
+$keyboard-key-bg: var(--wot-keyboard-key-bg, $filled-oppo) !default;
+$keyboard-key-radius: var(--wot-keyboard-key-radius, $radius-main) !default;
+$keyboard-key-active-bg: var(--wot-keyboard-key-active-bg, $filled-strong) !default;
+$keyboard-key-delete-font-size: var(--wot-keyboard-key-delete-font-size, $typography-title-size-main) !default;
+$keyboard-key-delete-line-height: var(--wot-keyboard-key-delete-line-height, $typography-title-line--height-size-main) !default;
+$keyboard-key-delete-font-weight: var(--wot-keyboard-key-delete-font-weight, $font-weight-medium) !default;
+$keyboard-key-primary-color: var(--wot-keyboard-key-primary-color, $base-white) !default;
+$keyboard-key-primary-bg: var(--wot-keyboard-key-primary-bg, $primary-6) !default;
+$keyboard-key-primary-active-bg: var(--wot-keyboard-key-primary-active-bg, $primary-7) !default;
+$keyboard-key-icon-size: var(--wot-keyboard-key-icon-size, $n22) !default;
 
 .wd-key-wrapper {
   position: relative;
   flex: 1;
   flex-basis: 33%;
   box-sizing: border-box;
-  padding: 0 6px 6px 0;
+  padding: 0 $keyboard-key-padding $keyboard-key-padding 0;
 
   @include m(wider) {
     flex-basis: 66%;
@@ -32,48 +35,53 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: $-keyboard-key-height;
-  font-size: $-keyboard-key-font-size;
-  line-height: 1.5;
-  background: $-keyboard-key-background;
-  border-radius: $-keyboard-key-border-radius;
+  height: $keyboard-key-height;
+  font-size: $keyboard-key-font-size;
+  line-height: $keyboard-key-line-height;
+  font-weight: $keyboard-key-font-weight;
+  background: $keyboard-key-bg;
+  border-radius: $keyboard-key-radius;
 
-  &:active {
-    background-color: $-keyboard-key-active-color;
+  @include m(active) {
+    background: $keyboard-key-active-bg;
+  }
+
+  @include when(car) {
+    font-size: $keyboard-key-car-font-size;
+    line-height: $keyboard-key-car-line-height;
   }
 
   @include m(large) {
     position: absolute;
     top: 0;
-    right: 6px;
-    bottom: 6px;
+    right: $keyboard-key-padding;
+    bottom: $keyboard-key-padding;
     left: 0;
     height: auto;
   }
 
   @include m(delete, close) {
-    font-size: $-keyboard-delete-font-size;
+    font-size: $keyboard-key-delete-font-size;
+    line-height: $keyboard-key-delete-line-height;
+    font-weight: $keyboard-key-delete-font-weight;
   }
 
-  @include m(active) {
-    background-color: $-keyboard-key-active-color;
-  }
 
   @include m(close) {
-    color: $-keyboard-button-text-color;
-    background: $-keyboard-button-background;
+    color: $keyboard-key-primary-color;
+    background: $keyboard-key-primary-bg;
 
-    &:active {
-      background: $-keyboard-button-background;
-      opacity: $-keyboard-button-active-opacity;
+    &.wd-key--active {
+      background: $keyboard-key-primary-active-bg;
     }
   }
 
   @include edeep(loading-icon) {
-    color: $-keyboard-button-text-color;
+    color: $keyboard-key-primary-color;
   }
 
   @include edeep(icon) {
-    font-size: $-keyboard-icon-size;
+    font-size: $keyboard-key-icon-size;
   }
 }
+

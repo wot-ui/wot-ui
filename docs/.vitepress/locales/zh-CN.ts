@@ -507,6 +507,10 @@ export default defineConfig({
             {
               link: '/component/table',
               text: 'Table 表格'
+            },
+            {
+              link: '/component/image-preview',
+              text: 'ImagePreview 图片预览'
             }
           ]
         },

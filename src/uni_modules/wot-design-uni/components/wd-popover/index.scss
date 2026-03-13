@@ -1,64 +1,59 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(popover) {
+$popover-bg: var(--wot-popover-bg, $filled-oppo) !default;
+$popover-color: var(--wot-popover-color, $text-secondary) !default;
+$popover-box-shadow: var(--wot-popover-box-shadow, 0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
+$popover-arrow-box-shadow: var(--wot-popover-arrow-box-shadow, 0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
+$popover-border-color: var(--wot-popover-border-color, $border-main) !default;
+$popover-radius: var(--wot-popover-radius, $radius-main) !default;
+$popover-arrow-size: var(--wot-popover-arrow-size, $n8) !default;
+$popover-font-size: var(--wot-popover-font-size, $typography-body-size-main) !default;
+$popover-line-height: var(--wot-popover-line-height, $typography-body-line--height-size-main) !default;
+$popover-padding: var(--wot-popover-padding, $padding-loose) !default;
+$popover-z-index: var(--wot-popover-z-index, 500) !default;
+$popover-close-icon-size: var(--wot-popover-close-icon-size, $n12) !default;
+$popover-close-icon-color: var(--wot-popover-close-icon-color, $icon-secondary) !default;
+$popover-close-icon-padding: var(--wot-popover-close-icon-padding, $padding-super-tight) !default;
 
-    @include e(pos) {
-      background: rgb(75, 76, 77);
-      color: $-dark-color;
-      box-shadow: 0px 2px 10px 0px rgba(75, 76, 77, 0.1);
-    }
-
-    @include e(menu) {
-      background: rgb(75, 76, 77);
-    }
-
-    @include e(inner) {
-      background-color: rgb(75, 76, 77);
-    }
-
-    @include e(menu-inner) {
-
-      @include halfPixelBorder("top", 0, $-dark-border-color);
-    }
-
-    @include squareArrow($-popover-arrow-size, rgb(75, 76, 77), $-popover-z-index - 1, $-popover-arrow-box-shadow);
-
-  }
-}
 
 @include b(popover) {
   position: relative;
   display: inline-block;
 
-  @include edeep(icon) {
-    vertical-align: middle;
+  @include edeep(menu-icon) {
     font-size: 18px;
     margin-right: 5px;
   }
 
+  @include e(menu) {
+    position: relative;
+    display: inline-block;
+    padding: 0 $popover-padding;
+    white-space: nowrap;
+    background: $popover-bg;
+    border-radius: $popover-radius;
+  }
+
   @include e(menu-inner) {
     position: relative;
-    padding: $-popover-padding 0;
+    padding: $popover-padding 0;
     display: flex;
     align-items: center;
 
-    @include halfPixelBorder("top", 0, $-popover-border-color);
+    @include halfPixelBorder('top', 0, $popover-border-color);
 
-    &:first-child::after {
+    &:first-child::after,
+    &.is-first::after {
       display: none;
     }
   }
 
-  @include e(menu) {
+  @include e(text) {
     display: inline-block;
-    padding: 0 $-popover-padding;
-    white-space: nowrap;
-    z-index: $-popover-z-index;
-    position: relative;
-    background: $-popover-bg;
-    border-radius: $-popover-radius;
+    color: $popover-color;
+    font-size: $popover-font-size;
+    line-height: $popover-line-height;
   }
 
   @include edeep(pos) {
@@ -66,21 +61,8 @@
     box-sizing: border-box;
     background-clip: padding-box;
     text-align: center;
-    min-height: 36px;
-    z-index: $-popover-z-index;
-    line-height: $-popover-line-height;
-    font-size: $-popover-fs;
-    border-radius: $-popover-radius;
-    transition: opacity 0.2s;
-    background: $-popover-bg;
-    box-shadow: $-popover-box-shadow;
-    color: $-popover-color;
+    z-index: $popover-z-index;
   }
-
-  // @include edeep(transition) {
-  //   position: relative;
-  //   z-index: $-popover-z-index;
-  // }
 
   @include e(hidden) {
     left: -100vw;
@@ -89,28 +71,29 @@
 
   @include e(container) {
     position: relative;
-    line-height: $-tooltip-line-height;
-    font-size: $-tooltip-fs;
+    z-index: $popover-z-index;
+    box-shadow: $popover-box-shadow;
+    border-radius: $popover-radius;
+    background: $popover-bg;
   }
 
   @include e(inner) {
     position: relative;
     white-space: nowrap;
-    padding: $-popover-padding;
-    line-height: $-popover-line-height;
-    z-index: $-popover-z-index;
-    background-color: $-popover-bg;
-    border-radius: $-popover-radius;
+    padding: $popover-padding;
+    font-size: $popover-font-size;
+    line-height: $popover-line-height;
+    color: $popover-color;
   }
 
   @include edeep(close-icon) {
-    font-size: 12px;
     position: absolute;
-    right: -8px;
-    top: -10px;
-    transform: scale(0.5);
-    padding: 10px;
+    right: 0;
+    top: 0;
+    font-size: $popover-close-icon-size;
+    padding: $popover-close-icon-padding;
+    color: $popover-close-icon-color;
   }
 
-  @include squareArrow($-popover-arrow-size, $-popover-bg, $-popover-z-index - 1, $-popover-arrow-box-shadow);
+  @include triangleArrow($popover-arrow-size, $popover-bg);
 }

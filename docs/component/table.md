@@ -14,9 +14,9 @@
 
 ```html
 <wd-table :data="dataList" :height="400">
-  <wd-table-col prop="name" label="姓名"></wd-table-col>
-  <wd-table-col prop="school" label="求学之所"></wd-table-col>
-  <wd-table-col prop="major" label="专业"></wd-table-col>
+  <wd-table-column prop="name" label="姓名"></wd-table-column>
+  <wd-table-column prop="school" label="求学之所"></wd-table-column>
+  <wd-table-column prop="major" label="专业"></wd-table-column>
 </wd-table>
 ```
 
@@ -51,9 +51,9 @@ const dataList = reactive([
 
 ```html
 <wd-table :data="dataList" :height="400">
-  <wd-table-col prop="name" label="姓名" fixed></wd-table-col>
-  <wd-table-col prop="school" label="求学之所"></wd-table-col>
-  <wd-table-col prop="major" label="专业"></wd-table-col>
+  <wd-table-column prop="name" label="姓名" fixed></wd-table-column>
+  <wd-table-column prop="school" label="求学之所"></wd-table-column>
+  <wd-table-column prop="major" label="专业"></wd-table-column>
 </wd-table>
 ```
 
@@ -63,15 +63,15 @@ const dataList = reactive([
 
 ```html
 <wd-table :data="dataList" height="328px" :index="true" :height="400">
-  <wd-table-col prop="name" label="姓名" sortable></wd-table-col>
-  <wd-table-col prop="grade" label="分数" sortable></wd-table-col>
-  <wd-table-col prop="hobby" label="一言以蔽之" sortable :width="160"></wd-table-col>
+  <wd-table-column prop="name" label="姓名" sortable></wd-table-column>
+  <wd-table-column prop="grade" label="分数" sortable></wd-table-column>
+  <wd-table-column prop="hobby" label="一言以蔽之" sortable :width="160"></wd-table-column>
 </wd-table>
 
 <wd-table :data="dataList" height="328px" :index="{ align: 'center', width: 200 }">
-  <wd-table-col prop="name" label="姓名" sortable align="center"></wd-table-col>
-  <wd-table-col prop="grade" label="分数" sortable align="center"></wd-table-col>
-  <wd-table-col prop="hobby" label="一言以蔽之" sortable :width="160"></wd-table-col>
+  <wd-table-column prop="name" label="姓名" sortable align="center"></wd-table-column>
+  <wd-table-column prop="grade" label="分数" sortable align="center"></wd-table-column>
+  <wd-table-column prop="hobby" label="一言以蔽之" sortable :width="160"></wd-table-column>
 </wd-table>
 ```
 
@@ -81,9 +81,9 @@ const dataList = reactive([
 
 ```html
 <wd-table :data="dataList" :stripe="false" :height="400">
-  <wd-table-col prop="name" label="姓名"></wd-table-col>
-  <wd-table-col prop="school" label="求学之所"></wd-table-col>
-  <wd-table-col prop="major" label="专业"></wd-table-col>
+  <wd-table-column prop="name" label="姓名"></wd-table-column>
+  <wd-table-column prop="school" label="求学之所"></wd-table-column>
+  <wd-table-column prop="major" label="专业"></wd-table-column>
 </wd-table>
 ```
 
@@ -93,9 +93,9 @@ const dataList = reactive([
 
 ```html
 <wd-table :data="dataList" :border="false" :height="400">
-  <wd-table-col prop="name" label="姓名"></wd-table-col>
-  <wd-table-col prop="school" label="求学之所"></wd-table-col>
-  <wd-table-col prop="major" label="专业"></wd-table-col>
+  <wd-table-column prop="name" label="姓名"></wd-table-column>
+  <wd-table-column prop="school" label="求学之所"></wd-table-column>
+  <wd-table-column prop="major" label="专业"></wd-table-column>
 </wd-table>
 ```
 
@@ -105,9 +105,9 @@ const dataList = reactive([
 
 ```html
 <wd-table :data="dataList" :height="400">
-  <wd-table-col prop="name" label="姓名"></wd-table-col>
-  <wd-table-col prop="school" label="求学之所"></wd-table-col>
-  <wd-table-col prop="major" label="专业"></wd-table-col>
+  <wd-table-column prop="name" label="姓名"></wd-table-column>
+  <wd-table-column prop="school" label="求学之所"></wd-table-column>
+  <wd-table-column prop="major" label="专业"></wd-table-column>
 </wd-table>
 ```
 
@@ -117,9 +117,9 @@ const dataList = reactive([
 
 ```html
 <wd-table :data="dataList" @sort-method="handleSort" :height="400">
-  <wd-table-col prop="name" label="姓名"></wd-table-col>
-  <wd-table-col prop="school" label="求学之所" sortable></wd-table-col>
-  <wd-table-col prop="major" label="专业"></wd-table-col>
+  <wd-table-column prop="name" label="姓名"></wd-table-column>
+  <wd-table-column prop="school" label="求学之所" sortable></wd-table-column>
+  <wd-table-column prop="major" label="专业"></wd-table-column>
 </wd-table>
 ```
 
@@ -138,20 +138,20 @@ function handleSort(e) {
 
 ```html
 <wd-table :data="dataList" @sort-method="handleSort" :height="400">
-  <wd-table-col prop="name" label="姓名" fixed="true" width="320rpx" sortable></wd-table-col>
-  <wd-table-col prop="grade" label="分数" width="220rpx" sortable>
+  <wd-table-column prop="name" label="姓名" fixed="true" width="320rpx" sortable></wd-table-column>
+  <wd-table-column prop="grade" label="分数" width="220rpx" sortable>
     <template #value="{row}">
       <view class="custom-class">
         <text>{{ row.grade }}</text>
         <text>同比{{ row.compare }}</text>
       </view>
     </template>
-  </wd-table-col>
-  <wd-table-col prop="hobby" label="一言以蔽之" sortable></wd-table-col>
-  <wd-table-col prop="school" label="求学之所"></wd-table-col>
-  <wd-table-col prop="major" label="专业"></wd-table-col>
-  <wd-table-col prop="gender" label="性别"></wd-table-col>
-  <wd-table-col prop="graduation" label="学成时间"></wd-table-col>
+  </wd-table-column>
+  <wd-table-column prop="hobby" label="一言以蔽之" sortable></wd-table-column>
+  <wd-table-column prop="school" label="求学之所"></wd-table-column>
+  <wd-table-column prop="major" label="专业"></wd-table-column>
+  <wd-table-column prop="gender" label="性别"></wd-table-column>
+  <wd-table-column prop="graduation" label="学成时间"></wd-table-column>
 </wd-table>
 ```
 
@@ -262,12 +262,12 @@ function handleSort(e) {
 
 ```html
 <wd-table :data="paginationData" :height="400" :fixed-header="false">
-  <wd-table-col prop="name" label="姓名" fixed align="center"></wd-table-col>
-  <wd-table-col prop="grade" label="分数" fixed align="center"></wd-table-col>
-  <wd-table-col prop="hobby" label="一言以蔽之" :width="160"></wd-table-col>
-  <wd-table-col prop="school" label="求学之所" :width="180"></wd-table-col>
-  <wd-table-col prop="major" label="专业"></wd-table-col>
-  <wd-table-col prop="gender" label="性别"></wd-table-col>
+  <wd-table-column prop="name" label="姓名" fixed align="center"></wd-table-column>
+  <wd-table-column prop="grade" label="分数" fixed align="center"></wd-table-column>
+  <wd-table-column prop="hobby" label="一言以蔽之" :width="160"></wd-table-column>
+  <wd-table-column prop="school" label="求学之所" :width="180"></wd-table-column>
+  <wd-table-column prop="major" label="专业"></wd-table-column>
+  <wd-table-column prop="gender" label="性别"></wd-table-column>
 </wd-table>
 <wd-pagination custom-style="border: 1px solid #ececec;border-top:none" v-model="page" :total="total"></wd-pagination>
 ```

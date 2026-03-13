@@ -574,6 +574,6 @@ describe('WdAvatarGroup', () => {
 
     const avatar = wrapper.findComponent(WdAvatar)
     const style = avatar.attributes('style')
-    expect(style).toContain('--wot-avatar-group-overlap')
+    expect(style).toContain('--wot-avatar-overlap')
   })
 })

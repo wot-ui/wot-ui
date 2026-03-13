@@ -1,50 +1,56 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/variable.scss'as *;
+@use '../styles/mixin/mixin'as *;
+
+$swiper-nav-spacing: var(--wot-swiper-nav-spacing, $spacing-tight) !default;
+// dot & dots-bar
+$swiper-nav-dot-color: var(--wot-swiper-nav-dot-color, $filled-extra-strong) !default;
+$swiper-nav-dot-active-color: var(--wot-swiper-nav-dot-active-color, $icon-white) !default;
+$swiper-nav-dot-size: var(--wot-swiper-nav-dot-size, $n6) !default;
+$swiper-nav-dot-margin: var(--wot-swiper-nav-dot-margin, $spacing-super-tight) !default;
+$swiper-nav-dots-bar-active-width: var(--wot-swiper-nav-dots-bar-active-width, $n15) !default;
+$swiper-nav-dot-border-radius: var(--wot-swiper-nav-dot-border-radius, $radius-radius-full) !default;
+// fraction
+$swiper-nav-fraction-color: var(--wot-swiper-nav-fraction-color, $icon-white) !default;
+$swiper-nav-fraction-bg-color: var(--wot-swiper-nav-fraction-bg-color, $opacfilled-main-cover) !default;
+$swiper-nav-fraction-line-height: var(--wot-swiper-nav-fraction-line-height, $typography-label-line--height-size-large) !default;
+$swiper-nav-fraction-font-size: var(--wot-swiper-nav-fraction-font-size, $typography-label-size-large) !default;
+$swiper-nav-fraction-padding: var(--wot-swiper-nav-fraction-padding, $padding-ultra-tight $padding-extra-tight) !default;
+$swiper-nav-fraction-border-radius: var(--wot-swiper-nav-fraction-border-radius, $radius-main) !default;
+// button
+$swiper-nav-btn-color: var(--wot-swiper-nav-btn-color, $icon-white) !default;
+$swiper-nav-btn-bg-color: var(--wot-swiper-nav-btn-bg-color, $opacfilled-main-cover) !default;
+$swiper-nav-btn-size: var(--wot-swiper-nav-btn-size, $n24) !default;
+$swiper-nav-btn-icon-size: var(--wot-swiper-nav-btn-icon-size, $n16) !default;
+$swiper-nav-btn-spacing: var(--wot-swiper-nav-btn-spacing, $spacing-loose) !default;
+$swiper-nav-btn-border-radius: var(--wot-swiper-nav-btn-border-radius, $radius-radius-full) !default;
 
 @include b(swiper-nav) {
 
   @include e(btn) {
-    @include m(prev, next) {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: $-swiper-nav-btn-size;
-      height: $-swiper-nav-btn-size;
-      border-radius: 50%;
-      background: $-swiper-nav-btn-bg-color;
-
-      &::after {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        display: block;
-        content: '';
-        width: 12rpx;
-        height: 12rpx;
-        border-color: $-swiper-nav-btn-color;
-        border-style: solid;
-      }
-    }
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $swiper-nav-btn-size;
+    height: $swiper-nav-btn-size;
+    border-radius: $swiper-nav-btn-border-radius;
+    background: $swiper-nav-btn-bg-color;
 
     @include m(prev) {
-      left: 30rpx;
-
-      &::after {
-        margin-left: 4rpx;
-        border-width: 2rpx 0 0 2rpx;
-        transform: translate(-50%, -50%) rotateZ(-45deg);
-      }
+      left: $swiper-nav-btn-spacing;
     }
 
     @include m(next) {
-      right: 30rpx;
-
-      &::after {
-        margin-left: -4rpx;
-        border-width: 2rpx 2rpx 0 0;
-        transform: translate(-50%, -50%) rotateZ(45deg);
-      }
+      right: $swiper-nav-btn-spacing;
     }
+  }
+
+  @include edeep(btn-icon) {
+    font-size: $swiper-nav-btn-icon-size;
+    line-height: $swiper-nav-btn-icon-size;
+    color: $swiper-nav-btn-color;
   }
 
   @include m(dots, dots-bar) {
@@ -53,31 +59,29 @@
   }
 
   @include m(fraction) {
-    padding: 0 16rpx;
-    height: $-swiper-nav-fraction-height;
-    line-height: $-swiper-nav-fraction-height;
-    border-radius: calc($-swiper-nav-fraction-height / 2);
-    background: $-swiper-nav-fraction-bg-color;
-    color: $-swiper-nav-fraction-color;
-    font-size: $-swiper-nav-fraction-font-size;
+    padding: $swiper-nav-fraction-padding;
+    line-height: $swiper-nav-fraction-line-height;
+    border-radius: $swiper-nav-fraction-border-radius;
+    background: $swiper-nav-fraction-bg-color;
+    color: $swiper-nav-fraction-color;
+    font-size: $swiper-nav-fraction-font-size;
   }
-
 
   @include e(item) {
     @include m(dots, dots-bar) {
-      width: $-swiper-nav-dot-size;
-      height: $-swiper-nav-dot-size;
-      background: $-swiper-nav-dot-color;
-      border-radius: 50%;
-      margin: 0 10rpx;
+      width: $swiper-nav-dot-size;
+      height: $swiper-nav-dot-size;
+      background: $swiper-nav-dot-color;
+      border-radius: $swiper-nav-dot-border-radius;
+      margin: 0 $swiper-nav-dot-margin;
       transition: all 0.4s ease-in;
 
       @include when(vertical) {
-        margin: 10rpx 0;
+        margin: $swiper-nav-dot-margin 0;
       }
 
       @include when(active) {
-        background-color: $-swiper-nav-dot-active-color;
+        background: $swiper-nav-dot-active-color;
       }
     }
 
@@ -85,75 +89,72 @@
 
       @include when(vertical) {
         @include when(active) {
-          width: $-swiper-nav-dot-size;
-          height: $-swiper-nav-dots-bar-active-width;
+          width: $swiper-nav-dot-size;
+          height: $swiper-nav-dots-bar-active-width;
         }
       }
 
       @include when(active) {
-        width: $-swiper-nav-dots-bar-active-width;
-        border-radius: calc($-swiper-nav-dot-size / 2);
-        background-color: $-swiper-nav-dot-active-color;
+        width: $swiper-nav-dots-bar-active-width;
+        border-radius: $swiper-nav-dot-border-radius;
+        background: $swiper-nav-dot-active-color;
       }
     }
-
   }
-
 
   @include m(left) {
     position: absolute;
-    left: 24rpx;
+    left: $swiper-nav-spacing;
     top: 50%;
     transform: translateY(-50%);
   }
 
   @include m(right) {
     position: absolute;
-    right: 24rpx;
+    right: $swiper-nav-spacing;
     top: 50%;
     transform: translateY(-50%);
   }
 
   @include m(top-left) {
     position: absolute;
-    top: 24rpx;
-    left: 24rpx;
+    top: $swiper-nav-spacing;
+    left: $swiper-nav-spacing;
   }
 
   @include m(top) {
     position: absolute;
     left: 50%;
-    top: 24rpx;
+    top: $swiper-nav-spacing;
     transform: translateX(-50%);
   }
 
   @include m(top-right) {
     position: absolute;
-    top: 24rpx;
-    right: 24rpx;
+    top: $swiper-nav-spacing;
+    right: $swiper-nav-spacing;
   }
 
   @include m(bottom-left) {
     position: absolute;
-    left: 24rpx;
-    bottom: 24rpx;
+    left: $swiper-nav-spacing;
+    bottom: $swiper-nav-spacing;
   }
 
   @include m(bottom) {
     position: absolute;
     left: 50%;
-    bottom: 24rpx;
+    bottom: $swiper-nav-spacing;
     transform: translateX(-50%);
   }
 
   @include m(bottom-right) {
     position: absolute;
-    right: 24rpx;
-    bottom: 24rpx;
+    right: $swiper-nav-spacing;
+    bottom: $swiper-nav-spacing;
   }
 
   @include m(vertical) {
     flex-direction: column;
   }
-
 }

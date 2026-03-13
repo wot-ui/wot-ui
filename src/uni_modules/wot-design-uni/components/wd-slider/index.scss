@@ -1,98 +1,488 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(slider) {
-    @include e(label-min, label-max) {
-      color: $-dark-color;
-    }
+/* ================================ 组件SCSS变量 ================================ */
 
-    @include e(label) {
-      color: $-dark-color;
-      background-color: rgba($color: $-dark-background2, $alpha: 0.5);
-    }
+/* 轨道 (Track) */
+$slider-bar-height: var(--wot-slider-bar-height, $n2) !default;
+$slider-bar-height-capsule: var(--wot-slider-bar-height-capsule, $n24) !default;
+$slider-bar-bg: var(--wot-slider-bar-bg, $filled-strong) !default;
+$slider-bar-radius: var(--wot-slider-bar-radius, $radius-radius-full) !default;
+$slider-bar-height-vertical: var(--wot-slider-bar-height-vertical, $n248) !default;
 
-    @include m(disabled) {
-      @include me(label-min, label-max) {
-        color: $-dark-color-gray;
-      }
-    }
-  }
-}
+/* 进度条 (Range) */
+$slider-line-bg: var(--wot-slider-line-bg, $primary-6) !default;
+$slider-line-height: var(--wot-slider-line-height, $n2) !default;
+$slider-line-height-capsule: var(--wot-slider-line-height-capsule, $n18) !default;
 
+/* 滑块 (Thumb) */
+$slider-dot-size: var(--wot-slider-dot-size, $n24) !default;
+$slider-dot-bg: var(--wot-slider-dot-bg, $filled-oppo) !default;
+$slider-dot-shadow: var(--wot-slider-dot-shadow, 0 2px 8px 0 rgba(0, 0, 0, 0.1)) !default;
+
+/* 气泡提示 (Popover) */
+$slider-dot-popover-bg: var(--wot-slider-dot-popover-bg, $opacfilled-tooltip-toast-cover) !default;
+$slider-dot-popover-color: var(--wot-slider-dot-popover-color, $text-white) !default;
+$slider-dot-popover-radius: var(--wot-slider-dot-popover-radius, $radius-main) !default;
+$slider-dot-popover-padding: var(--wot-slider-dot-popover-padding, $padding-extra-tight $padding-loose) !default;
+$slider-dot-popover-font-size: var(--wot-slider-dot-popover-font-size, $typography-body-size-main) !default;
+$slider-dot-popover-line-height: var(--wot-slider-dot-popover-line-height, $typography-body-line--height-size-main) !default;
+$slider-dot-popover-gap: var(--wot-slider-dot-popover-gap, $n3) !default;
+$slider-dot-popover-arrow-width: var(--wot-slider-dot-popover-arrow-width, $n12) !default;
+$slider-dot-popover-arrow-height: var(--wot-slider-dot-popover-arrow-height, $n6) !default;
+$slider-dot-popover-duration-exit: var(--wot-slider-dot-popover-duration-exit, 100ms) !default;
+$slider-dot-popover-easing-exit: var(--wot-slider-dot-popover-easing-exit, cubic-bezier(0.4, 0, 1, 1)) !default;
+$slider-dot-popover-duration-enter: var(--wot-slider-dot-popover-duration-enter, 200ms) !default;
+$slider-dot-popover-easing-enter: var(--wot-slider-dot-popover-easing-enter, cubic-bezier(0.34, 1.56, 0.64, 1)) !default;
+
+/* 刻度 (Scale) */
+$slider-scale-size: var(--wot-slider-scale-size, $n6) !default;
+$slider-scale-border-radius: var(--wot-slider-scale-border-radius, $radius-radius-full) !default;
+$slider-scale-bg: var(--wot-slider-scale-bg, $filled-strong) !default;
+$slider-scale-bg-active: var(--wot-slider-scale-bg-active, $primary-6) !default;
+$slider-scale-capsule-bg: var(--wot-slider-scale-capsule-bg, $filled-strong) !default;
+$slider-scale-capsule-width: var(--wot-slider-scale-capsule-width, $n2) !default;
+$slider-scale-capsule-border-radius: var(--wot-slider-scale-capsule-border-radius, $radius-zero) !default;
+$slider-scale-desc-font-size: var(--wot-slider-scale-desc-font-size, $typography-body-size-main) !default;
+$slider-scale-desc-line-height: var(--wot-slider-scale-desc-line-height, $typography-body-line--height-size-main) !default;
+$slider-scale-desc-color: var(--wot-slider-scale-desc-color, $text-main) !default;
+$slider-scale-desc-spacing: var(--wot-slider-scale-desc-spacing, $spacing-tight) !default;
+$slider-marks-desc-spacing: var(--wot-slider-marks-desc-spacing, calc($slider-dot-size / 2 + $spacing-tight)) !default;
+$slider-marks-desc-capsule-spacing: var(--wot-slider-marks-desc-capsule-spacing, calc($slider-dot-size + $spacing-super-tight)) !default;
+$slider-marks-extra-padding: var(--wot-slider-marks-extra-padding, $padding-super-loose) !default;
+$slider-marks-extra-capsule-padding: var(--wot-slider-marks-extra-capsule-padding, $padding-ultra-loose) !default;
+
+/* 布局 (Layout) */
+$slider-capsule-track-inset: var(--wot-slider-capsule-track-inset, $n3) !default;
+$slider-extreme-spacing: var(--wot-slider-extreme-spacing, $spacing-loose) !default;
+
+/* 极值文字 (Extreme Value) */
+$slider-value-font-size: var(--wot-slider-value-font-size, $typography-body-size-main) !default;
+$slider-value-color: var(--wot-slider-value-color, $text-secondary) !default;
+
+/* 状态 (States) */
+$slider-opacity-disabled: var(--wot-slider-opacity-disabled, $opacity-disabled) !default;
 
 @include b(slider) {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  height: calc($-slider-handle-radius * 3);
+  position: relative;
 
-  @include e(label-min, label-max) {
-    font-size: $-slider-fs;
-    color: $-slider-color;
+  @include m(with-extreme) {
+    @include me(bar) {
+      margin-left: $slider-extreme-spacing;
+      margin-right: $slider-extreme-spacing;
+    }
   }
-  @include e(label) {
-    text-align: center;
-    width: calc($-slider-handle-radius * 2);
-    line-height: calc($-slider-handle-radius * 2);
-    font-size: $-slider-fs;
-    line-height: 1.2;
-    color: $-slider-color;
-    background-color: rgba($color: #fff, $alpha: 0.5);
-    border-radius: 100%;
-    position: absolute;
-    bottom: calc($-slider-handle-radius * 2 + 8px);
-  }
-  @include e(bar-wrapper) {
+
+  @include e(bar) {
     flex: 1;
     position: relative;
-    border-radius: calc($-slider-axie-height / 2);
-    background-color: #e5e5e5;
-    margin: calc($-slider-handle-radius - $-slider-axie-height / 2) 0;
-  }
-  @include e(bar) {
-    position: relative;
-    border-radius: inherit;
-    height: $-slider-axie-height;
-    background: $-slider-line-color;
-  }
-  @include e(button-wrapper) {
-    width: calc($-slider-handle-radius * 2);
-    /* 右侧滑块按钮定位，向右偏移自身宽度的50% */
-    transform: translate3d(50%, -50%, 0);
-    position: absolute;
-    right: 0;
+    cursor: pointer;
 
-    @include m(left){
-      left: 0;
-      /* 左侧滑块按钮定位，向左偏移自身宽度的50% */
-      transform: translate3d(-50%, -50%, 0);
+    // 默认（线状）样式
+    @include m(default) {
+      height: $slider-bar-height;
+      background: $slider-bar-bg;
+      border-radius: $slider-bar-radius;
+    }
+
+    // 管道（胶囊）样式
+    @include m(capsule) {
+      height: $slider-bar-height-capsule;
+      background: $slider-bar-bg;
+      border-radius: $slider-bar-radius;
+      padding: 0 $slider-capsule-track-inset;
+      display: flex;
+      align-items: center;
+    }
+
+    @include when(disabled) {
+      cursor: not-allowed;
     }
   }
-  @include e(has-label) {
-    padding-top: calc($-slider-fs * 1.2 + 8px);
+
+  @include e(track) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
   }
-  @include e(button) {
-    height: calc($-slider-handle-radius * 2);
-    width: calc($-slider-handle-radius * 2);
-    background: $-slider-handle-bg;
-    border-radius: 100%;
-    border: 1px solid $-slider-axie-bg;
+
+  @include e(line) {
+    position: relative;
+    height: 100%;
+    background: $slider-line-bg;
+    border-radius: inherit;
+
+    @include m(capsule) {
+      height: $slider-line-height-capsule;
+    }
+
+    @include m(single) {
+      border-radius: inherit;
+    }
+
+    @include when(disabled) {
+      opacity: $slider-opacity-disabled;
+    }
+  }
+
+  @include e(dot) {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  @include e(dot-popover) {
+    position: absolute;
+    bottom: calc(100% + #{$slider-dot-popover-gap});
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transform-origin: center bottom;
+    opacity: 0;
+    /* 出场 transition：目标是隐藏态，所以写在这里 */
+    transition: opacity $slider-dot-popover-duration-exit $slider-dot-popover-easing-exit,
+      transform $slider-dot-popover-duration-exit $slider-dot-popover-easing-exit;
+    pointer-events: none;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include when(visible) {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      pointer-events: auto;
+      /* 入场 transition：目标是可见态，所以写在这里 */
+      transition: opacity $slider-dot-popover-duration-enter $slider-dot-popover-easing-enter,
+        transform $slider-dot-popover-duration-enter $slider-dot-popover-easing-enter;
+    }
+  }
+
+  @include e(dot-popover-text) {
+    background: $slider-dot-popover-bg;
+    padding: $slider-dot-popover-padding;
+    border-radius: $slider-dot-popover-radius;
+    color: $slider-dot-popover-color;
+    font-size: $slider-dot-popover-font-size;
+    line-height: $slider-dot-popover-line-height;
+    white-space: nowrap;
+  }
+
+  @include e(dot-popover-arrow) {
+    position: relative;
+    border-left: calc(#{$slider-dot-popover-arrow-width} / 2) solid transparent;
+    border-right: calc(#{$slider-dot-popover-arrow-width} / 2) solid transparent;
+    border-top: $slider-dot-popover-arrow-height solid $slider-dot-popover-bg;
+  }
+
+  @include e(dot-slider) {
+    width: $slider-dot-size;
+    height: $slider-dot-size;
+    background: $slider-dot-bg;
+    border-radius: 50%;
+    box-shadow: $slider-dot-shadow;
     box-sizing: border-box;
-    box-shadow: 0 2px 4px 0 rgba($color: #9b9b9b, $alpha: 0.5);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
-  @include e(label-min) {
-    margin-right: calc($-slider-handle-radius * 2);
+
+  @include e(scale-item) {
+    position: absolute;
+
+    @include m(default) {
+      width: $slider-scale-size;
+      height: $slider-scale-size;
+      background: $slider-scale-bg;
+      border-radius: $slider-scale-border-radius;
+    }
+
+    @include when(active) {
+      background: $slider-scale-bg-active;
+    }
+
+    // 管道样式下的刻度变为垂直分割线（间隙）
+    @include m(capsule) {
+      width: $slider-scale-capsule-width;
+      height: 100%;
+      background: $slider-scale-capsule-bg;
+      border-radius: $slider-scale-capsule-border-radius;
+
+      @include when(active) {
+        background: $slider-scale-capsule-bg;
+      }
+
+      // 如果刻度在最左或最右边缘，隐藏分割线（避免遮挡圆角）
+      &[style*="left: 0%"],
+      &[style*="left: 100%"],
+      &[style*="top: 0%"],
+      &[style*="top: 100%"] {
+        background: transparent;
+      }
+    }
+
+    @include when(disabled) {
+      opacity: $slider-opacity-disabled;
+    }
   }
-  @include e(label-max) {
-    margin-left: calc($-slider-handle-radius * 2);
+
+  @include e(value) {
+    font-size: $slider-value-font-size;
+    color: $slider-value-color;
+    flex-shrink: 0;
   }
-  @include m(disabled) {
+
+  @include m(horizontal) {
+    &.wd-slider--marks {
+      padding-bottom: $slider-marks-extra-padding;
+    }
+
+    @include me(scale-desc) {
+      position: absolute;
+      top: $slider-marks-desc-spacing;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: $slider-scale-desc-font-size;
+      line-height: $slider-scale-desc-line-height;
+      color: $slider-scale-desc-color;
+      white-space: nowrap;
+    }
+
+    &.wd-slider--theme-capsule {
+
+      &.wd-slider--marks {
+        padding-bottom: $slider-marks-extra-capsule-padding;
+      }
+
+      .wd-slider__scale-desc {
+        top: $slider-marks-desc-capsule-spacing;
+      }
+    }
+
     @include me(bar) {
-      opacity: 0.25;
+      @include m(default) {
+        margin-top: calc($slider-dot-size / 2 - $slider-bar-height);
+        margin-bottom: calc($slider-dot-size / 2 - $slider-bar-height);
+      }
+
+      // 管道样式下的特殊处理
+      @include m(capsule) {
+        @include me(track) {
+          left: $slider-capsule-track-inset;
+          right: $slider-capsule-track-inset;
+        }
+
+        @include me(dot-slider) {
+          width: $slider-dot-size;
+          height: $slider-dot-size;
+        }
+      }
     }
-    @include me(label-min, label-max) {
-      color: $-slider-disabled-color;
+
+    @include me(dot) {
+      top: 50%;
+      transform: translateY(-50%);
+
+      // 双滑块定位
+      @include m(left) {
+        left: 0;
+        transform: translate(-50%, -50%);
+      }
+
+      @include m(right) {
+        right: 0;
+        transform: translate(50%, -50%);
+      }
     }
+
+    // 单滑块定位在右端
+    @include me(line) {
+      @include m(single) {
+        @include me(dot) {
+          right: 0;
+          transform: translate(50%, -50%);
+        }
+      }
+    }
+
+    // 刻度在轨道垂直居中
+    @include me(scale-item) {
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      // 管道模式刻度保持贴顶
+      @include m(capsule) {
+        top: 0;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  @include m(vertical) {
+    flex-direction: column;
+    height: $slider-bar-height-vertical;
+    width: auto;
+    align-items: center;
+
+    &.wd-slider--with-extreme {
+      .wd-slider__bar {
+        margin-top: $slider-extreme-spacing;
+        margin-bottom: $slider-extreme-spacing;
+      }
+    }
+
+    &.wd-slider--marks {
+      padding-left: $slider-marks-extra-padding;
+    }
+
+    @include me(bar) {
+      width: auto;
+      flex: 1;
+
+      @include m(default) {
+        width: $slider-bar-height;
+        height: 100%;
+        margin: unset calc($slider-dot-size / 2);
+      }
+
+      @include m(capsule) {
+        width: $slider-bar-height-capsule;
+        height: 100%;
+        padding: $slider-capsule-track-inset 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        @include edeep(track) {
+          top: $slider-capsule-track-inset;
+          bottom: $slider-capsule-track-inset;
+        }
+
+        @include edeep(dot-slider) {
+          width: $slider-dot-size;
+          height: $slider-dot-size;
+          transform: rotate(90deg);
+        }
+      }
+
+      @include m(default) {
+        @include edeep(dot-slider) {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    @include me(line) {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      @include m(capsule) {
+        width: $slider-line-height-capsule;
+      }
+
+      @include me(dot) {
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+      }
+
+      @include m(single) {
+        @include me(dot) {
+          bottom: 0;
+          transform: translate(-50%, 50%);
+        }
+      }
+
+      @include me(dot) {
+        @include m(left) {
+          top: 0;
+          bottom: auto;
+          transform: translate(-50%, -50%);
+        }
+
+        @include m(right) {
+          bottom: 0;
+          top: auto;
+          transform: translate(-50%, 50%);
+        }
+      }
+    }
+
+    @include me(dot-popover) {
+      bottom: auto;
+      top: 50%;
+      left: calc(100% + #{$slider-dot-popover-gap});
+      transform: translateY(-50%) scale(0);
+      transform-origin: left center;
+      flex-direction: row-reverse;
+      align-items: center;
+
+      @include when(visible) {
+        transform: translateY(-50%) scale(1);
+      }
+    }
+
+    @include me(dot-popover-arrow) {
+      border-left: none;
+      border-right: $slider-dot-popover-arrow-height solid $slider-dot-popover-bg;
+      border-top: calc(#{$slider-dot-popover-arrow-width} / 2) solid transparent;
+      border-bottom: calc(#{$slider-dot-popover-arrow-width} / 2) solid transparent;
+    }
+
+    @include me(scale-item) {
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      @include m(capsule) {
+        left: 0;
+        width: 100%;
+        height: 2px;
+        transform: translateY(-50%);
+      }
+    }
+
+    @include me(scale-desc) {
+      position: absolute;
+      top: 50%;
+      left: auto;
+      right: $slider-marks-desc-spacing;
+      font-size: $slider-scale-desc-font-size;
+      line-height: $slider-scale-desc-line-height;
+      color: $slider-scale-desc-color;
+      transform: translateY(-50%);
+      text-align: right;
+    }
+
+    &.wd-slider--theme-capsule {
+
+      &.wd-slider--marks {
+        padding-left: $slider-marks-extra-capsule-padding;
+      }
+
+      .wd-slider__scale-desc {
+        right: $slider-marks-desc-capsule-spacing;
+      }
+    }
+  }
+
+  @include when(disabled) {
+    opacity: $slider-opacity-disabled;
+    pointer-events: none;
   }
 }

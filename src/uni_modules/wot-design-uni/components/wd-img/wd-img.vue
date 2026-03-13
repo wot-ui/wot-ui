@@ -1,16 +1,8 @@
-<!--
- * @Author: 810505339
- * @Date: 2024-09-25 11:30:46
- * @LastEditors: 810505339
- * @LastEditTime: 2025-01-09 11:37:45
- * @FilePath: \wot-design-uni\src\uni_modules\wot-design-uni\components\wd-img\wd-img.vue
- * 记得注释
--->
 <template>
   <view :class="rootClass" @click="handleClick" :style="rootStyle">
     <image
+      v-if="status !== 'error'"
       :class="`wd-img__image ${customImage}`"
-      :style="status !== 'success' ? 'width: 0;height: 0;' : ''"
       :src="src"
       :mode="mode"
       :show-menu-by-longpress="showMenuByLongpress"
@@ -18,15 +10,25 @@
       @load="handleLoad"
       @error="handleError"
     />
-    <slot v-if="status === 'loading'" name="loading"></slot>
-    <slot v-if="status === 'error'" name="error"></slot>
+    <view v-if="status === 'loading' && showLoading" class="wd-img__loading">
+      <slot name="loading">
+        <wd-icon name="image" custom-class="wd-img__loading-icon" />
+      </slot>
+    </view>
+    <view v-if="status === 'error' && showError" class="wd-img__error">
+      <slot name="error">
+        <wd-icon name="image-failloading" custom-class="wd-img__error-icon" />
+      </slot>
+    </view>
   </view>
 </template>
 <script lang="ts">
 export default {
   name: 'wd-img',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -84,6 +86,6 @@ function handleLoad(event: any) {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

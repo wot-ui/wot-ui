@@ -1,28 +1,14 @@
 <template>
   <page-wraper>
     <demo-block :title="$t('ji-chu-biao-dan')" transparent>
-      <wd-form ref="form1" :model="model1">
-        <wd-cell-group border>
-          <wd-input
-            :label="$t('wai-bi-ba-bu')"
-            label-width="100px"
-            prop="value1"
-            clearable
-            v-model="model1.value1"
-            :placeholder="$t('qing-shu-ru-wai-bi-ba-bu')"
-            :rules="[{ required: true, message: $t('qing-shu-ru-wai-bi-ba-bu') }]"
-          />
-          <wd-input
-            :label="$t('sha-ka-la-ka')"
-            label-width="100px"
-            prop="value2"
-            show-password
-            clearable
-            v-model="model1.value2"
-            :placeholder="$t('qing-shu-ru-sha-ka-la-ka')"
-            :rules="[{ required: true, message: $t('qing-shu-ru-sha-ka-la-ka') }]"
-          />
-        </wd-cell-group>
+      <wd-form ref="form1" :model="model1" :title-width="100">
+        <wd-form-item :title="$t('wai-bi-ba-bu')" prop="value1" :rules="[{ required: true, message: $t('qing-shu-ru-wai-bi-ba-bu') }]">
+          <wd-input type="text" v-model="model1.value1" :placeholder="$t('qing-shu-ru-wai-bi-ba-bu')" compact />
+        </wd-form-item>
+
+        <wd-form-item :title="$t('sha-ka-la-ka')" prop="value2" :rules="[{ required: true, message: $t('qing-shu-ru-sha-ka-la-ka') }]">
+          <wd-input type="text" v-model="model1.value2" :placeholder="$t('qing-shu-ru-sha-ka-la-ka')" compact />
+        </wd-form-item>
         <view class="footer">
           <wd-button type="primary" size="large" @click="handleSubmit1" block>{{ $t('ti-jiao') }}</wd-button>
         </view>

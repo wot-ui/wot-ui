@@ -1,8 +1,12 @@
 <template>
-  <view v-if="showControls" class="wd-swiper-nav__btn">
-    <view class="wd-swiper-nav__btn--prev" @click="handleNav('prev')" />
-    <view class="wd-swiper-nav__btn--next" @click="handleNav('next')" />
-  </view>
+  <template v-if="showControls">
+    <view class="wd-swiper-nav__btn wd-swiper-nav__btn--prev" @click="handleNav('prev')">
+      <wd-icon name="left" custom-class="wd-swiper-nav__btn-icon"></wd-icon>
+    </view>
+    <view class="wd-swiper-nav__btn wd-swiper-nav__btn--next" @click="handleNav('next')">
+      <wd-icon name="right" custom-class="wd-swiper-nav__btn-icon"></wd-icon>
+    </view>
+  </template>
   <view
     v-if="total >= minShowNum"
     :style="customStyle"
@@ -21,6 +25,7 @@
 
 <script lang="ts" setup>
 import { swiperNavprops } from './types'
+import wdIcon from '../wd-icon/wd-icon.vue'
 
 defineProps(swiperNavprops)
 
@@ -32,6 +37,6 @@ function handleNav(dir: 'prev' | 'next') {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

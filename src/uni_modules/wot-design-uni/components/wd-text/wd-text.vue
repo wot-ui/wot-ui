@@ -10,7 +10,9 @@
 export default {
   name: 'wd-text',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -21,7 +23,7 @@ export default {
 import { computed, ref, watch } from 'vue'
 import { isDef, objToStyle } from '../common/util'
 import { textProps } from './types'
-import dayjs from '../../dayjs'
+import { formatDate } from '../common/formatDate'
 
 // 获取组件的 props 和 emit 函数
 const props = defineProps(textProps)
@@ -120,7 +122,7 @@ function formatNumber(num: number | string): string {
 const formattedText = computed(() => {
   const { text, mode, format } = props
   if (mode === 'date') {
-    return dayjs(Number(text)).format('YYYY-MM-DD')
+    return formatDate(Number(text), 'YYYY-MM-DD')
   }
   if (mode === 'price') {
     return formatNumber(text)
@@ -134,6 +136,6 @@ function handleClick(event: Event) {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

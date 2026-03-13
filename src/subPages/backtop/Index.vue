@@ -2,6 +2,7 @@
   <page-wraper>
     <demo-block>
       <wd-checkbox shape="square" size="large" v-model="isSquare">{{ $t('xianShiFangXing') }}</wd-checkbox>
+      <wd-checkbox shape="square" size="large" v-model="isText">显示文字</wd-checkbox>
       <wd-checkbox shape="square" size="large" v-model="isCustomIcon">{{ $t('ziDingYiTuBiao') }}</wd-checkbox>
       <wd-checkbox shape="square" size="large" v-model="isTop">{{ $t('ziDingYiJuLi') }}</wd-checkbox>
       <wd-checkbox shape="square" size="large" v-model="isStyle">{{ $t('ziDingYiYangShi') }}</wd-checkbox>
@@ -14,6 +15,7 @@
       :top="isTop ? 600 : undefined"
       :customStyle="isStyle ? 'background: #007aff;color:white;' : undefined"
       :duration="isDuration ? 1000 : undefined"
+      :text="isText ? 'TOP' : undefined"
     >
       <text :style="`color: ${isStyle ? 'white' : '#333'};`">TOP</text>
     </wd-backtop>
@@ -24,6 +26,7 @@
       :top="isTop ? 600 : undefined"
       :customStyle="isStyle ? 'background: #007aff;color:white;' : undefined"
       :duration="isDuration ? 1000 : undefined"
+      :text="isText ? 'TOP' : undefined"
     ></wd-backtop>
     <view style="height: 2000px; color: red"></view>
   </page-wraper>
@@ -42,5 +45,6 @@ const isCustomIcon = ref(false)
 const isTop = ref(false)
 const isStyle = ref(false)
 const isDuration = ref(false)
+const isText = ref(false)
 </script>
 <style lang="scss" scoped></style>

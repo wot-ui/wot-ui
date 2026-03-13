@@ -1,7 +1,7 @@
 <!--
  * @Author: weisheng
  * @Date: 2023-11-06 20:08:34
- * @LastEditTime: 2025-05-07 18:55:52
+ * @LastEditTime: 2026-02-10 14:44:48
  * @LastEditors: weisheng
  * @Description: 
  * @FilePath: /wot-design-uni/src/subPages/sidebar/Index.vue
@@ -19,7 +19,7 @@
         <wd-sidebar v-model="active2">
           <wd-sidebar-item :value="0" :label="$t('biao-qian-ming-cheng')" is-dot />
           <wd-sidebar-item :value="1" :label="$t('biao-qian-ming-cheng')" badge="5" />
-          <wd-sidebar-item :value="2" :label="$t('biao-qian-ming-cheng')" badge="2" :badge-props="{ type: 'warning', modelValue: 55, max: 99 }" />
+          <wd-sidebar-item :value="2" :label="$t('biao-qian-ming-cheng')" :badge-props="{ type: 'warning', value: 55, max: 99 }" />
         </wd-sidebar>
         <wd-sidebar v-model="active3" :before-change="beforeChange">
           <wd-sidebar-item :value="0" :label="$t('biao-qian-ming-cheng')" />

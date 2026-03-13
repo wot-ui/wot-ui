@@ -211,4 +211,66 @@ describe('WdIcon', () => {
     expect(wrapper.classes()).not.toContain('wd-icon--image')
     expect(wrapper.classes()).toContain('wd-icon-')
   })
+
+  // CSS 图标模式测试
+  describe('CSS 图标模式 (cssIcon)', () => {
+    test('cssIcon 模式下 name 直接作为 class', () => {
+      const wrapper = mount(WdIcon, {
+        props: { name: 'i-carbon-sun', cssIcon: true }
+      })
+
+      expect(wrapper.classes()).toContain('wd-icon')
+      expect(wrapper.classes()).toContain('wd-icon--css')
+      expect(wrapper.classes()).toContain('i-carbon-sun')
+      // 不应该有 iconfont class
+      expect(wrapper.classes()).not.toContain('wd-icon-i-carbon-sun')
+    })
+
+    test('cssIcon 模式下 size 同时设置 font-size 和 width/height', () => {
+      const wrapper = mount(WdIcon, {
+        props: { name: 'i-mdi-home', cssIcon: true, size: '24px' }
+      })
+
+      const style = wrapper.attributes('style')
+      expect(style).toContain('font-size: 24px')
+      expect(style).toContain('width: 24px')
+      expect(style).toContain('height: 24px')
+    })
+
+    test('cssIcon 模式下 color 正常工作', () => {
+      const wrapper = mount(WdIcon, {
+        props: { name: 'i-tabler-settings', cssIcon: true, color: 'blue' }
+      })
+
+      expect(wrapper.props('color')).toBe('blue')
+    })
+
+    test('cssIcon 模式下点击事件正常触发', async () => {
+      const wrapper = mount(WdIcon, {
+        props: { name: 'i-carbon-close', cssIcon: true }
+      })
+
+      await wrapper.trigger('click')
+      expect(wrapper.emitted('click')).toBeTruthy()
+    })
+
+    test('cssIcon 模式下包含 / 的 name 不被识别为图片', () => {
+      const wrapper = mount(WdIcon, {
+        props: { name: 'i-some/icon', cssIcon: true }
+      })
+
+      expect(wrapper.classes()).toContain('wd-icon--css')
+      expect(wrapper.classes()).not.toContain('wd-icon--image')
+      expect(wrapper.find('image').exists()).toBe(false)
+    })
+
+    test('cssIcon 默认为 false', () => {
+      const wrapper = mount(WdIcon, {
+        props: { name: 'add' }
+      })
+
+      expect(wrapper.classes()).not.toContain('wd-icon--css')
+      expect(wrapper.classes()).toContain('wd-icon-add')
+    })
+  })
 })

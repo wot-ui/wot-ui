@@ -1,6 +1,5 @@
-import type { ExtractPropTypes, PropType } from 'vue'
-import { baseProps, makeArrayProp, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp } from '../common/props'
-import type { FormItemRule } from '../wd-form/types'
+import type { ExtractPropTypes } from 'vue'
+import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp } from '../common/props'
 
 export type InputClearTrigger = 'focus' | 'always'
 
@@ -8,14 +7,14 @@ export type InputType = 'text' | 'number' | 'digit' | 'idcard' | 'safe-password'
 
 export type InputConfirmType = 'send' | 'search' | 'next' | 'go' | 'done'
 
-export type InputSize = 'large'
-
 export type InputMode = 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'
 
 export const inputProps = {
   ...baseProps,
+  /**
+   * 自定义输入框类名
+   */
   customInputClass: makeStringProp(''),
-  customLabelClass: makeStringProp(''),
   // 原生属性
   /**
    * 占位文本
@@ -120,41 +119,9 @@ export const inputProps = {
    */
   showWordLimit: makeBooleanProp(false),
   /**
-   * 设置左侧标题
-   */
-  label: String,
-  /**
-   * 设置左侧标题宽度
-   */
-  labelWidth: makeStringProp(''),
-  /**
-   * 设置输入框大小，可选值：large
-   */
-  size: String as PropType<InputSize>,
-  /**
    * 设置输入框错误状态，错误状态时为红色
    */
   error: makeBooleanProp(false),
-  /**
-   * 当有label属性时，设置标题和输入框垂直居中，默认为顶部居中
-   */
-  center: makeBooleanProp(false),
-  /**
-   * 非 cell 类型下是否隐藏下划线
-   */
-  noBorder: makeBooleanProp(false),
-  /**
-   * 是否必填
-   */
-  required: makeBooleanProp(false),
-  /**
-   * 表单域 model 字段名，在使用表单校验功能的情况下，该属性是必填的
-   */
-  prop: String,
-  /**
-   * 表单验证规则，结合wd-form组件使用
-   */
-  rules: makeArrayProp<FormItemRule>(),
   /**
    * 显示清除图标的时机，always 表示输入框不为空时展示，focus 表示输入框聚焦且不为空时展示
    * 类型: "focus" | "always"
@@ -181,16 +148,18 @@ export const inputProps = {
    */
   inputmode: makeStringProp<InputMode>('text'),
   /**
-   * 必填标记位置，可选值：before（标签前）、after（标签后）
-   */
-  markerSide: makeStringProp<'before' | 'after'>('before'),
-  /**
    * 支付宝小程序，可以在 input / textarea 组件中加上 enableNative="{{false}}"，避免 textarea 弹出键盘后出现内容上移
    * 仅支付宝小程序支持
    * 类型: boolean
    * 默认值: true
    */
-  enableNative: makeBooleanProp(true)
+  enableNative: makeBooleanProp(true),
+  /**
+   * 紧凑模式，移除内边距和背景色，在结合 cell 或 form-item 使用时建议开启
+   * 类型: boolean
+   * 默认值: false
+   */
+  compact: makeBooleanProp(false)
 }
 
 export type InputProps = ExtractPropTypes<typeof inputProps>

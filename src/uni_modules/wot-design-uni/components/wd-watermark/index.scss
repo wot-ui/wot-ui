@@ -1,10 +1,12 @@
-@import "../common/abstracts/variable.scss";
-@import "../common/abstracts/_mixin.scss";
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
+
+$watermark-opacity: var(--watermark-opacity, $opacity-dimmer) !default;
 
 @include b(watermark) {
   position: absolute;
   z-index: 1100;
-  opacity: 0.5;
+  opacity: $watermark-opacity;
   left: 0;
   right: 0;
   top: 0;

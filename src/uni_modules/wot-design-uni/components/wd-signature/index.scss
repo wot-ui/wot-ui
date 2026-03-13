@@ -1,5 +1,16 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
+
+// 签名区域背景色
+$signature-bg: var(--wot-signature-bg, $filled-oppo) !default;
+// 签名区域圆角
+$signature-radius: var(--wot-signature-radius, $radius-main) !default;
+// 签名区域边框
+$signature-border: var(--wot-signature-border, $stroke-main solid $border-main) !default;
+// 底部操作区上间距
+$signature-footer-margin-top: var(--wot-signature-footer-margin-top, $spacing-tight) !default;
+// 底部按钮左间距
+$signature-button-margin-left: var(--wot-signature-button-margin-left, $spacing-tight) !default;
 
 @include b(signature) {
   @include e(content) {
@@ -7,9 +18,9 @@
     align-items: center;
     display: flex;
     overflow: hidden;
-    background: $-signature-bg;
-    border-radius: $-signature-radius;
-    border: $-signature-border;
+    background: $signature-bg;
+    border-radius: $signature-radius;
+    border: $signature-border;
   }
 
   @include e(content-canvas) {
@@ -18,14 +29,14 @@
 
 
   @include e(footer) {
-    margin-top: $-signature-footer-margin-top;
+    margin-top: $signature-footer-margin-top;
     justify-content: flex-end;
     display: flex;
+  }
 
-    :deep(){
-      .wd-button{
-        margin-left: $-signature-button-margin-left;
-      }
+  @include edeep(button) {
+    &:not(:first-child) {
+      margin-left: $signature-button-margin-left;
     }
   }
 }

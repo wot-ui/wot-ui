@@ -1,5 +1,5 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/variable.scss' as *;
+@use '../styles/mixin/mixin.scss' as *;
 
 
 @include b(tab) {

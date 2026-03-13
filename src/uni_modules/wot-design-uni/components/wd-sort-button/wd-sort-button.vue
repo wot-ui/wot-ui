@@ -4,9 +4,9 @@
       <view :class="`wd-sort-button__left ${modelValue !== 0 ? 'is-active' : ''}`">
         {{ title }}
       </view>
-      <view :class="`wd-sort-button__right ${modelValue !== 0 ? 'is-active' : ''}`">
-        <wd-icon v-if="modelValue !== 1" name="arrow-up" custom-class="wd-sort-button__icon-up" />
-        <wd-icon v-if="modelValue !== -1" name="arrow-down" custom-class="wd-sort-button__icon-down" />
+      <view class="wd-sort-button__right">
+        <wd-icon name="caret-up" :custom-class="`wd-sort-button__icon-up ${modelValue === -1 ? 'wd-sort-button__icon-up--active' : ''}`" />
+        <wd-icon name="caret-down" :custom-class="`wd-sort-button__icon-down  ${modelValue === 1 ? 'wd-sort-button__icon-down--active' : ''}`" />
       </view>
     </view>
   </view>
@@ -17,7 +17,9 @@ export default {
   name: 'wd-sort-button',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -25,45 +27,41 @@ export default {
 
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { sortButtonProps } from './types'
+import { sortButtonProps, type SortButtonEmits, type SortButtonValue } from './types'
 
 const props = defineProps(sortButtonProps)
 
-const emit = defineEmits(['change', 'update:modelValue'])
+const emit = defineEmits<SortButtonEmits>()
 
+/**
+ * 处理点击事件，按排序循环切换排序方向
+ * descFirst 开启时循环：0 → -1 → 1 → (0 或 -1)
+ * descFirst 关闭时循环：0 → 1 → -1 → (0 或 1)
+ */
 function handleClick() {
   let { modelValue: value, allowReset, descFirst } = props
+  let next: SortButtonValue
   if (descFirst) {
     if (value === 0) {
-      value = -1
+      next = -1
     } else if (value === -1) {
-      value = 1
-    } else if (value === 1) {
-      if (allowReset) {
-        value = 0
-      } else {
-        value = -1
-      }
+      next = 1
+    } else {
+      next = allowReset ? 0 : -1
     }
   } else {
     if (value === 0) {
-      value = 1
+      next = 1
     } else if (value === 1) {
-      value = -1
-    } else if (value === -1) {
-      if (allowReset) {
-        value = 0
-      } else {
-        value = 1
-      }
+      next = -1
+    } else {
+      next = allowReset ? 0 : 1
     }
   }
-  emit('update:modelValue', value)
-  emit('change', {
-    value
-  })
+  emit('update:modelValue', next)
+  emit('change', { value: next })
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

@@ -75,9 +75,7 @@
     <!-- 控制当前步骤 -->
     <demo-block title="控制当前步骤">
       <view class="button-group">
-        <wd-button-group>
-          <wd-button type="primary" @click="startControlTour">跳转到第三步开始引导</wd-button>
-        </wd-button-group>
+        <wd-button type="primary" @click="startControlTour">跳转到第三步开始引导</wd-button>
       </view>
     </demo-block>
 
@@ -208,7 +206,7 @@ const basicSteps = [
   },
   {
     element: '#step3',
-    content: '这里可以是<H1>富文本</H1>'
+    content: '这里可以是<H1 style="line-height:1">富文本</H1>'
   },
   {
     element: '#step4',

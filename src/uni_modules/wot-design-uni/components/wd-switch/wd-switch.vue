@@ -15,7 +15,9 @@ export default {
   name: 'wd-switch',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -107,6 +109,6 @@ onBeforeMount(() => {
   }
 })
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @use './index.scss';
 </style>

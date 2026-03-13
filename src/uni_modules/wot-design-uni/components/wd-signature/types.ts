@@ -1,175 +1,197 @@
-/*
- * @Author: 810505339
- * @Date: 2025-01-10 20:03:57
- * @LastEditors: weisheng
- * @LastEditTime: 2025-03-23 16:35:14
- * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-signature/types.ts
- * 记得注释
- */
-import type { ComponentPublicInstance, ExtractPropTypes } from 'vue'
+import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
 import { baseProps, numericProp } from '../common/props'
 
 export const signatureProps = {
   ...baseProps,
+
   /**
    * 签名笔颜色
-   * 类型：string
-   * 默认值：#000
+   * 类型: string
+   * 默认值: '#000'
    */
   penColor: {
     type: String,
     default: '#000'
   },
+
   /**
    * 签名笔宽度
-   * 类型：number
-   * 默认值：3
+   * 类型: number
+   * 默认值: 3
    */
   lineWidth: {
     type: Number,
     default: 3
   },
+
   /**
-   * 清空按钮的文本
-   * 类型：string
+   * 保存按钮的文本
+   * 类型: string
+   * 默认值: 内置翻译 '确定'
+   */
+  confirmText: String,
+
+  /**
+   * 清除按钮的文本
+   * 类型: string
+   * 默认值: 内置翻译 '清除'
    */
   clearText: String,
+
   /**
    * 撤回按钮的文本
-   * 类型：string
+   * 类型: string
+   * 默认值: 内置翻译 '撤回'
    */
   revokeText: String,
+
   /**
    * 恢复按钮的文本
-   * 类型：string
+   * 类型: string
+   * 默认值: 内置翻译 '恢复'
    */
   restoreText: String,
   /**
-   * 确认按钮的文本
-   * 类型：string
-   */
-  confirmText: String,
-  /**
-   * 目标文件的类型
-   * 类型：string
-   * 默认值：png
+   * 导出图片的类型
+   * 类型: 'png' | 'jpg'
+   * 可选值: 'png' | 'jpg'
+   * 默认值: 'png'
    */
   fileType: {
-    type: String,
+    type: String as PropType<'png' | 'jpg'>,
     default: 'png'
   },
+
   /**
-   * 目标文件的质量
-   * 类型：number
-   * 默认值：1
+   * 导出图片的质量
+   * 类型: number
+   * 可选值: 0 ~ 1
+   * 默认值: 1
    */
   quality: {
     type: Number,
     default: 1
   },
+
   /**
    * 导出图片的缩放比例
-   * 类型：number
-   * 默认值：1
+   * 类型: number
+   * 默认值: 1
    */
   exportScale: {
     type: Number,
     default: 1
   },
+
   /**
    * 是否禁用签名板
-   * 类型：boolean
-   * 默认值：false
+   * 类型: boolean
+   * 默认值: false
    */
   disabled: {
     type: Boolean,
     default: false
   },
+
   /**
-   * 画布的高度
-   * 类型：number
+   * 画布高度
+   * 类型: string | number
+   * 默认值: -
    */
   height: numericProp,
+
   /**
-   * 画布的宽度
-   * 类型：number
+   * 画布宽度
+   * 类型: string | number
+   * 默认值: -
    */
   width: numericProp,
+
   /**
-   * 画板的背景色
-   * 类型：string
+   * 画板背景色
+   * 类型: string
+   * 默认值: -
    */
   backgroundColor: String,
+
   /**
    * 是否禁用画布滚动
-   * 类型：boolean
-   * 默认值：true
+   * 类型: boolean
+   * 默认值: true
    */
   disableScroll: {
     type: Boolean,
     default: true
   },
+
   /**
    * 是否开启历史记录
-   * 类型：boolean
-   * 默认值：false
+   * 类型: boolean
+   * 默认值: false
    */
   enableHistory: {
     type: Boolean,
     default: false
   },
+
   /**
    * 撤回和恢复的步长
-   * 类型：number
-   * 默认值：1
+   * 类型: number
+   * 默认值: 1
    */
   step: {
     type: Number,
     default: 1
   },
+
   /**
-   * 撤回按钮的文本
-   * 类型：string
-   * 默认值：撤销
+   * 撤销按钮文本
+   * 类型: string
+   * 默认值: 内置翻译 '撤销'
    */
   undoText: String,
+
   /**
-   * 恢复按钮的文本
-   * 类型：string
-   * 默认值：恢复
+   * 恢复按钮文本
+   * 类型: string
+   * 默认值: 内置翻译 '恢复'
    */
   redoText: String,
+
   /**
-   * 是否启用压感模式(笔锋)
-   * 类型：boolean
-   * 默认值：false
+   * 是否开启压感模式
+   * 类型: boolean
+   * 默认值: false
    */
   pressure: {
     type: Boolean,
     default: false
   },
+
   /**
-   * 压感模式下笔画最小宽度
-   * 类型：number
-   * 默认值：2
-   */
-  minWidth: {
-    type: Number,
-    default: 2
-  },
-  /**
-   * 压感模式下笔画最大宽度
-   * 类型：number
-   * 默认值：6
+   * 压感模式下的最大笔触宽度
+   * 类型: number
+   * 默认值: 6
    */
   maxWidth: {
     type: Number,
     default: 6
   },
+
   /**
-   * 最小速度阈值，影响压感模式下的笔画宽度变化
-   * 类型：number
-   * 默认值：1.5
+   * 压感模式下的最小笔触宽度
+   * 类型: number
+   * 默认值: 2
+   */
+  minWidth: {
+    type: Number,
+    default: 2
+  },
+
+  /**
+   * 最小速度阈值
+   * 类型: number
+   * 默认值: 1.5
    */
   minSpeed: {
     type: Number,
@@ -178,86 +200,96 @@ export const signatureProps = {
 }
 
 /**
- * 签名结果类型
- * @property tempFilePath - 生成图片的临时路径
- * @property success - 是否成功生成图片
- * @property width - 生成图片的宽度
- * @property height - 生成图片的高度
+ * 签名结果
  */
 export type SignatureResult = {
+  /** 生成图片的临时路径 */
   tempFilePath: string
+  /** 是否成功生成图片 */
   success: boolean
+  /** 生成图片的宽度 */
   width: number
+  /** 生成图片的高度 */
   height: number
 }
 
 /**
- * 签名线条类型
- * @property points - 线条所包含的所有点的数组
- * @property color - 线条颜色
- * @property width - 线条宽度
- * @property backgroundColor - 线条背景色 (可选)
- * @property isPressure - 是否为笔锋模式的线条 (可选)
+ * 签名线条
  */
 export interface Line {
+  /** 线条轨迹点序列 */
   points: Point[]
+  /** 线条颜色 */
   color: string
+  /** 线条宽度 */
   width: number
+  /** 线条背景色 */
   backgroundColor?: string
+  /** 是否为压感笔迹 */
   isPressure?: boolean
 }
 
 /**
- * 签名点位类型
- * @property x - 点的横坐标
- * @property y - 点的纵坐标
- * @property t - 点的时间戳
- * @property speed - 当前点的绘制速度 (可选)
- * @property distance - 与上一个点的距离 (可选)
- * @property lineWidth - 当前点的线宽 (可选，用于笔锋模式)
- * @property lastX1 - 贝塞尔曲线第一个控制点的x坐标 (可选)
- * @property lastY1 - 贝塞尔曲线第一个控制点的y坐标 (可选)
- * @property lastX2 - 贝塞尔曲线第二个控制点的x坐标 (可选)
- * @property lastY2 - 贝塞尔曲线第二个控制点的y坐标 (可选)
- * @property isFirstPoint - 是否为线条的第一个点 (可选)
+ * 签名点位坐标
  */
 export interface Point {
+  /** X 轴坐标 */
   x: number
+  /** Y 轴坐标 */
   y: number
+  /** 时间戳 (ms) */
   t: number
+  /** 移动速度 (px/ms) */
   speed?: number
+  /** 与前一点距离 (px) */
   distance?: number
+  /** 当前点线宽 */
   lineWidth?: number
+  /** 贝塞尔控制点 lastX1 */
   lastX1?: number
+  /** 贝塞尔控制点 lastY1 */
   lastY1?: number
+  /** 贝塞尔控制点 lastX2 */
   lastX2?: number
+  /** 贝塞尔控制点 lastY2 */
   lastY2?: number
+  /** 是否为线条起点 */
   isFirstPoint?: boolean
 }
 
 /**
- * 签名组件暴露的方法类型
- * @property init - 初始化签名板
- * @property clear - 清除签名
- * @property confirm - 确认签名并生成图片
- * @property restore - 恢复上一步操作
- * @property revoke - 撤销上一步操作
+ * 签名组件暴露的方法
  */
 export type SignatureExpose = {
-  /** 初始化签名板
-   * @param forceUpdate - 是否强制更新
+  /**
+   * 初始化签名板
+   * @param forceUpdate 是否强制重新获取 dom 节点计算尺寸，默认 false
    */
   init: (forceUpdate?: boolean) => void
-  /** 点击清除按钮清除签名 */
+  /**
+   * 清空签名内容
+   */
   clear: () => void
-  /** 点击确定按钮 */
+  /**
+   * 确认签名，生成图片临时路径并触发 'confirm' 事件
+   */
   confirm: () => void
-  /* 点击恢复 */
+  /**
+   * 恢复一次撤销的操作 (需启用历史记录)
+   */
   restore: () => void
-  /* 点击撤回 */
+  /**
+   * 撤销一次签笔记录 (需启用历史记录)
+   */
   revoke: () => void
 }
 
+/**
+ * 签名组件 Props
+ */
 export type SignatureProps = ExtractPropTypes<typeof signatureProps>
 
-export type SignatureInstance = ComponentPublicInstance<SignatureExpose, SignatureProps>
+/**
+ * 签名组件实例
+ */
+export type SignatureInstance = ComponentPublicInstance<SignatureProps, SignatureExpose>

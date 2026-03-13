@@ -24,7 +24,7 @@
         >
           <wd-cell-group :title="item.title" border>
             <wd-cell v-for="(cell, index) in item.items" :key="index" :title="cell.title" :label="cell.label">
-              <wd-icon name="github-filled" size="24px"></wd-icon>
+              <wd-icon name="code" size="24px"></wd-icon>
             </wd-cell>
           </wd-cell-group>
         </scroll-view>

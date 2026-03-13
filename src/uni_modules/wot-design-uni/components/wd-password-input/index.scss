@@ -1,44 +1,48 @@
-@import "../common/abstracts/variable";
-@import "../common/abstracts/mixin";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(password-input) {
-    @include e(item) {
-      color: $-dark-color;
-      background: $-dark-background2;
-
-      @include when(border) {
-        border-color: $-dark-border-color;
-      }
-    }
-
-    @include e(mask) {
-      background-color: $-dark-color;
-    }
-
-    @include e(cursor) {
-      background-color: $-dark-color;
-    }
-
-    @include e(info) {
-      color: $-dark-color;
-
-      @include when(border) {
-        color: $-dark-color2;
-      }
-    }
-  }
-}
+// 输入区域高度
+$password-input-height: var(--wot-password-input-height, $n50) !default;
+// 组件外边距
+$password-input-margin: var(--wot-password-input-margin, $n16) !default;
+// 输入字号
+$password-input-font-size: var(--wot-password-input-font-size, $typography-title-size-large) !default;
+// 输入格圆角
+$password-input-radius: var(--wot-password-input-radius, $n6) !default;
+// 输入格背景色
+$password-input-bg: var(--wot-password-input-bg, $filled-oppo) !default;
+// 提示信息颜色
+$password-input-info-color: var(--wot-password-input-info-color, $text-auxiliary) !default;
+// 提示信息字号
+$password-input-info-font-size: var(--wot-password-input-info-font-size, $typography-body-size-main) !default;
+// 边框颜色
+$password-input-border-color: var(--wot-password-input-border-color, $border-main) !default;
+// 错误提示颜色
+$password-input-error-info-color: var(--wot-password-input-error-info-color, $danger-main) !default;
+// 密码点尺寸
+$password-input-dot-size: var(--wot-password-input-dot-size, $n10) !default;
+// 密码点颜色
+$password-input-dot-color: var(--wot-password-input-dot-color, $text-main) !default;
+// 输入文本颜色
+$password-input-text-color: var(--wot-password-input-text-color, $text-main) !default;
+// 光标颜色
+$password-input-cursor-color: var(--wot-password-input-cursor-color, $text-main) !default;
+// 光标宽度
+$password-input-cursor-width: var(--wot-password-input-cursor-width, $n1) !default;
+// 光标高度
+$password-input-cursor-height: var(--wot-password-input-cursor-height, 40%) !default;
+// 光标闪烁周期
+$password-input-cursor-duration: var(--wot-password-input-cursor-duration, 1s) !default;
 
 @include b(password-input) {
   position: relative;
-  margin: 0 $-password-input-margin;
+  margin: 0 $password-input-margin;
   user-select: none;
 
   @include e(security) {
     display: flex;
     width: 100%;
-    height: $-password-input-height;
+    height: $password-input-height;
     cursor: pointer;
   }
 
@@ -49,26 +53,26 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: $-password-input-text-color;
-    font-size: $-password-input-font-size;
+    color: $password-input-text-color;
+    font-size: $password-input-font-size;
     line-height: 1.2;
-    background: $-password-input-background;
+    background: $password-input-bg;
 
     @include when(border) {
-      border: 1px solid $-password-input-border-color;
+      border: 1px solid $password-input-border-color;
 
       &:not(:last-child) {
         border-right: none;
       }
 
       &:first-child {
-        border-top-left-radius: $-password-input-radius;
-        border-bottom-left-radius: $-password-input-radius;
+        border-top-left-radius: $password-input-radius;
+        border-bottom-left-radius: $password-input-radius;
       }
 
       &:last-child {
-        border-top-right-radius: $-password-input-radius;
-        border-bottom-right-radius: $-password-input-radius;
+        border-top-right-radius: $password-input-radius;
+        border-bottom-right-radius: $password-input-radius;
       }
     }
   }
@@ -77,9 +81,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: $-password-input-dot-size;
-    height: $-password-input-dot-size;
-    background: $-password-input-dot-color;
+    width: $password-input-dot-size;
+    height: $password-input-dot-size;
+    background: $password-input-dot-color;
     border-radius: 100%;
     transform: translate(-50%, -50%);
     visibility: hidden;
@@ -89,21 +93,21 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: $-password-input-cursor-width;
-    height: $-password-input-cursor-height;
-    background: $-password-input-cursor-color;
+    width: $password-input-cursor-width;
+    height: $password-input-cursor-height;
+    background: $password-input-cursor-color;
     transform: translate(-50%, -50%);
-    animation: $-password-input-cursor-duration cursor-flicker infinite;
+    animation: $password-input-cursor-duration cursor-flicker infinite;
   }
 
   @include e(info) {
-    margin-top: $-password-input-margin;
-    font-size: $-password-input-info-font-size;
+    margin-top: $password-input-margin;
+    font-size: $password-input-info-font-size;
     text-align: center;
-    color: $-password-input-info-color;
+    color: $password-input-info-color;
 
     @include when(error) {
-      color: $-password-input-error-info-color;
+      color: $password-input-error-info-color;
     }
 
   }

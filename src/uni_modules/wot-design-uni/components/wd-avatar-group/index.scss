@@ -1,17 +1,11 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-@import '../wd-avatar/common';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
 @include b(avatar-group) {
   display: inline-flex;
   align-items: center;
-  gap: 0;
 
-  @include e(item) {
-    // 样式已在 common.scss 中定义
-  }
-
-  @include edeep(collapse) {
-    font-size: $-avatar-group-collapse-font-size;
+  @include when(vertical) {
+    flex-direction: column;
   }
 }

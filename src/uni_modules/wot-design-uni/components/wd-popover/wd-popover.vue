@@ -1,12 +1,11 @@
 <template>
-  <view :class="`wd-popover ${customClass}`" :style="customStyle" id="popover" @click.stop="popover.noop">
-    <!-- 使用插槽时无法获取正确宽高 -->
+  <view :class="`wd-popover ${customClass}`" :style="customStyle" id="popover" @click.stop>
     <view class="wd-popover__pos wd-popover__hidden" id="pos">
       <view :class="`wd-popover__container ${customPop}`">
-        <view v-if="!useContentSlot && mode === 'normal'" class="wd-popover__inner">
+        <view v-if="!$slots.content && mode === 'normal'" class="wd-popover__inner">
           {{ content }}
         </view>
-        <view v-if="!useContentSlot && mode === 'menu' && typeof content === 'object'" class="wd-popover__menu">
+        <view v-if="!$slots.content && mode === 'menu' && typeof content === 'object'" class="wd-popover__menu">
           <view v-for="(item, index) in content" :key="index" class="wd-popover__menu-inner" @click="menuClick(index)">
             <wd-icon v-if="item.iconClass" :name="item.iconClass" custom-class="wd-popover__icon" />
             <text>{{ item.content }}</text>
@@ -14,34 +13,40 @@
         </view>
       </view>
     </view>
-    <wd-transition custom-class="wd-popover__pos" :custom-style="popover.popStyle.value" :show="showPopover" name="fade" :duration="200">
-      <view :class="`wd-popover__container ${customPop}`">
+    <wd-transition
+      custom-class="wd-popover__pos"
+      :custom-style="popover.popStyle.value"
+      :show="showPopover"
+      name="fade"
+      @after-enter="handleAfterEnter"
+    >
+      <view :class="`wd-popover__container ${customPop}`" id="content">
         <view
           v-if="props.visibleArrow"
           :class="`wd-popover__arrow ${popover.arrowClass.value} ${customArrow}`"
           :style="popover.arrowStyle.value"
         ></view>
-        <!-- 普通模式 -->
-        <view v-if="!useContentSlot && mode === 'normal'" class="wd-popover__inner">
-          {{ content }}
-        </view>
-        <!-- 列表模式 -->
-        <view v-if="!useContentSlot && mode === 'menu'" class="wd-popover__menu">
-          <view
-            v-for="(item, index) in content"
-            :key="index"
-            class="wd-popover__menu-inner"
-            @click="menuClick(index)"
-            :style="index === 0 ? 'border-top: none' : ''"
-          >
-            <wd-icon v-if="typeof item === 'object' && item.iconClass" :name="item.iconClass" custom-class="wd-popover__icon" />
-            <view style="display: inline-block">{{ typeof item === 'object' && item.content ? item.content : '' }}</view>
+        <slot name="content">
+          <!-- 普通模式 -->
+          <view v-if="mode === 'normal'" class="wd-popover__inner">
+            {{ content }}
           </view>
-        </view>
-        <!-- 用户自定义样式 -->
-        <slot name="content" v-else />
+          <!-- 列表模式 -->
+          <view v-if="mode === 'menu'" class="wd-popover__menu">
+            <view
+              v-for="(item, index) in content"
+              :key="index"
+              :class="['wd-popover__menu-inner', index === 0 ? 'is-first' : '']"
+              @click="menuClick(index)"
+            >
+              <wd-icon v-if="isObj(item) && item.iconClass" :name="item.iconClass" custom-class="wd-popover__menu-icon" />
+              <view class="wd-popover__text">{{ isObj(item) && item.content ? item.content : '' }}</view>
+            </view>
+          </view>
+        </slot>
+
+        <wd-icon v-if="showClose" name="close" custom-class="wd-popover__close-icon" @click="toggle"></wd-icon>
       </view>
-      <wd-icon v-if="showClose" name="close" custom-class="wd-popover__close-icon" @click="toggle"></wd-icon>
     </wd-transition>
     <view @click="toggle" class="wd-popover__target" id="target">
       <slot />
@@ -53,7 +58,9 @@
 export default {
   name: 'wd-popover',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -68,7 +75,7 @@ import { usePopover } from '../composables/usePopover'
 import { closeOther, pushToQueue, removeFromQueue } from '../common/clickoutside'
 import { type Queue, queueKey } from '../composables/useQueue'
 import { popoverProps, type PopoverExpose } from './types'
-import { isArray } from '../common/util'
+import { isArray, isObj } from '../common/util'
 
 const props = defineProps(popoverProps)
 const emit = defineEmits(['update:modelValue', 'menuclick', 'change', 'open', 'close'])
@@ -133,7 +140,7 @@ onBeforeMount(() => {
   } else {
     pushToQueue(proxy)
   }
-  popover.showStyle.value = showPopover.value ? 'opacity: 1;' : 'opacity: 0;'
+  popover.showStyle.value = showPopover.value ? 'display: inline-block;' : 'display: none;'
 })
 
 onBeforeUnmount(() => {
@@ -144,6 +151,10 @@ onBeforeUnmount(() => {
   }
 })
 
+/**
+ * 处理菜单列表项点击
+ * @param {number} index 点击的项索引
+ */
 function menuClick(index: number) {
   updateModelValue(false)
   emit('menuclick', {
@@ -152,19 +163,39 @@ function menuClick(index: number) {
   })
 }
 
+/**
+ * 切换 popover 的显示状态
+ */
 function toggle() {
   if (props.disabled) return
   updateModelValue(!showPopover.value)
 }
 
+/**
+ * 打开 popover
+ */
 function open() {
   updateModelValue(true)
 }
 
+/**
+ * 关闭 popover
+ */
 function close() {
   updateModelValue(false)
 }
 
+/**
+ * 过渡动画完成后重新测量弹出层尺寸并更新定位
+ */
+function handleAfterEnter() {
+  popover.updatePosition(props.placement, props.offset)
+}
+
+/**
+ * 更新 popover 显示状态
+ * @param {boolean} value 显示状态
+ */
 function updateModelValue(value: boolean) {
   showPopover.value = value
   emit('update:modelValue', value)
@@ -172,9 +203,10 @@ function updateModelValue(value: boolean) {
 
 defineExpose<PopoverExpose>({
   open,
-  close
+  close,
+  updatePosition: () => popover.updatePosition(props.placement, props.offset)
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

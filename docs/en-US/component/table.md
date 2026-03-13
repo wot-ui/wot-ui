@@ -14,9 +14,9 @@ Set table data through `data`.
 
 ```html
 <wd-table :data="dataList" :height="400">
-  <wd-table-col prop="name" label="Name"></wd-table-col>
-  <wd-table-col prop="school" label="School"></wd-table-col>
-  <wd-table-col prop="major" label="Major"></wd-table-col>
+  <wd-table-column prop="name" label="Name"></wd-table-column>
+  <wd-table-column prop="school" label="School"></wd-table-column>
+  <wd-table-column prop="major" label="Major"></wd-table-column>
 </wd-table>
 ```
 
@@ -51,9 +51,9 @@ Currently only supports fixing on the left side, and the arrangement order of fi
 
 ```html
 <wd-table :data="dataList" :height="400">
-  <wd-table-col prop="name" label="Name" fixed></wd-table-col>
-  <wd-table-col prop="school" label="School"></wd-table-col>
-  <wd-table-col prop="major" label="Major"></wd-table-col>
+  <wd-table-column prop="name" label="Name" fixed></wd-table-column>
+  <wd-table-column prop="school" label="School"></wd-table-column>
+  <wd-table-column prop="major" label="Major"></wd-table-column>
 </wd-table>
 ```
 
@@ -63,15 +63,15 @@ Set whether to display the index column through `index`, default is `false`. You
 
 ```html
 <wd-table :data="dataList" height="328px" :index="true" :height="400">
-  <wd-table-col prop="name" label="Name" sortable></wd-table-col>
-  <wd-table-col prop="grade" label="Score" sortable></wd-table-col>
-  <wd-table-col prop="hobby" label="Description" sortable :width="160"></wd-table-col>
+  <wd-table-column prop="name" label="Name" sortable></wd-table-column>
+  <wd-table-column prop="grade" label="Score" sortable></wd-table-column>
+  <wd-table-column prop="hobby" label="Description" sortable :width="160"></wd-table-column>
 </wd-table>
 
 <wd-table :data="dataList" height="328px" :index="{ align: 'center', width: 200 }">
-  <wd-table-col prop="name" label="Name" sortable align="center"></wd-table-col>
-  <wd-table-col prop="grade" label="Score" sortable align="center"></wd-table-col>
-  <wd-table-col prop="hobby" label="Description" sortable :width="160"></wd-table-col>
+  <wd-table-column prop="name" label="Name" sortable align="center"></wd-table-column>
+  <wd-table-column prop="grade" label="Score" sortable align="center"></wd-table-column>
+  <wd-table-column prop="hobby" label="Description" sortable :width="160"></wd-table-column>
 </wd-table>
 ```
 
@@ -81,9 +81,9 @@ Set whether to display striped table through `stripe`, default is `true`.
 
 ```html
 <wd-table :data="dataList" :stripe="false" :height="400">
-  <wd-table-col prop="name" label="Name"></wd-table-col>
-  <wd-table-col prop="school" label="School"></wd-table-col>
-  <wd-table-col prop="major" label="Major"></wd-table-col>
+  <wd-table-column prop="name" label="Name"></wd-table-column>
+  <wd-table-column prop="school" label="School"></wd-table-column>
+  <wd-table-column prop="major" label="Major"></wd-table-column>
 </wd-table>
 ```
 
@@ -93,9 +93,9 @@ Set whether to display table border through `border`, default is `true`.
 
 ```html
 <wd-table :data="dataList" :border="false" :height="400">
-  <wd-table-col prop="name" label="Name"></wd-table-col>
-  <wd-table-col prop="school" label="School"></wd-table-col>
-  <wd-table-col prop="major" label="Major"></wd-table-col>
+  <wd-table-column prop="name" label="Name"></wd-table-column>
+  <wd-table-column prop="school" label="School"></wd-table-column>
+  <wd-table-column prop="major" label="Major"></wd-table-column>
 </wd-table>
 ```
 
@@ -105,9 +105,9 @@ Set table height through `height`, after setting height, the header will be auto
 
 ```html
 <wd-table :data="dataList" :height="400">
-  <wd-table-col prop="name" label="Name"></wd-table-col>
-  <wd-table-col prop="school" label="School"></wd-table-col>
-  <wd-table-col prop="major" label="Major"></wd-table-col>
+  <wd-table-column prop="name" label="Name"></wd-table-column>
+  <wd-table-column prop="school" label="School"></wd-table-column>
+  <wd-table-column prop="major" label="Major"></wd-table-column>
 </wd-table>
 ```
 
@@ -117,9 +117,9 @@ When there are columns participating in sorting, clicking will trigger the `sort
 
 ```html
 <wd-table :data="dataList" @sort-method="handleSort" :height="400">
-  <wd-table-col prop="name" label="Name"></wd-table-col>
-  <wd-table-col prop="school" label="School" sortable></wd-table-col>
-  <wd-table-col prop="major" label="Major"></wd-table-col>
+  <wd-table-column prop="name" label="Name"></wd-table-column>
+  <wd-table-column prop="school" label="School" sortable></wd-table-column>
+  <wd-table-column prop="major" label="Major"></wd-table-column>
 </wd-table>
 ```
 
@@ -138,20 +138,20 @@ Through `Scoped slot` you can get the data of `row` and `index`, usage refers to
 
 ```html
 <wd-table :data="dataList" @sort-method="handleSort" :height="400">
-  <wd-table-col prop="name" label="Name" fixed="true" width="320rpx" sortable></wd-table-col>
-  <wd-table-col prop="grade" label="Score" width="220rpx" sortable>
+  <wd-table-column prop="name" label="Name" fixed="true" width="320rpx" sortable></wd-table-column>
+  <wd-table-column prop="grade" label="Score" width="220rpx" sortable>
     <template #value="{row}">
       <view class="custom-class">
         <text>{{ row.grade }}</text>
         <text>YoY {{ row.compare }}</text>
       </view>
     </template>
-  </wd-table-col>
-  <wd-table-col prop="hobby" label="Description" sortable></wd-table-col>
-  <wd-table-col prop="school" label="School"></wd-table-col>
-  <wd-table-col prop="major" label="Major"></wd-table-col>
-  <wd-table-col prop="gender" label="Gender"></wd-table-col>
-  <wd-table-col prop="graduation" label="Graduation Time"></wd-table-col>
+  </wd-table-column>
+  <wd-table-column prop="hobby" label="Description" sortable></wd-table-column>
+  <wd-table-column prop="school" label="School"></wd-table-column>
+  <wd-table-column prop="major" label="Major"></wd-table-column>
+  <wd-table-column prop="gender" label="Gender"></wd-table-column>
+  <wd-table-column prop="graduation" label="Graduation Time"></wd-table-column>
 </wd-table>
 ```
 

@@ -1,3 +1,12 @@
+<!--
+ * @Author: weisheng
+ * @Date: 2025-12-18 14:30:46
+ * @LastEditTime: 2026-02-10 16:59:28
+ * @LastEditors: weisheng
+ * @Description: 
+ * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-tabbar/wd-tabbar.vue
+ * 记得注释
+-->
 <template>
   <view :class="{ 'wd-tabbar__placeholder': fixed && placeholder && safeAreaInsetBottom && shape === 'round' }" :style="{ height: addUnit(height) }">
     <view
@@ -15,7 +24,9 @@ export default {
   name: 'wd-tabbar',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -26,6 +37,7 @@ import type { TabbarItem } from '../wd-tabbar-item/types'
 import { addUnit, getRect, isDef, objToStyle } from '../common/util'
 import { useChildren } from '../composables/useChildren'
 import { TABBAR_KEY, tabbarProps } from './types'
+import { callInterceptor } from '../common/interceptor'
 
 const props = defineProps(tabbarProps)
 const emit = defineEmits(['change', 'update:modelValue'])
@@ -70,10 +82,16 @@ onMounted(() => {
  */
 function setChange(child: TabbarItem) {
   let active = child.name
-  emit('update:modelValue', active)
-  emit('change', {
-    value: active
-  })
+  if (active === props.modelValue) {
+    return
+  }
+  const change = () => {
+    emit('update:modelValue', active)
+    emit('change', {
+      value: active
+    })
+  }
+  callInterceptor(props.beforeChange, { args: [active], done: change })
 }
 
 function setPlaceholderHeight() {
@@ -86,6 +104,6 @@ function setPlaceholderHeight() {
   })
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

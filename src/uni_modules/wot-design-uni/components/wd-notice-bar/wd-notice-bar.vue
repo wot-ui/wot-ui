@@ -11,15 +11,18 @@
         <slot v-else>{{ currentText }}</slot>
       </view>
     </view>
-    <wd-icon v-if="closable" custom-class="wd-notice-bar__suffix" name="close-bold" @click="handleClose"></wd-icon>
-    <slot v-else name="suffix"></slot>
+    <slot name="suffix">
+      <wd-icon v-if="closable" custom-class="wd-notice-bar__suffix" name="close" @click="handleClose"></wd-icon>
+    </slot>
   </view>
 </template>
 <script lang="ts">
 export default {
   name: 'wd-notice-bar',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -31,6 +34,7 @@ import wdIcon from '../wd-icon/wd-icon.vue'
 import { ref, watch, nextTick, computed, getCurrentInstance, type CSSProperties, onMounted, onActivated, onDeactivated, reactive } from 'vue'
 import { getRect, isArray, isDef, objToStyle } from '../common/util'
 import { type NoticeBarExpose, noticeBarProps } from './types'
+import { onHide, onShow } from '@dcloudio/uni-app'
 const $wrap = '.wd-notice-bar__wrap'
 const $content = '.wd-notice-bar__content'
 
@@ -113,11 +117,11 @@ onMounted(() => {
   // #endif
 })
 
-onActivated(() => {
+onShow(() => {
   startTransition()
 })
 
-onDeactivated(() => {
+onHide(() => {
   stopTransition()
 })
 
@@ -261,6 +265,6 @@ function handleClick() {
 defineExpose<NoticeBarExpose>({ reset })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

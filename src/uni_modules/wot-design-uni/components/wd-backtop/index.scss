@@ -1,25 +1,65 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
+
+/* ================================ 组件SCSS变量 ================================ */
+/* 背景与边框 */
+$backtop-bg: var(--wot-backtop-bg, $filled-oppo) !default;
+$backtop-border-color: var(--wot-backtop-border-color, $border-main) !default;
+
+/* 尺寸 */
+$backtop-width: var(--wot-backtop-width, $n48) !default;
+$backtop-height: var(--wot-backtop-height, $n48) !default;
+
+/* 圆角 */
+$backtop-radius: var(--wot-backtop-radius, $radius-main) !default;
+$backtop-radius-circle: var(--wot-backtop-radius-circle, $radius-radius-full) !default;
+
+/* 图标 */
+$backtop-color: var(--wot-backtop-color, $icon-main) !default;
+$backtop-icon-size: var(--wot-backtop-icon-size, $n20) !default;
+
+/* 文字 */
+$backtop-text-font-size: var(--wot-backtop-text-font-size, $typography-label-size-main) !default;
+$backtop-text-color: var(--wot-backtop-text-color, $text-main) !default;
+$backtop-text-line-height: var(--wot-backtop-text-line-height, $typography-label-line--height-size-main) !default;
+
+/* 层级 */
+$backtop-z-index: var(--wot-backtop-z-index, 100) !default;
 
 @include b(backtop) {
   position: fixed;
-  background-color: $-backtop-bg;
-  width: 40px;
-  height: 40px;
+  background-color: $backtop-bg;
+  width: $backtop-width;
+  height: $backtop-height;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $-color-gray-8;
+  color: $backtop-color;
+  z-index: $backtop-z-index;
+  border: 1px solid $backtop-border-color;
+
+  @include e(content) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  @include e(text) {
+    font-size: $backtop-text-font-size;
+    line-height: $backtop-text-line-height;
+    color: $backtop-text-color;
+  }
 
   @include edeep(backicon) {
-    font-size: $-backtop-icon-size;
+    font-size: $backtop-icon-size;
   }
 
   @include when(circle) {
-    border-radius: 50%;
+    border-radius: $backtop-radius-circle;
   }
 
   @include when(square) {
-    border-radius: 4px;
+    border-radius: $backtop-radius;
   }
 }

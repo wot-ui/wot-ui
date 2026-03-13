@@ -2,15 +2,15 @@
   <view :class="rootClass">
     <!-- 前缀插槽 -->
     <slot name="prefix">
-      <wd-text :type="props.type" :color="props.color" :size="`${props.fontSize * 0.7}px`" :text="props.prefix"></wd-text>
+      <wd-text custom-class="wd-count-to__separator-text" :type="type" :color="color" :text="prefix"></wd-text>
     </slot>
     <!-- 默认文本插槽 -->
     <slot>
-      <wd-text :type="props.type" :color="props.color" :size="`${props.fontSize}px`" :text="timeText"></wd-text>
+      <wd-text custom-class="wd-count-to__main-text" :type="type" :color="color" :text="timeText"></wd-text>
     </slot>
     <!-- 后缀插槽 -->
     <slot name="suffix">
-      <wd-text :type="props.type" :color="props.color" :size="`${props.fontSize * 0.7}px`" :text="props.suffix"></wd-text>
+      <wd-text custom-class="wd-count-to__separator-text" :type="type" :color="color" :text="suffix"></wd-text>
     </slot>
   </view>
 </template>
@@ -19,7 +19,9 @@
 export default {
   name: 'wd-count-to',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -29,10 +31,9 @@ export default {
 <script lang="ts" setup>
 import wdText from '../wd-text/wd-text.vue'
 import { computed, watch, onMounted } from 'vue'
-import { countToProps } from './types'
+import { countToProps, type CountToExpose } from './types'
 import { easingFn, isNumber } from '../common/util'
 import { useCountDown } from '../composables/useCountDown'
-import type { CountDownExpose } from '../wd-count-down/types'
 
 const props = defineProps(countToProps)
 const emit = defineEmits(['mounted', 'finish'])
@@ -117,9 +118,9 @@ function formatNumber(num: any): string {
   return integerPart + decimalPart
 }
 
-defineExpose<CountDownExpose>({ start, reset: resetTime, pause })
+defineExpose<CountToExpose>({ start, reset: resetTime, pause })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

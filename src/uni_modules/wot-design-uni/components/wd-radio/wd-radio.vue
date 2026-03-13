@@ -28,7 +28,9 @@
 export default {
   name: 'wd-radio',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -47,15 +49,15 @@ const props = defineProps(radioProps)
 const { parent: radioGroup } = useParent(RADIO_GROUP_KEY)
 
 const isChecked = computed(() => {
-  if (radioGroup) {
-    return props.value === radioGroup.props.modelValue
+  if (radioGroup.value) {
+    return props.value === radioGroup.value.props.modelValue
   } else {
     return false
   }
 })
 
 const typeValue = computed(() => {
-  return props.type || (getPropByPath(radioGroup, 'props.type') as RadioType)
+  return props.type || (getPropByPath(radioGroup.value, 'props.type') as RadioType)
 })
 
 const iconValue = computed(() => {
@@ -71,7 +73,7 @@ const iconValue = computed(() => {
       icon = isChecked.value ? 'check-circle-radio-fill' : 'uncheck-circle'
       break
     case 'button':
-      icon = isChecked.value ? 'selector-check' : ''
+      icon = isChecked.value ? 'check' : ''
       break
     default:
       break
@@ -80,18 +82,18 @@ const iconValue = computed(() => {
 })
 
 const checkedColorValue = computed(() => {
-  return props.checkedColor || getPropByPath(radioGroup, 'props.checkedColor')
+  return props.checkedColor || getPropByPath(radioGroup.value, 'props.checkedColor')
 })
 
 const uncheckedColorValue = computed(() => {
-  return props.uncheckedColor || getPropByPath(radioGroup, 'props.uncheckedColor')
+  return props.uncheckedColor || getPropByPath(radioGroup.value, 'props.uncheckedColor')
 })
 
 const readonlyValue = computed(() => {
   if (isDef(props.readonly)) {
     return props.readonly
   } else {
-    return getPropByPath(radioGroup, 'props.readonly')
+    return getPropByPath(radioGroup.value, 'props.readonly')
   }
 })
 
@@ -114,7 +116,7 @@ const disabledValue = computed(() => {
   if (isDef(props.disabled)) {
     return props.disabled
   } else {
-    return getPropByPath(radioGroup, 'props.disabled')
+    return getPropByPath(radioGroup.value, 'props.disabled')
   }
 })
 
@@ -122,7 +124,7 @@ const directionValue = computed(() => {
   if (isDef(props.direction)) {
     return props.direction
   } else {
-    return getPropByPath(radioGroup, 'props.direction') as RadioDirection
+    return getPropByPath(radioGroup.value, 'props.direction') as RadioDirection
   }
 })
 
@@ -130,7 +132,7 @@ const placementValue = computed<RadioPlacement>(() => {
   if (isDef(props.placement)) {
     return props.placement
   } else {
-    return getPropByPath(radioGroup, 'props.placement')
+    return getPropByPath(radioGroup.value, 'props.placement')
   }
 })
 
@@ -147,16 +149,16 @@ watch(
  */
 function handleClick() {
   const { value } = props
-  if (!disabledValue.value && !readonlyValue.value && radioGroup && isDef(value)) {
-    const allowUncheck = radioGroup.props.allowUncheck
+  if (!disabledValue.value && !readonlyValue.value && radioGroup.value && isDef(value)) {
+    const allowUncheck = radioGroup.value.props.allowUncheck
     if (allowUncheck && isChecked.value) {
-      radioGroup.updateValue(null)
+      radioGroup.value.updateValue(null)
     } else {
-      radioGroup.updateValue(value)
+      radioGroup.value.updateValue(value)
     }
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @use './index.scss';
 </style>

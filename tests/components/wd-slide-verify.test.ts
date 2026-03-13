@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import WdSlideVerify from '@/uni_modules/wot-design-uni/components/wd-slide-verify/wd-slide-verify.vue'
 
@@ -14,8 +14,6 @@ describe('wd-slide-verify', () => {
   test('自定义属性', () => {
     const wrapper = mount(WdSlideVerify, {
       props: {
-        width: 400,
-        height: 50,
         text: 'Custom Text',
         successText: 'Success!',
         backgroundColor: '#000000',
@@ -28,12 +26,7 @@ describe('wd-slide-verify', () => {
     })
 
     const root = wrapper.find('.wd-slide-verify')
-    expect(root.attributes('style')).toContain('width: 400px')
-    expect(root.attributes('style')).toContain('height: 50px')
     expect(root.attributes('style')).toContain('background-color: rgb(0, 0, 0)')
-
-    const track = wrapper.find('.wd-slide-verify__track')
-    expect(track.attributes('style')).toContain('--wot-slide-verify-track-width: 400px')
 
     expect(wrapper.find('.wd-slide-verify__text').text()).toBe('Custom Text')
 
@@ -88,11 +81,12 @@ describe('wd-slide-verify', () => {
   test('滑动验证成功', async () => {
     const wrapper = mount(WdSlideVerify, {
       props: {
-        width: 300,
-        height: 40,
         tolerance: 10
       }
     })
+
+    // 等待 onMounted 内的 getRect 测量完成（mock 返回 300×40）
+    await flushPromises()
 
     const button = wrapper.find('.wd-slide-verify__button')
 
@@ -128,12 +122,10 @@ describe('wd-slide-verify', () => {
 
   test('滑动验证失败', async () => {
     vi.useFakeTimers()
-    const wrapper = mount(WdSlideVerify, {
-      props: {
-        width: 300,
-        height: 40
-      }
-    })
+    const wrapper = mount(WdSlideVerify)
+
+    // 等待 onMounted 内的 getRect 测量完成（mock 返回 300×40）
+    await flushPromises()
 
     const button = wrapper.find('.wd-slide-verify__button')
 
@@ -164,12 +156,10 @@ describe('wd-slide-verify', () => {
   })
 
   test('重置方法', async () => {
-    const wrapper = mount(WdSlideVerify, {
-      props: {
-        width: 300,
-        height: 40
-      }
-    })
+    const wrapper = mount(WdSlideVerify)
+
+    // 等待 onMounted 内的 getRect 测量完成（mock 返回 300×40）
+    await flushPromises()
 
     // Simulate success first
     const button = wrapper.find('.wd-slide-verify__button')

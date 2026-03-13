@@ -8,7 +8,9 @@ export default {
   name: 'wd-checkbox-group',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -141,6 +143,6 @@ defineExpose<CheckboxGroupExpose>({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use './index.scss';
 </style>

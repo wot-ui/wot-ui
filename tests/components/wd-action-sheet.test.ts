@@ -58,7 +58,7 @@ describe('WdActionSheet', () => {
   test('动作列表渲染', async () => {
     const actions: Action[] = [
       { name: '选项1' },
-      { name: '选项2', subname: '描述信息' },
+      { name: '选项2', description: '描述信息' },
       { name: '选项3', color: 'red' },
       { name: '选项4', disabled: true },
       { name: '选项5', loading: true }
@@ -87,7 +87,7 @@ describe('WdActionSheet', () => {
     // 测试带描述的选项
     const action2 = actionButtons[1]
     expect(action2.find('.wd-action-sheet__name').text()).toBe('选项2')
-    expect(action2.find('.wd-action-sheet__subname').text()).toBe('描述信息')
+    expect(action2.find('.wd-action-sheet__description').text()).toBe('描述信息')
 
     // 测试带颜色的选项
     expect(actionButtons[2].attributes('style')).toContain('color: red')
@@ -103,8 +103,8 @@ describe('WdActionSheet', () => {
   // 测试面板渲染 - 一维数组
   test('一维数组面板渲染', async () => {
     const panels: Panel[] = [
-      { iconUrl: 'url1', title: '面板1' },
-      { iconUrl: 'url2', title: '面板2' }
+      { icon: 'url1', title: '面板1' },
+      { icon: 'url2', title: '面板2' }
     ]
 
     const wrapper = mount(WdActionSheet, {
@@ -236,7 +236,7 @@ describe('WdActionSheet', () => {
 
   // 测试多行面板 - 二维数组
   test('二维数组面板渲染', async () => {
-    const panels: Panel[][] = [[{ iconUrl: 'url1', title: '面板1' }], [{ iconUrl: 'url2', title: '面板2' }]]
+    const panels: Panel[][] = [[{ icon: 'url1', title: '面板1' }], [{ icon: 'url2', title: '面板2' }]]
 
     const wrapper = mount(WdActionSheet, {
       props: {
@@ -259,7 +259,7 @@ describe('WdActionSheet', () => {
 
   // 测试面板点击事件 - 一维数组
   test('一维数组面板点击触发选择事件', async () => {
-    const panels: Panel[] = [{ iconUrl: 'url1', title: '面板1' }]
+    const panels: Panel[] = [{ icon: 'url1', title: '面板1' }]
 
     const wrapper = mount(WdActionSheet, {
       props: {
@@ -288,7 +288,7 @@ describe('WdActionSheet', () => {
 
   // 测试面板点击事件 - 二维数组
   test('二维数组面板点击触发选择事件', async () => {
-    const panels: Panel[][] = [[{ iconUrl: 'url1', title: '面板1' }], [{ iconUrl: 'url2', title: '面板2' }]]
+    const panels: Panel[][] = [[{ icon: 'url1', title: '面板1' }], [{ icon: 'url2', title: '面板2' }]]
 
     const wrapper = mount(WdActionSheet, {
       props: {

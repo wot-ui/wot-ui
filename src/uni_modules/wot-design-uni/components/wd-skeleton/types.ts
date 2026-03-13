@@ -1,63 +1,115 @@
 import type { PropType, ExtractPropTypes, CSSProperties } from 'vue'
 import { makeArrayProp, makeBooleanProp, makeStringProp } from '../common/props'
 
+/**
+ * 骨架图主题样式
+ * @type {'text' | 'avatar' | 'paragraph' | 'image'}
+ */
 export type SkeletonTheme = 'text' | 'avatar' | 'paragraph' | 'image'
+
+/**
+ * 骨架图加载动画类型
+ * @type {'gradient' | 'flashed'}
+ */
 export type SkeletonAnimation = 'gradient' | 'flashed'
+
+/**
+ * 骨架图行列配置对象
+ */
 export type SkeletonRowColObj = {
-  [key: string]: any
+  /** 占位符类型 */
   type?: 'rect' | 'circle' | 'text'
+  /** 占位符宽高（正方形） */
   size?: string | number
+  /** 占位符宽度 */
   width?: string | number
+  /** 占位符高度 */
   height?: string | number
+  /** 占位符外边距（简写） */
   margin?: string | number
+  /** 占位符背景色 */
   background?: string
+  /** 占位符左外边距 */
   marginLeft?: string | number
+  /** 占位符右外边距 */
   marginRight?: string | number
+  /** 占位符圆角半径 */
   borderRadius?: string | number
+  /** 占位符背景色（等同于 background） */
   backgroundColor?: string
+  /** 其他自定义属性 */
+  [key: string]: any
 }
+
+/**
+ * 骨架图行列配置类型
+ * 支持：数字、配置对象、配置对象数组
+ * @example
+ * ```
+ * // 示例1: [1, 1, 2] 表示三行，分别为1列、1列、2列
+ * // 示例2: [1, { width: '100px' }] 表示两行，第二行自定义宽度
+ * // 示例3: [1, [{ width: '50%' }, { width: '50%' }]] 表示两行，第二行两列
+ * ```
+ */
 export type SkeletonRowCol = number | SkeletonRowColObj | Array<SkeletonRowColObj>
-export type SkeletonThemeVars = {
-  notifyPadding?: string
-  notifyFontSize?: string
-  notifyTextColor?: string
-  notifyLineHeight?: number | string
-  notifyDangerBackground?: string
-  notifyPrimaryBackground?: string
-  notifySuccessBackground?: string
-  notifyWarningBackground?: string
-}
+
 export const skeletonProps = {
   /**
-   * 骨架图风格，有基础、头像组合等两大类
+   * 骨架图风格
+   * 可选值: 'text' | 'avatar' | 'paragraph' | 'image'
+   * 默认值: 'text'
    */
   theme: makeStringProp<SkeletonTheme>('text'),
+
   /**
-   * 用于设置行列数量、宽度高度、间距等。
+   * 行列配置，用于自定义骨架图的行列数量及各项样式
+   * 类型: Array<number | SkeletonRowColObj | Array<SkeletonRowColObj>>
+   * 默认值: []
    * @example
-   * 【示例一】，`[1, 1, 2]` 表示输出三行骨架图，第一行一列，第二行一列，第三行两列。
-   * 【示例二】，`[1, 1, { width: '100px' }]` 表示自定义第三行的宽度为 `100px`。
-   * 【示例三】，`[1, 2, [{ width, height }, { width, height, marginLeft }]]` 表示第三行有两列，且自定义宽度、高度和间距
+   * ```
+   * // 三行，分别显示为一列、一列、两列的占位符
+   * [1, 1, 2]
+   *
+   * // 三行，第三行自定义宽度
+   * [1, 1, { width: '100px' }]
+   *
+   * // 第三行包含两列，分别设置宽度和右外边距
+   * [1, 1, [{ width: '50%' }, { width: '50%', marginRight: '10px' }]]
+   * ```
    */
   rowCol: makeArrayProp<SkeletonRowCol>(),
+
   /**
-   * 是否为加载状态，如果是则显示骨架图，如果不是则显示加载完成的内容
-   * @default true
+   * 是否显示骨架图（加载中）
+   * 默认值: true
    */
   loading: makeBooleanProp(true),
+
   /**
-   * 动画效果，有「渐变加载动画」和「闪烁加载动画」两种。值为空则表示没有动画
+   * 加载动画类型
+   * 可选值: 'gradient' | 'flashed' | ''
+   * 默认值: ''（无动画）
    */
   animation: {
     type: String as PropType<SkeletonAnimation>,
     default: ''
   },
-  // 自定义类名
+
+  /**
+   * 自定义样式类名
+   * 类型: string | string[] | Record<string, boolean>
+   * 默认值: ''
+   */
   customClass: {
     type: [String, Array, Object],
     default: ''
   },
-  // 自定义样式
+
+  /**
+   * 自定义内联样式
+   * 类型: CSSProperties
+   * 默认值: {}
+   */
   customStyle: {
     type: Object as PropType<CSSProperties>,
     default() {
@@ -66,4 +118,7 @@ export const skeletonProps = {
   }
 }
 
+/**
+ * 骨架图组件 Props 类型
+ */
 export type SkeletonProps = ExtractPropTypes<typeof skeletonProps>

@@ -1,3 +1,12 @@
+/*
+ * @Author: weisheng
+ * @Date: 2025-05-08 22:54:27
+ * @LastEditTime: 2026-03-03 14:04:13
+ * @LastEditors: weisheng
+ * @Description:
+ * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-radio-group/types.ts
+ * 记得注释
+ */
 import { type ExtractPropTypes, type InjectionKey } from 'vue'
 import type { RadioDirection, RadioPlacement, RadioType } from '../wd-radio/types'
 import { baseProps, makeBooleanProp, makeStringProp } from '../common/props'
@@ -10,7 +19,7 @@ export const radioGroupProps = {
   modelValue: [String, Number, Boolean],
   /**
    * 单选框类型
-   * 可选值: 'dot' | 'circle' | 'square' | 'button'
+   * 可选值: dot | circle | square | button
    * 默认值: circle
    */
   type: makeStringProp<RadioType>('circle'),

@@ -1,49 +1,65 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/variable.scss' as *;
+@use '../styles/mixin/mixin.scss' as *;
+
+$notice-bar-padding: var(--wot-notice-bar-padding, $padding-main $padding-loose) !default;
+$notice-bar-font-size: var(--wot-notice-bar-font-size, $typography-body-size-main) !default;
+$notice-bar-radius: var(--wot-notice-bar-radius, $radius-zero) !default;
+$notice-bar-line-height: var(--wot-notice-bar-line-height, $typography-body-line--height-size-main) !default;
+
+$notice-bar-warning-bg: var(--wot-notice-bar-warning-bg, $warning-surface) !default;
+$notice-bar-warning-color: var(--wot-notice-bar-warning-color, $warning-main) !default;
+
+$notice-bar-info-bg: var(--wot-notice-bar-info-bg, $primary-1) !default;
+$notice-bar-info-color: var(--wot-notice-bar-info-color, $primary-6) !default;
+
+$notice-bar-danger-bg: var(--wot-notice-bar-danger-bg, $danger-surface) !default;
+$notice-bar-danger-color: var(--wot-notice-bar-danger-color, $danger-main) !default;
+
+$notice-bar-prefix-size: var(--wot-notice-bar-prefix-size, $n20) !default;
+$notice-bar-prefix-margin: var(--wot-notice-bar-prefix-margin-right, $spacing-tight) !default;
+
+$notice-bar-suffix-size: var(--wot-notice-bar-suffix-size, $n20) !default;
+$notice-bar-suffix-margin: var(--wot-notice-bar-suffix-margin-left, $spacing-tight) !default;
+$notice-bar-suffix-color: var(--wot-notice-bar-suffix-color, inherit) !default;
 
 @include b(notice-bar) {
   display: flex;
-  padding: $-notice-bar-padding;
+  padding: $notice-bar-padding;
   align-items: center;
-  font-size: $-notice-bar-fs;
-  border-radius: $-notice-bar-border-radius;
+  font-size: $notice-bar-font-size;
+  border-radius: $notice-bar-radius;
   position: relative;
   box-sizing: border-box;
   @include when(warning) {
-    background: $-notice-bar-warning-bg;
-    color: $-notice-bar-warning-color;
+    background: $notice-bar-warning-bg;
+    color: $notice-bar-warning-color;
   }
   @include when(info) {
-    background: $-notice-bar-info-bg;
-    color: $-notice-bar-info-color;
+    background: $notice-bar-info-bg;
+    color: $notice-bar-info-color;
   }
   @include when(danger) {
-    background: $-notice-bar-danger-bg;
-    color: $-notice-bar-danger-color;
+    background: $notice-bar-danger-bg;
+    color: $notice-bar-danger-color;
   }
   @include edeep(prefix) {
-    padding-right: 4px;
-    font-size: $-notice-bar-prefix-size;
+    margin-right: $notice-bar-prefix-margin;
+    font-size: $notice-bar-prefix-size;
+    line-height: $notice-bar-prefix-size;
   }
 
   @include edeep(suffix) {
-    text-align: center;
-    font-size: $-notice-bar-close-size;
-    display: inline-block;
-    background-color: $-notice-bar-close-bg;
-    color: $-notice-bar-close-color;
-    padding: 0;
-    border-radius: 0px 8px 0px 4px;
-    position: absolute;
-    right: 0;
-    top: 0;
+    font-size: $notice-bar-suffix-size;
+    line-height: $notice-bar-suffix-size;
+    color: $notice-bar-suffix-color;
+    margin-left: $notice-bar-suffix-margin;
   }
   @include e(wrap) {
     position: relative;
     flex: 1;
-    height: $-notice-bar-line-height;
+    height: $notice-bar-line-height;
     overflow: hidden;
-    line-height: $-notice-bar-line-height;
+    line-height: $notice-bar-line-height;
   }
   @include e(content) {
     position: absolute;

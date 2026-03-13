@@ -1,12 +1,12 @@
 import { mount } from '@vue/test-utils'
 import WdTable from '@/uni_modules/wot-design-uni/components/wd-table/wd-table.vue'
-import WdTableCol from '@/uni_modules/wot-design-uni/components/wd-table-col/wd-table-col.vue'
+import WdTableColumn from '@/uni_modules/wot-design-uni/components/wd-table-column/wd-table-column.vue'
 import WdSortButton from '@/uni_modules/wot-design-uni/components/wd-sort-button/wd-sort-button.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
 
 const globalComponents = {
-  WdTableCol,
+  WdTableColumn,
   WdSortButton
 }
 
@@ -28,9 +28,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -53,9 +53,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -64,9 +64,8 @@ describe('WdTable', () => {
     })
     await nextTick()
 
-    // 验证表格渲染
     expect(wrapper.findComponent(WdTable).exists()).toBe(true)
-    expect(wrapper.findAllComponents(WdTableCol).length).toBe(3)
+    expect(wrapper.findAllComponents(WdTableColumn).length).toBe(3)
   })
 
   // 测试斑马纹
@@ -83,9 +82,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -93,7 +92,6 @@ describe('WdTable', () => {
       }
     })
 
-    // 检查 stripe 属性是否正确传递给组件
     expect((wrapper.vm as any).stripe).toBe(true)
   })
 
@@ -108,9 +106,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -132,9 +130,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -155,9 +153,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -165,10 +163,8 @@ describe('WdTable', () => {
       }
     })
 
-    // 调用 rowClick 方法
     ;(wrapper.vm as any).rowClick(0)
 
-    // 验证事件
     const emitted = wrapper.emitted() as Record<string, any[]>
     expect(emitted['row-click']).toBeTruthy()
     expect(emitted['row-click'][0][0]).toEqual({ rowIndex: 0 })
@@ -187,9 +183,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" sortable></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed sortable></wd-table-col>
-          <wd-table-col prop="address" label="地址" sortable></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px" sortable></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed sortable></wd-table-column>
+          <wd-table-column prop="address" label="地址" sortable></wd-table-column>
         `
       },
       global: {
@@ -201,78 +197,68 @@ describe('WdTable', () => {
 
     const sortButtons = wrapper.findAllComponents(WdSortButton)
 
-    // 点击第一列（姓名）进行升序排序
     if (sortButtons[0]) {
       await sortButtons[0].find('.wd-sort-button').trigger('click')
     }
     await nextTick()
 
-    // 验证事件
     let emitted = wrapper.emitted() as Record<string, any[]>
     expect(emitted['sort-method']).toBeTruthy()
     expect(emitted['sort-method'][0][0]).toMatchObject({
       prop: 'name',
       label: '姓名',
       sortable: true,
-      sortDirection: 1 // 升序
+      sortDirection: 1
     })
 
-    // 验证子组件状态
-    const colComponents = wrapper.findAllComponents(WdTableCol)
+    const colComponents = wrapper.findAllComponents(WdTableColumn)
     expect((colComponents[0].vm as any).sortDirection).toBe(1)
     expect((colComponents[1].vm as any).sortDirection).toBe(0)
 
-    // 点击第二列（年龄）进行升序排序
     if (sortButtons[1]) {
       await sortButtons[1].find('.wd-sort-button').trigger('click')
     }
     await nextTick()
 
-    // 验证事件
     emitted = wrapper.emitted() as Record<string, any[]>
-    expect(emitted['sort-method']).toHaveLength(2) // 触发了两次
+    expect(emitted['sort-method']).toHaveLength(2)
     expect(emitted['sort-method'][1][0]).toMatchObject({
       prop: 'age',
       label: '年龄',
       sortable: true,
-      sortDirection: 1 // 升序
+      sortDirection: 1
     })
 
-    // 验证其他列的排序方向被重置
     expect((colComponents[0].vm as any).sortDirection).toBe(0)
     expect((colComponents[1].vm as any).sortDirection).toBe(1)
 
-    // 再次点击第二列（年龄）进行降序排序
     if (sortButtons[1]) {
       await sortButtons[1].find('.wd-sort-button').trigger('click')
     }
     await nextTick()
 
-    // 验证事件
     emitted = wrapper.emitted() as Record<string, any[]>
     expect(emitted['sort-method']).toHaveLength(3)
     expect(emitted['sort-method'][2][0]).toMatchObject({
       prop: 'age',
       label: '年龄',
       sortable: true,
-      sortDirection: -1 // 降序
+      sortDirection: -1
     })
     expect((colComponents[1].vm as any).sortDirection).toBe(-1)
 
-    // 再次点击第二列（年龄）取消排序
     if (sortButtons[1]) {
       await sortButtons[1].find('.wd-sort-button').trigger('click')
     }
     await nextTick()
 
-    // 验证事件
     emitted = wrapper.emitted() as Record<string, any[]>
     expect(emitted['sort-method']).toHaveLength(4)
     expect(emitted['sort-method'][3][0]).toMatchObject({
       prop: 'age',
       label: '年龄',
       sortable: true,
-      sortDirection: 0 // 取消排序
+      sortDirection: 0
     })
     expect((colComponents[1].vm as any).sortDirection).toBe(0)
   })
@@ -287,9 +273,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" sortable></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed sortable></wd-table-col>
-          <wd-table-col prop="address" label="地址" sortable></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px" sortable></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed sortable></wd-table-column>
+          <wd-table-column prop="address" label="地址" sortable></wd-table-column>
         `
       },
       global: {
@@ -297,10 +283,8 @@ describe('WdTable', () => {
       }
     })
 
-    // 模拟滚动事件
     ;(wrapper.vm as any).handleScroll({ detail: { scrollLeft: 100 } })
 
-    // 验证滚动位置
     expect((wrapper.vm as any).state.scrollLeft).toBe(100)
   })
 
@@ -317,9 +301,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -327,26 +311,23 @@ describe('WdTable', () => {
       }
     })
 
-    // 验证表格高度
-    expect(wrapper.attributes('style')).toContain(`max-height: ${height}px`)
+    // 高度现在设置在 scroll-view 上
+    expect((wrapper.vm as any).scrollViewStyle).toContain(`max-height:${height}px`)
+    // scroll-y 应该开启
+    expect((wrapper.vm as any).scrollY).toBe(true)
   })
 
-  // 测试行高
-  test('行高设置', () => {
+  // 测试无高度时不开启纵向滚动
+  test('无高度时不开启纵向滚动', () => {
     const data = [{ name: '张三', age: 25, address: '北京' }]
-
-    const rowHeight = 60
 
     const wrapper = mount(WdTable, {
       props: {
-        data,
-        rowHeight
+        data
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" sortable></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed sortable></wd-table-col>
-          <wd-table-col prop="address" label="地址" sortable></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
         `
       },
       global: {
@@ -354,8 +335,7 @@ describe('WdTable', () => {
       }
     })
 
-    // 验证行高属性是否正确传递给组件
-    expect((wrapper.vm as any).rowHeight).toBe(rowHeight)
+    expect((wrapper.vm as any).scrollY).toBe(false)
   })
 
   // 测试隐藏表头
@@ -369,9 +349,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" sortable></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed sortable></wd-table-col>
-          <wd-table-col prop="address" label="地址" sortable></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px" sortable></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed sortable></wd-table-column>
+          <wd-table-column prop="address" label="地址" sortable></wd-table-column>
         `
       },
       global: {
@@ -379,7 +359,6 @@ describe('WdTable', () => {
       }
     })
 
-    // 验证表头隐藏
     expect((wrapper.vm as any).showHeader).toBe(false)
   })
 
@@ -394,9 +373,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" sortable></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed sortable></wd-table-col>
-          <wd-table-col prop="address" label="地址" sortable></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px" sortable></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed sortable></wd-table-column>
+          <wd-table-column prop="address" label="地址" sortable></wd-table-column>
         `
       },
       global: {
@@ -404,7 +383,6 @@ describe('WdTable', () => {
       }
     })
 
-    // 验证文本省略
     expect((wrapper.vm as any).ellipsis).toBe(true)
   })
 
@@ -419,9 +397,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -431,7 +409,6 @@ describe('WdTable', () => {
 
     await nextTick()
 
-    // 验证索引列
     expect(wrapper.props('index')).toBe(true)
     expect((wrapper.vm as any).indexColumn.label).toBe('序号')
     expect((wrapper.vm as any).indexColumn.width).toBe('100rpx')
@@ -454,9 +431,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" sortable></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed sortable></wd-table-col>
-          <wd-table-col prop="address" label="地址" sortable></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px" sortable></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed sortable></wd-table-column>
+          <wd-table-column prop="address" label="地址" sortable></wd-table-column>
         `
       },
       global: {
@@ -466,14 +443,13 @@ describe('WdTable', () => {
 
     await nextTick()
 
-    // 验证自定义索引列
     expect((wrapper.vm as any).indexColumn.label).toBe(indexColumn.label)
     expect((wrapper.vm as any).indexColumn.width).toBe(indexColumn.width)
     expect((wrapper.vm as any).indexColumn.align).toBe(indexColumn.align)
   })
 
-  // 测试固定表头
-  test('固定表头', () => {
+  // 测试固定表头（统一结构 + sticky）
+  test('固定表头使用 sticky', async () => {
     const data = [{ name: '张三', age: 25, address: '北京' }]
 
     const wrapper = mount(WdTable, {
@@ -483,9 +459,7 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
         `
       },
       global: {
@@ -493,12 +467,16 @@ describe('WdTable', () => {
       }
     })
 
-    // 验证固定表头属性是否正确传递给组件
-    expect((wrapper.vm as any).fixedHeader).toBe(true)
+    await nextTick()
+
+    // 表头应该有 is-sticky 类
+    const header = wrapper.find('.wd-table__header')
+    expect(header.exists()).toBe(true)
+    expect(header.classes()).toContain('is-sticky')
   })
 
   // 测试非固定表头
-  test('非固定表头', () => {
+  test('非固定表头无 sticky', async () => {
     const data = [{ name: '张三', age: 25, address: '北京' }]
 
     const wrapper = mount(WdTable, {
@@ -508,9 +486,7 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
         `
       },
       global: {
@@ -518,12 +494,47 @@ describe('WdTable', () => {
       }
     })
 
-    // 验证非固定表头属性是否正确传递给组件
-    expect((wrapper.vm as any).fixedHeader).toBe(false)
+    await nextTick()
+
+    // 表头不应该有 is-sticky
+    const header = wrapper.find('.wd-table__header')
+    expect(header.exists()).toBe(true)
+    expect(header.classes()).not.toContain('is-sticky')
+  })
+
+  // 测试统一结构（fixedHeader 使用 sticky 而非双 scroll-view）
+  test('统一使用单个 scroll-view', async () => {
+    const data = [{ name: '张三', age: 25, address: '北京' }]
+
+    const wrapper = mount(WdTable, {
+      props: {
+        data,
+        fixedHeader: true,
+        height: 300
+      },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+        `
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    await nextTick()
+
+    // 统一结构：表头和表体在同一层级下，表头使用 sticky
+    const header = wrapper.find('.wd-table__header')
+    expect(header.exists()).toBe(true)
+    expect(header.classes()).toContain('is-sticky')
+    // 表体内容紧随表头
+    const body = wrapper.find('.wd-table__body')
+    expect(body.exists()).toBe(true)
   })
 
   // 测试获取固定列样式
-  test('获取固定列样式', () => {
+  test('获取固定列样式', async () => {
     const data = [{ name: '张三', age: 25, address: '北京' }]
 
     const wrapper = mount(WdTable, {
@@ -535,24 +546,24 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       }
     })
 
-    // 获取第一列的固定样式
-    const style1 = (wrapper.vm as any).getFixedStyle(0, {})
-    expect(style1.left).toBe(0)
+    await nextTick()
 
-    // 获取第二列的固定样式
-    const style2 = (wrapper.vm as any).getFixedStyle(1, {})
-    expect(style2.left).toBe('calc(100px)')
+    const left0 = (wrapper.vm as any).getFixedLeft(0)
+    expect(left0).toBe('0')
+
+    const left1 = (wrapper.vm as any).getFixedLeft(1)
+    expect(left1).toBe('calc(100px)')
   })
 
   // 测试判断是否最后一个固定列
-  test('判断是否最后一个固定列', () => {
+  test('判断是否最后一个固定列', async () => {
     const data = [{ name: '张三', age: 25, address: '北京' }]
 
     const wrapper = mount(WdTable, {
@@ -564,25 +575,22 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       }
     })
 
-    // 第一列不是最后一个固定列
+    await nextTick()
+
     expect((wrapper.vm as any).getIsLastFixed({ fixed: true, prop: 'name' })).toBe(false)
-
-    // 第二列是最后一个固定列
     expect((wrapper.vm as any).getIsLastFixed({ fixed: true, prop: 'age' })).toBe(true)
-
-    // 第三列不是固定列
     expect((wrapper.vm as any).getIsLastFixed({ fixed: false, prop: 'address' })).toBe(false)
   })
 
-  // 测试获取单元格样式
-  test('获取单元格样式', () => {
+  // 测试获取表头单元格样式（grid 模式下不含 width，只含固定列 left）
+  test('获取表头单元格样式', async () => {
     const data = [{ name: '张三', age: 25, address: '北京' }]
 
     const wrapper = mount(WdTable, {
@@ -594,22 +602,21 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       }
     })
 
-    // 获取第一列的样式
-    const style1 = (wrapper.vm as any).getCellStyle(0)
-    // 不检查分号，只检查内容
-    expect(style1.includes('width:100px')).toBe(true)
+    await nextTick()
 
-    // 获取第二列的样式（固定列）
-    const style2 = (wrapper.vm as any).getCellStyle(1)
-    // 不检查分号，只检查内容
-    expect(style2.includes('width:150px')).toBe(true)
+    // 非固定列无 left 样式
+    const style1 = (wrapper.vm as any).getHeaderCellStyle(0)
+    expect(style1).toBe('')
+
+    // 固定列有 left 样式
+    const style2 = (wrapper.vm as any).getHeaderCellStyle(1)
     expect(style2).toContain('left:calc(100px)')
   })
 
@@ -626,9 +633,7 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" sortable></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed sortable></wd-table-col>
-          <wd-table-col prop="address" label="地址" sortable></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px" sortable></wd-table-column>
         `
       },
       global: {
@@ -636,9 +641,6 @@ describe('WdTable', () => {
       }
     })
 
-    // 验证自定义样式
-    // 在测试环境中，customStyle 可能会被转换或应用方式不同
-    // 只要确保组件有 style 属性即可
     expect(wrapper.attributes('style')).toBeDefined()
   })
 
@@ -655,9 +657,7 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" sortable></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" fixed sortable></wd-table-col>
-          <wd-table-col prop="address" label="地址" sortable></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px" sortable></wd-table-column>
         `
       },
       global: {
@@ -665,14 +665,11 @@ describe('WdTable', () => {
       }
     })
 
-    // 验证自定义类名
     expect(wrapper.classes()).toContain(customClass)
   })
 
-  // --- WdTableCol specific tests ---
-
-  // 测试 WdTableCol 的 align 属性
-  test('WdTableCol 对齐样式', async () => {
+  // 测试 WdTableColumn 对齐样式
+  test('WdTableColumn 对齐样式', async () => {
     const data = [{ name: '张三', age: 25, address: '北京' }]
 
     const wrapper = mount(WdTable, {
@@ -681,9 +678,9 @@ describe('WdTable', () => {
       },
       slots: {
         default: `
-          <wd-table-col prop="name" label="姓名" width="100px" align="center"></wd-table-col>
-          <wd-table-col prop="age" label="年龄" width="150px" align="right"></wd-table-col>
-          <wd-table-col prop="address" label="地址"></wd-table-col>
+          <wd-table-column prop="name" label="姓名" width="100px" align="center"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" align="right"></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
         `
       },
       global: {
@@ -693,17 +690,223 @@ describe('WdTable', () => {
 
     await nextTick()
 
-    const cells = wrapper.findAllComponents(WdTableCol)
+    const cells = wrapper.findAllComponents(WdTableColumn)
 
-    // 检查表头对齐
     expect(cells[0].find('.wd-table__cell').classes()).toContain('is-center')
     expect(cells[1].find('.wd-table__cell').classes()).toContain('is-right')
-    // 检查数据单元格对齐 (假设数据行渲染在表头之后)
-    const bodyWrapper = wrapper.find('.wd-table__body')
-    const dataCells = bodyWrapper.findAll('.wd-table__cell')
-    if (dataCells.length > 1) {
-      expect(dataCells[0].classes()).toContain('is-center')
-      expect(dataCells[1].classes()).toContain('is-right')
+  })
+
+  // 测试 lastFixedProp 缓存
+  test('lastFixedProp 缓存计算', async () => {
+    const data = [{ name: '张三', age: 25, address: '北京' }]
+
+    const wrapper = mount(WdTable, {
+      props: { data },
+      global: { components: globalComponents },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px" fixed></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址"></wd-table-column>
+        `
+      }
+    })
+
+    await nextTick()
+    expect((wrapper.vm as any).lastFixedProp).toBe('age')
+  })
+
+  // 测试 fixedLeftMap 预计算
+  test('fixedLeftMap 预计算', async () => {
+    const data = [{ name: '张三', age: 25, address: '北京' }]
+
+    const wrapper = mount(WdTable, {
+      props: { data },
+      global: { components: globalComponents },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="150px" fixed></wd-table-column>
+          <wd-table-column prop="address" label="地址" width="200px"></wd-table-column>
+        `
+      }
+    })
+
+    await nextTick()
+
+    const fixedLeftMap = (wrapper.vm as any).fixedLeftMap
+    expect(fixedLeftMap.get(0)).toBe('0')
+    expect(fixedLeftMap.get(1)).toBe('calc(100px)')
+    expect(fixedLeftMap.get(2)).toBe('calc(100px + 150px)')
+  })
+
+  // --- span-method 相关测试 ---
+
+  // 测试 getSpan 方法
+  test('getSpan 返回正确合并信息', async () => {
+    const data = [
+      { name: '张三', age: 25 },
+      { name: '李四', age: 30 }
+    ]
+
+    const spanMethod = ({ rowIndex, columnIndex }: any) => {
+      if (rowIndex === 0 && columnIndex === 0) {
+        return { rowspan: 1, colspan: 2 }
+      }
+      if (rowIndex === 0 && columnIndex === 1) {
+        return { rowspan: 0, colspan: 0 }
+      }
     }
+
+    const wrapper = mount(WdTable, {
+      props: {
+        data,
+        spanMethod
+      },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="100px"></wd-table-column>
+        `
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    await nextTick()
+
+    // 第一行第一列合并两列
+    const span00 = (wrapper.vm as any).getSpan(0, 0)
+    expect(span00).toEqual({ rowspan: 1, colspan: 2 })
+
+    // 第一行第二列被合并隐藏
+    const span01 = (wrapper.vm as any).getSpan(0, 1)
+    expect(span01).toEqual({ rowspan: 0, colspan: 0 })
+
+    // 第二行保持默认
+    const span10 = (wrapper.vm as any).getSpan(1, 0)
+    expect(span10).toEqual({ rowspan: 1, colspan: 1 })
+  })
+
+  // 测试无 spanMethod 时默认行为
+  test('无 spanMethod 时默认不合并', async () => {
+    const data = [{ name: '张三', age: 25 }]
+
+    const wrapper = mount(WdTable, {
+      props: {
+        data
+      },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="100px"></wd-table-column>
+        `
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    await nextTick()
+
+    const span = (wrapper.vm as any).getSpan(0, 0)
+    expect(span).toEqual({ rowspan: 1, colspan: 1 })
+  })
+
+  // 测试 gridColumnsStyle 生成
+  test('gridColumnsStyle 生成 grid-template-columns', async () => {
+    const data = [{ name: '张三', age: 25 }]
+
+    const wrapper = mount(WdTable, {
+      props: { data },
+      global: { components: globalComponents },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="200px"></wd-table-column>
+        `
+      }
+    })
+
+    await nextTick()
+
+    const style = (wrapper.vm as any).gridColumnsStyle
+    expect(style).toContain('display:grid')
+    expect(style).toContain('grid-template-columns:100px 200px')
+  })
+
+  // 测试虚拟滚动 visibleRange 默认值
+  test('visibleRange 默认覆盖全部行', async () => {
+    const data = [
+      { name: '张三', age: 25 },
+      { name: '李四', age: 30 },
+      { name: '王五', age: 35 }
+    ]
+
+    const wrapper = mount(WdTable, {
+      props: { data },
+      global: { components: globalComponents },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="200px"></wd-table-column>
+        `
+      }
+    })
+
+    await nextTick()
+
+    const range = (wrapper.vm as any).visibleRange
+    expect(range).toEqual({ start: 0, end: 2 })
+  })
+
+  // 测试虚拟滚动 bodyGridStyle 包含 grid-template-rows
+  test('virtual 模式下 bodyGridStyle 包含 grid-template-rows', async () => {
+    const data = Array.from({ length: 100 }, (_, i) => ({ name: `test${i}`, age: i }))
+
+    const wrapper = mount(WdTable, {
+      props: { data, virtual: true, rowHeight: 40, height: 400 },
+      global: { components: globalComponents },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="200px"></wd-table-column>
+        `
+      }
+    })
+
+    await nextTick()
+
+    const style = (wrapper.vm as any).bodyGridStyle
+    expect(style).toContain('grid-template-rows:repeat(100, 40px)')
+  })
+
+  // 测试虚拟滚动 visibleRange 根据 scrollTop 计算
+  test('virtual 模式下 visibleRange 根据 scrollTop 正确计算', async () => {
+    const data = Array.from({ length: 100 }, (_, i) => ({ name: `test${i}`, age: i }))
+
+    const wrapper = mount(WdTable, {
+      props: { data, virtual: true, rowHeight: 50, height: 400, buffer: 3 },
+      global: { components: globalComponents },
+      slots: {
+        default: `
+          <wd-table-column prop="name" label="姓名" width="100px"></wd-table-column>
+          <wd-table-column prop="age" label="年龄" width="200px"></wd-table-column>
+        `
+      }
+    })
+
+    await nextTick()
+
+    // 模拟滚动到 scrollTop = 500 (第 10 行)
+    ;(wrapper.vm as any).state.scrollTop = 500
+    await nextTick()
+
+    const range = (wrapper.vm as any).visibleRange
+    // start = max(0, floor(500/50) - 3) = max(0, 7) = 7
+    // end = min(99, ceil(900/50) + 3) = min(99, 21) = 21
+    expect(range.start).toBe(7)
+    expect(range.end).toBe(21)
   })
 })

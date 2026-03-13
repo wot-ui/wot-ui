@@ -31,9 +31,9 @@
         </view>
       </template>
       <template v-if="mode === 'car'">
-        <view class="wd-keyboard-car__body">
-          <view class="wd-keyboard-car__keys">
-            <wd-key v-for="key in keys" :key="key.text" :text="key.text" :type="key.type" :wider="key.wider" @press="handlePress"></wd-key>
+        <view class="wd-keyboard__body">
+          <view class="wd-keyboard__car-keys">
+            <wd-key v-for="key in keys" :key="key.text" :text="key.text" :type="key.type" :wider="key.wider" is-car @press="handlePress"></wd-key>
           </view>
         </view>
       </template>
@@ -44,7 +44,9 @@
 export default {
   name: 'wd-keyboard',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -95,8 +97,8 @@ const showHeader = computed(() => {
 
 /**
  * 随机打乱数组的顺序
- * @param arr 要打乱顺序的数组
- * @returns 打乱顺序后的数组
+ * @param {T[]} arr 要打乱顺序的数组
+ * @returns {T[]} 打乱顺序后的数组
  */
 function shuffleArray<T>(arr: T[]): T[] {
   const newArr = [...arr]
@@ -109,6 +111,11 @@ function shuffleArray<T>(arr: T[]): T[] {
   }
   return newArr
 }
+
+/**
+ * 生成基础按键（1-9）
+ * @returns {Key[]} 基础按键数组
+ */
 function genBasicKeys(): Key[] {
   const keys = Array.from({ length: 9 }, (_, i) => ({ text: i + 1 }))
 
@@ -116,6 +123,10 @@ function genBasicKeys(): Key[] {
   return props.randomKeyOrder ? shuffleArray(keys) : keys
 }
 
+/**
+ * 生成默认键盘按键
+ * @returns {Key[]} 默认键盘按键数组
+ */
 function genDefaultKeys(): Key[] {
   return [
     ...genBasicKeys(),
@@ -129,6 +140,10 @@ function genDefaultKeys(): Key[] {
   ]
 }
 
+/**
+ * 生成自定义键盘按键
+ * @returns {Key[]} 自定义键盘按键数组
+ */
 function genCustomKeys(): Key[] {
   const keys = genBasicKeys()
   const extraKeys = Array.isArray(props.extraKey) ? props.extraKey : [props.extraKey]
@@ -143,7 +158,10 @@ function genCustomKeys(): Key[] {
   return keys
 }
 
-// 生成车牌键盘
+/**
+ * 生成车牌键盘按键
+ * @returns {Key[]} 车牌键盘按键数组
+ */
 function genCarKeys(): Array<Key> {
   const [keys, remainKeys] = splitCarKeys()
   return [
@@ -154,16 +172,28 @@ function genCarKeys(): Array<Key> {
   ]
 }
 
+/**
+ * 分割车牌键盘按键
+ * @returns {Array<Array<Key>>} 分割后的按键数组
+ */
 function splitCarKeys(): Array<Array<Key>> {
   const keys = carKeyboardLang.value === 'zh' ? CAR_KEYBOARD_AREAS.map((key) => ({ text: key })) : CAR_KEYBOARD_KEYS.map((key) => ({ text: key }))
   return [keys.slice(0, 30), keys.slice(30)]
 }
 
+/**
+ * 处理关闭事件
+ */
 const handleClose = () => {
   emit('close')
   emit('update:visible', false)
 }
 
+/**
+ * 处理按键点击事件
+ * @param {string} text 按键文本
+ * @param {NumberKeyType} type 按键类型
+ */
 const handlePress = (text: string, type: NumberKeyType) => {
   if (type === 'extra') {
     if (text === '') {
@@ -202,5 +232,5 @@ const handlePress = (text: string, type: NumberKeyType) => {
 </script>
 
 <style lang="scss">
-@import './index.scss';
+@use './index.scss';
 </style>

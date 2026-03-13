@@ -10,7 +10,9 @@ export default {
   name: 'wd-tab',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -28,21 +30,30 @@ const props = defineProps(tabProps)
 const { proxy } = getCurrentInstance() as any
 const { parent: tabs, index } = useParent(TABS_KEY)
 
-// 激活项下标
+/**
+ * 激活项下标
+ */
 const active = computed(() => {
-  return isDef(tabs) ? tabs.state.activeIndex === index.value : false
+  return isDef(tabs.value) ? tabs.value.state.activeIndex === index.value : false
 })
 
-const painted = ref<boolean>(active.value) // 初始状态tab不会渲染，必须通过tabs来设置painted使tab渲染
+/** 初始状态tab不会渲染，必须通过tabs来设置painted使tab渲染 */
+const painted = ref<boolean>(active.value)
 
+/**
+ * tab body 样式
+ */
 const tabBodyStyle = computed(() => {
   const style: CSSProperties = {}
-  if (!active.value && (!isDef(tabs) || !tabs.props.animated)) {
+  if (!active.value && (!isDef(tabs.value) || !tabs.value.props.animated)) {
     style.display = 'none'
   }
   return objToStyle(style)
 })
 
+/**
+ * 是否应该渲染
+ */
 const shouldBeRender = computed(() => !props.lazy || painted.value || active.value)
 
 watch(active, (val) => {
@@ -56,7 +67,7 @@ watch(
       console.error('[wot ui] error(wd-tab): the type of name should be number or string')
       return
     }
-    if (tabs) {
+    if (tabs.value) {
       checkName(proxy)
     }
   },
@@ -67,22 +78,22 @@ watch(
 )
 
 /**
- * @description 检测tab绑定的name是否和其它tab的name冲突
- * @param {Object} self 自身
+ * 检测 tab 绑定的 name 是否和其它 tab 的 name 冲突
+ * @param self 自身
  */
 function checkName(self: any) {
   const { name: myName } = props
   if (myName === undefined || myName === null || myName === '') {
     return
   }
-  tabs &&
-    tabs.children.forEach((child: any) => {
+  tabs.value &&
+    tabs.value.children.forEach((child: any) => {
       if (child.$.uid !== self.$.uid && child.name === myName) {
         console.error(`The tab's bound value: ${myName} has been used`)
       }
     })
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

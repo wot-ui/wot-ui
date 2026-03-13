@@ -1,5 +1,5 @@
 <template>
-  <view :class="themeClass" :style="rootStyle">
+  <view :data-theme="theme" :class="themeClass" :style="rootStyle">
     <slot />
   </view>
 </template>
@@ -8,7 +8,9 @@
 export default {
   name: 'wd-config-provider',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -51,4 +53,6 @@ linkChildren({
 } as ConfigProviderProvide)
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+@use './index.scss';
+</style>

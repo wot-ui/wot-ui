@@ -8,7 +8,7 @@
  * 记得注释
  */
 import { type ExtractPropTypes, type InjectionKey } from 'vue'
-import { baseProps, makeBooleanProp, makeNumberProp } from '../common/props'
+import { baseProps, makeBooleanProp, makeNumberProp, makeStringProp } from '../common/props'
 
 export const stepsProps = {
   ...baseProps,
@@ -38,9 +38,9 @@ export const stepsProps = {
    * 步骤条之间的间距，默认为自动计算。
    * 如果指定，则使用此值作为间距。
    * 类型: string
-   * 默认值: 自动计算
+   * 默认值: ''
    */
-  space: String,
+  space: makeStringProp(''),
 
   /**
    * 是否将步骤条水平居中显示，只对横向步骤条有效。

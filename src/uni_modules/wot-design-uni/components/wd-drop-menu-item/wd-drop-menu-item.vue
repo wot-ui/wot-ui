@@ -1,16 +1,12 @@
 <template>
-  <view
-    v-if="showWrapper"
-    :class="`wd-drop-item  ${customClass}`"
-    :style="`pointer-events: none; z-index: ${zIndex}; ${positionStyle};${customStyle}`"
-  >
+  <view v-if="showWrapper" :class="`wd-drop-item ${customClass}`" :style="`z-index: ${zIndex}; ${positionStyle};${customStyle}`">
     <wd-popup
       v-model="showPop"
       :z-index="zIndex"
       :duration="duration"
       :position="position"
-      :custom-style="`position: absolute; pointer-events: auto; max-height: ${popupHeight ? popupHeight : '80%'}; ${customPopupStyle}`"
-      :custom-class="customPopupClass"
+      :custom-style="`max-height: ${popupHeight ? popupHeight : '80%'}; ${customPopupStyle}`"
+      :custom-class="`${customPopupClass} wd-drop-item__popup`"
       :modal="false"
       :close-on-click-modal="false"
       :root-portal="rootPortal"
@@ -19,25 +15,26 @@
       @before-leave="beforeLeave"
       @after-leave="afterLeave"
     >
-      <scroll-view v-if="options.length" :style="popupHeight ? { height: popupHeight } : ''" scroll-y scroll-with-animation :show-scrollbar="true">
-        <view
-          v-for="(item, index) in options"
-          :key="index"
-          @click="choose(index)"
-          :class="`wd-drop-item__option ${(item[valueKey] !== '' ? item[valueKey] : item) === modelValue ? 'is-active' : ''}`"
-        >
-          <view :class="`wd-drop-item__title ${customTitle}`">
-            <text>{{ item[labelKey] ? item[labelKey] : item }}</text>
-            <text v-if="item[tipKey]" class="wd-drop-item__tip">{{ item[tipKey] }}</text>
+      <slot>
+        <scroll-view :style="popupHeight ? { height: popupHeight } : ''" scroll-y scroll-with-animation :show-scrollbar="true">
+          <view
+            v-for="(item, index) in options"
+            :key="index"
+            @click="choose(index)"
+            :class="`wd-drop-item__option ${(item[valueKey] !== '' ? item[valueKey] : item) === modelValue ? 'is-active' : ''}`"
+          >
+            <view :class="`wd-drop-item__title ${customTitle}`">
+              <text class="wd-drop-item__title-text">{{ item[labelKey] ? item[labelKey] : item }}</text>
+              <text v-if="item[tipKey]" class="wd-drop-item__tip">{{ item[tipKey] }}</text>
+            </view>
+            <wd-icon
+              v-if="(item[valueKey] !== '' ? item[valueKey] : item) === modelValue"
+              :name="iconName"
+              :custom-class="`wd-drop-item__icon ${customIcon}`"
+            />
           </view>
-          <wd-icon
-            v-if="(item[valueKey] !== '' ? item[valueKey] : item) === modelValue"
-            :name="iconName"
-            :custom-class="`wd-drop-item__icon ${customIcon}`"
-          />
-        </view>
-      </scroll-view>
-      <slot v-else />
+        </scroll-view>
+      </slot>
     </wd-popup>
   </view>
 </template>
@@ -45,7 +42,9 @@
 export default {
   name: 'wd-drop-menu-item',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -87,11 +86,11 @@ const { proxy } = getCurrentInstance() as any
 
 const positionStyle = computed(() => {
   let style: string = ''
-  if (showWrapper.value && dropMenu) {
+  if (showWrapper.value && dropMenu.value) {
     style =
-      dropMenu.props.direction === 'down'
-        ? `top: calc(var(--window-top) + ${dropMenu.offset.value}px); bottom: 0;`
-        : `top: 0; bottom: calc(var(--window-bottom) + ${dropMenu.offset.value}px)`
+      dropMenu.value.props.direction === 'down'
+        ? `top: calc(var(--window-top) + ${dropMenu.value.offset.value}px); bottom: 0;`
+        : `top: 0; bottom: calc(var(--window-bottom) + ${dropMenu.value.offset.value}px)`
   } else {
     style = ''
   }
@@ -185,9 +184,9 @@ function open() {
 function handleOpen() {
   showWrapper.value = true
   showPop.value = true
-  if (dropMenu) {
-    duration.value = Number(dropMenu.props.duration)
-    position.value = dropMenu.props.direction === 'down' ? 'top' : 'bottom'
+  if (dropMenu.value) {
+    duration.value = Number(dropMenu.value.props.duration)
+    position.value = dropMenu.value.props.direction === 'down' ? 'top' : 'bottom'
   }
 }
 
@@ -216,6 +215,6 @@ function beforeLeave() {
 defineExpose<DropMenuItemExpose>({ getShowPop, open, close, toggle })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

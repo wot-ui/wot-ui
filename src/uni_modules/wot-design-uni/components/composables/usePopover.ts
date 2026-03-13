@@ -1,6 +1,44 @@
 import { getCurrentInstance, ref } from 'vue'
 import { getRect, isObj } from '../common/util'
 
+/**
+ * Popover/Tooltip 弹出位置类型
+ * 可选值: top/top-start/top-end/bottom/bottom-start/bottom-end/left/left-start/left-end/right/right-start/right-end
+ */
+export type PlacementType =
+  | 'top'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end'
+  | 'right'
+  | 'right-start'
+  | 'right-end'
+
+/**
+ * 偏移量类型，支持三种格式
+ * 类型: number | number[] | { x: number; y: number }
+ */
+export type PopoverOffset = number | number[] | { x: number; y: number }
+
+/**
+ * 菜单模式下的列表项数据结构
+ */
+export interface PopoverMenuItem {
+  /** 菜单项显示文本 */
+  content: string
+  /** 菜单项图标类名 */
+  iconClass?: string
+}
+
+/**
+ * Popover/Tooltip 共用的定位与样式管理 composable
+ * @param visibleArrow 是否显示箭头
+ */
 export function usePopover(visibleArrow = true) {
   const { proxy } = getCurrentInstance() as any
   const popStyle = ref<string>('')
@@ -15,25 +53,13 @@ export function usePopover(visibleArrow = true) {
   const height = ref<number>(0)
   const top = ref<number>(0)
 
-  function noop() {}
-
-  function init(
-    placement:
-      | 'top'
-      | 'top-start'
-      | 'top-end'
-      | 'bottom'
-      | 'bottom-start'
-      | 'bottom-end'
-      | 'left'
-      | 'left-start'
-      | 'left-end'
-      | 'right'
-      | 'right-start'
-      | 'right-end',
-    visibleArrow: boolean,
-    selector: string
-  ) {
+  /**
+   * 初始化弹出框位置和箭头方向
+   * @param placement 弹出位置
+   * @param visibleArrow 是否显示箭头
+   * @param selector 选择器标识（popover/tooltip）
+   */
+  function init(placement: PlacementType, visibleArrow: boolean, selector: string) {
     // 初始化 class
     if (visibleArrow) {
       const arrowClassArr = [
@@ -63,22 +89,12 @@ export function usePopover(visibleArrow = true) {
     })
   }
 
-  function control(
-    placement:
-      | 'top'
-      | 'top-start'
-      | 'top-end'
-      | 'bottom'
-      | 'bottom-start'
-      | 'bottom-end'
-      | 'left'
-      | 'left-start'
-      | 'left-end'
-      | 'right'
-      | 'right-start'
-      | 'right-end',
-    offset: number | number[] | Record<'x' | 'y', number>
-  ) {
+  /**
+   * 根据目标元素和弹出层尺寸计算定位样式
+   * @param placement 弹出位置
+   * @param offset 偏移量
+   */
+  function control(placement: PlacementType, offset: PopoverOffset) {
     // arrow size
     const arrowSize = visibleArrow ? 9 : 0
     // 上下位（纵轴）对应的距离左边的距离
@@ -172,5 +188,25 @@ export function usePopover(visibleArrow = true) {
     arrowStyle.value = placements.get(placement)![1]
   }
 
-  return { popStyle, arrowStyle, showStyle, arrowClass, init, control, noop }
+  /**
+   * 过渡动画完成后重新测量实际弹出层容器尺寸并更新定位
+   * 用于 content 插槽场景，隐藏副本无法获取正确宽高时的补救
+   * @param placement 弹出位置
+   * @param offset 偏移量
+   */
+  function updatePosition(placement: PlacementType, offset: PopoverOffset) {
+    getRect('#content', false, proxy).then((rect) => {
+      if (!rect) return
+      const newWidth = rect.width as number
+      const newHeight = rect.height as number
+      // 仅当尺寸发生变化时重新计算定位
+      if (newWidth !== popWidth.value || newHeight !== popHeight.value) {
+        popWidth.value = newWidth
+        popHeight.value = newHeight
+        control(placement, offset)
+      }
+    })
+  }
+
+  return { popStyle, arrowStyle, showStyle, arrowClass, init, control, updatePosition }
 }

@@ -1,10 +1,10 @@
 <!--
  * @Author: weisheng
  * @Date: 2025-03-31 11:23:58
- * @LastEditTime: 2025-04-02 20:11:32
+ * @LastEditTime: 2026-02-12 10:22:25
  * @LastEditors: weisheng
  * @Description: 
- * @FilePath: /wot-design-uni/src/pages/divider/Index.vue
+ * @FilePath: /wot-design-uni/src/subPages/divider/Index.vue
  * 记得注释
 -->
 <template>
@@ -19,7 +19,7 @@
 
     <demo-block :title="$t('zi-ding-yi-xuan-ran-nei-rong')" transparent>
       <wd-divider>
-        <wd-icon name="arrow-down" size="20" />
+        <wd-icon name="down" size="20" />
       </wd-divider>
     </demo-block>
 

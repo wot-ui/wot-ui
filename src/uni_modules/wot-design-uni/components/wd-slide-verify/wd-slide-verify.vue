@@ -1,5 +1,5 @@
 <template>
-  <view :class="rootClass" :style="rootStyle">
+  <view :class="rootClass" :id="slideVerifyId" :style="rootStyle">
     <!-- 背景提示文字 -->
     <view class="wd-slide-verify__text">
       <slot name="text">
@@ -8,42 +8,23 @@
         </text>
       </slot>
     </view>
-
-    <!-- 滑过区域 -->
+    <!-- 滑过区域，包含滑块 -->
     <view class="wd-slide-verify__track" :style="trackStyle">
       <view class="wd-slide-verify__track-text">
         <slot name="success-text">
-          <text class="wd-slide-verify__track-text--success">
-            {{ slideVerifySuccessText }}
-          </text>
+          {{ slideVerifySuccessText }}
         </slot>
       </view>
-    </view>
+      <!-- 滑块 -->
+      <view class="wd-slide-verify__button" @touchstart.prevent="onTouchStart" @touchmove.prevent="onTouchMove" @touchend="onTouchEnd">
+        <slot v-if="isPass" name="success-icon">
+          <wd-icon custom-class="wd-slide-verify__button-icon wd-slide-verify__button-icon--success" :name="successIcon" :size="successIconSize" />
+        </slot>
 
-    <!-- 滑块 -->
-    <view
-      class="wd-slide-verify__button"
-      @touchstart.prevent="onTouchStart"
-      @touchmove.prevent="onTouchMove"
-      @touchend="onTouchEnd"
-      :style="buttonStyle"
-    >
-      <slot v-if="isPass" name="success-icon">
-        <view
-          class="wd-slide-verify__button-icon--success"
-          :style="{
-            backgroundColor: activeBackgroundColor
-          }"
-        >
-          <wd-icon :name="successIcon" :size="successIconSize" color="#fff" />
-        </view>
-      </slot>
-
-      <slot v-else name="icon">
-        <view class="wd-slide-verify__button-icon">
-          <wd-icon :name="icon" :size="iconSize" />
-        </view>
-      </slot>
+        <slot v-else name="icon">
+          <wd-icon custom-class="wd-slide-verify__button-icon" :name="icon" :size="iconSize" />
+        </slot>
+      </view>
     </view>
   </view>
 </template>
@@ -53,22 +34,28 @@ export default {
   name: 'wd-slide-verify',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
 </script>
 
 <script lang="ts" setup>
-import { ref, computed, onBeforeUnmount, type CSSProperties } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, getCurrentInstance, type CSSProperties } from 'vue'
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { slideVerifyProps, type SlideVerifyExpose } from './types'
+import { slideVerifyProps, type SlideVerifyEmits, type SlideVerifyExpose } from './types'
 import { useTouch } from '../composables/useTouch'
 import { useTranslate } from '../composables/useTranslate'
-import { objToStyle, addUnit, isDef } from '../common/util'
+import { objToStyle, isDef, getRect, uuid } from '../common/util'
 
 const props = defineProps(slideVerifyProps)
-const emit = defineEmits(['success', 'fail'])
+const emit = defineEmits<SlideVerifyEmits>()
+
+const slideVerifyId = ref<string>(`wd-slide-verify-${uuid()}`)
+
+const { proxy } = getCurrentInstance()!
 
 const touch = useTouch()
 const { translate } = useTranslate('slideVerify')
@@ -94,66 +81,52 @@ const rootClass = computed(() => {
 })
 
 const rootStyle = computed(() => {
-  const style: CSSProperties = {
-    width: addUnit(props.width),
-    height: addUnit(props.height),
-    backgroundColor: props.backgroundColor
+  const style: CSSProperties = {}
+  if (isDef(props.backgroundColor)) {
+    style.background = props.backgroundColor
   }
-
   return `${objToStyle(style)}${props.customStyle}`
-})
-
-const buttonStyle = computed(() => {
-  const size = props.height
-  const style: CSSProperties = {
-    width: addUnit(size),
-    height: addUnit(size),
-    transform: `translate(${currentPosition.value}px, 0)`,
-    transition: isResetting.value ? 'all 0.3s ease' : 'none',
-    '--wd-slide-verify-button-size': addUnit(size)
-  }
-  return objToStyle(style)
 })
 
 const trackStyle = computed(() => {
   const style: CSSProperties = {
-    width: `${currentPosition.value}px`,
-    background: props.activeBackgroundColor,
-    '--wot-slide-verify-track-width': addUnit(props.width)
+    width: `${currentPosition.value + containerHeight.value}px`,
+    transition: isResetting.value ? 'all 0.3s ease' : 'none'
+  }
+  if (isDef(props.activeBackgroundColor)) {
+    style.background = props.activeBackgroundColor
+  }
+  if (currentPosition.value === 0) {
+    style.background = 'transparent'
   }
   return objToStyle(style)
 })
 
-/**
- * 从字符串或数字中解析出有效的数字。
- *
- * - 对于 number 类型，直接返回原值（可能包括 Infinity、-Infinity）。
- * - 对于 string 类型，使用 `parseFloat` 解析前缀中的数字。
- * - 当无法解析出有效数字（结果为 NaN）时，返回 0 作为安全默认值。
- *
- * 注意：后续使用该函数的逻辑（如 `maxPosition` 计算）会额外通过 `isFinite`
- * 等判断过滤掉 Infinity / 非法值，因此这里不会主动抛错，而是保证返回一个 number。
- */
-const parseNumber = (value: string | number): number => {
-  if (typeof value === 'number') return value
-  const num = parseFloat(String(value))
-  return isNaN(num) ? 0 : num
-}
+const containerWidth = ref<number>(0)
+const containerHeight = ref<number>(0)
 
-// 最大位置，避免超出了范围导致展示异常
-const maxPosition = computed(() => {
-  const width = parseNumber(props.width)
-  const height = parseNumber(props.height)
-  if (!isFinite(width) || !isFinite(height) || width <= 0 || height <= 0) {
-    return 0
+onMounted(async () => {
+  try {
+    const rect = await getRect(`#${slideVerifyId.value}`, false, proxy)
+    containerWidth.value = rect.width || 0
+    containerHeight.value = rect.height || 0
+  } catch (e) {
+    // 测量失败时保持 0，禁止拖动
   }
-  return Math.max(0, width - height)
+})
+
+// 最大位置，基于实测容器宽高计算
+const maxPosition = computed(() => {
+  const { value: w } = containerWidth
+  const { value: h } = containerHeight
+  if (w <= 0 || h <= 0) return 0
+  return Math.max(0, w - h)
 })
 
 // 完成状态判断
 const isComplete = computed(() => {
   const distance = Math.abs(maxPosition.value - currentPosition.value)
-  return distance <= parseNumber(props.tolerance) // 容差范围内完成
+  return distance <= props.tolerance // 容差范围内完成
 })
 
 // 位置状态
@@ -239,6 +212,6 @@ const reset = () => {
 defineExpose<SlideVerifyExpose>({ reset })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

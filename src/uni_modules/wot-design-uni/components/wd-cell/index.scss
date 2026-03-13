@@ -20,7 +20,7 @@ $cell-placeholder-color: var(--wot-cell-placeholder-color, $text-placeholder) !d
 /* 尺寸变量 */
 $cell-size-arrow: var(--wot-cell-size-arrow, $n20) !default;
 $cell-size-icon: var(--wot-cell-size-icon-large, $n20) !default;
-$cell-line-height: var(--wot-cell-line-height, $typography-body-line--height-size-large) !default;
+$cell-line-height: var(--wot-cell-line-height, $typography-body-line--height-size-main) !default;
 
 /* 字体变量 */
 $cell-fs-title: var(--wot-cell-fs-title, $typography-body-size-main) !default;
@@ -34,9 +34,8 @@ $cell-placeholder-font-size: var(--wot-cell-placeholder-font-size, $typography-b
 
 /* 间距变量 */
 $cell-padding: var(--wot-cell-padding, $padding-loose) !default;
-$cell-padding-large: var(--wot-cell-padding-large, $padding-loose) !default;
+$cell-padding-large: var(--wot-cell-padding-large, $padding-extra-loose) !default;
 $cell-padding-vertical-top: var(--wot-cell-padding-vertical-top, $padding-extra-loose) !default;
-$cell-padding-default: var(--wot-cell-padding-default, $padding-loose) !default;
 $cell-margin-required: var(--wot-cell-margin-required, $padding-super-tight) !default;
 $cell-spacing-icon-right: var(--wot-cell-spacing-icon-right, $spacing-super-tight) !default;
 $cell-margin-horizontal: var(--wot-cell-margin-horizontal, $spacing-loose) !default; // 水平布局时左右区域间距
@@ -117,7 +116,7 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
     color: $cell-color-label;
   }
 
-  @include edeep(icon) {
+  @include edeep(prefix) {
     display: block;
     position: relative;
     margin-right: $cell-spacing-icon-right;
@@ -138,6 +137,7 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
     font-size: $cell-fs-value;
     color: $cell-color-value;
     vertical-align: middle;
+    word-break: break-all;
     
     @include m(left) {
       text-align: left;
@@ -171,6 +171,15 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
     height: $cell-line-height;
   }
 
+  @include edeep(suffix) {
+    display: block;
+    margin-left: $cell-arrow-margin-left;
+    font-size: $cell-size-icon;
+    line-height: $cell-line-height;
+    height: $cell-line-height;
+    color: $cell-color-icon;
+  }
+
 
   @include when(link) {
     -webkit-tap-highlight-color: $cell-color-bg-active;
@@ -181,21 +190,10 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
   }
 
   @include when(large) {
-
-    .wd-cell{
-      padding: $cell-padding-large;
-    }
-    .wd-cell__title {
-      font-size: $cell-fs-title-large;
-    }
-
-    .wd-cell__label {
-      font-size: $cell-fs-label-large;
-    }
-
-    .wd-cell__value {
-      font-size: $cell-fs-value-large;
-    }
+    --wot-cell-padding: #{$cell-padding-large};
+    --wot-cell-fs-title: #{$cell-fs-title-large};
+    --wot-cell-fs-label: #{$cell-fs-label-large};
+    --wot-cell-fs-value: #{$cell-fs-value-large};
   }
 
   @include when(center) {

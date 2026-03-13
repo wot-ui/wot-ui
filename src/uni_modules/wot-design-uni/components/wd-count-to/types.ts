@@ -1,53 +1,60 @@
 import type { ComponentPublicInstance, ExtractPropTypes } from 'vue'
 import { baseProps, makeBooleanProp, makeNumberProp, makeStringProp } from '../common/props'
-import type { TextType } from '../wd-text/types'
+
+/**
+ * 主题类型
+ */
+export type CountToType = 'default' | 'primary' | 'success' | 'warning' | 'error'
 
 export const countToProps = {
   ...baseProps,
-
-  // 字体大小
-  fontSize: makeNumberProp(16),
-
-  // 文本颜色
+  /**
+   * 文本颜色
+   * 类型: string
+   * 默认值: ''
+   */
   color: makeStringProp(''),
+
   /**
    * 主题类型
-   * 类型：string
-   * 可选值：'default' /'primary' / 'error' / 'warning' / 'success'
-   * 默认值：'default'
+   * 类型: CountToType
+   * 可选值: 'default' | 'primary' | 'success' | 'warning' | 'error'
+   * 默认值: 'default'
    */
-  type: makeStringProp<TextType>('default'),
+  type: makeStringProp<CountToType>('default'),
+
   /**
    * 起始值
-   * 类型：number
-   * 默认值：0
+   * 类型: number
+   * 默认值: 0
    */
   startVal: makeNumberProp(0),
 
   /**
    * 最终值
-   * 类型：number
-   * 默认值：2021
+   * 类型: number
+   * 默认值: 2024
    */
   endVal: makeNumberProp(2024),
 
   /**
    * 从起始值到结束值数字变动的时间，单位毫秒
-   * 类型：number
-   * 默认值：3000
+   * 类型: number
+   * 默认值: 3000
    */
   duration: makeNumberProp(3000),
+
   /**
    * 是否自动开始
-   * 类型：boolean
-   * 默认值：true
+   * 类型: boolean
+   * 默认值: true
    */
   autoStart: makeBooleanProp(true),
+
   /**
-   * 保留的小数位数
-   * 类型：number
-   * 默认值：0
-   * 校验：大于等于0
+   * 保留的小数位数，需大于等于0
+   * 类型: number
+   * 默认值: 0
    */
   decimals: {
     type: Number,
@@ -58,60 +65,57 @@ export const countToProps = {
     }
   },
 
-  // 小数点
+  /**
+   * 小数点符号
+   * 类型: string
+   * 默认值: '.'
+   */
   decimal: makeStringProp('.'),
 
-  // 三位三位的隔开效果
+  /**
+   * 千分位分隔符
+   * 类型: string
+   * 默认值: ','
+   */
   separator: makeStringProp(','),
 
   /**
    * 前缀
-   * 类型：string
-   * 默认值：''
-   * @example '¥' 人民币前缀
+   * 类型: string
+   * 默认值: ''
    */
   prefix: makeStringProp(''),
 
   /**
    * 后缀
-   * 类型：string
-   * 默认值：''
+   * 类型: string
+   * 默认值: ''
    */
   suffix: makeStringProp(''),
 
   /**
-   * 是否具有连贯性
-   * 类型：boolean
-   * 默认值：true
+   * 是否使用缓动动画效果
+   * 类型: boolean
+   * 默认值: true
    */
-  useEasing: makeBooleanProp(true),
-
-  /**
-   * 自定义根节点样式
-   */
-  customStyle: makeStringProp(''),
-
-  /**
-   * 自定义根节点样式类
-   */
-  customClass: makeStringProp('')
+  useEasing: makeBooleanProp(true)
 }
 
-export type CountDownProps = ExtractPropTypes<typeof countToProps>
+export type CountToProps = ExtractPropTypes<typeof countToProps>
 
-export type CountUpExpose = {
+export type CountToExpose = {
   /**
-   * 开始倒计时
+   * 开始计数
    */
   start: () => void
   /**
-   * 暂停倒计时
+   * 暂停计数
    */
   pause: () => void
   /**
-   * 重设倒计时，若 auto-start 为 true，重设后会自动开始倒计时
+   * 重置计数，若 autoStart 为 true，重置后会自动开始计数
    */
   reset: () => void
 }
 
-export type CountToInstance = ComponentPublicInstance<CountDownProps, CountUpExpose>
+export type CountToInstance = ComponentPublicInstance<CountToProps, CountToExpose>

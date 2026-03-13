@@ -1,34 +1,32 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(picker) {
-    @include e(action) {
-      @include m(cancel) {
-        color: $-dark-color;
-      }
-      @include when(loading) {
-        color: $-dark-color3;
-      }
-    }
-  }
-}
+$picker-toolbar-height: var(--wot-picker-toolbar-height, $n44) !default;
+$picker-bg: var(--wot-picker-bg, $filled-oppo) !default;
+$picker-confirm-action-color: var(--wot-picker-confirm-action-color, $primary-6) !default;
+$picker-cancel-action-color: var(--wot-picker-cancel-action-color, $text-secondary) !default;
+$picker-action-disabled-color: var(--wot-picker-action-disabled-color, $text-disabled) !default;
+$picker-action-font-size: var(--wot-picker-action-font-size, $typography-body-size-extra-large) !default;
+$picker-title-color: var(--wot-picker-title-color, $text-main) !default;
+$picker-title-font-size: var(--wot-picker-title-font-size, $typography-title-size-main) !default;
+$picker-title-font-weight: var(--wot-picker-title-font-weight, $font-weight-medium) !default;
+$picker-title-line-height: var(--wot-picker-title-line-height, $typography-title-line--height-size-main) !default;
+$picker-radius: var(--wot-picker-radius, $radius-large) !default;
 
 @include b(picker) {
   @include edeep(popup) {
-    border-radius: 16px 16px 0px 0px;
+    border-radius: $picker-radius $picker-radius 0px 0px;
   }
 
   @include e(wraper) {
     padding-bottom: var(--window-bottom);
+    background: $picker-bg;
   }
 
   @include e(toolbar) {
     position: relative;
     display: flex;
-    font-size: $-picker-toolbar-fs;
-    height: $-picker-toolbar-height;
-    line-height: $-picker-action-height;
+    height: $picker-toolbar-height;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
@@ -38,23 +36,26 @@
     display: block;
     border: none;
     outline: none;
-    font-size: $-picker-toolbar-fs;
-    color: $-picker-toolbar-finish-color;
+    font-size: $picker-action-font-size;
     background: transparent;
-    padding: 24px 15px 14px 15px;
+    padding: 0 15px;
 
     @include m(cancel) {
-      color: $-picker-toolbar-cancel-color;
+      color: $picker-cancel-action-color;
     }
 
-    @include when(loading) {
-      color: $-picker-loading-button-color;
+    @include m(confirm) {
+      color: $picker-confirm-action-color;
     }
   }
-  
+
   @include e(title) {
     display: block;
-    float: 1;
-    color: $-picker-toolbar-title-color;
+    flex: 1;
+    text-align: center;
+    color: $picker-title-color;
+    font-size: $picker-title-font-size;
+    font-weight: $picker-title-font-weight;
+    line-height: $picker-title-line-height;
   }
 }

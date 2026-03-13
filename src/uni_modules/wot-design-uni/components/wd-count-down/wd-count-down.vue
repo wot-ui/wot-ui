@@ -9,7 +9,9 @@
 export default {
   name: 'wd-count-down',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -55,6 +57,6 @@ defineExpose<CountDownExpose>({
 })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

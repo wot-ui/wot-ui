@@ -1,5 +1,5 @@
 <template>
-  <page-wraper>
+  <page-wraper custom-class="slide-verify-page">
     <demo-block :title="$t('ji-chu-yong-fa')">
       <wd-slide-verify @success="handleSuccess" @fail="handleFail" />
     </demo-block>
@@ -8,16 +8,12 @@
       <wd-slide-verify :text="$t('qing-tuo-dong-hua-kuai')" :success-text="$t('yan-zheng-cheng-gong')" />
     </demo-block>
 
-    <demo-block :title="$t('zi-ding-yi-chi-cun')">
-      <wd-slide-verify :width="250" :height="50" icon-size="60rpx" success-icon-size="30rpx" />
-    </demo-block>
-
     <demo-block :title="$t('zi-ding-yi-yan-se')">
       <wd-slide-verify background-color="#E8F4FF" active-background-color="#4D94FF" />
     </demo-block>
 
     <demo-block :title="$t('zi-ding-yi-tu-biao')">
-      <wd-slide-verify icon="arrow-right" success-icon="read" :icon-size="24" :success-icon-size="14" />
+      <wd-slide-verify icon="arrow-right" success-icon="thumb-up-fill" />
     </demo-block>
 
     <demo-block :title="$t('zi-ding-yi-rong-cuo-fan-wei')">
@@ -78,6 +74,12 @@ function handleReset() {
 </script>
 
 <style lang="scss" scoped>
+:deep() {
+  .demo-block__container {
+    background: $filled-content;
+  }
+}
+
 :deep(.wd-slide-verify) {
   margin-bottom: 20px;
 }

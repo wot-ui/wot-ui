@@ -32,11 +32,11 @@ Customize prompt text through `text` and `success-text` properties.
 
 ## Custom Size
 
-Customize the width and height of the slide bar through `width` and `height` properties.
+Customize the height of the slide bar through the CSS variable `--wot-slide-verify-height`. The width defaults to 100%.
 Set the corresponding icon sizes through `icon-size` and `success-icon-size` properties.
 
 ```html
-<wd-slide-verify :width="250" :height="50" icon-size="60rpx" success-icon-size="30rpx" />
+<wd-slide-verify :custom-style="`--wot-slide-verify-height: 50px`" icon-size="60rpx" success-icon-size="30rpx" />
 ```
 
 ## Custom Color
@@ -116,8 +116,6 @@ Supports customizing content through slots.
 
 | Parameter               | Description                                                                                           | Type            | Options | Default                              | Version          |
 | ----------------------- | ----------------------------------------------------------------------------------------------------- | --------------- | ------- | ------------------------------------ | ---------------- |
-| width                   | Width of slide bar (unit: px)                                                                         | number / string | -       | 300                                  | 1.14.0 |
-| height                  | Height of slider (unit: px)                                                                           | number / string | -       | 40                                   | 1.14.0 |
 | tolerance               | Tolerance range (unit: px), distance from endpoint within which verification is considered successful | number / string | -       | 10                                   | 1.14.0 |
 | text                    | Prompt text                                                                                           | string          | -       | Slide right to complete verification | 1.14.0 |
 | success-text            | Success prompt text                                                                                   | string          | -       | Verification passed                  | 1.14.0 |

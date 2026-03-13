@@ -12,8 +12,8 @@
       <wd-sort-button v-model="value3" :title="$t('jia-ge-1')" desc-first @change="handleChange3" />
     </demo-block>
 
-    <demo-block :title="$t('bu-zhan-shi-xia-hua-xian-dang-zhi-you-yi-ge-pai-xu-an-niu-shi-ying-qu-xiao-zhan-shi-xia-hua-xian')">
-      <wd-sort-button v-model="value4" :title="$t('jia-ge-2')" :line="false" @change="handleChange4" />
+    <demo-block title="显示下划线">
+      <wd-sort-button v-model="value4" :title="$t('jia-ge-2')" line @change="handleChange4" />
     </demo-block>
   </page-wraper>
 </template>

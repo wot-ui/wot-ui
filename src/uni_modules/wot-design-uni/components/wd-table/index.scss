@@ -1,122 +1,98 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(table) {
-    background: $-dark-background;
-
-    @include when(border) {
-      border: 1px solid $-dark-border-color;
-    }
-
-    @include e(cell) {
-      color: $-dark-color;
-      background: $-dark-background2;
-
-      @include when(stripe) {
-        background: $-dark-background4;
-      }
-
-      @include when(border) {
-        border-right: 1px solid $-dark-border-color;
-        border-bottom: 1px solid $-dark-border-color;
-      }
-
-      @include when(shadow) {
-        &::after {
-          background: linear-gradient(270deg, rgba(17, 17, 17, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
-        }
-      }
-    }
-  }
-}
-
-
+$table-bg: var(--wot-table-bg, $filled-oppo) !default;
+$table-color: var(--wot-table-color, $text-main) !default;
+$table-stripe-bg: var(--wot-table-stripe-bg, $filled-bottom) !default;
+$table-border-color: var(--wot-table-border-color, $border-main) !default;
+$table-border-width: var(--wot-table-border-width, $n1) !default;
+$table-cell-font-size: var(--wot-table-cell-font-size, $typography-body-size-main) !default;
+$table-cell-line-height: var(--wot-table-cell-line-height, $typography-body-line--height-size-main) !default;
+$table-cell-padding: var(--wot-table-cell-padding, $padding-loose $padding-extra-loose) !default;
+$table-shadow-gradient: var(--wot-table-shadow-gradient, linear-gradient(270deg, $base-transparent 0%, $opac-2_04 100%)) !default;
+$table-sort-button-height: var(--wot-table-sort-button-height, $n20) !default;
 
 @include b(table) {
   position: relative;
   width: 100%;
-  overflow: auto;
-  background: $-table-bg;
+  overflow: hidden;
+  background: $table-bg;
 
   @include when(border) {
-    border: 1px solid $-table-border-color;
-  }
-
-  :deep() {
-    .wd-table-col:last-child {
-      .wd-table__cell {
-        @include when(border) {
-          border-right: none;
-        }
-      }
-    }
+    border: $table-border-width solid $table-border-color;
   }
 
   @include e(header) {
     width: 100%;
-    height: 50px;
-    position: sticky;
-    top: 0;
+    background: $table-bg;
     z-index: 2;
-    display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
+
+    @include when(sticky) {
+      position: sticky;
+      top: 0;
+    }
   }
 
   @include e(body) {
     width: 100%;
-    box-sizing: border-box;
-  }
-
-  @include e(content) {
-    display: flex;
-
-    @include m(header) {
-      position: sticky;
-      top: 0;
-      z-index: 2
-    }
   }
 
   @include e(cell) {
+    position: relative;
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    background: $-table-bg;
-    width: 100px;
-    min-height: 50px;
-    padding: 8px 10px;
-    font-size: $-table-font-size;
-    color: $-table-color;
-    --wot-sort-button-height: 30px;
+    background: $table-bg;
+    padding: $table-cell-padding;
+    font-size: $table-cell-font-size;
+    line-height: $table-cell-line-height;
+    color: $table-color;
+    --wot-sort-button-height: #{$table-sort-button-height};
 
     @include when(border) {
-      border-right: 1px solid $-table-border-color;
-      border-bottom: 1px solid $-table-border-color;
+      &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        border-right: $table-border-width solid $table-border-color;
+        border-bottom: $table-border-width solid $table-border-color;
+        pointer-events: none;
+        box-sizing: border-box;
+      }
+
+      @include when(last) {
+        &::before {
+          border-right: none;
+        }
+      }
     }
 
     @include when(stripe) {
-      background: $-table-stripe-bg;
+      background: $table-stripe-bg;
     }
 
     @include when(fixed) {
       position: sticky;
       z-index: 1;
-      left: 0;
     }
 
     @include when(shadow) {
       &::after {
         content: ' ';
         position: absolute;
-        height: 100%;
         right: -30rpx;
         top: 0;
         width: 30rpx;
         height: 100%;
-        background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.04) 100%);
+        background: $table-shadow-gradient;
       }
+    }
+
+    @include when(hidden) {
+      display: none;
     }
 
     @include when(left) {
@@ -130,27 +106,6 @@
     @include when(right) {
       justify-content: flex-end;
     }
-  }
-
-  @include e(wrapper) {
-    width: 100%;
-    overflow: auto;
-  }
-
-  @include e(inner) {
-    display: flex;
-    flex-direction: column;
-  }
-
-  @include e(header-row) {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
-
-  @include e(body) {
-    display: flex;
-    width: 100%;
   }
 
   @include e(value) {

@@ -1,10 +1,10 @@
 <!--
  * @Author: weisheng
  * @Date: 2023-06-13 11:47:12
- * @LastEditTime: 2025-04-02 20:17:36
+ * @LastEditTime: 2026-02-26 14:44:34
  * @LastEditors: weisheng
  * @Description: 
- * @FilePath: /wot-design-uni/src/pages/sticky/Index.vue
+ * @FilePath: /wot-design-uni/src/subPages/sticky/Index.vue
  * 记得注释
 -->
 <template>
@@ -46,7 +46,7 @@
         <view class="demo-container">
           <wd-button type="info" plain @click="insert">{{ $t('dian-ji-cha-ru') }}</wd-button>
           <wd-sticky custom-style="margin-left: 220px">
-            <wd-button type="error" v-if="show">{{ $t('dong-tai-sheng-cheng') }}</wd-button>
+            <wd-button type="danger" v-if="show">{{ $t('dong-tai-sheng-cheng') }}</wd-button>
           </wd-sticky>
         </view>
       </view>

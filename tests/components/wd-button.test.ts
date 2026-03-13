@@ -1,6 +1,7 @@
-import { mount } from '@vue/test-utils'
+import { mount, config } from '@vue/test-utils'
 import WdButton from '@/uni_modules/wot-design-uni/components/wd-button/wd-button.vue'
 import wdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
 import {
@@ -8,8 +9,12 @@ import {
   type ButtonType,
   type ButtonOpenType,
   type ButtonLang,
-  type ButtonScope
+  type ButtonScope,
+  type ButtonVariant
 } from '@/uni_modules/wot-design-uni/components/wd-button/types'
+
+// Register WdLoading globally for tests as it is not imported in WdButton
+config.global.components['wd-loading'] = WdLoading
 
 describe('WdButton', () => {
   beforeEach(() => {
@@ -23,12 +28,11 @@ describe('WdButton', () => {
     expect(wrapper.classes()).toContain('wd-button')
     expect(wrapper.classes()).toContain('is-primary')
     expect(wrapper.classes()).toContain('is-medium')
-    expect(wrapper.classes()).toContain('is-round')
   })
 
   // 测试按钮类型
   test('不同按钮类型', () => {
-    const types: ButtonType[] = ['primary', 'success', 'info', 'warning', 'error', 'default', 'text', 'icon']
+    const types: ButtonType[] = ['primary', 'success', 'info', 'warning', 'danger']
 
     types.forEach((type) => {
       const wrapper = mount(WdButton, {
@@ -50,15 +54,6 @@ describe('WdButton', () => {
 
       expect(wrapper.classes()).toContain(`is-${size}`)
     })
-  })
-
-  // 测试朴素按钮
-  test('朴素按钮', () => {
-    const wrapper = mount(WdButton, {
-      props: { plain: true }
-    })
-
-    expect(wrapper.classes()).toContain('is-plain')
   })
 
   // 测试圆角按钮
@@ -110,29 +105,11 @@ describe('WdButton', () => {
 
     expect(wrapper.classes()).toContain('is-loading')
     expect(wrapper.find('.wd-button__loading').exists()).toBe(true)
-    expect(wrapper.find('.wd-button__loading-svg').exists()).toBe(true)
 
     // 点击加载中按钮不应该触发事件
     await wrapper.trigger('click')
 
     expect(wrapper.emitted('click')).toBeFalsy()
-  })
-
-  // 测试自定义加载颜色
-  test('自定义加载颜色', async () => {
-    const loadingColor = '#ff0000'
-
-    const wrapper = mount(WdButton, {
-      props: {
-        loading: true,
-        loadingColor
-      }
-    })
-
-    await nextTick()
-
-    // 检查加载图标样式
-    expect(wrapper.find('.wd-button__loading-svg').attributes('style')).toContain('background-image: url(')
   })
 
   // 测试图标按钮
@@ -521,7 +498,7 @@ describe('WdButton', () => {
 
   // 测试加载图标构建
   test('不同类型的加载图标构建', async () => {
-    const types: ButtonType[] = ['primary', 'success', 'info', 'warning', 'error', 'default']
+    const types: ButtonType[] = ['primary', 'success', 'info', 'warning', 'danger']
 
     for (const type of types) {
       const wrapper = mount(WdButton, {
@@ -534,7 +511,7 @@ describe('WdButton', () => {
       await nextTick()
 
       // 检查加载图标是否构建成功
-      expect(wrapper.find('.wd-button__loading-svg').attributes('style')).toContain('background-image: url(')
+      expect(wrapper.find('.wd-button__loading').exists()).toBe(true)
     }
   })
 
@@ -542,14 +519,92 @@ describe('WdButton', () => {
   test('朴素按钮的加载图标构建', async () => {
     const wrapper = mount(WdButton, {
       props: {
-        plain: true,
+        variant: 'plain',
         loading: true
       }
     })
 
     await nextTick()
+    console.log('Plain Loading HTML:', wrapper.html())
 
     // 检查加载图标是否构建成功
-    expect(wrapper.find('.wd-button__loading-svg').attributes('style')).toContain('background-image: url(')
+    expect(wrapper.find('.wd-button__loading').exists()).toBe(true)
+  })
+
+  // 测试按钮变体
+  test('不同按钮变体', () => {
+    const variants: ButtonVariant[] = ['plain', 'dashed', 'text', 'base']
+
+    variants.forEach((variant) => {
+      const wrapper = mount(WdButton, {
+        props: { variant }
+      })
+
+      if (variant !== 'base') {
+        expect(wrapper.classes()).toContain(`is-${variant}`)
+      } else {
+        expect(wrapper.classes()).not.toContain('is-base')
+      }
+    })
+  })
+
+  // 测试纯图标模式
+  test('纯图标模式', () => {
+    const wrapper = mount(WdButton, {
+      props: { icon: 'add' }
+    })
+
+    expect(wrapper.classes()).toContain('is-icon')
+  })
+
+  // 测试加载配置
+  test('加载配置', () => {
+    const loadingProps = {
+      size: '20px',
+      color: 'red'
+    }
+
+    const wrapper = mount(WdButton, {
+      props: {
+        loading: true,
+        loadingProps
+      },
+      global: {
+        components: {
+          WdLoading
+        }
+      }
+    })
+
+    const loadingComp = wrapper.findComponent({ name: 'wd-loading' })
+    expect(loadingComp.exists()).toBe(true)
+    expect(loadingComp.props('size')).toBe(loadingProps.size)
+    expect(loadingComp.props('color')).toBe(loadingProps.color)
+  })
+
+  // 测试实时获取手机号事件
+  test('触发实时获取手机号事件', async () => {
+    const wrapper = mount(WdButton)
+    const detail = { phoneNumber: '12345678901' }
+
+    await wrapper.trigger('getrealtimephonenumber', { detail })
+
+    expect(wrapper.emitted('getrealtimephonenumber')).toBeTruthy()
+    const event = wrapper.emitted('getrealtimephonenumber')
+    expect(event && event[0][0]).toEqual(detail)
+  })
+
+  // 测试插槽优先于 text 属性
+  test('插槽优先于 text 属性', () => {
+    const text = 'Prop Text'
+    const slotContent = 'Slot Content'
+
+    const wrapper = mount(WdButton, {
+      props: { text },
+      slots: { default: slotContent }
+    })
+
+    expect(wrapper.text()).toContain(slotContent)
+    expect(wrapper.text()).not.toContain(text)
   })
 })

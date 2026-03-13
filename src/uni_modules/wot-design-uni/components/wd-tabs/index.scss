@@ -1,69 +1,46 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/variable.scss'as *;
+@use '../styles/mixin/mixin.scss'as *;
 
 
-.wot-theme-dark {
-  @include b(tabs) {
-    background: $-dark-background2;
+$tabs-nav-bg: var(--wot-tabs-nav-bg, $filled-oppo) !default;
+$tabs-nav-sticky-width: var(--wot-tabs-nav-sticky-width, 100vw) !default;
+$tabs-nav-color: var(--wot-tabs-nav-color, $text-secondary) !default;
+$tabs-nav-active-color: var(--wot-tabs-nav-active-color, $primary-6) !default;
+$tabs-nav-active-font-weight: var(--wot-tabs-nav-active-font-weight, $font-weight-medium) !default;
+$tabs-nav-item-font-size: var(--wot-tabs-nav-item-font-size, $typography-body-size-extra-large) !default;
+$tabs-nav-item-line-height: var(--wot-tabs-nav-item-line-height, $typography-body-line--height-size-extra-large) !default;
+$tabs-nav-item-padding: var(--wot-tabs-nav-item-padding, $padding-main $padding-extra-loose) !default;
+$tabs-nav-disabled-color: var(--wot-tabs-nav-disabled-color, $text-disabled) !default;
+$tabs-nav-line-bg: var(--wot-tabs-nav-line-bg, $primary-6) !default;
+$tabs-nav-line-height: var(--wot-tabs-nav-line-height, $n4) !default;
+$tabs-nav-line-width: var(--wot-tabs-nav-line-width, $n24) !default;
+$tabs-nav-line-bottom: var(--wot-tabs-nav-line-bottom, $n2) !default;
+$tabs-duration: var(--wot-tabs-duration, 0.3s) !default;
+$tabs-map-modal-bg: var(--wot-tabs-map-modal-bg, $opac-7_55) !default;
+$tabs-map-arrow-size: var(--wot-tabs-map-arrow-size, $n16) !default;
+$tabs-map-arrow-color: var(--wot-tabs-map-arrow-color, $icon-secondary) !default;
+$tabs-map-btn-width: var(--wot-tabs-map-btn-width, $n44) !default;
+$tabs-map-btn-height: var(--wot-tabs-map-btn-height, $n44) !default;
+$tabs-map-btn-before-bg: var(--wot-tabs-map-btn-before-bg, linear-gradient(270deg, $filled-oppo 0%, $base-transparent 100%)) !default;
+$tabs-map-color: var(--wot-tabs-map-color, $text-main) !default;
+$tabs-map-header-font-size: var(--wot-tabs-map-header-font-size, $typography-body-size-extra-large) !default;
+$tabs-map-header-line-height: var(--wot-tabs-map-header-line-height, $typography-body-line--height-size-extra-large) !default;
+$tabs-map-header-padding: var(--wot-tabs-map-header-padding, $padding-main $padding-extra-loose) !default;
+$tabs-map-nav-btn-gap: var(--wot-tabs-map-nav-btn-gap, $spacing-main) !default;
+$tabs-map-nav-btn-disabled-opacity: var(--wot-tabs-map-nav-btn-disabled-opacity, $opacity-disabled) !default;
+$tabs-map-nav-btn-bg: var(--wot-tabs-map-nav-btn-bg, $filled-bottom) !default;
+$tabs-map-nav-btn-color: var(--wot-tabs-map-nav-btn-color, $text-main) !default;
+$tabs-map-nav-btn-radius: var(--wot-tabs-map-nav-btn-radius, $radius-main) !default;
+$tabs-map-nav-btn-font-size: var(--wot-tabs-map-nav-btn-font-size, $typography-body-size-ultra-large) !default;
+$tabs-map-nav-btn-line-height: var(--wot-tabs-map-nav-btn-line-height, $typography-body-line--height-size-ultra-large) !default;
+$tabs-map-nav-btn-padding: var(--wot-tabs-map-nav-btn-padding, $padding-tight $padding-extra-loose) !default;
+$tabs-map-body-padding: var(--wot-tabs-map-body-padding, $padding-loose $padding-extra-loose) !default;
+$tabs-map-body-bg: var(--wot-tabs-map-body-bg, $filled-oppo) !default;
 
-    @include e(nav) {
-      background: $-dark-background2;
-    }
-
-    @include e(nav-item) {
-      color: $-dark-color3;
-
-      @include when(active) {
-        font-weight: 600;
-        color: $-dark-color;
-      }
-
-      @include when(disabled) {
-        color: $-dark-color-gray;
-      }
-
-    }
-
-    @include e(map-nav-btn) {
-      background-color: $-dark-background4;
-      color: $-dark-color3;
-
-      @include when(active) {
-        color: $-dark-color;
-        border: 1px solid $-tabs-nav-active-color;
-        background-color: $-dark-background;
-      }
-
-      @include when(disabled) {
-        color: $-dark-color-gray;
-        border-color: #f4f4f4;
-      }
-    }
-
-    @include e(map-btn) {
-      background: $-dark-background2;
-      color: $-dark-color3;
-    }
-
-    @include e(map-header) {
-      background: $-dark-background2;
-      color: $-dark-color;
-
-      &::after {
-        background: $-dark-background4;
-      }
-    }
-
-    @include e(map-body) {
-      background: $-dark-background2;
-    }
-
-  }
-}
 
 @include b(tabs) {
   position: relative;
-  background: #fff;
+  background: $tabs-nav-bg;
   width: 100%;
 
   @include when(hide-scrollbar) {
@@ -77,8 +54,6 @@
   @include e(nav) {
     left: 0;
     right: 0;
-    height: $-tabs-nav-height;
-    background-color: #fff;
     width: 100%;
     position: relative;
 
@@ -88,7 +63,7 @@
     }
 
     @include m(sticky) {
-      width: 100vw;
+      width: $tabs-nav-sticky-width;
     }
   }
 
@@ -105,17 +80,19 @@
     justify-content: center;
     flex: 1;
     min-width: 0;
-    height: $-tabs-nav-height;
-    font-size: $-tabs-nav-fs;
-    color: $-tabs-nav-color;
-    transition: color .3s;
+    font-size: $tabs-nav-item-font-size;
+    line-height: $tabs-nav-item-line-height;
+    padding: $tabs-nav-item-padding;
+    color: $tabs-nav-color;
+    transition: color $tabs-duration;
 
     @include when(active) {
-      font-weight: 600;
+      font-weight: $tabs-nav-active-font-weight;
+      color: $tabs-nav-active-color;
     }
 
     @include when(disabled) {
-      color: $-tabs-nav-disabled-color;
+      color: $tabs-nav-disabled-color;
     }
   }
 
@@ -133,17 +110,33 @@
 
   @include e(line) {
     position: absolute;
-    bottom: 4px;
+    bottom: $tabs-nav-line-bottom;
     left: 0;
     z-index: 1;
-    height: $-tabs-nav-line-height;
-    width: $-tabs-nav-line-width;
-    background: $-tabs-nav-line-bg-color;
-    border-radius: calc($-tabs-nav-line-height / 2);
+    height: $tabs-nav-line-height;
+    background: $tabs-nav-line-bg;
+    border-radius: calc($tabs-nav-line-height / 2);
 
     @include m(inner) {
       left: 50%;
       transform: translateX(-50%)
+    }
+
+    @include when(normal) {
+      width: $tabs-nav-line-width;
+    }
+
+    @include when(underline) {
+      bottom: 0;
+      height: $n2;
+      border-radius: $radius-zero;
+    }
+
+    @include when(dot) {
+      bottom: 0;
+      width: $n6;
+      height: $n6;
+      border-radius: $radius-radius-full;
     }
   }
 
@@ -170,51 +163,15 @@
     z-index: 1;
   }
 
-  @include e(map-btn) {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: $-tabs-nav-height;
-    height: $-tabs-nav-height;
-    line-height: $-tabs-nav-height;
-    text-align: center;
-    color: $-tabs-nav-map-arrow-color;
-    z-index: 1;
-    background: $-tabs-nav-bg;
-    -webkit-tap-highlight-color: transparent;
-
-    &::before {
-      position: absolute;
-      content: '';
-      top: 0;
-      left: -24px;
-      width: 24px;
-      height: $-tabs-nav-height - 1;
-      background: $-tabs-nav-map-btn-before-bg;
-    }
-  }
-
-  @include e(map-arrow) {
-    display: block;
-    transition: transform .3s;
-
-    @include when(open) {
-      transform: rotate(180deg);
-    }
-  }
-
   @include e(map-header) {
     position: relative;
-    padding-left: 17px;
-    height: $-tabs-nav-height;
-    line-height: $-tabs-nav-height;
-    font-size: $-tabs-nav-map-fs;
-    color: $-tabs-nav-map-color;
-    transition: opacity .3s;
-    background: #fff;
+    font-size: $tabs-map-header-font-size;
+    line-height: $tabs-map-header-line-height;
+    padding: $tabs-map-header-padding;
+    color: $tabs-map-color;
+    transition: opacity $tabs-duration;
+    background: $tabs-nav-bg;
     opacity: 0;
-
-    @include halfPixelBorder;
 
     &::after {
       z-index: 3;
@@ -224,9 +181,9 @@
   @include e(map-body) {
     display: flex;
     flex-wrap: wrap;
-    padding: 20px 15px 10px;
-    background: #fff;
-    transition: transform .3s;
+    padding: $tabs-map-body-padding;
+    background: $tabs-map-body-bg;
+    transition: transform $tabs-duration;
     transform: scaleY(0);
     transform-origin: center top;
 
@@ -235,73 +192,107 @@
     }
   }
 
-  @include e(map-nav-item) {
-    flex-basis: 33%;
+  @include e(map-btn) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background: $tabs-nav-bg;
+    -webkit-tap-highlight-color: transparent;
+    width: $tabs-map-btn-width;
+    height: $tabs-map-btn-height;
 
-    &:nth-child(3n + 2) {
-      text-align: center;
+    &::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      width: $n24;
+      transform: translateX(-100%);
+      height: 100%;
+      background: $tabs-map-btn-before-bg;
+    }
+  }
+
+  @include e(map-arrow) {
+    display: block;
+    transition: transform $tabs-duration;
+
+    @include when(open) {
+      transform: rotate(180deg);
+    }
+  }
+
+  @include edeep(map-arrow-icon) {
+    font-size: $tabs-map-arrow-size;
+    color: $tabs-map-arrow-color;
+  }
+
+
+  @include e(map-nav-item) {
+    flex-basis: calc((100% - 2 * $tabs-map-nav-btn-gap) / 3);
+    box-sizing: border-box;
+    margin-right: $tabs-map-nav-btn-gap;
+    margin-bottom: $tabs-map-nav-btn-gap;
+
+    &:nth-child(3n) {
+      margin-right: 0;
     }
 
-    &:nth-child(3n + 3) {
-      text-align: right;
+    &:nth-last-child(-n + 3) {
+      margin-bottom: 0;
     }
   }
 
   @include e(map-nav-btn) {
     @include buttonClear;
     @include lineEllipsis;
-    display: inline-block;
-    width: 107px;
-    height: 32px;
-    line-height: 32px;
-    background-color: $-tabs-nav-map-button-back-color;
-    border-color: transparent;
-    margin-bottom: 10px;
-    border-radius: $-tabs-nav-map-button-radius;
-    color: $-tabs-nav-map-color;
-    font-size: $-tabs-nav-map-fs;
+    box-sizing: border-box;
+    background: $tabs-map-nav-btn-bg;
+    width: 100%;
+    border: $n1 solid transparent;
+    font-size: $tabs-map-nav-btn-font-size;
+    line-height: $tabs-map-nav-btn-line-height;
+    border-radius: $tabs-map-nav-btn-radius;
+    color: $tabs-map-nav-btn-color;
+    padding: $tabs-map-nav-btn-padding;
     text-align: center;
-    transition: color .3s, border-color .3s;
+    transition: color $tabs-duration, border-color $tabs-duration;
 
     @include when(active) {
-      color: $-tabs-nav-active-color;
-      border: 1px solid $-tabs-nav-active-color;
-      background-color: $-tabs-nav-bg
+      color: $tabs-nav-active-color;
+      border-color: $tabs-nav-active-color;
+      background: $tabs-nav-bg
     }
 
     @include when(disabled) {
-      color: $-tabs-nav-disabled-color;
-      border-color: #f4f4f4;
+      opacity: $tabs-map-nav-btn-disabled-opacity;
     }
   }
 
   @include e(mask) {
     position: absolute;
-    top: $-tabs-nav-height;
+    top: calc(2 * $padding-main + $tabs-map-header-line-height);
     left: 0;
     right: 0;
     bottom: 0;
-    background: $-tabs-nav-map-modal-bg;
+    background: $tabs-map-modal-bg;
     opacity: 0;
-    transition: opacity .3s;
+    transition: opacity $tabs-duration;
   }
 
   @include when(slide) {
     .wd-tabs__nav-item {
       flex: 0 0 auto;
-      padding: 0 17px;
     }
   }
 
   @include when(map) {
     .wd-tabs__nav--wrap {
-      padding-right: 40px;
+      padding-right: $tabs-map-btn-width;
     }
-  }
-}
-
-@media screen and (max-width: 330px) {
-  .wd-tabs__map-nav-btn {
-    width: 90px;
   }
 }

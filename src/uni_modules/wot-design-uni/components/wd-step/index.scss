@@ -1,202 +1,318 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(step) {
-    @include e(icon) {
-      background: $-dark-background2;
-    }
+// 组件级 CSS 变量定义
 
-    @include e(content){
-      color: $-dark-color3;
-    }
+// 基础容器与布局 (Base & Layout)
+// 内容区距头部的顶部外边距
+$step-content-margin-top: var(--wot-step-content-margin-top, $spacing-super-tight) !default;
+// 垂直布局时内容区的左外边距
+$step-vertical-content-margin-left: var(--wot-step-vertical-content-margin-left, $n32) !default;
+// 垂直布局时内容区的底部内边距
+$step-vertical-content-padding-bottom: var(--wot-step-vertical-content-padding-bottom, $n20) !default;
+// 垂直布局且为点状指示器时，头部的顶部绝对定位距离
+$step-vertical-header-dot-top: var(--wot-step-vertical-header-dot-top, $n6) !default;
 
-    @include e(line) {
-      background: $-dark-color-gray;
-    }
+// 步骤指示器（圆形/背景） (Indicator Circle)
+// 圆形指示器的宽高尺寸
+$step-indicator-size: var(--wot-step-indicator-size, $n18) !default;
+// 圆形指示器的圆角大小
+$step-circle-border-radius: var(--wot-step-circle-border-radius, $radius-radius-full) !default;
+// 等待 (wait) 状态下圆形指示器的背景色
+$step-circle-bg: var(--wot-step-circle-bg, $filled-strong) !default;
+// 进行中 (process) 状态下圆形指示器的背景色
+$step-process-bg: var(--wot-step-process-bg, $primary-6) !default;
+// 已完成 (finished) 状态下圆形指示器的背景色
+$step-finished-bg: var(--wot-step-finished-bg, $primary-1) !default;
+// 错误 (error) 状态下圆形指示器的背景色
+$step-error-bg: var(--wot-step-error-bg, $danger-main) !default;
 
-    @include e(dot) {
-      background: $-dark-color-gray;
-    }
+// 指示器文本（数字/对齐） (Indicator Text)
+// 圆形指示器内部文本的字号
+$step-circle-text-font-size: var(--wot-step-circle-text-font-size, $typography-label-size-main) !default;
+// 圆形指示器内部文本的行高
+$step-circle-text-line-height: var(--wot-step-circle-text-line-height, $typography-label-line--height-size-main) !default;
+// 圆形指示器内部文本的字重
+$step-circle-text-font-weight: var(--wot-step-circle-text-font-weight, $font-weight-medium) !default;
+// 等待状态或默认状态下圆形指示器内文本颜色
+$step-circle-text-color: var(--wot-step-circle-text-color, $text-secondary) !default;
+// 进行中状态下圆形指示器内文本颜色
+$step-circle-text-process-color: var(--wot-step-circle-text-process-color, $text-white) !default;
+// 已完成状态下圆形指示器内文本颜色
+$step-circle-text-finished-color: var(--wot-step-circle-text-finished-color, $primary-6) !default;
 
-    @include e(description) {
-      color: $-dark-color3;
-    }
+// 指示器图标 (Indicator Icon)
+// 圆形指示器内置状态图标 (如完成时的对号或错误时的叉号) 的字号大小
+$step-circle-icon-size: var(--wot-step-circle-icon-size, $n12) !default;
+// 外部自定义传入的图标 (通过 icon 属性) 的字号大小
+$step-icon-size: var(--wot-step-icon-size, $n18) !default;
+// 等待或默认状态下图标的颜色
+$step-icon-color: var(--wot-step-icon-color, $icon-auxiliary) !default;
+// 激活 (如 process 或 finished) 状态下图标的颜色
+$step-icon-active-color: var(--wot-step-icon-active-color, $primary-6) !default;
+// 错误 (error) 状态下图标的颜色
+$step-icon-error-color: var(--wot-step-icon-error-color, $danger-main) !default;
+// 未激活部分的占位文本颜色
+$step-inactive-color: var(--wot-step-inactive-color, $text-placeholder) !default;
+// 错误状态整体的主色调（纯白文本场景下等使用）
+$step-error-color: var(--wot-step-error-color, $text-white) !default;
 
-    @include when(wait) {
-      .wd-step__description {
-        color: $-dark-color-gray;
-      }
-    }
+// 连接线 (Line)
+// 连接线与两侧指示器之间的间距
+$step-line-spacing: var(--wot-step-line-spacing, $spacing-tight) !default;
+// 连接线的默认底色 (对应未激活的线段)
+$step-line-color: var(--wot-step-line-color, $border-main) !default;
+// 激活 (完成状态) 下连接线的颜色
+$step-line-active-color: var(--wot-step-line-active-color, $primary-6) !default;
 
-    :deep(.wd-step__icon-outer),:deep(.wd-step__icon-inner){
-      color: $-dark-color3; 
-      border-color: $-dark-color-gray;
-    }
-  }
-}
+// 点状指示器 (Dot Indicator)
+// 点状指示器的宽高尺寸
+$step-dot-size: var(--wot-step-dot-size, $n10) !default;
+// 等待 (wait) 状态下点状指示器的背景色
+$step-dot-wait-bg: var(--wot-step-dot-wait-bg, $filled-strong) !default;
+// 进行中 (process) 状态下点状指示器的背景色
+$step-dot-process-bg: var(--wot-step-dot-process-bg, $primary-6) !default;
+// 进行中 (process) 状态下点状指示器的描边颜色
+$step-dot-process-border-color: var(--wot-step-dot-process-border-color, $primary-3) !default;
+// 已完成 (finished) 状态下点状指示器的背景色
+$step-dot-finished-bg: var(--wot-step-dot-finished-bg, $primary-3) !default;
+// 已完成 (finished) 状态下点状指示器的描边颜色
+$step-dot-finished-border-color: var(--wot-step-dot-finished-border-color, $primary-6) !default;
+// 错误 (error) 状态下点状指示器的背景色
+$step-dot-error-bg: var(--wot-step-dot-error-bg, $danger-main) !default;
 
+// 标题文本 (Title Text)
+// 标题文本字号大小
+$step-title-font-size: var(--wot-step-title-font-size, $typography-body-size-main) !default;
+// 标题文本行高
+$step-title-line-height: var(--wot-step-title-line-height, $typography-body-line--height-size-main) !default;
+// 标题文本字重
+$step-title-font-weight: var(--wot-step-title-font-weight, $font-weight-regular) !default;
+// 等待与完成状态下标题的颜色
+$step-title-color: var(--wot-step-title-color, $text-secondary) !default;
+// 进行中状态下标题的激活颜色
+$step-title-active-color: var(--wot-step-title-active-color, $primary-6) !default;
+// 错误状态下标题的颜色
+$step-title-error-color: var(--wot-step-title-error-color, $danger-main) !default;
+
+// 描述文本 (Description Text)
+// 描述文本字号大小
+$step-description-font-size: var(--wot-step-description-font-size, $typography-label-size-main) !default;
+// 描述文本行高
+$step-description-line-height: var(--wot-step-description-line-height, $typography-label-line--height-size-main) !default;
+// 描述文本字重
+$step-description-font-weight: var(--wot-step-description-font-weight, $font-weight-regular) !default;
+// 描述文本颜色
+$step-description-color: var(--wot-step-description-color, $text-secondary) !default;
+// 描述文本距标题的距离
+$step-description-margin-top: var(--wot-step-description-margin-top, $spacing-super-tight) !default;
+// 描述文本的内边距
+$step-description-padding: var(--wot-step-description-padding, $padding-zero $padding-ultra-tight) !default;
 
 @include b(step) {
   position: relative;
   display: inline-block;
-  vertical-align: top;
 
   @include e(header) {
     position: relative;
     font-size: 0;
 
-    @include when(dot) {
+    &.is-dot {
       .wd-step__line {
-        margin-top: -1px;
+        width: calc(100% - 2 * $step-line-spacing - $step-dot-size);
+        left: calc($step-line-spacing + $step-dot-size);
       }
     }
   }
-  @include e(icon) {
-    display: inline-block;
+
+  @include e(indicator) {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
-    width: $-steps-icon-size;
-    height: $-steps-icon-size;
-    background: #fff;
     z-index: 1;
+  }
 
-    @include when(icon) {
-      width: $-steps-is-icon-width;
-      text-align: center;
-    }
-    @include when(dot) {
-      width: $-steps-dot-size;
-      height: $-steps-dot-size;
-      border: 1px solid transparent;
-      margin-left: -1px;
-      border-radius: 50%;
-      background: transparent;
-    }
+  @include e(circle) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $step-indicator-size;
+    height: $step-indicator-size;
+    border-radius: $step-circle-border-radius;
   }
-  @include edeep(icon-inner) {
-    font-size: $-steps-icon-size;
-    color: $-steps-inactive-color;
-  }
-  @include e(icon-outer) {
-    width: calc($-steps-icon-size - 2px);
-    height: calc($-steps-icon-size - 2px);
-    border: 1px solid $-steps-inactive-color;
-    color: $-steps-inactive-color;
-    text-align: center;
-    line-height: calc($-steps-icon-size - 2px);
-    border-radius: 50%;
-    font-size: $-steps-icon-text-fs;
-  }
-  @include e(line) {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    background: $-steps-line-color;
-    transform: scaleY(0.5);
-    top: 50%;
-    left: 0;
-  }
-  @include e(dot) {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: $-steps-line-color;
-  }
-  @include e(content){
-    margin-top: 7px;
-    color: $-steps-inactive-color;
-    font-size: $-steps-label-fs;
-  }
-  @include e(title) {
-    font-weight: $-steps-title-fw;
-    line-height: 1.43;
 
-    @include when(description) {
-      font-size: $-steps-title-fs;
-    }
-  }
-  @include e(description) {
-    margin-top: 5px;
-    padding: 0 2px;
-    color: $-steps-description-color;
-  }
-  @include when(wait) {
-    .wd-step__description {
-      color: $-steps-inactive-color;
-    }
-  }
-  @include when(finished) {
-    :deep(.wd-step__icon-inner) {
-      color: $-steps-finished-color;
-    }
-    .wd-step__icon-outer {
-      color: $-steps-finished-color;
-      border-color: $-steps-finished-color;
-    }
-    .wd-step__title {
-      color: $-steps-finished-color;
-    }
-    .wd-step__dot {
-      background: $-steps-finished-color;
-    }
-  }
-  @include when(process) {
-    .wd-step__icon.is-icon {
-      :deep(.wd-step__icon-inner) {
-        color: $-steps-finished-color;
+  // 状态提升至组件层，使用 @include me 控制内部所有元素的样式
+  @each $status in (finished, process, error, wait) {
+    @include m($status) {
+      @include me(circle) {
+        @if $status==finished {
+          background: $step-finished-bg;
+          color: $step-circle-text-finished-color;
+          @include pixelBorderSurround($step-circle-text-finished-color);
+          :deep(.wd-step__finished-icon) {
+            color: $step-circle-text-finished-color;
+          }
+        }
+
+        @else if $status==process {
+          background: $step-process-bg;
+          color: $step-circle-text-process-color;
+        }
+
+        @else if $status==error {
+          background: $step-error-bg;
+          color: $step-error-color;
+        }
+
+        @else if $status==wait {
+          background: $step-circle-bg;
+          color: $step-circle-text-color;
+        }
+
+        @else {
+          background: $step-circle-bg;
+          color: $step-circle-text-color;
+        }
       }
-    }
-    .wd-step__icon-outer {
-      color: #fff;
-      background: $-steps-finished-color;
-      border-color: $-steps-finished-color;
-    }
-    .wd-step__title {
-      color: $-steps-finished-color;
-    }
-    .wd-step__icon {
-      border-color: $-steps-finished-color;
 
-      &.is-dot {
-        &::after {
-          position: absolute;
-          content: '';
-          width: $-steps-dot-size + 10px;
-          height: $-steps-dot-size + 10px;
-          left: -5px;
-          top: -5px;
-          border-radius: 50%;
-          background: $-steps-finished-color;
-          opacity: 0.2;
+      @include me(dot) {
+        @if $status==finished {
+          background: $step-dot-finished-bg;
+          @include pixelBorderSurround($step-dot-finished-border-color);
+        }
+
+        @else if $status==process {
+          background: $step-dot-process-bg;
+          @include pixelBorderSurround($step-dot-process-border-color);
+        }
+
+        @else if $status==error {
+          background: $step-dot-error-bg;
+        }
+
+        @else if $status==wait {
+          background: $step-dot-wait-bg;
+        }
+
+        @else {
+          background: $step-dot-wait-bg;
+        }
+      }
+
+      @include me(line){
+        @if $status==finished {
+          background: $step-line-active-color;
+        }
+      }
+
+      :deep(.wd-step__icon) {
+        @if $status==finished {
+          color: $step-icon-active-color;
+        }
+        @else if $status==process {
+          color: $step-icon-active-color;
+        }
+        @else if $status==error {
+          color: $step-icon-error-color;
+        }
+        @else if $status==wait {
+          color: $step-icon-color;
+        }
+        @else {
+          color: $step-icon-color;
+        }
+      }
+
+      @include me(title){
+        @if $status==finished {
+          color: $step-title-color;
+        }
+        @else if $status==process {
+          color: $step-title-active-color;
+        }
+        @else if $status==error {
+          color: $step-title-error-color;
+        }
+        @else if $status==wait {
+          color: $step-title-color;
+        }
+        @else {
+          color: $step-title-color;
         }
       }
     }
-    .wd-step__dot {
-      background: $-steps-finished-color;
-    }
   }
-  @include when(error) {
-    :deep(.wd-step__icon-inner), .wd-step__title {
-      color: $-steps-error-color;
-    }
-    .wd-step__icon-outer {
-      color: $-steps-error-color;
-      border-color: $-steps-error-color;
-    }
-    .wd-step__dot {
-      background: $-steps-error-color;
-    }
+
+  @include edeep(finished-icon,error-icon) {
+    font-size: $step-circle-icon-size;
   }
+
+  @include edeep(icon) {
+    font-size: $step-icon-size;
+  }
+
+  @include e(circle-text) {
+    font-size: $step-circle-text-font-size;
+    line-height: $step-circle-text-line-height;
+    font-weight: $step-circle-text-font-weight;
+  }
+
+  @include e(line) {
+    position: absolute;
+    width: calc(100% - 2 * $step-line-spacing - $step-indicator-size);
+    height: $stroke-main;
+    background: $step-line-color;
+    // transform: scaleY(0.5);
+    top: 50%;
+    left: calc($step-line-spacing + $step-indicator-size);
+  }
+
+  @include e(dot) {
+    position: relative;
+    display: block;
+    width: $step-dot-size;
+    height: $step-dot-size;
+    border-radius: 50%;
+    background: $step-line-color;
+    box-sizing: border-box;
+  }
+
+  @include e(content) {
+    margin-top: $step-content-margin-top;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include e(title) {
+    color: $step-title-color;
+    font-weight: $step-title-font-weight;
+    font-size: $step-title-font-size;
+    line-height: $step-title-line-height;
+  }
+
+  @include e(description) {
+    margin-top: $step-description-margin-top;
+    padding: $step-description-padding;
+    color: $step-description-color;
+    font-weight: $step-description-font-weight;
+    font-size: $step-description-font-size;
+    line-height: $step-description-line-height;
+  }
+
   @include when(center) {
     text-align: center;
-
     .wd-step__line {
-      left: 50%;
-      right: -50%;
+      left: calc(50% + $step-line-spacing + $step-indicator-size / 2);
+    }
+    
+    .wd-step__header.is-dot {
+      .wd-step__line {
+        left: calc(50% + $step-line-spacing + $step-dot-size / 2);
+      }
     }
   }
+
   @include when(vertical) {
     display: block;
 
@@ -207,29 +323,44 @@
       height: 100%;
 
       &.is-dot {
-        top: 6px;
+        top: $step-vertical-header-dot-top;
 
         .wd-step__line {
-          margin-left: -1px;
+          left: 50%;
+          margin-left: 0;
           margin-top: 0;
+        }
+        .wd-step__indicator {
+          width: $step-indicator-size; // Use same container size so text/dots align nicely along left edge automatically
         }
       }
     }
+
     .wd-step__content {
-      margin-left: 30px;
+      margin-left: $step-vertical-content-margin-left;
       margin-top: 0;
-      padding-bottom: 20px;
+      padding-bottom: $step-vertical-content-padding-bottom;
+      min-height: $step-indicator-size;
     }
+
     .wd-step__line {
-      top: 0;
+      top: calc($step-indicator-size + $step-line-spacing);
       left: 50%;
-      width: 1px;
-      height: 100%;
+      width: $stroke-main;
+      height: calc(100% - $step-indicator-size - 2 * $step-line-spacing);
       transform: scaleX(0.5);
     }
+
+    .wd-step__header.is-dot {
+      .wd-step__line {
+        top: calc($step-dot-size + $step-line-spacing);
+        height: calc(100% - $step-dot-size - 2 * $step-line-spacing);
+      }
+    }
+
     .wd-step__icon.is-dot {
       margin-left: 0;
-      margin-top: -1px;
+      margin-top: -$n1;
     }
   }
 }

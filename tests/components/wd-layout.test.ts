@@ -20,17 +20,15 @@ describe('布局组件', () => {
       expect(wrapper.vm.gutter).toBe(gutter)
     })
 
-    // 测试行样式计算
-    test('计算行样式', () => {
+    // 测试 gutter 负 margin 计算
+    test('gutter 时行样式使用负 margin', () => {
       const gutter = 20
       const wrapper = mount(WdRow, {
         props: { gutter }
       })
-
-      // 检查计算出的样式是否包含正确的边距
       const style = wrapper.attributes('style')
-      expect(style).toContain('margin-left')
-      expect(style).toContain('margin-right')
+      expect(style).toContain('margin-left: -10px')
+      expect(style).toContain('margin-right: -10px')
     })
 
     // 测试自定义类名
@@ -60,6 +58,52 @@ describe('布局组件', () => {
       })
       expect(wrapper.find('.test-content').exists()).toBe(true)
     })
+
+    // 测试 justify 属性
+    test('设置 justify 为 center', () => {
+      const wrapper = mount(WdRow, {
+        props: { justify: 'center' }
+      })
+      const style = wrapper.attributes('style')
+      expect(style).toContain('justify-content: center')
+    })
+
+    test('设置 justify 为 space-between', () => {
+      const wrapper = mount(WdRow, {
+        props: { justify: 'space-between' }
+      })
+      const style = wrapper.attributes('style')
+      expect(style).toContain('justify-content: space-between')
+    })
+
+    test('默认 justify 为 start 时不生成额外 style', () => {
+      const wrapper = mount(WdRow)
+      const style = wrapper.attributes('style') || ''
+      expect(style).not.toContain('justify-content')
+    })
+
+    // 测试 align 属性
+    test('设置 align 为 middle', () => {
+      const wrapper = mount(WdRow, {
+        props: { align: 'middle' }
+      })
+      const style = wrapper.attributes('style')
+      expect(style).toContain('align-items: center')
+    })
+
+    test('设置 align 为 bottom', () => {
+      const wrapper = mount(WdRow, {
+        props: { align: 'bottom' }
+      })
+      const style = wrapper.attributes('style')
+      expect(style).toContain('align-items: flex-end')
+    })
+
+    test('默认 align 为 top 时不生成额外 style', () => {
+      const wrapper = mount(WdRow)
+      const style = wrapper.attributes('style') || ''
+      expect(style).not.toContain('align-items')
+    })
   })
 
   describe('Col 列组件', () => {
@@ -69,22 +113,38 @@ describe('布局组件', () => {
       expect(wrapper.classes()).toContain('wd-col')
     })
 
-    // 测试栅格占据的列数
-    test('渲染指定列宽的列', () => {
-      const span = 12
+    // 测试栅格宽度（内联样式）
+    test('渲染指定宽度的列', () => {
       const wrapper = mount(WdCol, {
-        props: { span }
+        props: { span: 12 }
       })
-      expect(wrapper.classes()).toContain(`wd-col__${span}`)
+      const style = wrapper.attributes('style')
+      expect(style).toContain('width: 50%')
     })
 
-    // 测试栅格左侧的间隔格数
-    test('渲染带偏移的列', () => {
-      const offset = 4
+    test('span 为 24 时宽度为 100%', () => {
       const wrapper = mount(WdCol, {
-        props: { offset }
+        props: { span: 24 }
       })
-      expect(wrapper.classes()).toContain(`wd-col__offset-${offset}`)
+      const style = wrapper.attributes('style')
+      expect(style).toContain('width: 100%')
+    })
+
+    test('span 为 8 时宽度约为 33.33%', () => {
+      const wrapper = mount(WdCol, {
+        props: { span: 8 }
+      })
+      const style = wrapper.attributes('style')
+      expect(style).toContain('width: 33.3333')
+    })
+
+    // 测试栅格偏移（内联样式）
+    test('渲染带偏移的列', () => {
+      const wrapper = mount(WdCol, {
+        props: { offset: 4 }
+      })
+      const style = wrapper.attributes('style')
+      expect(style).toContain('margin-left: 16.6666')
     })
 
     // 测试自定义类名
@@ -121,12 +181,13 @@ describe('布局组件', () => {
         props: {
           span: 12,
           offset: 2,
-          customStyle: 'margin: 10px;'
+          customStyle: 'margin-top: 10px;'
         }
       })
-      expect(wrapper.classes()).toContain('wd-col__12')
-      expect(wrapper.classes()).toContain('wd-col__offset-2')
-      expect(wrapper.attributes('style')).toContain('margin: 10px;')
+      const style = wrapper.attributes('style')
+      expect(style).toContain('width: 50%')
+      expect(style).toContain('margin-left: 8.3333')
+      expect(style).toContain('margin-top: 10px')
     })
   })
 
@@ -169,24 +230,6 @@ describe('布局组件', () => {
       expect(cols.length).toBe(2)
     })
 
-    // 测试响应式布局
-    test('渲染响应式布局', () => {
-      const wrapper = mount({
-        components: {
-          WdRow,
-          WdCol
-        },
-        template: `
-          <wd-row>
-            <wd-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" />
-          </wd-row>
-        `
-      })
-
-      const col = wrapper.findComponent(WdCol)
-      expect(col.exists()).toBe(true)
-    })
-
     // 测试复杂布局
     test('渲染复杂布局', () => {
       const wrapper = mount({
@@ -218,6 +261,27 @@ describe('布局组件', () => {
 
       const cols = wrapper.findAllComponents(WdCol)
       expect(cols.length).toBe(9)
+    })
+
+    // 测试 justify 和 align 在组合使用中生效
+    test('justify 和 align 在组合布局中生效', () => {
+      const wrapper = mount({
+        components: {
+          WdRow,
+          WdCol
+        },
+        template: `
+          <wd-row justify="center" align="middle">
+            <wd-col :span="8">col-8</wd-col>
+            <wd-col :span="8">col-8</wd-col>
+          </wd-row>
+        `
+      })
+
+      const row = wrapper.findComponent(WdRow)
+      const style = row.attributes('style')
+      expect(style).toContain('justify-content: center')
+      expect(style).toContain('align-items: center')
     })
   })
 })

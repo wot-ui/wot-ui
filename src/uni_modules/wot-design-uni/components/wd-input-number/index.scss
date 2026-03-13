@@ -1,132 +1,222 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(input-number) {
-    @include e(action) {
-      color: $-dark-color;
-      @include when(disabled) {
-        color: $-dark-color-gray;
-      }
-    }
+// --- 按钮相关 ---
+$input-number-action-size: var(--wot-input-number-action-size, $n28) !default;
+$input-number-action-bg: var(--wot-input-number-action-bg, $filled-bottom) !default;
+$input-number-action-color: var(--wot-input-number-action-color, $icon-secondary) !default;
+$input-number-action-border-radius: var(--wot-input-number-action-border-radius, $radius-main) !default;
+$input-number-action-border-radius-full: var(--wot-input-number-action-border-radius-full, $radius-radius-full) !default;
+$input-number-action-disabled-color: var(--wot-input-number-action-disabled-color, $icon-disabled) !default;
 
-    @include e(input) {
-      color: $-dark-color;
-    }
+// --- 分割线相关 ---
+$input-number-action-divider-width: var(--wot-input-number-action-divider-width, $n1) !default;
+$input-number-action-divider-bg: var(--wot-input-number-action-divider-color, $filled-oppo) !default;
+$input-number-action-divider-split-bg: var(--wot-input-number-action-divider-split-bg, $filled-strong) !default;
+$input-number-action-divider-split-height: var(--wot-input-number-action-divider-split-height, $n18) !default;
 
-    @include when(disabled) {
-      .wd-input-number__input {
-        color: $-dark-color-gray;
-      }
-      .wd-input-number__sub,
-      .wd-input-number__add {
-        color: $-dark-color-gray;
-      }
-    }
-  }
-}
+// --- 图标相关 ---
+$input-number-icon-size: var(--wot-input-number-icon-size, $n12) !default;
+$input-number-icon-weight: var(--wot-input-number-icon-weight, $n3) !default;
+
+// --- 输入框相关 ---
+$input-number-input-width: var(--wot-input-number-input-width, $n36) !default;
+$input-number-input-height: var(--wot-input-number-input-height, $n28) !default;
+$input-number-input-padding: var(--wot-input-number-input-padding, 0 $padding-tight) !default;
+$input-number-input-bg: var(--wot-input-number-input-bg, $filled-bottom) !default;
+$input-number-input-color: var(--wot-input-number-input-color, $text-main) !default;
+$input-number-fs: var(--wot-input-number-fs, $typography-label-size-large) !default;
+
+// --- 边框相关 ---
+$input-number-border-color: var(--wot-input-number-border-color, $border-main) !default;
+
+// --- 禁用状态 ---
+$input-number-disabled-opacity: var(--wot-input-number-disabled-opacity, $opacity-disabled) !default;
+
+// --- primary 主题专用 ---
+$input-number-action-primary-bg: var(--wot-input-number-action-primary-bg, $primary-6) !default;
+$input-number-action-primary-color: var(--wot-input-number-action-primary-color, $icon-white) !default;
+$input-number-action-primary-sub-color: var(--wot-input-number-action-primary-sub-color, $primary-6) !default;
+
 
 @include b(input-number) {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   user-select: none;
-  line-height: 1.15;
 
   @include e(action) {
     position: relative;
-    display: inline-block;
-    width: $-input-number-btn-width;
-    height: $-input-number-height;
-    vertical-align: middle;
-    color: $-input-number-icon-color;
-    -webkit-tap-highlight-color: transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $input-number-action-size;
+    height: $input-number-action-size;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-    // 左右加减号的边框
-    &::after {
-      position: absolute;
+  @include e(action-divider) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $input-number-action-divider-width;
+    height: 100%;
+    background: $input-number-action-divider-bg;
+  }
+
+  @include e(sub) {
+    color: $input-number-action-color;
+    background: $input-number-action-bg;
+    border-radius: $input-number-action-border-radius 0 0 $input-number-action-border-radius;
+
+    .wd-input-number__action-divider {
+      right: 0;
+    }
+
+    // 减号图标（横线）
+    &::before {
       content: "";
-      width: calc(200% - 2px);
-      height: calc(200% - 2px);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scaleY(0.5);
+      width: $input-number-icon-size;
+      height: $input-number-icon-weight;
+      background: currentColor;
+    }
+  }
+
+  @include e(add) {
+    color: $input-number-action-color;
+    background: $input-number-action-bg;
+    border-radius: 0 $input-number-action-border-radius $input-number-action-border-radius 0;
+
+    .wd-input-number__action-divider {
       left: 0;
-      top: 0;
-      border: 1px solid $-input-number-border-color;
-      border-top-left-radius: calc($-input-number-radius * 2);
-      border-bottom-left-radius: calc($-input-number-radius * 2);
-      transform: scale(0.5);
-      transform-origin: left top;
     }
-    &:last-child::after {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      border-top-right-radius: calc($-input-number-radius * 2);
-      border-bottom-right-radius: calc($-input-number-radius * 2);
+
+    // 加号图标（横线）
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scaleY(0.5);
+      width: $input-number-icon-size;
+      height: $input-number-icon-weight;
+      background: currentColor;
     }
-    @include when(disabled) {
-      color: $-input-number-disabled-color;
+
+    // 加号图标（竖线）
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scaleX(0.5);
+      width: $input-number-icon-weight;
+      height: $input-number-icon-size;
+      background: currentColor;
     }
   }
 
   @include e(inner) {
     position: relative;
-    display: inline-block;
-    vertical-align: middle;
+    box-sizing: border-box;
+    height: $input-number-input-height;
+    padding: $input-number-input-padding;
+    background: $input-number-input-bg;
   }
 
   @include e(input) {
     position: relative;
     display: block;
-    width: $-input-number-input-width;
-    height: $-input-number-height;
-    padding: 0 2px;
-    box-sizing: border-box;
-    z-index: 1;
-    background: transparent;
+    width: $input-number-input-width;
+    height: 100%;
     border: none;
     outline: none;
     text-align: center;
-    color: $-input-number-color;
-    font-size: $-input-number-fs;
+    color: $input-number-input-color;
+    font-size: $input-number-fs;
+    font-weight: $font-weight-medium;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
   }
 
-  @include e(input-border) {
-    position: absolute;
-    width: 100%;
-    height: calc(200% - 2px);
-    left: 0;
-    top: 0;
-    border-top: 1px solid $-input-number-border-color;
-    border-bottom: 1px solid $-input-number-border-color;
-    transform: scaleY(0.5);
-    transform-origin: left top;
-    z-index: 0;
-  }
+  // --------------------------------------------------------------------------
+  // 主题变体
+  // --------------------------------------------------------------------------
 
-  @include edeep(action-icon) {
-    position: absolute;
-    display: inline-block;
-    font-size: $-input-number-icon-size;
-    width: $-input-number-icon-size;
-    height: $-input-number-icon-size;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  @include when(disabled) {
-    .wd-input-number__input {
-      color: $-input-number-disabled-color;
-      z-index: inherit;
-    }
-    .wd-input-number__sub,
-    .wd-input-number__add {
-      color: $-input-number-disabled-color;
+  // default / outline / outline-split 主题：禁用使用颜色
+  @include m(default, outline, outline-split) {
+    @include me(sub, add) {
+      @include when(disabled) {
+        color: $input-number-action-disabled-color;
+      }
     }
   }
-  @include when(without-input) {
-    .wd-input-number__action:last-child::after {
-      border-left: none;
+
+  // outline 主题：有边框描边，按钮连接
+  @include m(outline) {
+    @include me(action-divider) {
+      display: none;
+    }
+
+    @include me(action) {
+      border: 1px solid $input-number-border-color;
+    }
+
+    @include me(inner) {
+      border-top: 1px solid $input-number-border-color;
+      border-bottom: 1px solid $input-number-border-color;
+    }
+  }
+
+  // outline-split 主题：有边框，按钮分离
+  @include m(outline-split) {
+    @include me(action-divider) {
+      height: $input-number-action-divider-split-height;
+      background: $input-number-action-divider-split-bg;
+    }
+  }
+
+  // primary 主题：主色按钮
+  @include m(primary) {
+    @include me(action-divider) {
+      display: none;
+    }
+
+    @include me(sub) {
+      background: transparent;
+      color: $input-number-action-primary-sub-color;
+      border: 1px solid currentColor;
+    }
+
+    @include me(add) {
+      background: $input-number-action-primary-bg;
+      color: $input-number-action-primary-color;
+    }
+
+    // primary 主题禁用：使用透明度
+    @include me(sub, add) {
+      @include when(disabled) {
+        opacity: $input-number-disabled-opacity;
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // 状态修饰
+  // --------------------------------------------------------------------------
+
+  // 圆角模式
+  @include when(round) {
+    @include me(sub) {
+      border-radius: $input-number-action-border-radius-full 0 0 $input-number-action-border-radius-full;
+    }
+
+    @include me(add) {
+      border-radius: 0 $input-number-action-border-radius-full $input-number-action-border-radius-full 0;
     }
   }
 }

@@ -5,39 +5,46 @@
         <view :class="highlightClass" :style="highlightStyle"></view>
       </slot>
       <view class="wd-tour__popover" :style="popoverStyle">
-        <slot name="content">
-          <view class="wd-tour__info">
+        <view class="wd-tour__info">
+          <slot name="content">
             <rich-text :nodes="currentStep.content"></rich-text>
-          </view>
-        </slot>
+          </slot>
+        </view>
 
         <view class="wd-tour__buttons" v-if="showTourButtons">
           <!-- 上一步按钮 -->
-          <view class="wd-tour__prev" v-if="currentIndex > 0" @click.stop="handlePrev">
+          <view v-if="currentIndex > 0" @click.stop="handlePrev">
             <slot name="prev">
-              <view class="wd-tour__prev__default">{{ prevText }}</view>
+              <wd-button size="mini" variant="text">
+                {{ prevText }}
+              </wd-button>
             </slot>
           </view>
 
           <!-- 跳过按钮 -->
-          <view class="wd-tour__skip" @click.stop="handleSkip">
-            <slot name="skip" v-if="$slots.skip"></slot>
-            <view class="wd-tour__skip__default" v-else>{{ skipText }}</view>
+          <view @click.stop="handleSkip">
+            <slot name="skip">
+              <wd-button size="mini" variant="text">
+                {{ skipText }}
+              </wd-button>
+            </slot>
           </view>
 
           <!-- 下一步按钮 -->
-          <view class="wd-tour__next" v-if="currentIndex !== steps.length - 1" @click.stop="handleNext">
+          <view v-if="currentIndex !== steps.length - 1" @click.stop="handleNext">
             <slot name="next">
-              <view class="wd-tour__next__default">
+              <wd-button size="mini">
                 {{ `${nextText}(${currentIndex + 1}/${steps.length})` }}
-              </view>
+              </wd-button>
             </slot>
           </view>
 
           <!-- 完成按钮 -->
-          <view class="wd-tour__finish" v-if="currentIndex === steps.length - 1" @click.stop="handleFinish">
+          <view v-if="currentIndex === steps.length - 1" @click.stop="handleFinish">
             <slot name="finish">
-              <view class="wd-tour__finish__default">{{ finishText }}</view>
+              <wd-button size="mini" type="primary">
+                {{ finishText }}
+              </wd-button>
             </slot>
           </view>
         </view>
@@ -51,7 +58,9 @@ export default {
   name: 'wd-tour',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -60,9 +69,10 @@ export default {
 <script lang="ts" setup>
 import { ref, computed, watch, nextTick, type CSSProperties } from 'vue'
 import { addUnit, getRect, getSystemInfo, isDef, objToStyle } from '../common/util'
-import { tourProps, type TourEmits } from './types'
+import { tourProps, type TourEmits, type TourExpose } from './types'
 import { useRaf } from '../composables/useRaf'
 import { useTranslate } from '../composables/useTranslate'
+import wdButton from '../wd-button/wd-button.vue'
 
 const props = defineProps(tourProps)
 const emit = defineEmits<TourEmits>()
@@ -116,17 +126,24 @@ const currentStep = computed(() => {
   return props.steps[currentIndex.value] || {}
 })
 // 提取公共的默认样式函数
+/**
+ * 获取默认样式
+ */
 function getDefaultStyle(): CSSProperties {
   return {
     transition: props.duration + 'ms all'
   }
 }
-// 提取公共的高亮样式计算函数
+
+/**
+ * 计算高亮样式
+ * @param padding 内边距
+ */
 function calculateHighlightStyle(padding: number): CSSProperties {
   return {
     transition: props.duration + 'ms all,boxShadow 0s,height 0s,width 0s',
-    borderRadius: props.borderRadius + 'px',
-    padding: padding + 'px'
+    borderRadius: addUnit(props.borderRadius),
+    padding: addUnit(padding)
   }
 }
 const highlightStyle = computed(() => {
@@ -191,7 +208,10 @@ const highlightElementInfo = computed(() => {
   return style
 })
 function noop() {}
-// 方法
+
+/**
+ * 更新元素信息
+ */
 async function updateElementInfo() {
   updateSystemInfo()
   const element = currentStep.value.element
@@ -217,7 +237,9 @@ async function updateElementInfo() {
   }
 }
 
-// 更新系统信息
+/**
+ * 更新系统信息
+ */
 function updateSystemInfo() {
   const sysInfo = getSystemInfo()
   windowHeight.value = sysInfo.windowHeight
@@ -225,14 +247,20 @@ function updateSystemInfo() {
   statusBarHeight.value = sysInfo.statusBarHeight || 0
 }
 
-// 初始化元素信息
+/**
+ * 初始化元素信息
+ * @param res 元素节点信息
+ */
 function initializeElementInfo(res: UniApp.NodeInfo) {
   elementInfo.value = res
   // 调整元素位置信息，加上窗口顶部偏移量
   elementInfo.value.top = (res.top || 0) + windowTop.value
   elementInfo.value.bottom = ((res.bottom !== undefined ? res.bottom : (res.top || 0) + (res.height || 0)) as number) + windowTop.value
 }
-// 获取有效的页面边界（顶部和底部安全区域）
+
+/**
+ * 获取有效的页面边界（顶部和底部安全区域）
+ */
 function getEffectiveBoundaries() {
   // 有效顶部边界初始化为窗口顶部 + 顶部偏移量
   let effectiveWindowTop = windowTop.value + Number(topOffset.value)
@@ -243,7 +271,12 @@ function getEffectiveBoundaries() {
     bottom: effectiveWindowBottom
   }
 }
-// 检查是否需要滚动
+
+/**
+ * 检查是否需要滚动
+ * @param res 元素节点信息
+ * @param boundaries 边界信息
+ */
 function checkScrollNeeds(res: UniApp.NodeInfo, boundaries: { top: number; bottom: number }) {
   // 判断元素是否被顶部遮挡（需要向上滚动）
   const needScrollUp = Number(res.top) < boundaries.top
@@ -255,7 +288,12 @@ function checkScrollNeeds(res: UniApp.NodeInfo, boundaries: { top: number; botto
   }
 }
 
-// 处理滚动逻辑
+/**
+ * 处理滚动逻辑
+ * @param res 元素节点信息
+ * @param scrollNeeds 滚动需求
+ * @param boundaries 边界信息
+ */
 function handleScrolling(res: UniApp.NodeInfo, scrollNeeds: { up: boolean; down: boolean }, boundaries: { top: number; bottom: number }) {
   if (scrollNeeds.up) {
     // 元素被顶部遮挡，需要提示框往上走，页面往下走
@@ -266,7 +304,11 @@ function handleScrolling(res: UniApp.NodeInfo, scrollNeeds: { up: boolean; down:
   }
 }
 
-// 向引导上滚动处理
+/**
+ * 向引导上滚动处理
+ * @param res 元素节点信息
+ * @param boundaries 边界信息
+ */
 function scrollUp(res: UniApp.NodeInfo, boundaries: { top: number; bottom: number }) {
   // 计算需要滚动的距离
   let scrollDistance = lastScrollTop.value + Number(res.top) - props.padding - boundaries.top
@@ -283,7 +325,10 @@ function scrollUp(res: UniApp.NodeInfo, boundaries: { top: number; bottom: numbe
   })
 }
 
-// 引导向下滚动处理
+/**
+ * 引导向下滚动处理
+ * @param res 元素节点信息
+ */
 function scrollDown(res: UniApp.NodeInfo) {
   // 计算需要滚动的距离
   const bottom = res.bottom || 0
@@ -303,7 +348,10 @@ function scrollDown(res: UniApp.NodeInfo) {
   })
 }
 
-// 计算提示框显示位置（上方或下方）
+/**
+ * 计算提示框显示位置（上方或下方）
+ * @param res 元素节点信息
+ */
 function calculateTipPosition(res: UniApp.NodeInfo) {
   // 计算导航区域总高度
   let totalNavHeight = statusBarHeight.value
@@ -321,6 +369,9 @@ function calculateTipPosition(res: UniApp.NodeInfo) {
   }
 }
 
+/**
+ * 上一步
+ */
 function handlePrev() {
   if (currentIndex.value > 0) {
     const oldIndex = currentIndex.value
@@ -335,6 +386,9 @@ function handlePrev() {
   }
 }
 
+/**
+ * 下一步
+ */
 function handleNext() {
   if (currentIndex.value < props.steps.length - 1) {
     const oldIndex = currentIndex.value
@@ -351,6 +405,9 @@ function handleNext() {
   }
 }
 
+/**
+ * 完成
+ */
 function handleFinish() {
   emit('finish', {
     current: currentIndex.value,
@@ -361,6 +418,9 @@ function handleFinish() {
   emit('update:modelValue', false)
 }
 
+/**
+ * 跳过
+ */
 function handleSkip() {
   emit('skip', {
     current: currentIndex.value,
@@ -370,6 +430,9 @@ function handleSkip() {
   lastScrollTop.value = 0 // 重置滚动位置
   emit('update:modelValue', false)
 }
+/**
+ * 点击遮罩层
+ */
 function handleMask() {
   if (props.clickMaskNext) {
     handleNext()
@@ -382,13 +445,20 @@ watch(
     currentIndex.value = newVal
   }
 )
+// 在 setup 作用域中创建 raf 实例，避免在 watch 回调中调用 onUnmounted
+const indexRaf = useRaf(updateElementInfo)
+const modelRaf = useRaf(() => {
+  updateElementInfo()
+  emit('update:current', currentIndex.value)
+})
+
 // 监听 currentIndex 变化，同步到父组件
 watch(
   () => currentIndex.value,
   (newVal) => {
-    const raf = useRaf(updateElementInfo)
+    indexRaf.cancel()
     nextTick(() => {
-      raf.start()
+      indexRaf.start()
     })
     emit('update:current', newVal)
   }
@@ -402,12 +472,9 @@ watch(
       // 组件显示时重置滚动位置并更新系统信息
       lastScrollTop.value = 0
       updateSystemInfo()
-      const raf = useRaf(() => {
-        updateElementInfo()
-        emit('update:current', currentIndex.value)
-      })
+      modelRaf.cancel()
       nextTick(() => {
-        raf.start()
+        modelRaf.start()
       })
     }
   },
@@ -438,7 +505,7 @@ if (props.customNav) {
   // 未开启自定义导航栏，直接使用用户传入的顶部安全偏移量
   topOffset.value = Number(props.topSafetyOffset) || 0
 }
-defineExpose({
+defineExpose<TourExpose>({
   handlePrev,
   handleNext,
   handleFinish,
@@ -446,6 +513,6 @@ defineExpose({
 })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

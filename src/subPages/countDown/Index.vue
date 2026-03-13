@@ -27,7 +27,7 @@
     <demo-block :title="$t('shou-dong-kong-zhi')">
       <wd-count-down ref="countDown" :time="3000" millisecond :auto-start="false" format="ss:SSS" @finish="onFinish"></wd-count-down>
       <wd-grid clickable border>
-        <wd-grid-item :text="$t('kai-shi')" icon="play-circle-stroke" @itemclick="start" />
+        <wd-grid-item :text="$t('kai-shi')" icon="play-circle" @itemclick="start" />
         <wd-grid-item :text="$t('zan-ting')" icon="pause-circle" @itemclick="pause" />
         <wd-grid-item :text="$t('zhong-zhi')" icon="refresh" @itemclick="reset" />
       </wd-grid>

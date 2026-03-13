@@ -2,20 +2,15 @@
   <view>
     <wd-toast />
     <page-wraper>
-      <demo-block :title="$t('da-xing-fen-duan-qi')" transparent>
-        <view class="section">
-          <wd-segmented :options="list" v-model:value="current" size="large" @change="handleChange"></wd-segmented>
-        </view>
-      </demo-block>
-      <demo-block :title="$t('mo-ren-fen-duan-qi')" transparent>
+      <demo-block title="基础用法" transparent>
         <view class="section">
           <wd-segmented :options="list" v-model:value="current1"></wd-segmented>
         </view>
       </demo-block>
 
-      <demo-block :title="$t('xiao-xing-fen-duan-qi')" transparent>
+      <demo-block title="轮廓主题" transparent>
         <view class="section">
-          <wd-segmented :options="list" v-model:value="current2" size="small"></wd-segmented>
+          <wd-segmented :options="list" v-model:value="current2" theme="outline"></wd-segmented>
         </view>
       </demo-block>
 
@@ -72,7 +67,7 @@ const list = computed(() => [t('pingLun'), t('dian-zan'), t('gong-xian'), t('da-
 const list1 = computed(() => [
   {
     value: t('li-lei'),
-    disabled: false,
+    disabled: true,
     payload: {
       avatar: 'https://wot-ui.cn/assets/redpanda.jpg'
     }
@@ -98,6 +93,13 @@ const list1 = computed(() => [
       avatar: 'https://wot-ui.cn/assets/meng.jpg'
     }
   }
+])
+
+const listWithDisabled = computed(() => [
+  { value: t('pingLun'), disabled: true },
+  { value: t('dian-zan'), disabled: false },
+  { value: t('gong-xian'), disabled: false },
+  { value: t('da-shang'), disabled: false }
 ])
 
 const current = ref(t('jian-jie'))

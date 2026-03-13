@@ -1,4 +1,15 @@
+/*
+ * @Author: weisheng
+ * @Date: 2025-05-08 22:54:27
+ * @LastEditTime: 2026-01-31 23:03:27
+ * @LastEditors: weisheng
+ * @Description:
+ * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/common/props.ts
+ * 记得注释
+ */
 import type { PropType } from 'vue'
+
+export type Numeric = number | string
 
 export const unknownProp = null as unknown as PropType<unknown>
 

@@ -1,48 +1,42 @@
 <template>
-  <view :class="`wd-table ${border ? 'is-border' : ''} ${customClass}`" :style="tableStyle">
-    <template v-if="fixedHeader">
-      <scroll-view
-        :enable-flex="true"
-        :throttle="false"
-        :scrollLeft="state.scrollLeft"
-        :scroll-x="true"
-        class="wd-table__header"
-        @scroll="scroll"
-        v-if="showHeader"
-      >
-        <view id="table-header" class="wd-table__content wd-table__content--header" :style="realWidthStyle">
+  <view :class="['wd-table', { 'is-border': border }, customClass]" :style="tableStyle">
+    <scroll-view :enable-flex="true" :throttle="false" :scroll-x="true" :scroll-y="scrollY" :style="scrollViewStyle" @scroll="handleScrollThrottled">
+      <view :style="contentWidthStyle">
+        <!-- 表头 -->
+        <view v-if="showHeader" :class="['wd-table__header', { 'is-sticky': fixedHeader }]" :style="gridColumnsStyle">
           <view
-            :class="`wd-table__cell ${border ? 'is-border' : ''} ${column.fixed ? 'is-fixed' : ''} ${stripe ? 'is-stripe' : ''} is-${column.align} ${
-              getIsLastFixed(column) && state.scrollLeft ? 'is-shadow' : ''
-            }`"
-            :style="getCellStyle(index)"
             v-for="(column, index) in children"
             :key="index"
+            :class="[
+              'wd-table__cell',
+              'wd-table__cell--header',
+              {
+                'is-border': border,
+                'is-fixed': column.fixed,
+                'is-stripe': stripe,
+                'is-shadow': isLastFixed(index) && state.scrollLeft,
+                'is-last': index === children.length - 1
+              },
+              `is-${column.align}`
+            ]"
+            :style="getHeaderCellStyle(index)"
           >
             <wd-sort-button
+              v-if="column.sortable"
               v-model="column.$.exposed!.sortDirection.value"
               allow-reset
               :line="false"
               :title="column.label"
               @change="({ value }) => handleSortChange(value, index)"
-              v-if="column.sortable"
             />
-            <text v-else :class="`wd-table__value ${ellipsis ? 'is-ellipsis' : ''}`">{{ column.label }}</text>
+            <text v-else :class="['wd-table__value', { 'is-ellipsis': ellipsis }]">{{ column.label }}</text>
           </view>
         </view>
-      </scroll-view>
-      <scroll-view
-        class="wd-table__body"
-        :style="bodyStyle"
-        :enable-flex="true"
-        :throttle="false"
-        :scroll-x="true"
-        @scroll="scroll"
-        :scrollLeft="state.scrollLeft"
-      >
-        <view id="table-body" class="wd-table__content" :style="realWidthStyle">
-          <wd-table-col
-            v-if="index !== false"
+
+        <!-- 表体（CSS Grid 布局，虚拟滚动时包含 grid-template-rows） -->
+        <view class="wd-table__body" :style="bodyGridStyle">
+          <wd-table-column
+            v-if="showIndex"
             :prop="indexColumn.prop"
             :label="indexColumn.label"
             :width="indexColumn.width"
@@ -53,57 +47,11 @@
             <template #value="{ index }">
               <text>{{ index + 1 }}</text>
             </template>
-          </wd-table-col>
+          </wd-table-column>
           <slot></slot>
         </view>
-      </scroll-view>
-    </template>
-    <!-- 非固定表头时使用单个scroll-view -->
-    <template v-else>
-      <scroll-view class="wd-table__wrapper" :enable-flex="true" :throttle="false" :scroll-x="true" @scroll="scroll" :scrollLeft="state.scrollLeft">
-        <view class="wd-table__inner" :style="realWidthStyle">
-          <!-- 表头部分 -->
-          <view v-if="showHeader" class="wd-table__header-row">
-            <view
-              v-for="(column, index) in children"
-              :key="index"
-              :class="`wd-table__cell ${border ? 'is-border' : ''} ${column.fixed ? 'is-fixed' : ''} ${stripe ? 'is-stripe' : ''} is-${
-                column.align
-              } ${getIsLastFixed(column) && state.scrollLeft ? 'is-shadow' : ''}`"
-              :style="getCellStyle(index)"
-            >
-              <wd-sort-button
-                v-if="column.sortable"
-                v-model="column.$.exposed!.sortDirection.value"
-                allow-reset
-                :line="false"
-                :title="column.label"
-                @change="({ value }) => handleSortChange(value, index)"
-              />
-              <text v-else :class="`wd-table__value ${ellipsis ? 'is-ellipsis' : ''}`">{{ column.label }}</text>
-            </view>
-          </view>
-
-          <!-- 表格内容部分 -->
-          <view class="wd-table__content" :style="bodyStyle">
-            <wd-table-col
-              v-if="index !== false"
-              :prop="indexColumn.prop"
-              :label="indexColumn.label"
-              :width="indexColumn.width"
-              :sortable="indexColumn.sortable"
-              :fixed="indexColumn.fixed"
-              :align="indexColumn.align"
-            >
-              <template #value="{ index }">
-                <text>{{ index + 1 }}</text>
-              </template>
-            </wd-table-col>
-            <slot></slot>
-          </view>
-        </view>
-      </scroll-view>
-    </template>
+      </view>
+    </scroll-view>
   </view>
 </template>
 
@@ -112,20 +60,21 @@ export default {
   name: 'wd-table',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
 </script>
 
 <script lang="ts" setup>
-import wdTableCol from '../wd-table-col/wd-table-col.vue'
 import wdSortButton from '../wd-sort-button/wd-sort-button.vue'
 import { type CSSProperties, computed, reactive, ref } from 'vue'
-import { addUnit, debounce, isDef, isObj, objToStyle, uuid } from '../common/util'
-import type { SortDirection, TableColumn, TableColumnInstance, TableColumnProps } from '../wd-table-col/types'
-import { TABLE_KEY, tableProps, type TableProvide } from './types'
-import WdTableCol from '../wd-table-col/wd-table-col.vue'
+import { addUnit, isDef, isObj, objToStyle, throttle, uuid, isFunction } from '../common/util'
+import type { SortDirection, TableColumn, TableColumnInstance, TableColumnProps } from '../wd-table-column/types'
+import { TABLE_KEY, tableProps, type SpanMethodResult, type TableProvide } from './types'
+import WdTableColumn from '../wd-table-column/wd-table-column.vue'
 import { useTranslate } from '../composables/useTranslate'
 import { useChildren } from '../composables/useChildren'
 
@@ -134,15 +83,37 @@ const { translate } = useTranslate('tableCol')
 const props = defineProps(tableProps)
 const emit = defineEmits(['sort-method', 'row-click'])
 
+/** 滚动状态 */
 const state = reactive({
-  scrollLeft: 0
+  scrollLeft: 0,
+  scrollTop: 0
 })
 
 const { linkChildren, children } = useChildren<TableColumnInstance, TableProvide>(TABLE_KEY)
 
-linkChildren({ props, state, rowClick, getIsLastFixed, getFixedStyle })
+/**
+ * 当前可视行范围
+ * @returns { start, end } 可视区域的行索引范围（含 buffer）
+ */
+const visibleRange = computed(() => {
+  const total = props.data.length
+  if (!props.virtual || total === 0) {
+    return { start: 0, end: Math.max(0, total - 1) }
+  }
+  const rowH = Number(props.rowHeight) || 44
+  const bufferSize = Number(props.buffer) || 5
+  const viewportHeight = Number(props.height) || 400
+  const start = Math.max(0, Math.floor(state.scrollTop / rowH) - bufferSize)
+  const end = Math.min(total - 1, Math.ceil((state.scrollTop + viewportHeight) / rowH) + bufferSize)
+  return { start, end }
+})
 
+linkChildren({ props, state, visibleRange, rowClick, getIsLastFixed, getFixedLeft, getSpan })
+
+/** 索引列唯一标识 */
 const indexUUID = uuid()
+
+/** 索引列配置 */
 const indexColumn = ref<TableColumnProps>({
   prop: indexUUID,
   label: translate('indexLabel'),
@@ -153,93 +124,168 @@ const indexColumn = ref<TableColumnProps>({
   ...(isObj(props.index) ? props.index : {})
 })
 
-const scroll = debounce(handleScroll, 100, { leading: false }) // 滚动事件
+/** 是否显示索引列 */
+const showIndex = computed(() => props.index !== false)
+
+/** 是否开启纵向滚动（设置了 height 时启用） */
+const scrollY = computed(() => isDef(props.height))
+
+/** 滚动事件处理（节流 16ms ≈ 60fps） */
+const handleScrollThrottled = throttle(handleScroll, 16) as (event: any) => void
+
+/** 外层容器样式 */
+const tableStyle = computed(() => {
+  return `${props.customStyle}`
+})
 
 /**
- * 容器样式
+ * scroll-view 容器样式
+ * @returns 包含 max-height 的样式字符串（当设置了 height 时）
  */
-const tableStyle = computed(() => {
-  const style: CSSProperties = {}
+const scrollViewStyle = computed(() => {
+  const style: CSSProperties = {
+    overflow: 'auto'
+  }
   if (isDef(props.height)) {
     style['max-height'] = addUnit(props.height)
   }
-  return `${objToStyle(style)}${props.customStyle}`
+  return objToStyle(style)
 })
 
-const realWidthStyle = computed(() => {
-  const style: CSSProperties = {
-    display: 'flex'
-  }
-  let width: string | number = ''
-  children.forEach((child) => {
-    width = width ? `${width} + ${addUnit(child.width)}` : addUnit(child.width)
+/**
+ * 所有列宽度数组
+ * @returns 列宽字符串数组，如 ['100px', '150px', '200px']
+ */
+const columnWidths = computed(() => {
+  return children.map((child) => addUnit(child.width))
+})
+
+/**
+ * 内容总宽度样式，确保水平滚动时内容不被压缩
+ * @returns 所有列宽之和的 calc() 表达式
+ */
+const contentWidthStyle = computed(() => {
+  return objToStyle({ width: `calc(${columnWidths.value.join(' + ')})` })
+})
+
+/**
+ * CSS Grid 列定义样式，用于表头
+ * @returns 包含 display:grid 和 grid-template-columns 的样式字符串
+ */
+const gridColumnsStyle = computed(() => {
+  return objToStyle({
+    display: 'grid',
+    'grid-template-columns': columnWidths.value.join(' ')
   })
-  style['width'] = `calc(${width})`
-  return objToStyle(style)
-})
-
-const bodyStyle = computed(() => {
-  const style: CSSProperties = {}
-  if (isDef(props.height)) {
-    style['height'] = isDef(props.rowHeight) ? `calc(${props.data.length} * ${addUnit(props.rowHeight)})` : `calc(${props.data.length} * 50px)`
-  }
-  return `${objToStyle(style)}`
 })
 
 /**
- * 是否最后一个固定元素
- * @param column 列数据
+ * 表体 Grid 样式（含列定义 + 虚拟滚动时的行定义）
+ * @returns 包含 grid-template-columns 和可选的 grid-template-rows 的样式字符串
  */
-function getIsLastFixed(column: { fixed: boolean; prop: string }) {
-  let isLastFixed: boolean = false
-  if (column.fixed && isDef(children)) {
-    const columns = children.filter((child) => {
-      return child.fixed
-    })
-    if (columns.length && columns[columns.length - 1].prop === column.prop) {
-      isLastFixed = true
+const bodyGridStyle = computed(() => {
+  const style: Record<string, string> = {
+    display: 'grid',
+    'grid-template-columns': columnWidths.value.join(' ')
+  }
+  if (props.virtual && props.data.length > 0) {
+    const rowH = Number(props.rowHeight) || 44
+    style['grid-template-rows'] = `repeat(${props.data.length}, ${rowH}px)`
+  }
+  return objToStyle(style)
+})
+
+/**
+ * 最后一个固定列的 prop 值
+ * @returns 最后一个 fixed=true 列的 prop，无固定列时返回 null
+ */
+const lastFixedProp = computed(() => {
+  const fixedCols = children.filter((c) => c.fixed)
+  return fixedCols.length ? fixedCols[fixedCols.length - 1].prop : null
+})
+
+/**
+ * 预计算每列的 left 偏移量
+ * @returns Map<列索引, CSS left 值>
+ */
+const fixedLeftMap = computed(() => {
+  const map = new Map<number, string>()
+  const leftParts: string[] = []
+
+  children.forEach((_col, i) => {
+    if (leftParts.length === 0) {
+      map.set(i, '0')
+    } else {
+      map.set(i, `calc(${leftParts.join(' + ')})`)
     }
-  }
-  return isLastFixed
+    leftParts.push(addUnit(children[i].width))
+  })
+  return map
+})
+
+/**
+ * 判断指定索引的列是否为最后一个固定列（内部使用，用于表头渲染）
+ * @param colIndex - 列索引
+ * @returns 是否为最后一个固定列
+ */
+function isLastFixed(colIndex: number): boolean {
+  return children[colIndex]?.fixed && children[colIndex]?.prop === lastFixedProp.value
 }
 
 /**
- * 表头单元格样式
+ * 判断指定列是否为最后一个固定列
+ * @param column - 列配置
+ * @returns 是否为最后一个固定列
  */
-function getCellStyle(columnIndex: number) {
-  let style: CSSProperties = {}
-  if (isDef(children[columnIndex].width)) {
-    style['width'] = addUnit(children[columnIndex].width)
+function getIsLastFixed(column: { fixed: boolean; prop: string }): boolean {
+  return column.fixed && column.prop === lastFixedProp.value
+}
+
+/**
+ * 获取指定列的固定 left 偏移量
+ * @param columnIndex - 列索引
+ * @returns CSS left 值字符串
+ */
+function getFixedLeft(columnIndex: number): string {
+  return fixedLeftMap.value.get(columnIndex) || '0'
+}
+
+/**
+ * 获取指定单元格的合并信息
+ * @param rowIndex - 行索引
+ * @param columnIndex - 列索引
+ * @returns 合并配置 { rowspan, colspan }
+ */
+function getSpan(rowIndex: number, columnIndex: number): SpanMethodResult {
+  if (!isFunction(props.spanMethod)) {
+    return { rowspan: 1, colspan: 1 }
   }
+  const result = props.spanMethod({
+    row: props.data[rowIndex],
+    column: { prop: children[columnIndex].prop, label: children[columnIndex].label },
+    rowIndex,
+    columnIndex
+  })
+  return result || { rowspan: 1, colspan: 1 }
+}
+
+/**
+ * 获取表头单元格的内联样式（仅固定列需要 left 偏移）
+ * @param columnIndex - 列索引
+ * @returns 样式字符串
+ */
+function getHeaderCellStyle(columnIndex: number): string {
+  const style: CSSProperties = {}
   if (children[columnIndex].fixed) {
-    style = getFixedStyle(columnIndex, style)
+    style['left'] = fixedLeftMap.value.get(columnIndex) || '0'
   }
   return objToStyle(style)
 }
 
 /**
- * 获取固定列样式
- * @param columnIndex
- */
-function getFixedStyle(columnIndex: number, style: CSSProperties) {
-  if (columnIndex > 0) {
-    let left: string | number = ''
-    children.forEach((column, index) => {
-      if (index < columnIndex) {
-        left = left ? `${left} + ${addUnit(column.width)}` : addUnit(column.width)
-      }
-    })
-    style['left'] = `calc(${left})`
-  } else {
-    style['left'] = 0
-  }
-  return style
-}
-
-/**
- * 排序
- * @param value
- * @param index
+ * 处理排序状态变更，重置其他列的排序方向并触发 sort-method 事件
+ * @param value - 新的排序方向
+ * @param index - 触发排序的列索引
  */
 function handleSortChange(value: SortDirection, index: number) {
   children[index].$.exposed!.sortDirection.value = value
@@ -249,36 +295,37 @@ function handleSortChange(value: SortDirection, index: number) {
     }
   })
   const column: TableColumn = {
-    // 列对应字段
     prop: children[index].prop,
-    // 列对应字段标题
     label: children[index].label,
-    // 列宽度
     width: children[index].width,
-    // 是否开启列排序
     sortable: children[index].sortable,
-    // 列的对齐方式，可选值left,center,right
     align: children[index].align,
-    // 列的排序方向
     sortDirection: value,
-    // 是否i固定列
     fixed: children[index].fixed
   }
   emit('sort-method', column)
 }
 
 /**
- * 滚动事件
+ * 处理滚动事件，更新水平和垂直滚动偏移量
+ * @param event - scroll-view 的滚动事件对象
  */
 function handleScroll(event: any) {
   state.scrollLeft = event.detail.scrollLeft
+  if (props.virtual) {
+    state.scrollTop = event.detail.scrollTop
+  }
 }
 
+/**
+ * 触发行点击事件
+ * @param index - 被点击行的索引
+ */
 function rowClick(index: number) {
   emit('row-click', { rowIndex: index })
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

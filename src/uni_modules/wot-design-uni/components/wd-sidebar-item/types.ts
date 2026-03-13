@@ -9,10 +9,7 @@ export const sidebarItemProps = {
   /** 当前选项的值，唯一标识 */
   value: makeRequiredProp([Number, String]),
   /** 徽标显示值 */
-  badge: {
-    type: [String, Number, null] as PropType<string | number | null>,
-    default: null
-  },
+  badge: [String, Number] as PropType<string | number>,
   /** 徽标属性，透传给 Badge 组件 */
   badgeProps: Object as PropType<Partial<BadgeProps>>,
   /** 图标 */

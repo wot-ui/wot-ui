@@ -2,41 +2,50 @@
   <view>
     <page-wraper>
       <demo-block :title="$t('zhanShiXiaoXiShuLiang')">
-        <wd-badge custom-class="badge" :modelValue="12">
+        <wd-badge custom-class="badge" :value="12">
           <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" :modelValue="3" bg-color="pink">
+        <wd-badge custom-class="badge" :value="3" bg-color="green">
           <wd-button :round="false" type="info" size="small">{{ $t('huiFu') }}</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" :modelValue="1" type="primary">
+        <wd-badge custom-class="badge" :value="1" type="primary">
           <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" :modelValue="2" type="warning">
+        <wd-badge custom-class="badge" :value="2" type="warning">
           <wd-button :round="false" type="info" size="small">{{ $t('huiFu-0') }}</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" :modelValue="1" type="success">
-          <wd-button :round="false" type="info" size="small">{{ $t('pingLun-1') }}</wd-button>
+        <wd-badge custom-class="badge" :value="1" type="success">
+          <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" :modelValue="2" type="info">
-          <wd-button :round="false" type="info" size="small">{{ $t('huiFu-1') }}</wd-button>
+        <wd-badge custom-class="badge" :value="2" type="info">
+          <wd-button :round="false" type="danger" size="small">{{ $t('huiFu-1') }}</wd-button>
         </wd-badge>
       </demo-block>
 
       <demo-block :title="$t('keDingYiXiaoXiZuiDaZhi')">
-        <wd-badge custom-class="badge" :modelValue="200" :max="99">
-          <wd-button :round="false" type="info" size="small">{{ $t('pingLun-2') }}</wd-button>
+        <wd-badge custom-class="badge" :value="200" :max="99">
+          <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" :modelValue="200" :max="10">
+        <wd-badge custom-class="badge" :value="200" :max="10">
           <wd-button :round="false" type="info" size="small">{{ $t('huiFu-2') }}</wd-button>
         </wd-badge>
       </demo-block>
 
       <demo-block :title="$t('ziDingYiNeiRong')">
-        <wd-badge custom-class="badge" modelValue="new">
-          <wd-button :round="false" type="info" size="small">{{ $t('pingLun-3') }}</wd-button>
+        <wd-badge custom-class="badge" value="new">
+          <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" modelValue="hot">
+        <wd-badge custom-class="badge" value="hot">
           <wd-button :round="false" type="info" size="small">{{ $t('huiFu-3') }}</wd-button>
+        </wd-badge>
+      </demo-block>
+
+      <demo-block title="徽标形状">
+        <wd-badge custom-class="badge" :value="12" shape="square">
+          <wd-button :round="false" type="info" size="small">方形</wd-button>
+        </wd-badge>
+        <wd-badge custom-class="badge" :value="12" shape="bubble">
+          <wd-button :round="false" type="info" size="small">气泡</wd-button>
         </wd-badge>
       </demo-block>
 
@@ -47,14 +56,26 @@
         </wd-badge>
       </demo-block>
 
-      <demo-block :title="$t('xianShi_0Zhi')">
-        <wd-badge custom-class="badge" :modelValue="0" show-zero>
-          <wd-button :round="false" type="info" size="small">{{ $t('pingLun-4') }}</wd-button>
+      <demo-block title="描边徽标">
+        <wd-badge custom-class="badge" :value="12" border>
+          <wd-button :round="false" type="primary" size="small">描边</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" :modelValue="0">
+        <wd-badge custom-class="badge" :value="1" border type="primary">
+          <wd-button :round="false" type="danger" size="small">描边</wd-button>
+        </wd-badge>
+        <wd-badge custom-class="badge" :value="999" border type="warning">
+          <wd-button :round="false" type="success" size="small">描边</wd-button>
+        </wd-badge>
+      </demo-block>
+
+      <demo-block :title="$t('xianShi_0Zhi')">
+        <wd-badge custom-class="badge" :value="0" show-zero>
+          <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>
+        </wd-badge>
+        <wd-badge custom-class="badge" :value="0">
           <wd-button :round="false" type="info" size="small">{{ $t('huiFu-5') }}</wd-button>
         </wd-badge>
-        <wd-badge custom-class="badge" :modelValue="0" is-dot>
+        <wd-badge custom-class="badge" :value="0" is-dot>
           <wd-button :round="false" type="info" size="small">{{ $t('huiFu-6') }}</wd-button>
         </wd-badge>
       </demo-block>

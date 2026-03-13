@@ -68,14 +68,14 @@ const formatter: DatetimePickerViewFormatter = (type, value) => {
     case 'minute':
       return value + t('fen')
     default:
-      return value
+      return `${value}`
   }
 }
-const filter: DatetimePickerViewFilter = (type, values) => {
-  if (type === 'minute') {
-    return values.filter((value) => value % 5 === 0)
+const filter: DatetimePickerViewFilter = (options) => {
+  if (options.type === 'minute') {
+    return options.values.filter((value) => value % 5 === 0)
   }
-  return values
+  return options.values
 }
 
 const toast = useToast()

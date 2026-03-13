@@ -44,7 +44,7 @@ export default {
     expand: 'ดูเพิ่มเติม',
     retract: 'ย่อ'
   },
-  colPicker: {
+  cascader: {
     title: 'เลือก',
     placeholder: 'เลือก',
     select: 'เลือก'
@@ -68,6 +68,12 @@ export default {
     cancel: 'ยกเลิก'
   },
   messageBox: {
+    inputPlaceholder: 'กรุณาใส่ข้อมูล',
+    confirm: 'ยืนยัน',
+    cancel: 'ยกเลิก',
+    inputNoValidate: 'กรุณาตรวจสอบว่าคุณได้ใส่ข้อมูลที่ถูกต้อง'
+  },
+  dialog: {
     inputPlaceholder: 'กรุณาใส่ข้อมูล',
     confirm: 'ยืนยัน',
     cancel: 'ยกเลิก',

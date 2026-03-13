@@ -18,10 +18,10 @@
           v-for="(child, index) in children"
           :key="index"
           @click="toggle(child)"
-          :class="`wd-drop-menu__item ${child.disabled ? 'is-disabled' : ''} ${child.$.exposed!.getShowPop() ? 'is-active' : ''}`"
+          :class="`wd-drop-menu__option ${child.disabled ? 'is-disabled' : ''} ${child.$.exposed!.getShowPop() ? 'is-active' : ''}`"
         >
-          <view class="wd-drop-menu__item-title">
-            <view class="wd-drop-menu__item-title-text">{{ getDisplayTitle(child) }}</view>
+          <view class="wd-drop-menu__option-title">
+            <view class="wd-drop-menu__option-title-text">{{ getDisplayTitle(child) }}</view>
             <wd-icon :name="child.icon" :size="child.iconSize" custom-class="wd-drop-menu__arrow" />
           </view>
         </view>
@@ -36,7 +36,9 @@
 export default {
   name: 'wd-drop-menu',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -161,6 +163,6 @@ function handleClickOverlay() {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

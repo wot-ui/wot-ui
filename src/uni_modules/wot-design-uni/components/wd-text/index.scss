@@ -1,9 +1,17 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/variable.scss'as *;
+@use '../styles/mixin/mixin.scss'as *;
 
-
+$text-fs: var(--wot-text-fs, $typography-body-size-main) !default;
+$text-line-height: var(--wot-text-line-height, $typography-body-line--height-size-main) !default;
+$text-primary-color: var(--wot-text-primary-color, $primary-6) !default;
+$text-success-color: var(--wot-text-success-color, $success-main) !default;
+$text-error-color: var(--wot-text-error-color, $danger-main) !default;
+$text-warning-color: var(--wot-text-warning-color, $warning-main) !default;
+$text-default-color: var(--wot-text-default-color, $text-auxiliary) !default;
 
 @include b(text) {
+  font-size: $text-fs;
+  line-height: $text-line-height;
 
   @include when(bold) {
     font-weight: bold;
@@ -16,22 +24,22 @@
   }
 
   @include when(default) {
-    color: $-text-info-color;
+    color: $text-default-color;
   }
 
   @include when(primary) {
-    color: $-text-primary-color;
+    color: $text-primary-color;
   }
 
   @include when(error) {
-    color: $-text-error-color;
+    color: $text-error-color;
   }
 
   @include when(warning) {
-    color: $-text-warning-color;
+    color: $text-warning-color;
   }
 
   @include when(success) {
-    color: $-text-success-color;
+    color: $text-success-color;
   }
 }

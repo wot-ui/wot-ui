@@ -1,11 +1,7 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(overlay) {
-    background: $-overlay-bg-dark;
-  }
-}
+$overlay-bg: var(--wot-overlay-bg, $opac-7_55);
 
 @include b(overlay) {
   position: fixed;
@@ -13,5 +9,5 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background: $-overlay-bg;
+  background: $overlay-bg;
 }

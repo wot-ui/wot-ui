@@ -1,40 +1,26 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(picker-view) {
-    @include e(columns) {
-      background: $-dark-background2;
-    }
-
-    :deep(.wd-picker-view__roller) {
-      background: $-dark-background4;
-    }
-  }
-
-  @include b(picker-view-column) {
-    color: $-dark-color;
-
-    @include e(item) {
-      @include m(disabled) {
-        color: $-dark-color-gray;
-      }
-    }
-  }
-}
-
+$picker-view-bg: var(--wot-picker-view-bg, $filled-oppo) !default;
+$picker-view-padding: var(--wot-picker-view-padding, $padding-zero $padding-loose) !default;
+$picker-view-mask-start-color: var(--wot-picker-view-mask-start-color, $opacwhite-10_85) !default;
+$picker-view-mask-end-color: var(--wot-picker-view-mask-end-color, $opacwhite-5_20) !default;
+$picker-view-mask-bg: var(--wot-picker-view-mask-bg, linear-gradient(180deg, $picker-view-mask-start-color, $picker-view-mask-end-color), linear-gradient(0deg, $picker-view-mask-start-color, $picker-view-mask-end-color)) !default;
+$picker-view-disabled-opacity: var(--wot-picker-view-disabled-opacity, $opacity-disabled) !default;
+$picker-view-column-item-height: var(--wot-picker-view-column-item-height, $n44) !default;
+$picker-view-column-item-font-size: var(--wot-picker-view-column-item-font-size, $typography-body-size-extra-large) !default;
+$picker-view-column-item-color: var(--wot-picker-view-column-item-color, $text-main) !default;
+$picker-view-column-item-padding: var(--wot-picker-view-column-item-padding, 0 $padding-tight) !default;
+$picker-view-column-item-disabled-color: var(--wot-picker-view-column-item-disabled-color, $text-disabled) !default;
+$picker-view-column-item-active-font-weight: var(--wot-picker-view-column-item-active-font-weight, $font-weight-medium) !default;
+$picker-view-roller-bg: var(--wot-picker-view-roller-bg, $filled-bottom) !default;
+$picker-view-roller-border-radius: var(--wot-picker-view-roller-border-radius, $radius-main) !default;
 
 @include b(picker-view) {
   position: relative;
-  padding: 10px 0;
-
-  @include e(columns) {
-    position: relative;
-    display: flex;
-    background: $-picker-bg;
-    overflow: hidden;
-    align-items: center;
-  }
+  padding: $picker-view-padding;
+  box-sizing: border-box;
+  background: $picker-view-bg;
 
   @include edeep(mask) {
     position: absolute;
@@ -42,29 +28,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: $-picker-mask;
+    background-image: $picker-view-mask-bg;
     background-position: top, bottom;
     background-repeat: no-repeat;
-    z-index: 2;
     pointer-events: none;
-    filter: blur(4px);
-  }
-
-  @include e(loading) {
-    position: absolute;
-    display: flex;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    background: $-picker-loading-bg;
   }
 
   @include edeep(roller) {
-    background: rgba(245, 245, 245, 1);
+    height: $picker-view-column-item-height;
+    background: $picker-view-roller-bg;
+    border-radius: 0;
     z-index: 0;
 
     &::before,
@@ -72,21 +45,35 @@
       display: none;
     }
   }
-}
 
-@include b(picker-view-column) {
-  flex: 1;
-  font-size: $-picker-column-fs;
-  color: $-picker-column-color;
-  text-align: center;
-  transition-timing-function: cubic-bezier(0.28, 0.8, 0.63, 1);
+  @include edeep(main) {
+    .wd-picker-view__column:first-child .wd-picker-view__roller {
+      border-radius: $picker-view-roller-border-radius 0 0 $picker-view-roller-border-radius;
+    }
 
-  @include e(item) {
-    padding: $-picker-column-padding;
+    .wd-picker-view__column:last-child .wd-picker-view__roller {
+      border-radius: 0 $picker-view-roller-border-radius $picker-view-roller-border-radius 0;
+    }
+  }
+
+  @include e(column) {
+    flex: 1;
+  }
+
+  @include e(column-item) {
+    padding: $picker-view-column-item-padding;
+    color: $picker-view-column-item-color;
+    font-size: $picker-view-column-item-font-size;
+    line-height: $picker-view-column-item-height;
+    text-align: center;
     @include lineEllipsis;
 
     @include m(disabled) {
-      color: $-picker-column-disabled-color;
+      color: $picker-view-column-item-disabled-color;
+    }
+
+    @include m(active) {
+      font-weight: $picker-view-column-item-active-font-weight;
     }
   }
 }

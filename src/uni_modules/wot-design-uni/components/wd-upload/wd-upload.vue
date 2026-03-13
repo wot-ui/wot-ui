@@ -8,11 +8,11 @@
         <template v-else-if="isVideo(file)">
           <view class="wd-upload__video" v-if="file.thumb" @click="onPreviewVideo(file)">
             <image :src="file.thumb" :mode="imageMode" class="wd-upload__picture" />
-            <wd-icon name="play-circle-filled" custom-class="wd-upload__video-paly"></wd-icon>
+            <wd-icon name="play-circle-fill" custom-class="wd-upload__video-play"></wd-icon>
           </view>
           <view v-else class="wd-upload__video" @click="onPreviewVideo(file)">
             <!-- #ifdef APP-PLUS || MP-DINGTALK -->
-            <wd-icon custom-class="wd-upload__video-icon" name="video"></wd-icon>
+            <wd-icon custom-class="wd-upload__video-icon" name="video-camera"></wd-icon>
             <!-- #endif -->
             <!-- #ifndef APP-PLUS -->
             <!-- #ifndef MP-DINGTALK -->
@@ -33,7 +33,7 @@
               :enableNative="true"
               class="wd-upload__video"
             ></video>
-            <wd-icon name="play-circle-filled" custom-class="wd-upload__video-paly"></wd-icon>
+            <wd-icon name="play-circle-fill" custom-class="wd-upload__video-play"></wd-icon>
             <!-- #endif -->
             <!-- #endif -->
           </view>
@@ -45,7 +45,7 @@
         </view>
       </view>
 
-      <view v-if="file[props.statusKey] !== 'success'" class="wd-upload__mask wd-upload__status-content">
+      <view v-if="file[props.statusKey] !== 'success'" class="wd-upload__mask">
         <!-- loading时展示loading图标和进度 -->
         <view v-if="file[props.statusKey] === 'loading'" class="wd-upload__status-content">
           <wd-loading :type="loadingType" :size="loadingSize" :color="loadingColor" />
@@ -53,17 +53,14 @@
         </view>
         <!-- 失败时展示失败图标以及失败信息 -->
         <view v-if="file[props.statusKey] === 'fail'" class="wd-upload__status-content">
-          <wd-icon name="close-outline" custom-class="wd-upload__icon"></wd-icon>
+          <wd-icon name="close-circle" custom-class="wd-upload__icon"></wd-icon>
           <text class="wd-upload__progress-txt">{{ file.error || translate('error') }}</text>
         </view>
       </view>
       <!-- 上传状态为上传中时不展示移除按钮 -->
-      <wd-icon
-        v-if="file[props.statusKey] !== 'loading' && !disabled"
-        name="error-fill"
-        custom-class="wd-upload__close"
-        @click="removeFile(index)"
-      ></wd-icon>
+      <view class="wd-upload__close" v-if="file[props.statusKey] !== 'loading' && !disabled" @click="removeFile(index)">
+        <wd-icon name="close" custom-class="wd-upload__close-icon"></wd-icon>
+      </view>
       <!-- 自定义预览样式 -->
       <slot name="preview-cover" v-if="$slots['preview-cover']" :file="file" :index="index"></slot>
     </view>
@@ -75,13 +72,15 @@
       <!-- 唤起项 -->
       <view v-else @click="onEvokeClick" :class="['wd-upload__evoke', disabled ? 'is-disabled' : '', customEvokeClass]">
         <!-- 唤起项图标 -->
-        <wd-icon class="wd-upload__evoke-icon" name="fill-camera"></wd-icon>
+        <wd-icon class="wd-upload__evoke-icon" name="camera-fill"></wd-icon>
         <!-- 有限制个数时确认是否展示限制个数 -->
         <view v-if="limit && showLimitNum" class="wd-upload__evoke-num">（{{ uploadFiles.length }}/{{ limit }}）</view>
       </view>
     </block>
   </view>
-  <wd-video-preview ref="videoPreview"></wd-video-preview>
+  <!-- #ifndef MP-WEIXIN -->
+  <wd-video-preview :selector="videoPreviewId"></wd-video-preview>
+  <!-- #endif -->
 </template>
 
 <script lang="ts">
@@ -89,7 +88,9 @@ export default {
   name: 'wd-upload',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -101,7 +102,7 @@ import wdVideoPreview from '../wd-video-preview/wd-video-preview.vue'
 import wdLoading from '../wd-loading/wd-loading.vue'
 
 import { computed, ref, watch } from 'vue'
-import { context, isEqual, isImageUrl, isVideoUrl, isFunction, isDef, deepClone } from '../common/util'
+import { context, isEqual, isImageUrl, isVideoUrl, isFunction, isDef, deepClone, uuid } from '../common/util'
 import { useTranslate } from '../composables/useTranslate'
 import { useUpload } from '../composables/useUpload'
 import {
@@ -117,7 +118,7 @@ import {
   type UploadRemoveEvent,
   type UploadMethod
 } from './types'
-import type { VideoPreviewInstance } from '../wd-video-preview/types'
+import { useVideoPreview } from '../wd-video-preview'
 
 const props = defineProps(uploadProps)
 
@@ -143,7 +144,8 @@ const uploadFiles = ref<UploadFileItem[]>([])
 
 const showUpload = computed(() => !props.limit || uploadFiles.value.length < props.limit)
 
-const videoPreview = ref<VideoPreviewInstance>()
+const videoPreviewId = ref<string>(`videoPreview${uuid()}`)
+const { previewVideo } = useVideoPreview(videoPreviewId.value)
 
 const { startUpload, abort, chooseFile, UPLOAD_STATUS } = useUpload()
 
@@ -583,7 +585,7 @@ function handlePreviewVieo(index: number, lists: UploadFileItem[]) {
   // #endif
 
   // #ifndef MP-WEIXIN
-  videoPreview.value?.open({ url: lists[index].url, poster: lists[index].thumb, title: lists[index].name })
+  previewVideo({ url: lists[index].url, poster: lists[index].thumb, title: lists[index].name })
   // #endif
 }
 
@@ -668,6 +670,6 @@ function isImage(file: UploadFileItem) {
   return (file.name && isImageUrl(file.name)) || isImageUrl(file.url)
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

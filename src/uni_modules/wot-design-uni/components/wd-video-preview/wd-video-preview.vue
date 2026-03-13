@@ -1,9 +1,18 @@
 <template>
-  <view :class="`wd-video-preview ${customClass}`" :style="customStyle" v-if="showPopup" @click="close">
+  <wd-overlay
+    :show="state.show"
+    :z-index="options.zIndex"
+    :lock-scroll="true"
+    :custom-class="`wd-video-preview ${customClass}`"
+    :custom-style="customStyle"
+    @click="close"
+    @enter="handleEnter"
+    @after-leave="handleAfterLeave"
+  >
     <view class="wd-video-preview__video" @click.stop="">
       <video
         class="wd-video-preview__video"
-        v-if="previewVideo.url"
+        v-if="state.visible && previewVideo.url"
         :controls="true"
         :poster="previewVideo.poster"
         :title="previewVideo.title"
@@ -13,8 +22,10 @@
         :enable-progress-gesture="false"
       ></video>
     </view>
-    <wd-icon name="close" :custom-class="`wd-video-preview__close`" @click="close" />
-  </view>
+    <view class="wd-video-preview__close" @click.stop="close">
+      <wd-icon name="close" custom-class="wd-video-preview__close-icon" />
+    </view>
+  </wd-overlay>
 </template>
 
 <script lang="ts">
@@ -22,7 +33,9 @@ export default {
   name: 'wd-video-preview',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -30,43 +43,99 @@ export default {
 
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { nextTick, reactive, ref } from 'vue'
-import { videoPreviewProps, type PreviewVideo, type VideoPreviewExpose } from './types'
-import { useLockScroll } from '../composables/useLockScroll'
-defineProps(videoPreviewProps)
+import wdOverlay from '../wd-overlay/wd-overlay.vue'
+import { reactive, ref, inject, watch, computed } from 'vue'
+import { videoPreviewProps, type PreviewVideo, type VideoPreviewOptions, type VideoPreviewExpose } from './types'
+import { defaultOptions, getVideoPreviewOptionKey } from './index'
+import { isDef, isFunction } from '../common/util'
 
-const showPopup = ref<boolean>(false)
+const props = defineProps(videoPreviewProps)
+
+const emit = defineEmits<{
+  open: []
+  close: []
+}>()
+
+const state = reactive({
+  show: false,
+  visible: false
+})
+
 const previewVideo = reactive<PreviewVideo>({ url: '', poster: '', title: '' })
 
-function open(video: PreviewVideo) {
-  showPopup.value = true
-  previewVideo.url = video.url
-  previewVideo.poster = video.poster
-  previewVideo.title = video.title
+// 获取注入的选项
+const videoPreviewOptionKey = getVideoPreviewOptionKey(props.selector)
+const videoPreviewOption = inject(videoPreviewOptionKey, ref<VideoPreviewOptions>(defaultOptions))
+
+const options = computed(() => ({
+  zIndex: isDef(videoPreviewOption.value.zIndex) ? videoPreviewOption.value.zIndex! : props.zIndex,
+  onOpen: videoPreviewOption.value.onOpen || props.onOpen || null,
+  onClose: videoPreviewOption.value.onClose || props.onClose || null
+}))
+
+// 监听选项变化
+watch(
+  () => videoPreviewOption.value,
+  (newVal: VideoPreviewOptions) => {
+    reset(newVal)
+  },
+  { deep: true, immediate: true }
+)
+
+// 监听 show 变化，触发事件
+watch(
+  () => state.show,
+  (newVal, oldVal) => {
+    if (newVal && !oldVal) {
+      emit('open')
+      if (isFunction(options.value.onOpen)) {
+        options.value.onOpen()
+      }
+    } else if (!newVal && oldVal) {
+      emit('close')
+      if (isFunction(options.value.onClose)) {
+        options.value.onClose()
+      }
+    }
+  }
+)
+
+function reset(option: VideoPreviewOptions) {
+  state.show = isDef(option.show) ? option.show! : false
+  if (state.show) {
+    previewVideo.url = option.url
+    previewVideo.poster = option.poster
+    previewVideo.title = option.title
+  }
 }
 
-function close() {
-  showPopup.value = false
-  nextTick(() => {
-    handleClosed()
-  })
+function handleEnter() {
+  state.visible = true
 }
 
-function handleClosed() {
+function handleAfterLeave() {
+  state.visible = false
   previewVideo.url = ''
   previewVideo.poster = ''
   previewVideo.title = ''
 }
 
-// #ifdef H5
-useLockScroll(() => showPopup.value)
-// #endif
+function close() {
+  state.show = false
+}
+
+function open(video: PreviewVideo) {
+  previewVideo.url = video.url
+  previewVideo.poster = video.poster
+  previewVideo.title = video.title
+  state.show = true
+}
 
 defineExpose<VideoPreviewExpose>({
   open,
   close
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

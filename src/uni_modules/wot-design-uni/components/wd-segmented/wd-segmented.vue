@@ -1,7 +1,7 @@
 <template>
-  <view :class="`wd-segmented ${customClass}`" :style="customStyle">
+  <view :class="`wd-segmented ${theme ? `wd-segmented--${theme}` : ''} ${customClass}`" :style="customStyle">
     <view
-      :class="`wd-segmented__item is-${size} ${state.activeIndex === index ? 'is-active' : ''} ${
+      :class="`wd-segmented__item ${state.activeIndex === index ? 'is-active' : ''} ${
         disabled || (isObj(option) ? option.disabled : false) ? 'is-disabled' : ''
       }`"
       @click="handleClick(option, index)"
@@ -15,7 +15,7 @@
         </template>
       </view>
     </view>
-    <view :class="`wd-segmented__item--active ${activeDisabled ? 'is-disabled' : ''}`" :style="state.activeStyle"></view>
+    <view :class="`wd-segmented__slider ${activeDisabled ? 'is-disabled' : ''}`" :style="state.activeStyle" v-if="theme === 'card'"></view>
   </view>
 </template>
 
@@ -24,7 +24,9 @@ export default {
   name: 'wd-segmented',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -35,16 +37,26 @@ import { computed, getCurrentInstance, onMounted, reactive, watch } from 'vue'
 import { getRect, isObj, objToStyle, addUnit, pause, isEqual } from '../common/util'
 import type { CSSProperties } from 'vue'
 import { segmentedProps, type SegmentedExpose, type SegmentedOption } from './types'
+/** 分段器选项元素的选择器 */
 const $item = '.wd-segmented__item'
 
 const props = defineProps(segmentedProps)
 const emit = defineEmits(['update:value', 'change', 'click'])
 
+/**
+ * 组件内部状态
+ */
 const state = reactive({
-  activeIndex: 0, // 选中项
-  activeStyle: '' // 选中样式
+  /** 当前选中项的索引 */
+  activeIndex: 0,
+  /** 滑块的样式字符串 */
+  activeStyle: ''
 })
 
+/**
+ * 当前激活项是否处于禁用状态
+ * 检查全局禁用或第一个选项的禁用状态
+ */
 const activeDisabled = computed(() => {
   return props.disabled || (props.options[0] && isObj(props.options[0]) ? props.options[0].disabled : false)
 })
@@ -72,10 +84,16 @@ onMounted(async () => {
 })
 
 /**
- * 更新滑块偏移量
- *
+ * 更新滑块的位置和样式
+ * 仅在 card 主题下执行,outline 主题下滑块隐藏无需更新
+ * @param {boolean} animation 是否启用过渡动画,默认为 true
  */
 function updateActiveStyle(animation: boolean = true) {
+  // outline 模式下滑块隐藏，无需计算样式
+  if (props.theme === 'outline') {
+    return
+  }
+
   getRect($item, true, proxy).then((rects) => {
     const rect = rects[state.activeIndex]
     const style: CSSProperties = {
@@ -95,7 +113,9 @@ function updateActiveStyle(animation: boolean = true) {
 }
 
 /**
- * 更新值
+ * 更新选中值并触发相应事件
+ * @param {string | number} newValue 新的选中值
+ * @param {string | number | SegmentedOption} option 对应的选项数据
  */
 function updateValue(newValue: string | number, option: string | number | SegmentedOption) {
   if (!isEqual(newValue, props.value)) {
@@ -105,7 +125,8 @@ function updateValue(newValue: string | number, option: string | number | Segmen
 }
 
 /**
- * 更新当前下标
+ * 根据当前值更新激活项的索引
+ * 如果未找到匹配项,则默认选中第一项
  */
 function updateCurrentIndex() {
   const index = props.options.findIndex((option: string | number | SegmentedOption) => {
@@ -120,6 +141,11 @@ function updateCurrentIndex() {
   }
 }
 
+/**
+ * 处理选项点击事件
+ * @param {string | number | SegmentedOption} option 被点击的选项
+ * @param {number} index 选项索引
+ */
 function handleClick(option: string | number | SegmentedOption, index: number) {
   const disabled = props.disabled || (isObj(option) ? option.disabled : false)
   if (disabled) {
@@ -138,6 +164,6 @@ defineExpose<SegmentedExpose>({
 })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

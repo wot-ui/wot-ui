@@ -2,40 +2,34 @@
   <page-wraper>
     <demo-block transparent>
       <wd-cell-group border>
-        <wd-cell :title="$t('dan-lie-xuan-xiang')" placeholder="请选择" :value="value0" is-link @click="show0 = true" />
+        <wd-cell :title="$t('dan-lie-xuan-xiang')" placeholder="请选择" :value="value0[0]" is-link @click="show0 = true" />
         <wd-picker v-model="value0" v-model:visible="show0" :columns="columns0" />
 
-        <wd-cell :title="$t('jinYong')" :value="value1" is-link disabled />
-        <wd-picker disabled v-model="value1" :columns="columns1" />
-
-        <wd-cell :title="$t('zhi-du')" :value="value2" />
-        <wd-picker readonly v-model="value2" :columns="columns2" />
-
-        <wd-cell title="loading" :value="value3" is-link @click="show3 = true" />
+        <wd-cell title="loading" :value="value3[0]" is-link @click="show3 = true" />
         <wd-picker v-model="value3" v-model:visible="show3" loading :columns="columns3" />
 
         <wd-cell :title="$t('duo-lie')" :value="displayValue4" is-link @click="show4 = true" />
         <wd-picker v-model="value4" v-model:visible="show4" :columns="columns4" @confirm="handleConfirm4" />
 
         <wd-cell :title="$t('duo-ji-lian-dong')" :value="displayValue5" is-link @click="show5 = true" />
-        <wd-picker v-model="value5" v-model:visible="show5" :columns="columns5" :column-change="onChangeDistrict" @confirm="handleConfirm5" />
+        <wd-picker v-model="value5" v-model:visible="show5" :columns="cascadeColumns" cascade @confirm="handleConfirm5" />
 
         <wd-cell :title="$t('fen-ge-fu')" :value="displayValue6" is-link @click="show6 = true" />
         <wd-picker v-model="value6" v-model:visible="show6" :columns="columns6" :display-format="displayFormat" @confirm="handleConfirm6" />
 
-        <wd-cell :title="$t('biaoTi-0')" :value="value9" is-link @click="show9 = true" />
+        <wd-cell :title="$t('biaoTi-0')" :value="value9[0]" is-link @click="show9 = true" />
         <wd-picker v-model="value9" v-model:visible="show9" :columns="columns7" :title="$t('wen-an-biao-ti')" />
 
-        <wd-cell title="before-confirm" :value="value7" is-link @click="show7 = true" />
+        <wd-cell title="before-confirm" :value="value7[0]" is-link @click="show7 = true" />
         <wd-picker :columns="columns0" v-model="value7" v-model:visible="show7" :before-confirm="beforeConfirm" />
 
-        <wd-cell :title="$t('cuo-wu')" :value="value10" is-link custom-value-class="is-error" @click="show10 = true" />
+        <wd-cell :title="$t('cuo-wu')" :value="value10[0]" is-link custom-value-class="is-error" @click="show10 = true" />
         <wd-picker v-model="value10" v-model:visible="show10" :columns="columns0" />
 
-        <wd-cell :title="$t('bi-tian')" :value="value11" is-link required @click="show11 = true" />
+        <wd-cell :title="$t('bi-tian')" :value="value11[0]" is-link required @click="show11 = true" />
         <wd-picker v-model="value11" v-model:visible="show11" :columns="columns0" />
 
-        <wd-cell :title="$t('bi-tian-xing-hao-zai-you-ce')" :value="value16" is-link required asterisk-position="end" @click="show16 = true" />
+        <wd-cell :title="$t('bi-tian-xing-hao-zai-you-ce')" :value="value16[0]" is-link required asterisk-position="end" @click="show16 = true" />
         <wd-picker v-model="value16" v-model:visible="show16" :columns="columns0" />
 
         <wd-cell :title="$t('duo-ji-lian-dong-ke-qing-kong')" :value="displayValue15" is-link @click="show15 = true">
@@ -43,37 +37,27 @@
             <wd-icon name="error-fill" custom-class="wd-picker__clear" @click.stop="handleClear" />
           </template>
         </wd-cell>
-        <wd-picker v-model="value15" v-model:visible="show15" :columns="columns5" :column-change="onChangeDistrict" @confirm="handleConfirmClear" />
+        <wd-picker v-model="value15" v-model:visible="show15" :columns="cascadeColumns" cascade @confirm="handleConfirmClear" />
       </wd-cell-group>
     </demo-block>
     <demo-block :title="$t('label-bu-chuan-0')" transparent>
-      <wd-cell :value="value12 ? value12 : '请选择'" is-link @click="show12 = true" />
+      <wd-cell :value="value12[0] ? value12[0] : '请选择'" is-link @click="show12 = true" />
       <wd-picker :columns="columns0" v-model="value12" v-model:visible="show12" />
     </demo-block>
     <demo-block :title="$t('da-xiao')" transparent>
-      <wd-cell :title="$t('dan-lie-xuan-xiang')" :value="value13" size="large" is-link @click="show13 = true" />
+      <wd-cell :title="$t('dan-lie-xuan-xiang')" :value="value13[0]" size="large" is-link @click="show13 = true" />
       <wd-picker v-model="value13" v-model:visible="show13" :columns="columns0" />
     </demo-block>
     <demo-block :title="$t('zhi-kao-you-xian-shi')" transparent>
-      <wd-cell :title="$t('dan-lie-xuan-xiang')" :value="value14" is-link @click="show14 = true" />
+      <wd-cell :title="$t('dan-lie-xuan-xiang')" :value="value14[0]" is-link @click="show14 = true" />
       <wd-picker v-model="value14" v-model:visible="show14" :columns="columns0" />
-    </demo-block>
-    <demo-block :title="$t('mo-ren-cha-cao')" transparent>
-      <view class="default-slot">
-        <view class="default-slot-txt">
-          {{ $t('xuan-zhong-zhi') }}
-          <text style="color: #34d19d">{{ value8 }}</text>
-        </view>
-        <wd-button @click="show8 = true">{{ $t('cha-cao-huan-qi') }}</wd-button>
-        <wd-picker :columns="columns0" v-model="value8" v-model:visible="show8" @confirm="handleConfirm" />
-      </view>
     </demo-block>
     <wd-toast />
   </page-wraper>
 </template>
 <script lang="ts" setup>
 import { useToast } from '@/uni_modules/wot-design-uni'
-import type { ColumnItem, PickerViewColumnChange } from '@/uni_modules/wot-design-uni/components/wd-picker-view/types'
+import type { PickerOption } from '@/uni_modules/wot-design-uni/components/wd-picker-view/types'
 import type { PickerBeforeConfirm, PickerDisplayFormat } from '@/uni_modules/wot-design-uni/components/wd-picker/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -89,7 +73,6 @@ const show4 = ref(false)
 const show5 = ref(false)
 const show6 = ref(false)
 const show7 = ref(false)
-const show8 = ref(false)
 const show9 = ref(false)
 const show10 = ref(false)
 const show11 = ref(false)
@@ -99,147 +82,132 @@ const show14 = ref(false)
 const show15 = ref(false)
 const show16 = ref(false)
 
-const district: Record<string, Array<{ label: string; value: string }>> = {
-  0: [
-    { label: t('bei-jing'), value: '110000' },
-    { label: t('guang-dong-sheng'), value: '440000' }
-  ],
-  110000: [{ label: t('bei-jing'), value: '110100' }],
-  440000: [
-    { label: t('guang-zhou-shi'), value: '440100' },
-    { label: t('shao-guan-shi'), value: '440200' },
-    { label: t('shen-zhen-shi'), value: '440300' },
-    { label: t('zhu-hai-shi'), value: '440400' },
-    { label: t('shan-tou-shi'), value: '440500' }
-  ],
-  110100: [
-    { label: t('dong-cheng-qu'), value: '110101' },
-    { label: t('xi-cheng-qu'), value: '110102' },
-    { label: t('zhao-yang-qu'), value: '110105' },
-    { label: t('feng-tai-qu'), value: '110106' },
-    { label: t('shi-jing-shan-qu'), value: '110107' }
-  ],
-  440100: [
-    { label: t('li-wan-qu'), value: '440103' },
-    { label: t('yue-xiu-qu'), value: '440104' },
-    { label: t('hai-zhu-qu'), value: '440105' }
-  ],
-  440200: [{ label: t('wu-jiang-qu'), value: '440203' }],
-  440300: [
-    { label: t('luo-hu-qu'), value: '440303' },
-    { label: t('fu-tian-qu'), value: '440304' }
-  ],
-  440400: [
-    { label: t('xiang-zhou-qu'), value: '440402' },
-    { label: t('dou-men-qu'), value: '440403' },
-    { label: t('jin-wan-qu'), value: '440404' }
-  ],
-  440500: [
-    { label: t('long-hu-qu'), value: '440507' },
-    { label: t('jin-ping-qu'), value: '440511' }
-  ]
+const getOptions = (list: string[]) => {
+  return list.map((value) => ({ value, label: value }))
 }
 
-const columns0 = ref([
-  t(
-    'xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1'
-  ),
-  t('xuanXiang_2-0'),
-  t('xuanXiang_3-0'),
-  t('xuan-xiang-4'),
-  t('xuan-xiang-5'),
-  t('xuan-xiang-6'),
-  t('xuan-xiang-7')
+// 级联模式：使用树形数据结构（带 children）
+const cascadeColumns = ref([
+  {
+    label: t('bei-jing'),
+    value: '110000',
+    children: [
+      {
+        label: t('bei-jing'),
+        value: '110100',
+        children: [
+          { label: t('dong-cheng-qu'), value: '110101' },
+          { label: t('xi-cheng-qu'), value: '110102' },
+          { label: t('zhao-yang-qu'), value: '110105' },
+          { label: t('feng-tai-qu'), value: '110106' },
+          { label: t('shi-jing-shan-qu'), value: '110107' }
+        ]
+      }
+    ]
+  },
+  {
+    label: t('guang-dong-sheng'),
+    value: '440000',
+    children: [
+      {
+        label: t('guang-zhou-shi'),
+        value: '440100',
+        children: [
+          { label: t('li-wan-qu'), value: '440103' },
+          { label: t('yue-xiu-qu'), value: '440104' },
+          { label: t('hai-zhu-qu'), value: '440105' }
+        ]
+      },
+      {
+        label: t('shao-guan-shi'),
+        value: '440200',
+        children: [{ label: t('wu-jiang-qu'), value: '440203' }]
+      },
+      {
+        label: t('shen-zhen-shi'),
+        value: '440300',
+        children: [
+          { label: t('luo-hu-qu'), value: '440303' },
+          { label: t('fu-tian-qu'), value: '440304' }
+        ]
+      },
+      {
+        label: t('zhu-hai-shi'),
+        value: '440400',
+        children: [
+          { label: t('xiang-zhou-qu'), value: '440402' },
+          { label: t('dou-men-qu'), value: '440403' },
+          { label: t('jin-wan-qu'), value: '440404' }
+        ]
+      },
+      {
+        label: t('shan-tou-shi'),
+        value: '440500',
+        children: [
+          { label: t('long-hu-qu'), value: '440507' },
+          { label: t('jin-ping-qu'), value: '440511' }
+        ]
+      }
+    ]
+  }
 ])
-const value0 = ref('')
 
-const value1 = ref(t('xuanXiang_3-0'))
-const columns1 = ref([
-  t('xuanXiang_1-0'),
-  t('xuanXiang_2-0'),
-  t('xuanXiang_3-0'),
-  t('xuan-xiang-4'),
-  t('xuan-xiang-5'),
-  t('xuan-xiang-6'),
-  t('xuan-xiang-7')
-])
-const value2 = ref(t('xuan-xiang-4'))
-const columns2 = ref([
-  t('xuanXiang_1-0'),
-  t('xuanXiang_2-0'),
-  t('xuanXiang_3-0'),
-  t('xuan-xiang-4'),
-  t('xuan-xiang-5'),
-  t('xuan-xiang-6'),
-  t('xuan-xiang-7')
-])
+const columns0 = ref(
+  getOptions([
+    t(
+      'xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1-xuan-xiang-1'
+    ),
+    t('xuanXiang_2-0'),
+    t('xuanXiang_3-0'),
+    t('xuan-xiang-4'),
+    t('xuan-xiang-5'),
+    t('xuan-xiang-6'),
+    t('xuan-xiang-7')
+  ])
+)
+const value0 = ref<string[]>([])
 
-const columns3 = ref([
-  t('xuanXiang_1-0'),
-  t('xuanXiang_2-0'),
-  t('xuanXiang_3-0'),
-  t('xuan-xiang-4'),
-  t('xuan-xiang-5'),
-  t('xuan-xiang-6'),
-  t('xuan-xiang-7')
-])
-const value3 = ref(t('xuan-xiang-4'))
-
+const value3 = ref([t('xuan-xiang-4')])
+const columns3 = ref(
+  getOptions([t('xuanXiang_1-0'), t('xuanXiang_2-0'), t('xuanXiang_3-0'), t('xuan-xiang-4'), t('xuan-xiang-5'), t('xuan-xiang-6'), t('xuan-xiang-7')])
+)
 const value4 = ref([])
 const displayValue4 = ref('')
 const columns4 = ref([
-  [t('zhong-shan-da-xue'), t('zhong-nan-da-xue'), t('hua-nan-li-gong-da-xue')],
-  [t('ji-suan-ji-ke-xue-yu-ji-shu'), t('ruan-jian-gong-cheng'), t('tong-xin-gong-cheng'), t('fa-xue'), t('jing-ji-xue')]
+  getOptions([t('zhong-shan-da-xue'), t('zhong-nan-da-xue'), t('hua-nan-li-gong-da-xue')]),
+  getOptions([t('ji-suan-ji-ke-xue-yu-ji-shu'), t('ruan-jian-gong-cheng'), t('tong-xin-gong-cheng'), t('fa-xue'), t('jing-ji-xue')])
 ])
 
 const value5 = ref(['110000', '110100', '110102'])
 const displayValue5 = ref(t('bei-jing') + ' - ' + t('bei-jing') + ' - ' + t('xi-cheng-qu'))
 const value15 = ref(['110000', '110100', '110102'])
 const displayValue15 = ref(t('bei-jing') + ' - ' + t('bei-jing') + ' - ' + t('xi-cheng-qu'))
-const columns5 = ref([district[0], district[district[0][0].value], district[district[district[0][0].value][0].value]])
 
 const value6 = ref([t('zhong-nan-da-xue-0'), t('ruan-jian-gong-cheng-0')])
 const displayValue6 = ref(t('zhong-nan-da-xue-0') + '-' + t('ruan-jian-gong-cheng-0'))
-const value8 = ref(t('xuanXiang_2-0'))
-const value9 = ref(t('xuanXiang_1-0'))
-const value10 = ref(t('xuanXiang_2-0'))
+const value8 = ref([t('xuanXiang_2-0')])
+const value9 = ref([t('xuanXiang_1-0')])
+const value10 = ref([t('xuanXiang_2-0')])
 
-const value11 = ref(t('xuanXiang_3-0'))
-const value12 = ref(t('xuanXiang_3-0'))
-const value13 = ref(t('xuanXiang_3-0'))
-const value14 = ref(t('xuanXiang_3-0'))
-const value16 = ref(t('xuanXiang_2-0'))
+const value11 = ref([t('xuanXiang_3-0')])
+const value12 = ref([t('xuanXiang_3-0')])
+const value13 = ref([t('xuanXiang_3-0')])
+const value14 = ref([t('xuanXiang_3-0')])
+const value16 = ref([t('xuanXiang_2-0')])
 
 const columns6 = ref([
-  [t('zhong-shan-da-xue-0'), t('zhong-nan-da-xue-1'), t('hua-nan-li-gong-da-xue-0')],
-  [t('ji-suan-ji-ke-xue-yu-ji-shu-0'), t('ruan-jian-gong-cheng-1'), t('tong-xin-gong-cheng-0'), t('fa-xue-0'), t('jing-ji-xue-0')]
+  getOptions([t('zhong-shan-da-xue-0'), t('zhong-nan-da-xue-1'), t('hua-nan-li-gong-da-xue-0')]),
+  getOptions([t('ji-suan-ji-ke-xue-yu-ji-shu-0'), t('ruan-jian-gong-cheng-1'), t('tong-xin-gong-cheng-0'), t('fa-xue-0'), t('jing-ji-xue-0')])
 ])
 
-const columns7 = ref([
-  t('xuanXiang_1-0'),
-  t('xuanXiang_2-0'),
-  t('xuanXiang_3-0'),
-  t('xuan-xiang-4'),
-  t('xuan-xiang-5'),
-  t('xuan-xiang-6'),
-  t('xuan-xiang-7')
-])
+const columns7 = ref(
+  getOptions([t('xuanXiang_1-0'), t('xuanXiang_2-0'), t('xuanXiang_3-0'), t('xuan-xiang-4'), t('xuan-xiang-5'), t('xuan-xiang-6'), t('xuan-xiang-7')])
+)
 
-const value7 = ref('')
-
-const onChangeDistrict: PickerViewColumnChange = (pickerView, value, columnIndex, resolve) => {
-  const item = (value as Record<string, any>[])[columnIndex]
-  if (columnIndex === 0) {
-    pickerView.setColumnData(1, district[item.value])
-    pickerView.setColumnData(2, district[district[item.value][0].value])
-  } else if (columnIndex === 1) {
-    pickerView.setColumnData(2, district[item.value])
-  }
-  resolve()
-}
+const value7 = ref<string[]>([])
 
 const displayFormat: PickerDisplayFormat = (items) => {
-  return (items as ColumnItem[])
+  return (items as PickerOption[])
     .map((item) => {
       return item.label
     })
@@ -250,7 +218,7 @@ const beforeConfirm: PickerBeforeConfirm = (value, resolve, picker) => {
   picker.setLoading(true)
   setTimeout(() => {
     picker.setLoading(false)
-    if ([t('xuanXiang_2-0'), t('xuanXiang_3-0')].indexOf(value as string) > -1) {
+    if ([t('xuanXiang_2-0'), t('xuanXiang_3-0')].indexOf((value as string[])[0]) > -1) {
       resolve(false)
       toast.error(t('xuan-xiang-xiao-yan-bu-tong-guo-qing-zhong-xin-xuan-ze'))
     } else {

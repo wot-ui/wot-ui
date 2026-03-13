@@ -1,38 +1,76 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeStringProp } from '../common/props'
 
+/**
+ * 滑动操作的状态
+ * 可选值: 'left' | 'close' | 'right'
+ */
 export type SwipeActionStatus = 'left' | 'close' | 'right'
 
-// 点击关闭按钮、滑动关闭按钮、通过控制value关闭按钮
+/**
+ * 触发关闭的原因
+ * 可选值: 'click' | 'swipe' | 'value'
+ */
 export type SwipeActionReason = 'click' | 'swipe' | 'value'
 
+/**
+ * 滑动/点击位置类型（'inside' 表示点击内容区域）
+ * 可选值: 'left' | 'close' | 'right' | 'inside'
+ */
 export type SwipeActionPosition = SwipeActionStatus | 'inside'
 
-export type SwipeActionBeforeClose = (reason: SwipeActionReason, position: SwipeActionPosition) => void
+/**
+ * 关闭前回调函数类型
+ * @param reason 触发关闭的原因
+ * @param position 操作的位置
+ * @returns 返回 false 或 Promise<false> 可阻止关闭；返回 true、其他值或 undefined 则允许关闭
+ */
+export type SwipeActionBeforeClose = (reason: SwipeActionReason, position: SwipeActionPosition) => boolean | Promise<boolean> | void
+
+/** 点击事件载荷 */
+export interface SwipeActionClickEvent {
+  /** 点击位置：'left' | 'right' | 'inside' */
+  value: SwipeActionPosition
+}
+
+/** 组件暴露的实例方法 */
+export interface SwipeActionExpose {
+  /**
+   * 关闭已展开的操作按钮，恢复为收起状态
+   */
+  close: () => void
+}
+
+/** 组件事件定义 */
+export interface SwipeActionEmits {
+  /** 点击滑动项内容或左右操作按钮时触发 */
+  (e: 'click', payload: SwipeActionClickEvent): void
+  /** 滑动状态变化时触发（v-model 更新） */
+  (e: 'update:modelValue', value: SwipeActionStatus): void
+}
 
 export const swipeActionProps = {
   ...baseProps,
 
   /**
-   * 滑动按钮的状态，使用v-model进行双向绑定。
-   * 可选值为：'left'（左滑）、'close'（关闭状态）、'right'（右滑）。
-   * 类型：string
-   * 默认值：'close'
+   * 绑定值，表示当前滑动状态
+   * 类型: SwipeActionStatus
+   * 可选值: 'left' | 'close' | 'right'
+   * 默认值: 'close'
    */
   modelValue: makeStringProp<SwipeActionStatus>('close'),
 
   /**
-   * 是否禁用滑动操作。
-   * 类型：boolean
-   * 默认值：false
+   * 是否禁用滑动操作，禁用后无法通过手势或点击滑动
+   * 类型: boolean
+   * 默认值: false
    */
   disabled: makeBooleanProp(false),
 
   /**
-   * 在关闭滑动按钮前调用的钩子函数。
-   * 可以在此函数中执行一些关闭前的操作，如确认提示等。
-   * 类型：function
-   * 默认值：无
+   * 关闭前的钩子，支持同步/异步；返回 false 或 Promise<false> 可阻止关闭
+   * 类型: SwipeActionBeforeClose
+   * 默认值: 无
    */
   beforeClose: Function as PropType<SwipeActionBeforeClose>
 }

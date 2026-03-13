@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-collapse-item ${disabled ? 'is-disabled' : ''} is-border ${customClass}`" :style="customStyle">
+  <view :class="`wd-collapse-item ${disabled ? 'is-disabled' : ''} ${border ? 'is-border' : ''} ${customClass}`" :style="customStyle">
     <view
       :class="`wd-collapse-item__header ${expanded ? 'is-expanded' : ''} ${isFirst ? 'wd-collapse-item__header-first' : ''} ${
         $slots.title ? 'is-custom' : ''
@@ -8,7 +8,7 @@
     >
       <slot name="title" :expanded="expanded" :disabled="disabled" :isFirst="isFirst">
         <text class="wd-collapse-item__title">{{ title }}</text>
-        <wd-icon name="arrow-down" :custom-class="`wd-collapse-item__arrow ${expanded ? 'is-retract' : ''}`" />
+        <wd-icon name="down" :custom-class="`wd-collapse-item__arrow ${expanded ? 'is-retract' : ''}`" />
       </slot>
     </view>
     <view class="wd-collapse-item__wrapper" :style="contentStyle" @transitionend="handleTransitionEnd">
@@ -75,7 +75,7 @@ const contentStyle = computed(() => {
  * 是否选中
  */
 const isSelected = computed(() => {
-  const modelValue = collapse ? collapse?.props.modelValue || [] : []
+  const modelValue = collapse.value ? collapse.value.props.modelValue || [] : []
   const { name } = props
   return (isString(modelValue) && modelValue === name) || (isArray(modelValue) && modelValue.indexOf(name as string) >= 0)
 })
@@ -91,6 +91,10 @@ onMounted(() => {
   updateExpand(isSelected.value)
 })
 
+/**
+ * 更新展开状态
+ * @param useBeforeExpand 是否使用展开前钩子
+ */
 async function updateExpand(useBeforeExpand: boolean = true) {
   try {
     if (useBeforeExpand) {
@@ -102,6 +106,9 @@ async function updateExpand(useBeforeExpand: boolean = true) {
   }
 }
 
+/**
+ * 初始化内容高度
+ */
 function initRect() {
   getRect(`#${collapseId.value}`, false, proxy).then(async (rect) => {
     const { height: rectHeight } = rect
@@ -118,19 +125,24 @@ function initRect() {
   })
 }
 
+/**
+ * 动画结束回调
+ */
 function handleTransitionEnd() {
   if (expanded.value) {
     height.value = ''
   }
 }
 
-// 点击子项
+/**
+ * 点击子项
+ */
 async function handleClick() {
   if (props.disabled) return
   try {
     await updateExpand()
     const { name } = props
-    collapse && collapse.toggle(name, !expanded.value)
+    collapse.value && collapse.value.toggle(name, !expanded.value)
   } catch (error) {
     /* empty */
   }
@@ -159,6 +171,9 @@ function handleBeforeExpand() {
   })
 }
 
+/**
+ * 获取展开状态
+ */
 function getExpanded() {
   return expanded.value
 }
@@ -166,6 +181,6 @@ function getExpanded() {
 defineExpose<CollapseItemExpose>({ getExpanded, updateExpand })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

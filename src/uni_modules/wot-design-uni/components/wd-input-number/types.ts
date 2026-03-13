@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2024-03-15 20:40:34
- * @LastEditTime: 2025-06-21 18:23:35
+ * @LastEditTime: 2026-01-22 16:54:27
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-input-number/types.ts
@@ -16,6 +16,15 @@ import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeRequir
  * @returns 返回布尔值或Promise<boolean>，用于控制是否允许值的变化
  */
 export type InputNumberBeforeChange = (value: number | string) => boolean | Promise<boolean>
+
+/**
+ * 计数器主题类型
+ * - default: 无边框，简洁风格
+ * - outline: 有边框描边
+ * - outline-split: 有边框，按钮分离
+ * - primary: 圆形主色按钮
+ */
+export type InputNumberTheme = 'default' | 'outline' | 'outline-split' | 'primary'
 
 export type OperationType = 'add' | 'sub'
 
@@ -68,7 +77,7 @@ export const inputNumberProps = {
   /**
    * 输入框宽度
    */
-  inputWidth: makeNumericProp(36),
+  inputWidth: numericProp,
   /**
    * 是否允许为空
    */
@@ -104,7 +113,19 @@ export const inputNumberProps = {
    * number: 数字输入
    * digit: 整数输入
    */
-  inputType: makeStringProp<'number' | 'digit'>('digit')
+  inputType: makeStringProp<'number' | 'digit'>('digit'),
+  /**
+   * 主题风格
+   * - default: 无边框，简洁风格
+   * - outline: 有边框描边
+   * - outline-split: 有边框，按钮分离
+   * - primary: 圆形主色按钮
+   */
+  theme: makeStringProp<InputNumberTheme>('default'),
+  /**
+   * 是否圆形按钮
+   */
+  round: Boolean
 }
 
 export type InputNumberProps = ExtractPropTypes<typeof inputNumberProps>

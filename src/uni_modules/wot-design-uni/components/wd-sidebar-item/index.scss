@@ -1,87 +1,82 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(sidebar-item) {
-    background: $-dark-background2;
-    color: $-dark-color;
-
-    &:active {
-      background-color: $-dark-background4;
-    }
-
-    @include m(active) {
-      background: $-dark-background;
-      color: $-sidebar-active-color;
-    }
-
-    @include m(disabled) {
-      color: $-dark-color-gray;
-  
-      &:active {
-        background-color: $-dark-background2;
-      }
-    }
-  }
-
-}
+// 选项字号
+$sidebar-item-font-size: var(--wot-sidebar-item-font-size, $typography-body-size-main) !default;
+// 选项行高
+$sidebar-item-line-height: var(--wot-sidebar-item-line-height, $typography-body-line--height-size-main) !default;
+// 选项文字颜色
+$sidebar-item-color: var(--wot-sidebar-item-color, $text-main) !default;
+// 选项内边距
+$sidebar-item-padding: var(--wot-sidebar-item-padding, $padding-extra-tight $padding-extra-loose) !default;
+// 选项背景色
+$sidebar-item-bg: var(--wot-sidebar-item-bg, $filled-bottom) !default;
+// 选项最小高度
+$sidebar-item-min-height: var(--wot-sidebar-item-min-height, $n52) !default;
+// 选项点击态背景色
+$sidebar-item-hover-bg: var(--wot-sidebar-item-hover-bg, $feedback-active) !default;
+// 激活项背景色
+$sidebar-item-active-bg: var(--wot-sidebar-item-active-bg, $filled-oppo) !default;
+// 激活项文字颜色
+$sidebar-item-active-color: var(--wot-sidebar-item-active-color, $primary-6) !default;
+// 激活项字重
+$sidebar-item-active-font-weight: var(--wot-sidebar-item-active-font-weight, $font-weight-semibold) !default;
+// 激活指示条宽度
+$sidebar-item-indicator-width: var(--wot-sidebar-item-indicator-width, $n2) !default;
+// 激活指示条高度
+$sidebar-item-indicator-height: var(--wot-sidebar-item-indicator-height, $n20) !default;
+// 圆角大小
+$sidebar-item-border-radius: var(--wot-sidebar-item-border-radius, $radius-large) !default;
+// 禁用状态文字颜色
+$sidebar-item-disabled-color: var(--wot-sidebar-item-disabled-color, $text-disabled) !default;
+// 图标大小
+$sidebar-item-icon-size: var(--wot-sidebar-item-icon-size, $n20) !default;
+// 图标右边距
+$sidebar-item-icon-margin-right: var(--wot-sidebar-item-icon-margin-right, $padding-ultra-tight) !default;
 
 @include b(sidebar-item) {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 32rpx;
-  font-size: $-sidebar-font-size;
-  color: $-sidebar-color;
-  background: $-sidebar-bg;
-  min-height: $-sidebar-item-height;
+  padding: $sidebar-item-padding;
+  font-size: $sidebar-item-font-size;
+  color: $sidebar-item-color;
+  background: $sidebar-item-bg;
+  min-height: $sidebar-item-min-height;
   box-sizing: border-box;
   white-space: wrap;
-  line-height: $-sidebar-item-line-height;
-
-  &:active {
-    background-color: $-sidebar-hover-bg;
-  }
+  line-height: $sidebar-item-line-height;
 
   @include m(active) {
-    font-weight: 600;
-    background: $-sidebar-active-bg;
-    color: $-sidebar-active-color;
+    font-weight: $sidebar-item-active-font-weight;
+    background: $sidebar-item-active-bg;
+    color: $sidebar-item-active-color;
 
     &::before {
       position: absolute;
       top: 50%;
       left: 0;
-      width: $-sidebar-active-border-width;
-      height: $-sidebar-active-border-height;
-      background: $-sidebar-active-color;
+      width: $sidebar-item-indicator-width;
+      height: $sidebar-item-indicator-height;
+      background: $sidebar-item-active-color;
       transform: translateY(-50%);
       content: '';
-      border-radius: $-sidebar-active-border-width;
-    }
-
-    &:active {
-      background-color: transparent;
+      border-radius: $sidebar-item-indicator-width;
     }
   }
 
   @include m(prefix) {
-    border-bottom-right-radius: $-sidebar-border-radius;
+    border-bottom-right-radius: $sidebar-item-border-radius;
   }
 
   @include m(suffix) {
-    border-top-right-radius: $-sidebar-border-radius;
+    border-top-right-radius: $sidebar-item-border-radius;
   }
 
-
   @include m(disabled) {
-    color: $-sidebar-disabled-color;
+    color: $sidebar-item-disabled-color;
     cursor: not-allowed;
-
-    &:active {
-      background-color: $-sidebar-bg;
-    }
   }
 
   @include edeep(badge) {
@@ -90,8 +85,7 @@
   }
 
   @include edeep(icon) {
-    font-size: $-sidebar-icon-size;
-    margin-right: 2px;
+    font-size: $sidebar-item-icon-size;
+    margin-right: $sidebar-item-icon-margin-right;
   }
-
 }

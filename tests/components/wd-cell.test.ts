@@ -90,7 +90,7 @@ describe('WdCell', () => {
 
     expect(wrapper.attributes('hover-class')).toBe('is-hover')
     expect(wrapper.findComponent(WdIcon).exists()).toBe(true)
-    expect(wrapper.findComponent(WdIcon).props('name')).toBe('arrow-right')
+    expect(wrapper.findComponent(WdIcon).props('name')).toBe('right')
 
     await wrapper.trigger('click')
 
@@ -112,7 +112,7 @@ describe('WdCell', () => {
     })
 
     expect(wrapper.findComponent(WdIcon).exists()).toBe(true)
-    expect(wrapper.findComponent(WdIcon).props('name')).toBe('arrow-left')
+    expect(wrapper.findComponent(WdIcon).props('name')).toBe('left')
   })
 
   // 测试箭头方向 - up
@@ -130,7 +130,7 @@ describe('WdCell', () => {
     })
 
     expect(wrapper.findComponent(WdIcon).exists()).toBe(true)
-    expect(wrapper.findComponent(WdIcon).props('name')).toBe('arrow-up')
+    expect(wrapper.findComponent(WdIcon).props('name')).toBe('up')
   })
 
   // 测试箭头方向 - down
@@ -148,7 +148,7 @@ describe('WdCell', () => {
     })
 
     expect(wrapper.findComponent(WdIcon).exists()).toBe(true)
-    expect(wrapper.findComponent(WdIcon).props('name')).toBe('arrow-down')
+    expect(wrapper.findComponent(WdIcon).props('name')).toBe('down')
   })
 
   // 测试箭头方向 - 默认值(arrow-right)
@@ -165,7 +165,7 @@ describe('WdCell', () => {
     })
 
     expect(wrapper.findComponent(WdIcon).exists()).toBe(true)
-    expect(wrapper.findComponent(WdIcon).props('name')).toBe('arrow-right')
+    expect(wrapper.findComponent(WdIcon).props('name')).toBe('right')
   })
 
   // 测试箭头方向在非link状态下不生效
@@ -337,7 +337,7 @@ describe('WdCell', () => {
   // 测试垂直布局
   test('垂直布局', () => {
     const wrapper = mount(WdCell, {
-      props: { vertical: true },
+      props: { layout: 'vertical' },
       global: {
         components: {
           WdIcon
@@ -345,7 +345,7 @@ describe('WdCell', () => {
       }
     })
 
-    expect(wrapper.find('.wd-cell__wrapper').classes()).toContain('is-vertical')
+    expect(wrapper.find('.wd-cell__wrapper').classes()).toContain('wd-cell__wrapper--vertical')
   })
 
   // 测试插槽
@@ -539,13 +539,13 @@ describe('WdCell', () => {
     expect(wrapper.find('.custom-title-slot').exists()).toBe(true)
   })
 
-  // 测试 markerSide 属性
-  test('markerSide 属性 - before', () => {
+  // 测试 asteriskPosition 属性 (原 markerSide)
+  test('asteriskPosition 属性 - start', () => {
     const wrapper = mount(WdCell, {
       props: {
         title: '标题',
         required: true,
-        markerSide: 'before'
+        asteriskPosition: 'start'
       },
       global: {
         components: {
@@ -554,18 +554,18 @@ describe('WdCell', () => {
       }
     })
 
-    expect(wrapper.props('markerSide')).toBe('before')
+    expect(wrapper.props('asteriskPosition')).toBe('start')
     // 检查必填星号在前面
     expect(wrapper.find('.wd-cell__required--left').exists()).toBe(true)
     expect(wrapper.find('.wd-cell__required--left').text()).toBe('*')
   })
 
-  test('markerSide 属性 - after', () => {
+  test('asteriskPosition 属性 - end', () => {
     const wrapper = mount(WdCell, {
       props: {
         title: '标题',
         required: true,
-        markerSide: 'after'
+        asteriskPosition: 'end'
       },
       global: {
         components: {
@@ -574,14 +574,14 @@ describe('WdCell', () => {
       }
     })
 
-    expect(wrapper.props('markerSide')).toBe('after')
+    expect(wrapper.props('asteriskPosition')).toBe('end')
     // 检查必填星号在后面（没有 --left 类）
     expect(wrapper.find('.wd-cell__required').exists()).toBe(true)
     expect(wrapper.find('.wd-cell__required--left').exists()).toBe(false)
     expect(wrapper.find('.wd-cell__required').text()).toBe('*')
   })
 
-  test('markerSide 默认值', () => {
+  test('asteriskPosition 默认值', () => {
     const wrapper = mount(WdCell, {
       props: {
         title: '标题',
@@ -594,8 +594,8 @@ describe('WdCell', () => {
       }
     })
 
-    // 默认值应该是 'before'
-    expect(wrapper.props('markerSide')).toBe('before')
+    // 默认值应该是 'start'
+    expect(wrapper.props('asteriskPosition')).toBe('start')
     // 检查必填星号在前面
     expect(wrapper.find('.wd-cell__required--left').exists()).toBe(true)
     expect(wrapper.find('.wd-cell__required--left').text()).toBe('*')

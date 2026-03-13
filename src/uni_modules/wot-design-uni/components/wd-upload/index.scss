@@ -1,27 +1,38 @@
-@import "../common/abstracts/variable.scss";
-@import "../common/abstracts/_mixin.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(upload) {
-    @include e(evoke) {
-      background-color: $-dark-background4;
-      color: $-dark-color3;
-
-      @include when(disabled) {
-        color: $-dark-color-gray;
-      }
-    }
-
-    @include e(file) {
-      background-color: $-dark-background4;
-    }
-
-    @include e(file-name) {
-      color: $-dark-color3;
-    }
-  }
-
-}
+// 组件级 CSS 变量定义
+$upload-size: var(--wot-upload-size, $n88) !default; // upload的外边框默认尺寸
+$upload-border-radius: var(--wot-upload-border-radius, $radius-main) !default; // upload的外边框圆角
+$upload-border-color: var(--wot-upload-border-color, $border-main) !default; // upload的外边框颜色
+$upload-evoke-icon-size: var(--wot-upload-evoke-icon-size, $n32) !default; // 唤起项的图标大小
+$upload-evoke-bg: var(--wot-upload-evoke-bg, $filled-bottom) !default; // 唤起项的背景色
+$upload-evoke-color: var(--wot-upload-evoke-color, $text-auxiliary) !default; // 唤起项的图标颜色
+$upload-evoke-font-size: var(--wot-upload-evoke-font-size, $typography-body-size-main) !default; // 唤起项文字大小
+$upload-evoke-line-height: var(--wot-upload-evoke-line-height, $typography-body-line--height-size-main) !default; // 唤起项文字行高
+$upload-evoke-disabled-color: var(--wot-upload-evoke-disabled-color, $text-disabled) !default; // 唤起项禁用颜色
+$upload-evoke-icon-color: var(--wot-upload-evoke-icon-color, $icon-auxiliary) !default; // 唤起项的图标颜色
+$upload-evoke-icon-disabled-color: var(--wot-upload-evoke-icon-disabled-color, $icon-disabled) !default; // 唤起项禁用颜色
+$upload-close-padding: var(--wot-upload-close-padding, $padding-ultra-tight) !default; // 移除按钮padding
+$upload-close-border-radius: var(--wot-upload-close-border-radius, $radius-zero $radius-zero $radius-zero $radius-main) !default; // 移除按钮圆角
+$upload-close-bg: var(--wot-upload-close-bg, $opacfilled-main-cover) !default; // 移除按钮背景色
+$upload-close-icon-size: var(--wot-upload-close-icon-size, $n16) !default; // 移除按钮尺寸
+$upload-close-icon-color: var(--wot-upload-close-icon-color, $icon-white) !default; // 移除按钮颜色
+$upload-progress-font-size: var(--wot-upload-progress-font-size, $typography-body-size-main) !default; // 进度文字字号
+$upload-progress-line-height: var(--wot-upload-progress-line-height, $typography-body-line--height-size-main) !default; // 进度文字行高
+$upload-progress-color: var(--wot-upload-progress-color, $text-white) !default; // 进度文字颜色
+$upload-file-font-size: var(--wot-upload-file-font-size, $typography-label-size-main) !default; // 文件名字号
+$upload-file-line-height: var(--wot-upload-file-line-height, $typography-label-line--height-size-main) !default; // 文件名字行高
+$upload-file-color: var(--wot-upload-file-color, $text-secondary) !default; // 文件名字颜色
+$upload-file-padding: var(--wot-upload-file-padding, $padding-zero $padding-tight) !default; // 文件、视频名字padding
+$upload-preview-icon-size: var(--wot-upload-preview-icon-size, $n24) !default; // 预览内部图标尺寸
+$upload-preview-icon-color: var(--wot-upload-preview-icon-color, $icon-white) !default; // 预览内部图标颜色
+$upload-preview-margin: var(--wot-upload-preview-margin, $spacing-zero $spacing-tight $spacing-tight $spacing-zero) !default; // 预览间距
+$upload-cover-icon-size: var(--wot-upload-cover-icon-size, $n24) !default; // 视频/文件图标尺寸
+$upload-video-icon-size: var(--wot-upload-video-icon-size, $n24) !default; // 视频图标尺寸
+$upload-video-icon-color: var(--wot-upload-video-icon-color, $icon-white) !default; // 视频播放图标颜色
+$upload-mask-bg: var(--wot-upload-mask-bg, $opacfilled-main-cover) !default; // 预览文件名背景色
+$upload-row-spacing: var(--wot-upload-row-spacing, $spacing-tight) !default; // 项行间距
 
 @include b(upload) {
   position: relative;
@@ -34,44 +45,43 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: $-upload-size;
-    height: $-upload-size;
-    font-size: $-upload-evoke-icon-size;
-    background-color: $-upload-evoke-bg;
-    color: $-upload-evoke-color;
-    margin-bottom: 12px;
+    width: $upload-size;
+    height: $upload-size;
+    border-radius: $upload-border-radius;
+    overflow: hidden;
+    background: $upload-evoke-bg;
+    margin-bottom: $upload-row-spacing;
+    @include pixelBorderSurround($upload-border-color, dashed);
+
 
     @include when(disabled) {
-      color: $-upload-evoke-disabled-color;
+      color: $upload-evoke-disabled-color;
     }
   }
 
   @include e(evoke-num) {
-    font-size: 14px;
-    line-height: 14px;
-    margin-top: 8px;
+    color: $upload-evoke-color;
+    font-size: $upload-evoke-font-size;
+    line-height: $upload-evoke-line-height;
   }
 
   @include edeep(evoke-icon) {
-    width: 32px;
-    height: 32px;
-  }
+    font-size: $upload-evoke-icon-size;
+    color: $upload-evoke-icon-color;
 
-  @include e(input) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    opacity: 0;
+    @include when(disabled) {
+      color: $upload-evoke-icon-disabled-color;
+    }
   }
 
   @include e(preview) {
     position: relative;
-    width: $-upload-size;
-    height: $-upload-size;
-    margin: 0 12px 12px 0;
+    width: $upload-size;
+    height: $upload-size;
+    border-radius: $upload-border-radius;
+    overflow: hidden;
+    margin: $upload-preview-margin;
+    @include pixelBorderSurround($upload-border-color);
   }
 
   @include e(preview-list) {
@@ -90,78 +100,66 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: $-upload-evoke-bg;
+    background-color: $upload-evoke-bg;
   }
 
   @include e(video-icon, file-icon) {
-    font-size: $-upload-cover-icon-size;
+    font-size: $upload-cover-icon-size;
   }
 
   @include e(file-name, video-name) {
     width: 100%;
-    font-size: $-upload-file-fs;
-    color: $-upload-file-color;
+    font-size: $upload-file-font-size;
+    line-height: $upload-file-line-height;
+    color: $upload-file-color;
     box-sizing: border-box;
-    padding: 0 4px;
     text-align: center;
-    margin-top: 8px;
+    padding: $upload-file-padding;
     @include lineEllipsis()
   }
 
-  @include edeep(video-paly) {
+  @include edeep(video-play) {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
-    color: $-color-white;
-
-    &::before {
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
-    }
+    font-size: $upload-video-icon-size;
+    color: $upload-video-icon-color;
   }
 
-  @include edeep(close) {
+  @include e(close) {
     position: absolute;
-    right: calc($-upload-close-icon-size / 2 * -1);
-    top: calc($-upload-close-icon-size / 2 * -1);
-    font-size: $-upload-close-icon-size;
-    z-index: 1;
-    color: $-upload-close-icon-color;
-    width: $-upload-close-icon-size;
-    height: $-upload-close-icon-size;
-    line-height: $-upload-close-icon-size;
+    right: 0;
+    top: 0;
+    padding: $upload-close-padding;
+    border-radius: $upload-close-border-radius;
+    background: $upload-close-bg;
+  }
 
-    &::after {
-      position: absolute;
-      content: "";
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background-color: $-color-white;
-      left: 0;
-      z-index: -1;
-    }
+  @include edeep(close-icon) {
+    display: flex;
+    color: $upload-close-icon-color;
+    font-size: $upload-close-icon-size;
   }
 
   @include e(mask) {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: $-upload-preview-name-bg;
+    width: 100%;
+    height: 100%;
+    background: $upload-mask-bg;
   }
 
   @include e(progress-txt) {
-    font-size: $-upload-progress-fs;
-    line-height: $-upload-progress-fs;
-    margin-top: 9px;
-    color: $-color-white;
+    font-size: $upload-progress-font-size;
+    line-height: $upload-progress-line-height;
+    color: $upload-progress-color;
   }
 
   @include edeep(icon) {
-    font-size: $-upload-preview-icon-size;
-    color: $-color-white;
+    font-size: $upload-preview-icon-size;
+    color: $upload-preview-icon-color;
   }
 
   @include e(status-content) {
@@ -173,3 +171,4 @@
     height: 100%;
   }
 }
+

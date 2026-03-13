@@ -1,6 +1,4 @@
-:root,
-page,
-.root-portal {
+@mixin light-theme-vars {
   /* 浅色模式颜色语义变量 */
   /* 主色 */
   --wot-primary-1: var(--wot-blue-1);
@@ -21,14 +19,14 @@ page,
   --wot-danger-particular: var(--wot-red-2);
   --wot-danger-surface: var(--wot-red-1);
   /* 成功色 */
-  --wot-success-normal: var(--wot-green-6);
+  --wot-success-main: var(--wot-green-6);
   --wot-success-hover: var(--wot-green-5);
   --wot-success-clicked: var(--wot-green-7);
   --wot-success-disabled: var(--wot-green-3);
   --wot-success-particular: var(--wot-green-2);
   --wot-success-surface: var(--wot-green-1);
   /* 警告色 */
-  --wot-warning-normal: var(--wot-orange-6);
+  --wot-warning-main: var(--wot-orange-6);
   --wot-warning-hover: var(--wot-orange-5);
   --wot-warning-clicked: var(--wot-orange-7);
   --wot-warning-disabled: var(--wot-orange-3);
@@ -76,6 +74,9 @@ page,
   --wot-opacfilled-tooltip-toast-cover: var(--wot-opac-9_75);
   --wot-opacfilled-main-cover: var(--wot-opac-7_55);
   --wot-opacfilled-light-cover: var(--wot-opac-6_30);
+  /* Picker View Mask */
+  --wot-picker-view-mask-start-color: var(--wot-opacwhite-10_85);
+  --wot-picker-view-mask-end-color: var(--wot-opacwhite-5_20);
   /* 分类色 */
   /* 黄色 */
   --wot-classifyapplication-Yellow-background: var(--wot-yellow-1);
@@ -97,4 +98,9 @@ page,
   --wot-classifyapplication-Pink-background: var(--wot-pink-1);
   --wot-classifyapplication-Pink-border: var(--wot-pink-3);
   --wot-classifyapplication-Pink-content: var(--wot-pink-6);
+}
+
+page,
+.wd-root-portal {
+  @include light-theme-vars;
 }

@@ -187,31 +187,6 @@ describe('输入框组件', () => {
     expect(wrapper.classes()).toContain('is-error')
   })
 
-  // 测试错误信息
-  test('渲染错误信息', async () => {
-    // 创建一个带有错误信息的 WdInput 组件
-    const wrapper = mount(WdInput, {
-      props: {
-        prop: 'test-prop'
-      }
-    })
-
-    await nextTick()
-
-    // 手动添加错误信息元素
-    const errorMessage = '输入有误'
-    const errorElement = document.createElement('div')
-    errorElement.className = 'wd-input__error-message'
-    errorElement.textContent = errorMessage
-    wrapper.element.appendChild(errorElement)
-
-    await nextTick()
-
-    // 检查错误信息是否显示
-    expect(wrapper.find('.wd-input__error-message').exists()).toBe(true)
-    expect(wrapper.find('.wd-input__error-message').text()).toBe(errorMessage)
-  })
-
   // 测试密码可见切换
   test('处理密码可见性切换', async () => {
     const wrapper = mount(WdInput, {
@@ -229,8 +204,6 @@ describe('输入框组件', () => {
     await nextTick()
 
     // 密码应该可见
-    // 由于 attributes('password') 返回的是字符串 'false'，而不是布尔值 false
-    // 我们需要检查它是否等于 'false'，而不是使用 toBeFalsy()
     expect(wrapper.find('input').attributes('password')).toBe('false')
   })
 
@@ -266,19 +239,6 @@ describe('输入框组件', () => {
     })
 
     expect(wrapper.find('input').classes()).toContain(customInputClass)
-  })
-
-  // 测试自定义标签类名
-  test('应用自定义标签类名', () => {
-    const customLabelClass = 'custom-label'
-    const wrapper = mount(WdInput, {
-      props: {
-        label: '标签',
-        customLabelClass
-      }
-    })
-
-    expect(wrapper.find('.wd-input__label').classes()).toContain(customLabelClass)
   })
 
   // 测试自定义样式
@@ -336,34 +296,6 @@ describe('输入框组件', () => {
     })
 
     expect(wrapper.find('input').classes()).toContain('is-align-right')
-  })
-
-  // 测试标签宽度
-  test('应用标签宽度', () => {
-    const labelWidth = '100px'
-    const wrapper = mount(WdInput, {
-      props: {
-        label: '标签',
-        labelWidth
-      }
-    })
-
-    expect(wrapper.find('.wd-input__label').attributes('style')).toContain(`min-width: ${labelWidth}`)
-    expect(wrapper.find('.wd-input__label').attributes('style')).toContain(`max-width: ${labelWidth}`)
-  })
-
-  // 测试必填状态
-  test('渲染必填状态', () => {
-    const wrapper = mount(WdInput, {
-      props: {
-        label: '标签',
-        required: true
-      }
-    })
-
-    // 检查必填星号存在（默认在前面）
-    expect(wrapper.find('.wd-input__required--left').exists()).toBe(true)
-    expect(wrapper.find('.wd-input__required--left').text()).toBe('*')
   })
 
   // 测试点击事件
@@ -458,48 +390,6 @@ describe('输入框组件', () => {
     })
   })
 
-  // 测试无边框模式
-  test('应用无边框模式', () => {
-    const wrapper = mount(WdInput, {
-      props: { noBorder: true }
-    })
-
-    expect(wrapper.classes()).toContain('is-no-border')
-  })
-
-  // 测试居中模式
-  test('应用居中模式', () => {
-    const wrapper = mount(WdInput, {
-      props: {
-        label: '标签',
-        center: true
-      }
-    })
-
-    expect(wrapper.classes()).toContain('is-center')
-  })
-
-  // 测试大小
-  test('应用大小', () => {
-    const wrapper = mount(WdInput, {
-      props: { size: 'large' }
-    })
-
-    expect(wrapper.classes()).toContain('is-large')
-  })
-
-  // 测试标签插槽
-  test('渲染标签插槽', () => {
-    const wrapper = mount(WdInput, {
-      slots: {
-        label: '<span class="custom-label">自定义标签</span>'
-      }
-    })
-
-    expect(wrapper.find('.custom-label').exists()).toBe(true)
-    expect(wrapper.find('.custom-label').text()).toBe('自定义标签')
-  })
-
   // 测试值更新
   test('当modelValue变化时更新值', async () => {
     const wrapper = mount(WdInput, {
@@ -526,52 +416,5 @@ describe('输入框组件', () => {
 
     // 初始值应该被截断
     expect(getVM(wrapper).inputValue).toBe('12345')
-  })
-
-  // 测试 markerSide 属性
-  test('markerSide 属性 - before', () => {
-    const wrapper = mount(WdInput, {
-      props: {
-        label: '标签',
-        required: true,
-        markerSide: 'before'
-      }
-    })
-
-    expect(wrapper.props('markerSide')).toBe('before')
-    // 检查必填星号在前面
-    expect(wrapper.find('.wd-input__required--left').exists()).toBe(true)
-    expect(wrapper.find('.wd-input__required--left').text()).toBe('*')
-  })
-
-  test('markerSide 属性 - after', () => {
-    const wrapper = mount(WdInput, {
-      props: {
-        label: '标签',
-        required: true,
-        markerSide: 'after'
-      }
-    })
-
-    expect(wrapper.props('markerSide')).toBe('after')
-    // 检查必填星号在后面（没有 --left 类）
-    expect(wrapper.find('.wd-input__required').exists()).toBe(true)
-    expect(wrapper.find('.wd-input__required--left').exists()).toBe(false)
-    expect(wrapper.find('.wd-input__required').text()).toBe('*')
-  })
-
-  test('markerSide 默认值', () => {
-    const wrapper = mount(WdInput, {
-      props: {
-        label: '标签',
-        required: true
-      }
-    })
-
-    // 默认值应该是 'before'
-    expect(wrapper.props('markerSide')).toBe('before')
-    // 检查必填星号在前面
-    expect(wrapper.find('.wd-input__required--left').exists()).toBe(true)
-    expect(wrapper.find('.wd-input__required--left').text()).toBe('*')
   })
 })

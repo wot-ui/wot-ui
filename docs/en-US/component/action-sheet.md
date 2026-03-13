@@ -123,7 +123,7 @@ The action sheet can be used with a slot to customize the panel content.
 | Key | Description | Type | Default | Version |
 |---------|---------|---------|---------|------|
 | name | Option name | string | - | - |
-| subname | Option subname | string | - | - |
+| description | Option description | string | - | - |
 | color | Option text color | string | - | - |
 | disabled | Whether to disable the option | boolean | false | - |
 | loading | Whether to display loading status | boolean | false | - |

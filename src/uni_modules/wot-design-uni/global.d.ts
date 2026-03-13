@@ -12,7 +12,7 @@ declare module 'vue' {
     WdCheckbox: typeof import('./components/wd-checkbox/wd-checkbox.vue')['default']
     WdCheckboxGroup: typeof import('./components/wd-checkbox-group/wd-checkbox-group.vue')['default']
     WdCol: typeof import('./components/wd-col/wd-col.vue')['default']
-    WdColPicker: typeof import('./components/wd-col-picker/wd-col-picker.vue')['default']
+    WdCascader: typeof import('./components/wd-cascader/wd-cascader.vue')['default']
     WdCollapse: typeof import('./components/wd-collapse/wd-collapse.vue')['default']
     WdCollapseItem: typeof import('./components/wd-collapse-item/wd-collapse-item.vue')['default']
     WdConfigProvider: typeof import('./components/wd-config-provider/wd-config-provider.vue')['default']
@@ -32,6 +32,7 @@ declare module 'vue' {
     WdLoading: typeof import('./components/wd-loading/wd-loading.vue')['default']
     WdLoadmore: typeof import('./components/wd-loadmore/wd-loadmore.vue')['default']
     WdMessageBox: typeof import('./components/wd-message-box/wd-message-box.vue')['default']
+    WdDialog: typeof import('./components/wd-dialog/wd-dialog.vue')['default']
     WdOverlay: typeof import('./components/wd-overlay/wd-overlay.vue')['default']
     WdNoticeBar: typeof import('./components/wd-notice-bar/wd-notice-bar.vue')['default']
     WdPagination: typeof import('./components/wd-pagination/wd-pagination.vue')['default']
@@ -74,7 +75,7 @@ declare module 'vue' {
     WdNavbar: typeof import('./components/wd-navbar/wd-navbar.vue')['default']
     WdNavbarCapsule: typeof import('./components/wd-navbar-capsule/wd-navbar-capsule.vue')['default']
     WdTable: typeof import('./components/wd-table/wd-table.vue')['default']
-    WdTableCol: typeof import('./components/wd-table-col/wd-table-col.vue')['default']
+    WdTableColumn: typeof import('./components/wd-table-column/wd-table-column.vue')['default']
     WdSidebar: typeof import('./components/wd-sidebar/wd-sidebar.vue')['default']
     WdSidebarItem: typeof import('./components/wd-sidebar-item/wd-sidebar-item.vue')['default']
     WdFab: typeof import('./components/wd-fab/wd-fab.vue')['default']
@@ -97,6 +98,10 @@ declare module 'vue' {
     WdSignature: typeof import('./components/wd-signature/wd-signature.vue')['default']
     WdRootPortal: typeof import('./components/wd-root-portal/wd-root-portal.vue')['default']
     WdTour: typeof import('./components/wd-tour/wd-tour.vue')['default']
+    WdAvatar: typeof import('./components/wd-avatar/wd-avatar.vue')['default']
+    WdAvatarGroup: typeof import('./components/wd-avatar-group/wd-avatar-group.vue')['default']
+    WdImagePreview: typeof import('./components/wd-image-preview/wd-image-preview.vue')['default']
+    WdSlideVerify: typeof import('./components/wd-slide-verify/wd-slide-verify.vue')['default']
   }
 }
 

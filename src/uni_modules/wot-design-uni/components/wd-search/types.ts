@@ -1,31 +1,32 @@
 /*
  * @Author: weisheng
  * @Date: 2024-09-01 15:42:04
- * @LastEditTime: 2024-09-21 15:36:09
+ * @LastEditTime: 2026-03-11 15:14:39
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: \wot-design-uni\src\uni_modules\wot-design-uni\components\wd-search\types.ts
+ * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-search/types.ts
  * 记得注释
  */
 import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp } from '../common/props'
 
+export type SearchVariant = 'filled' | 'plain' | 'light'
+
 export const searchProps = {
   ...baseProps,
+
+  /**
+   * 自定义输入框类名
+   * 类型: string
+   * 默认值: ''
+   */
   customInputClass: makeStringProp(''),
+
   /**
    * 输入框内容，双向绑定
    * 类型: string
    * 默认值: ''
    */
   modelValue: makeStringProp(''),
-
-  /**
-   * 是否使用输入框右侧插槽
-   * 类型: boolean
-   * 默认值: false
-   * @deprecated 该属性已废弃，将在下一个minor版本被移除，直接使用插槽即可
-   */
-  useSuffixSlot: makeBooleanProp(false),
 
   /**
    * 搜索框占位文本
@@ -40,11 +41,12 @@ export const searchProps = {
   cancelTxt: String,
 
   /**
-   * 搜索框亮色（白色）
-   * 类型: boolean
-   * 默认值: false
+   * 搜索框变体
+   * 类型: string
+   * 可选值: 'filled' | 'plain' | 'light'
+   * 默认值: 'plain'
    */
-  light: makeBooleanProp(false),
+  variant: makeStringProp<SearchVariant>('plain'),
 
   /**
    * 是否隐藏右侧文本
@@ -62,7 +64,7 @@ export const searchProps = {
 
   /**
    * 原生属性，设置最大长度。-1 表示无限制
-   * 类型: string / number
+   * 类型: string | number
    * 默认值: -1
    */
   maxlength: makeNumberProp(-1),
@@ -92,11 +94,14 @@ export const searchProps = {
 
   /**
    * 原生属性，指定 placeholder 的样式，目前仅支持color,font-size和font-weight
+   * 类型: string
    */
   placeholderStyle: String,
 
   /**
    * 原生属性，指定 placeholder 的样式类
+   * 类型: string
+   * 默认值: ''
    */
   placeholderClass: makeStringProp('')
 }

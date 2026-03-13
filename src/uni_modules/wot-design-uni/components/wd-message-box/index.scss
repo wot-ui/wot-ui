@@ -1,96 +1,201 @@
-@import "../common/abstracts/variable.scss";
-@import "../common/abstracts/_mixin.scss";
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(message-box) {
-    @include e(body) {
-      background-color: $-dark-background2;
-    }
+$message-box-bg: var(--wot-message-box-bg, $filled-oppo) !default;
 
-    @include e(title) {
-      color: $-dark-color;
-    }
+$message-box-width: var(--wot-message-box-width, 280px) !default;
+$message-box-radius: var(--wot-message-box-radius, $radius-large) !default;
 
-    @include e(content) {
-      color: $-dark-color3;
+$message-box-body-padding: var(--wot-message-box-body-padding, $padding-super-loose $padding-super-loose 0) !default;
+$message-box-body-element-spacing: var(--wot-message-box-body-element-spacing, $spacing-tight) !default;
 
-      &::-webkit-scrollbar-thumb {
-        background: $-dark-border-color;
-      }
-    }
-  }
-}
+$message-box-title-color: var(--wot-message-box-title-color, $text-main) !default;
+$message-box-title-font-size: var(--wot-message-box-title-font-size, $typography-body-size-extra-large) !default;
+$message-box-title-line-height: var(--wot-message-box-title-line-height, $typography-body-line--height-size-extra-large) !default;
+$message-box-title-font-weight: var(--wot-message-box-title-font-weight, $font-weight-medium) !default;
+$message-box-title-margin-bottom: var(--wot-message-box-title-margin-bottom, $spacing-tight) !default;
 
-:deep(.wd-message-box){
-  border-radius: $-message-box-radius;
-  overflow: hidden;
+$message-box-content-color: var(--wot-message-box-content-color, $text-secondary) !default;
+$message-box-content-font-size: var(--wot-message-box-content-font-size, $typography-body-size-main) !default;
+$message-box-content-line-height: var(--wot-message-box-content-line-height, $typography-body-line--height-size-main) !default;
+$message-box-content-padding: var(--wot-message-box-content-padding, $spacing-loose) !default;
+$message-box-content-max-height: var(--wot-message-box-content-max-height, 340px) !default;
+
+$message-box-content-input-bg: var(--wot-message-box-content-input-bg, $filled-bottom) !default;
+$message-box-content-input-error-color: var(--wot-message-box-content-input-error-color, $danger-main) !default;
+$message-box-content-input-font-size: var(--wot-message-box-content-input-font-size, $typography-label-size-main) !default;
+$message-box-content-input-line-height: var(--wot-message-box-content-input-line-height, $typography-label-line--height-size-main) !default;
+$message-box-content-input-padding-top: var(--wot-message-box-content-input-padding-top, $spacing-tight) !default;
+
+$message-box-scrollbar-color: var(--wot-message-box-scrollbar-color, $border-main) !default;
+$message-box-scrollbar-width: var(--wot-message-box-scrollbar-width, $n2) !default;
+$message-box-scrollbar-radius: var(--wot-message-box-scrollbar-radius, $radius-small) !default;
+
+$message-box-primary-color: var(--wot-message-box-primary-color, $primary-6) !default;
+$message-box-success-color: var(--wot-message-box-success-color, $success-main) !default;
+$message-box-warning-color: var(--wot-message-box-warning-color, $warning-main) !default;
+$message-box-error-color: var(--wot-message-box-error-color, $danger-main) !default;
+
+$message-box-icon-size: var(--wot-message-box-icon-size, $n48) !default;
+$message-box-icon-margin-bottom: var(--wot-message-box-icon-margin-bottom, $spacing-tight) !default;
+
+$message-box-close-icon-size: var(--wot-message-box-close-icon-size, $n18) !default;
+$message-box-close-icon-color: var(--wot-message-box-close-icon-color, $icon-secondary) !default;
+$message-box-close-icon-top: var(--wot-message-box-close-icon-top, $spacing-extra-loose) !default;
+$message-box-close-icon-right: var(--wot-message-box-close-icon-right, $spacing-extra-loose) !default;
+
+$message-box-actions-padding: var(--wot-message-box-actions-padding, $padding-super-loose $padding-loose) !default;
+$message-box-actions-padding-vertical: var(--wot-message-box-actions-padding-vertical, $padding-super-loose $padding-loose $padding-loose) !default;
+$message-box-actions-spacing: var(--wot-message-box-actions-spacing, $spacing-loose) !default;
+$message-box-actions-spacing-vertical: var(--wot-message-box-actions-spacing-vertical, $spacing-tight) !default;
+$message-box-actoons-confirm-font-weight: var(--wot-message-box-actoons-confirm-font-weight, $font-weight-medium) !default;
+$message-box-img-border-radius: var(--wot-message-box-img-border-radius, $radius-large) !default;
+
+$message-box-action-text-border-color: var(--wot-message-box-action-text-border-color, $border-main) !default;
+$message-box-action-text-button-padding: var(--wot-message-box-action-text-button-padding, $padding-loose $padding-extra-loose) !default;
+$message-box-action-text-border: var(--wot-message-box-action-text-border, $stroke-light) !default;
+
+
+:deep(.wd-message-box) {
+  background: transparent;
 }
 
 @include b(message-box) {
-  border-radius: $-message-box-radius;
-  overflow: hidden;
 
   @include e(container) {
-    width: $-message-box-width;
+    background: $message-box-bg;
+    border-radius: $message-box-radius;
+    overflow: hidden;
+    width: $message-box-width;
     box-sizing: border-box;
   }
 
-  @include e(body) {
-    background-color: $-message-box-bg;
-    padding: $-message-box-padding;
+  @include e(img) {
+    width: 100%;
+    height: auto;
+    border-radius: $message-box-img-border-radius;
 
-    @include when(no-title) {
-      padding: 25px 24px 0px;
+    // 使用相邻兄弟选择器，当后面有 title 或 content 元素时才添加间距
+    &+.wd-message-box__title,
+    &+.wd-message-box__content {
+      margin-top: $message-box-body-element-spacing;
     }
   }
 
   @include e(title) {
-    text-align: center;
-    font-size: $-message-box-title-fs;
-    color: $-message-box-title-color;
-    line-height: 20px;
-    font-weight: 500;
-    padding-top: 5px;
-    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: $message-box-title-font-size;
+    color: $message-box-title-color;
+    line-height: $message-box-title-line-height;
+    font-weight: $message-box-title-font-weight;
+
+    // 使用相邻兄弟选择器，当后面有 content 元素时才添加间距
+    &+.wd-message-box__content {
+      margin-top: $message-box-body-element-spacing;
+    }
+  }
+
+  @include e(body) {
+    padding: $message-box-body-padding;
+
+    // prompt 类型时，content 元素需要向上的内边距
+    @include when(prompt) {
+      .wd-message-box__content {
+        padding-top: $message-box-content-input-padding-top;
+      }
+    }
   }
 
   @include e(content) {
-    max-height: $-message-box-content-max-height;
-    color: $-message-box-content-color;
-    font-size: $-message-box-content-fs;
+    max-height: $message-box-content-max-height;
     text-align: center;
     overflow: auto;
-    line-height: 20px;
 
     &::-webkit-scrollbar {
-      width: $-message-box-content-scrollbar-width;
+      width: $message-box-scrollbar-width;
     }
 
     &::-webkit-scrollbar-thumb {
-      width: $-message-box-content-scrollbar-width;
-      background: $-message-box-content-scrollbar-color;
-      border-radius: calc($-message-box-content-scrollbar-width / 2);
+      width: $message-box-scrollbar-width;
+      background: $message-box-scrollbar-color;
+      border-radius: calc($message-box-scrollbar-width / 2);
     }
+  }
+
+  @include e(content-text) {
+    color: $message-box-content-color;
+    font-size: $message-box-content-font-size;
+    line-height: $message-box-content-line-height;
+  }
+
+  @include e(input) {
+    background: $message-box-content-input-bg;
   }
 
   @include e(input-error) {
-    min-height: 18px;
-    margin-top: 2px;
-    color: $-message-box-input-error-color;
+    color: $message-box-content-input-error-color;
+    font-size: $message-box-content-input-font-size;
+    line-height: $message-box-content-input-line-height;
+    padding-top: $message-box-content-input-padding-top;
     text-align: left;
-
-    @include when(hidden) {
-      visibility: hidden;
-    }
   }
 
   @include e(actions) {
-    padding: 24px;
-  }
-  
-  @include edeep(actions-btn) {
-    &:not(:last-child) {
-      margin-right: 16px;
+    padding: $message-box-actions-padding;
+
+    :deep() {
+      .wd-message-box__actions-btn {
+        &:not(:last-child) {
+          margin-right: $message-box-actions-spacing;
+        }
+      }
+
+      .wd-message-box__actions-btn--confirm {
+        font-weight: $message-box-actoons-confirm-font-weight;
+      }
+    }
+
+    @include m(vertical) {
+      flex-direction: column;
+      padding: $message-box-actions-padding-vertical;
+
+      :deep() {
+        .wd-message-box__actions-btn {
+          &:not(:last-child) {
+            margin-right: 0;
+            margin-bottom: $message-box-actions-spacing-vertical;
+          }
+        }
+      }
+    }
+
+    @include when(text) {
+      padding: $padding-super-loose 0 0;
+
+      :deep() {
+        .wd-message-box__actions-btn {
+          margin: 0;
+          border-radius: 0;
+          padding: $message-box-action-text-button-padding;
+          border-top: $message-box-action-text-border solid $message-box-action-text-border-color;
+
+          &:not(:last-child) {
+            border-right: $message-box-action-text-border solid $message-box-action-text-border-color;
+          }
+        }
+      }
+
+      &.wd-message-box__actions--vertical {
+        :deep() {
+          .wd-message-box__actions-btn {
+            &:not(:last-child) {
+              border-right: none;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -102,7 +207,36 @@
     display: block;
   }
 
-  @include e(cancel) {
-    margin-right: 16px;
+  @include e(icon) {
+    font-size: $message-box-icon-size;
+    line-height: $message-box-icon-size;
+    margin: 0 auto;
+    margin-bottom: $message-box-icon-margin-bottom;
+    color: $message-box-primary-color;
+
+    @include when(success) {
+      color: $message-box-success-color;
+    }
+
+    @include when(info) {
+      color: $message-box-primary-color;
+    }
+
+    @include when(warning) {
+      color: $message-box-warning-color;
+    }
+
+    @include when(danger) {
+      color: $message-box-error-color;
+    }
   }
+
+  @include e(close) {
+    position: absolute;
+    top: $message-box-close-icon-top;
+    right: $message-box-close-icon-right;
+    font-size: $message-box-close-icon-size;
+    color: $message-box-close-icon-color;
+  }
+
 }

@@ -1,57 +1,58 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/variable.scss' as *;
+@use '../styles/mixin/_mixin.scss' as *;
 
-.wot-theme-dark {
-  @include b(pager) {
-    background-color: $-dark-background;
-    @include e(message) {
-      color: $-dark-color3;
-    }
-  }
-}
+$pagination-bg: var(--wot-pagination-bg, $filled-oppo) !default;
+$pagination-padding: var(--wot-pagination-content-padding, $padding-loose) !default;
+$pagination-icon-size: var(--wot-pagination-icon-size, $n16) !default;
+$pagination-message-color: var(--wot-pagination-message-color, $text-secondary) !default;
+$pagination-message-font-size: var(--wot-pagination-message-font-size, $typography-body-size-main) !default;
+$pagination-message-line-height: var(--wot-pagination-message-line-height, $typography-body-line--height-size-main) !default;
+$pagination-message-margin-top: var(--wot-pagination-message-margin-top, $spacing-super-tight) !default;
+$pagination-nav-width: var(--wot-pagination-nav-width, $n64) !default;
+$pagination-size-font-size: var(--wot-pagination-size-font-size, $typography-title-size-main) !default;
+$pagination-size-line-height: var(--wot-pagination-size-line-height, $typography-title-line--height-size-main) !default;
+$pagination-size-color: var(--wot-pagination-size-color, $text-main) !default;
+$pagination-size-current-color: var(--wot-pagination-size-current-color, $primary-6) !default;
+$pagination-size-separator-margin: var(--wot-pagination-size-separator-margin, $spacing-zero $spacing-super-tight) !default;
 
-@include b(pager) {
+@include b(pagination) {
   user-select: none;
-  background-color: #fff;
+  background-color: $pagination-bg;
+  padding: $pagination-padding;
 
   @include edeep(icon) {
-    font-size: $-pagination-icon-size;
+    font-size: $pagination-icon-size;
+    line-height: $pagination-icon-size;
   }
 
   @include e(content) {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    padding: $-pagination-content-padding;
   }
   @include e(message) {
     text-align: center;
-    color:$-pagination-message-color;
-    font-size: $-pagination-message-fs;
-    padding: $-pagination-message-padding;
+    color: $pagination-message-color;
+    font-size: $pagination-message-font-size;
+    line-height: $pagination-message-line-height;
+    margin-top: $pagination-message-margin-top;
   }
   @include edeep(nav) {
-    min-width: $-pagination-nav-width;
-    @include m(active){
-      color: rgba(0,0,0,0.65)      
-    }
-    @include m(disabled){
-      color: rgba(0,0,0,0.15)      
-    }
+    min-width: $pagination-nav-width;
   }
-  @include e(size){
+  @include e(size) {
     flex: 1;
     text-align: center;
-    font-size: $-pagination-nav-content-fs;
+    font-size: $pagination-size-font-size;
+    line-height: $pagination-size-line-height;
+    color: $pagination-size-color;
   }
-  @include e(separator){
-    padding: $-pagination-nav-sepatator-padding;
+
+  @include e(separator) {
+    margin: $pagination-size-separator-margin;
   }
-  @include edeep(left){
-    transform: rotate(180deg) translateY(1px);
-    display: inline-block;
-  }
-  @include e(current){
-    color: $-pagination-nav-current-color;
+
+  @include e(current) {
+    color: $pagination-size-current-color;
   }
 }

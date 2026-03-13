@@ -1,57 +1,74 @@
 <template>
   <page-wraper>
     <demo-block :title="$t('jiBenYongFa')">
-      <wd-img :width="100" :height="100" :src="joy" />
-      <!-- 以组件位置为定位原点 -->
-      <wd-img :width="100" :height="100" :src="img" custom-class="border" />
+      <wd-img :width="100" :height="100" :src="imgURL" />
     </demo-block>
 
-    <demo-block :title="$t('cha-cao-yong-fa')">
-      <wd-img :width="100" :height="100" src="https://www.123.com/a.jpg">
-        <template #error>
-          <view class="error-wrap">{{ $t('jia-zai-shi-bai') }}</view>
-        </template>
-        <template #loading>
-          <view class="loading-wrap">
+    <demo-block title="加载中提示">
+      <view class="col">
+        <wd-img width="100%" height="27vw" src="https://www.123.wot.com/a.jpg" />
+        <view class="center">默认提示</view>
+      </view>
+      <view class="col">
+        <wd-img width="100%" height="27vw" src="https://www.123.wot.com/a.jpg">
+          <template #loading>
             <wd-loading />
-          </view>
-        </template>
-      </wd-img>
+          </template>
+        </wd-img>
+        <view class="center">自定义提示</view>
+      </view>
+    </demo-block>
+
+    <demo-block title="加载失败提示">
+      <view class="col">
+        <wd-img width="100%" height="27vw" src="https://www.123.wot.com/a.jpg" />
+        <view class="center">默认提示</view>
+      </view>
+      <view class="col">
+        <wd-img width="100%" height="27vw" src="https://www.123.wot.com/a.jpg">
+          <template #error>
+            <view class="error-wrap">加载失败</view>
+          </template>
+        </wd-img>
+        <view class="center">自定义提示</view>
+      </view>
     </demo-block>
 
     <demo-block :title="$t('tian-chong')">
       <view class="col" v-for="(mode, index) in modes" :key="index">
-        <wd-img width="100%" height="27vw" :src="joy" :mode="mode" />
+        <wd-img width="100%" height="27vw" :src="imgURL" :mode="mode" />
         <view class="center">{{ mode }}</view>
       </view>
     </demo-block>
     <demo-block :title="$t('yuan-xing')">
       <view class="col" v-for="(mode, index) in modes" :key="index">
-        <wd-img round width="100%" height="27vw" :src="joy" :mode="mode" />
+        <wd-img round width="100%" height="27vw" :src="imgURL" :mode="mode" />
         <view class="center">{{ mode }}</view>
       </view>
     </demo-block>
     <demo-block :title="$t('yuan-jiao')">
       <view class="col" v-for="(mode, index) in modes" :key="index">
-        <wd-img width="100%" height="27vw" :radius="5" :src="joy" :mode="mode" />
+        <wd-img width="100%" height="27vw" :radius="5" :src="imgURL" :mode="mode" />
         <view class="center">{{ mode }}</view>
       </view>
     </demo-block>
 
     <demo-block :title="$t('ke-yu-lan')">
       <view class="col">
-        <wd-img :width="100" :height="100" :src="joy" :enable-preview="true" />
+        <wd-img :width="100" :height="100" :src="imgURL" :enable-preview="true" />
       </view>
       <view class="col">
-        <wd-img :width="100" :height="100" :src="joy" :preview-src="img" :enable-preview="true" />
+        <wd-img :width="100" :height="100" :src="imgURL" :preview-src="imgURL" :enable-preview="true" />
       </view>
     </demo-block>
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { joy } from '../../pages/images/joy'
-import img from '../../pages/images/jd.png'
 import type { ImageMode } from '@/uni_modules/wot-design-uni/components/wd-img/types'
+// 小黑毛
+import blackMao from './black_mao.png'
+
+const imgURL = blackMao
 
 const modes: ImageMode[] = [
   'top left',

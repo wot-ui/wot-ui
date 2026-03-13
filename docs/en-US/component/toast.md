@@ -89,13 +89,13 @@ const open = () => {
 
 ## Custom Image
 
-Set the `iconUrl` parameter to customize the image of the toast.
+Set the `icon` parameter to customize the image of the toast.
 
 ```typescript
 const open = () => {
   toast.show({
     msg: 'Custom Image',
-    iconUrl: 'https://example.com/image.png'
+    icon: 'https://example.com/image.png'
   })
 }
 ```
@@ -163,7 +163,7 @@ const open = () => {
 | msg | Toast content | string | - | - |
 | duration | Toast display duration, in milliseconds, 0 means not automatically close | number | 2000 | - |
 | iconName | Icon name, see Icon component for optional values | string | - | - |
-| iconUrl | Custom image url | string | - | - |
+| icon | Custom image url | string | - | - |
 | iconSize | Icon size | string | - | - |
 | loadingType | Loading type, valid when type is loading | string | circular | - |
 | loadingColor | Loading color, valid when type is loading | string | #4D80F0 | - |

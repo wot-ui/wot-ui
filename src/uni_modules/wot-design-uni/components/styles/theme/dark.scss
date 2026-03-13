@@ -1,6 +1,4 @@
-:root,
-page,
-.root-portal {
+@mixin dark-theme-vars {
   /* 深色模式语义变量 */
   /* 主色 */
   --wot-primary-1: var(--wot-blue-10);
@@ -21,14 +19,14 @@ page,
   --wot-danger-particular: var(--wot-red-9);
   --wot-danger-surface: var(--wot-red-10);
   /* 成功色 */
-  --wot-success-normal: var(--wot-green-5);
+  --wot-success-main: var(--wot-green-5);
   --wot-success-hover: var(--wot-green-6);
   --wot-success-clicked: var(--wot-green-4);
   --wot-success-disabled: var(--wot-green-8);
   --wot-success-particular: var(--wot-green-9);
   --wot-success-surface: var(--wot-green-10);
   /* 警告色 */
-  --wot-warning-normal: var(--wot-orange-5);
+  --wot-warning-main: var(--wot-orange-5);
   --wot-warning-hover: var(--wot-orange-6);
   --wot-warning-clicked: var(--wot-orange-4);
   --wot-warning-disabled: var(--wot-orange-8);
@@ -74,8 +72,11 @@ page,
   --wot-feedback-accent: var(--wot-blue-opac);
   /* 填充色-透明度 */
   --wot-opacfilled-tooltip-toast-cover: var(--wot-opac-9_75);
-  --wot-opacfilled-main-cover: var(--wot-opacwhite-7_55);
-  --wot-opacfilled-light-cover: var(--wot-opacwhite-6_30);
+  --wot-opacfilled-main-cover: var(--wot-opac-7_55);
+  --wot-opacfilled-light-cover: var(--wot-opac-6_30);
+  /* Picker View Mask */
+  --wot-picker-view-mask-start-color: var(--wot-opac-10_85);
+  --wot-picker-view-mask-end-color: var(--wot-opac-5_20);
   /* 分类色 */
   /* 黄色 */
   --wot-classifyapplication-Yellow-background: var(--wot-yellow-10);
@@ -97,4 +98,9 @@ page,
   --wot-classifyapplication-Pink-background: var(--wot-pink-10);
   --wot-classifyapplication-Pink-border: var(--wot-pink-8);
   --wot-classifyapplication-Pink-content: var(--wot-pink-5);
+}
+
+page,
+.wd-root-portal {
+  @include dark-theme-vars;
 }

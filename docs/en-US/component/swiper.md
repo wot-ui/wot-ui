@@ -332,7 +332,7 @@ Use the default slot to customize the content of carousel items.
 | easingFunction            | Switching easing animation type (WeChat Mini Program, Kuaishou Mini Program, JD Mini Program) | `EasingType`                      | -                                                                                                      | default       | 0.1.22           |
 | height                    | Height of the carousel                                             | `string / number`                 | -                                                                                                      | 192           | 0.1.22           |
 | interval                  | Carousel interval time                                             | `number`                          | -                                                                                                      | 5000          | 0.1.22           |
-| list                      | Image list                                                         | `string[] / SwiperList[]`         | -                                                                                                      | -             | 0.1.22           |
+| list                      | Image list                                                         | `string[] / SwiperItem[]`         | -                                                                                                      | -             | 0.1.22           |
 | loop                      | Whether to enable loop playback                                    | `boolean`                         | -                                                                                                      | true          | 0.1.22           |
 | nextMargin                | Next margin                                                        | `string / number`                 | -                                                                                                      | 0             | 0.1.22           |
 | indicatorPosition         | Indicator display position                                         | `IndicatorPositionType`           | `left, top-left, top, top-right, bottom-left, bottom, bottom-right, right`                            | bottom        | 0.1.22           |
@@ -363,7 +363,7 @@ Switching easing animation type, optional values are `'default'`, `'linear'`, `'
 
 Page information display position, optional values are `'left'`, `'top-left'`, `'top'`, `'top-right'`, `'bottom-left'`, `'bottom'`, `'bottom-right'` and `'right'`.
 
-### SwiperList
+### SwiperItem
 
 Carousel item list configuration, including image or video address `value`, video cover `poster`, file resource type `type` and other attributes, supports extended attributes. After specifying `type`, the component will not internally determine the file type and will use `type` as the standard.
 
@@ -390,7 +390,7 @@ Carousel item list configuration, including image or video address `value`, vide
 
 | Event Name | Description              | Parameters                                                  | Minimum Version |
 | ---------- | ------------------------ | ----------------------------------------------------------- | --------------- |
-| click      | Triggered when clicking carousel item | `(index: number, item: SwiperList \| string)`                                           | 0.1.22          |
+| click      | Triggered when clicking carousel item | `(index: number, item: SwiperItem \| string)`                                           | 0.1.22          |
 | change     | Triggered when carousel switches | `(current: number, source: 'autoplay' \| 'touch' \| 'nav')` | 0.1.22          |
 
 ## Slot
@@ -398,7 +398,7 @@ Carousel item list configuration, including image or video address `value`, vide
 | name      | Description         | Parameters                           | Minimum Version |
 | --------- | ------------------- | ------------------------------------ | --------------- |
 | indicator | Custom indicator    | `{ current: number, total: number }` | 1.13.0          |
-| default   | Item display content | `{ item: string \| SwiperList, index: number }`       | 1.13.0          |
+| default   | Item display content | `{ item: string \| SwiperItem, index: number }`       | 1.13.0          |
 
 ## External Style Classes
 

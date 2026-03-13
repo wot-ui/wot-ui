@@ -6,11 +6,8 @@
     :immediate-change="immediateChange"
     v-model="pickerValue"
     :columns="columns"
-    :columns-height="columnsHeight"
     :item-height="itemHeight"
-    :columnChange="columnChange"
-    :loading="loading"
-    :loading-color="loadingColor"
+    :visible-item-count="visibleItemCount"
     @change="onChange"
     @pickstart="onPickStart"
     @pickend="onPickEnd"
@@ -29,20 +26,26 @@ export default {
 
 <script lang="ts" setup>
 import wdPickerView from '../wd-picker-view/wd-picker-view.vue'
-import { getCurrentInstance, onBeforeMount, ref, watch } from 'vue'
-import { debounce, isDef, padZero, range, isArray, isString } from '../common/util'
+import { getCurrentInstance, onBeforeMount, ref, watch, computed } from 'vue'
+import { isDef, padZero, range, isArray, isString } from '../common/util'
 import { datetimePickerViewProps, type DatetimePickerViewColumnType, type DatetimePickerViewOption, type DatetimePickerViewExpose } from './types'
 import type { PickerViewInstance } from '../wd-picker-view/types'
 import { getPickerValue } from './util'
+import { type Numeric } from '../common/props'
 
 // 本地时间戳
-/** @description 判断时间戳是否合法 */
+/**
+ * @description 判断时间戳是否合法
+ * @param {string | number | Date} date 时间
+ * @returns {boolean} 是否合法
+ */
 const isValidDate = (date: string | number | Date) => isDef(date) && !Number.isNaN(date)
+
 /**
  * @description 生成n个元素，并使用iterator接口进行填充
- * @param n
- * @param iteratee
- * @return {any[]}
+ * @param {number} n 数量
+ * @param {function} iteratee 迭代函数
+ * @returns {Array} 结果数组
  */
 const times = (n: number, iteratee: (index: number) => number) => {
   let index: number = -1
@@ -53,11 +56,12 @@ const times = (n: number, iteratee: (index: number) => number) => {
   }
   return result
 }
+
 /**
  * @description 获取某年某月有多少天
- * @param {Number} year
- * @param {Number} month
- * @return {Number} day
+ * @param {number} year 年
+ * @param {number} month 月
+ * @returns {number} day 天数
  */
 const getMonthEndDay = (year: number, month: number) => {
   return 32 - new Date(year, month - 1, 32).getDate()
@@ -70,35 +74,39 @@ const emit = defineEmits(['change', 'pickstart', 'pickend', 'update:modelValue']
 const datePickerview = ref<PickerViewInstance>()
 // 内部保持时间戳的
 const innerValue = ref<null | string | number>(null)
-// 传递给pickerView的columns的数据
-const columns = ref<DatetimePickerViewOption[][]>([])
+
 // 传递给pickerView的value的数据
-const pickerValue = ref<string | number | boolean | string[] | number[] | boolean[]>([])
+const pickerValue = ref<Array<Numeric>>([])
 // 是否已经初始化
 const created = ref<boolean>(false)
 
 const { proxy } = getCurrentInstance() as any
 
 /**
- * @description updateValue 防抖函数的占位符
+ * 传递给pickerView的columns的数据
+ * 核心逻辑：columns 依赖 innerValue，而 innerValue 会在 onChange 中被更新
  */
-const updateValue = debounce(() => {
-  if (!created.value) return
-  const val = correctValue(props.modelValue)
-  const isEqual = val === innerValue.value
-  if (!isEqual) {
-    updateColumnValue(val)
-  } else {
-    columns.value = updateColumns()
+const columns = computed(() => {
+  const { formatter, columnFormatter } = props
+  const originColumns = getOriginColumns().map((column) => {
+    return column.values.map((value) => {
+      return {
+        label: formatter ? formatter(column.type, padZero(value)) : padZero(value),
+        value
+      }
+    })
+  })
+  if (columnFormatter) {
+    return columnFormatter(originColumns)
   }
-}, 50)
+  return originColumns
+})
 
 watch(
   () => props.modelValue,
-  (val, oldVal) => {
-    if (val === oldVal) return
-    // 外部传入值更改时 更新picker数据
+  (val) => {
     const value = correctValue(val)
+    if (value === innerValue.value) return
     updateColumnValue(value)
   },
   { deep: true, immediate: true }
@@ -115,31 +123,6 @@ watch(
   { deep: true, immediate: true }
 )
 
-watch(
-  [
-    () => props.type,
-    () => props.filter,
-    () => props.formatter,
-    () => props.columnFormatter,
-    () => props.minDate,
-    () => props.maxDate,
-    () => props.minHour,
-    () => props.maxHour,
-    () => props.minMinute,
-    () => props.maxMinute,
-    () => props.minSecond,
-    () => props.maxSecond,
-    () => props.useSecond
-  ],
-  () => {
-    updateValue()
-  },
-  {
-    deep: true,
-    immediate: true
-  }
-)
-
 onBeforeMount(() => {
   // 初始化完毕，打开observer触发render的开关
   created.value = true
@@ -147,51 +130,23 @@ onBeforeMount(() => {
   updateColumnValue(innerValue)
 })
 
-/** pickerView触发change事件，同步修改pickerValue */
-function onChange({ value }: { value: string | string[] }) {
+/**
+ * @description pickerView触发change事件，同步修改pickerValue
+ * @param {object} params 参数
+ * @param {Array<string | number>} params.selectedValues 选中的值
+ */
+function onChange({ selectedValues }: { selectedValues: Array<string | number> }) {
   // 更新pickerView的value
-  pickerValue.value = value
+  pickerValue.value = selectedValues
   // pickerValue => innerValue
-  const result = updateInnerValue()
-  emit('update:modelValue', result)
-  // 这个地方的value返回的是picker数组，实际上在此处我们应该返回 change 的是 value date类型的值
-  emit('change', {
-    value: result,
-    picker: proxy.$.exposed
-  })
-}
+  const result = updateInnerValue(selectedValues)
 
-/**
- * @description 使用formatter格式化getOriginColumns的结果
- * @return {Array<Array<Number>>} 用于传入picker的columns
- */
-function updateColumns(): DatetimePickerViewOption[][] {
-  const { formatter, columnFormatter } = props
-  if (columnFormatter) {
-    return columnFormatter(proxy.$.exposed)
-  } else {
-    return getOriginColumns().map((column) => {
-      return column.values.map((value) => {
-        return {
-          label: formatter ? formatter(column.type, padZero(value)) : padZero(value),
-          value
-        }
-      })
-    })
-  }
-}
-
-/**
- * 设置数据列
- * @param columnList 数据列
- */
-function setColumns(columnList: DatetimePickerViewOption[][]) {
-  columns.value = columnList
+  updateColumnValue(result)
 }
 
 /**
  * @description 根据getRanges得到的范围计算所有的列的数据
- * @return {{values: any[], type: String}[]} 年
+ * @returns {DatetimePickerViewColumn[]} 所有的列的数据
  */
 function getOriginColumns() {
   const { filter } = props
@@ -201,9 +156,8 @@ function getOriginColumns() {
     })
 
     if (filter) {
-      values = filter(type, values)
+      values = filter({ type, values })
     }
-
     return {
       type,
       values
@@ -213,7 +167,7 @@ function getOriginColumns() {
 
 /**
  * @description 根据时间戳生成年月日时分的边界范围
- * @return {Array<{type:String,range:Array<Number>}>}
+ * @returns {Array<{type: DatetimePickerViewColumnType, range: number[]}>} 边界范围
  */
 function getRanges(): Array<{ type: DatetimePickerViewColumnType; range: number[] }> {
   if (props.type === 'time') {
@@ -277,8 +231,8 @@ function getRanges(): Array<{ type: DatetimePickerViewColumnType; range: number[
 
 /**
  * @description 修正时间入参，判定是否为规范时间类型
- * @param {String | Number} value
- * @return {String | Number} innerValue
+ * @param {string | number | Date} value 时间
+ * @returns {string | number} innerValue
  */
 function correctValue(value: string | number | Date): string | number {
   const isDateType = props.type !== 'time'
@@ -311,8 +265,9 @@ function correctValue(value: string | number | Date): string | number {
 
 /**
  * @description 根据时间戳，计算所有选项的范围
- * @param {'min'|'max'} type 类型
- * @param {Number} innerValue 时间戳
+ * @param {'min' | 'max'} type 类型
+ * @param {number} innerValue 时间戳
+ * @returns {object} 边界范围
  */
 function getBoundary(type: 'min' | 'max', innerValue: number) {
   const value = new Date(innerValue)
@@ -359,33 +314,30 @@ function getBoundary(type: 'min' | 'max', innerValue: number) {
 
 /**
  * @description 根据传入的value以及type，初始化innerValue，期间会使用format格式化数据
- * @param value
- * @return {Array}
+ * @param {string | number} value 时间
  */
 function updateColumnValue(value: string | number) {
   const values = getPickerValue(value, props.type, props.useSecond)
-  // 更新pickerView的value,columns
   if (props.modelValue !== value) {
     emit('update:modelValue', value)
     emit('change', {
       value,
-      picker: proxy.$.exposed
+      columns: getOriginColumns()
     })
   }
   innerValue.value = value
-  columns.value = updateColumns()
   pickerValue.value = values
 }
 
 /**
  * @description 根据当前的选中项 处理innerValue
- * @return {date} innerValue
+ * @param {Array<string | number>} indexes 选中的索引
+ * @returns {string | number} innerValue
  */
-function updateInnerValue() {
+function updateInnerValue(indexes: Array<string | number>) {
   const { type, useSecond } = props
   let innerValue: string | number = ''
-  const pickerVal = datePickerview.value?.getValues() || []
-  const values = isArray(pickerVal) ? pickerVal : [pickerVal]
+  const values = indexes
 
   if (type === 'time') {
     if (useSecond) {
@@ -397,10 +349,10 @@ function updateInnerValue() {
   }
 
   // 处理年份 索引位0
-  const year = values[0] && parseInt(values[0])
+  const year = values[0] && parseInt(String(values[0]))
 
   // 处理月 索引位1
-  const month = type === 'year' ? 1 : values[1] && parseInt(values[1])
+  const month = type === 'year' ? 1 : values[1] && parseInt(String(values[1]))
 
   const maxDate = getMonthEndDay(Number(year), Number(month))
 
@@ -416,10 +368,10 @@ function updateInnerValue() {
   let second = 0
 
   if (type === 'datetime') {
-    hour = Number(values[3]) && parseInt(values[3])
-    minute = Number(values[4]) && parseInt(values[4])
+    hour = Number(values[3]) && parseInt(String(values[3]))
+    minute = Number(values[4]) && parseInt(String(values[4]))
     if (useSecond) {
-      second = Number(values[5]) && parseInt(values[5])
+      second = Number(values[5]) && parseInt(String(values[5]))
     }
   }
   const value = new Date(Number(year), Number(month) - 1, Number(date), hour, minute, second).getTime()
@@ -428,55 +380,6 @@ function updateInnerValue() {
   return innerValue
 }
 
-/**
- * @description 选中项改变，多级联动
- */
-function columnChange(picker: PickerViewInstance) {
-  // time year-mouth year 无需联动
-  if (props.type === 'time' || props.type === 'year-month' || props.type === 'year') {
-    return
-  }
-  /** 重新计算年月日时分秒，修正时间。 */
-  const values = picker.getValues() as string[]
-  const year = Number(values[0])
-  const month = Number(values[1])
-  const maxDate = getMonthEndDay(year, month)
-  let date = Number(values[2])
-  date = date > maxDate ? maxDate : date
-  let hour: number = 0
-  let minute: number = 0
-  let second: number = 0
-  if (props.type === 'datetime') {
-    hour = Number(values[3])
-    minute = Number(values[4])
-    if (props.useSecond) {
-      second = Number(values[5])
-    }
-  }
-  const value = new Date(year, month - 1, date, hour, minute, second).getTime()
-  /** 根据计算选中项的时间戳，重新计算所有的选项列表 */
-  // 更新选中时间戳
-  innerValue.value = correctValue(value)
-
-  // 根据innerValue获取最新的时间表，重新生成对应的数据源
-  const newColumns = updateColumns()
-  // 深拷贝联动之前的选中项
-  const selectedIndex = picker.getSelectedIndex().slice(0)
-  /**
-   * 选中年会修改对应的年份的月数，和月份对应的日期。
-   * 选中月，会修改月份对应的日数
-   */
-  newColumns.forEach((_columns, index) => {
-    const nextColumnIndex = index + 1
-    const nextColumnData = newColumns[nextColumnIndex]
-    if (nextColumnIndex > newColumns.length - 1) return
-    picker.setColumnData(
-      nextColumnIndex,
-      nextColumnData,
-      selectedIndex[nextColumnIndex] <= nextColumnData.length - 1 ? selectedIndex[nextColumnIndex] : 0
-    )
-  })
-}
 function onPickStart() {
   emit('pickstart')
 }
@@ -484,17 +387,15 @@ function onPickEnd() {
   emit('pickend')
 }
 
-function getSelects() {
-  const pickerVal = datePickerview.value?.getSelects()
+function getSelectedOptions() {
+  const pickerVal = datePickerview.value?.getSelectedOptions()
   if (pickerVal == null) return undefined
   if (isArray(pickerVal)) return pickerVal
   return [pickerVal]
 }
 
 defineExpose<DatetimePickerViewExpose>({
-  updateColumns,
-  setColumns,
-  getSelects,
+  getSelectedOptions,
   correctValue,
   getOriginColumns
 })

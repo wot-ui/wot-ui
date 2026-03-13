@@ -1,19 +1,25 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(skeleton) {
-    @include e(col) {
-      background-color: $-dark-background4;
-    }
-  }
-}
+// 组件级 CSS 变量定义
+$skeleton-row-margin-bottom: var(--wot-skeleton-row-margin-bottom, $spacing-loose) !default;
+$skeleton-col-bg: var(--wot-skeleton-col-bg, $filled-strong) !default;
+$skeleton-text-height: var(--wot-skeleton-text-height, $n16) !default;
+$skeleton-rect-height: var(--wot-skeleton-rect-height, $n16) !default;
+$skeleton-circle-height: var(--wot-skeleton-circle-height, $n48) !default;
+$skeleton-border-radius-text: var(--wot-skeleton-border-radius-text, $radius-small) !default;
+$skeleton-border-radius-rect: var(--wot-skeleton-border-radius-rect, $radius-main) !default;
+$skeleton-border-radius-circle: var(--wot-skeleton-border-radius-circle, $radius-radius-full) !default;
+$skeleton-animation-gradient: var(--wot-skeleton-animation-gradient, $filled-bottom) !default;
+$skeleton-animation-flashed: var(--wot-skeleton-animation-flashed, $filled-bottom) !default;
+$skeleton-animation-flashed-opacity: var(--wot-skeleton-animation-flashed-opacity, $opacity-backdrop) !default;
+
 @include b(skeleton) {
   box-sizing: border-box;
 
   @include e(row) {
     justify-content: space-between;
-    margin-bottom: $-skeleton-row-margin-bottom;
+    margin-bottom: $skeleton-row-margin-bottom;
     display: flex;
     align-items: center;
 
@@ -23,8 +29,8 @@
     }
   }
   @include e(col) {
-    border-radius: $-skeleton-border-radius-text;
-    background-color: $-skeleton-background-color;
+    border-radius: $skeleton-border-radius-text;
+    background-color: $skeleton-col-bg;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,21 +43,21 @@
   @include m(type) {
     &-text {
       width: 100%;
-      height: $-skeleton-text-height-default;
-      border-radius: $-skeleton-border-radius-text;
+      height: $skeleton-text-height;
+      border-radius: $skeleton-border-radius-text;
     }
 
     &-rect {
       width: 100%;
-      height: $-skeleton-rect-height-default;
-      border-radius: $-skeleton-border-radius-rect;
+      height: $skeleton-rect-height;
+      border-radius: $skeleton-border-radius-rect;
     }
 
     &-circle {
       flex-shrink: 0;
-      width: $-skeleton-circle-height-default;
-      height: $-skeleton-circle-height-default;
-      border-radius: $-skeleton-border-radius-circle;
+      width: $skeleton-circle-height;
+      height: $skeleton-circle-height;
+      border-radius: $skeleton-border-radius-circle;
     }
   }
   @include m(animation) {
@@ -63,7 +69,7 @@
         content: ' ';
         position: absolute;
         animation: wd-skeleton-gradient 1.5s linear 2s infinite;
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0), $-skeleton-animation-gradient, rgba(255, 255, 255, 0));
+        background: linear-gradient(90deg, transparent, $skeleton-animation-gradient, transparent);
         inset: 0;
       }
     }
@@ -86,8 +92,8 @@
       opacity: 1;
     }
     50% {
-      opacity: 0.3;
-      background-color: $-skeleton-animation-flashed;
+      opacity: $skeleton-animation-flashed-opacity;
+      background: $skeleton-animation-flashed;
     }
     100% {
       opacity: 1;

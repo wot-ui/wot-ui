@@ -7,7 +7,7 @@
         </view>
 
         <view :class="`wd-navbar__left ${leftDisabled ? 'is-disabled' : ''}`" @click="handleClickLeft" v-else-if="!$slots.left">
-          <wd-icon v-if="leftArrow" name="arrow-left" custom-class="wd-navbar__arrow" />
+          <wd-icon v-if="leftArrow" name="left" custom-class="wd-navbar__arrow" />
           <view v-if="leftText" class="wd-navbar__text">{{ leftText }}</view>
         </view>
 
@@ -34,7 +34,9 @@
 export default {
   name: 'wd-navbar',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -44,15 +46,19 @@ export default {
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
 import { type CSSProperties, computed, getCurrentInstance, nextTick, onMounted, ref, watch } from 'vue'
-import { getRect, addUnit, isDef, objToStyle, getSystemInfo } from '../common/util'
+import { getRect, addUnit, isDef, objToStyle } from '../common/util'
 import { navbarProps } from './types'
+import { useDeviceInfo } from '../composables/useDeviceInfo'
 
 const props = defineProps(navbarProps)
 const emit = defineEmits(['click-left', 'click-right'])
 
-const height = ref<number | ''>('') // 占位高度
+/**
+ * 占位高度
+ */
+const height = ref<number | ''>('')
 
-const { statusBarHeight } = getSystemInfo()
+const { statusBarHeight, navBarHeight } = useDeviceInfo()
 
 watch(
   [() => props.fixed, () => props.placeholder],
@@ -62,13 +68,20 @@ watch(
   { deep: true, immediate: false }
 )
 
+/**
+ * 根节点样式
+ */
 const rootStyle = computed(() => {
   const style: CSSProperties = {}
   if (props.fixed && isDef(props.zIndex)) {
     style['z-index'] = props.zIndex
   }
   if (props.safeAreaInsetTop) {
-    style['padding-top'] = addUnit(statusBarHeight || 0)
+    style['padding-top'] = addUnit(statusBarHeight.value || 0)
+  }
+  if (navBarHeight.value) {
+    style['height'] = addUnit(navBarHeight.value)
+    style['line-height'] = addUnit(navBarHeight.value)
   }
   return `${objToStyle(style)}${props.customStyle}`
 })
@@ -81,20 +94,32 @@ onMounted(() => {
   }
 })
 
+/**
+ * 处理左侧点击事件
+ */
 function handleClickLeft() {
   if (!props.leftDisabled) {
     emit('click-left')
   }
 }
 
+/**
+ * 处理右侧点击事件
+ */
 function handleClickRight() {
   if (!props.rightDisabled) {
     emit('click-right')
   }
 }
 
+/**
+ * 获取当前实例的代理对象
+ */
 const { proxy } = getCurrentInstance() as any
 
+/**
+ * 设置占位高度
+ */
 function setPlaceholderHeight() {
   if (!props.fixed || !props.placeholder) {
     return
@@ -107,5 +132,5 @@ function setPlaceholderHeight() {
 </script>
 
 <style lang="scss">
-@import './index.scss';
+@use './index.scss';
 </style>

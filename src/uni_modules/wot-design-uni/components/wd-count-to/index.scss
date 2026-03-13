@@ -1,7 +1,21 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/variable.scss'as *;
+@use '../styles/mixin/mixin.scss'as *;
 
+$count-to-text-fs: var(--wot-count-to-text-fs, $typography-body-size-ultra-large) !default;
+$count-to-text-line-height: var(--wot-count-to-text-line-height, $typography-body-line--height-size-ultra-large) !default;
+$count-to-separator-text-fs: var(--wot-count-to-separator-text-fs, $typography-label-size-main) !default;
+$count-to-separator-text-line-height: var(--wot-count-to-separator-text-line-height, $typography-label-line--height-size-main) !default;
 
-.wd-count-to{
+@include b(count-to) {
   vertical-align: bottom;
+
+  @include edeep(main-text){
+    font-size: $count-to-text-fs;
+    line-height: $count-to-text-line-height;
+  }
+
+  @include edeep(separator-text){
+    font-size: $count-to-separator-text-fs;
+    line-height: $count-to-separator-text-line-height;
+  }
 }

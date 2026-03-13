@@ -1,21 +1,21 @@
-/*
- * @Author: weisheng
- * @Date: 2024-03-18 11:22:03
- * @LastEditTime: 2024-11-24 23:04:55
- * @LastEditors: weisheng
- * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-segmented/types.ts
- * 记得注释
- */
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeRequiredProp, makeStringProp } from '../common/props'
 
-export type SegmentedType = 'large' | 'middle' | 'small'
+/**
+ * 分段器主题类型
+ */
+export type SegmentedTheme = 'card' | 'outline'
 
+/**
+ * 分段器选项接口
+ */
 export interface SegmentedOption {
-  value: string | number // 选中值
-  disabled?: boolean // 是否禁用
-  payload?: any // 更多数据
+  /** 选项值 */
+  value: string | number
+  /** 是否禁用该选项 */
+  disabled?: boolean
+  /** 自定义数据，可用于插槽渲染 */
+  payload?: any
 }
 
 export const segmentedProps = {
@@ -24,7 +24,7 @@ export const segmentedProps = {
   /**
    * 当前选中的值
    * 类型: string | number
-   * 最低版本: 0.1.23
+   * 必需: 是
    */
   value: makeRequiredProp([String, Number]),
 
@@ -32,25 +32,14 @@ export const segmentedProps = {
    * 是否禁用分段器
    * 类型: boolean
    * 默认值: false
-   * 最低版本: 0.1.23
    */
   disabled: makeBooleanProp(false),
-
-  /**
-   * 控件尺寸
-   * 类型: string
-   * 可选值: 'large' | 'middle' | 'small'
-   * 默认值: 'middle'
-   * 最低版本: 0.1.23
-   */
-  size: makeStringProp<SegmentedType>('middle'),
 
   /**
    * 数据集合
    * 类型: string[] | number[] | SegmentedOption[]
    * 必需: 是
    * 默认值: []
-   * 最低版本: 0.1.23
    */
   options: {
     type: Array as PropType<string[] | number[] | SegmentedOption[]>,
@@ -59,22 +48,34 @@ export const segmentedProps = {
   },
 
   /**
-   * 切换选项时是否振动
+   * 分段器主题样式
+   * 类型: string
+   * 可选值: 'card' | 'outline'
+   * 默认值: 'card'
+   */
+  theme: makeStringProp('card'),
+
+  /**
+   * 切换选项时是否触发振动反馈
    * 类型: boolean
    * 默认值: false
-   * 最低版本: 0.1.23
    */
   vibrateShort: makeBooleanProp(false)
 }
 
+/**
+ * 分段器组件暴露的方法
+ */
 export type SegmentedExpose = {
   /**
-   * 更新滑块偏移量
-   * @param animation 是否开启动画，默认开启
+   * 更新滑块偏移量和样式
+   * @param animation 是否启用过渡动画，默认为 true
    */
   updateActiveStyle: (animation?: boolean) => void
 }
 
+/** 分段器组件 Props 类型 */
 export type SegmentedProps = ExtractPropTypes<typeof segmentedProps>
 
+/** 分段器组件实例类型 */
 export type SegmentedInstance = ComponentPublicInstance<SegmentedProps, SegmentedExpose>

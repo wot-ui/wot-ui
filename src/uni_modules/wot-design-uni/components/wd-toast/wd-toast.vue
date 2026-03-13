@@ -10,14 +10,14 @@
         :size="loadingSize"
         :custom-class="`wd-toast__icon ${direction === 'vertical' ? 'is-vertical' : ''}`"
       />
-      <view
-        :class="`wd-toast__iconWrap wd-toast__icon ${direction === 'vertical' ? 'is-vertical' : ''}`"
+
+      <wd-icon
         v-else-if="iconName === 'success' || iconName === 'warning' || iconName === 'info' || iconName === 'error'"
-      >
-        <view class="wd-toast__iconBox">
-          <view class="wd-toast__iconSvg" :style="svgStyle"></view>
-        </view>
-      </view>
+        :custom-class="`wd-toast__icon ${direction === 'vertical' ? 'is-vertical' : ''}`"
+        :size="iconSize"
+        :class-prefix="classPrefix"
+        :name="toastIcon[iconName]"
+      ></wd-icon>
       <wd-icon
         v-else-if="iconClass"
         :custom-class="`wd-toast__icon ${direction === 'vertical' ? 'is-vertical' : ''}`"
@@ -36,7 +36,9 @@ export default {
   name: 'wd-toast',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -48,8 +50,7 @@ import wdLoading from '../wd-loading/wd-loading.vue'
 import wdOverlay from '../wd-overlay/wd-overlay.vue'
 import wdTransition from '../wd-transition/wd-transition.vue'
 
-import { computed, inject, onBeforeMount, ref, watch, type CSSProperties } from 'vue'
-import base64 from '../common/base64'
+import { computed, inject, ref, watch, type CSSProperties } from 'vue'
 import { defaultOptions, getToastOptionKey, toastIcon } from '.'
 import { toastProps, type ToastDirection, type ToastLoadingType, type ToastOptions, type ToastProps } from './types'
 import { addUnit, isDef, isFunction, objToStyle } from '../common/util'
@@ -61,10 +62,9 @@ const position = ref<string>('middle')
 const show = ref<boolean>(false)
 const zIndex = ref<number>(100)
 const loadingType = ref<ToastLoadingType>('circular')
-const loadingColor = ref<string>('#4D80F0')
+const loadingColor = ref<string>('#fff')
 const iconSize = ref<string>() // 图标大小
 const loadingSize = ref<string>() // loading大小
-const svgStr = ref<string>('') // 图标
 const cover = ref<boolean>(false) // 是否存在遮罩层
 const classPrefix = ref<string>('wd-icon') // 图标前缀
 const iconClass = ref<string>('') // 图标类名
@@ -89,18 +89,6 @@ watch(
   }
 )
 
-// 监听options变化展示
-watch(
-  () => iconName.value,
-  () => {
-    buildSvg()
-  },
-  {
-    deep: true,
-    immediate: true
-  }
-)
-
 /**
  * 动画自定义样式
  */
@@ -111,7 +99,7 @@ const transitionStyle = computed(() => {
     top: '50%',
     left: 0,
     width: '100%',
-    transform: 'translate(0, -50%)',
+    // transform: 'translate(0, -50%)',
     'text-align': 'center',
     'pointer-events': 'none'
   }
@@ -124,21 +112,6 @@ const rootClass = computed(() => {
   } ${iconName.value === 'loading' && !msg.value ? 'wd-toast--loading' : ''} ${direction.value === 'vertical' ? 'is-vertical' : ''}`
 })
 
-const svgStyle = computed(() => {
-  const style: CSSProperties = {
-    backgroundImage: `url(${svgStr.value})`
-  }
-  if (isDef(iconSize.value)) {
-    style.width = iconSize.value
-    style.height = iconSize.value
-  }
-  return objToStyle(style)
-})
-
-onBeforeMount(() => {
-  buildSvg()
-})
-
 function handleAfterEnter() {
   if (isFunction(opened)) {
     opened()
@@ -149,13 +122,6 @@ function handleAfterLeave() {
   if (isFunction(closed)) {
     closed()
   }
-}
-
-function buildSvg() {
-  if (iconName.value !== 'success' && iconName.value !== 'warning' && iconName.value !== 'info' && iconName.value !== 'error') return
-  const iconSvg = toastIcon[iconName.value]()
-  const iconSvgStr = `"data:image/svg+xml;base64,${base64(iconSvg)}"`
-  svgStr.value = iconSvgStr
 }
 
 /**
@@ -187,6 +153,6 @@ function mergeOptionsWithProps(option: ToastOptions, props: ToastProps) {
   opened = isFunction(option.opened) ? option.opened : isFunction(props.opened) ? props.opened : null
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

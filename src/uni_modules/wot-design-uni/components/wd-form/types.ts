@@ -1,20 +1,30 @@
 /*
  * @Author: weisheng
  * @Date: 2023-12-14 11:21:58
- * @LastEditTime: 2025-01-11 13:31:20
+ * @LastEditTime: 2026-01-20 21:51:47
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-form/types.ts
  * 记得注释
  */
 import { type ComponentPublicInstance, type ExtractPropTypes, type InjectionKey, type PropType } from 'vue'
-import { baseProps, makeBooleanProp, makeRequiredProp } from '../common/props'
+import { baseProps, makeBooleanProp, makeRequiredProp, numericProp } from '../common/props'
+import type { CellLayout, CellSize, CellValueAlign, CellAsteriskPosition } from '../wd-cell/types'
 
 export type FormProvide = {
   props: {
     model: Record<string, any>
     rules?: FormRules
     border?: boolean
+    // 公共配置属性
+    center?: boolean
+    size?: CellSize
+    titleWidth?: string | number
+    layout?: CellLayout
+    valueAlign?: CellValueAlign
+    asteriskPosition?: CellAsteriskPosition
+    hideAsterisk?: boolean
+    ellipsis?: boolean
   }
   errorMessages?: Record<string, string>
 }
@@ -63,7 +73,60 @@ export const formProps = {
   errorType: {
     type: String as PropType<'toast' | 'message' | 'none'>,
     default: 'message'
-  }
+  },
+  // ========== 公共配置属性（可被 form-item 继承）==========
+  /**
+   * 是否展示边框线
+   * 类型: boolean
+   * 默认值: false
+   */
+  border: makeBooleanProp(false),
+  /**
+   * 是否使内容垂直居中
+   * 类型: boolean
+   * 默认值: false
+   */
+  center: makeBooleanProp(false),
+  /**
+   * 单元格大小，可选值: 'large'
+   * 类型: CellSize
+   */
+  size: String as PropType<CellSize>,
+  /**
+   * 左侧标题宽度
+   * 类型: string | number
+   */
+  titleWidth: numericProp,
+  /**
+   * 单元格布局方式
+   * 类型: CellLayout
+   * 可选值: 'horizontal' | 'vertical'
+   */
+  layout: String as PropType<CellLayout>,
+  /**
+   * 右侧内容对齐方式
+   * 类型: CellValueAlign
+   * 可选值: 'left' | 'right' | 'center'
+   */
+  valueAlign: String as PropType<CellValueAlign>,
+  /**
+   * 必填星号位置
+   * 类型: CellAsteriskPosition
+   * 可选值: 'start' | 'end'
+   */
+  asteriskPosition: String as PropType<CellAsteriskPosition>,
+  /**
+   * 是否隐藏必填星号
+   * 类型: boolean
+   * 默认值: false
+   */
+  hideAsterisk: makeBooleanProp(false),
+  /**
+   * 是否超出隐藏显示省略号
+   * 类型: boolean
+   * 默认值: false
+   */
+  ellipsis: makeBooleanProp(false)
 }
 export type FormProps = ExtractPropTypes<typeof formProps>
 

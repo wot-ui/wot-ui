@@ -1,9 +1,11 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
 @include b(grid) {
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
   height: auto;
 }

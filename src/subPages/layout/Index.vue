@@ -37,6 +37,40 @@
         <wd-col :span="8"><view class="bg-dark">span: 8</view></wd-col>
       </wd-row>
     </demo-block>
+    <demo-block title="Justify 对齐">
+      <wd-row justify="center">
+        <wd-col :span="6"><view class="bg-dark">center</view></wd-col>
+        <wd-col :span="6"><view class="bg-light">center</view></wd-col>
+        <wd-col :span="6"><view class="bg-dark">center</view></wd-col>
+      </wd-row>
+      <wd-row justify="end">
+        <wd-col :span="6"><view class="bg-dark">end</view></wd-col>
+        <wd-col :span="6"><view class="bg-light">end</view></wd-col>
+        <wd-col :span="6"><view class="bg-dark">end</view></wd-col>
+      </wd-row>
+      <wd-row justify="space-between">
+        <wd-col :span="6"><view class="bg-dark">between</view></wd-col>
+        <wd-col :span="6"><view class="bg-light">between</view></wd-col>
+        <wd-col :span="6"><view class="bg-dark">between</view></wd-col>
+      </wd-row>
+      <wd-row justify="space-around">
+        <wd-col :span="6"><view class="bg-dark">around</view></wd-col>
+        <wd-col :span="6"><view class="bg-light">around</view></wd-col>
+        <wd-col :span="6"><view class="bg-dark">around</view></wd-col>
+      </wd-row>
+    </demo-block>
+    <demo-block title="Align 对齐">
+      <wd-row align="middle" class="row-align-demo">
+        <wd-col :span="8"><view class="bg-dark" style="height: 60px; line-height: 60px">middle</view></wd-col>
+        <wd-col :span="8"><view class="bg-light" style="height: 30px; line-height: 30px">middle</view></wd-col>
+        <wd-col :span="8"><view class="bg-dark" style="height: 50px; line-height: 50px">middle</view></wd-col>
+      </wd-row>
+      <wd-row align="bottom" class="row-align-demo">
+        <wd-col :span="8"><view class="bg-dark" style="height: 60px; line-height: 60px">bottom</view></wd-col>
+        <wd-col :span="8"><view class="bg-light" style="height: 30px; line-height: 30px">bottom</view></wd-col>
+        <wd-col :span="8"><view class="bg-dark" style="height: 50px; line-height: 50px">bottom</view></wd-col>
+      </wd-row>
+    </demo-block>
   </page-wraper>
 </template>
 <script lang="ts" setup></script>

@@ -1,49 +1,15 @@
 <template>
   <view :class="`wd-select-picker ${customClass}`" :style="customStyle">
-    <wd-cell
-      v-if="!$slots.default"
-      :title="label"
-      :value="showValue || placeholder || translate('placeholder')"
-      :required="isRequired"
-      :size="size"
-      :title-width="labelWidth"
-      :clickable="!disabled && !readonly"
-      :value-align="alignRight ? 'right' : 'left'"
-      :center="center"
-      :custom-class="cellClass"
-      :custom-style="customStyle"
-      :custom-title-class="customLabelClass"
-      :custom-value-class="customValueClass"
-      :ellipsis="ellipsis"
-      :use-title-slot="!!$slots.label"
-      :marker-side="markerSide"
-      :error-message="errorMessage"
-      @click="open"
-    >
-      <template v-if="$slots.label" #title>
-        <slot name="label"></slot>
-      </template>
-      <template #right-icon>
-        <wd-icon v-if="showArrow" custom-class="wd-select-picker__arrow" name="arrow-right" />
-        <view v-else-if="showClear" @click.stop="handleClear">
-          <wd-icon custom-class="wd-select-picker__clear" name="error-fill" />
-        </view>
-      </template>
-    </wd-cell>
-    <view v-else @click="open">
-      <slot></slot>
-    </view>
     <wd-action-sheet
       v-model="pickerShow"
-      :duration="250"
       :title="title || translate('title')"
       :close-on-click-modal="closeOnClickModal"
       :z-index="zIndex"
       :safe-area-inset-bottom="safeAreaInsetBottom"
       :root-portal="rootPortal"
       @close="close"
-      @opened="scrollIntoView ? setScrollIntoView() : ''"
-      custom-header-class="wd-select-picker__header"
+      @after-enter="scrollIntoView ? setScrollIntoView() : ''"
+      custom-class="wd-select-picker__popup"
     >
       <wd-search
         v-if="filterable"
@@ -54,16 +20,25 @@
         @change="handleFilterChange"
       />
       <scroll-view
-        :class="`wd-select-picker__wrapper ${filterable ? 'is-filterable' : ''} ${loading ? 'is-loading' : ''} ${customContentClass}`"
+        :class="`wd-select-picker__wrapper ${loading ? 'is-loading' : ''} ${customContentClass}`"
         :scroll-y="!loading"
         :scroll-top="scrollTop"
         :scroll-with-animation="true"
       >
         <!-- 多选 -->
-        <view v-if="type === 'checkbox' && isArray(selectList)" id="wd-checkbox-group">
-          <wd-checkbox-group v-model="selectList" cell :size="selectSize" :checked-color="checkedColor" :min="min" :max="max" @change="handleChange">
+        <view v-if="type === 'checkbox' && isArray(selectList)" class="wd-select-picker__checkbox" id="wd-checkbox-group">
+          <wd-checkbox-group
+            v-model="selectList"
+            :size="selectSize"
+            :checked-color="checkedColor"
+            :min="min"
+            :max="max"
+            type="square"
+            placement="right"
+            @change="handleChange"
+          >
             <view v-for="item in filterColumns" :key="item[valueKey]" :id="'check' + item[valueKey]">
-              <wd-checkbox :modelValue="item[valueKey]" :disabled="item.disabled">
+              <wd-checkbox :name="item[valueKey]" :disabled="item.disabled">
                 <block v-if="filterable && filterVal">
                   <block v-for="text in item[labelKey]" :key="text.label">
                     <text v-if="text.type === 'active'" class="wd-select-picker__text-active">{{ text.label }}</text>
@@ -78,8 +53,16 @@
           </wd-checkbox-group>
         </view>
         <!-- 单选 -->
-        <view v-if="type === 'radio' && !isArray(selectList)" id="wd-radio-group">
-          <wd-radio-group v-model="selectList" cell :size="selectSize" :checked-color="checkedColor" @change="handleChange">
+        <view v-if="type === 'radio' && !isArray(selectList)" class="wd-select-picker__radio" id="wd-radio-group">
+          <wd-radio-group
+            v-model="selectList"
+            cell
+            :size="selectSize"
+            :checked-color="checkedColor"
+            placement="right"
+            type="dot"
+            @change="handleChange"
+          >
             <view v-for="(item, index) in filterColumns" :key="index" :id="'radio' + item[valueKey]">
               <wd-radio :value="item[valueKey]" :disabled="item.disabled">
                 <block v-if="filterable && filterVal">
@@ -95,7 +78,7 @@
           </wd-radio-group>
         </view>
         <view v-if="loading" class="wd-select-picker__loading" @touchmove="noop">
-          <wd-loading :color="loadingColor" />
+          <wd-loading :color="loadingColor" custom-class="wd-select-picker__loading-icon" />
         </view>
       </scroll-view>
       <!-- 确认按钮 -->
@@ -110,7 +93,9 @@ export default {
   name: 'wd-select-picker',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -124,42 +109,16 @@ import wdRadio from '../wd-radio/wd-radio.vue'
 import wdRadioGroup from '../wd-radio-group/wd-radio-group.vue'
 import wdButton from '../wd-button/wd-button.vue'
 import wdLoading from '../wd-loading/wd-loading.vue'
-import wdCell from '../wd-cell/wd-cell.vue'
 
 import { getCurrentInstance, onBeforeMount, ref, watch, nextTick, computed } from 'vue'
 import { getRect, isArray, isDef, isFunction, pause } from '../common/util'
 import { useTranslate } from '../composables/useTranslate'
-import { useParent } from '../composables/useParent'
-import { FORM_KEY } from '../wd-form/types'
 import { selectPickerProps, type SelectPickerExpose } from './types'
 
 const { translate } = useTranslate('select-picker')
 
 const props = defineProps(selectPickerProps)
-const emit = defineEmits(['change', 'cancel', 'confirm', 'clear', 'update:modelValue', 'open', 'close'])
-
-const { parent: form } = useParent(FORM_KEY)
-
-const errorMessage = computed(() => {
-  if (form && props.prop && form.errorMessages && form.errorMessages[props.prop]) {
-    return form.errorMessages[props.prop]
-  } else {
-    return ''
-  }
-})
-
-const isRequired = computed(() => {
-  let formRequired = false
-  if (form && form.props.rules) {
-    const rules = form.props.rules
-    for (const key in rules) {
-      if (Object.prototype.hasOwnProperty.call(rules, key) && key === props.prop && Array.isArray(rules[key])) {
-        formRequired = rules[key].some((rule) => rule.required)
-      }
-    }
-  }
-  return props.required || (props.rules && props.rules.some((rule) => rule.required)) || formRequired
-})
+const emit = defineEmits(['change', 'cancel', 'confirm', 'update:modelValue', 'open', 'close', 'update:visible'])
 
 const pickerShow = ref<boolean>(false)
 const selectList = ref<Array<number | boolean | string> | number | boolean | string>([])
@@ -168,42 +127,6 @@ const lastSelectList = ref<Array<number | boolean | string> | number | boolean |
 const filterVal = ref<string>('')
 const filterColumns = ref<Array<Record<string, any>>>([])
 const scrollTop = ref<number>(0) // 滚动位置
-
-const showValue = computed(() => {
-  const value = valueFormat(props.modelValue)
-  let showValueTemp: string = ''
-
-  if (props.displayFormat) {
-    showValueTemp = props.displayFormat(value, props.columns)
-  } else {
-    const { type, labelKey } = props
-    if (type === 'checkbox') {
-      const selectedItems = (isArray(value) ? value : []).map((item) => {
-        return getSelectedItem(item)
-      })
-      showValueTemp = selectedItems
-        .map((item) => {
-          return item[labelKey]
-        })
-        .join(', ')
-    } else if (type === 'radio') {
-      const selectedItem = getSelectedItem(value as string | number | boolean)
-      showValueTemp = selectedItem[labelKey]
-    } else {
-      showValueTemp = value as string
-    }
-  }
-  return showValueTemp
-})
-
-const cellClass = computed(() => {
-  const classes = ['wd-select-picker__cell']
-  if (props.disabled) classes.push('is-disabled')
-  if (props.readonly) classes.push('is-readonly')
-  if (props.error) classes.push('is-error')
-  if (!showValue.value) classes.push('wd-select-picker__cell--placeholder')
-  return classes.join(' ')
-})
 
 watch(
   () => props.modelValue,
@@ -234,14 +157,11 @@ watch(
 )
 
 watch(
-  () => props.displayFormat,
-  (fn) => {
-    if (fn && !isFunction(fn)) {
-      console.error('The type of displayFormat must be Function')
-    }
+  () => props.visible,
+  (val) => {
+    pickerShow.value = val
   },
   {
-    deep: true,
     immediate: true
   }
 )
@@ -334,6 +254,7 @@ function handleChange({ value }: { value: string | number | boolean | (string | 
 
 function close() {
   pickerShow.value = false
+  emit('update:visible', false)
   // 未确定选项时，数据还原复位
   if (!isConfirm.value) {
     selectList.value = valueFormat(lastSelectList.value)
@@ -343,9 +264,9 @@ function close() {
 }
 
 function open() {
-  if (props.disabled || props.readonly) return
   selectList.value = valueFormat(props.modelValue)
   pickerShow.value = true
+  emit('update:visible', true)
   isConfirm.value = false
   emit('open')
 }
@@ -353,6 +274,7 @@ function open() {
 function onConfirm() {
   if (props.loading) {
     pickerShow.value = false
+    emit('update:visible', false)
     emit('confirm')
     emit('close')
     return
@@ -369,6 +291,7 @@ function onConfirm() {
 function handleConfirm() {
   isConfirm.value = true
   pickerShow.value = false
+  emit('update:visible', false)
   lastSelectList.value = valueFormat(selectList.value)
   let selectedItems: Record<string, any> = {}
   if (props.type === 'checkbox') {
@@ -431,26 +354,11 @@ const showConfirm = computed(() => {
   return (props.type === 'radio' && props.showConfirm) || props.type === 'checkbox'
 })
 
-// 是否展示清除按钮
-const showClear = computed(() => {
-  return props.clearable && !props.disabled && !props.readonly && showValue.value.length
-})
-
-function handleClear() {
-  emit('update:modelValue', props.type === 'checkbox' ? [] : '')
-  emit('clear')
-}
-
-// 是否展示箭头
-const showArrow = computed(() => {
-  return !props.disabled && !props.readonly && !showClear.value
-})
-
 defineExpose<SelectPickerExpose>({
   close,
   open
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

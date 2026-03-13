@@ -1,0 +1,89 @@
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
+
+$cascader-list-height: var(--wot-cascader-list-height, 336px) !default;
+$cascader-list-item-color: var(--wot-cascader-list-item-color, $text-main) !default;
+$cascader-list-item-disabled-opacity: var(--wot-cascader-list-item-disabled-opacity, $opacity-disabled) !default;
+$cascader-list-item-font-size: var(--wot-cascader-list-item-font-size, $typography-body-size-extra-large) !default;
+$cascader-list-item-line-height: var(--wot-cascader-list-item-line-height, $typography-body-line--height-size-extra-large) !default;
+$cascader-list-item-padding: var(--wot-cascader-list-item-padding, $padding-extra-loose $padding-loose) !default;
+$cascader-list-item-checked-color: var(--wot-cascader-list-item-checked-color, $primary-6) !default;
+$cascader-list-item-checked-font-weight: var(--wot-cascader-list-item-checked-font-weight, $font-weight-medium) !default;
+$cascader-list-tip-color: var(--wot-cascader-list-tip-color, $text-secondary) !default;
+$cascader-list-tip-font-size: var(--wot-cascader-list-tip-font-size, $typography-label-size-main) !default;
+$cascader-list-tip-line-height: var(--wot-cascader-list-tip-line-height, $typography-label-line--height-size-main) !default;
+$cascader-list-tip-margin-top: var(--wot-cascader-list-tip-margin-top, $spacing-ultra-tight) !default;
+$cascader-list-checked-icon-size: var(--wot-cascader-list-checked-icon-size, $n20) !default;
+$cascader-list-checked-icon-spacing: var(--wot-cascader-list-checked-icon-spacing, $spacing-tight) !default;
+
+@include b(cascader) {
+
+  // 选项列表容器
+  @include e(list) {
+    height: $cascader-list-height;
+    box-sizing: border-box;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // tab 面板容器（用于 loading 定位）
+  @include e(panel) {
+    position: relative;
+    height: $cascader-list-height;
+  }
+
+  // 异步加载遮罩
+  @include e(loading) {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+  }
+
+  // 选项行
+  @include e(list-item) {
+    display: flex;
+    align-items: center;
+    padding: $cascader-list-item-padding;
+
+    @include m(selected) {
+      color: $cascader-list-item-checked-color;
+        @include me(list-item-label) {
+        font-weight: $cascader-list-item-checked-font-weight;
+      }
+    }
+
+    @include m(disabled) {
+      opacity: $cascader-list-item-disabled-opacity;
+    }
+  }
+
+  // 选项文本容器
+  @include e(list-item-content) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // 选项标签文字
+  @include e(list-item-label) {
+    font-size: $cascader-list-item-font-size;
+    line-height: $cascader-list-item-line-height;
+  }
+
+  // 选项提示信息
+  @include e(list-item-tip) {
+    margin-top: $cascader-list-tip-margin-top;
+    font-size: $cascader-list-tip-font-size;
+    color: $cascader-list-tip-color;
+    line-height: $cascader-list-tip-line-height;
+  }
+
+  @include edeep(checked) {
+    margin-left: $cascader-list-checked-icon-spacing;
+    font-size: $cascader-list-checked-icon-size;
+    color: $cascader-list-item-checked-color;
+  }
+}

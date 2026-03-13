@@ -34,11 +34,11 @@ function handleFail() {
 
 ## 自定义尺寸
 
-通过 `width` 和 `height` 属性自定义滑动条的宽度和高度。
+通过 CSS 变量 `--wot-slide-verify-height` 自定义滑动条的高度，宽度默认为 100%。
 通过 `icon-size` 和 `success-icon-size` 属性设置对应图标大小。
 
 ```html
-<wd-slide-verify :width="250" :height="50" icon-size="60rpx" success-icon-size="30rpx" />
+<wd-slide-verify :custom-style="`--wot-slide-verify-height: 50px`" icon-size="60rpx" success-icon-size="30rpx" />
 ```
 
 ## 自定义颜色
@@ -118,8 +118,7 @@ function handleReset() {
 
 | 参数                    | 说明                                              | 类型            | 可选值 | 默认值                | 最低版本         |
 | ----------------------- | ------------------------------------------------- | --------------- | ------ | --------------------- | ---------------- |
-| width                   | 滑动条宽度(单位:px)                               | number / string | -      | 300                   | 1.14.0 |
-| height                  | 滑块高度(单位:px)                                 | number / string | -      | 40                    | 1.14.0 |
+
 | tolerance               | 容错范围(单位:px)，距离终点多少距离内视为验证通过 | number / string | -      | 10                    | 1.14.0 |
 | text                    | 提示文字                                          | string          | -      | 向右滑动验证          | 1.14.0 |
 | success-text            | 验证成功提示文字                                  | string          | -      | 验证通过              | 1.14.0 |

@@ -9,7 +9,7 @@
     <root-portal>
       <!-- #endif -->
       <!-- #endif -->
-      <view :style="configProviderStyle">
+      <view :style="configProviderStyle" class="wd-root-portal">
         <slot />
       </view>
       <!-- #ifdef MP-WEIXIN || MP-ALIPAY -->
@@ -25,7 +25,9 @@
 export default {
   name: 'wd-root-portal',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -42,7 +44,7 @@ const hooksProvider = inject<ConfigProviderProvide | typeof None>(USE_CONFIG_PRO
 const { parent: configProvider } = useParent(CONFIG_PROVIDER_KEY)
 
 const configProviderStyle = computed(() => {
-  return hooksProvider !== None ? hooksProvider.themeStyle.value || '' : configProvider?.themeStyle.value || ''
+  return hooksProvider !== None ? hooksProvider.themeStyle.value || '' : configProvider.value?.themeStyle.value || ''
 })
 </script>
 

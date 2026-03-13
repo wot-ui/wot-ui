@@ -6,6 +6,7 @@
       <scroll-view :scrollTop="scrollState.scrollTop" :scroll-y="true" class="wd-index-bar__content" @scroll="hanleScroll">
         <slot></slot>
       </scroll-view>
+      <view v-if="scrollState.touching" class="wd-index-bar__current-index">{{ state.activeIndex }}</view>
       <view
         class="wd-index-bar__sidebar"
         @touchstart.stop.prevent="handleTouchStart"
@@ -151,6 +152,6 @@ function setScrollTop(top: number) {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

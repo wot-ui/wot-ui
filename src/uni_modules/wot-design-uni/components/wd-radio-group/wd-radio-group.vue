@@ -7,7 +7,9 @@
 export default {
   name: 'wd-radio-group',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -46,6 +48,6 @@ function updateValue(value: string | number | boolean | null) {
   })
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

@@ -1,115 +1,295 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use "sass:map";
+@use '../styles/variable.scss' as *;
+@use '../styles/mixin/mixin.scss' as *;
 
-@mixin tag-type-style ($normalColor, $normalBg) {
-  background: $normalBg;
+// 背景与颜色 (Background & Color)
+$tag-color: var(--wot-tag-color, $text-white) !default;
+$tag-font-size: var(--wot-tag-font-size, $typography-label-size-main) !default;
 
-  @include when(plain) {
+// 圆角 (Radius)
+$tag-radius: var(--wot-tag-radius, $radius-small) !default;
+$tag-round-radius: var(--wot-tag-round-radius, $radius-radius-full) !default;
+$tag-mark-radius: var(--wot-tag-mark-radius, $radius-large $radius-main) !default;
+
+// 间距与其他 (Spacing & Others)
+$tag-icon-spacing: var(--wot-tag-icon-spacing, $spacing-ultra-tight) !default;
+$tag-input-width: var(--wot-tag-input-width, $n64) !default;
+
+// 2.1 主色 (Primary)
+$tag-primary-bg: var(--wot-tag-primary-color, $primary-6) !default;
+$tag-primary-light-bg: var(--wot-tag-primary-bg, $primary-1) !default;
+$tag-primary-color: var(--wot-tag-primary-color, $primary-6) !default;
+
+// 2.2 成功色 (Success)
+$tag-success-bg: var(--wot-tag-success-color, $success-main) !default;
+$tag-success-light-bg: var(--wot-tag-success-bg, $success-surface) !default;
+$tag-success-color: var(--wot-tag-success-color, $success-main) !default;
+
+// 2.3 警告色 (Warning)
+$tag-warning-bg: var(--wot-tag-warning-color, $warning-main) !default;
+$tag-warning-light-bg: var(--wot-tag-warning-bg, $warning-surface) !default;
+$tag-warning-color: var(--wot-tag-warning-color, $warning-main) !default;
+
+// 2.4 危险色 (Danger)
+$tag-danger-bg: var(--wot-tag-danger-color, $danger-main) !default;
+$tag-danger-light-bg: var(--wot-tag-danger-bg, $danger-surface) !default;
+$tag-danger-color: var(--wot-tag-danger-color, $danger-main) !default;
+
+// 2.5 橘火色 (Volcano)
+$tag-volcano-bg: var(--wot-tag-volcano-color, $volcano-6) !default;
+$tag-volcano-light-bg: var(--wot-tag-volcano-bg, $volcano-1) !default;
+$tag-volcano-color: var(--wot-tag-volcano-color, $volcano-6) !default;
+
+// 2.6 默认/信息色 (Info)
+$tag-info-bg: var(--wot-tag-info-color, $text-auxiliary) !default; 
+$tag-info-light-bg: var(--wot-tag-info-bg, $filled-content) !default;  
+$tag-info-color: var(--wot-tag-info-color, $text-secondary) !default;
+
+// 2.7 亮蓝色 (LightBlue)
+$tag-lightblue-bg: var(--wot-tag-lightblue-color, $lightblue-6) !default;
+$tag-lightblue-light-bg: var(--wot-tag-lightblue-bg, $lightblue-1) !default;
+$tag-lightblue-color: var(--wot-tag-lightblue-color, $lightblue-6) !default;
+
+// 2.8 青色 (Cyan)
+$tag-cyan-bg: var(--wot-tag-cyan-color, $cyan-6) !default;
+$tag-cyan-light-bg: var(--wot-tag-cyan-bg, $cyan-1) !default;
+$tag-cyan-color: var(--wot-tag-cyan-color, $cyan-6) !default;
+
+// 2.9 粉色 (Pink)
+$tag-pink-bg: var(--wot-tag-pink-color, $pink-6) !default;
+$tag-pink-light-bg: var(--wot-tag-pink-bg, $pink-1) !default;
+$tag-pink-color: var(--wot-tag-pink-color, $pink-6) !default;
+
+// 2.10 紫色 (Purple)
+$tag-purple-bg: var(--wot-tag-purple-color, $purple-6) !default;
+$tag-purple-light-bg: var(--wot-tag-purple-bg, $purple-1) !default;
+$tag-purple-color: var(--wot-tag-purple-color, $purple-6) !default;
+
+// 3. 尺寸变量 (Size)
+// 3.1 小尺寸 (Small)
+$tag-small-font-size: var(--wot-tag-small-font-size, $typography-label-size-small) !default;
+$tag-small-line-height: var(--wot-tag-small-line-height, $typography-label-line--height-size-small) !default;
+$tag-small-padding: var(--wot-tag-small-padding, $padding-zero $padding-super-tight) !default;
+$tag-small-round-padding: var(--wot-tag-small-round-padding, $padding-zero $padding-tight) !default;
+$tag-small-icon-size: var(--wot-tag-small-icon-size, $n10) !default;
+// 3.2 中尺寸 (Medium)
+$tag-medium-font-size: var(--wot-tag-medium-font-size, $typography-label-size-main) !default;
+$tag-medium-line-height: var(--wot-tag-medium-line-height, $typography-label-line--height-size-main) !default;
+$tag-medium-padding: var(--wot-tag-medium-padding, $n1 $padding-super-tight) !default;
+$tag-medium-round-padding: var(--wot-tag-medium-round-padding, $n1 $padding-tight) !default;
+$tag-medium-icon-size: var(--wot-tag-medium-icon-size, $n10) !default;
+// 3.3 默认尺寸 (Default)
+$tag-default-font-size: var(--wot-tag-default-font-size, $typography-label-size-main) !default;
+$tag-default-line-height: var(--wot-tag-default-line-height, $typography-label-line--height-size-main) !default;
+$tag-default-padding: var(--wot-tag-default-padding, $n3 $padding-extra-tight) !default;
+$tag-default-round-padding: var(--wot-tag-default-round-padding, $n3 $padding-loose) !default;
+$tag-default-icon-size: var(--wot-tag-default-icon-size, $n12) !default;
+// 3.4 大尺寸 (Large)
+$tag-large-font-size: var(--wot-tag-large-font-size, $typography-label-size-large) !default;
+$tag-large-line-height: var(--wot-tag-large-line-height, $typography-label-line--height-size-large) !default;
+$tag-large-padding: var(--wot-tag-large-padding, $n3 $padding-extra-tight) !default;
+$tag-large-round-padding: var(--wot-tag-large-round-padding, $n3 $padding-loose) !default;
+$tag-large-icon-size: var(--wot-tag-large-icon-size, $n12) !default;
+// 3.5 超大尺寸 (Extra Large)
+$tag-extra-large-font-size: var(--wot-tag-extra-large-font-size, $typography-body-size-main) !default;
+$tag-extra-large-line-height: var(--wot-tag-extra-large-line-height, $typography-body-line--height-size-main) !default;
+$tag-extra-large-padding: var(--wot-tag-extra-large-padding, $n3 $padding-extra-tight) !default;
+$tag-extra-large-round-padding: var(--wot-tag-extra-large-round-padding, $n3 $padding-loose) !default;
+$tag-extra-large-icon-size: var(--wot-tag-extra-large-icon-size, $n12) !default;
+
+$tag-types: (
+  "default": (
+    "color": $tag-info-color,
+    "bg": $tag-info-bg, 
+    "light-bg": $tag-info-light-bg
+  ),
+  "primary": (
+    "color": $tag-primary-color,
+    "bg": $tag-primary-bg,
+    "light-bg": $tag-primary-light-bg
+  ),
+  "success": (
+    "color": $tag-success-color,
+    "bg": $tag-success-bg,
+    "light-bg": $tag-success-light-bg
+  ),
+  "danger": (
+    "color": $tag-danger-color,
+    "bg": $tag-danger-bg,
+    "light-bg": $tag-danger-light-bg
+  ),
+  "warning": (
+    "color": $tag-warning-color,
+    "bg": $tag-warning-bg,
+    "light-bg": $tag-warning-light-bg
+  ),
+  "volcano": (
+    "color": $tag-volcano-color,
+    "bg": $tag-volcano-bg,
+    "light-bg": $tag-volcano-light-bg
+  ),
+  "lightblue": (
+    "color": $tag-lightblue-color,
+    "bg": $tag-lightblue-bg,
+    "light-bg": $tag-lightblue-light-bg
+  ),
+  "cyan": (
+    "color": $tag-cyan-color,
+    "bg": $tag-cyan-bg,
+    "light-bg": $tag-cyan-light-bg
+  ),
+  "pink": (
+    "color": $tag-pink-color,
+    "bg": $tag-pink-bg,
+    "light-bg": $tag-pink-light-bg
+  ),
+  "purple": (
+    "color": $tag-purple-color,
+    "bg": $tag-purple-bg,
+    "light-bg": $tag-purple-light-bg
+  )
+);
+
+$tag-sizes: (
+  "small": (
+    "font-size": $tag-small-font-size,
+    "line-height": $tag-small-line-height,
+    "padding": $tag-small-padding,
+    "round-padding": $tag-small-round-padding,
+    "icon-size": $tag-small-icon-size
+  ),
+  "medium": (
+    "font-size": $tag-medium-font-size,
+    "line-height": $tag-medium-line-height,
+    "padding": $tag-medium-padding,
+    "round-padding": $tag-medium-round-padding,
+    "icon-size": $tag-medium-icon-size
+  ),
+  "default": (
+    "font-size": $tag-default-font-size,
+    "line-height": $tag-default-line-height,
+    "padding": $tag-default-padding,
+    "round-padding": $tag-default-round-padding,
+    "icon-size": $tag-default-icon-size
+  ),
+  "large": (
+    "font-size": $tag-large-font-size,
+    "line-height": $tag-large-line-height,
+    "padding": $tag-large-padding,
+    "round-padding": $tag-large-round-padding,
+    "icon-size": $tag-large-icon-size
+  ),
+  "extra-large": (
+    "font-size": $tag-extra-large-font-size,
+    "line-height": $tag-extra-large-line-height,
+    "padding": $tag-extra-large-padding,
+    "round-padding": $tag-extra-large-round-padding,
+    "icon-size": $tag-extra-large-icon-size
+  )
+);
+
+@include b(tag) {
+  display: inline-flex;
+  align-items: center;
+  color: $tag-color;
+  border-radius: $tag-radius;
+
+  @include e(input) {
+    width: $tag-input-width;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    font-size: inherit;
     background: transparent;
-    color: $normalColor;
-    border: 1px solid $normalColor;
-    padding: 0 4px;
+    border: none;
+    outline: none;
+    color: inherit;
   }
-  @include when(round) {
-    line-height: 1.2;
-    font-size: $-tag-fs;
-    padding: 4px 11px;
-    background: transparent;
-    color: if($normalColor != $-tag-info-color, $normalColor, $-tag-round-color);
-    border: 1px solid if($normalColor != $-tag-info-color, $normalColor, $-tag-round-border-color);
-    border-radius: $-tag-round-radius;
-  }
-  @include when(mark) {
-    padding: 1px 6px;
-    border-radius: $-tag-mark-radius;
 
-    @include when(plain) {
-      padding: 0 6px;
+  @each $size, $conf in $tag-sizes {
+    @include when($size) {
+      font-size: map.get($conf, "font-size");
+      line-height: map.get($conf, "line-height");
+      padding: map.get($conf, "padding");
+      
+      @include when(round) {
+        padding: map.get($conf, "round-padding");
+      }
+      @include edeep(icon,add,close-icon) {
+        font-size: map.get($conf, "icon-size");
+        color: currentColor;
+      }
+
+      @include edeep(icon) {
+        margin-right: $tag-icon-spacing;
+      }
+      .wd-tag__input {
+        height: map.get($conf, "line-height");
+      }
     }
   }
-  @include when(active) {
-    color: $-tag-primary-color;
-    border-color: $-tag-primary-color;
-  }
-}
-@include b(tag) {
-  font-size: $-tag-small-fs;
-  display: inline-block;
-  color: $-tag-color;
-  padding: 0 3px;
-  border-radius: 2px;
-  transition: opacity .3s;
-  vertical-align: middle;
-  line-height: initial;
 
-  @include when(default) {
-    @include tag-type-style($-tag-info-color, $-tag-info-bg);
+  @each $type, $conf in $tag-types {
+    @include when($type) {
+      $color: map.get($conf, "color");
+      $bg: map.get($conf, "bg");
+      $light-bg: map.get($conf, "light-bg");
+
+      @include when(light) {
+        background: $light-bg;
+        color: $color;
+      }
+
+      @include when(dark) {
+        background: $bg;
+        color: $tag-color;
+      }
+
+      @include when(plain) {
+        background: transparent;
+        color: $color;
+        @include pixelBorderSurround($color,solid);
+      }
+
+      @include when(dashed) {
+        background: transparent;
+        color: $color;
+        @include pixelBorderSurround($color,dashed);
+      }
+
+      @include when(text) {
+        background: transparent;
+        color: $color;
+      }
+
+      .wd-tag__placeholder {
+        color: currentColor;
+      }
+    }
   }
-  @include when(primary) {
-    @include tag-type-style($-tag-primary-color, $-tag-primary-bg);
+
+  @include when(round) {
+    border-radius: $tag-round-radius;
   }
-  @include when(danger) {
-    @include tag-type-style($-tag-danger-color, $-tag-danger-bg);
+
+  @include when(mark) {
+    border-radius: $tag-mark-radius;
   }
-  @include when(warning) {
-    @include tag-type-style($-tag-warning-color, $-tag-warning-bg);
-  }
-  @include when(success) {
-    @include tag-type-style($-tag-success-color, $-tag-success-bg);
+
+  @include when(active) {
+    color: $tag-primary-color;
+    border-color: $tag-primary-color;
   }
   @include when(icon) {
-    font-size: $-tag-fs;
-    line-height: 1.2;
-    padding: 2px 5px;
+    font-size: $tag-font-size;
   }
-  @include when(dynamic) {
-    box-sizing: border-box;
-    width: 88px;
-    transition: .3s;
 
-    &:active {
-      color: $-tag-primary-color;
-      border-color: $-tag-primary-color;
-    }
-  }
-  @include when(dynamic-input) {
-    border-color: $-tag-primary-color;
-  }
-  @include edeep(icon) {
-    display: inline-block;
-    margin-right: 4px;
-    font-size: $-tag-fs;
-    line-height: 1.2;
-    vertical-align: baseline;
-  }
-  @include e(text) {
-    display: inline-block;
-    vertical-align: text-top;
-  }
-  @include e(add-text) {
-    width: 60px;
-    height: 14px;
-    min-height: 14px;
-    display: inline-block;
-    font-size: $-tag-fs;
-    vertical-align: middle;
-    padding: 0;
-  }
   @include e(close) {
-    display: inline-block;
-    margin-left: 24px;
-    margin-right: -4px;
-    font-size: $-tag-close-size;
-    height: 14px;
-    line-height: 1.1;
-    vertical-align: text-bottom;
-    color: $-tag-close-color;
-
-    &:active {
-      color: $-tag-close-active-color;
-    }
+    margin-left: $tag-icon-spacing;
   }
+
   @include edeep(add) {
-    vertical-align: bottom;
+    margin-right: $tag-icon-spacing;
   }
 }

@@ -21,9 +21,14 @@
         <wd-button @click="showBottomToast">{{ $t('di-bu-toast') }}</wd-button>
       </demo-block>
       <demo-block :title="$t('loading')">
-        <wd-button @click="showLoadingToast">{{ $t('loading-jia-zai') }}</wd-button>
-        <wd-button @click="showLoadingToast2">{{ $t('ring-lei-xing-loading') }}</wd-button>
-        <wd-button @click="showLoadingToast3">{{ $t('zong-xiang-bu-ju-loading') }}</wd-button>
+        <wd-button @click="showLoadingToast">circular ({{ $t('mo-ren') }})</wd-button>
+        <wd-button @click="showSpinnerLoading">spinner</wd-button>
+        <wd-button @click="showDotsLoading">dots</wd-button>
+      </demo-block>
+      <demo-block :title="$t('zong-xiang-bu-ju-loading')">
+        <wd-button @click="showVerticalCircularLoading">circular</wd-button>
+        <wd-button @click="showVerticalSpinnerLoading">spinner</wd-button>
+        <wd-button @click="showVerticalDotsLoading">dots</wd-button>
       </demo-block>
       <demo-block :title="$t('pai-ban-fang-xiang')">
         <wd-button @click="showHorizonToast">{{ $t('heng-xiang-pai-ban') }}</wd-button>
@@ -88,15 +93,16 @@ function showBottomToast() {
   })
 }
 function showLoadingToast() {
-  toast.loading(t('3s-hou-tiao-yong-close-guan-bi'))
+  toast.loading('3s后自动关闭')
   setTimeout(() => {
     toast.close()
   }, 3000)
 }
-function showLoadingToast2() {
+
+function showSpinnerLoading() {
   toast.loading({
-    msg: t('3s-hou-tiao-yong-close-guan-bi-0'),
-    loadingType: 'ring',
+    msg: '3s后自动关闭',
+    loadingType: 'spinner',
     loadingColor: '#fff'
   })
   setTimeout(() => {
@@ -104,10 +110,45 @@ function showLoadingToast2() {
   }, 3000)
 }
 
-function showLoadingToast3() {
+function showDotsLoading() {
+  toast.loading({
+    msg: '3s后自动关闭',
+    loadingType: 'dots',
+    loadingColor: '#fff'
+  })
+  setTimeout(() => {
+    toast.close()
+  }, 3000)
+}
+
+function showVerticalCircularLoading() {
   toast.loading({
     msg: '芦叶满汀洲，寒沙带浅流。二十年重过南楼。柳下系船犹未稳，能几日，又中秋。黄鹤断矶头，故人曾到否？旧江山浑是新愁。欲买桂花同载酒，终不似，少年游。',
     direction: 'vertical'
+  })
+  setTimeout(() => {
+    toast.close()
+  }, 3000)
+}
+
+function showVerticalSpinnerLoading() {
+  toast.loading({
+    msg: '芦叶满汀洲，寒沙带浅流。二十年重过南楼。柳下系船犹未稳，能几日，又中秋。黄鹤断矶头，故人曾到否？旧江山浑是新愁。欲买桂花同载酒，终不似，少年游。',
+    direction: 'vertical',
+    loadingType: 'spinner',
+    loadingColor: '#fff'
+  })
+  setTimeout(() => {
+    toast.close()
+  }, 3000)
+}
+
+function showVerticalDotsLoading() {
+  toast.loading({
+    msg: '芦叶满汀洲，寒沙带浅流。二十年重过南楼。柳下系船犹未稳，能几日，又中秋。黄鹤断矶头，故人曾到否？旧江山浑是新愁。欲买桂花同载酒，终不似，少年游。',
+    direction: 'vertical',
+    loadingType: 'dots',
+    loadingColor: '#fff'
   })
   setTimeout(() => {
     toast.close()

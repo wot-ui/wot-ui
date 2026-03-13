@@ -658,12 +658,11 @@ export function debounce<T extends (...args: any[]) => any>(func: T, wait: numbe
   return debounced as T
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function throttle(func: Function, wait: number): Function {
+export function throttle<T extends (...args: any[]) => any>(func: T, wait: number): T {
   let timeout: ReturnType<typeof setTimeout> | null = null
   let previous: number = 0
 
-  const throttled = function (this: any, ...args: any[]) {
+  function throttled(this: any, ...args: Parameters<T>) {
     const now = Date.now()
     const remaining = wait - (now - previous)
 
@@ -683,7 +682,7 @@ export function throttle(func: Function, wait: number): Function {
     }
   }
 
-  return throttled
+  return throttled as T
 }
 
 /**

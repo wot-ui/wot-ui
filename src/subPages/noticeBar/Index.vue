@@ -4,7 +4,7 @@
       <demo-block :title="$t('jiBenYongFa')">
         <wd-notice-bar
           :text="$t('zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi')"
-          prefix="warn-bold"
+          prefix="exclamation-circle-fill"
         />
       </demo-block>
 
@@ -16,7 +16,7 @@
               'dang-qian-wang-luo-bu-ke-yong-qing-jian-cha-ni-de-wang-luo-she-zhi-dang-qian-wang-luo-bu-ke-yong-qing-jian-cha-ni-de-wang-luo-she-zhi'
             )
           "
-          prefix="wifi-error"
+          prefix="close-circle-fill"
           custom-class="space"
         />
         <wd-notice-bar
@@ -26,18 +26,18 @@
               'dian-ji-cha-kan-xin-xi-xiang-qing-dian-ji-cha-kan-xin-xi-xiang-qing-dian-ji-cha-kan-xin-xi-xiang-qing-dian-ji-cha-kan-xin-xi-xiang-qing-dian-ji-cha-kan-xin-xi-xiang-qing'
             )
           "
-          prefix="check-outline"
+          prefix="info-circle-fill"
         />
       </demo-block>
 
       <demo-block :title="$t('jin-zhi-gun-dong')">
-        <wd-notice-bar :scrollable="false" :text="$t('yu-mai-gui-hua-tong-zai-jiu-zhong-bu-si-shao-nian-you')" prefix="warn-bold"></wd-notice-bar>
+        <wd-notice-bar :scrollable="false" :text="$t('yu-mai-gui-hua-tong-zai-jiu-zhong-bu-si-shao-nian-you')" prefix="stop"></wd-notice-bar>
       </demo-block>
 
       <demo-block :title="$t('cha-cao')">
         <wd-notice-bar :scrollable="false">
           <template #prefix>
-            <wd-icon custom-class="prefix" name="warn-bold">{{ $t('zhan-wei-fu') }}</wd-icon>
+            <wd-icon custom-class="prefix" name="stop">{{ $t('zhan-wei-fu') }}</wd-icon>
           </template>
           {{ $t('tong-zhi-bei-jin-huo-shi-duan-nei-xiao-xi-ping-bi-ke-neng-zao-cheng-xiao') }}
           <template #suffix>
@@ -50,7 +50,7 @@
         <wd-notice-bar
           :text="$t('zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-0')"
           closable
-          prefix="warn-bold"
+          prefix="sound"
         />
       </demo-block>
 
@@ -69,21 +69,21 @@
       <demo-block :title="$t('zi-ding-yi-yan-se-0')">
         <wd-notice-bar
           :text="$t('zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-1')"
-          prefix="check-outline"
+          prefix="robot"
           color="#34D19D"
           background-color="#f0f9eb"
         ></wd-notice-bar>
       </demo-block>
 
       <demo-block :title="$t('duo-wen-ben-lun-bo')">
-        <wd-notice-bar @click="handleClick" :text="textArray" prefix="check-outline" @next="onNext" />
+        <wd-notice-bar @click="handleClick" :text="textArray" prefix="thunderbolt" @next="onNext" />
       </demo-block>
 
       <demo-block :title="$t('chui-zhi-gun-dong')">
-        <wd-notice-bar @click="handleClick" prefix="warn-bold" direction="vertical" :text="textArray" :delay="3" custom-class="space" />
+        <wd-notice-bar @click="handleClick" prefix="experiment" direction="vertical" :text="textArray" :delay="3" custom-class="space" />
         <wd-notice-bar
           @click="handleClick"
-          prefix="warn-bold"
+          prefix="experiment"
           direction="vertical"
           :text="$t('zhi-you-yi-tiao-xiao-xi-bu-hui-gun-dong')"
           :delay="3"
@@ -92,7 +92,7 @@
       </demo-block>
 
       <demo-block :title="$t('zhong-zhi-bo-fang-dong-hua')">
-        <wd-notice-bar ref="notice" prefix="warn-bold" direction="vertical" :text="textArray" :delay="3" custom-class="space" />
+        <wd-notice-bar ref="notice" prefix="wifi" direction="vertical" :text="textArray" :delay="3" custom-class="space" />
 
         <wd-button @click="handleReset">{{ $t('zhong-zhi-bo-fang-dong-hua-0') }}</wd-button>
       </demo-block>
@@ -110,16 +110,7 @@ function handleReset() {
   notice.value?.reset()
 }
 
-const textArray = ref([
-  t('huan-ying-shi-yong-wot-design-uni'),
-  t('gai-zu-jian-ku-ji-yu-uniapp-vue3-ts-gou-jian'),
-  t('xiang-mu-di-zhi-httpsgithubcommoonofweishengwotdesignuni'),
-  t('wo-men-de-mu-biao-shi-da-zao-zui-qiang-uniapp-zu-jian-ku'),
-  t('cheng-zhi-yao-qing-da-jia-gong-tong-jian-she'),
-  t(
-    'zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi'
-  )
-])
+const textArray = ref(['芦叶满汀洲', '寒沙带浅流', '二十年重过南楼', '柳下系船犹未稳', '能几日', '又中秋'])
 
 const onNext = (index: number) => {
   console.log('展示下一条，index: ', index)
@@ -132,10 +123,8 @@ function handleClick(result: { text: string; index: number }) {
 </script>
 <style lang="scss" scoped>
 :deep(.prefix) {
-  font-size: 18px;
-  padding-right: 4px;
-  width: 18px;
-  height: 18px;
+  font-size: 20px;
+  margin-right: 8px;
 }
 
 :deep(.space) {

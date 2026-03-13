@@ -30,7 +30,9 @@ export default {
   name: 'wd-checkbox',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -51,19 +53,19 @@ defineExpose<CheckboxExpose>({
   toggle
 })
 
-const { parent: checkboxGroup, index } = useParent(CHECKBOX_GROUP_KEY)
+const { parent: checkboxGroup } = useParent(CHECKBOX_GROUP_KEY)
 const { proxy } = getCurrentInstance() as any
 
 const isChecked = computed(() => {
-  if (checkboxGroup) {
-    return checkboxGroup.props.modelValue.indexOf(props.name) > -1
+  if (checkboxGroup.value) {
+    return checkboxGroup.value.props.modelValue.indexOf(props.name) > -1
   } else {
     return props.modelValue === props.trueValue
   }
 })
 
 const typeValue = computed(() => {
-  return props.type || getPropByPath(checkboxGroup, 'props.type') || 'circle'
+  return props.type || getPropByPath(checkboxGroup.value, 'props.type') || 'circle'
 })
 
 const isButton = computed(() => {
@@ -87,26 +89,26 @@ const iconValue = computed(() => {
       icon = isChecked.value ? 'check-circle-radio-fill' : 'uncheck-circle'
       break
     case 'button':
-      icon = isChecked.value ? 'selector-check' : ''
+      icon = isChecked.value ? 'check' : ''
       break
   }
   return icon
 })
 
 const checkedColorValue = computed(() => {
-  return props.checkedColor || getPropByPath(checkboxGroup, 'props.checkedColor')
+  return props.checkedColor || getPropByPath(checkboxGroup.value, 'props.checkedColor')
 })
 
 const uncheckedColorValue = computed(() => {
-  return props.uncheckedColor || getPropByPath(checkboxGroup, 'props.uncheckedColor')
+  return props.uncheckedColor || getPropByPath(checkboxGroup.value, 'props.uncheckedColor')
 })
 
 const disabledValue = computed(() => {
   if (isDef(props.disabled)) {
     return props.disabled
   }
-  if (checkboxGroup) {
-    const { max, min, modelValue, disabled } = checkboxGroup.props
+  if (checkboxGroup.value) {
+    const { max, min, modelValue, disabled } = checkboxGroup.value.props
     if ((max && modelValue.length >= max && !isChecked.value) || (min && modelValue.length <= min && isChecked.value) || disabled) {
       return true
     }
@@ -118,7 +120,7 @@ const readonlyValue = computed(() => {
   if (isDef(props.readonly)) {
     return props.readonly
   } else {
-    return getPropByPath(checkboxGroup, 'props.readonly')
+    return getPropByPath(checkboxGroup.value, 'props.readonly')
   }
 })
 
@@ -126,7 +128,7 @@ const directionValue = computed(() => {
   if (isDef(props.direction)) {
     return props.direction
   } else {
-    return getPropByPath(checkboxGroup, 'props.direction') as CheckboxDirection
+    return getPropByPath(checkboxGroup.value, 'props.direction') as CheckboxDirection
   }
 })
 
@@ -134,7 +136,7 @@ const placementValue = computed<CheckboxPlacement>(() => {
   if (isDef(props.placement)) {
     return props.placement
   } else {
-    return getPropByPath(checkboxGroup, 'props.placement')
+    return getPropByPath(checkboxGroup.value, 'props.placement')
   }
 })
 
@@ -153,7 +155,7 @@ watch(
   () => props.name,
   () => {
     // 组合使用走这个逻辑
-    if (checkboxGroup) {
+    if (checkboxGroup.value) {
       checkName()
     }
   }
@@ -169,8 +171,8 @@ watch(
 
 onBeforeMount(() => {
   // eslint-disable-next-line quotes
-  if (props.modelValue === null && !checkboxGroup) console.warn("checkbox's value must be set")
-  if (checkboxGroup && !props.name) {
+  if (props.modelValue === null && !checkboxGroup.value) console.warn("checkbox's value must be set")
+  if (checkboxGroup.value && !props.name) {
     // eslint-disable-next-line quotes
     console.warn("checkbox's name must be set when used in checkbox-group")
   }
@@ -182,9 +184,9 @@ onBeforeMount(() => {
  * @param  myName 自己的标识符
  */
 function checkName() {
-  checkboxGroup &&
-    checkboxGroup.children &&
-    checkboxGroup.children.forEach((child: any) => {
+  checkboxGroup.value &&
+    checkboxGroup.value.children &&
+    checkboxGroup.value.children.forEach((child: any) => {
       if (child.$.uid !== proxy.$.uid && child.name === props.name) {
         console.error(`The checkbox's bound value: ${props.name} has been used`)
       }
@@ -197,8 +199,8 @@ function checkName() {
 function toggle() {
   if (disabledValue.value || readonlyValue.value) return
   // 复选框单独使用时点击反选，并且在checkbox上触发change事件
-  if (checkboxGroup) {
-    checkboxGroup.changeSelectState(props.name)
+  if (checkboxGroup.value) {
+    checkboxGroup.value.changeSelectState(props.name)
   } else {
     const newVal = props.modelValue === props.trueValue ? props.falseValue : props.trueValue
     emit('update:modelValue', newVal)
@@ -209,6 +211,6 @@ function toggle() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use './index.scss';
 </style>

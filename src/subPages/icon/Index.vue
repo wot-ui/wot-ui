@@ -1,20 +1,24 @@
 <template>
-  <view>
+  <view class="icon-page">
     <page-wraper>
-      <view class="icon">
-        <view style="position: sticky; top: 0; z-index: 2">
-          <wd-search hide-cancel :placeholder="$t('cha-zhao-tu-biao')" light v-model="keyword" @search="handleSearch" @clear="handleClear" />
-        </view>
-        <view v-for="(cat, category) in showCategorized" :key="category">
-          <view class="icon-category-title">{{ cat.title }}</view>
-          <view class="icon-list">
-            <view v-for="(icon, index) in cat.list" :key="index" class="icon-item" @click="handleClick(icon)">
-              <view><wd-icon :name="icon" size="22px" custom-class="icon-item-class" /></view>
-              <view class="icon-item-name">{{ icon }}</view>
+      <view class="icon-page__container">
+        <!-- 图标列表 -->
+        <view class="icon-page__content">
+          <view v-for="(cat, category) in showCategorized" :key="category" class="icon-page__category">
+            <view class="icon-page__category-title">{{ cat.title }}</view>
+            <view class="icon-page__list">
+              <view v-for="(icon, index) in cat.list" :key="index" class="icon-page__item" @click="handleClick(icon)">
+                <view class="icon-page__item-icon-wrapper">
+                  <wd-icon :name="icon" size="24px" custom-class="icon-page__item-icon" />
+                </view>
+                <view class="icon-page__item-name">{{ icon }}</view>
+              </view>
             </view>
           </view>
+
+          <!-- 空状态 -->
+          <wd-status-tip v-if="isEmpty" image="search" :tip="$t('dang-qian-wu-xiang-guan-tu-biao')" custom-class="icon-page__empty" />
         </view>
-        <wd-status-tip v-if="isEmpty" image="search" :tip="$t('dang-qian-wu-xiang-guan-tu-biao')" />
       </view>
     </page-wraper>
   </view>
@@ -23,11 +27,17 @@
 import { onMounted, ref, computed } from 'vue'
 import { useNotify } from '@/uni_modules/wot-design-uni'
 import { useI18n } from 'vue-i18n'
-const { showNotify } = useNotify()
 
+const { showNotify } = useNotify()
 const { t } = useI18n()
+
+/** 搜索关键词 */
 const keyword = ref<string>('')
 
+/**
+ * 分类图标数据
+ * 包含方向、编辑、通用、交互、媒体、提示等多个类别
+ */
 const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>({
   direction: {
     title: '方向类图标',
@@ -42,6 +52,7 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
       'caret-left',
       'caret-right',
       'caret-up',
+      'del',
       'double-down',
       'double-left',
       'double-right',
@@ -54,11 +65,14 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
       'left-circle',
       'menu-fold',
       'menu-unfold',
+      'multiple-horizontal',
       'right',
       'right-circle',
       'rotate-left',
       'rotate-right',
       'shrink',
+      'sort-fill',
+      'sort-fill-1',
       'swap',
       'to-bottom',
       'to-left',
@@ -84,6 +98,7 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
       'edit',
       'eraser',
       'filter',
+      'filter-fill',
       'find-replace',
       'font-colors',
       'formula',
@@ -131,9 +146,11 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
       'bulb',
       'calendar-line',
       'camera',
+      'camera-fill',
       'cloud',
       'command',
       'common',
+      'company',
       'compass',
       'copyright',
       'dashboard',
@@ -161,7 +178,9 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
       'idcard',
       'image',
       'image-close',
+      'image-failloading',
       'interaction',
+      'keyboard',
       'language',
       'layout',
       'loading',
@@ -179,6 +198,7 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
       'notification',
       'notification-close',
       'old-version',
+      'organization',
       'pen',
       'pen-fill',
       'phone',
@@ -309,12 +329,14 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
       'check-circle',
       'check-circle-fill',
       'check-circle-radio-fill',
+      'check-half-square-fill',
       'check-square',
       'check-square-fill',
       'clock-circle',
       'close',
       'close-circle',
       'close-circle-fill',
+      'division',
       'exclamation',
       'exclamation-circle',
       'exclamation-circle-fill',
@@ -325,9 +347,14 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
       'minus',
       'minus-circle',
       'minus-circle-fill',
+      'minus-square',
+      'minus-square-3px',
+      'page-fill',
       'plus',
       'plus-circle',
       'plus-circle-fill',
+      'plus-square',
+      'plus-square-3px',
       'question',
       'question-circle',
       'question-circle-fill',
@@ -339,12 +366,18 @@ const categorizedIcons = ref<Record<string, { title: string; list: string[] }>>(
 })
 
 const showCategorized = ref<Record<string, { title: string; list: string[] }>>({})
+
+/** 判断是否为空状态 */
 const isEmpty = computed(() => Object.values(showCategorized.value).every((v) => !v.list.length))
 
+/** 页面挂载时初始化图标列表 */
 onMounted(() => {
   showCategorized.value = categorizedIcons.value
 })
 
+/**
+ * 处理搜索事件，根据关键词过滤图标
+ */
 function handleSearch() {
   const key = keyword.value
   if (!key) {
@@ -360,77 +393,181 @@ function handleSearch() {
   showCategorized.value = result
 }
 
+/**
+ * 处理清空搜索，恢复全部图标
+ */
 function handleClear() {
   keyword.value = ''
   showCategorized.value = categorizedIcons.value
 }
 
+/**
+ * 处理图标点击事件，复制图标代码到剪贴板
+ * @param {string} icon - 被点击的图标名称
+ */
 function handleClick(icon: string) {
   // #ifdef H5
   uni.setClipboardData({
-    data: `<wd-icon name="${icon}" size="22px"></wd-icon>`,
+    data: `<wd-icon name="${icon}" size="24px"></wd-icon>`,
     showToast: false,
     success: () => {
       showNotify({
         type: 'success',
         duration: 1500,
-        message: t('fu-zhi-cheng-gong') + `<wd-icon name="${icon}" size="22px"></wd-icon>`
+        message: t('fu-zhi-cheng-gong') + ` <wd-icon name="${icon}" size="24px"></wd-icon>`
       })
     }
   })
-
   // #endif
 }
 </script>
 <style lang="scss" scoped>
-$-light-color: #999;
+// 组件级 CSS 变量定义
+$icon-page-bg: var(--wot-icon-page-bg, $filled-oppo) !default;
+$icon-content-bg: var(--wot-icon-content-bg, $filled-oppo) !default;
+$icon-category-title-color: var(--wot-icon-category-title-color, $text-secondary) !default;
+$icon-item-color: var(--wot-icon-item-color, $text-secondary) !default;
+$icon-item-bg-hover: var(--wot-icon-item-bg-hover, $filled-bottom) !default;
+$icon-list-gap: var(--wot-icon-list-gap, $spacing-tight) !default;
 
-.wot-theme-dark {
-  .icon-list {
-    background: $-dark-background2;
-    :deep(.icon-item-class) {
-      color: $-dark-color;
-    }
-  }
-  .icon-item-name {
-    color: $-dark-color3;
-  }
+.icon-page {
+  background-color: $icon-page-bg;
+  width: 100vw;
 }
 
-.icon {
-  position: relative;
-  height: 100vh;
-  overflow: auto;
-  height: calc(100vh - var(--window-top));
-  height: calc(100vh - var(--window-top) - constant(safe-area-inset-bottom));
-  height: calc(100vh - var(--window-top) - env(safe-area-inset-bottom));
-}
-
-.icon-list {
-  box-sizing: border-box;
+.icon-page__container {
   display: flex;
-  padding: 15px;
-  flex-wrap: wrap;
-  background: #fff;
+  flex-direction: column;
+  min-height: calc(100vh - var(--window-top));
+  min-height: calc(100vh - var(--window-top) - constant(safe-area-inset-bottom));
+  min-height: calc(100vh - var(--window-top) - env(safe-area-inset-bottom));
+  background-color: $icon-page-bg;
 }
-.icon-category-title {
-  padding: 10px 15px 0 15px;
-  font-size: 14px;
-  color: $-light-color;
-  background: #fff;
+
+// .icon-page__search {
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+//   padding: $padding-main;
+//   background-color: $icon-content-bg;
+//   box-shadow: 0 $n1 $n4 rgba(0, 0, 0, 0.06);
+
+//   :deep(.icon-page__search-input) {
+//     width: 100%;
+//   }
+// }
+
+.icon-page__content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-.icon-item {
-  width: 25%;
-  padding: 15px 0;
+
+.icon-page__category {
+  background-color: $icon-content-bg;
+  margin-bottom: $spacing-ultra-tight;
+}
+
+.icon-page__category-title {
+  padding: $padding-loose $padding-extra-loose;
+  font-size: $typography-label-size-main;
+  line-height: $typography-label-line--height-size-main;
+  font-weight: $font-weight-medium;
+  color: $icon-category-title-color;
+  background-color: $filled-bottom;
+  letter-spacing: 0.5px;
+}
+
+.icon-page__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $icon-list-gap;
+  padding: $padding-loose;
+  background-color: $icon-content-bg;
+}
+
+.icon-page__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $padding-main;
+  border-radius: $radius-main;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:active {
+    background-color: $icon-item-bg-hover;
+    transform: scale(0.95);
+  }
+}
+
+.icon-page__item-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $n48;
+  height: $n48;
+  margin-bottom: $padding-main;
+  border-radius: $radius-large;
+  background-color: $filled-bottom;
+  transition: all 0.2s ease;
+
+  .icon-page__item:active & {
+    background-color: $border-main;
+  }
+}
+
+:deep(.icon-page__item-icon) {
+  color: $icon-main;
+  transition: color 0.2s ease;
+}
+
+.icon-page__item-name {
+  font-size: $typography-label-size-small;
+  color: $icon-item-color;
   text-align: center;
+  word-break: break-word;
+  transition: color 0.2s ease;
+  max-width: $n88;
+  line-height: $typography-label-line--height-size-small;
 }
 
-:deep(.icon-item-class) {
-  color: $-light-color;
+.icon-page__empty {
+  padding: $padding-ultra-loose $padding-main;
 }
 
-.icon-item-name {
-  margin: 10px 0;
-  color: $-light-color;
+// 暗黑模式支持
+.icon-page--dark {
+  background-color: $filled-extra-strong;
+
+  .icon-page__search {
+    background-color: $filled-strong;
+    box-shadow: 0 $n1 $n4 rgba(255, 255, 255, 0.1);
+  }
+
+  .icon-page__category {
+    background-color: $filled-strong;
+  }
+
+  .icon-page__category-title {
+    background-color: $filled-extra-strong;
+    color: $text-secondary;
+  }
+
+  .icon-page__list {
+    background-color: $filled-strong;
+  }
+
+  .icon-page__item-icon-wrapper {
+    background-color: $filled-extra-strong;
+  }
+
+  :deep(.icon-page__item-icon) {
+    color: $text-secondary;
+  }
+
+  .icon-page__item-name {
+    color: $text-auxiliary;
+  }
 }
 </style>

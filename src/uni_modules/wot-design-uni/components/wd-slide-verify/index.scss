@@ -1,5 +1,38 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
+
+// 组件高度
+$slide-verify-height: var(--wot-slide-verify-height, $n40) !default;
+// 组件宽度
+$slide-verify-width: var(--wot-slide-verify-width, 100%) !default;
+// 组件背景色
+$slide-verify-bg: var(--wot-slide-verify-bg, $filled-bottom) !default;
+// 圆角
+$slide-verify-radius: var(--wot-slide-verify-radius, $radius-large) !default;
+// 成功态track背景色
+$slide-verify-track-bg: var(--wot-slide-verify-track-bg, $success-main) !default;
+// 禁用态透明度
+$slide-verify-disabled-opacity: var(--wot-slide-verify-disabled-opacity, $opacity-disabled) !default;
+// 提示文字颜色
+$slide-verify-text-color: var(--wot-slide-verify-text-color, $text-main) !default;
+// 提示文字大小
+$slide-verify-text-size: var(--wot-slide-verify-text-size, $typography-label-size-main) !default;
+// 提示文字行高
+$slide-verify-text-line-height: var(--wot-slide-verify-text-line-height, $typography-label-line--height-size-main) !default;
+// 成功态文字颜色
+$slide-verify-success-text-color: var(--wot-slide-verify-success-text-color, $text-white) !default;
+// 滑块背景色
+$slide-verify-button-bg: var(--wot-slide-verify-button-bg, $filled-oppo) !default;
+// 滑块阴影色
+$slide-verify-button-shadow: var(--wot-slide-verify-button-shadow, $n0 $n2 $n8 $opac-4_15) !default;
+// 滑块图标颜色
+$slide-verify-button-color: var(--wot-slide-verify-button-color, $icon-secondary) !default;
+// 滑块图标成功态颜色
+$slide-verify-button-success-color: var(--wot-slide-verify-button-success-color, $success-main) !default;
+// 滑块尺寸
+$slide-verify-button-size: var(--wot-slide-verify-button-size, $slide-verify-height) !default;
+// 滑块图标尺寸
+$slide-verify-success-icon-size: var(--wot-slide-verify-success-icon-size, $n20) !default;
 
 @include b(slide-verify) {
   position: relative;
@@ -8,23 +41,20 @@
   justify-content: center;
   overflow: hidden;
   user-select: none;
+  width: $slide-verify-width;
+  height: $slide-verify-height;
+  background: $slide-verify-bg;
+  border-radius: $slide-verify-radius;
 
   @include when(disabled) {
     cursor: not-allowed;
-
-    & {
-      opacity: 0.8;
-
-      @include e(button) {
-        color: $-slide-verify-disabled-color;
-        cursor: not-allowed;
-      }
-    }
+    opacity: $slide-verify-disabled-opacity;
   }
 
   @include e(text-inner) {
-    color: $-slide-verify-text-color;
-    font-size: $-slide-verify-text-size;
+    color: $slide-verify-text-color;
+    font-size: $slide-verify-text-size;
+    line-height: $slide-verify-text-line-height;
     transition: color 0.3s ease;
   }
 
@@ -34,49 +64,46 @@
     top: 0;
     width: 0;
     height: 100%;
-    transition: background 0.2s ease;
+    background: $slide-verify-track-bg;
+    border-radius: $slide-verify-radius;
     overflow: hidden;
   }
 
   @include e(track-text) {
     position: absolute;
+    color: $slide-verify-success-text-color;
     left: 0;
     height: 100%;
-    min-width: $-slide-verify-track-width;
+    min-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     user-select: none;
     pointer-events: none;
-
-    @include m(success) {
-      color: $-slide-verify-success-text-color;
-    }
+    word-break: keep-all;
   }
 
   @include e(button) {
     position: absolute;
-    left: 0;
+    right: 0;
     top: 0;
+    width: $slide-verify-button-size;
+    height: $slide-verify-button-size;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $-slide-verify-button-bg;
-    box-shadow: 0 2px 8px $-slide-verify-button-shadow;
-    color: $-slide-verify-button-color;
+    background: $slide-verify-button-bg;
+    box-shadow: $slide-verify-button-shadow;
+    color: $slide-verify-button-color;
+    border-radius: $slide-verify-radius;
     cursor: grab;
-    will-change: transform;
   }
 
   // 按钮图标
-  @include e(button-icon) {
+  @include edeep(button-icon) {
+    font-size: $slide-verify-success-icon-size;
     @include m(success) {
-      width: calc($-slide-verify-button-size * 0.5);
-      height: calc($-slide-verify-button-size * 0.5);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      color: $slide-verify-button-success-color;
     }
   }
 }

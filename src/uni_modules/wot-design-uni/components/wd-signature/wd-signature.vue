@@ -44,15 +44,17 @@
         :history-list="lines"
       >
         <block v-if="enableHistory">
-          <wd-button size="small" plain @click="revoke" :disabled="lines.length <= 0">
+          <wd-button custom-class="wd-signature__button" size="small" plain @click="revoke" :disabled="lines.length <= 0">
             {{ revokeText || translate('revokeText') }}
           </wd-button>
-          <wd-button size="small" plain @click="restore" :disabled="redoLines.length <= 0">
+          <wd-button custom-class="wd-signature__button" size="small" plain @click="restore" :disabled="redoLines.length <= 0">
             {{ restoreText || translate('restoreText') }}
           </wd-button>
         </block>
-        <wd-button size="small" plain @click="clear">{{ clearText || translate('clearText') }}</wd-button>
-        <wd-button size="small" @click="confirmSignature">{{ confirmText || translate('confirmText') }}</wd-button>
+        <wd-button custom-class="wd-signature__button" size="small" plain @click="clear">{{ clearText || translate('clearText') }}</wd-button>
+        <wd-button custom-class="wd-signature__button" size="small" @click="confirmSignature">
+          {{ confirmText || translate('confirmText') }}
+        </wd-button>
       </slot>
     </view>
   </view>
@@ -62,7 +64,9 @@ export default {
   name: 'wd-signature',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -81,19 +85,20 @@ const emit = defineEmits(['start', 'end', 'signing', 'confirm', 'clear'])
 const { translate } = useTranslate('signature')
 const { proxy } = getCurrentInstance() as any
 const canvasId = ref<string>(`signature${uuid()}`) // canvas 组件的唯一标识符
-let canvas: null = null //canvas对象 微信小程序生成图片必须传入
+let canvas: any = null // canvas 对象，微信小程序生成图片必须传入
 const drawing = ref<boolean>(false) // 是否正在绘制
 const pixelRatio = ref<number>(1) // 像素比
 
 const canvasState = reactive({
   canvasWidth: 0,
   canvasHeight: 0,
-  ctx: null as UniApp.CanvasContext | null // canvas上下文
+  ctx: null as UniApp.CanvasContext | null // canvas 上下文
 })
 
 /**
  * 判断颜色是否为透明色
- * @param color 颜色值（支持 rgba/hsla/hex/transparent）
+ * @param {string} color 颜色值（支持 rgba/hsla/hex/transparent）
+ * @returns {boolean} 是否为透明
  */
 function isTransparentColor(color: string | undefined): boolean {
   if (!color) return true
@@ -165,7 +170,11 @@ const redoLines = ref<Line[]>([]) // 保存撤销的线条
 const currentLine = ref<Line>() // 当前正在绘制的线
 const currentStep = ref(0) // 当前步骤
 
-// 添加计算笔画宽度的方法
+/**
+ * 计算笔画宽度 (压感模式)
+ * @param {number} speed 当前绘制速度
+ * @returns {number} 转换后的笔触宽度
+ */
 function calculateLineWidth(speed: number): number {
   if (!props.pressure) return props.lineWidth
 
@@ -176,7 +185,9 @@ function calculateLineWidth(speed: number): number {
   return Math.min(lineWidth, props.maxWidth)
 }
 
-/* 获取默认笔画宽度 */
+/**
+ * 获取默认笔画宽度
+ */
 const getDefaultLineWidth = () => {
   if (props.pressure) {
     // 在压感模式下，使用最大和最小宽度的平均值作为默认值
@@ -185,7 +196,10 @@ const getDefaultLineWidth = () => {
   return props.lineWidth
 }
 
-/* 开始画线 */
+/**
+ * 触摸开始绘制
+ * @param event 触摸事件
+ */
 const startDrawing = (e: any) => {
   e.preventDefault()
   drawing.value = true
@@ -199,7 +213,7 @@ const startDrawing = (e: any) => {
       {
         x,
         y,
-        t: Date.now() // 使用 t 替换 width
+        t: Date.now() // 使用 t 记录时间戳，用于速度计算
       }
     ],
     color: props.penColor,
@@ -213,7 +227,10 @@ const startDrawing = (e: any) => {
   draw(e)
 }
 
-/* 结束画线 */
+/**
+ * 结束绘制
+ * @param {TouchEvent} e 触摸事件
+ */
 const stopDrawing = (e: TouchEvent) => {
   e.preventDefault()
   drawing.value = false
@@ -261,7 +278,9 @@ const initCanvas = (forceUpdate: boolean = false) => {
   })
 }
 
-// 清空 canvas
+/**
+ * 清除画布内容，清空历史记录
+ */
 const clear = () => {
   lines.value = []
   redoLines.value = []
@@ -270,7 +289,9 @@ const clear = () => {
   emit('clear')
 }
 
-// 确认签名
+/**
+ * 确认签名并导出图片
+ */
 const confirmSignature = () => {
   canvasToImage()
 }
@@ -335,7 +356,9 @@ const draw = (e: any) => {
   emit('signing', e)
 }
 
-/* 重绘整个画布 */
+/**
+ * 重绘整个画布 (用于撤销/恢复或修改背景色时)
+ */
 const redrawCanvas = () => {
   const { ctx } = canvasState
   if (!ctx) return
@@ -354,7 +377,7 @@ const redrawCanvas = () => {
     return
   }
 
-  // 收集所有绘制操作，最后一次性 draw
+  // 递归重绘所有存储的线条
   lines.value.forEach((line) => {
     if (!line.points.length) return
 
@@ -421,7 +444,9 @@ const redrawCanvas = () => {
   ctx.draw()
 }
 
-// 修改撤销功能
+/**
+ * 撤销上一笔记录
+ */
 const revoke = () => {
   if (!lines.value.length) return
   const step = Math.min(props.step, lines.value.length)
@@ -431,7 +456,9 @@ const revoke = () => {
   redrawCanvas()
 }
 
-// 修改恢复功能
+/**
+ * 恢复上一笔记录
+ */
 const restore = () => {
   if (!redoLines.value.length) return
   const step = Math.min(props.step, redoLines.value.length)
@@ -441,7 +468,11 @@ const restore = () => {
   redrawCanvas()
 }
 
-// 添加平滑线条绘制方法
+/**
+ * 绘制平滑线条 (贝塞尔曲线)
+ * @param {Point} prePoint 前一个点
+ * @param {Point} point 当前点
+ */
 function drawSmoothLine(prePoint: Point, point: Point) {
   const { ctx } = canvasState
   if (!ctx) return
@@ -605,6 +636,9 @@ function canvasToImage() {
   )
 }
 
+/**
+ * 清空画布
+ */
 function clearCanvas() {
   const { canvasWidth, canvasHeight, ctx } = canvasState
   if (ctx) {
@@ -625,6 +659,6 @@ defineExpose<SignatureExpose>({
   revoke
 })
 </script>
-<style scoped lang="scss">
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

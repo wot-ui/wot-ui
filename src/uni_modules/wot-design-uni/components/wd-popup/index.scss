@@ -1,40 +1,23 @@
-@import './../common/abstracts/_mixin.scss';
-@import './../common/abstracts/variable.scss';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(popup-wrapper) {
-    :deep() {
-      .wd-popup {
-        background: $-dark-background2;
-      }
-
-      .wd-popup__close {
-        color: $-dark-color;
-      }
-    }
-  }
-}
-
-@include b(popup-wrapper) {
-  :deep() {
-    .wd-popup {
-      position: fixed;
-      max-height: 100%;
-      overflow-y: auto;
-      background: #fff;
-    }
-  }
-}
-
+$popup-bg: var(--wot-popup-bg, $filled-oppo);
+$popup-close-color: var(--wot-popup-close-color, $icon-auxiliary);
+$popup-close-size: var(--wot-popup-close-size, $n24);
+$popup-close-margin: var(--wot-popup-close-margin, $spacing-loose);
 
 @include b(popup) {
+  position: fixed;
+  max-height: 100%;
+  overflow-y: auto;
+  background: $popup-bg;
+
   @include edeep(close) {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    color: $-popup-close-color;
-    font-size: $-popup-close-size;
-    transform: rotate(-45deg);
+    top: $popup-close-margin;
+    right: $popup-close-margin;
+    color: $popup-close-color;
+    font-size: $popup-close-size;
   }
 
   @include mdeep(center) {

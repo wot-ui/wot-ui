@@ -1,16 +1,8 @@
-<!--
- * @Author: weisheng
- * @Date: 2023-06-12 10:04:19
- * @LastEditTime: 2025-11-08 15:19:55
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-status-tip/wd-status-tip.vue
- * 记得注释
--->
 <template>
   <view :class="`wd-status-tip  ${customClass}`" :style="customStyle">
-    <slot name="image" v-if="$slots.image"></slot>
-    <wd-img v-else-if="imgUrl" :mode="imageMode" :src="imgUrl" custom-class="wd-status-tip__image" :custom-style="imgStyle"></wd-img>
+    <slot name="image">
+      <wd-icon :name="icon" custom-class="wd-status-tip__icon" :custom-style="iconStyle"></wd-icon>
+    </slot>
     <view v-if="tip" class="wd-status-tip__text">{{ tip }}</view>
     <slot name="bottom" />
   </view>
@@ -21,51 +13,35 @@ export default {
   name: 'wd-status-tip',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
 </script>
 
 <script lang="ts" setup>
-import wdImg from '../wd-img/wd-img.vue'
+import wdIcon from '../wd-icon/wd-icon.vue'
 import { computed, type CSSProperties } from 'vue'
-import { addUnit, isDef, isObj, objToStyle } from '../common/util'
+import { addUnit, objToStyle } from '../common/util'
 import { statusTipProps } from './types'
 
 const props = defineProps(statusTipProps)
 
-// 图片地址
-const imgUrl = computed(() => {
-  // 改用网络地址，避免小程序打包的时候统一打包进去导致包过大问题
-  let img: string = ''
-  if (['search', 'network', 'content', 'collect', 'comment', 'halo', 'message'].includes(props.image)) {
-    img = `${props.urlPrefix}${props.image}.png`
-  } else {
-    img = props.image
-  }
-  return img
-})
-
 /**
- * 图片样式
+ * 图标样式
  */
-const imgStyle = computed(() => {
+const iconStyle = computed(() => {
   let style: CSSProperties = {}
-  if (props.imageSize) {
-    if (isObj(props.imageSize)) {
-      isDef(props.imageSize.height) && (style.height = addUnit(props.imageSize.height))
-      isDef(props.imageSize.width) && (style.width = addUnit(props.imageSize.width))
-    } else {
-      style = {
-        height: addUnit(props.imageSize),
-        width: addUnit(props.imageSize)
-      }
-    }
+  if (props.iconSize) {
+    style['font-size'] = addUnit(props.iconSize)
+    style['width'] = addUnit(props.iconSize)
+    style['height'] = addUnit(props.iconSize)
   }
   return `${objToStyle(style)}`
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

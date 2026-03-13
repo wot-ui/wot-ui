@@ -44,7 +44,7 @@ export default {
     expand: 'Развернуть',
     retract: 'Свернуть'
   },
-  colPicker: {
+  cascader: {
     title: 'Выберите, пожалуйста',
     placeholder: 'Выберите, пожалуйста',
     select: 'Выберите'
@@ -64,6 +64,12 @@ export default {
     retry: 'Повторить'
   },
   messageBox: {
+    inputPlaceholder: 'Введите, пожалуйста',
+    confirm: 'Ок',
+    cancel: 'Отмена',
+    inputNoValidate: 'Неверные данные'
+  },
+  dialog: {
     inputPlaceholder: 'Введите, пожалуйста',
     confirm: 'Ок',
     cancel: 'Отмена',

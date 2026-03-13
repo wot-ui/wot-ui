@@ -1,94 +1,113 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(datetime-picker) {
-
-    @include e(action) {
-      @include m(cancel) {
-        color: $-dark-color;
-      }
-    }
-
-    @include e(region) {
-      color: $-dark-color;
-  
-      @include when(active) {
-        background: $-picker-region-bg-active-color;
-        color: $-dark-color;
-      }
-    }
-  }
-}
- 
+$datetime-picker-popup-radius: var(--wot-datetime-picker-popup-radius, $radius-large $radius-large $radius-zero $radius-zero) !default;
+$datetime-picker-title-color: var(--wot-datetime-picker-title-color, $text-main) !default;
+$datetime-picker-title-height: var(--wot-datetime-picker-title-height, $n56) !default;
+$datetime-picker-title-font-size: var(--wot-datetime-picker-title-font-size, $typography-title-size-main) !default;
+$datetime-picker-title-line-height: var(--wot-datetime-picker-title-line-height, $typography-title-line--height-size-main) !default;
+$datetime-picker-title-font-weight: var(--wot-datetime-picker-title-font-weight, $font-weight-medium) !default;
+$datetime-picker-title-padding: var(--wot-datetime-picker-title-padding, $padding-zero $padding-loose) !default;
+$datetime-picker-action-font-size: var(--wot-datetime-picker-action-font-size, $typography-body-size-large) !default;
+$datetime-picker-action-line-height: var(--wot-datetime-picker-action-line-height, $typography-body-line--height-size-large) !default;
+$datetime-picker-action-color: var(--wot-datetime-picker-action-color, $primary-6) !default;
+// 范围标签内边距 
+$datetime-picker-range-padding: var(--wot-datetime-picker-range-padding, 0 $padding-loose $padding-extra-loose) !default;
+// 范围标签字号
+$datetime-picker-range-font-size: var(--wot-datetime-picker-range-font-size, $typography-body-size-main) !default;
+// 范围标签项字号
+$datetime-picker-range-item-font-size: var(--wot-datetime-picker-range-item-font-size, $typography-body-size-extra-large) !default;
+// 范围标签项字重
+$datetime-picker-range-item-font-weight: var(--wot-datetime-picker-range-item-font-weight, $font-weight-medium) !default;
+// 范围标签项行高
+$datetime-picker-range-item-line-height: var(--wot-datetime-picker-range-item-line-height, $typography-body-line--height-size-extra-large) !default;
+// 范围标签项内边距
+$datetime-picker-range-item-padding: var(--wot-datetime-picker-range-item-padding, $spacing-loose $spacing-zero) !default;
+// 范围标签项颜色
+$datetime-picker-range-item-color: var(--wot-datetime-picker-range-item-color, $primary-6) !default;
+// 占位符颜色
+$datetime-picker-range-item-placeholder-color: var(--wot-datetime-picker-range-item-placeholder-color, $text-placeholder) !default;
+// 范围标签项下划线颜色
+$datetime-picker-range-item-line-color: var(--wot-datetime-picker-range-item-line-color, $primary-6) !default;
+// 范围标签项下划线占位符颜色
+$datetime-picker-range-item-line-placeholder-color: var(--wot-datetime-picker-range-item-line-placeholder-color, $border-main) !default;
+// 分隔符水平间距
+$datetime-picker-range-sperator-margin: var(--wot-datetime-picker-range-sperator-margin, $spacing-zero $spacing-tight) !default;
+// 分隔符颜色
+$datetime-picker-range-sperator-color: var(--wot-datetime-picker-range-sperator-color, $text-auxiliary) !default;
+// 分隔符宽度
+$datetime-picker-range-sperator-width: var(--wot-datetime-picker-range-sperator-width, $n8) !default;
+// 分隔符高度
+$datetime-picker-range-sperator-height: var(--wot-datetime-picker-range-sperator-height, $n1) !default;
 
 @include b(datetime-picker) {
 
   @include edeep(popup) {
-    border-radius: 16px 16px 0px 0px;
+    border-radius: $datetime-picker-popup-radius;
   }
 
   @include e(wraper) {
     padding-bottom: var(--window-bottom);
   }
 
-  @include e(toolbar) {
+  @include e(title) {
     position: relative;
     display: flex;
-    font-size: $-picker-toolbar-fs;
-    height: $-picker-toolbar-height;
-    line-height: $-picker-action-height;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    height: $datetime-picker-title-height;
+    padding: $datetime-picker-title-padding;
   }
 
   @include e(action) {
     display: block;
     border: none;
     outline: none;
-    font-size: $-picker-toolbar-fs;
-    color: $-picker-toolbar-finish-color;
+    font-size: $datetime-picker-action-font-size;
+    line-height: $datetime-picker-action-line-height;
+    color: $datetime-picker-action-color;
     background: transparent;
-    padding: 24px 15px 14px 15px;
-
-    @include m(cancel) {
-      color: $-picker-toolbar-cancel-color;
-    }
-
-    @include when(loading) {
-      color: $-picker-loading-button-color;
-    }
   }
-  @include e(title) {
+  @include e(title-text) {
     display: block;
     float: 1;
-    color: $-picker-toolbar-title-color;
+    color: $datetime-picker-title-color;
+    font-size: $datetime-picker-title-font-size;
+    line-height: $datetime-picker-title-height;
+    font-weight: $datetime-picker-title-font-weight;
   }
 
-  @include e(region-tabs) {
+  @include e(range) {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $datetime-picker-range-font-size;
+    padding: $datetime-picker-range-padding;
   }
 
-  @include e(region) {
-    width: 50%;
-    display: inline-block;
-    color: $-picker-region-color;
+  @include e(range-item) {
+    flex: 1;
+    color: $datetime-picker-range-item-placeholder-color;
+    font-size: $datetime-picker-range-item-font-size;
+    font-weight: $datetime-picker-range-item-font-weight;
+    line-height: $datetime-picker-range-item-line-height;
+    padding: $datetime-picker-range-item-padding;
     text-align: center;
-    padding: 14px 0;
-    font-size: $-picker-region-fs;
-    line-height: 16px;
-    transition: all 0.15s ease-out;
+    @include pixelBorder(bottom, 0, $datetime-picker-range-item-line-placeholder-color);
 
     @include when(active) {
-      background: $-picker-region-bg-active-color;
-      color: $-color-white;
+      color: $datetime-picker-range-item-color;
+      @include pixelBorder(bottom, 0, $datetime-picker-range-item-line-color);
     }
   }
 
-  @include e(region-time) {
-    font-size: 16px;
-    margin-top: 2px;
+  @include e(range-sperator) {
+    width: $datetime-picker-range-sperator-width;
+    height: $datetime-picker-range-sperator-height;
+    position: relative;
+    margin: $datetime-picker-range-sperator-margin;
+    background: $datetime-picker-range-sperator-color;
   }
 
   @include e(hidden) {

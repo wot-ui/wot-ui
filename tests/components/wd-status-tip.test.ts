@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdStatusTip from '@/uni_modules/wot-design-uni/components/wd-status-tip/wd-status-tip.vue'
-import WdImg from '@/uni_modules/wot-design-uni/components/wd-img/wd-img.vue'
+import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 
 describe('WdStatusTip', () => {
@@ -13,14 +13,14 @@ describe('WdStatusTip', () => {
     const wrapper = mount(WdStatusTip, {
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
     expect(wrapper.classes()).toContain('wd-status-tip')
-    expect(wrapper.findComponent(WdImg).exists()).toBe(true)
-    expect(wrapper.findComponent(WdImg).props('src')).toContain('network.png')
+    expect(wrapper.findComponent(WdIcon).exists()).toBe(true)
+    expect(wrapper.findComponent(WdIcon).props('name')).toContain('network.png')
   })
 
   // 测试自定义提示文案
@@ -33,7 +33,7 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
@@ -54,7 +54,7 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
@@ -73,12 +73,12 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
-    expect(wrapper.findComponent(WdImg).props('src')).toBe(image)
+    expect(wrapper.findComponent(WdIcon).props('name')).toBe(image)
   })
 
   // 测试预设图片类型
@@ -92,12 +92,12 @@ describe('WdStatusTip', () => {
         },
         global: {
           components: {
-            WdImg
+            WdIcon
           }
         }
       })
 
-      expect(wrapper.findComponent(WdImg).props('src')).toContain(`${type}.png`)
+      expect(wrapper.findComponent(WdIcon).props('name')).toContain(`${type}.png`)
     })
   })
 
@@ -111,13 +111,14 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
-    expect(wrapper.findComponent(WdImg).props('customStyle')).toContain('height:100px')
-    expect(wrapper.findComponent(WdImg).props('customStyle')).toContain('width:100px')
+    expect(wrapper.findComponent(WdIcon).props('customStyle')).toContain('height:100px')
+    expect(wrapper.findComponent(WdIcon).props('customStyle')).toContain('width:100px')
+    expect(wrapper.findComponent(WdIcon).props('customStyle')).toContain('font-size:100px')
   })
 
   // 测试自定义图片大小 - 字符串
@@ -130,13 +131,14 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
-    expect(wrapper.findComponent(WdImg).props('customStyle')).toContain('height:100rpx')
-    expect(wrapper.findComponent(WdImg).props('customStyle')).toContain('width:100rpx')
+    expect(wrapper.findComponent(WdIcon).props('customStyle')).toContain('height:100rpx')
+    expect(wrapper.findComponent(WdIcon).props('customStyle')).toContain('width:100rpx')
+    expect(wrapper.findComponent(WdIcon).props('customStyle')).toContain('font-size:100rpx')
   })
 
   // 测试自定义图片大小 - 对象
@@ -152,31 +154,13 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
-    expect(wrapper.findComponent(WdImg).props('customStyle')).toContain('height:200px')
-    expect(wrapper.findComponent(WdImg).props('customStyle')).toContain('width:100px')
-  })
-
-  // 测试自定义图片模式
-  test('自定义图片模式', () => {
-    const imageMode = 'widthFix'
-
-    const wrapper = mount(WdStatusTip, {
-      props: {
-        imageMode
-      },
-      global: {
-        components: {
-          WdImg
-        }
-      }
-    })
-
-    expect(wrapper.findComponent(WdImg).props('mode')).toBe(imageMode)
+    expect(wrapper.findComponent(WdIcon).props('customStyle')).toContain('height:200px')
+    expect(wrapper.findComponent(WdIcon).props('customStyle')).toContain('width:100px')
   })
 
   // 测试自定义 URL 前缀
@@ -190,12 +174,12 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
-    expect(wrapper.findComponent(WdImg).props('src')).toBe(`${urlPrefix}network.png`)
+    expect(wrapper.findComponent(WdIcon).props('name')).toBe(`${urlPrefix}network.png`)
   })
 
   // 测试自定义图片插槽
@@ -206,12 +190,12 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
-    expect(wrapper.findComponent(WdImg).exists()).toBe(false)
+    expect(wrapper.findComponent(WdIcon).exists()).toBe(false)
     expect(wrapper.find('.custom-image').exists()).toBe(true)
     expect(wrapper.find('.custom-image').text()).toBe('自定义图片')
   })
@@ -221,7 +205,7 @@ describe('WdStatusTip', () => {
     const wrapper = mount(WdStatusTip, {
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
@@ -239,13 +223,13 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
     // 验证图片样式是否正确设置
-    const imgComponent = wrapper.findComponent(WdImg)
+    const imgComponent = wrapper.findComponent(WdIcon)
     expect(imgComponent.props('customStyle')).toContain('width:100px')
     expect(imgComponent.props('customStyle')).toContain('height:100px')
   })
@@ -260,13 +244,13 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
     // 验证图片样式是否正确设置
-    const imgComponent = wrapper.findComponent(WdImg)
+    const imgComponent = wrapper.findComponent(WdIcon)
     expect(imgComponent.props('customStyle')).toContain('100px')
   })
 
@@ -283,13 +267,13 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
     // 验证图片样式是否正确设置
-    const imgComponent = wrapper.findComponent(WdImg)
+    const imgComponent = wrapper.findComponent(WdIcon)
     expect(imgComponent.props('customStyle')).toContain('width:100px')
     expect(imgComponent.props('customStyle')).toContain('height:200px')
   })
@@ -307,13 +291,13 @@ describe('WdStatusTip', () => {
       },
       global: {
         components: {
-          WdImg
+          WdIcon
         }
       }
     })
 
     // 验证图片样式是否正确设置
-    const imgComponent = wrapper.findComponent(WdImg)
+    const imgComponent = wrapper.findComponent(WdIcon)
     expect(imgComponent.props('customStyle')).toContain('width:100px')
     expect(imgComponent.props('customStyle')).toContain('height:200px')
   })

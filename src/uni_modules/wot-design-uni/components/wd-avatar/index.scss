@@ -1,62 +1,107 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
-@import './common';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(avatar) {
-    background-color: $-dark-background4;
-    color: $-dark-color;
-  }
-}
+$avatar-size-normal: var(--wot-avatar-size-normal, $n36) !default; // 默认尺寸
+$avatar-size-large: var(--wot-avatar-size-large, $n56) !default; // 大尺寸
+$avatar-size-medium: var(--wot-avatar-size-medium, $n48) !default; // 中尺寸
+$avatar-size-small: var(--wot-avatar-size-small, $n24) !default; // 小尺寸
+$avatar-text-color: var(--wot-avatar-text-color, $text-white) !default; // 文字颜色
+$avatar-font-weight: var(--wot-avatar-font-weight, $typography-body-font-weight-strong) !default; // 字重
+$avatar-font-size: var(--wot-avatar-font-size, $n20) !default; // 默认字号
+$avatar-font-size-large: var(--wot-avatar-font-size-large, $n28) !default; // 大尺寸字号
+$avatar-font-size-medium: var(--wot-avatar-font-size-medium, $n24) !default; // 中尺寸字号
+$avatar-font-size-small: var(--wot-avatar-font-size-small, $n18) !default; // 小尺寸字号
+$avatar-line-height: var(--wot-avatar-line-height, 1.2) !default; // 行高
+$avatar-bg-color: var(--wot-avatar-bg-color, $coolgrey-3) !default; // 背景颜色
+$avatar-border-radius: var(--wot-avatar-border-radius, $radius-main) !default; // 默认圆角
+$avatar-border-radius-full: var(--wot-avatar-border-radius-full, $radius-radius-full) !default; // 全圆角
+$avatar-overlap: var(--wot-avatar-overlap) !default; // 头像重叠距离
+$avatar-icon-color: var(--wot-avatar-icon-color, $icon-auxiliary) !default; // 图标颜色
+$avatar-color: var(--wot-avatar-color, $text-auxiliary) !default; // 文字颜色
 
 @include b(avatar) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: $-avatar-size;
-  height: $-avatar-size;
-  color: $-avatar-text-color;
-  font-weight: $-avatar-font-weight;
-  font-size: $-avatar-font-size;
-  line-height: $-avatar-line-height;
+  width: $avatar-size-normal;
+  height: $avatar-size-normal;
+  color: $avatar-text-color;
+  font-weight: $avatar-font-weight;
+  font-size: $avatar-font-size;
+  line-height: $avatar-line-height;
   text-align: center;
-  background-color: $-avatar-bg-color;
-  border-radius: $-avatar-border-radius;
+  background: $avatar-bg-color;
+  border-radius: $avatar-border-radius;
   overflow: hidden;
   user-select: none;
   vertical-align: middle;
   flex-shrink: 0;
+  color: $avatar-color;
+
 
   @include when(round) {
-    border-radius: 50%;
+    border-radius: $avatar-border-radius-full;
   }
 
   @include when(square) {
-    border-radius: $-avatar-border-radius;
+    border-radius: $avatar-border-radius;
   }
 
-  @include when(large) {
-    width: $-avatar-size-large;
-    height: $-avatar-size-large;
-    font-size: $-avatar-font-size-large;
+  @include m(large) {
+    width: $avatar-size-large;
+    height: $avatar-size-large;
+    font-size: $avatar-font-size-large;
+    --wot-avatar-overlap: calc(#{$avatar-size-large} * -0.25);
   }
 
-  @include when(medium) {
-    width: $-avatar-size-medium;
-    height: $-avatar-size-medium;
-    font-size: $-avatar-font-size-medium;
+  @include m(medium) {
+    width: $avatar-size-medium;
+    height: $avatar-size-medium;
+    font-size: $avatar-font-size-medium;
+    --wot-avatar-overlap: calc(#{$avatar-size-medium} * -0.25);
   }
 
-  @include when(normal) {
-    width: $-avatar-size;
-    height: $-avatar-size;
-    font-size: $-avatar-font-size;
+  @include m(normal) {
+    width: $avatar-size-normal;
+    height: $avatar-size-normal;
+    font-size: $avatar-font-size;
+    --wot-avatar-overlap: calc(#{$avatar-size-normal} * -0.25);
   }
 
-  @include when(small) {
-    width: $-avatar-size-small;
-    height: $-avatar-size-small;
-    font-size: $-avatar-font-size-small;
+  @include m(small) {
+    width: $avatar-size-small;
+    height: $avatar-size-small;
+    font-size: $avatar-font-size-small;
+    --wot-avatar-overlap: calc(#{$avatar-size-small} * -0.25);
+  }
+
+  @include e(group-item) {
+    position: relative;
+    flex-shrink: 0;
+    box-sizing: border-box;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &+& {
+      margin-left: $avatar-overlap;
+    }
+
+    @include m(vertical) {
+
+      // 第一个元素不需要负 margin
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &+& {
+        margin-left: 0;
+        margin-top: $avatar-overlap;
+      }
+    }
+
+
   }
 
   @include e(text) {
@@ -67,9 +112,12 @@
 
   @include edeep(icon) {
     font-size: inherit;
+    color: $avatar-icon-color;
   }
 
   @include edeep(img) {
     border-radius: inherit;
+    width: 100%;
+    height: 100%;
   }
 }

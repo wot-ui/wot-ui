@@ -54,7 +54,7 @@
 
     <!-- 底部插槽示例移动到最后一个示例，并添加合理样式 -->
     <demo-block :title="$t('di-bu-cha-cao')">
-      <wd-status-tip image="content" :url-prefix="urlPrefix" tip="当前搜索无结果">
+      <wd-status-tip :url-prefix="urlPrefix" image="content" tip="当前搜索无结果">
         <template #bottom>
           <view class="bottom-actions">
             <wd-button type="info">重新加载</wd-button>

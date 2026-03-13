@@ -7,7 +7,9 @@ export default {
   name: 'wd-gap',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -31,6 +33,6 @@ const rootStyle = computed(() => {
   return `${objToStyle(rootStyle)}${props.customStyle}`
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

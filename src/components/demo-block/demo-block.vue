@@ -1,7 +1,16 @@
+<!--
+ * @Author: weisheng
+ * @Date: 2025-07-17 10:34:02
+ * @LastEditTime: 2026-03-13 13:44:31
+ * @LastEditors: weisheng
+ * @Description: 
+ * @FilePath: /wot-design-uni/src/components/demo-block/demo-block.vue
+ * 记得注释
+-->
 <template>
-  <view :class="['demo-block', transparent ? '' : 'is-white', customClass]">
-    <view class="demo-title">{{ title }}</view>
-    <view class="demo-container" :style="transparent ? '' : style">
+  <view :class="['demo-block', transparent ? 'demo-block--transparent' : '', customClass]">
+    <view class="demo-block__title">{{ title }}</view>
+    <view class="demo-block__container" :style="transparent ? '' : style">
       <slot />
     </view>
   </view>
@@ -10,7 +19,9 @@
 export default {
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -45,38 +56,41 @@ watch(
 )
 
 function setStyle() {
-  style.value = `margin: 0 ${props.hor}px;padding:${props.ver}px 0;`
+  style.value = `padding: ${props.ver}px ${props.hor}px;`
 }
 </script>
 <style lang="scss" scoped>
-.wot-theme-dark {
-  .is-white {
-    background: $-dark-background2;
-  }
-
-  .demo-block {
-    color: $-dark-color3;
-  }
-}
+// demo-block 文本颜色
+$demo-block-color: var(--wot-demo-block-color, $text-secondary) !default;
+// demo-block 区块背景色
+$demo-block-bg: var(--wot-demo-block-bg, $filled-oppo) !default;
+// demo-block 上下外边距
+$demo-block-margin-vertical: var(--wot-demo-block-margin-vertical, $spacing-extra-loose) !default;
+// demo-block 标题内边距
+$demo-block-title-padding: var(--wot-demo-block-title-padding, #{$padding-main} #{$padding-extra-loose}) !default;
+// demo-block 标题字号
+$demo-block-title-font-size: var(--wot-demo-block-title-font-size, $typography-label-size-large) !default;
 
 .demo-block {
-  color: #666;
+  position: relative;
+  color: $demo-block-color;
+  background: $demo-block-bg;
 
   &:not(:first-child) {
-    margin-top: 15px;
+    margin-top: $demo-block-margin-vertical;
   }
 
   &:not(:last-child) {
-    margin-bottom: 15px;
+    margin-bottom: $demo-block-margin-vertical;
   }
-}
 
-.is-white {
-  background: #fff;
-}
+  &--transparent {
+    background: transparent;
+  }
 
-.demo-title {
-  padding: 10px 15px;
-  font-size: 13px;
+  &__title {
+    padding: $demo-block-title-padding;
+    font-size: $demo-block-title-font-size;
+  }
 }
 </style>

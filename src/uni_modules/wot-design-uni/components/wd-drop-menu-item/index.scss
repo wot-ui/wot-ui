@@ -1,66 +1,92 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(drop-item) {
-    color: $-dark-color;
-
-    @include e(tip) {
-      color: $-dark-color3;
-    }
-  }
-}
+// 选项左右内边距
+$drop-item-option-padding: var(--wot-drop-item-option-padding, $padding-loose) !default;
+// 选中项文字颜色
+$drop-item-text-color-active: var(--wot-drop-item-text-color-active, $primary-6) !default;
+// 提示文字颜色
+$drop-item-tip-color: var(--wot-drop-item-tip-color, $text-auxiliary) !default;
+// 选中项提示文字颜色
+$drop-item-tip-color-active: var(--wot-drop-item-tip-color-active, $primary-5) !default;
+// 提示文字字号
+$drop-item-tip-font-size: var(--wot-drop-item-tip-font-size, $typography-body-size-main) !default;
+// 提示文字行高
+$drop-item-tip-line-height: var(--wot-drop-item-tip-line-height, $typography-body-line--height-size-main) !default;
+// 提示文字间距
+$drop-item-tip-spacing: var(--wot-drop-item-tip-spacing, $spacing-tight) !default;
+// 勾选图标尺寸
+$drop-item-icon-size: var(--wot-drop-item-icon-size, $n20) !default;
+// 勾选图标颜色
+$drop-item-icon-color: var(--wot-drop-item-icon-color, $primary-6) !default;
+// 遮罩层背景色
+$drop-item-modal-bg: var(--wot-drop-item-modal-bg, $opac-7_55) !default;
+// 选项文字字号
+$drop-item-text-font-size: var(--wot-drop-item-font-size, $typography-body-size-extra-large) !default;
+// 选项文字行高
+$drop-item-text-line-height: var(--wot-drop-item-line-height, $typography-body-line--height-size-extra-large) !default;
+// 选项文字颜色
+$drop-item-text-color: var(--wot-drop-item-text-color, $text-main) !default;
+// 选项弹出后顶部边线
+$drop-item-popup-border-top: var(--wot-drop-item-popup-border-top, $stroke-main solid $border-main) !default;
 
 @include b(drop-item) {
   position: fixed;
   right: 0;
   left: 0;
   overflow: hidden;
-  font-size: $-drop-menu-item-fs;
-  color: $-drop-menu-item-color;
   width: 100%;
   z-index: 101;
-  
-  @include e(popup){
-    position: absolute;
-    max-height: 80%;
+  pointer-events: none; 
+
+  @include edeep(popup) {
+    position: absolute; 
+    pointer-events: auto;
+    border-top: $drop-item-popup-border-top;
   }
 
   @include e(option) {
     display: flex;
-    height: $-drop-menu-item-height;
-    line-height: $-drop-menu-item-height;
-    padding: 0 $-drop-menu-side-padding;
+    padding: $drop-item-option-padding;
     justify-content: space-between;
     align-items: center;
     transition: color .2s;
 
     @include when(active) {
-      color: $-drop-menu-item-color-active;
+      .wd-drop-item__title-text {
+        color: $drop-item-text-color-active;
+      }
+      .wd-drop-item__tip {
+        color: $drop-item-tip-color-active;
+      }
     }
   }
 
-  @include e(title){
-    display: block;
+  @include e(title-text) {
+    font-size: $drop-item-text-font-size;
+    line-height: $drop-item-text-line-height;
+    color: $drop-item-text-color;
   }
 
   @include e(tip) {
     display: inline-block;
-    color: $-drop-menu-item-color-tip;
-    font-size: $-drop-menu-item-fs-tip;
-    margin-left: 2px;
+    color: $drop-item-tip-color;
+    font-size: $drop-item-tip-font-size;
+    line-height: $drop-item-tip-line-height;
+    margin-left: $drop-item-tip-spacing;
   }
 
-  @include edeep(icon){
+  @include edeep(icon) {
     display: block;
-    font-size: $-drop-menu-option-check-size;
+    font-size: $drop-item-icon-size;
+    color: $drop-item-icon-color;
   }
 
   @include e(modal) {
     position: fixed;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: $drop-item-modal-bg;
     height: 100%;
   }
 }

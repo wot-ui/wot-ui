@@ -1,20 +1,22 @@
 <template>
   <view :class="`wd-tabbar-item ${customClass}`" :style="customStyle" @click="handleClick">
-    <wd-badge v-bind="customBadgeProps">
-      <view class="wd-tabbar-item__body">
-        <slot name="icon" :active="active"></slot>
-        <template v-if="!$slots.icon && icon">
-          <wd-icon
-            :name="icon"
-            :custom-style="textStyle"
-            :custom-class="`wd-tabbar-item__body-icon ${active ? 'is-active' : 'is-inactive'}`"
-          ></wd-icon>
-        </template>
-        <text v-if="title" :style="textStyle" :class="`wd-tabbar-item__body-title ${active ? 'is-active' : 'is-inactive'}`">
-          {{ title }}
-        </text>
-      </view>
-    </wd-badge>
+    <slot>
+      <wd-badge v-bind="customBadgeProps">
+        <view class="wd-tabbar-item__body">
+          <slot name="icon" :active="active"></slot>
+          <template v-if="!$slots.icon && icon">
+            <wd-icon
+              :name="icon"
+              :custom-style="textStyle"
+              :custom-class="`wd-tabbar-item__body-icon ${active ? 'is-active' : 'is-inactive'}`"
+            ></wd-icon>
+          </template>
+          <text v-if="title" :style="textStyle" :class="`wd-tabbar-item__body-title ${active ? 'is-active' : 'is-inactive'}`">
+            {{ title }}
+          </text>
+        </view>
+      </wd-badge>
+    </slot>
   </view>
 </template>
 <script lang="ts">
@@ -48,7 +50,7 @@ const customBadgeProps = computed(() => {
       {
         max: props.max,
         isDot: props.isDot,
-        modelValue: props.value
+        value: props.value
       },
       isUndefined
     )
@@ -61,12 +63,12 @@ const customBadgeProps = computed(() => {
 
 const textStyle = computed(() => {
   const style: CSSProperties = {}
-  if (tabbar) {
-    if (active.value && tabbar.props.activeColor) {
-      style['color'] = tabbar.props.activeColor
+  if (tabbar.value) {
+    if (active.value && tabbar.value.props.activeColor) {
+      style['color'] = tabbar.value.props.activeColor
     }
-    if (!active.value && tabbar.props.inactiveColor) {
-      style['color'] = tabbar.props.inactiveColor
+    if (!active.value && tabbar.value.props.inactiveColor) {
+      style['color'] = tabbar.value.props.inactiveColor
     }
   }
 
@@ -75,8 +77,8 @@ const textStyle = computed(() => {
 
 const active = computed(() => {
   const name = isDef(props.name) ? props.name : index.value
-  if (tabbar) {
-    if (tabbar.props.modelValue === name) {
+  if (tabbar.value) {
+    if (tabbar.value.props.modelValue === name) {
       return true
     } else {
       return false
@@ -91,9 +93,9 @@ const active = computed(() => {
  */
 function handleClick() {
   const name: string | number = isDef(props.name) ? props.name : index.value
-  tabbar && tabbar.setChange({ name })
+  tabbar.value && tabbar.value.setChange({ name })
 }
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

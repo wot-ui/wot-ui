@@ -17,41 +17,36 @@
                     v-for="(item, index) in children"
                     :key="index"
                     :class="`wd-tabs__nav-item  ${state.activeIndex === index ? 'is-active' : ''} ${item.disabled ? 'is-disabled' : ''}`"
-                    :style="state.activeIndex === index ? (color ? 'color:' + color : '') : inactiveColor ? 'color:' + inactiveColor : ''"
+                    :style="getTabItemStyle(index)"
                   >
                     <wd-badge v-if="item.badgeProps" v-bind="item.badgeProps">
                       <text class="wd-tabs__nav-item-text">{{ item.title }}</text>
                     </wd-badge>
                     <text v-else class="wd-tabs__nav-item-text">{{ item.title }}</text>
 
-                    <view class="wd-tabs__line wd-tabs__line--inner" v-if="state.activeIndex === index && state.useInnerLine"></view>
+                    <view
+                      :class="`wd-tabs__line ${state.activeIndex === index && state.useInnerLine ? 'is-' + lineTheme : ''} wd-tabs__line--inner`"
+                      v-if="state.activeIndex === index && state.useInnerLine"
+                    ></view>
                   </view>
-                  <view class="wd-tabs__line" :style="state.lineStyle"></view>
+                  <view :class="`wd-tabs__line ${'is-' + lineTheme}`" :style="state.lineStyle"></view>
                 </view>
               </scroll-view>
             </view>
             <view class="wd-tabs__map" v-if="mapNum < children.length && mapNum !== 0">
               <view :class="`wd-tabs__map-btn  ${state.animating ? 'is-open' : ''}`" @click="toggleMap">
                 <view :class="`wd-tabs__map-arrow  ${state.animating ? 'is-open' : ''}`">
-                  <wd-icon name="arrow-down" />
+                  <wd-icon name="down" custom-class="wd-tabs__map-arrow-icon" />
                 </view>
               </view>
-              <view class="wd-tabs__map-header" :style="`${state.mapShow ? '' : 'display:none;'}  ${state.animating ? 'opacity:1;' : ''}`">
+              <view class="wd-tabs__map-header" :style="mapHeaderStyle">
                 {{ mapTitle || translate('all') }}
               </view>
               <view :class="`wd-tabs__map-body  ${state.animating ? 'is-open' : ''}`" :style="state.mapShow ? '' : 'display:none'">
                 <view class="wd-tabs__map-nav-item" v-for="(item, index) in children" :key="index" @click="handleSelect(index)">
                   <view
                     :class="`wd-tabs__map-nav-btn ${state.activeIndex === index ? 'is-active' : ''}  ${item.disabled ? 'is-disabled' : ''}`"
-                    :style="
-                      state.activeIndex === index
-                        ? color
-                          ? 'color:' + color + ';border-color:' + color
-                          : ''
-                        : inactiveColor
-                        ? 'color:' + inactiveColor
-                        : ''
-                    "
+                    :style="getMapTabStyle(index)"
                   >
                     {{ item.title }}
                   </view>
@@ -67,11 +62,7 @@
           </view>
         </view>
 
-        <view
-          class="wd-tabs__mask"
-          :style="`${state.mapShow ? '' : 'display:none;'} ${state.animating ? 'opacity:1;' : ''}`"
-          @click="toggleMap"
-        ></view>
+        <view class="wd-tabs__mask" :style="mapHeaderStyle" @click="toggleMap"></view>
       </view>
     </wd-sticky-box>
   </template>
@@ -91,25 +82,28 @@
                 @click="handleSelect(index)"
                 :key="index"
                 :class="`wd-tabs__nav-item ${state.activeIndex === index ? 'is-active' : ''} ${item.disabled ? 'is-disabled' : ''}`"
-                :style="state.activeIndex === index ? (color ? 'color:' + color : '') : inactiveColor ? 'color:' + inactiveColor : ''"
+                :style="getTabItemStyle(index)"
               >
                 <wd-badge custom-class="wd-tabs__nav-item-badge" v-if="item.badgeProps" v-bind="item.badgeProps">
                   <text class="wd-tabs__nav-item-text">{{ item.title }}</text>
                 </wd-badge>
                 <text v-else class="wd-tabs__nav-item-text">{{ item.title }}</text>
-                <view class="wd-tabs__line wd-tabs__line--inner" v-if="state.activeIndex === index && state.useInnerLine"></view>
+                <view
+                  :class="`wd-tabs__line ${state.activeIndex === index && state.useInnerLine ? 'is-' + lineTheme : ''} wd-tabs__line--inner`"
+                  v-if="state.activeIndex === index && state.useInnerLine"
+                ></view>
               </view>
-              <view class="wd-tabs__line" :style="state.lineStyle"></view>
+              <view :class="`wd-tabs__line ${'is-' + lineTheme}`" :style="state.lineStyle"></view>
             </view>
           </scroll-view>
         </view>
         <view class="wd-tabs__map" v-if="mapNum < children.length && mapNum !== 0">
           <view class="wd-tabs__map-btn" @click="toggleMap">
             <view :class="`wd-tabs__map-arrow ${state.animating ? 'is-open' : ''}`">
-              <wd-icon name="arrow-down" />
+              <wd-icon name="down" custom-class="wd-tabs__map-arrow-icon" />
             </view>
           </view>
-          <view class="wd-tabs__map-header" :style="`${state.mapShow ? '' : 'display:none;'}  ${state.animating ? 'opacity:1;' : ''}`">
+          <view class="wd-tabs__map-header" :style="mapHeaderStyle">
             {{ mapTitle || translate('all') }}
           </view>
           <view :class="`wd-tabs__map-body ${state.animating ? 'is-open' : ''}`" :style="state.mapShow ? '' : 'display:none'">
@@ -128,7 +122,7 @@
         </view>
       </view>
 
-      <view class="wd-tabs__mask" :style="`${state.mapShow ? '' : 'display:none;'}  ${state.animating ? 'opacity:1' : ''}`" @click="toggleMap"></view>
+      <view class="wd-tabs__mask" :style="mapHeaderStyle" @click="toggleMap"></view>
     </view>
   </template>
 </template>
@@ -137,7 +131,9 @@ export default {
   name: 'wd-tabs',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -163,13 +159,20 @@ const emit = defineEmits(['change', 'disabled', 'click', 'update:modelValue'])
 const { translate } = useTranslate('tabs')
 
 const state = reactive({
-  activeIndex: 0, // 选中值的索引，默认第一个
-  lineStyle: 'display:none;', // 激活项边框线样式
-  useInnerLine: false, // 是否使用内部激活项边框线，当外部激活下划线未成功渲染时显示内部定位的
-  inited: false, // 是否初始化
-  animating: false, // 是否动画中
-  mapShow: false, // map的开关
-  scrollLeft: 0 // scroll-view偏移量
+  /** 选中值的索引，默认第一个 */
+  activeIndex: 0,
+  /** 激活项边框线样式 */
+  lineStyle: 'display:none;',
+  /** 是否使用内部激活项边框线，当外部激活下划线未成功渲染时显示内部定位的 */
+  useInnerLine: false,
+  /** 是否初始化 */
+  inited: false,
+  /** 是否动画中 */
+  animating: false,
+  /** map的开关 */
+  mapShow: false,
+  /** scroll-view偏移量 */
+  scrollLeft: 0
 })
 
 const { children, linkChildren } = useChildren(TABS_KEY)
@@ -179,10 +182,30 @@ const { proxy } = getCurrentInstance() as any
 
 const touch = useTouch()
 
+/**
+ * 内部是否可滑动
+ */
 const innerSlidable = computed(() => {
   return props.slidable === 'always' || children.length > props.slidableNum
 })
 
+/**
+ * map 动画样式
+ */
+const mapHeaderStyle = computed(() => {
+  const style: CSSProperties = {}
+  if (!state.mapShow) {
+    style.display = 'none'
+  }
+  if (state.animating) {
+    style.opacity = 1
+  }
+  return objToStyle(style)
+})
+
+/**
+ * body 样式
+ */
 const bodyStyle = computed(() => {
   if (!props.animated) {
     return ''
@@ -195,15 +218,59 @@ const bodyStyle = computed(() => {
   })
 })
 
+/**
+ * 获取 tab 的 name
+ * @param tab tab实例
+ * @param index 索引
+ */
 const getTabName = (tab: ComponentInstance<any>, index: number) => {
   return isDef(tab.name) ? tab.name : index
+}
+
+/**
+ * 获取 tab item 的样式
+ * @param index 索引
+ */
+const getTabItemStyle = (index: number) => {
+  const { color, inactiveColor } = props
+  const style: CSSProperties = {}
+  if (state.activeIndex === index) {
+    if (color) {
+      style.color = color
+    }
+  } else {
+    if (inactiveColor) {
+      style.color = inactiveColor
+    }
+  }
+  return objToStyle(style)
+}
+
+/**
+ * 获取 map tab 的样式
+ * @param index 索引
+ */
+const getMapTabStyle = (index: number) => {
+  const { color, inactiveColor } = props
+  const style: CSSProperties = {}
+  if (state.activeIndex === index) {
+    if (color) {
+      style.color = color
+      style.borderColor = color
+    }
+  } else {
+    if (inactiveColor) {
+      style.color = inactiveColor
+    }
+  }
+  return objToStyle(style)
 }
 
 /**
  * 更新激活项
  * @param value 激活值
  * @param init 是否已初始化
- * @param setScroll // 是否设置scroll-view滚动
+ * @param setScroll 是否设置scroll-view滚动
  */
 const updateActive = (value: number | string = 0, init: boolean = false, setScroll: boolean = true) => {
   // 没有tab子元素，不执行任何操作
@@ -221,9 +288,9 @@ const updateActive = (value: number | string = 0, init: boolean = false, setScro
 }
 
 /**
- * @description 修改选中的tab Index
- * @param {String |Number } value - radio绑定的value或者tab索引，默认值0
- * @param {Boolean } init - 是否伴随初始化操作
+ * 修改选中的 tab Index
+ * @param {string | number} value 绑定值或 tab 索引，默认值 0
+ * @param {boolean} init 是否伴随初始化操作
  */
 const setActive = debounce(updateActive, 100, { leading: true })
 
@@ -266,7 +333,7 @@ watch(
   () => {
     if (state.inited) {
       nextTick(() => {
-        setActive(props.modelValue)
+        // setActive(props.modelValue)
       })
     }
   }
@@ -294,6 +361,9 @@ onMounted(() => {
   })
 })
 
+/**
+ * 切换 map 显示状态
+ */
 function toggleMap() {
   if (state.mapShow) {
     state.animating = false
@@ -309,21 +379,25 @@ function toggleMap() {
 }
 
 /**
- * 更新 underline的偏移量
- * @param animation 是否开启动画
+ * 更新 underline 的偏移量
+ * @param {boolean} animation 是否开启动画
  */
 async function updateLineStyle(animation: boolean = true) {
   if (!state.inited) return
-  const { autoLineWidth, lineWidth, lineHeight } = props
+  const { lineWidth, lineHeight, lineTheme } = props
   try {
     const lineStyle: CSSProperties = {}
     if (isDef(lineWidth)) {
       lineStyle.width = addUnit(lineWidth)
     } else {
-      if (autoLineWidth) {
+      if (lineTheme === 'text') {
         const textRects = await getRect($itemText, true, proxy)
         const textWidth = Number(textRects[state.activeIndex].width)
         lineStyle.width = addUnit(textWidth)
+      } else if (lineTheme === 'underline') {
+        const rects = await getRect($item, true, proxy)
+        const rectWidth = Number(rects[state.activeIndex].width)
+        lineStyle.width = addUnit(rectWidth)
       }
     }
     if (isDef(lineHeight)) {
@@ -346,6 +420,9 @@ async function updateLineStyle(animation: boolean = true) {
   }
 }
 
+/**
+ * 设置激活的 tab
+ */
 function setActiveTab() {
   if (!state.inited) return
   const name = getTabName(children[state.activeIndex], state.activeIndex)
@@ -358,6 +435,9 @@ function setActiveTab() {
   }
 }
 
+/**
+ * 滚动到视图
+ */
 function scrollIntoView() {
   if (!state.inited) return
   Promise.all([getRect($item, true, proxy), getRect($container, false, proxy)]).then(([navItemsRects, navRect]) => {
@@ -376,8 +456,8 @@ function scrollIntoView() {
 }
 
 /**
- * @description 单击tab的处理
- * @param index
+ * 单击 tab 的处理
+ * @param index 索引
  */
 function handleSelect(index: number) {
   if (index === undefined) return
@@ -418,6 +498,11 @@ function onTouchEnd() {
     }
   }
 }
+
+/**
+ * 获取激活的索引
+ * @param {number | string} value 绑定值
+ */
 function getActiveIndex(value: number | string) {
   // name代表的索引超过了children长度的边界，自动用0兜底
   if (isNumber(value) && value >= children.length) {
@@ -440,6 +525,6 @@ defineExpose<TabsExpose>({
   updateLineStyle
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

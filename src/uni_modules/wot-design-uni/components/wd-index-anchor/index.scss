@@ -1,12 +1,11 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(index-anchor) {
-    background-color: $-color-gray-8;
-    color: $-color-white;
-  }
-}
+$index-anchor-bg: var(--wot-index-anchor-bg, $filled-bottom) !default;
+$index-anchor-padding: var(--wot-index-anchor-padding, $padding-main) !default;
+$index-anchor-font-size: var(--wot-index-anchor-font-size, $typography-body-size-main) !default;
+$index-anchor-color: var(--wot-index-anchor-color, $text-main) !default;
+$index-anchor-z-index: var(--wot-index-anchor-z-index, 1) !default;
 
 // #ifdef MP-DINGTALK
 @include b(index-anchor-ding) {
@@ -15,21 +14,21 @@
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: $index-anchor-z-index;
   }
 }
 // #endif
 
 @include b(index-anchor) {
-  background-color: $-color-gray-2;
-  padding: 10px;
-  font-size: 14px;
-  color: $-color-title;
+  background: $index-anchor-bg;
+  padding: $index-anchor-padding;
+  font-size: $index-anchor-font-size;
+  color: $index-anchor-color;
 
   @include when(sticky){
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: $index-anchor-z-index;
   }
 }

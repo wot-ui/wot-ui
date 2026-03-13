@@ -1,9 +1,48 @@
-/*
- * @Author: weisheng
- * @Date: 2023-06-12 10:04:19
- * @LastEditTime: 2023-07-15 16:16:34
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: \wot-design-uni\src\uni_modules\wot-design-uni\components\wd-calendar-view\index.scss
- * 记得注释
- */
+@use '../styles/variable.scss' as *;
+
+$calendar-view-font-size: var(--wot-calendar-view-font-size, $typography-body-size-extra-large) !default;
+$calendar-view-panel-title-font-size: var(--wot-calendar-view-panel-title-font-size, $typography-body-size-main) !default;
+$calendar-view-panel-title-line-height: var(--wot-calendar-view-panel-title-line-height, $typography-body-line--height-size-main) !default;
+$calendar-view-panel-title-color: var(--wot-calendar-view-panel-title-color, $text-main) !default;
+$calendar-view-panel-title-padding: var(--wot-calendar-view-panel-title-padding, $padding-extra-tight $padding-loose) !default;
+$calendar-view-panel-title-font-weight: var(--wot-calendar-view-panel-title-font-weight, $font-weight-medium) !default;
+$calendar-view-panel-title-margin: var(--wot-calendar-view-panel-title-margin, $spacing-super-tight 0) !default;
+
+$calendar-view-weeks-padding: var(--wot-calendar-view-weeks-padding, $padding-tight $spacing-loose) !default;
+$calendar-view-week-color: var(--wot-calendar-view-week-color, $text-secondary) !default;
+$calendar-view-week-font-size: var(--wot-calendar-view-week-font-size, $typography-body-size-main) !default;
+$calendar-view-week-line-height: var(--wot-calendar-view-week-line-height, $typography-body-line--height-size-main) !default;
+$calendar-view-day-font-size: var(--wot-calendar-view-day-font-size, $typography-body-size-extra-large) !default; // 16px
+$calendar-view-day-color: var(--wot-calendar-view-day-color, $text-main) !default;
+$calendar-view-day-font-weight: var(--wot-calendar-view-day-font-weight, $font-weight-medium) !default;
+$calendar-view-day-height: var(--wot-calendar-view-day-height, $n60) !default;
+$calendar-view-month-width: var(--wot-calendar-view-month-width, $n60) !default;
+$calendar-view-month-height: var(--wot-calendar-view-month-height, $n60) !default;
+$calendar-view-month-font-weight: var(--wot-calendar-view-month-font-weight, $font-weight-medium) !default;
+$calendar-view-active-color: var(--wot-calendar-view-active-color, $primary-6) !default;
+$calendar-view-selected-color: var(--wot-calendar-view-selected-color, $text-white) !default;
+$calendar-view-disabled-color: var(--wot-calendar-view-disabled-color, $text-disabled) !default;
+$calendar-view-range-bg: var(--wot-calendar-view-range-bg, $primary-2) !default;
+$calendar-view-range-color: var(--wot-calendar-view-range-color, $text-main) !default;
+$calendar-view-active-border-radius: var(--wot-calendar-view-active-border-radius, $radius-main) !default;
+$calendar-view-info-font-size: var(--wot-calendar-view-info-font-size, $typography-label-size-extra-small) !default;
+$calendar-view-info-line-height: var(--wot-calendar-view-info-line-height, $typography-label-line--height-size-extra-small) !default;
+$calendar-view-info-position: var(--wot-calendar-view-info-position, $spacing-extra-tight) !default;
+
+$calendar-view-item-margin-bottom: var(--wot-calendar-view-item-margin-bottom, $spacing-super-tight) !default;
+$calendar-view-item-padding: var(--wot-calendar-view-item-padding, $padding-zero $spacing-loose) !default;
+
+$calendar-view-time-picker-font-size: var(--wot-calendar-view-time-picker-font-size, $typography-body-size-extra-large) !default;
+$calendar-view-time-picker-color: var(--wot-calendar-view-time-picker-color, $text-main) !default;
+$calendar-view-time-picker-bg: var(--wot-calendar-view-time-picker-bg, $filled-content) !default;
+$calendar-view-time-label-height: var(--wot-calendar-view-time-label-height, $n44) !default;
+$calendar-view-time-label-border: var(--wot-calendar-view-time-label-border, $stroke-main solid $border-main) !default;
+
+$calendar-view-controls-padding: var(--wot-calendar-view-controls-padding, $padding-loose) !default;
+$calendar-view-control-icon-color: var(--wot-calendar-view-control-icon-color, $icon-secondary) !default;
+$calendar-view-control-icon-size: var(--wot-calendar-view-control-icon-size, $n20) !default;
+$calendar-view-control-icon-spacing: var(--wot-calendar-view-control-icon-spacing, $spacing-extra-loose) !default;
+$calendar-view-control-disabled-color: var(--wot-calendar-view-control-disabled-color, $icon-disabled) !default;
+
+
+$calendar-view-time-box-shadow: var(--wot-calendar-view-time-box-shadow, 0px -4px 8px 0px rgba(0, 0, 0, 0.02)) !default;

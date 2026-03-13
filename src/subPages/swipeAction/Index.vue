@@ -2,15 +2,15 @@
   <page-wraper>
     <wd-toast />
 
-    <view @click.stop="closeOutside">
+    <view class="swipe-action-demo" @click.stop="closeOutside">
       <demo-block transparent :title="$t('jiBenYongFa')">
         <wd-swipe-action>
           <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
           <template #right>
-            <view class="action">
-              <view class="button" style="background: #fa4350" @click="handleAction('操作1')">{{ $t('cao-zuo-1') }}</view>
-              <view class="button" style="background: #f0883a" @click="handleAction('操作2')">{{ $t('cao-zuo-2') }}</view>
-              <view class="button" style="background: #4d80f0" @click="handleAction('操作3')">{{ $t('cao-zuo-3') }}</view>
+            <view class="swipe-action-demo__action">
+              <view class="swipe-action-demo__button swipe-action-demo__button--danger" @click="handleAction('操作1')">{{ $t('cao-zuo-1') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--warning" @click="handleAction('操作2')">{{ $t('cao-zuo-2') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--primary" @click="handleAction('操作3')">{{ $t('cao-zuo-3') }}</view>
             </view>
           </template>
         </wd-swipe-action>
@@ -19,20 +19,20 @@
       <demo-block transparent :title="$t('zuo-you-hua-dong')">
         <wd-swipe-action>
           <template #left>
-            <view class="action">
-              <view class="button" style="background: #fa4350">{{ $t('cao-zuo-1-0') }}</view>
-              <view class="button" style="background: #f0883a">{{ $t('cao-zuo-2-0') }}</view>
-              <view class="button" style="background: #4d80f0">{{ $t('cao-zuo-3-0') }}</view>
+            <view class="swipe-action-demo__action">
+              <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-1-0') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--warning">{{ $t('cao-zuo-2-0') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--primary">{{ $t('cao-zuo-3-0') }}</view>
             </view>
           </template>
 
           <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
 
           <template #right>
-            <view class="action">
-              <view class="button" style="background: #fa4350">{{ $t('cao-zuo-4') }}</view>
-              <view class="button" style="background: #f0883a">{{ $t('cao-zuo-5') }}</view>
-              <view class="button" style="background: #4d80f0">{{ $t('cao-zuo-6') }}</view>
+            <view class="swipe-action-demo__action">
+              <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-4') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--warning">{{ $t('cao-zuo-5') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--primary">{{ $t('cao-zuo-6') }}</view>
             </view>
           </template>
         </wd-swipe-action>
@@ -41,25 +41,25 @@
       <demo-block transparent :title="$t('qie-huan-an-niu')">
         <wd-swipe-action v-model="value" :before-close="beforeClose">
           <template #left>
-            <view class="action">
-              <view class="button" style="background: #fa4350">{{ $t('cao-zuo-1-1') }}</view>
-              <view class="button" style="background: #f0883a">{{ $t('cao-zuo-2-1') }}</view>
-              <view class="button" style="background: #4d80f0">{{ $t('cao-zuo-3-1') }}</view>
+            <view class="swipe-action-demo__action">
+              <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-1-1') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--warning">{{ $t('cao-zuo-2-1') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--primary">{{ $t('cao-zuo-3-1') }}</view>
             </view>
           </template>
 
           <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
 
           <template #right>
-            <view class="action">
-              <view class="button" style="background: #fa4350">{{ $t('cao-zuo-4-0') }}</view>
-              <view class="button" style="background: #f0883a">{{ $t('cao-zuo-5-0') }}</view>
-              <view class="button" style="background: #4d80f0">{{ $t('cao-zuo-6-0') }}</view>
+            <view class="swipe-action-demo__action">
+              <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-4-0') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--warning">{{ $t('cao-zuo-5-0') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--primary">{{ $t('cao-zuo-6-0') }}</view>
             </view>
           </template>
         </wd-swipe-action>
       </demo-block>
-      <view class="button-group">
+      <view class="swipe-action-demo__button-group">
         <view @click.stop="noop">
           <wd-button size="small" @click="changeState('left')">{{ $t('da-kai-zuo-bian') }}</wd-button>
         </view>
@@ -76,10 +76,10 @@
           <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
 
           <template #right>
-            <view class="action">
-              <view class="button" style="background: #fa4350">{{ $t('cao-zuo-1-2') }}</view>
-              <view class="button" style="background: #f0883a">{{ $t('cao-zuo-2-2') }}</view>
-              <view class="button" style="background: #4d80f0">{{ $t('cao-zuo-3-2') }}</view>
+            <view class="swipe-action-demo__action">
+              <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-1-2') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--warning">{{ $t('cao-zuo-2-2') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--primary">{{ $t('cao-zuo-3-2') }}</view>
             </view>
           </template>
         </wd-swipe-action>
@@ -90,10 +90,10 @@
           <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
 
           <template #right>
-            <view class="action">
-              <view class="button" style="background: #fa4350">{{ $t('cao-zuo-1-3') }}</view>
-              <view class="button" style="background: #f0883a">{{ $t('cao-zuo-2-3') }}</view>
-              <view class="button" style="background: #4d80f0">{{ $t('cao-zuo-3-3') }}</view>
+            <view class="swipe-action-demo__action">
+              <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-1-3') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--warning">{{ $t('cao-zuo-2-3') }}</view>
+              <view class="swipe-action-demo__button swipe-action-demo__button--primary">{{ $t('cao-zuo-3-3') }}</view>
             </view>
           </template>
         </wd-swipe-action>
@@ -133,27 +133,42 @@ function handleAction(action: string) {
 function noop() {}
 </script>
 <style lang="scss" scoped>
-.wot-theme-dark {
-  .button-group {
-    background: $-dark-background2;
+/* Block: swipe-action-demo */
+.swipe-action-demo {
+  /* Element: 左右滑出的操作区容器 */
+  &__action {
+    height: 100%;
   }
-}
-.action {
-  height: 100%;
-}
-.button {
-  display: inline-block;
-  padding: 0 15px;
-  height: 100%;
-  color: white;
-  line-height: 46px;
-}
-.button-group {
-  padding: 10px;
-  background: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+
+  /* Element: 操作按钮 */
+  &__button {
+    display: inline-block;
+    padding: 0 $n15;
+    height: 100%;
+    color: $text-white;
+    line-height: $n44;
+
+    &--danger {
+      background: $danger-main;
+    }
+
+    &--warning {
+      background: $warning-main;
+    }
+
+    &--primary {
+      background: $primary-5;
+    }
+  }
+
+  /* Element: 底部切换状态按钮组 */
+  &__button-group {
+    padding: $padding-main;
+    background: $filled-oppo;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 </style>

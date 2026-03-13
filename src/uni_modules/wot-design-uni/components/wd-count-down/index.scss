@@ -1,15 +1,13 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(count-down) {
-    color: $-dark-color;
-  }
-}
+$count-down-text-color: var(--wot-count-down-text-color, $text-main) !default;
+$count-down-fs: var(--wot-count-down-font-size, $typography-body-size-main) !default;
+$count-down-line-height: var(--wot-count-down-line-height, $typography-body-line--height-size-main) !default;
 
 
 @include b(count-down) {
-  color: $-count-down-text-color;
-  font-size: $-count-down-font-size;
-  line-height: $-count-down-line-height;
+  color: $count-down-text-color;
+  font-size: $count-down-fs;
+  line-height: $count-down-line-height;
 }

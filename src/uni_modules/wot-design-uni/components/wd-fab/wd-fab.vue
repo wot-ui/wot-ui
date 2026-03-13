@@ -8,10 +8,16 @@
     @click.stop=""
   >
     <view @click.stop="" :style="{ visibility: inited ? 'visible' : 'hidden' }" id="trigger">
-      <slot name="trigger" v-if="$slots.trigger"></slot>
-      <wd-button v-else @click="handleClick" custom-class="wd-fab__trigger" round :type="type" :disabled="disabled">
-        <wd-icon custom-class="wd-fab__icon" :name="isActive ? activeIcon : inactiveIcon"></wd-icon>
-      </wd-button>
+      <slot name="trigger" :disabled="disabled">
+        <wd-button
+          @click="handleClick"
+          :icon="isActive ? activeIcon : inactiveIcon"
+          custom-class="wd-fab__trigger"
+          round
+          :type="type"
+          :disabled="disabled"
+        ></wd-button>
+      </slot>
     </view>
     <wd-transition
       v-if="expandable"
@@ -32,7 +38,9 @@
 export default {
   name: 'wd-fab',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -53,8 +61,11 @@ import { useRaf } from '../composables/useRaf'
 
 const props = defineProps(fabProps)
 const emit = defineEmits(['update:active', 'click'])
-const inited = ref<boolean>(false) // 是否初始化完成
-const isActive = ref<boolean>(false) // 是否激活状态
+
+/** 是否完成初始化 */
+const inited = ref<boolean>(false)
+/** 是否处于激活（展开）状态 */
+const isActive = ref<boolean>(false)
 const queue = inject<Queue | null>(queueKey, null)
 const { proxy } = getCurrentInstance() as any
 
@@ -91,10 +102,15 @@ watch(
   () => initPosition()
 )
 
+/** 浮动按钮顶部位置 */
 const top = ref<number>(0)
+/** 浮动按钮左侧位置 */
 const left = ref<number>(0)
+/** 屏幕尺寸信息 */
 const screen = reactive({ width: 0, height: 0 })
+/** 浮动按钮尺寸 */
 const fabSize = reactive({ width: 56, height: 56 })
+/** 浮动按钮可移动边界 */
 const bounding = reactive({
   minTop: 0,
   minLeft: 0,
@@ -102,6 +118,9 @@ const bounding = reactive({
   maxLeft: 0
 })
 
+/**
+ * 获取浮动按钮和屏幕的边界信息
+ */
 async function getBounding() {
   const sysInfo = getSystemInfo()
   try {
@@ -121,6 +140,9 @@ async function getBounding() {
   bounding.maxTop = screen.height - fabSize.height - bottom
 }
 
+/**
+ * 根据 position 属性初始化浮动按钮位置
+ */
 function initPosition() {
   const pos = props.position
   const { minLeft, minTop, maxLeft, maxTop } = bounding
@@ -163,9 +185,15 @@ function initPosition() {
   }
 }
 
-// 按下时坐标相对于元素的偏移量
+/** 按下时触摸点相对于元素的偏移量 */
 const touchOffset = reactive({ x: 0, y: 0 })
+/** 是否启用吸附动画 */
 const attractTransition = ref<boolean>(false)
+
+/**
+ * 处理触摸开始事件
+ * @param {TouchEvent} e 触摸事件对象
+ */
 function handleTouchStart(e: TouchEvent) {
   if (props.draggable === false) return
 
@@ -175,6 +203,10 @@ function handleTouchStart(e: TouchEvent) {
   attractTransition.value = false
 }
 
+/**
+ * 处理触摸移动事件，实现拖动功能
+ * @param {TouchEvent} e 触摸事件对象
+ */
 function handleTouchMove(e: TouchEvent) {
   if (props.draggable === false) return
 
@@ -193,6 +225,9 @@ function handleTouchMove(e: TouchEvent) {
   left.value = x
 }
 
+/**
+ * 处理触摸结束事件，实现吸附效果
+ */
 function handleTouchEnd() {
   if (props.draggable === false) return
 
@@ -208,6 +243,9 @@ function handleTouchEnd() {
   }
 }
 
+/**
+ * 计算浮动按钮的根元素样式
+ */
 const rootStyle = computed(() => {
   const style: CSSProperties = {
     top: top.value + 'px',
@@ -243,6 +281,9 @@ onBeforeUnmount(() => {
   }
 })
 
+/**
+ * 处理点击事件
+ */
 function handleClick() {
   if (props.disabled) {
     return
@@ -255,11 +296,17 @@ function handleClick() {
   emit('update:active', isActive.value)
 }
 
+/**
+ * 展开菜单
+ */
 function open() {
   isActive.value = true
   emit('update:active', true)
 }
 
+/**
+ * 收起菜单
+ */
 function close() {
   isActive.value = false
   emit('update:active', false)
@@ -271,6 +318,6 @@ defineExpose<FabExpose>({
 })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

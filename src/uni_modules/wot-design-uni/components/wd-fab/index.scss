@@ -1,20 +1,33 @@
-@import "../common/abstracts/variable";
-@import "../common/abstracts/mixin";
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(fab) {}
-}
+// 浮动按钮触发器宽度
+$fab-trigger-width: var(--wot-fab-trigger-width, $n60) !default;
+// 浮动按钮触发器高度
+$fab-trigger-height: var(--wot-fab-trigger-height, $n60) !default;
+// 动作列表内边距
+$fab-actions-padding: var(--wot-fab-actions-padding, $padding-extra-loose) !default;
+// 浮动按钮 z-index
+$fab-z-index: var(--wot-fab-z-index, 99) !default;
+// 动作按钮展开/收起动画偏移距离
+$fab-transition-offset: var(--wot-fab-transition-offset, $n40) !default;
+// 浮动按钮触发器图标大小
+$fab-trigger-icon-size: var(--wot-fab-trigger-icon-size, $n32) !default;
 
 @include b(fab) {
   position: fixed;
-  z-index: 99;
+  z-index: $fab-z-index;
 
   @include edeep(trigger) {
-    min-width: auto !important;
-    box-sizing: border-box;
-    width: $-fab-trigger-width !important;
-    height: $-fab-trigger-height !important;
-    border-radius: calc($-fab-trigger-height / 2) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $fab-trigger-width;
+    height: $fab-trigger-height;
+
+    .wd-button__icon {
+      font-size: $fab-trigger-icon-size;
+    }
   }
 
   :deep() {
@@ -24,12 +37,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: $-fab-actions-padding 0;
+      padding: $fab-actions-padding 0;
 
       @include m(left, right) {
         height: 100%;
         top: 0;
-        padding: 0 $-fab-actions-padding;
+        padding: 0 $fab-actions-padding;
       }
 
       @include m(left) {
@@ -67,50 +80,45 @@
     @include e(transition-enter) {
       @include m(top) {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY($fab-transition-offset);
       }
 
       @include m(bottom) {
         opacity: 0;
-        transform: translateY(-40px);
+        transform: translateY(calc(-1 * $fab-transition-offset));
       }
 
       @include m(left) {
         opacity: 0;
-        transform: translateX(40px);
+        transform: translateX($fab-transition-offset);
       }
 
       @include m(right) {
         opacity: 0;
-        transform: translateX(-40px);
+        transform: translateX(calc(-1 * $fab-transition-offset));
       }
     }
 
     @include e(transition-leave-to) {
       @include m(top) {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY($fab-transition-offset);
       }
 
       @include m(bottom) {
         opacity: 0;
-        transform: translateY(-40px);
+        transform: translateY(calc(-1 * $fab-transition-offset));
       }
 
       @include m(left) {
         opacity: 0;
-        transform: translateX(40px);
+        transform: translateX($fab-transition-offset);
       }
 
       @include m(right) {
         opacity: 0;
-        transform: translateX(-40px);
+        transform: translateX(calc(-1 * $fab-transition-offset));
       }
     }
-
-  }
-
-  @include edeep(icon) {
-    font-size: $-fab-icon-fs;
   }
 }

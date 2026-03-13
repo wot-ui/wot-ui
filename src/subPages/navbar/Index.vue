@@ -1,10 +1,10 @@
 <!--
  * @Author: weisheng
  * @Date: 2023-10-17 17:20:31
- * @LastEditTime: 2025-03-31 22:54:02
+ * @LastEditTime: 2026-02-10 19:13:48
  * @LastEditors: weisheng
  * @Description: 
- * @FilePath: /wot-design-uni/src/pages/navbar/Index.vue
+ * @FilePath: /wot-design-uni/src/subPages/navbar/Index.vue
  * 记得注释
 -->
 <template>
@@ -34,10 +34,10 @@
     <demo-block :title="$t('shi-yong-cha-cao')" transparent>
       <wd-navbar :title="$t('biaoTi-0')" @click-left="handleClickLeft">
         <template #left>
-          <wd-icon name="arrow-left" size="24px" class="wd-navbar__arrow" />
+          <wd-icon name="left" size="24px" class="wd-navbar__arrow" />
         </template>
         <template #right>
-          <wd-icon name="search" size="18" />
+          <wd-icon name="search-line" size="18" />
         </template>
       </wd-navbar>
     </demo-block>

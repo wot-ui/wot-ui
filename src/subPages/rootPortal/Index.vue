@@ -81,7 +81,7 @@ const showBasic = ref(false)
 </script>
 
 <style lang="scss" scoped>
-.root-portal-demo {
+.wd-root-portal-demo {
   padding: 16px;
 }
 

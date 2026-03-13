@@ -29,7 +29,9 @@ export default {
   name: 'wd-rate',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -161,6 +163,6 @@ async function onTouchMove(event: TouchEvent) {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @use './index.scss';
 </style>

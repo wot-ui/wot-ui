@@ -9,7 +9,6 @@ import {
   type ComponentInternalInstance
 } from 'vue'
 
-// 小程序端不支持从vue导出的isVNode方法，参考uni-mp-vue的实现
 function isVNode(value: any): value is VNode {
   return value ? value.__v_isVNode === true : false
 }
@@ -46,7 +45,6 @@ const findVNodeIndex = (vnodes: VNode[], vnode: VNode) => {
   return index
 }
 
-// sort children instances by vnodes order
 export function sortChildren(
   parent: ComponentInternalInstance,
   publicChildren: ComponentPublicInstance[],
@@ -81,9 +79,17 @@ export function useChildren<
   const linkChildren = (value?: ProvideValue) => {
     const link = (child: ComponentInternalInstance) => {
       if (child.proxy) {
-        internalChildren.push(child)
-        publicChildren.push(child.proxy as Child)
-        sortChildren(parent, publicChildren, internalChildren)
+        if (internalChildren.indexOf(child) === -1) {
+          // #ifdef MP-ALIPAY
+          internalChildren.unshift(child)
+          publicChildren.unshift(child.proxy as Child)
+          // #endif
+          // #ifndef MP-ALIPAY
+          internalChildren.push(child)
+          publicChildren.push(child.proxy as Child)
+          // #endif
+          sortChildren(parent, publicChildren, internalChildren)
+        }
       }
     }
 

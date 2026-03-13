@@ -1,11 +1,18 @@
 <template>
   <view :class="`wd-loading wd-loading--${direction} ${customClass}`" :style="rootStyle">
     <view :class="`wd-loading__spinner wd-loading__spinner--${type} ${customSpinnerClass}`" :style="spinnerStyle">
+      <template v-if="type === 'circular'">
+        <view class="wd-loading__spinner-wraper"></view>
+      </template>
       <template v-if="type === 'spinner'">
-        <view class="wd-loading__spinner-dot" v-for="i in dots" :key="i"></view>
+        <view class="wd-loading__spinner-wraper">
+          <view class="wd-loading__spinner-dot" v-for="i in dots" :key="i"></view>
+        </view>
       </template>
       <template v-else-if="type === 'dots'">
-        <view class="wd-loading__spinner-dot" v-for="i in 3" :key="i"></view>
+        <view class="wd-loading__spinner-wraper">
+          <view class="wd-loading__spinner-dot" v-for="i in 3" :key="i"></view>
+        </view>
       </template>
     </view>
     <view class="wd-loading__text" v-if="$slots.default || text">
@@ -17,7 +24,9 @@
 export default {
   name: 'wd-loading',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -56,6 +65,6 @@ const spinnerStyle = computed(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use './index.scss';
 </style>

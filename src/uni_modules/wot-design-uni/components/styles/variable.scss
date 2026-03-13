@@ -1,5 +1,3 @@
-@use 'theme/index' as *;
-
 
 /* 自动生成-基础变量(light) */
 /* 基础颜色 */
@@ -247,19 +245,28 @@ $n32: var(--wot-n32, 32px) !default;
 $n34: var(--wot-n34, 34px) !default;
 $n36: var(--wot-n36, 36px) !default;
 $n40: var(--wot-n40, 40px) !default;
+$n44: var(--wot-n44, 44px) !default;
 $n48: var(--wot-n48, 48px) !default;
+$n50: var(--wot-n50, 50px) !default;
+$n52: var(--wot-n52, 52px) !default;
 $n56: var(--wot-n56, 56px) !default;
 $n60: var(--wot-n60, 60px) !default;
+$n64: var(--wot-n64, 64px) !default;
+$n88: var(--wot-n88, 88px) !default;
+$n98: var(--wot-n98, 98px) !default;
+$n248: var(--wot-n248, 248px) !default;
 $n375: var(--wot-n375, 375px) !default;
 $nFull: var(--wot-nFull, 9999px) !default;
 
 /* 字重系列 */
-$font-weight-bold: var(--wot-font-weight-bold, 700) !default;
+$font-weight-ultra-light: var(--wot-font-weight-ultra-light, 100) !default;
+$font-weight-thin: var(--wot-font-weight-thin,200);
 $font-weight-light: var(--wot-font-weight-light, 300) !default;
-$font-weight-medium: var(--wot-font-weight-medium, 500) !default;
 $font-weight-regular: var(--wot-font-weight-regular, 400) !default;
-$font-weight-semibold: var(--wot-font-weight-semibold, 600) !default;
-$font-weight-thin: var(--wot-font-weight-thin, 100) !default;
+$font-weight-medium: var(--wot-font-weight-medium, 600) !default;
+$font-weight-semibold: var(--wot-font-weight-semibold, 700) !default;
+$font-weight-bold: var(--wot-font-weight-bold, 700) !default;
+
 
 /* 排版系列 */
 /* label */
@@ -295,15 +302,15 @@ $typography-body-size-ultra-large: var(--wot-typography-body-size-ultra-large, $
 
 /* title */
 $typography-title-font-family: var(--wot-typography-title-font-family, PingFang SC) !default;
-$typography-title-size-small: var(--wot-typography-title-size-small, $n24) !default;
 $typography-title-size-main: var(--wot-typography-title-size-main, $n18) !default;
 $typography-title-size-large: var(--wot-typography-title-size-large, $n20) !default;
+$typography-title-size-extra-large: var(--wot-typography-title-size-extra-large, $n24) !default;
 $typography-title-font-weight-light: var(--wot-typography-title-font-weight-light, $font-weight-regular) !default;
 $typography-title-font-weight-main: var(--wot-typography-title-font-weight-main, $font-weight-medium) !default;
 $typography-title-font-weight-strong: var(--wot-typography-title-font-weight-strong, $font-weight-semibold) !default;
-$typography-title-line--height-size-large: var(--wot-typography-title-line--height-size-large, $n28) !default;
 $typography-title-line--height-size-main: var(--wot-typography-title-line--height-size-main, $n26) !default;
-$typography-title-line--height-size-small: var(--wot-typography-title-line--height-size-small, $n34) !default;
+$typography-title-line--height-size-large: var(--wot-typography-title-line--height-size-large, $n28) !default;
+$typography-title-line--height-size-extra-large: var(--wot-typography-title-line--height-size-extra-large, $n34) !default;
 
 /* 圆角系列 */
 $radius-zero: var(--wot-radius-zero, $n0) !default;
@@ -379,7 +386,7 @@ $danger-surface: var(--wot-danger-surface, $red-1) !default;
 $success-clicked: var(--wot-success-clicked, $green-7) !default;
 $success-disabled: var(--wot-success-disabled, $green-3) !default;
 $success-hover: var(--wot-success-hover, $green-5) !default;
-$success-normal: var(--wot-success-normal, $green-6) !default;
+$success-main: var(--wot-success-main, $green-6) !default;
 $success-particular: var(--wot-success-particular, $green-2) !default;
 $success-surface: var(--wot-success-surface, $green-1) !default;
 
@@ -387,7 +394,7 @@ $success-surface: var(--wot-success-surface, $green-1) !default;
 $warning-clicked: var(--wot-warning-clicked, $orange-7) !default;
 $warning-disabled: var(--wot-warning-disabled, $orange-3) !default;
 $warning-hover: var(--wot-warning-hover, $orange-5) !default;
-$warning-normal: var(--wot-warning-normal, $orange-6) !default;
+$warning-main: var(--wot-warning-main, $orange-6) !default;
 $warning-particular: var(--wot-warning-particular, $orange-2) !default;
 $warning-surface: var(--wot-warning-surface, $orange-1) !default;
 

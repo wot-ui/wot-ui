@@ -1,32 +1,36 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(navbar) {
-    background-color: $-dark-background;
-
-    @include e(title) {
-      color: $-dark-color;
-    }
-
-    @include e(text) {
-      color: $-dark-color;
-    }
-
-    :deep(.wd-navbar__arrow) {
-      color: $-dark-color;
-    }
-  }
-}
-
+// 导航栏高度
+$navbar-height: var(--wot-navbar-height, $n44) !default;
+// 导航栏背景色
+$navbar-bg: var(--wot-navbar-bg, $filled-oppo) !default;
+// 标题文字颜色
+$navbar-color: var(--wot-navbar-color, $text-main) !default;
+// 标题字重
+$navbar-title-font-weight: var(--wot-navbar-title-font-weight, $font-weight-medium) !default;
+// 标题字号
+$navbar-title-font-size: var(--wot-navbar-title-font-size, $typography-title-size-main) !default;
+// 描述区域字号
+$navbar-desc-font-size: var(--wot-navbar-desc-font-size, $typography-body-size-extra-large) !default;
+// 描述区域文字颜色
+$navbar-desc-color: var(--wot-navbar-desc-color, $text-main) !default;
+// 箭头图标大小
+$navbar-arrow-size: var(--wot-navbar-arrow-size, $n24) !default;
+// 禁用态透明度
+$navbar-opacity-disabled: var(--wot-navbar-opacity-disabled, $opacity-disabled) !default;
+// 左侧内边距
+$navbar-left-padding: var(--wot-navbar-left-padding, $padding-zero $padding-loose) !default;
+// 固定定位层级
+$navbar-z-index: var(--wot-navbar-z-index, 10) !default;
 
 @include b(navbar) {
   position: relative;
   text-align: center;
   user-select: none;
-  height: $-navbar-height;
-  line-height: $-navbar-height;
-  background-color: $-navbar-background;
+  height: $navbar-height;
+  line-height: $navbar-height;
+  background-color: $navbar-bg;
   box-sizing: content-box;
 
   @include e(content) {
@@ -39,29 +43,29 @@
     max-width: 60%;
     height: 100%;
     margin: 0 auto;
-    color: $-navbar-color;
-    font-weight: $-navbar-title-font-weight;
-    font-size: $-navbar-title-font-size;
+    color: $navbar-color;
+    font-weight: $navbar-title-font-weight;
+    font-size: $navbar-title-font-size;
     @include lineEllipsis();
   }
 
   @include e(text) {
     display: inline-block;
     vertical-align: middle;
-    color: $-navbar-desc-font-color;
+    color: $navbar-desc-color;
   }
 
   @include e(left, right, capsule) {
     position: absolute;
     top: 0;
     bottom: 0;
-    font-size: $-navbar-desc-font-size;
+    font-size: $navbar-desc-font-size;
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: $navbar-left-padding;
 
     @include when(disabled) {
-      opacity: $-navbar-disabled-opacity;
+      opacity: $navbar-opacity-disabled;
     }
   }
 
@@ -74,10 +78,9 @@
   }
 
   @include edeep(arrow) {
-    font-size: $-navbar-arrow-size;
-    color: $-navbar-color;
+    font-size: $navbar-arrow-size;
+    color: $navbar-color;
   }
-
 
   @include when(border) {
     @include halfPixelBorder('bottom');
@@ -88,6 +91,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 500;
+    z-index: $navbar-z-index;
   }
 }

@@ -1,36 +1,31 @@
-@import './../common/abstracts/_mixin.scss';
-@import './../common/abstracts/variable.scss';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(segmented) {
-    background: $-dark-background2;
+$segmented-bg: var(--wot-segmented-bg, $filled-content) !default;
+$segmented-border-width: var(--wot-segmented-border-width, $n1) !default;
+$segmented-padding: var(--wot-segmented-padding, $padding-super-tight) !default;
+$segmented-radius: var(--wot-segmented-radius, $radius-main) !default;
+$segmented-item-color: var(--wot-segmented-item-color, $text-secondary) !default;
+$segmented-item-font-size: var(--wot-segmented-item-font-size, $typography-body-size-extra-large) !default;
+$segmented-item-line-height: var(--wot-segmented-item-line-height, $typography-body-line--height-size-extra-large) !default;
+$segmented-item-padding: var(--wot-segmented-item-padding, $padding-ultra-tight $padding-loose) !default;
+$segmented-item-font-weight: var(--wot-segmented-item-font-weight, $font-weight-regular) !default;
+$segmented-item-active-font-weight: var(--wot-segmented-item-active-font-weight, $font-weight-medium) !default;
+$segmented-item-active-bg: var(--wot-segmented-item-active-bg, $filled-oppo) !default;
+$segmented-item-active-color: var(--wot-segmented-item-active-color, $primary-6) !default;
+$segmented-item-disabled-opacity: var(--wot-segmented-item-disabled-opacity, $opacity-disabled) !default;
 
-    @include e(item) {
-      color: $-dark-color3;
-
-      @include when(active) {
-        color: $-dark-color;
-
-        @include when(disabled) {
-          color: $-dark-color3;
-        }
-      }
-
-      @include when(disabled) {
-        color: $-dark-color-gray;
-      }
-
-      @include m(active) {
-        background-color: $-color-theme;
-
-        @include when(disabled) {
-          opacity: 0.6;
-        }
-      }
-    }
-
-  }
-}
+// Outline theme variables
+$segmented-outline-border-color: var(--wot-segmented-outline-border-color, $border-main) !default;
+$segmented-outline-radius: var(--wot-segmented-outline-radius, $radius-zero) !default;
+$segmented-outline-bg: var(--wot-segmented-outline-bg, $filled-zero) !default;
+$segmented-outline-padding: var(--wot-segmented-outline-padding, $padding-zero) !default;
+$segmented-outline-item-padding: var(--wot-segmented-outline-item-padding, $padding-extra-tight $padding-extra-loose) !default;
+$segmented-outline-item-color: var(--wot-segmented-outline-item-color, $text-secondary) !default;
+$segmented-outline-item-active-bg: var(--wot-segmented-outline-item-active-bg, $primary-6) !default;
+$segmented-outline-item-active-color: var(--wot-segmented-outline-item-active-color, $text-white) !default;
+$segmented-outline-item-disabled-color: var(--wot-segmented-outline-item-disabled-color, $text-disabled) !default;
+$segmented-outline-item-active-disabled-bg: var(--wot-segmented-outline-item-active-disabled-bg, $filled-content) !default;
 
 @include b(segmented) {
   position: relative;
@@ -38,57 +33,96 @@
   align-items: stretch;
   justify-items: flex-start;
   width: 100%;
-  background-color: $-segmented-item-bg-color;
-  padding: $-segmented-padding;
-  border-radius: 4px;
+  padding: $segmented-padding;
+  background-color: $segmented-bg;
+  border-radius: $segmented-radius;
   box-sizing: border-box;
-
+  overflow: hidden;
 
   @include e(item) {
     position: relative;
-    text-align: center;
-    border-radius: 4px;
-    flex: 1;
-    min-width: 0;
     z-index: 1;
-    min-height: 28px;
-    line-height: 28px;
-    padding: 0 12px;
-    font-size: 14px;
-    color: $-segmented-item-color;
-    font-weight: 400;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    padding: $segmented-item-padding;
+    font-size: $segmented-item-font-size;
+    line-height: $segmented-item-line-height;
+    font-weight: $segmented-item-font-weight;
+    color: $segmented-item-color;
+    text-align: center;
+    border-radius: $segmented-radius;
 
     @include when(active) {
-      font-weight: 550;
-    }
-
-    @include when(large) {
-      min-height: 32px;
-      line-height: 32px;
-      padding: 0 12px;
-      font-size: 16px;
-    }
-
-
-    @include when(small) {
-      min-height: 24px;
-      line-height: 24px;
-      padding: 0 7px;
-      font-size: 12px;
+      font-weight: $segmented-item-active-font-weight;
+      color: $segmented-item-active-color;
     }
 
     @include when(disabled) {
       cursor: no-drop;
-      color: $-segmented-item-disabled-color;
+      opacity: $segmented-item-disabled-opacity;
+    }
+  }
+
+  @include e(slider) {
+    position: absolute;
+    top: $segmented-padding;
+    left: $segmented-padding;
+    height: calc(100% - #{$segmented-padding} * 2);
+    background: $segmented-item-active-bg;
+    border-radius: $segmented-radius;
+  }
+
+  @include m(outline) {
+    position: relative;
+    background: $segmented-outline-bg;
+    padding: $segmented-outline-padding;
+
+    @include me(item) {
+      color: $segmented-outline-item-color;
+      padding: $segmented-outline-item-padding;
+      border-radius: $segmented-outline-radius;
+      opacity: 1;
+
+      @include when(active) {
+        color: $segmented-outline-item-active-color;
+        background: $segmented-outline-item-active-bg;
+        border: none;
+
+        &.is-disabled {
+          background: $segmented-outline-item-active-disabled-bg;
+        }
+      }
+
+      @include when(disabled) {
+        color: $segmented-outline-item-disabled-color;
+      }
     }
 
-    @include m(active) {
-      background-color: $-segmented-item-acitve-bg;
-      border-radius: 4px;
-      height: calc(100% - $-segmented-padding * 2);
-      @include when(disabled) {
-        opacity: 0.8;
-      }
+    .wd-segmented__item+.wd-segmented__item {
+      border-left: $segmented-border-width solid $segmented-outline-border-color;
+    }
+
+    @include me(slider) {
+      display: none;
+    }
+
+    &::before {
+      position: absolute;
+      display: block;
+      content: " ";
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      box-sizing: border-box;
+      border: $segmented-border-width solid $segmented-outline-border-color;
+      border-radius: $segmented-radius;
+      transform: none;
+      z-index: 2;
     }
   }
 
@@ -97,5 +131,4 @@
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-
 }

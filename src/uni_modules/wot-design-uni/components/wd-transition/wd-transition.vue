@@ -19,7 +19,9 @@ export default {
   name: 'wd-transition',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -227,6 +229,6 @@ function onTransitionEnd() {
 
 function noop() {}
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

@@ -1,6 +1,6 @@
 <template>
   <page-wraper>
-    <view style="overflow: hidden" class="page-tooltip" @click.stop="closeOutside">
+    <view style="overflow: hidden" class="page-tooltip" @click="closeOutside">
       <demo-block :title="$t('jiBenYongFa')">
         <view class="top">
           <wd-tooltip placement="bottom-start" content="bottom-start 提示文字" @change="handleChange1">
@@ -71,6 +71,19 @@
           </wd-tooltip>
         </view>
       </demo-block>
+      <demo-block title="动态内容与位置更新">
+        <view class="demo-left lines-demo">
+          <wd-tooltip placement="right" use-content-slot ref="tooltipRef">
+            <template #content>
+              <view class="lines-content" :style="{ width: dynamicTooltipWidth + 'px' }">
+                <view style="margin-bottom: 10px">当前宽度: {{ dynamicTooltipWidth }}px</view>
+                <wd-button custom-class="custom-btn" size="small" @click="changeTooltipSize">改变大小</wd-button>
+              </view>
+            </template>
+            <wd-button :round="false">动态内容</wd-button>
+          </wd-tooltip>
+        </view>
+      </demo-block>
       <demo-block :title="$t('kong-zhi-xian-yin')">
         <view @click.stop="control">
           <wd-button plain size="small" class="button-control">{{ show ? '关闭' : '打开' }}</wd-button>
@@ -106,10 +119,19 @@ const { t } = useI18n()
 
 const show = ref<boolean>(false)
 const content = ref<string>(t('xian-shi-nei-rong'))
+const tooltipRef = ref()
+const dynamicTooltipWidth = ref<number>(90)
 
 const toast = useToast()
 
 const { closeOutside } = useQueue()
+
+function changeTooltipSize() {
+  dynamicTooltipWidth.value = dynamicTooltipWidth.value === 90 ? 150 : 90
+  setTimeout(() => {
+    tooltipRef.value && tooltipRef.value.updatePosition()
+  }, 50)
+}
 
 function control() {
   show.value = !show.value
@@ -230,5 +252,8 @@ function handleChange17(event: any) {
   color: #fff;
   padding: 5px;
   width: 90px;
+}
+:deep(.custom-btn) {
+  margin: 0 !important;
 }
 </style>

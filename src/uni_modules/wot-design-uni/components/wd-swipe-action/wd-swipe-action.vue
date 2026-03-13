@@ -29,7 +29,9 @@ export default {
   name: 'wd-swipe-action',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -40,20 +42,28 @@ import { closeOther, pushToQueue, removeFromQueue } from '../common/clickoutside
 import { type Queue, queueKey } from '../composables/useQueue'
 import { useTouch } from '../composables/useTouch'
 import { getRect } from '../common/util'
-import { swipeActionProps, type SwipeActionPosition, type SwipeActionReason, type SwipeActionStatus } from './types'
+import {
+  swipeActionProps,
+  type SwipeActionEmits,
+  type SwipeActionExpose,
+  type SwipeActionPosition,
+  type SwipeActionReason,
+  type SwipeActionStatus
+} from './types'
 
 const props = defineProps(swipeActionProps)
-const emit = defineEmits(['click', 'update:modelValue'])
+const emit = defineEmits<SwipeActionEmits>()
 
 const queue = inject<Queue | null>(queueKey, null)
 
+/** 内容容器内联样式（平移与过渡） */
 const wrapperStyle = ref<string>('')
 
-// 滑动开始时，wrapper的偏移量
+/** 本次滑动开始时容器的偏移量（px） */
 const originOffset = ref<number>(0)
-// wrapper现在的偏移量
+/** 当前容器的偏移量（px） */
 const wrapperOffset = ref<number>(0)
-// 是否处于滑动状态
+/** 是否处于手指滑动中（用于区分程序设置与手势） */
 const touching = ref<boolean>(false)
 
 const touch = useTouch()
@@ -76,11 +86,8 @@ onBeforeMount(() => {
   } else {
     pushToQueue(proxy)
   }
-  // 滑动开始时，wrapper的偏移量
   originOffset.value = 0
-  // wrapper现在的偏移量
   wrapperOffset.value = 0
-  // 是否处于滑动状态
   touching.value = false
 })
 
@@ -98,6 +105,11 @@ onBeforeUnmount(() => {
   }
 })
 
+/**
+ * 根据 modelValue 切换滑动状态（展开左/右或关闭）
+ * @param value 目标状态
+ * @param old 上一状态，用于 beforeClose 等逻辑
+ */
 function changeState(value: SwipeActionStatus, old?: SwipeActionStatus) {
   if (props.disabled) {
     return
@@ -120,10 +132,10 @@ function changeState(value: SwipeActionStatus, old?: SwipeActionStatus) {
 }
 
 /**
- * @description 获取左/右操作按钮的宽度
- * @return {Promise<[Number, Number]>} 左宽度、右宽度
+ * 获取左侧、右侧操作区域宽度（px）
+ * @returns [左侧宽度, 右侧宽度]
  */
-function getWidths() {
+function getWidths(): Promise<[number, number]> {
   return Promise.all([
     getRect('.wd-swipe-action__left', false, proxy).then((rect) => {
       return rect.width ? rect.width : 0
@@ -133,14 +145,13 @@ function getWidths() {
     })
   ])
 }
+
 /**
- * @description wrapper滑动函数
- * @param {Number} offset 滑动漂移量
+ * 设置内容容器横向偏移（带动画或跟随手指）
+ * @param offset 偏移量（px），正数为向左滑出左按钮，负数为向右滑出右按钮
  */
 function swipeMove(offset = 0) {
-  // this.offset = offset
   const transform = `translate3d(${offset}px, 0, 0)`
-  // 跟随手指滑动，不需要动画
   const transition = touching.value ? 'none' : '.6s cubic-bezier(0.18, 0.89, 0.32, 1)'
   wrapperStyle.value = `
         -webkit-transform: ${transform};
@@ -148,12 +159,12 @@ function swipeMove(offset = 0) {
         transform: ${transform};
         transition: ${transition};
       `
-  // 记录容器当前偏移的量
   wrapperOffset.value = offset
 }
+
 /**
- * @description click的handler
- * @param event
+ * 处理点击：若已展开则关闭并触发 click 事件
+ * @param position 点击位置（'left' | 'right' | undefined 表示内容区）
  */
 function onClick(position?: SwipeActionPosition) {
   if (props.disabled || wrapperOffset.value === 0) {
@@ -166,8 +177,10 @@ function onClick(position?: SwipeActionPosition) {
     value: position
   })
 }
+
 /**
- * @description 开始滑动
+ * 触摸开始：记录初始偏移并关闭其他已展开的滑动项
+ * @param event 触摸事件
  */
 function startDrag(event: TouchEvent) {
   if (props.disabled) return
@@ -180,9 +193,10 @@ function startDrag(event: TouchEvent) {
     closeOther(proxy)
   }
 }
+
 /**
- * @description 滑动时，逐渐展示按钮
- * @param event
+ * 触摸移动：根据横向位移更新容器偏移，展示左/右操作按钮
+ * @param event 触摸事件
  */
 function onDrag(event: TouchEvent) {
   if (props.disabled) return
@@ -197,15 +211,12 @@ function onDrag(event: TouchEvent) {
 
   touching.value = true
 
-  // 本次滑动，wrapper应该设置的偏移量
   const offset = originOffset.value + touch.deltaX.value
   getWidths().then(([leftWidth, rightWidth]) => {
-    // 如果需要想滑出来的按钮不存在，对应的按钮肯定滑不出来，容器处于初始状态。此时需要模拟一下位于此处的start事件。
     if ((leftWidth === 0 && offset > 0) || (rightWidth === 0 && offset < 0)) {
       swipeMove(0)
       return startDrag(event)
     }
-    // 按钮已经展示完了，再滑动没有任何意义，相当于滑动结束。此时需要模拟一下位于此处的start事件。
     if (leftWidth !== 0 && offset >= leftWidth) {
       swipeMove(leftWidth)
       return startDrag(event)
@@ -216,12 +227,12 @@ function onDrag(event: TouchEvent) {
     swipeMove(offset)
   })
 }
+
 /**
- * @description 滑动结束，自动修正位置
+ * 触摸结束：根据滑动距离与阈值决定保持展开或收起
  */
 function endDrag() {
   if (props.disabled) return
-  // 滑出"操作按钮"的阈值
   const THRESHOLD = 0.3
   touching.value = false
 
@@ -262,23 +273,24 @@ function endDrag() {
     }
   })
 }
+
 /**
- * @description 关闭操过按钮，并在合适的时候调用 beforeClose
+ * 关闭已展开的操作按钮并同步 modelValue；会调用 beforeClose 钩子
+ * @param reason 关闭原因
+ * @param position 关闭时的操作位置（swipe 时根据当前偏移推断）
  */
 function close(reason: SwipeActionReason, position?: SwipeActionPosition) {
   if (reason === 'swipe' && originOffset.value === 0) {
-    // offset：0 ——> offset：0
     return swipeMove(0)
-  } else if (reason === 'swipe' && originOffset.value > 0) {
-    // offset > 0 ——> offset：0
+  }
+  if (reason === 'swipe' && originOffset.value > 0) {
     position = 'left'
   } else if (reason === 'swipe' && originOffset.value < 0) {
-    // offset < 0 ——> offset：0
     position = 'right'
   }
 
   if (reason && position) {
-    props.beforeClose && props.beforeClose(reason, position)
+    props.beforeClose?.(reason, position)
   }
 
   swipeMove(0)
@@ -287,8 +299,8 @@ function close(reason: SwipeActionReason, position?: SwipeActionPosition) {
   }
 }
 
-defineExpose({ close })
+defineExpose<SwipeActionExpose>({ close })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

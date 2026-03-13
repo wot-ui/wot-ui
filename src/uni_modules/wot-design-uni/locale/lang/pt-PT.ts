@@ -44,7 +44,7 @@ export default {
     expand: 'Expandir',
     retract: 'Retrair'
   },
-  colPicker: {
+  cascader: {
     title: 'Por favor selecione',
     placeholder: 'Por favor selecione',
     select: 'Por favor selecione'
@@ -64,6 +64,12 @@ export default {
     retry: 'Clique para tentar novamente'
   },
   messageBox: {
+    inputPlaceholder: 'Por favor insira',
+    confirm: 'Confirmar',
+    cancel: 'Cancelar',
+    inputNoValidate: 'Dados inseridos inválidos'
+  },
+  dialog: {
     inputPlaceholder: 'Por favor insira',
     confirm: 'Confirmar',
     cancel: 'Cancelar',

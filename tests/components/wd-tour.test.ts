@@ -198,8 +198,8 @@ describe('WdTour', () => {
     await wrapper.vm.$nextTick()
     await new Promise((resolve) => setTimeout(resolve, 100))
 
-    expect(wrapper.find('.wd-tour__skip__default').text()).toBe('忽略')
-    expect(wrapper.find('.wd-tour__finish__default').exists()).toBe(false) // 不在第一页
+    expect(wrapper.find('.wd-tour__skip-default').text()).toBe('忽略')
+    expect(wrapper.find('.wd-tour__finish-default').exists()).toBe(false) // 不在第一页
   })
 
   // 测试进度显示
@@ -215,7 +215,7 @@ describe('WdTour', () => {
     await wrapper.vm.$nextTick()
     await new Promise((resolve) => setTimeout(resolve, 100))
 
-    expect(wrapper.find('.wd-tour__next__default').text()).toContain('(1/2)')
+    expect(wrapper.find('.wd-tour__next-default').text()).toContain('(1/2)')
   })
 
   // 测试点击下一步

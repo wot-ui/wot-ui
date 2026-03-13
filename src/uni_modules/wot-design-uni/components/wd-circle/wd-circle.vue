@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-circle ${customClass}`" :style="customStyle">
+  <view :class="`wd-circle ${customClass}`" :style="rootStyle">
     <!-- #ifdef MP-WEIXIN -->
     <canvas :style="canvasStyle" :id="canvasId" :canvas-id="canvasId" type="2d"></canvas>
     <!-- #endif -->
@@ -22,13 +22,15 @@ export default {
   name: 'wd-circle',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
 </script>
 <script lang="ts" setup>
-import { computed, getCurrentInstance, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, type CSSProperties, getCurrentInstance, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
 import { addUnit, isObj, objToStyle, uuid, getSystemInfo } from '../common/util'
 import { circleProps } from './types'
 // #ifdef MP-WEIXIN
@@ -55,6 +57,14 @@ const interval = ref<any>(null) // 定时器
 const pixelRatio = ref<number>(1) // 像素比
 const canvasId = ref<string>(`wd-circle${uuid()}`) // canvasId
 let ctx: UniApp.CanvasContext | null = null
+
+const rootStyle = computed(() => {
+  const style: CSSProperties = {
+    color: isObj(props.color) ? 'var(--wot-text-main)' : props.color
+  }
+
+  return `${objToStyle(style)};${props.customStyle}`
+})
 
 // canvas渲染大小
 const canvasSize = computed(() => {
@@ -291,6 +301,6 @@ function clearTimeInterval() {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

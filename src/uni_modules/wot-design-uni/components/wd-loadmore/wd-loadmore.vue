@@ -1,24 +1,17 @@
-<!--
- * @Author: weisheng
- * @Date: 2024-11-09 12:35:25
- * @LastEditTime: 2024-11-09 15:01:32
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-loadmore/wd-loadmore.vue
- * 记得注释
--->
 <template>
   <view :class="['wd-loadmore', customClass]" :style="customStyle" @click="reload">
-    <wd-divider v-if="state === 'finished'">{{ finishedText || translate('finished') }}</wd-divider>
-    <block v-if="state === 'error'">
+    <slot v-if="state === 'finished'" name="finished">
+      <wd-divider custom-class="wd-loadmore__divider">{{ finishedText || translate('finished') }}</wd-divider>
+    </slot>
+    <slot v-else-if="state === 'error'" name="error">
       <text class="wd-loadmore__text">{{ errorText || translate('error') }}</text>
-      <text class="wd-loadmore__text is-light">{{ translate('retry') }}</text>
+      <text class="wd-loadmore__refresh-text">{{ translate('retry') }}</text>
       <wd-icon name="refresh" custom-class="wd-loadmore__refresh" />
-    </block>
-    <block v-if="state === 'loading'">
+    </slot>
+    <slot v-else-if="state === 'loading'" name="loading">
       <wd-loading v-bind="customLoadingProps" />
       <text class="wd-loadmore__text">{{ loadingText || translate('loading') }}</text>
-    </block>
+    </slot>
   </view>
 </template>
 
@@ -26,7 +19,9 @@
 export default {
   name: 'wd-loadmore',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -43,6 +38,7 @@ import { loadmoreProps, type LoadMoreState } from './types'
 import type { LoadingProps } from '../wd-loading/types'
 import { isDef, isUndefined, omitBy } from '../common/util'
 
+// 计算 Loading 组件的属性 - 合并用户传入的属性和组件需要的自定义样式
 const customLoadingProps = computed(() => {
   const loadingProps: Partial<LoadingProps> = isDef(props.loadingProps) ? omitBy(props.loadingProps, isUndefined) : {}
   loadingProps.customClass = `wd-loadmore__loading ${loadingProps.customClass || ''}`
@@ -54,8 +50,12 @@ const emit = defineEmits(['reload'])
 
 const { translate } = useTranslate('loadmore')
 
+/** 当前加载状态 */
 const currentState = ref<LoadMoreState | null>(null)
 
+/**
+ * 处理重新加载操作 - 当加载失败时，点击可触发 reload 事件
+ */
 function reload() {
   if (props.state !== 'error') return
   currentState.value = 'loading'
@@ -63,6 +63,6 @@ function reload() {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

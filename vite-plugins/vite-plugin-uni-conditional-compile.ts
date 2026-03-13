@@ -1,4 +1,4 @@
-import { createFilter, FilterPattern } from '@rollup/pluginutils'
+import { createFilter, type FilterPattern } from '@rollup/pluginutils'
 import type { Plugin, TransformResult } from 'vite'
 
 interface ConditionalCompileOptions {

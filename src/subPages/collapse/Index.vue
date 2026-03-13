@@ -8,7 +8,7 @@
         <wd-button custom-class="custom-button" type="warning" @click="collapse?.toggleAll({ skipDisabled: true })">
           {{ $t('quan-bu-qie-huan-tiao-guo-jin-yong') }}
         </wd-button>
-        <wd-button custom-class="custom-button" type="error" @click="collapse?.toggleAll({ expanded: true, skipDisabled: true })">
+        <wd-button custom-class="custom-button" type="danger" @click="collapse?.toggleAll({ expanded: true, skipDisabled: true })">
           {{ $t('quan-bu-xuan-zhong-tiao-guo-jin-yong') }}
         </wd-button>
       </demo-block>

@@ -1,3 +1,12 @@
+<!--
+ * @Author: weisheng
+ * @Date: 2025-07-17 10:27:32
+ * @LastEditTime: 2026-03-04 10:49:22
+ * @LastEditors: weisheng
+ * @Description: 
+ * @FilePath: /wot-design-uni/src/subPages/notify/Index.vue
+ * 记得注释
+-->
 <template>
   <page-wraper>
     <demo-block :title="$t('jiBenYongFa')" transparent>
@@ -18,6 +27,7 @@
         <wd-cell :title="$t('zi-ding-yi-yan-se-0')" is-link @click="showCustomColor" />
         <wd-cell :title="$t('zi-ding-yi-wei-zhi')" is-link @click="showCustomPosition" />
         <wd-cell :title="$t('zi-ding-yi-shi-chang')" is-link @click="showCustomDuration" />
+        <wd-cell :title="t('xian-shi-guan-bi-an-niu')" is-link @click="showClosableNotify" />
       </wd-cell-group>
     </demo-block>
     <demo-block :title="$t('shi-yong-notify-zu-jian')" transparent>
@@ -65,6 +75,13 @@ const showCustomDuration = () => {
   showNotify({
     message: t('zi-ding-yi-shi-chang-0'),
     duration: 1000
+  })
+}
+const showClosableNotify = () => {
+  showNotify({
+    message: t('tong-zhi-nei-rong'),
+    closable: true,
+    duration: 0
   })
 }
 const showNotifyComponent = () => {

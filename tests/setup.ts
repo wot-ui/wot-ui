@@ -167,6 +167,16 @@ vi.stubGlobal('uni', {
             right: 300,
             bottom: 40
           }
+        } else if (currentSelector.includes('wd-slide-verify')) {
+          nodeInfo = {
+            ...nodeInfo,
+            width: 300,
+            height: 40,
+            top: 0,
+            left: 0,
+            right: 300,
+            bottom: 40
+          }
         } else if (currentSelector.includes('wd-index-bar')) {
           nodeInfo = {
             ...nodeInfo,

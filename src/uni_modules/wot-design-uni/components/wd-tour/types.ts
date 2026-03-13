@@ -1,8 +1,13 @@
-import type { CSSProperties, PropType } from 'vue'
-import { baseProps, makeBooleanProp, makeNumberProp, makeStringProp, makeArrayProp } from '../common/props'
+import type { CSSProperties, ExtractPropTypes, PropType } from 'vue'
+import { baseProps, makeBooleanProp, makeNumberProp, makeArrayProp } from '../common/props'
 
+/** 缺失目标元素时的处理策略 */
 export type MissingStrategy = 'skip' | 'stop' | 'hide'
-export interface TourStep {
+/** 引导提示框位置 */
+export type TourPlacement = 'auto' | 'top' | 'bottom' | 'left' | 'right'
+
+/** 单个引导步骤配置 */
+export type TourStep = {
   /**
    * 需要高亮的元素选择器
    */
@@ -11,12 +16,19 @@ export interface TourStep {
    * 引导文字内容
    */
   content: string
-  /** 覆盖当前步骤的内边距 */
+  /**
+   * 覆盖当前步骤的内边距
+   */
   padding?: number
-  /** 覆盖当前步骤的提示与高亮间距 */
+  /**
+   * 覆盖当前步骤的提示与高亮间距
+   */
   offset?: number
-  /** 强制提示位置 */
-  placement?: 'auto' | 'top' | 'bottom' | 'left' | 'right'
+  /**
+   * 强制提示位置
+   * 可选值: 'auto' | 'top' | 'bottom' | 'left' | 'right'
+   */
+  placement?: TourPlacement
 }
 
 export const tourProps = {
@@ -24,112 +36,116 @@ export const tourProps = {
 
   /**
    * 是否显示引导组件，使用 v-model 绑定
-   * 类型：boolean
-   * 默认值：false
+   * 类型: boolean
+   * 默认值: false
    */
   modelValue: makeBooleanProp(false),
 
   /**
    * 引导步骤列表
-   * 类型：array
-   * 默认值：[]
+   * 类型: TourStep[]
+   * 默认值: []
    */
   steps: makeArrayProp<TourStep>(),
   /**
-   * 引导框的current
-   * 类型：number
-   * 默认值：0
+   * 引导框的当前步骤索引
+   * 类型: number
+   * 默认值: 0
    */
   current: makeNumberProp(0),
 
   /**
    * 蒙版是否显示
-   * 类型：boolean
-   * 默认值：true
+   * 类型: boolean
+   * 默认值: true
    */
   mask: makeBooleanProp(true),
 
   /**
    * 蒙版颜色（支持 rgba 格式）
-   * 类型：string
+   * 类型: string
    */
   maskColor: String,
   /**
    * 引导框与高亮元素之间的间距，单位 px
-   * 类型：number
-   * 默认值：20
+   * 类型: number
+   * 默认值: 20
    */
   offset: makeNumberProp(20),
 
   /**
    * 动画持续时间（毫秒）
-   * 类型：number
-   * 默认值：300
+   * 类型: number
+   * 默认值: 300
    */
   duration: makeNumberProp(300),
   /**
    * 高亮区域的圆角大小
-   * 类型：number
-   * 默认值：8
+   * 类型: number
+   * 默认值: 4
    */
-  borderRadius: makeNumberProp(8),
+  borderRadius: makeNumberProp(4),
   /**
    * 高亮区域的内边距
-   * 类型：number
-   * 默认值：8
+   * 类型: number
+   * 默认值: 8
    */
   padding: makeNumberProp(8),
   /**
    * 上一步按钮文字
+   * 类型: string
    */
   prevText: String,
 
   /**
    * 下一步按钮文字
+   * 类型: string
    */
   nextText: String,
 
   /**
    * 跳过按钮文字
+   * 类型: string
    */
   skipText: String,
 
   /**
    * 完成按钮文字
+   * 类型: string
    */
   finishText: String,
 
   /**
    * 安全偏移量，用于滚动计算时确保元素周围有足够的空间
-   * 类型：number
-   * 默认值：100
+   * 类型: number
+   * 默认值: 100
    */
   bottomSafetyOffset: makeNumberProp(100),
 
   /**
    * 顶部安全偏移量，用于滚动计算时确保元素周围有足够的空间
-   * 类型：number
-   * 默认值：0
+   * 类型: number
+   * 默认值: 0
    */
   topSafetyOffset: makeNumberProp(0),
 
   /**
    * 是否自定义顶部导航栏
-   * 类型：boolean
-   * 默认值：false
+   * 类型: boolean
+   * 默认值: false
    */
   customNav: makeBooleanProp(false),
 
   /**
    * 点击蒙版是否可以下一步
-   * 类型：boolean
-   * 默认值：false
+   * 类型: boolean
+   * 默认值: false
    */
   clickMaskNext: makeBooleanProp(false),
   /**
    * 高亮区域样式
-   * 类型：object
-   * 默认值：{}
+   * 类型: CSSProperties
+   * 默认值: {}
    */
   highlightStyle: {
     type: Object as PropType<CSSProperties>,
@@ -137,24 +153,27 @@ export const tourProps = {
   },
   /**
    * 引导框的层级
-   * 类型：number
+   * 类型: number
    */
   zIndex: Number,
   /**
    * 是否显示引导按钮
-   * 类型：boolean
-   * 默认值：true
+   * 类型: boolean
+   * 默认值: true
    */
   showTourButtons: makeBooleanProp(true),
-  /** 查询作用域，限定选择器范围 */
+  /**
+   * 查询作用域，限定选择器范围
+   * 类型: unknown
+   */
   scope: {
-    type: Object as PropType<any>
+    type: Object as PropType<unknown>
   },
   /**
    * 缺失元素处理策略
-   * 类型：string
-   * 可选值：'skip' | 'stop' | 'hide'，分别表示跳过缺失元素、停止引导、隐藏缺失元素的提示
-   * 默认值：'stop'
+   * 类型: MissingStrategy
+   * 可选值: 'skip' | 'stop' | 'hide'
+   * 默认值: 'stop'
    */
   missingStrategy: {
     type: String as PropType<MissingStrategy>,
@@ -162,7 +181,7 @@ export const tourProps = {
   }
 }
 
-export type TourProps = typeof tourProps
+export type TourProps = ExtractPropTypes<typeof tourProps>
 
 export type TourChangeDetail = {
   /** 当前步骤的索引 */
@@ -235,4 +254,15 @@ export type TourEmits = {
    * @param detail 错误事件参数
    */
   error: [detail: TourErrorDetail]
+}
+
+export type TourExpose = {
+  /** 切换到上一步 */
+  handlePrev: () => void
+  /** 切换到下一步 */
+  handleNext: () => void
+  /** 结束引导流程 */
+  handleFinish: () => void
+  /** 跳过引导流程 */
+  handleSkip: () => void
 }

@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp } from '../common/props'
+import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp, numericProp } from '../common/props'
 import type { SwiperNavProps } from '../wd-swiper-nav/types'
 import type { ImageMode } from '../wd-img/types'
 
@@ -29,7 +29,7 @@ export type AdjustHeightType = 'first' | 'current' | 'highest' | 'none'
 // 资源类型
 export type SwiperItemType = 'image' | 'video'
 
-export interface SwiperList {
+export interface SwiperItem {
   [key: string]: any
   // 图片、视频等资源地址
   value?: string
@@ -104,7 +104,7 @@ export const swiperProps = {
    * 默认值：空数组
    */
   list: {
-    type: Array as PropType<SwiperList[] | string[]>,
+    type: Array as PropType<SwiperItem[] | string[]>,
     default: () => []
   },
 
@@ -149,6 +149,11 @@ export const swiperProps = {
    */
   previousMargin: makeNumericProp('0'),
   /**
+   * 轮播圆角
+   * 类型：number | string
+   */
+  radius: numericProp,
+  /**
    * 是否应用边距到第一个、最后一个元素
    * 类型：boolean
    * 默认值：false
@@ -170,6 +175,12 @@ export const swiperProps = {
    * 默认值：'aspectFill'
    */
   imageMode: makeStringProp<ImageMode>('aspectFill'),
+  /**
+   * 开启长按图片显示识别小程序码菜单
+   * 类型：boolean
+   * 默认值：false
+   */
+  showMenuByLongpress: makeBooleanProp(false),
   /**
    * 选项对象中，value 对应的 key
    */

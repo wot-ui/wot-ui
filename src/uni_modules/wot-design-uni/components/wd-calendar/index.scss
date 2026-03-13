@@ -1,30 +1,33 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
 
-.wot-theme-dark {
-  @include b(calendar) {
-
-    @include e(title) {
-      color: $-dark-color;
-    }
-
-    :deep(.wd-calendar__close) {
-      color: $-dark-color;
-    }
-
-    @include e(range-label-item) {
-      color: $-dark-color;
-
-      @include when(placeholder) {
-        color: $-dark-color-gray;
-      }
-    }
-
-    @include e(range-sperator) {
-      color: $-dark-color-gray;
-    }
-  }
-}
+$calendar-bg: var(--wot-calendar-bg, $filled-oppo) !default;
+// Tabs 区域
+$calendar-tabs-width: var(--wot-calendar-tabs-width, 100%) !default; // Tabs 宽度
+$calendar-tabs-padding: var(--wot-calendar-tabs-margin, $padding-zero $padding-extra-loose) !default; // Tabs 外边距
+// 快捷选项
+$calendar-shortcuts-padding: var(--wot-calendar-shortcuts-padding, $padding-extra-tight $padding-zero) !default; // 快捷选项内边距
+$calendar-tag-spacing-right: var(--wot-calendar-tag-spacing-right, $spacing-extra-loose) !default; // 标签右间距
+// 日期范围标签
+$calendar-range-padding: var(--wot-calendar-range-padding, 0 $padding-loose $padding-extra-loose) !default; // 范围标签内边距 
+$calendar-range-font-size: var(--wot-calendar-range-font-size, $typography-body-size-main) !default; // 范围标签字号
+// 范围标签项
+$calendar-range-item-font-size: var(--wot-calendar-range-item-font-size, $typography-body-size-extra-large) !default; // 范围标签项字号
+$calendar-range-item-font-weight: var(--wot-calendar-range-item-font-weight, $font-weight-medium) !default; // 范围标签项字重
+$calendar-range-item-line-height: var(--wot-calendar-range-item-line-height, $typography-body-line--height-size-extra-large) !default; // 范围标签项行高
+$calendar-range-item-padding: var(--wot-calendar-range-item-padding, $spacing-loose $spacing-zero) !default; // 范围标签项内边距
+$calendar-range-item-color: var(--wot-calendar-range-item-color, $primary-6) !default; // 范围标签项颜色
+$calendar-range-item-placeholder-color: var(--wot-calendar-range-item-placeholder-color, $text-placeholder) !default; // 占位符颜色
+$calendar-range-item-line-color: var(--wot-calendar-range-item-line-color, $primary-6) !default; // 范围标签项下划线颜色
+$calendar-range-item-line-placeholder-color: var(--wot-calendar-range-item-line-placeholder-color, $border-main) !default; // 范围标签项下划线占位符颜色
+// 分隔符
+$calendar-range-sperator-margin: var(--wot-calendar-range-sperator-margin, $spacing-zero $spacing-tight) !default; // 分隔符水平间距
+$calendar-range-sperator-color: var(--wot-calendar-range-sperator-color, $text-auxiliary) !default; // 分隔符颜色
+$calendar-range-sperator-width: var(--wot-calendar-range-sperator-width, $n8) !default; // 分隔符宽度
+$calendar-range-sperator-height: var(--wot-calendar-range-sperator-height, $n1) !default; // 分隔符高度
+// 确认按钮区域
+$calendar-confirm-padding: var(--wot-calendar-confirm-padding, $padding-tight $padding-loose) !default; // 确认区域内边距
+$calendar-confirm-border-color: var(--wot-calendar-confirm-border-color, $border-light) !default; // 确认区域上边框颜色
 
 @include b(calendar) {
 
@@ -33,79 +36,65 @@
     overflow: hidden;
   }
 
-  @include e(title) {
-    color: $-action-sheet-color;
-    height: $-action-sheet-title-height;
-    line-height: $-action-sheet-title-height;
-    text-align: center;
-    font-size: $-action-sheet-title-fs;
-    font-weight: $-action-sheet-weight;
-  }
-
-  @include edeep(close) {
-    position: absolute;
-    top: $-action-sheet-close-top;
-    right: $-action-sheet-close-right;
-    color: $-action-sheet-close-color;
-    font-size: $-action-sheet-close-fs;
-    transform: rotate(-45deg);
-    line-height: 1.1;
+  @include edeep(popup) {
+    background: $calendar-bg;
   }
 
   @include e(tabs) {
-    width: 222px;
-    margin: 10px auto 12px;
+    box-sizing: border-box;
+    width: $calendar-tabs-width;
+    padding: $calendar-tabs-padding;
   }
 
   @include e(shortcuts) {
-    padding: 20px 0;
+    padding: $calendar-shortcuts-padding;
     text-align: center;
   }
 
   @include edeep(tag) {
-    margin-right: 8px;
-  }
-
-  @include e(view) {
-    @include when(show-confirm) {
-      height: 394px;
-      
-      @include when(range) {
-        height: 384px;
-      }
+    margin-right: $calendar-tag-spacing-right;
+    @include when(last-tag) {
+      margin-right: 0;
     }
   }
-
-  @include e(range-label) {
+  @include e(range) {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
-
-    @include when(monthrange) {
-      padding-bottom: 10px;
-      box-shadow: 0px 4px 8px 0 rgba(0, 0, 0, 0.02);
-    }
+    font-size: $calendar-range-font-size;
+    padding: $calendar-range-padding;
   }
 
-  @include e(range-label-item) {
+  @include e(range-item) {
     flex: 1;
-    color: rgba(0, 0, 0, 0.85);
+    color: $calendar-range-item-color;
+    font-size: $calendar-range-item-font-size;
+    font-weight: $calendar-range-item-font-weight;
+    line-height: $calendar-range-item-line-height;
+    padding: $calendar-range-item-padding;
+    text-align: center;
+    @include pixelBorder(bottom, 0, $calendar-range-item-line-color);
 
     @include when(placeholder) {
-      color: rgba(0, 0, 0, 0.25);
+      color: $calendar-range-item-placeholder-color;
+      @include pixelBorder(bottom, 0, $calendar-range-item-line-placeholder-color);
+
     }
   }
 
   @include e(range-sperator) {
-    margin: 0 24px;
-    color: rgba(0, 0, 0, 0.25);
+    width: $calendar-range-sperator-width;
+    height: $calendar-range-sperator-height;
+    position: relative;
+    margin: $calendar-range-sperator-margin;
+    background: $calendar-range-sperator-color;
   }
 
   @include e(confirm) {
     display: flex;
     align-items: center;
-    padding: 12px 25px 14px;
+    padding: $calendar-confirm-padding;
+    @include pixelBorder(top, 0, $calendar-confirm-border-color);
   }
 
   @include e(confirm-btn-wrapper) {

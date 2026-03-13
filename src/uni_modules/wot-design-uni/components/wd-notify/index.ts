@@ -1,4 +1,13 @@
-import { inject, provide, reactive, ref } from 'vue'
+/*
+ * @Author: weisheng
+ * @Date: 2025-05-08 22:54:27
+ * @LastEditTime: 2026-03-04 10:50:02
+ * @LastEditors: weisheng
+ * @Description:
+ * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-notify/index.ts
+ * 记得注释
+ */
+import { inject, provide, ref } from 'vue'
 import type { NotifyProps } from './types'
 import { deepMerge, isString } from '../common/util'
 
@@ -56,6 +65,7 @@ function getDefaultOptions(): NotifyProps {
     background: undefined,
     onClick: undefined,
     onClosed: undefined,
-    onOpened: undefined
+    onOpened: undefined,
+    closable: false
   }
 }

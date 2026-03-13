@@ -1,5 +1,10 @@
-@import "../common/abstracts/variable.scss";
-@import "../common/abstracts/_mixin.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
+
+$circle-text-color: var(--wot-circle-text-color, currentColor) !default;
+$circle-text-font-size: var(--wot-circle-text-size, $typography-title-size-large) !default;
+$circle-text-line-height: var(--wot-circle-text-line-height, $typography-title-line--height-size-large) !default;
+
 
 @include b(circle) {
   position: relative;
@@ -13,6 +18,8 @@
     left: 0;
     width: 100%;
     transform: translateY(-50%);
-    color: $-circle-text-color;
+    font-size: $circle-text-font-size;
+    line-height: $circle-text-line-height;
+    color: $circle-text-color;
   }
 }

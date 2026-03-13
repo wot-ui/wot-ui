@@ -1,12 +1,16 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
+
+// 组件级 CSS 变量定义
+$resize-container-min-size: var(--wot-resize-container-min-size, $n1) !default; // 容器最小宽高
+$resize-wrapper-z-index: var(--wot-resize-wrapper-z-index, -9999) !default; // wrapper 层级
 
 @include b(resize) {
 
   @include e(container) {
     position: absolute;
-    min-width: 1px;
-    min-height: 1px;
+    min-width: $resize-container-min-size;
+    min-height: $resize-container-min-size;
   }
 
   @include e(wrapper) {
@@ -15,7 +19,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: -9999;
+    z-index: $resize-wrapper-z-index;
     overflow: hidden;
     visibility: hidden;
 

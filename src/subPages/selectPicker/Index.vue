@@ -2,83 +2,50 @@
   <page-wraper>
     <view>
       <wd-cell-group border>
-        <wd-select-picker :label="$t('xuan-ze-di-zhi')" v-model="value1" :columns="columns1" @confirm="handleConfirm1" />
-        <wd-select-picker :label="$t('lei-xing-qie-huan')" type="radio" v-model="value2" :columns="columns1" @confirm="handleConfirm2" />
-        <wd-select-picker :label="$t('jinYong')" disabled v-model="value3" :columns="columns1" @confirm="handleConfirm3" />
-        <wd-select-picker :label="$t('zhi-du')" readonly v-model="value4" :columns="columns1" @confirm="handleConfirm4" />
-        <wd-select-picker :label="$t('jin-yong-xuan-xiang')" v-model="value5" :columns="columns2" @confirm="handleConfirm5" />
-        <wd-select-picker label="loading" loading v-model="value6" :columns="columns1" @confirm="handleConfirm6" />
-        <wd-select-picker :label="$t('xuan-ze-qi-change')" v-model="value6" :columns="columns1" @change="handleChange" @confirm="handleConfirm7" />
+        <wd-cell :title="$t('xuan-ze-di-zhi')" :value="getDisplayValue(value1)" is-link @click="show1 = true" />
+        <wd-select-picker v-model="value1" v-model:visible="show1" :columns="columns1" @confirm="handleConfirm1" />
+
+        <wd-cell :title="$t('lei-xing-qie-huan')" :value="getRadioDisplayValue(value2)" is-link @click="show2 = true" />
+        <wd-select-picker type="radio" v-model="value2" v-model:visible="show2" :columns="columns1" @confirm="handleConfirm2" />
+
+        <wd-cell :title="$t('jin-yong-xuan-xiang')" :value="getDisplayValue(value5)" is-link @click="show5 = true" />
+        <wd-select-picker v-model="value5" v-model:visible="show5" :columns="columns2" @confirm="handleConfirm5" />
+
+        <wd-cell title="loading" :value="getDisplayValue(value6)" is-link @click="show6 = true" />
+        <wd-select-picker loading v-model="value6" v-model:visible="show6" :columns="columns1" @confirm="handleConfirm6" />
+
+        <wd-cell :title="$t('xuan-ze-qi-change')" :value="getDisplayValue(value7)" is-link @click="show7 = true" />
+        <wd-select-picker v-model="value7" v-model:visible="show7" :columns="columns1" @change="handleChange" @confirm="handleConfirm7" />
+
+        <wd-cell title="before-confirm" :value="getDisplayValue(value9)" is-link @click="show9 = true" />
+        <wd-select-picker v-model="value9" v-model:visible="show9" :columns="columns1" @confirm="handleConfirm9" :before-confirm="beforeConfirm" />
+
+        <wd-cell :title="$t('biaoTi-0')" :value="getDisplayValue(value10)" is-link @click="show10 = true" />
+        <wd-select-picker v-model="value10" v-model:visible="show10" :title="$t('duo-xuan')" :columns="columns1" @confirm="handleConfirm10" />
+
+        <wd-cell :title="$t('ke-sou-suo')" :value="getDisplayValue(value13)" is-link @click="show13 = true" />
+        <wd-select-picker filterable v-model="value13" v-model:visible="show13" :columns="columns1" @confirm="handleConfirm13" />
+
+        <wd-cell :title="$t('dan-xuan-ke-sou-suo')" :value="getRadioDisplayValue(value18)" is-link @click="show18 = true" />
+        <wd-select-picker filterable v-model="value18" v-model:visible="show18" type="radio" :columns="columns1" @confirm="handleConfirm13" />
+
+        <wd-cell :title="$t('zi-dong-wan-cheng')" :value="getRadioDisplayValue(value19)" is-link @click="show19 = true" />
         <wd-select-picker
-          :label="$t('zhan-shi-ge-shi-hua')"
-          v-model="value8"
-          :columns="columns1"
-          @confirm="handleConfirm8"
-          :display-format="displayFormat"
-        />
-        <wd-select-picker label="before-confirm" v-model="value9" :columns="columns1" @confirm="handleConfirm9" :before-confirm="beforeConfirm" />
-        <wd-select-picker :label="$t('biaoTi-0')" v-model="value10" :title="$t('duo-xuan')" :columns="columns1" @confirm="handleConfirm10" />
-        <wd-select-picker :label="$t('cuo-wu')" error v-model="value11" :columns="columns1" @confirm="handleConfirm11" />
-        <wd-select-picker clearable :label="$t('bi-tian')" required v-model="value12" :columns="columns1" @confirm="handleConfirm12" />
-        <wd-select-picker
-          :label="$t('bi-tian-xing-hao-zai-you-ce')"
-          required
-          v-model="value21"
-          :columns="columns1"
-          marker-side="after"
-          @confirm="handleConfirm21"
-        />
-        <wd-select-picker :label="$t('ke-sou-suo')" filterable v-model="value13" :columns="columns1" @confirm="handleConfirm13" />
-        <wd-select-picker
-          :label="$t('dan-xuan-ke-sou-suo')"
-          filterable
-          v-model="value18"
-          type="radio"
-          :columns="columns1"
-          @confirm="handleConfirm13"
-        />
-        <wd-select-picker
-          :label="$t('zi-dong-wan-cheng')"
           type="radio"
           :show-confirm="false"
           v-model="value19"
-          :columns="columns1"
-          @confirm="handleConfirm2"
-        />
-        <wd-select-picker
-          :label="$t('ke-qing-kong')"
-          clearable
-          type="radio"
-          :show-confirm="false"
-          v-model="value20"
+          v-model:visible="show19"
           :columns="columns1"
           @confirm="handleConfirm2"
         />
       </wd-cell-group>
     </view>
-    <demo-block :title="$t('label-bu-chuan')" transparent>
-      <wd-select-picker v-model="value14" :columns="columns1" @confirm="handleConfirm14" />
-    </demo-block>
-    <demo-block :title="$t('da-xiao')" transparent>
-      <wd-select-picker :label="$t('da-chi-cun')" v-model="value15" size="large" :columns="columns1" @confirm="handleConfirm15" />
-    </demo-block>
-    <demo-block :title="$t('zhi-kao-you-zhan-shi')" transparent>
-      <wd-select-picker :label="$t('zhi-kao-you-zhan-shi')" align-right v-model="value16" :columns="columns1" @confirm="handleConfirm16" />
-    </demo-block>
-    <demo-block :title="$t('zi-ding-yi-xuan-ze-qi')" transparent>
-      <view style="margin-left: 15px">
-        <view style="margin-bottom: 10px">{{ $t('dang-qian-xuan-zhong-xiang-displayvalue') + customShow }}</view>
-        <wd-select-picker v-model="value17" use-default-slot :columns="columns1" @confirm="handleConfirm17" style="display: inline-block">
-          <wd-button>{{ $t('huan-qi-duo-xuan') }}</wd-button>
-        </wd-select-picker>
-      </view>
-    </demo-block>
     <wd-toast />
   </page-wraper>
 </template>
 <script lang="ts" setup>
 import { useToast } from '@/uni_modules/wot-design-uni'
-import type { SelectPickerBeforeConfirm, SelectPickerDisplayFormat } from '@/uni_modules/wot-design-uni/components/wd-select-picker/types'
+import type { SelectPickerBeforeConfirm } from '@/uni_modules/wot-design-uni/components/wd-select-picker/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -151,40 +118,52 @@ const columns2 = ref<Record<string, any>[]>([
 ])
 const value1 = ref<string[]>(['101'])
 const value2 = ref<string>('101')
-const value3 = ref<string[]>(['102'])
-const value4 = ref<string[]>(['103'])
 const value5 = ref<string[]>([])
 const value6 = ref<string[]>([])
 const value7 = ref<string[]>([])
-const value8 = ref<string[]>([])
 const value9 = ref<string[]>([])
 const value10 = ref<string[]>([])
-const value11 = ref<string[]>([])
-const value12 = ref<string[]>(['103'])
 const value13 = ref<string[]>(['102'])
-const value14 = ref<string[]>([])
-const value15 = ref<string[]>(['101'])
-const value16 = ref<string[]>(['103'])
 const value17 = ref<string[]>(['102'])
 const value18 = ref<string>('102')
 const value19 = ref<string>('101')
-const value20 = ref<string>('101')
-const value21 = ref<string[]>(['102'])
+
+const show1 = ref<boolean>(false)
+const show2 = ref<boolean>(false)
+const show5 = ref<boolean>(false)
+const show6 = ref<boolean>(false)
+const show7 = ref<boolean>(false)
+const show9 = ref<boolean>(false)
+const show10 = ref<boolean>(false)
+const show13 = ref<boolean>(false)
+const show17 = ref<boolean>(false)
+const show18 = ref<boolean>(false)
+const show19 = ref<boolean>(false)
 
 const customShow = ref<string>(t('she-chi-pin'))
 
 const toast = useToast()
 
-const displayFormat: SelectPickerDisplayFormat = (items, columns) => {
-  let showValue = ''
-  columns.forEach((column) => {
-    ;(items as (string | number | boolean)[]).forEach((item, index) => {
-      if (column.value === item) {
-        showValue += `${item}: ${column.label} ${index + 1 < (items as (string | number | boolean)[]).length ? '--' : ''} `
-      }
+/**
+ * 获取多选的展示值
+ */
+function getDisplayValue(values: string[]) {
+  if (!values || values.length === 0) return ''
+  return values
+    .map((val) => {
+      const item = columns1.value.find((col) => col.value === val) || columns2.value.find((col) => col.value === val)
+      return item ? item.label : val
     })
-  })
-  return showValue
+    .join(', ')
+}
+
+/**
+ * 获取单选的展示值
+ */
+function getRadioDisplayValue(value: string) {
+  if (!value) return ''
+  const item = columns1.value.find((col) => col.value === value)
+  return item ? item.label : value
 }
 
 const beforeConfirm: SelectPickerBeforeConfirm = (value, resolve) => {
@@ -205,12 +184,6 @@ function handleConfirm1({ value }: any) {
 function handleConfirm2({ value }: any) {
   console.log(value)
 }
-function handleConfirm3({ value }: any) {
-  console.log(value)
-}
-function handleConfirm4({ value }: any) {
-  console.log(value)
-}
 function handleConfirm5({ value }: any) {
   console.log(value)
 }
@@ -220,42 +193,13 @@ function handleConfirm6({ value }: any) {
 function handleConfirm7({ value }: any) {
   console.log(value)
 }
-function handleConfirm8({ value }: any) {
-  console.log(value)
-}
 function handleConfirm9({ value }: any) {
   console.log(value)
 }
 function handleConfirm10({ value }: any) {
   console.log(value)
 }
-function handleConfirm11({ value }: any) {
-  console.log(value)
-}
-function handleConfirm12({ value }: any) {
-  console.log(value)
-}
 function handleConfirm13({ value }: any) {
-  console.log(value)
-}
-function handleConfirm14({ value }: any) {
-  console.log(value)
-}
-function handleConfirm15({ value }: any) {
-  console.log(value)
-}
-function handleConfirm16({ value }: any) {
-  console.log(value)
-}
-function handleConfirm17({ value, selectedItems }: any) {
-  console.log(value)
-  customShow.value = selectedItems
-    .map((item: any) => {
-      return item.label
-    })
-    .join(', ')
-}
-function handleConfirm21({ value }: any) {
   console.log(value)
 }
 </script>

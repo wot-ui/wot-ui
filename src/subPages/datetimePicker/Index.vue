@@ -43,22 +43,6 @@
         <wd-cell title="before-confirm" is-link :value="formatDate(value8, 'datetime')" @click="show8 = true" />
         <wd-datetime-picker v-model="value8" v-model:visible="show8" :before-confirm="beforeConfirm" @confirm="handleConfirm8" />
 
-        <wd-cell :title="$t('cuo-wu')" is-link :value="formatDate(value9, 'datetime')" custom-value-class="is-error" @click="show9 = true" />
-        <wd-datetime-picker v-model="value9" v-model:visible="show9" @confirm="handleConfirm9" />
-
-        <wd-cell :title="$t('bi-tian')" required is-link :value="formatDate(value10, 'datetime')" @click="show10 = true" />
-        <wd-datetime-picker v-model="value10" v-model:visible="show10" @confirm="handleConfirm10" />
-
-        <wd-cell
-          :title="$t('bi-tian-xing-hao-zai-you-ce')"
-          required
-          asterisk-position="end"
-          is-link
-          :value="formatDate(value20, 'datetime')"
-          @click="show20 = true"
-        />
-        <wd-datetime-picker v-model="value20" v-model:visible="show20" @confirm="handleConfirm20" />
-
         <wd-cell :title="$t('mo-ren-ri-qi')" is-link :value="formatDate(value2, 'datetime')" @click="showDefault = true" />
         <wd-datetime-picker v-model="value2" v-model:visible="showDefault" :default-value="value2" />
 
@@ -66,35 +50,7 @@
         <wd-datetime-picker :minDate="minDate" :maxDate="maxDate" v-model="value17" v-model:visible="show17" @confirm="handleConfirm1" />
       </wd-cell-group>
     </demo-block>
-    <demo-block :title="$t('label-bu-chuan-0')" transparent>
-      <wd-cell is-link :value="value11 ? value11 : '请选择'" @click="show11 = true" />
-      <wd-datetime-picker v-model="value11" v-model:visible="show11" @confirm="handleConfirm11" />
-    </demo-block>
-    <demo-block :title="$t('da-xiao')" transparent>
-      <wd-cell :title="$t('ri-qi-xuan-ze-0')" size="large" is-link :value="value12 ? value12 : '请选择'" @click="show12 = true" />
-      <wd-datetime-picker size="large" v-model="value12" v-model:visible="show12" @confirm="handleConfirm12" />
-    </demo-block>
-    <demo-block :title="$t('ke-qing-kong')" transparent>
-      <wd-cell-group border>
-        <wd-cell :title="$t('ri-qi-xuan-ze-ke-qing-kong')" is-link :value="formatDate(valueClear1, 'datetime')" @click="showClear1 = true">
-          <template v-if="valueClear1" #right-icon>
-            <wd-icon name="error-fill" custom-class="wd-datetime-picker__clear" @click.stop="handleClear1" />
-          </template>
-        </wd-cell>
-        <wd-datetime-picker v-model="valueClear1" v-model:visible="showClear1" @confirm="handleConfirmClear1" />
 
-        <wd-cell :title="$t('qu-yu-xuan-ze-ke-qing-kong')" is-link :value="formatRange(valueClear2)" @click="showClear2 = true">
-          <template v-if="valueClear2 && (valueClear2[0] || valueClear2[1])" #right-icon>
-            <wd-icon name="error-fill" custom-class="wd-datetime-picker__clear" @click.stop="handleClear2" />
-          </template>
-        </wd-cell>
-        <wd-datetime-picker v-model="valueClear2" v-model:visible="showClear2" @confirm="handleConfirmClear2" />
-      </wd-cell-group>
-    </demo-block>
-    <demo-block :title="$t('zhi-kao-you-zhan-shi')" transparent>
-      <wd-cell :title="$t('ri-qi-xuan-ze-1')" is-link :value="formatDate(value13, 'datetime')" @click="show13 = true" />
-      <wd-datetime-picker v-model="value13" v-model:visible="show13" @confirm="handleConfirm13" />
-    </demo-block>
     <demo-block :title="$t('qu-yu-xuan-ze')" transparent>
       <wd-cell :title="$t('ri-qi-xuan-ze-2')" is-link :value="formatRange(value14)" @click="show14 = true" />
       <wd-datetime-picker :title="$t('qing-xuan-ze-qu-jian')" v-model="value14" v-model:visible="show14" use-second @confirm="handleConfirm14" />
@@ -103,15 +59,7 @@
       <wd-cell :title="$t('ri-qi-xuan-ze-3')" is-link :value="formatRange(value15)" @click="show15 = true" />
       <wd-datetime-picker v-model="value15" v-model:visible="show15" @confirm="handleConfirm15" :display-format-tab-label="displayFormatTabLabel" />
     </demo-block>
-    <demo-block title="超出隐藏" transparent>
-      <wd-cell-group border>
-        <wd-cell title="日期选择器超出隐藏" is-link :value="formatDate(valueEllipsis, 'datetime')" ellipsis @click="showEllipsis = true" />
-        <wd-datetime-picker v-model="valueEllipsis" v-model:visible="showEllipsis" @confirm="handleConfirmEllipsis" />
 
-        <wd-cell title="日期区间超出隐藏" is-link :value="formatRange(valueRangeEllipsis)" ellipsis @click="showRangeEllipsis = true" />
-        <wd-datetime-picker v-model="valueRangeEllipsis" v-model:visible="showRangeEllipsis" @confirm="handleConfirmRangeEllipsis" />
-      </wd-cell-group>
-    </demo-block>
     <wd-toast />
   </page-wraper>
 </template>
@@ -121,7 +69,7 @@ import type { DatetimePickerViewFilter, DatetimePickerViewFormatter } from '@/un
 import type { DatetimePickerDisplayFormatTabLabel, DatetimePickerInstance } from '@/uni_modules/wot-design-uni/components/wd-datetime-picker/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import dayjs from '@/uni_modules/wot-design-uni/dayjs'
+import dayjs from 'dayjs'
 import { isArray } from '@/uni_modules/wot-design-uni/components/common/util'
 
 const { t } = useI18n()
@@ -134,23 +82,13 @@ const show5 = ref(false)
 const show6 = ref(false)
 const show7 = ref(false)
 const show8 = ref(false)
-const show9 = ref(false)
-const show10 = ref(false)
-const show11 = ref(false)
-const show12 = ref(false)
-const show13 = ref(false)
 const show14 = ref(false)
 const show15 = ref(false)
 const show16 = ref(false)
 const show17 = ref(false)
 const show18 = ref(false)
 const show19 = ref(false)
-const show20 = ref(false)
 const showDefault = ref(false)
-const showClear1 = ref(false)
-const showClear2 = ref(false)
-const showEllipsis = ref(false)
-const showRangeEllipsis = ref(false)
 
 const value1 = ref<string>('')
 const value2 = ref<number>(Date.now())
@@ -160,22 +98,12 @@ const value5 = ref<number>(Date.now())
 const value6 = ref<number>(Date.now())
 const value7 = ref<number>(Date.now())
 const value8 = ref<number>(Date.now())
-const value9 = ref<number>(Date.now())
-const value10 = ref<number>(Date.now())
-const value11 = ref<string>('')
-const value12 = ref<string>('')
-const value13 = ref<number>(Date.now())
 const value14 = ref<any[]>(['', ''])
 const value15 = ref<any[]>(['', Date.now()])
 const value16 = ref(Date.now())
 const value17 = ref(Date.now())
 const value18 = ref(Date.now())
 const value19 = ref('09:20:26')
-const value20 = ref<number>(Date.now())
-const valueClear1 = ref<number | string>(Date.now())
-const valueClear2 = ref<any[]>([Date.now(), Date.now()])
-const valueEllipsis = ref<number>(Date.now())
-const valueRangeEllipsis = ref<any[]>([Date.now(), Date.now() + 7 * 24 * 60 * 60 * 1000])
 const minDate = ref<number>(Date.now())
 const now = new Date()
 const maxDate = ref<number>(new Date(now.getFullYear() + 1, now.getMonth(), now.getDate()).getTime())
@@ -202,7 +130,7 @@ const formatter: DatetimePickerViewFormatter = (type, value) => {
   }
   return formatValue
 }
-const filter: DatetimePickerViewFilter = (type, values) => {
+const filter: DatetimePickerViewFilter = ({ type, values }) => {
   if (type === 'minute') {
     return values.filter((value) => value % 5 === 0)
   }
@@ -211,9 +139,7 @@ const filter: DatetimePickerViewFilter = (type, values) => {
 
 const toast = useToast()
 const beforeConfirm = (value: number | string | (number | string)[], resolve: (isPass: boolean) => void, picker: DatetimePickerInstance) => {
-  picker.setLoading(true)
   setTimeout(() => {
-    picker.setLoading(false)
     if ((value as number) > Date.now()) {
       resolve(false)
       toast.error(t('bu-neng-xuan-ze-da-yu-jin-tian-de-ri-qi'))
@@ -270,7 +196,6 @@ function customDisplayFormat(value: any) {
   ])
 }
 
-/** picker触发confirm事件，同步触发confirm事件 */
 function handleConfirm1({ value }: any) {
   console.log(new Date(value))
 }
@@ -296,21 +221,6 @@ function handleConfirm7({ value }: any) {
 function handleConfirm8({ value }: any) {
   console.log(value)
 }
-function handleConfirm9({ value }: any) {
-  console.log(value)
-}
-function handleConfirm10({ value }: any) {
-  console.log(value)
-}
-function handleConfirm11({ value }: any) {
-  console.log(value)
-}
-function handleConfirm12({ value }: any) {
-  console.log(value)
-}
-function handleConfirm13({ value }: any) {
-  console.log(value)
-}
 function handleConfirm14({ value }: any) {
   console.log(value)
 }
@@ -320,38 +230,6 @@ function handleConfirm15({ value }: any) {
 function handleConfirm16({ value }: any) {
   console.log(value)
 }
-function handleConfirm20({ value }: any) {
-  console.log(value)
-}
-
-function handleClear1() {
-  valueClear1.value = ''
-  console.log('datetime picker 1 cleared')
-}
-
-function handleConfirmClear1({ value }: any) {
-  console.log('datetime picker 1 confirmed:', value)
-}
-
-function handleClear2() {
-  valueClear2.value = ['', '']
-  console.log('datetime picker 2 cleared')
-}
-
-function handleConfirmClear2({ value }: any) {
-  console.log('datetime picker 2 confirmed:', value)
-}
-
-function handleConfirmEllipsis({ value }: any) {
-  console.log('ellipsis datetime picker confirmed:', value)
-}
-
-function handleConfirmRangeEllipsis({ value }: any) {
-  console.log('range ellipsis datetime picker confirmed:', value)
-}
-
-/** picker触发cancel事件，同步触发cancel事件 */
-function onCancel() {}
 </script>
 <style lang="scss" scoped>
 .is-error {

@@ -1,0 +1,249 @@
+@use '../styles/mixin/mixin.scss'as *;
+@use '../styles/variable.scss'as *;
+
+$dialog-bg: var(--wot-dialog-bg, $filled-oppo) !default;
+
+$dialog-width: var(--wot-dialog-width, 280px) !default;
+$dialog-radius: var(--wot-dialog-radius, $radius-large) !default;
+
+$dialog-body-padding: var(--wot-dialog-body-padding, $padding-super-loose $padding-super-loose 0) !default;
+$dialog-body-element-spacing: var(--wot-dialog-body-element-spacing, $spacing-tight) !default;
+$dialog-body-element-spacing-large: var(--wot-dialog-body-element-spacing-large, $spacing-extra-loose) !default;
+
+$dialog-title-color: var(--wot-dialog-title-color, $text-main) !default;
+$dialog-title-font-size: var(--wot-dialog-title-font-size, $typography-body-size-extra-large) !default;
+$dialog-title-line-height: var(--wot-dialog-title-line-height, $typography-body-line--height-size-extra-large) !default;
+$dialog-title-font-weight: var(--wot-dialog-title-font-weight, $font-weight-medium) !default;
+$dialog-title-margin-bottom: var(--wot-dialog-title-margin-bottom, $spacing-tight) !default;
+
+$dialog-content-color: var(--wot-dialog-content-color, $text-secondary) !default;
+$dialog-content-font-size: var(--wot-dialog-content-font-size, $typography-body-size-main) !default;
+$dialog-content-line-height: var(--wot-dialog-content-line-height, $typography-body-line--height-size-main) !default;
+$dialog-content-padding: var(--wot-dialog-content-padding, $spacing-loose) !default;
+$dialog-content-max-height: var(--wot-dialog-content-max-height, 340px) !default;
+
+$dialog-content-input-bg: var(--wot-dialog-content-input-bg, $filled-bottom) !default;
+$dialog-content-input-error-color: var(--wot-dialog-content-input-error-color, $danger-main) !default;
+$dialog-content-input-font-size: var(--wot-dialog-content-input-font-size, $typography-label-size-main) !default;
+$dialog-content-input-line-height: var(--wot-dialog-content-input-line-height, $typography-label-line--height-size-main) !default;
+$dialog-content-input-padding-top: var(--wot-dialog-content-input-padding-top, $spacing-tight) !default;
+
+$dialog-scrollbar-color: var(--wot-dialog-scrollbar-color, $border-main) !default;
+$dialog-scrollbar-width: var(--wot-dialog-scrollbar-width, $n2) !default;
+$dialog-scrollbar-radius: var(--wot-dialog-scrollbar-radius, $radius-small) !default;
+
+$dialog-primary-color: var(--wot-dialog-primary-color, $primary-6) !default;
+$dialog-success-color: var(--wot-dialog-success-color, $success-main) !default;
+$dialog-warning-color: var(--wot-dialog-warning-color, $warning-main) !default;
+$dialog-error-color: var(--wot-dialog-error-color, $danger-main) !default;
+
+$dialog-icon-size: var(--wot-dialog-icon-size, $n48) !default;
+$dialog-icon-margin-bottom: var(--wot-dialog-icon-margin-bottom, $spacing-tight) !default;
+
+$dialog-close-icon-size: var(--wot-dialog-close-icon-size, $n18) !default;
+$dialog-close-icon-color: var(--wot-dialog-close-icon-color, $icon-secondary) !default;
+$dialog-close-icon-top: var(--wot-dialog-close-icon-top, $spacing-extra-loose) !default;
+$dialog-close-icon-right: var(--wot-dialog-close-icon-right, $spacing-extra-loose) !default;
+
+$dialog-actions-padding: var(--wot-dialog-actions-padding, $padding-super-loose) !default;
+$dialog-actions-padding-vertical: var(--wot-dialog-actions-padding-vertical, $padding-super-loose $padding-loose $padding-loose) !default;
+$dialog-actions-spacing: var(--wot-dialog-actions-spacing, $spacing-loose) !default;
+$dialog-actions-spacing-vertical: var(--wot-dialog-actions-spacing-vertical, $spacing-tight) !default;
+$dialog-actoons-confirm-font-weight: var(--wot-dialog-actoons-confirm-font-weight, $font-weight-medium) !default;
+$dialog-img-border-radius: var(--wot-dialog-img-border-radius, $radius-large) !default;
+
+$dialog-action-text-border-color: var(--wot-dialog-action-text-border-color, $border-main) !default;
+$dialog-action-text-button-padding: var(--wot-dialog-action-text-button-padding, $padding-loose $padding-extra-loose) !default;
+$dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) !default;
+
+
+:deep(.wd-dialog) {
+  background: transparent;
+}
+
+@include b(dialog) {
+
+  @include e(container) {
+    background: $dialog-bg;
+    border-radius: $dialog-radius;
+    overflow: hidden;
+    width: $dialog-width;
+    box-sizing: border-box;
+  }
+
+  @include e(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: $dialog-img-border-radius;
+    
+    &+.wd-dialog__title {
+      margin-top: $dialog-body-element-spacing-large; 
+    }
+
+    &+.wd-dialog__content {
+      margin-top: $dialog-body-element-spacing-large; 
+      
+      .wd-dialog__body.is-prompt & {
+        margin-top: $dialog-body-element-spacing;
+      }
+    }
+  }
+
+  @include e(title) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: $dialog-title-font-size;
+    color: $dialog-title-color;
+    line-height: $dialog-title-line-height;
+    font-weight: $dialog-title-font-weight;
+
+    &+.wd-dialog__content {
+      margin-top: $dialog-body-element-spacing;
+    }
+  }
+
+  @include e(body) {
+    padding: $dialog-body-padding;
+
+    @include when(prompt) {
+      .wd-dialog__content {
+        padding-top: $dialog-content-input-padding-top;
+      }
+    }
+  }
+
+  @include e(content) {
+    max-height: $dialog-content-max-height;
+    text-align: center;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: $dialog-scrollbar-width;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: $dialog-scrollbar-width;
+      background: $dialog-scrollbar-color;
+      border-radius: calc($dialog-scrollbar-width / 2);
+    }
+  }
+
+  @include e(content-text) {
+    color: $dialog-content-color;
+    font-size: $dialog-content-font-size;
+    line-height: $dialog-content-line-height;
+  }
+
+  @include e(input) {
+    background: $dialog-content-input-bg;
+  }
+
+  @include e(input-error) {
+    color: $dialog-content-input-error-color;
+    font-size: $dialog-content-input-font-size;
+    line-height: $dialog-content-input-line-height;
+    padding-top: $dialog-content-input-padding-top;
+    text-align: left;
+  }
+
+  @include e(actions) {
+    padding: $dialog-actions-padding;
+
+    :deep() {
+      .wd-dialog__actions-btn {
+        &:not(:last-child) {
+          margin-right: $dialog-actions-spacing;
+        }
+      }
+
+      .wd-dialog__actions-btn--confirm {
+        font-weight: $dialog-actoons-confirm-font-weight;
+      }
+    }
+
+    @include m(vertical) {
+      flex-direction: column;
+      padding: $dialog-actions-padding-vertical;
+
+      :deep() {
+        .wd-dialog__actions-btn {
+          &:not(:last-child) {
+            margin-right: 0;
+            margin-bottom: $dialog-actions-spacing-vertical;
+          }
+        }
+      }
+    }
+
+    @include when(text) {
+      padding: $padding-super-loose 0 0;
+
+      :deep() {
+        .wd-dialog__actions-btn {
+          margin: 0;
+          border-radius: 0;
+          padding: $dialog-action-text-button-padding;
+          border-top: $dialog-action-text-border solid $dialog-action-text-border-color;
+
+          &:not(:last-child) {
+            border-right: $dialog-action-text-border solid $dialog-action-text-border-color;
+          }
+        }
+      }
+
+      // text 风格垂直布局时去除右边框
+      &.wd-dialog__actions--vertical {
+        :deep() {
+          .wd-dialog__actions-btn {
+            &:not(:last-child) {
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include e(flex) {
+    display: flex;
+  }
+
+  @include e(block) {
+    display: block;
+  }
+
+  @include e(icon) {
+    font-size: $dialog-icon-size;
+    line-height: $dialog-icon-size;
+    margin: 0 auto;
+    margin-bottom: $dialog-icon-margin-bottom;
+    color: $dialog-primary-color;
+
+    @include when(success) {
+      color: $dialog-success-color;
+    }
+
+    @include when(info) {
+      color: $dialog-primary-color;
+    }
+
+    @include when(warning) {
+      color: $dialog-warning-color;
+    }
+
+    @include when(danger) {
+      color: $dialog-error-color;
+    }
+  }
+
+  @include e(close) {
+    position: absolute;
+    top: $dialog-close-icon-top;
+    right: $dialog-close-icon-right;
+    font-size: $dialog-close-icon-size;
+    color: $dialog-close-icon-color;
+  }
+
+}

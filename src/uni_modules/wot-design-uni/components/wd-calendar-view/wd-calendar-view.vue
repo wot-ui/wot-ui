@@ -14,6 +14,7 @@
       :show-panel-title="showPanelTitle"
       :default-time="formatDefauleTime"
       :panel-height="panelHeight"
+      :switch-mode="switchMode"
       @change="handleChange"
     />
     <month-panel
@@ -34,6 +35,9 @@
       :immediate-change="immediateChange"
       :time-filter="timeFilter"
       :hide-second="hideSecond"
+      :item-height="timeItemHeight"
+      :visible-item-count="timeVisibleItemCount"
+      :switch-mode="switchMode"
       @change="handleChange"
       @pickstart="handlePickStart"
       @pickend="handlePickEnd"
@@ -45,7 +49,9 @@ export default {
   name: 'wd-calendar-view',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -106,6 +112,6 @@ defineExpose<CalendarViewExpose>({
 })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

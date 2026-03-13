@@ -4,7 +4,7 @@ import WdFormItem from '@/uni_modules/wot-design-uni/components/wd-form-item/wd-
 import WdInput from '@/uni_modules/wot-design-uni/components/wd-input/wd-input.vue'
 import WdCalendar from '@/uni_modules/wot-design-uni/components/wd-calendar/wd-calendar.vue'
 import WdCell from '@/uni_modules/wot-design-uni/components/wd-cell/wd-cell.vue'
-import WdColPicker from '@/uni_modules/wot-design-uni/components/wd-col-picker/wd-col-picker.vue'
+import WdCascader from '@/uni_modules/wot-design-uni/components/wd-cascader/wd-cascader.vue'
 import WdDatetimePicker from '@/uni_modules/wot-design-uni/components/wd-datetime-picker/wd-datetime-picker.vue'
 import WdPicker from '@/uni_modules/wot-design-uni/components/wd-picker/wd-picker.vue'
 import WdSelectPicker from '@/uni_modules/wot-design-uni/components/wd-select-picker/wd-select-picker.vue'
@@ -27,7 +27,7 @@ const globalComponents = {
   WdInput,
   WdCalendar,
   WdCell,
-  WdColPicker,
+  WdCascader,
   WdDatetimePicker,
   WdPicker,
   WdSelectPicker,
@@ -541,14 +541,14 @@ describe('WdForm 和 WdFormItem', () => {
     expect(wrapper.find('.wd-cell__error-message').exists()).toBe(false)
   })
 
-  // 测试与 WdColPicker 集成
-  test('测试与 WdColPicker 集成', async () => {
+  // 测试与 WdCascader 集成
+  test('测试与 WdCascader 集成', async () => {
     const wrapper = mount(
       {
         template: `
         <wd-form ref="form" :rules="rules" :model="formData">
           <wd-form-item prop="area" label="地区">
-            <wd-col-picker v-model="formData.area" :columns="columns" />
+            <wd-cascader v-model="formData.area" :columns="columns" />
           </wd-form-item>
         </wd-form>
       `,

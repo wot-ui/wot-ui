@@ -1,86 +1,90 @@
-@import '../common/abstracts/variable';
-@import '../common/abstracts/mixin';
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(drop-menu) {
-    color: $-dark-color;
-    @include e(list) {
-      background-color: $-dark-background2;
-    }
 
-    @include e(item) {
-      @include when(disabled) {
-        color: $-dark-color-gray;
-      }
-    }
-  }
-}
+// 菜单项高度
+$drop-menu-height: var(--wot-drop-menu-height, $n48) !default;
+// 菜单列表背景色
+$drop-menu-list-bg: var(--wot-drop-menu-list-bg, $filled-oppo) !default;
+// 菜单项内边距
+$drop-menu-option-padding: var(--wot-drop-menu-option-padding, $padding-loose) !default;
+// 菜单项禁用文字颜色
+$drop-menu-option-disabled-opacity: var(--wot-drop-menu-option-disabled-opacity, $opacity-disabled) !default;
+// 菜单项左右内边距
+$drop-menu-option-padding-horizontal: var(--wot-drop-menu-option-padding-horizontal, $padding-extra-loose) !default;
+// 箭头图标大小
+$drop-menu-arrow-size: var(--wot-drop-menu-arrow-size, $n16) !default;
+// 箭头图标颜色
+$drop-menu-arrow-color: var(--wot-drop-menu-arrow-color, $icon-auxiliary) !default;
+// 箭头图标激活态颜色
+$drop-menu-arrow-active-color: var(--wot-drop-menu-arrow-active-color, $primary-6) !default;
+// 箭头图标间距
+$drop-menu-arrow-spacing: var(--wot-drop-menu-arrow-spacing, $spacing-super-tight) !default;
+// 菜单文字颜色
+$drop-menu-text-color: var(--wot-drop-menu-text-color, $text-main) !default;
+// 菜单文字字号
+$drop-menu-text-font-size: var(--wot-drop-menu-text-font-size, $typography-body-size-extra-large) !default;
+// 菜单文字行高
+$drop-menu-text-line-height: var(--wot-drop-menu-text-line-height, $typography-body-line--height-size-extra-large) !default;
+// 菜单激活态字重
+$drop-menu-text-active-font-weight: var(--wot-drop-menu-text-active-font-weight, $font-weight-medium) !default;
+// 菜单激活态文字颜色
+$drop-menu-text-active-color: var(--wot-drop-menu-text-active-color, $primary-6) !default;
 
 @include b(drop-menu) {
-  box-sizing: border-box;
-  color: $-drop-menu-color;
-  font-size: $-drop-menu-fs;
   position: relative;
 
   @include e(list) {
     display: flex;
     text-align: center;
-    background-color: #fff;
+    background-color: $drop-menu-list-bg;
   }
-  @include e(item) {
+
+  @include e(option) {
+    position: relative;
     flex: 1;
     min-width: 0;
-    height: $-drop-menu-height;
-    line-height: $-drop-menu-height;
+    height: $drop-menu-height;
+    padding: $drop-menu-option-padding;
+    box-sizing: border-box;
     text-align: center;
 
     @include when(active) {
-      font-weight: $-fw-medium;
-
-      .wd-drop-menu__item-title::after {
-        opacity: 1;
+      .wd-drop-menu__option-title-text {
+        font-weight: $drop-menu-text-active-font-weight;
+        color: $drop-menu-text-active-color;
       }
+
       :deep(.wd-drop-menu__arrow) {
         transform: rotate(-180deg);
         transform-origin: center center;
+        color: $drop-menu-arrow-active-color;
       }
     }
+
     @include when(disabled) {
-      color: $-drop-menu-disabled-color;
+      opacity: $drop-menu-option-disabled-opacity;
     }
+
   }
 
-  @include e(item-title) {
-    position: relative;
+  @include e(option-title) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     max-width: 100%;
-    padding: 0 $-drop-menu-side-padding;
-    box-sizing: border-box;
-
-    &::after {
-      position: absolute;
-      content: '';
-      width: 19px;
-      height: $-drop-menu-line-height;
-      bottom: 6px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      background: $-drop-menu-line-color;
-      border-radius: $-drop-menu-line-height;
-      transition: opacity .15s;
-      opacity: 0;
-    }
   }
 
-  @include e(item-title-text) {
-    position: relative;
+  @include e(option-title-text) {
+    color: $drop-menu-text-color;
+    font-size: $drop-menu-text-font-size;
+    line-height: $drop-menu-text-line-height;
     @include lineEllipsis;
   }
 
   @include edeep(arrow) {
-    font-size: $-drop-menu-arrow-fs;
-    margin-left: 2px;
+    font-size: $drop-menu-arrow-size;
+    color: $drop-menu-arrow-color;
+    margin-left: $drop-menu-arrow-spacing;
   }
 }

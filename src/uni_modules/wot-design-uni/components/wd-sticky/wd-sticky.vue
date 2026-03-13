@@ -15,7 +15,9 @@ export default {
   name: 'wd-sticky',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -113,8 +115,8 @@ async function handleResize(detail: any) {
   stickyState.height = detail.height
   await pause()
   observerContentScroll()
-  if (!stickyBox || !stickyBox.observerForChild) return
-  stickyBox.observerForChild(proxy)
+  if (!stickyBox.value || !stickyBox.value.observerForChild) return
+  stickyBox.value.observerForChild(proxy)
 }
 /**
  *  监听吸顶元素滚动事件
@@ -143,7 +145,7 @@ function observerContentScroll() {
  */
 function handleRelativeTo({ boundingClientRect }: any) {
   // sticky 高度大于或等于 wd-sticky-box，使用 wd-sticky-box 无任何意义
-  if (stickyBox && stickyBox.boxStyle && stickyState.height >= stickyBox.boxStyle.height) {
+  if (stickyBox.value && stickyBox.value.boxStyle && stickyState.height >= stickyBox.value.boxStyle.height) {
     stickyState.position = 'absolute'
     stickyState.top = 0
     return
@@ -185,6 +187,6 @@ defineExpose({
   offsetTop: props.offsetTop
 })
 </script>
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

@@ -21,7 +21,7 @@
         <block v-else>
           <span class="wd-collapse__more-txt">{{ !modelValue ? translate('expand') : translate('retract') }}</span>
           <view :class="`wd-collapse__arrow ${modelValue ? 'is-retract' : ''}`">
-            <wd-icon name="arrow-down"></wd-icon>
+            <wd-icon name="down"></wd-icon>
           </view>
         </block>
       </view>
@@ -34,7 +34,9 @@ export default {
   name: 'wd-collapse',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -49,7 +51,10 @@ import { isArray, isBoolean, isDef } from '../common/util'
 import { useTranslate } from '../composables/useTranslate'
 
 const props = defineProps(collapseProps)
-const emit = defineEmits(['change', 'update:modelValue'])
+const emit = defineEmits<{
+  (e: 'change', value: { value: string | string[] | boolean }): void
+  (e: 'update:modelValue', value: string | string[] | boolean): void
+}>()
 
 const { translate } = useTranslate('collapse')
 const contentLineNum = ref<number>(0) // 查看更多的折叠面板，收起时的显示行数
@@ -87,6 +92,10 @@ onBeforeMount(() => {
   contentLineNum.value = viewmore && !modelValue ? lineNum : 0
 })
 
+/**
+ * 更新绑定值
+ * @param activeNames 选中的值
+ */
 function updateChange(activeNames: string | string[] | boolean) {
   emit('update:modelValue', activeNames)
   emit('change', {
@@ -94,6 +103,11 @@ function updateChange(activeNames: string | string[] | boolean) {
   })
 }
 
+/**
+ * 切换选中状态
+ * @param name 唯一标识符
+ * @param expanded 是否展开
+ */
 function toggle(name: string, expanded: boolean) {
   const { accordion, modelValue } = props
   if (accordion) {
@@ -146,6 +160,6 @@ defineExpose<CollapseExpose>({
 })
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

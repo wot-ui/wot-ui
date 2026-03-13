@@ -1,52 +1,52 @@
 <template>
-  <view class="wd-curtain-wrapper">
-    <wd-popup
-      v-model="modelValue"
-      transition="zoom-in"
-      position="center"
-      :close-on-click-modal="closeOnClickModal"
-      :hide-when-close="hideWhenClose"
-      :z-index="zIndex"
-      :root-portal="rootPortal"
-      @before-enter="beforeenter"
-      @enter="enter"
-      @after-enter="afterenter"
-      @before-leave="beforeleave"
-      @leave="leave"
-      @after-leave="afterleave"
-      @close="close"
-      @click-modal="clickModal"
-      :custom-class="`wd-curtain ${customClass}`"
-      :custom-style="customStyle"
-    >
-      <view class="wd-curtain__content">
-        <image
-          :src="src"
-          class="wd-curtain__content-img"
-          :style="imgStyle"
-          :show-menu-by-longpress="showMenuByLongpress"
-          @click="clickImage"
-          @error="imgErr"
-          @load="imgLoad"
-        ></image>
-        <slot name="close">
-          <wd-icon
-            name="close-outline"
-            :custom-class="`wd-curtain__content-close ${closePosition} ${customCloseClass}`"
-            :custom-style="customCloseStyle"
-            @click="close"
-          />
-        </slot>
-      </view>
-    </wd-popup>
-  </view>
+  <wd-popup
+    v-model="modelValue"
+    transition="zoom-in"
+    position="center"
+    :close-on-click-modal="closeOnClickModal"
+    :hide-when-close="hideWhenClose"
+    :z-index="zIndex"
+    :root-portal="rootPortal"
+    @before-enter="beforeenter"
+    @enter="enter"
+    @after-enter="afterenter"
+    @before-leave="beforeleave"
+    @leave="leave"
+    @after-leave="afterleave"
+    @close="close"
+    @click-modal="clickModal"
+    :custom-class="`wd-curtain ${customClass}`"
+    :custom-style="customStyle"
+  >
+    <view class="wd-curtain__content">
+      <image
+        :src="src"
+        class="wd-curtain__content-img"
+        :style="imgStyle"
+        :show-menu-by-longpress="showMenuByLongpress"
+        @click="clickImage"
+        @error="imgErr"
+        @load="imgLoad"
+      ></image>
+      <slot name="close">
+        <wd-icon
+          name="close-circle"
+          :custom-class="`wd-curtain__content-close ${closePosition} ${customCloseClass}`"
+          :custom-style="customCloseStyle"
+          @click="close"
+        />
+      </slot>
+    </view>
+  </wd-popup>
 </template>
 
 <script lang="ts">
 export default {
   name: 'wd-curtain',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -167,6 +167,6 @@ function clickImage() {
 }
 </script>
 
-<style lang="scss" scoped>
-@import './index.scss';
+<style lang="scss">
+@use './index.scss';
 </style>

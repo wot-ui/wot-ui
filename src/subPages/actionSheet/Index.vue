@@ -34,10 +34,11 @@
 import { useToast } from '@/uni_modules/wot-design-uni'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import type { Action, Panel, Panels } from '@/uni_modules/wot-design-uni/components/wd-action-sheet/types'
 const { t } = useI18n()
 const show = ref<boolean>(false)
-const actions = ref<any[]>([])
-const panels = ref<any[]>([])
+const actions = ref<Action[]>([])
+const panels = ref<Panels>([])
 const cancelText = ref<string>('')
 const show1 = ref<boolean>(false)
 const show2 = ref<boolean>(false)
@@ -55,7 +56,7 @@ function showActions1() {
     },
     {
       name: t('xuanXiang_3-0'),
-      subname: t('miaoShuXinXi-0')
+      description: t('miaoShuXinXi-0')
     }
   ]
 }
@@ -71,6 +72,7 @@ function showActions2() {
       disabled: true
     },
     {
+      name: '',
       loading: true
     }
   ]
@@ -86,7 +88,7 @@ function showActions3() {
     },
     {
       name: t('xuanXiang_3-0'),
-      subname: t('miaoShuXinXi-0')
+      description: t('miaoShuXinXi-0')
     }
   ]
 }
@@ -94,28 +96,28 @@ function showActions4() {
   show2.value = true
   panels.value = [
     {
-      iconUrl: 'https://img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
-      title: t('weiXinHaoYou')
+      icon: 'user',
+      title: '微信好友'
     },
     {
-      iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/111572/11/11734/1245/5f0692a1E39d13d21/b35dfe9243bd6c2a.png',
-      title: t('weiXinPengYouQuan')
+      icon: 'share-internal',
+      title: '朋友圈'
     },
     {
-      iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/132639/25/4003/945/5f069336E18778248/fa181913030bed8a.png',
-      title: t('qqHaoYou')
+      icon: 'message',
+      title: 'QQ 好友'
     },
     {
-      iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/134807/4/3950/1256/5f069336E76949e27/d20641da8e699f07.png',
-      title: t('weiXinShouCang')
+      icon: 'star-fill',
+      title: '收藏'
     },
     {
-      iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/111572/11/11734/1245/5f0692a1E39d13d21/b35dfe9243bd6c2a.png',
-      title: t('weiXinPengYouQuan')
+      icon: 'share-internal',
+      title: '更多分享'
     },
     {
-      iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/132639/25/4003/945/5f069336E18778248/fa181913030bed8a.png',
-      title: t('qqHaoYou')
+      icon: 'user-add',
+      title: '邀请好友'
     }
   ]
 }
@@ -124,50 +126,50 @@ function showActions5() {
   panels.value = [
     [
       {
-        iconUrl: 'https://img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
-        title: t('weiXinHaoYou')
+        icon: 'user',
+        title: '微信好友'
       },
       {
-        iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/111572/11/11734/1245/5f0692a1E39d13d21/b35dfe9243bd6c2a.png',
-        title: t('weiXinPengYouQuan')
+        icon: 'share-internal',
+        title: '朋友圈'
       },
       {
-        iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/132639/25/4003/945/5f069336E18778248/fa181913030bed8a.png',
-        title: t('qqHaoYou')
+        icon: 'message',
+        title: 'QQ 好友'
       },
       {
-        iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/134807/4/3950/1256/5f069336E76949e27/d20641da8e699f07.png',
-        title: t('weiXinShouCang')
+        icon: 'star-fill',
+        title: '收藏'
       },
       {
-        iconUrl: 'https://img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
-        title: t('weiXinHaoYou')
+        icon: 'user-add',
+        title: '邀请'
       },
       {
-        iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/111572/11/11734/1245/5f0692a1E39d13d21/b35dfe9243bd6c2a.png',
-        title: t('weiXinPengYouQuan')
+        icon: 'share-external',
+        title: '外部分享'
       },
       {
-        iconUrl: 'https://img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
-        title: t('weiXinHaoYou')
+        icon: 'qrcode',
+        title: '生成二维码'
       },
       {
-        iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/111572/11/11734/1245/5f0692a1E39d13d21/b35dfe9243bd6c2a.png',
-        title: t('weiXinPengYouQuan')
+        icon: 'save',
+        title: '保存图片'
       }
     ],
     [
       {
-        iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/132639/25/4003/945/5f069336E18778248/fa181913030bed8a.png',
-        title: t('qqHaoYou')
+        icon: 'file-image',
+        title: '图片'
       },
       {
-        iconUrl: 'https://img14.360buyimg.com/imagetools/jfs/t1/134807/4/3950/1256/5f069336E76949e27/d20641da8e699f07.png',
-        title: t('weiXinShouCang')
+        icon: 'download',
+        title: '下载'
       },
       {
-        iconUrl: 'https://img12.360buyimg.com/imagetools/jfs/t1/122016/33/6657/1362/5f0692a1E8708d245/e47299e5945a6956.png',
-        title: t('weiXinHaoYou')
+        icon: 'copy',
+        title: '复制链接'
       }
     ]
   ]
@@ -192,10 +194,10 @@ function close4() {
 }
 
 const toast = useToast()
-function select({ item, index }: { item: any; index: number }) {
+function select({ item, index }: { item: Panel; index: number }) {
   toast.show(t('dangQianXuanZhongXiangItemtitleXiaBiaoIndex', [item.title, index]))
 }
-function select1({ item, rowIndex, colIndex }: { item: any; rowIndex: number; colIndex: number }) {
+function select1({ item, rowIndex, colIndex }: { item: Panel; rowIndex: number; colIndex: number }) {
   toast.show(t('dangQianXuanZhongXiangItemtitleHangXiaBiaoRowindexLieXiaBiaoColindex', [item.title, rowIndex, colIndex]))
 }
 </script>

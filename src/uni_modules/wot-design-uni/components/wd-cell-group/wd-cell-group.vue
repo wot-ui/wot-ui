@@ -1,6 +1,6 @@
 <template>
   <view :class="['wd-cell-group', border ? 'is-border' : '', customClass, insert ? 'wd-cell-group--insert' : '']" :style="customStyle">
-    <view v-if="title || value || useSlot" class="wd-cell-group__title">
+    <view v-if="title || value || $slots.title || $slots.value" class="wd-cell-group__title">
       <!--左侧标题-->
       <view class="wd-cell-group__left">
         <text v-if="!$slots.title">{{ title }}</text>
@@ -23,7 +23,9 @@ export default {
   name: 'wd-cell-group',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
@@ -37,9 +39,10 @@ const props = defineProps(cellGroupProps)
 
 const { linkChildren } = useChildren(CELL_GROUP_KEY)
 
+// 向子组件提供共享属性
 linkChildren({ props })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use './index.scss';
 </style>

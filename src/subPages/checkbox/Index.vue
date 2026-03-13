@@ -109,22 +109,16 @@
     </demo-block>
 
     <demo-block :title="$t('jie-he-cell-shi-yong')" transparent>
-      <wd-checkbox-group v-model="value14">
-        <wd-cell-group border>
+      <wd-checkbox-group v-model="value14" direction="horizontal">
+        <wd-cell-group border value-align="right">
           <wd-cell title="点赞" clickable @click="toggle(1)">
-            <template #right-icon>
-              <wd-checkbox :name="1" />
-            </template>
+            <wd-checkbox :name="1" />
           </wd-cell>
           <wd-cell title="投币" clickable @click="toggle(2)">
-            <template #right-icon>
-              <wd-checkbox :name="2" />
-            </template>
+            <wd-checkbox :name="2" />
           </wd-cell>
           <wd-cell title="一键三连" clickable @click="toggle(3)">
-            <template #right-icon>
-              <wd-checkbox :name="3" />
-            </template>
+            <wd-checkbox :name="3" />
           </wd-cell>
         </wd-cell-group>
       </wd-checkbox-group>

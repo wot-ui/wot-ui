@@ -8,7 +8,7 @@
         <view v-for="(item, index) in categories" :key="index" class="category">
           <wd-cell-group :title="item.title" border>
             <wd-cell v-for="(cell, index) in item.items" :key="index" :title="cell.title" :label="cell.label">
-              <wd-icon name="github-filled" size="24px"></wd-icon>
+              <wd-icon name="code" size="24px"></wd-icon>
             </wd-cell>
           </wd-cell-group>
         </view>
@@ -64,25 +64,25 @@ const categories = computed<Category[]>(() => [
   {
     label: t('fen-lei-si'),
     title: t('biao-ti-si'),
-    icon: 'ie',
+    icon: 'desktop',
     items: subCategories.value.slice(0, 21)
   },
   {
     label: t('fen-lei-wu'),
     title: t('biao-ti-wu'),
-    icon: 'github-filled',
+    icon: 'code',
     items: subCategories.value
   },
   {
     label: t('fen-lei-liu'),
     title: t('biao-ti-liu'),
-    icon: 'chrome',
+    icon: 'cloud',
     items: subCategories.value.slice(0, 18)
   },
   {
     label: t('fen-lei-qi'),
     title: t('biao-ti-qi'),
-    icon: 'android',
+    icon: 'mobile',
     items: subCategories.value
   }
 ])

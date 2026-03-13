@@ -1,28 +1,32 @@
-@import "./../common/abstracts/_mixin.scss";
-@import "./../common/abstracts/variable.scss";
+@use '../styles/mixin/mixin.scss' as *;
+@use '../styles/variable.scss' as *;
 
-.wot-theme-dark {
-  @include b(navbar-capsule) {
-    &::before {
-      border: 2rpx solid $-dark-border-color;
-    }
-
-    &::after {
-      background: $-dark-border-color;
-    }
-
-    :deep(.wd-navbar-capsule__icon) {
-      color: $-dark-color;
-    }
-  }
-}
-
+// 胶囊宽度
+$navbar-capsule-width: var(--wot-navbar-capsule-width, $n88) !default;
+// 胶囊高度
+$navbar-capsule-height: var(--wot-navbar-capsule-height, $n32) !default;
+// 胶囊边框颜色
+$navbar-capsule-border-color: var(--wot-navbar-capsule-border-color, $border-light) !default;
+// 胶囊圆角
+$navbar-capsule-radius: var(--wot-navbar-capsule-radius, $radius-super-large) !default;
+// 胶囊图标大小
+$navbar-capsule-icon-size: var(--wot-navbar-capsule-icon-size, $n20) !default;
+// 胶囊图标颜色
+$navbar-capsule-icon-color: var(--wot-navbar-capsule-icon-color, $text-main) !default;
+// 胶囊边框宽度
+$navbar-capsule-border-width: var(--wot-navbar-capsule-border-width, $n1) !default;
+// 分割线宽度
+$navbar-capsule-sperator-width: var(--wot-navbar-capsule-sperator-width, $n1) !default;
+// 分割线高度
+$navbar-capsule-sperator-height: var(--wot-navbar-capsule-sperator-height, $n18) !default;
+// 分割线颜色
+$navbar-capsule-sperator-color: var(--wot-navbar-capsule-sperator-color, $border-light) !default;
 
 @include b(navbar-capsule) {
   position: relative;
   box-sizing: border-box;
-  width: $-navbar-capsule-width;
-  height: $-navbar-capsule-height;
+  width: $navbar-capsule-width;
+  height: $navbar-capsule-height;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,8 +41,8 @@
     transform: scale(0.5);
     transform-origin: 0 0;
     box-sizing: border-box;
-    border-radius: calc($-navbar-capsule-border-radius * 2);
-    border: 2rpx solid $-navbar-capsule-border-color;
+    border-radius: calc($navbar-capsule-radius * 2);
+    border: $navbar-capsule-border-width solid $navbar-capsule-border-color;
   }
 
   &::after {
@@ -48,9 +52,9 @@
     left: 50%;
     top: 50%;
     transform: translateY(-50%);
-    width: 1px;
-    height: 36rpx;
-    background: $-navbar-capsule-border-color;
+    width: $navbar-capsule-sperator-width;
+    height: $navbar-capsule-sperator-height;
+    background: $navbar-capsule-sperator-color;
   }
 
   &:empty {
@@ -60,7 +64,7 @@
   @include edeep(icon) {
     flex: 1;
     position: relative;
-    color: $-navbar-desc-font-color;
-    font-size: $-navbar-capsule-icon-size;
+    color: $navbar-capsule-icon-color;
+    font-size: $navbar-capsule-icon-size;
   }
 }

@@ -2,88 +2,144 @@
   <page-wraper>
     <demo-block :title="$t('jiBenYongFa')">
       <wd-table :data="dataList" @sort-method="handleSort" :height="400" @row-click="handleRowClick">
-        <wd-table-col prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-col>
-        <wd-table-col prop="grade" :label="$t('fen-shu')" align="center" width="50%"></wd-table-col>
+        <wd-table-column prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" align="center" width="50%"></wd-table-column>
       </wd-table>
     </demo-block>
 
     <demo-block :title="$t('wu-bian-kuang')">
       <wd-table :data="dataList" @sort-method="handleSort" :height="400" :border="false" @row-click="handleRowClick">
-        <wd-table-col prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-col>
-        <wd-table-col prop="grade" :label="$t('fen-shu')" align="center" width="50%"></wd-table-col>
+        <wd-table-column prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" align="center" width="50%"></wd-table-column>
       </wd-table>
     </demo-block>
 
     <demo-block :title="$t('wu-ban-ma-wen')">
       <wd-table :data="dataList" @sort-method="handleSort" :height="400" :stripe="false" @row-click="handleRowClick">
-        <wd-table-col prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-col>
-        <wd-table-col prop="grade" :label="$t('fen-shu')" align="center" width="50%"></wd-table-col>
+        <wd-table-column prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" align="center" width="50%"></wd-table-column>
       </wd-table>
     </demo-block>
 
     <demo-block :title="$t('bu-zhan-shi-biao-tou')">
       <wd-table :data="dataList" @sort-method="handleSort" :height="400" :show-header="false" @row-click="handleRowClick">
-        <wd-table-col prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-col>
-        <wd-table-col prop="grade" :label="$t('fen-shu')" align="center" width="50%"></wd-table-col>
+        <wd-table-column prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" align="center" width="50%"></wd-table-column>
       </wd-table>
     </demo-block>
 
     <demo-block :title="$t('gu-ding-lie')">
       <wd-table :data="dataList" @sort-method="handleSort" @row-click="handleRowClick" :height="400">
-        <wd-table-col prop="name" :label="$t('xing-ming')" fixed sortable align="center"></wd-table-col>
-        <wd-table-col prop="grade" :label="$t('fen-shu')" fixed sortable align="center"></wd-table-col>
-        <wd-table-col prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" sortable :width="160"></wd-table-col>
-        <wd-table-col prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-col>
-        <wd-table-col prop="major" :label="$t('zhuan-ye')"></wd-table-col>
-        <wd-table-col prop="gender" :label="$t('xing-bie')"></wd-table-col>
+        <wd-table-column prop="name" :label="$t('xing-ming')" fixed sortable align="center"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" fixed sortable align="center"></wd-table-column>
+        <wd-table-column prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" sortable :width="160"></wd-table-column>
+        <wd-table-column prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-column>
+        <wd-table-column prop="major" :label="$t('zhuan-ye')"></wd-table-column>
+        <wd-table-column prop="gender" :label="$t('xing-bie')"></wd-table-column>
       </wd-table>
     </demo-block>
 
     <demo-block :title="$t('xian-shi-suo-yin')">
       <wd-table :data="dataList" :height="400" @sort-method="handleSort" :index="{ align: 'center' }">
-        <wd-table-col prop="name" :label="$t('xing-ming')" sortable align="center"></wd-table-col>
-        <wd-table-col prop="grade" :label="$t('fen-shu')" sortable align="center"></wd-table-col>
-        <wd-table-col prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" sortable :width="160"></wd-table-col>
-        <wd-table-col prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-col>
-        <wd-table-col prop="major" :label="$t('zhuan-ye-0')"></wd-table-col>
-        <wd-table-col prop="gender" :label="$t('xing-bie')"></wd-table-col>
+        <wd-table-column prop="name" :label="$t('xing-ming')" sortable align="center"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" sortable align="center"></wd-table-column>
+        <wd-table-column prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" sortable :width="160"></wd-table-column>
+        <wd-table-column prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-column>
+        <wd-table-column prop="major" :label="$t('zhuan-ye-0')"></wd-table-column>
+        <wd-table-column prop="gender" :label="$t('xing-bie')"></wd-table-column>
       </wd-table>
     </demo-block>
 
     <demo-block :title="$t('zi-ding-yi-lie-mo-ban')">
       <wd-table :data="dataList" @sort-method="handleSort" @row-click="handleRowClick" :height="400">
-        <wd-table-col prop="name" :label="$t('xing-ming')" fixed sortable align="center"></wd-table-col>
-        <wd-table-col prop="grade" :label="$t('fen-shu')" fixed sortable align="center">
+        <wd-table-column prop="name" :label="$t('xing-ming')" fixed sortable align="center"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" fixed sortable align="center">
           <template #value="{ row }">
             <view class="custom-class">
               <text>{{ row.grade }}</text>
               <text>{{ '同比' }}{{ row.compare }}</text>
             </view>
           </template>
-        </wd-table-col>
-        <wd-table-col prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" sortable :width="160"></wd-table-col>
-        <wd-table-col prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-col>
-        <wd-table-col prop="major" :label="$t('zhuan-ye-1')"></wd-table-col>
-        <wd-table-col prop="gender" :label="$t('xing-bie')"></wd-table-col>
-        <wd-table-col prop="graduation" :label="$t('xue-cheng-shi-jian')"></wd-table-col>
+        </wd-table-column>
+        <wd-table-column prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" sortable :width="160"></wd-table-column>
+        <wd-table-column prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-column>
+        <wd-table-column prop="major" :label="$t('zhuan-ye-1')"></wd-table-column>
+        <wd-table-column prop="gender" :label="$t('xing-bie')"></wd-table-column>
+        <wd-table-column prop="graduation" :label="$t('xue-cheng-shi-jian')"></wd-table-column>
+      </wd-table>
+    </demo-block>
+
+    <demo-block :title="$t('he-bing-dan-yuan-ge')">
+      <wd-table :data="spanData" :span-method="handleSpan" :height="400">
+        <wd-table-column prop="name" :label="$t('xing-ming')" align="center"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" align="center"></wd-table-column>
+        <wd-table-column prop="school" :label="$t('qiu-xue-zhi-suo')"></wd-table-column>
+        <wd-table-column prop="major" :label="$t('zhuan-ye')"></wd-table-column>
+      </wd-table>
+    </demo-block>
+
+    <demo-block :title="$t('he-bing-zi-ding-yi-lie')">
+      <wd-table :data="spanData" :span-method="handleCustomSpan" :height="400">
+        <wd-table-column prop="name" :label="$t('xing-ming')" fixed sortable align="center"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" align="center">
+          <template #value="{ row }">
+            <view class="custom-class">
+              <text>{{ row.grade }}</text>
+              <text>{{ '同比' }}{{ row.compare }}</text>
+            </view>
+          </template>
+        </wd-table-column>
+        <wd-table-column prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" :width="160"></wd-table-column>
+        <wd-table-column prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-column>
+        <wd-table-column prop="major" :label="$t('zhuan-ye')"></wd-table-column>
+      </wd-table>
+    </demo-block>
+
+    <demo-block :title="$t('gu-ding-lie-he-bing')">
+      <wd-table :data="spanData" :span-method="handleFixedSpan" :height="400">
+        <wd-table-column prop="name" :label="$t('xing-ming')" fixed align="center"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" align="center"></wd-table-column>
+        <wd-table-column prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" :width="160"></wd-table-column>
+        <wd-table-column prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-column>
+        <wd-table-column prop="major" :label="$t('zhuan-ye')"></wd-table-column>
+        <wd-table-column prop="gender" :label="$t('xing-bie')"></wd-table-column>
+      </wd-table>
+    </demo-block>
+
+    <demo-block :title="$t('gu-ding-tou-he-bing')">
+      <wd-table :data="dataList" :span-method="handleHeaderSpan" :height="300">
+        <wd-table-column prop="name" :label="$t('xing-ming')" align="center"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" align="center"></wd-table-column>
+        <wd-table-column prop="school" :label="$t('qiu-xue-zhi-suo')"></wd-table-column>
+        <wd-table-column prop="major" :label="$t('zhuan-ye')"></wd-table-column>
       </wd-table>
     </demo-block>
 
     <demo-block :title="$t('bu-gu-ding-biao-tou-jie-he-fen-ye-qi')">
       <wd-table :data="paginationData" :fixed-header="false">
-        <wd-table-col prop="name" :label="$t('xing-ming')" fixed align="center"></wd-table-col>
-        <wd-table-col prop="grade" :label="$t('fen-shu')" fixed align="center"></wd-table-col>
-        <wd-table-col prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" :width="160"></wd-table-col>
-        <wd-table-col prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-col>
-        <wd-table-col prop="major" :label="$t('zhuan-ye-2')"></wd-table-col>
-        <wd-table-col prop="gender" :label="$t('xing-bie')"></wd-table-col>
+        <wd-table-column prop="name" :label="$t('xing-ming')" fixed align="center"></wd-table-column>
+        <wd-table-column prop="grade" :label="$t('fen-shu')" fixed align="center"></wd-table-column>
+        <wd-table-column prop="hobby" :label="$t('yi-yan-yi-bi-zhi')" :width="160"></wd-table-column>
+        <wd-table-column prop="school" :label="$t('qiu-xue-zhi-suo')" :width="180"></wd-table-column>
+        <wd-table-column prop="major" :label="$t('zhuan-ye-2')"></wd-table-column>
+        <wd-table-column prop="gender" :label="$t('xing-bie')"></wd-table-column>
       </wd-table>
-      <wd-pagination custom-style="border: 1px solid #ececec;border-top:none" v-model="page" :total="total"></wd-pagination>
+      <wd-pagination v-model="page" :total="total"></wd-pagination>
+    </demo-block>
+
+    <demo-block title="虚拟滚动（10000行）">
+      <wd-table :data="virtualData" :height="400" virtual :row-height="50">
+        <wd-table-column prop="index" label="序号" width="80px" align="center"></wd-table-column>
+        <wd-table-column prop="name" label="姓名" width="120px" align="center"></wd-table-column>
+        <wd-table-column prop="score" label="分数" width="100px" align="center"></wd-table-column>
+        <wd-table-column prop="remark" label="备注" width="200px"></wd-table-column>
+      </wd-table>
     </demo-block>
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import type { TableColumn } from '@/uni_modules/wot-design-uni/components/wd-table-col/types'
+import type { TableColumn } from '@/uni_modules/wot-design-uni/components/wd-table-column/types'
+import type { SpanMethodParams } from '@/uni_modules/wot-design-uni/components/wd-table/types'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -266,6 +322,101 @@ const paginationData = computed(() => {
  * 排序
  * @param e
  */
+/** 合并单元格示例数据（取前 5 条） */
+/** 虚拟滚动 demo 数据（1000 行） */
+const virtualData = Array.from({ length: 10000 }, (_, i) => ({
+  index: i + 1,
+  name: `蜀兵${i + 1}号`,
+  score: Math.floor(Math.random() * 100),
+  remark: `这是蜀兵${i + 1}号的备注信息`
+}))
+
+const spanData = computed(() => dataList.value.slice(0, 5))
+
+/**
+ * 合并单元格方法
+ * 演示跨列与跨行两种合并方式
+ */
+function handleSpan({ rowIndex, columnIndex }: SpanMethodParams) {
+  // 第一行：姓名 + 分数 合并为一列
+  if (rowIndex === 0 && columnIndex === 0) {
+    return { rowspan: 1, colspan: 2 }
+  }
+  if (rowIndex === 0 && columnIndex === 1) {
+    return { rowspan: 0, colspan: 0 }
+  }
+  // 第三行 ~ 第四行：姓名列合并两行
+  if (rowIndex === 2 && columnIndex === 0) {
+    return { rowspan: 2, colspan: 1 }
+  }
+  if (rowIndex === 3 && columnIndex === 0) {
+    return { rowspan: 0, colspan: 0 }
+  }
+}
+
+/**
+ * 固定列 + 合并单元格方法
+ * 非固定列区域合并两行
+ */
+function handleFixedSpan({ rowIndex, columnIndex }: SpanMethodParams) {
+  // 第二行 ~ 第三行：分数列合并两行
+  if (rowIndex === 1 && columnIndex === 1) {
+    return { rowspan: 2, colspan: 1 }
+  }
+  if (rowIndex === 2 && columnIndex === 1) {
+    return { rowspan: 0, colspan: 0 }
+  }
+  // 第四行：求学之所 + 专业 合并为一列
+  if (rowIndex === 3 && columnIndex === 3) {
+    return { rowspan: 1, colspan: 2 }
+  }
+  if (rowIndex === 3 && columnIndex === 4) {
+    return { rowspan: 0, colspan: 0 }
+  }
+}
+
+/**
+ * 固定表头 + 合并单元格方法
+ * 同一求学之所的行合并显示
+ */
+function handleHeaderSpan({ rowIndex, columnIndex }: SpanMethodParams) {
+  // 第一行 ~ 第二行：求学之所列合并两行（因为数据相同）
+  if (rowIndex === 0 && columnIndex === 2) {
+    return { rowspan: 2, colspan: 1 }
+  }
+  if (rowIndex === 1 && columnIndex === 2) {
+    return { rowspan: 0, colspan: 0 }
+  }
+  // 第五行 ~ 第六行：专业列合并两行
+  if (rowIndex === 4 && columnIndex === 3) {
+    return { rowspan: 2, colspan: 1 }
+  }
+  if (rowIndex === 5 && columnIndex === 3) {
+    return { rowspan: 0, colspan: 0 }
+  }
+}
+
+/**
+ * 合并单元格 + 自定义列模板方法
+ * 第一行~第二行：姓名列合并两行，自定义分数列同时展示
+ */
+function handleCustomSpan({ rowIndex, columnIndex }: SpanMethodParams) {
+  // 第一行 ~ 第二行：姓名列合并两行
+  if (rowIndex === 0 && columnIndex === 0) {
+    return { rowspan: 2, colspan: 1 }
+  }
+  if (rowIndex === 1 && columnIndex === 0) {
+    return { rowspan: 0, colspan: 0 }
+  }
+  // 第四行：一言以蔽之 + 求学之所 合并为一列
+  if (rowIndex === 3 && columnIndex === 2) {
+    return { rowspan: 1, colspan: 2 }
+  }
+  if (rowIndex === 3 && columnIndex === 3) {
+    return { rowspan: 0, colspan: 0 }
+  }
+}
+
 function handleSort(column: TableColumn) {
   dataList.value = dataList.value.reverse()
 }
