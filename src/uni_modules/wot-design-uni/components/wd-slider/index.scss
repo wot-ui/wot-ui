@@ -226,12 +226,9 @@ $slider-opacity-disabled: var(--wot-slider-opacity-disabled, $opacity-disabled) 
       @include when(active) {
         background: $slider-scale-capsule-bg;
       }
-
-      // 如果刻度在最左或最右边缘，隐藏分割线（避免遮挡圆角）
-      &[style*="left: 0%"],
-      &[style*="left: 100%"],
-      &[style*="top: 0%"],
-      &[style*="top: 100%"] {
+      
+      &:first-child,
+      &:last-child {
         background: transparent;
       }
     }

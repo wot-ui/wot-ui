@@ -1,25 +1,28 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
-// ============================================================
-// loadmore 组件变量定义
-// ============================================================
-
-// 基础尺寸和颜色变量
-$loadmore-height: var(--wot-loadmore-height, $n48) !default; // loadmore 高度
-$loadmore-padding: var(--wot-loadmore-padding, $spacing-main $spacing-loose) !default; // loadmore 内边距
-$loadmore-color: var(--wot-loadmore-color, $text-secondary) !default; // 默认文字颜色
-$loadmore-font-size: var(--wot-loadmore-font-size, $typography-body-size-main) !default; // 文字字号
-$loadmore-line-height: var(--wot-loadmore-line-height, $typography-body-line--height-size-main) !default; // 文字行高
-
-// 加载中状态相关变量
-$loadmore-loading-size: var(--wot-loadmore-loading-size, $n28) !default; // loading 图标尺寸
-$loadmore-loading-spacing: var(--wot-loadmore-loading-spacing, $spacing-tight) !default; // loading 图标与文字间距
-
-// 错误/重试状态相关变量
-$loadmore-refresh-color: var(--wot-loadmore-refresh-color, $primary-6) !default; // 错误提示颜色
-$loadmore-refresh-font-size: var(--wot-loadmore-refresh-font-size, $typography-body-size-extra-large) !default; // 刷新按钮字号
-$loadmore-retry-spacing: var(--wot-loadmore-retry-spacing, 0 $spacing-extra-tight) !default; // 重试文字与图标间距
+// 组件最小高度
+$loadmore-height: var(--wot-loadmore-height, $n48) !default;
+// 组件内边距
+$loadmore-padding: var(--wot-loadmore-padding, $spacing-main $spacing-loose) !default;
+// 默认文字颜色
+$loadmore-color: var(--wot-loadmore-color, $text-secondary) !default;
+// 默认文字字号
+$loadmore-font-size: var(--wot-loadmore-font-size, $typography-body-size-main) !default;
+// 默认文字行高
+$loadmore-line-height: var(--wot-loadmore-line-height, $typography-body-line--height-size-main) !default;
+// 加载图标尺寸
+$loadmore-loading-size: var(--wot-loadmore-loading-size, $n28) !default;
+// 加载图标与文字间距
+$loadmore-loading-spacing: var(--wot-loadmore-loading-spacing, $spacing-tight) !default;
+// 刷新态文字颜色
+$loadmore-refresh-color: var(--wot-loadmore-refresh-color, $primary-6) !default;
+// 刷新图标字号
+$loadmore-refresh-font-size: var(--wot-loadmore-refresh-font-size, $typography-body-size-extra-large) !default;
+// 刷新图标行高
+$loadmore-refresh-line-height: var(--wot-loadmore-refresh-line-height, $typography-body-line--height-size-extra-large) !default;
+// 重试文案与图标间距
+$loadmore-retry-spacing: var(--wot-loadmore-retry-spacing, 0 $spacing-extra-tight) !default;
 
 @include b(loadmore) {
   display: flex;
@@ -53,7 +56,7 @@ $loadmore-retry-spacing: var(--wot-loadmore-retry-spacing, 0 $spacing-extra-tigh
 
   @include edeep(refresh) {
     color: $loadmore-refresh-color;
-    vertical-align: middle;
     font-size: $loadmore-refresh-font-size;
+    line-height: $loadmore-refresh-line-height;
   }
 }

@@ -14,13 +14,13 @@ $sidebar-item-bg: var(--wot-sidebar-item-bg, $filled-bottom) !default;
 // 选项最小高度
 $sidebar-item-min-height: var(--wot-sidebar-item-min-height, $n52) !default;
 // 选项点击态背景色
-$sidebar-item-hover-bg: var(--wot-sidebar-item-hover-bg, $feedback-active) !default;
+$sidebar-item-bg-hover: var(--wot-sidebar-item-bg-hover, $feedback-active) !default;
 // 激活项背景色
-$sidebar-item-active-bg: var(--wot-sidebar-item-active-bg, $filled-oppo) !default;
+$sidebar-item-bg-active: var(--wot-sidebar-item-bg-active, $filled-oppo) !default;
 // 激活项文字颜色
-$sidebar-item-active-color: var(--wot-sidebar-item-active-color, $primary-6) !default;
+$sidebar-item-color-active: var(--wot-sidebar-item-color-active, $primary-6) !default;
 // 激活项字重
-$sidebar-item-active-font-weight: var(--wot-sidebar-item-active-font-weight, $font-weight-semibold) !default;
+$sidebar-item-font-weight-active: var(--wot-sidebar-item-font-weight-active, $font-weight-semibold) !default;
 // 激活指示条宽度
 $sidebar-item-indicator-width: var(--wot-sidebar-item-indicator-width, $n2) !default;
 // 激活指示条高度
@@ -28,7 +28,7 @@ $sidebar-item-indicator-height: var(--wot-sidebar-item-indicator-height, $n20) !
 // 圆角大小
 $sidebar-item-border-radius: var(--wot-sidebar-item-border-radius, $radius-large) !default;
 // 禁用状态文字颜色
-$sidebar-item-disabled-color: var(--wot-sidebar-item-disabled-color, $text-disabled) !default;
+$sidebar-item-color-disabled: var(--wot-sidebar-item-color-disabled, $text-disabled) !default;
 // 图标大小
 $sidebar-item-icon-size: var(--wot-sidebar-item-icon-size, $n20) !default;
 // 图标右边距
@@ -49,9 +49,9 @@ $sidebar-item-icon-margin-right: var(--wot-sidebar-item-icon-margin-right, $padd
   line-height: $sidebar-item-line-height;
 
   @include m(active) {
-    font-weight: $sidebar-item-active-font-weight;
-    background: $sidebar-item-active-bg;
-    color: $sidebar-item-active-color;
+    font-weight: $sidebar-item-font-weight-active;
+    background: $sidebar-item-bg-active;
+    color: $sidebar-item-color-active;
 
     &::before {
       position: absolute;
@@ -59,7 +59,7 @@ $sidebar-item-icon-margin-right: var(--wot-sidebar-item-icon-margin-right, $padd
       left: 0;
       width: $sidebar-item-indicator-width;
       height: $sidebar-item-indicator-height;
-      background: $sidebar-item-active-color;
+      background: $sidebar-item-color-active;
       transform: translateY(-50%);
       content: '';
       border-radius: $sidebar-item-indicator-width;
@@ -75,7 +75,7 @@ $sidebar-item-icon-margin-right: var(--wot-sidebar-item-icon-margin-right, $padd
   }
 
   @include m(disabled) {
-    color: $sidebar-item-disabled-color;
+    color: $sidebar-item-color-disabled;
     cursor: not-allowed;
   }
 

@@ -1,31 +1,46 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-// 基础样式
-$card-bg: var(--wot-card-bg, $filled-oppo) !default; // 卡片背景色
-$card-border-color: var(--wot-card-border-color, $border-light) !default; // 卡片边框颜色
-$card-radius: var(--wot-card-radius, $radius-large) !default; // 卡片圆角
-$card-shadow: var(--wot-card-shadow, 0 $n2 $n8 $opac-2_04) !default; // 卡片阴影
-$card-shadow-hover: var(--wot-card-shadow-hover, 0 $n4 $n16 $opac-3_08) !default; // 卡片悬浮阴影
-$card-transition: var(--wot-card-transition, box-shadow 0.3s ease) !default; // 过渡动画
-$card-margin-bottom: var(--wot-card-margin-bottom, $spacing-extra-loose) !default; // 卡片底部间距
-$card-margin-left-right: var(--wot-card-margin-left-right, $spacing-extra-loose) !default; // 卡片左右间距
-// 标题样式
-$card-title-color: var(--wot-card-title-color, $text-main) !default; // 标题颜色
-$card-title-font-size: var(--wot-card-title-font-size, $typography-title-size-main) !default; // 标题字号
-$card-title-font-weight: var(--wot-card-title-font-weight, $font-weight-medium) !default; // 标题字重
-$card-title-line-height: var(--wot-card-title-line-height, $typography-body-line--height-size-main) !default; // 标题行高
-$card-title-padding: var(--wot-card-title-padding, $padding-loose $padding-extra-loose) !default; // 标题内间距
-
-// 内容样式
-$card-content-color: var(--wot-card-content-color, $text-secondary) !default; // 内容文字颜色
-$card-content-font-size: var(--wot-card-content-font-size, $typography-body-size-main) !default; // 内容字号
-$card-content-line-height: var(--wot-card-content-line-height, $typography-body-line--height-size-main) !default; // 内容行高
-$card-content-padding: var(--wot-card-content-padding, $padding-main $padding-loose) !default; // 内容内边距
-$card-content-border-color: var(--wot-card-content-border-color, $border-main) !default; // 内容区域边框颜色
-// 底部样式
-$card-footer-padding: var(--wot-card-footer-padding, $padding-tight $padding-loose) !default; // 底部内边距
-$card-footer-border-color: var(--wot-card-footer-border-color, $border-main) !default; // 底部分割线颜色
+// 卡片背景色
+$card-bg: var(--wot-card-bg, $filled-oppo) !default;
+// 卡片边框颜色
+$card-border-color: var(--wot-card-border-color, $border-light) !default;
+// 卡片圆角
+$card-radius: var(--wot-card-radius, $radius-large) !default;
+// 卡片阴影
+$card-shadow: var(--wot-card-shadow, $n0 $n2 $n8 $opac-2_04) !default;
+// 卡片悬浮阴影
+$card-shadow-hover: var(--wot-card-shadow-hover, $n0 $n4 $n16 $opac-3_08) !default;
+// 过渡动画
+$card-transition: var(--wot-card-transition, box-shadow 0.3s ease) !default;
+// 卡片底部间距
+$card-margin-bottom: var(--wot-card-margin-bottom, $spacing-extra-loose) !default;
+// 卡片水平方向外边距
+$card-margin-horizontal: var(--wot-card-margin-horizontal, $spacing-extra-loose) !default;
+// 标题颜色
+$card-title-color: var(--wot-card-title-color, $text-main) !default;
+// 标题字号
+$card-title-font-size: var(--wot-card-title-font-size, $typography-title-size-main) !default;
+// 标题字重
+$card-title-font-weight: var(--wot-card-title-font-weight, $font-weight-medium) !default;
+// 标题行高
+$card-title-line-height: var(--wot-card-title-line-height, $typography-body-line--height-size-main) !default;
+// 标题内间距
+$card-title-padding: var(--wot-card-title-padding, $padding-loose $padding-extra-loose) !default;
+// 内容文字颜色
+$card-content-color: var(--wot-card-content-color, $text-secondary) !default;
+// 内容字号
+$card-content-font-size: var(--wot-card-content-font-size, $typography-body-size-main) !default;
+// 内容行高
+$card-content-line-height: var(--wot-card-content-line-height, $typography-body-line--height-size-main) !default;
+// 内容内边距
+$card-content-padding: var(--wot-card-content-padding, $padding-main $padding-loose) !default;
+// 内容区域边框颜色
+$card-content-border-color: var(--wot-card-content-border-color, $border-main) !default;
+// 底部内边距
+$card-footer-padding: var(--wot-card-footer-padding, $padding-tight $padding-loose) !default;
+// 底部分割线颜色
+$card-footer-border-color: var(--wot-card-footer-border-color, $border-main) !default;
 
 
 @include b(card) {
@@ -35,7 +50,7 @@ $card-footer-border-color: var(--wot-card-footer-border-color, $border-main) !de
   box-shadow: $card-shadow;
   overflow: hidden;
   transition: $card-transition;
-  margin: 0 $card-margin-left-right;
+  margin: 0 $card-margin-horizontal;
 
   &:not(:last-child) {
     margin-bottom: $card-margin-bottom;
@@ -83,7 +98,6 @@ $card-footer-border-color: var(--wot-card-footer-border-color, $border-main) !de
     box-shadow: none;
 
     @include me(content) {
-      position: relative;
       @include halfPixelBorder('top', $padding-loose, $card-content-border-color);
     }
   }

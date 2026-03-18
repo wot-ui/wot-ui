@@ -1,30 +1,66 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-$radio-label-margin: var(--wot-radio-label-margin, $spacing-tight) !default; // 文字与图标距离
-$radio-checked-color: var(--wot-radio-checked-color, $primary-6) !default; // 选中颜色
-$radio-icon-size: var(--wot-radio-icon-size, $n22) !default; // 图标尺寸
-$radio-unchecked-color: var(--wot-radio-unchecked-color, $coolgrey-3) !default; // 图标颜色
-$radio-label-fs: var(--wot-radio-label-fs, $typography-body-size-main) !default; // 文字字号
-$radio-label-color: var(--wot-radio-label-color, $text-main) !default; // 文字颜色
-$radio-label-line-height: var(--wot-radio-label-line-height, $typography-body-line--height-size-main) !default; // 文字行高
-$radio-disabled: var(--wot-radio-disabled, $opacity-disabled) !default; // 禁用
-$radio-vertical-padding: var(--wot-radio-vertical-margin, $spacing-extra-loose $padding-zero) !default; // 垂直模式多个单选框距离
-$radio-horizontal-margin: var(--wot-radio-horizontal-margin, 0 $spacing-extra-loose 0 0) !default; // 水平模式多个单选框距离
-$radio-button-margin: var(--wot-radio-button-margin, 0 $spacing-extra-loose $spacing-extra-loose 0) !default; // 按钮模式多个单选框距离
-$radio-button-border-width: var(--wot-radio-border-width, $n1) !default; // 边框宽度
-$radio-button-shape-border-radius: var(--wot-radio-button-shape-border-radius, $radius-radius-full) !default; // 按钮模式图标圆角大小
-$radio-button-shape-size: var(--wot-radio-button-shape-size, $n26) !default; // 按钮模式图标容器大小
-$radio-button-fs: var(--wot-radio-button-fs, $typography-body-size-main) !default; // 按钮模式字号
-$radio-button-line-height: var(--wot-radio-button-line-height, $typography-body-line--height-size-main) !default; // 按钮模式行高
-$radio-button-bg: var(--wot-radio-button-bg, $filled-bottom) !default; // 按钮模式背景颜色
-$radio-button-checked-bg: var(--wot-radio-button-checked-bg, $filled-oppo) !default; // 按钮模式选中状态背景颜色
-$radio-button-icon-size: var(--wot-radio-icon-size, $n10) !default; // 图标尺寸
-$radio-button-min-width: var(--wot-radio-button-min-width, 74px) !default; // 按钮模式最小宽
-$radio-button-max-width: var(--wot-radio-button-max-width, 148px) !default; // 按钮模式最大宽
-$radio-button-border-radius: var(--wot-radio-button-border-radius, $radius-main) !default; // 按钮圆角大小
-$radio-button-padding: var(--wot-radio-button-padding, $padding-extra-tight $padding-extra-loose) !default; // 按钮模式内边距
-$radio-button-icon-color: var(--wot-radio-button-icon-color, $icon-white) !default; // 按钮模式图标颜色
+// 文案与图标间距
+$radio-label-margin: var(--wot-radio-label-margin, $spacing-tight) !default;
+// 选中颜色
+$radio-checked-color: var(--wot-radio-checked-color, $primary-6) !default;
+// 图标尺寸
+$radio-icon-size: var(--wot-radio-icon-size, $n22) !default;
+// 未选中图标颜色
+$radio-unchecked-color: var(--wot-radio-unchecked-color, $coolgrey-3) !default;
+// 文案字号
+$radio-label-font-size: var(--wot-radio-label-font-size, $typography-body-size-main) !default;
+// 文案颜色
+$radio-label-color: var(--wot-radio-label-color, $text-main) !default;
+// 文案行高
+$radio-label-line-height: var(--wot-radio-label-line-height, $typography-body-line--height-size-main) !default;
+// 禁用态透明度
+$radio-disabled: var(--wot-radio-disabled, $opacity-disabled) !default;
+// 垂直模式间距
+$radio-vertical-padding: var(--wot-radio-vertical-padding, $spacing-extra-loose $padding-zero) !default;
+// 水平模式间距
+$radio-horizontal-margin: var(--wot-radio-horizontal-margin, 0 $spacing-extra-loose 0 0) !default;
+// 按钮模式项间距
+$radio-button-margin: var(--wot-radio-button-margin, 0 $spacing-extra-loose $spacing-extra-loose 0) !default;
+// 按钮模式边框宽度
+$radio-button-border-width: var(--wot-radio-button-border-width, $n1) !default;
+// 按钮模式标记圆角
+$radio-button-shape-border-radius: var(--wot-radio-button-shape-border-radius, $radius-radius-full) !default;
+// 按钮模式标记尺寸
+$radio-button-shape-size: var(--wot-radio-button-shape-size, $n26) !default;
+// 按钮模式字号
+$radio-button-font-size: var(--wot-radio-button-font-size, $typography-body-size-main) !default;
+// 按钮模式行高
+$radio-button-line-height: var(--wot-radio-button-line-height, $typography-body-line--height-size-main) !default;
+// 按钮模式背景色
+$radio-button-bg: var(--wot-radio-button-bg, $filled-bottom) !default;
+// 按钮模式选中背景色
+$radio-button-checked-bg: var(--wot-radio-button-checked-bg, $filled-oppo) !default;
+// 按钮模式图标尺寸
+$radio-button-icon-size: var(--wot-radio-button-icon-size, $n10) !default;
+// 按钮模式最小宽度
+$radio-button-min-width: var(--wot-radio-button-min-width, 74px) !default;
+// 按钮模式最大宽度
+$radio-button-max-width: var(--wot-radio-button-max-width, 148px) !default;
+// 按钮模式圆角
+$radio-button-border-radius: var(--wot-radio-button-border-radius, $radius-main) !default;
+// 按钮模式内边距
+$radio-button-padding: var(--wot-radio-button-padding, $padding-extra-tight $padding-extra-loose) !default;
+// 按钮模式图标颜色
+$radio-button-icon-color: var(--wot-radio-button-icon-color, $icon-white) !default;
+// 按钮模式标记顶部偏移
+$radio-button-shape-top: var(--wot-radio-button-shape-top, calc(-1 * #{$n11})) !default;
+// 按钮模式标记左侧偏移
+$radio-button-shape-left: var(--wot-radio-button-shape-left, calc(-1 * #{$n9})) !default;
+// 按钮模式标记右侧偏移
+$radio-button-shape-right: var(--wot-radio-button-shape-right, calc(-1 * #{$n9})) !default;
+// 按钮模式图标顶部偏移
+$radio-button-icon-top: var(--wot-radio-button-icon-top, calc(13 * #{$n1})) !default;
+// 按钮模式图标右侧偏移
+$radio-button-icon-right: var(--wot-radio-button-icon-right, $n4) !default;
+// 按钮模式图标左侧偏移
+$radio-button-icon-left: var(--wot-radio-button-icon-left, $n4) !default;
 
 @include b(radio) {
   position: relative;
@@ -71,7 +107,7 @@ $radio-button-icon-color: var(--wot-radio-button-icon-color, $icon-white) !defau
   }
 
   @include e(label) {
-    font-size: $radio-label-fs;
+    font-size: $radio-label-font-size;
     color: $radio-label-color;
     line-height: $radio-label-line-height;
     text-align: center;
@@ -98,7 +134,7 @@ $radio-button-icon-color: var(--wot-radio-button-icon-color, $icon-white) !defau
     margin: $radio-button-margin;
     border-radius: $radio-button-border-radius;
     background: $radio-button-bg;
-    font-size: $radio-button-fs;
+    font-size: $radio-button-font-size;
     box-sizing: border-box;
     border: $radio-button-border-width solid $radio-button-bg;
 
@@ -111,8 +147,8 @@ $radio-button-icon-color: var(--wot-radio-button-icon-color, $icon-white) !defau
 
     .wd-radio__shape {
       position: absolute;
-      top: -11px;
-      left: -9px;
+      top: $radio-button-shape-top;
+      left: $radio-button-shape-left;
       width: $radio-button-shape-size;
       height: $radio-button-shape-size;
       border-radius: $radio-button-shape-border-radius;
@@ -121,8 +157,8 @@ $radio-button-icon-color: var(--wot-radio-button-icon-color, $icon-white) !defau
 
     :deep(.wd-radio__icon) {
       position: absolute;
-      top: 13px;
-      right: 4px;
+      top: $radio-button-icon-top;
+      right: $radio-button-icon-right;
       font-size: $radio-button-icon-size;
       line-height: $radio-button-icon-size;
       height: $radio-button-icon-size;
@@ -132,12 +168,12 @@ $radio-button-icon-color: var(--wot-radio-button-icon-color, $icon-white) !defau
     &.wd-radio--right {
       .wd-radio__shape {
         left: auto;
-        right: -9px;
+        right: $radio-button-shape-right;
       }
 
       :deep(.wd-radio__icon) {
         right: auto;
-        left: 4px;
+        left: $radio-button-icon-left;
       }
     }
 

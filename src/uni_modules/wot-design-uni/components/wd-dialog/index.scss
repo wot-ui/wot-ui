@@ -1,59 +1,91 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 对话框背景色
 $dialog-bg: var(--wot-dialog-bg, $filled-oppo) !default;
-
+// 对话框宽度
 $dialog-width: var(--wot-dialog-width, 280px) !default;
+// 对话框圆角
 $dialog-radius: var(--wot-dialog-radius, $radius-large) !default;
-
+// 对话框主体内边距
 $dialog-body-padding: var(--wot-dialog-body-padding, $padding-super-loose $padding-super-loose 0) !default;
+// 主体元素间距
 $dialog-body-element-spacing: var(--wot-dialog-body-element-spacing, $spacing-tight) !default;
+// 主体大间距
 $dialog-body-element-spacing-large: var(--wot-dialog-body-element-spacing-large, $spacing-extra-loose) !default;
-
+// 标题文字颜色
 $dialog-title-color: var(--wot-dialog-title-color, $text-main) !default;
+// 标题文字字号
 $dialog-title-font-size: var(--wot-dialog-title-font-size, $typography-body-size-extra-large) !default;
+// 标题文字行高
 $dialog-title-line-height: var(--wot-dialog-title-line-height, $typography-body-line--height-size-extra-large) !default;
+// 标题文字字重
 $dialog-title-font-weight: var(--wot-dialog-title-font-weight, $font-weight-medium) !default;
+// 标题底部外边距
 $dialog-title-margin-bottom: var(--wot-dialog-title-margin-bottom, $spacing-tight) !default;
-
+// 内容文字颜色
 $dialog-content-color: var(--wot-dialog-content-color, $text-secondary) !default;
+// 内容文字字号
 $dialog-content-font-size: var(--wot-dialog-content-font-size, $typography-body-size-main) !default;
+// 内容文字行高
 $dialog-content-line-height: var(--wot-dialog-content-line-height, $typography-body-line--height-size-main) !default;
+// 内容区内边距
 $dialog-content-padding: var(--wot-dialog-content-padding, $spacing-loose) !default;
+// 内容区最大高度
 $dialog-content-max-height: var(--wot-dialog-content-max-height, 340px) !default;
-
+// 输入框背景色
 $dialog-content-input-bg: var(--wot-dialog-content-input-bg, $filled-bottom) !default;
+// 输入错误文字颜色
 $dialog-content-input-error-color: var(--wot-dialog-content-input-error-color, $danger-main) !default;
+// 输入错误文字字号
 $dialog-content-input-font-size: var(--wot-dialog-content-input-font-size, $typography-label-size-main) !default;
+// 输入错误文字行高
 $dialog-content-input-line-height: var(--wot-dialog-content-input-line-height, $typography-label-line--height-size-main) !default;
+// 输入提示顶部内边距
 $dialog-content-input-padding-top: var(--wot-dialog-content-input-padding-top, $spacing-tight) !default;
-
+// 滚动条颜色
 $dialog-scrollbar-color: var(--wot-dialog-scrollbar-color, $border-main) !default;
+// 滚动条宽度
 $dialog-scrollbar-width: var(--wot-dialog-scrollbar-width, $n2) !default;
+// 滚动条圆角
 $dialog-scrollbar-radius: var(--wot-dialog-scrollbar-radius, $radius-small) !default;
-
+// 默认图标颜色
 $dialog-primary-color: var(--wot-dialog-primary-color, $primary-6) !default;
+// 成功图标颜色
 $dialog-success-color: var(--wot-dialog-success-color, $success-main) !default;
+// 警告图标颜色
 $dialog-warning-color: var(--wot-dialog-warning-color, $warning-main) !default;
+// 危险图标颜色
 $dialog-error-color: var(--wot-dialog-error-color, $danger-main) !default;
-
+// 图标尺寸
 $dialog-icon-size: var(--wot-dialog-icon-size, $n48) !default;
+// 图标底部外边距
 $dialog-icon-margin-bottom: var(--wot-dialog-icon-margin-bottom, $spacing-tight) !default;
-
+// 关闭图标尺寸
 $dialog-close-icon-size: var(--wot-dialog-close-icon-size, $n18) !default;
+// 关闭图标颜色
 $dialog-close-icon-color: var(--wot-dialog-close-icon-color, $icon-secondary) !default;
+// 关闭图标顶部偏移
 $dialog-close-icon-top: var(--wot-dialog-close-icon-top, $spacing-extra-loose) !default;
+// 关闭图标右侧偏移
 $dialog-close-icon-right: var(--wot-dialog-close-icon-right, $spacing-extra-loose) !default;
-
+// 操作区内边距
 $dialog-actions-padding: var(--wot-dialog-actions-padding, $padding-super-loose) !default;
+// 垂直操作区内边距
 $dialog-actions-padding-vertical: var(--wot-dialog-actions-padding-vertical, $padding-super-loose $padding-loose $padding-loose) !default;
+// 操作按钮水平间距
 $dialog-actions-spacing: var(--wot-dialog-actions-spacing, $spacing-loose) !default;
+// 操作按钮垂直间距
 $dialog-actions-spacing-vertical: var(--wot-dialog-actions-spacing-vertical, $spacing-tight) !default;
-$dialog-actoons-confirm-font-weight: var(--wot-dialog-actoons-confirm-font-weight, $font-weight-medium) !default;
+// 确认按钮字重
+$dialog-actions-confirm-font-weight: var(--wot-dialog-actions-confirm-font-weight, $font-weight-medium) !default;
+// 图片圆角
 $dialog-img-border-radius: var(--wot-dialog-img-border-radius, $radius-large) !default;
-
+// 文本按钮边框颜色
 $dialog-action-text-border-color: var(--wot-dialog-action-text-border-color, $border-main) !default;
+// 文本按钮内边距
 $dialog-action-text-button-padding: var(--wot-dialog-action-text-button-padding, $padding-loose $padding-extra-loose) !default;
+// 文本按钮边框宽度
 $dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) !default;
 
 
@@ -159,7 +191,7 @@ $dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) 
       }
 
       .wd-dialog__actions-btn--confirm {
-        font-weight: $dialog-actoons-confirm-font-weight;
+        font-weight: $dialog-actions-confirm-font-weight;
       }
     }
 

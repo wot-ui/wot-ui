@@ -93,7 +93,7 @@ function transition(transition: TransitionName) {
 }
 </script>
 <style lang="scss" scoped>
-:deep(button) {
+:deep(.wd-button) {
   margin: 0 10px 10px 0;
 }
 :deep(.block) {

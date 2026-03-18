@@ -1,25 +1,42 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
-// 组件级 CSS 变量定义
-$progress-bg: var(--wot-progress-bg, $filled-content) !default; // 进度条底色
-$progress-danger-color: var(--wot-progress-danger-color, $danger-main) !default; // 进度条danger颜色
-$progress-success-color: var(--wot-progress-success-color, $success-main) !default; // 进度条success进度条颜色
-$progress-warning-color: var(--wot-progress-warning-color, $warning-main) !default; // 进度条warning进度条颜色
-$progress-color: var(--wot-progress-color, $primary-6) !default; // 进度条颜色
-$progress-bar-height: var(--wot-progress-bar-height, $n8) !default; // 外部文字进度条高度
-$progress-height: var(--wot-progress-height, $n18) !default; // 内部文字进度条高度
-$progress-label-color: var(--wot-progress-label-color, $text-main) !default; // 外部文字颜色
-$progress-label-width: var(--wot-progress-label-width, $n34) !default; // 外部文字宽度
-$progress-label-margin-left: var(--wot-progress-label-margin-left, $spacing-tight) !default; // 外部文字间距
-$progress-inner-label-color: var(--wot-progress-inner-label-color, $text-white) !default; // 内部文字颜色
-$progress-inner-zero-bg: var(--wot-progress-inner-zero-bg, $primary-2) !default; // 内部0%或者无内容底色
-$progress-inner-zero-color: var(--wot-progress-inner-zero-color, $text-secondary) !default; // 内部0%或者无内容文字颜色
-$progress-inner-padding: var(--wot-progress-inner-label-color, $padding-zero $padding-tight) !default; // 内部文字颜色
-$progress-label-font-size: var(--wot-progress-label-font-size, $typography-label-size-large) !default; // 文字字号
-$progress-label-line-height: var(--wot-progress-label-line-height, $typography-label-line--height-size-large) !default; // 文字行高
-$progress-icon-size: var(--wot-progress-icon-size, $n18) !default; // 图标字号
-$progress-radius: var(--wot-progress-radius, $radius-radius-full) !default; // 进度条圆角
+// 进度条底色
+$progress-bg: var(--wot-progress-bg, $filled-content) !default;
+// danger 进度色
+$progress-danger-color: var(--wot-progress-danger-color, $danger-main) !default;
+// success 进度色
+$progress-success-color: var(--wot-progress-success-color, $success-main) !default;
+// warning 进度色
+$progress-warning-color: var(--wot-progress-warning-color, $warning-main) !default;
+// 默认进度色
+$progress-color: var(--wot-progress-color, $primary-6) !default;
+// 外部文案模式进度条高度
+$progress-bar-height: var(--wot-progress-bar-height, $n8) !default;
+// 内部文案模式组件高度
+$progress-height: var(--wot-progress-height, $n18) !default;
+// 外部文案颜色
+$progress-label-color: var(--wot-progress-label-color, $text-main) !default;
+// 外部文案宽度
+$progress-label-width: var(--wot-progress-label-width, $n34) !default;
+// 外部文案左侧间距
+$progress-label-margin-left: var(--wot-progress-label-margin-left, $spacing-tight) !default;
+// 内部文案颜色
+$progress-inner-label-color: var(--wot-progress-inner-label-color, $text-white) !default;
+// 内部 zero 态背景色
+$progress-inner-zero-bg: var(--wot-progress-inner-zero-bg, $primary-2) !default;
+// 内部 zero 态文字颜色
+$progress-inner-zero-color: var(--wot-progress-inner-zero-color, $text-secondary) !default;
+// 内部文案内边距
+$progress-inner-padding: var(--wot-progress-inner-padding, $padding-zero $padding-tight) !default;
+// 文案字号
+$progress-label-font-size: var(--wot-progress-label-font-size, $typography-label-size-large) !default;
+// 文案行高
+$progress-label-line-height: var(--wot-progress-label-line-height, $typography-label-line--height-size-large) !default;
+// 图标字号
+$progress-icon-size: var(--wot-progress-icon-size, $n18) !default;
+// 进度条圆角
+$progress-radius: var(--wot-progress-radius, $radius-radius-full) !default;
 
 @include b(progress) {
   width: 100%;

@@ -1,8 +1,6 @@
 @use '../styles/mixin/mixin.scss' as *;
 
 @include b(steps) {
-  font-size: 0;
-
   @include when(vertical) {
     display: block;
   }

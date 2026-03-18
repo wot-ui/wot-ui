@@ -105,6 +105,40 @@ $B: null;
   }
 }
 
+/* 过渡帧（enter 与 leave-to） */
+@mixin transitionFrame($names...) {
+  $selector: &;
+  $selectors: "";
+
+  @each $name in $names {
+    $selectors: #{$selectors + $selector + config.$modifierSeparator + $name + "-enter,"};
+    $selectors: #{$selectors + $selector + config.$modifierSeparator + $name + "-leave-to,"};
+  }
+
+  @at-root {
+    #{$selectors} {
+      @content;
+    }
+  }
+}
+
+/* 过渡激活态（enter-active 与 leave-active） */
+@mixin transitionActive($names...) {
+  $selector: &;
+  $selectors: "";
+
+  @each $name in $names {
+    $selectors: #{$selectors + $selector + config.$modifierSeparator + $name + "-enter-active,"};
+    $selectors: #{$selectors + $selector + config.$modifierSeparator + $name + "-leave-active,"};
+  }
+
+  @at-root {
+    #{$selectors} {
+      @content;
+    }
+  }
+}
+
 /* 定义状态（m） */
 @mixin mdeep($modifier...) {
   $selectors: "";

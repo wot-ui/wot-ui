@@ -1,12 +1,3 @@
-/*
- * @Author: weisheng
- * @Date: 2026-03-16 14:06:54
- * @LastEditTime: 2026-03-16 16:14:23
- * @LastEditors: weisheng
- * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-design-uni/components/wd-form/adapters/zod.ts
- * 记得注释
- */
 import type { FormSchema, FormSchemaIssue } from '../types'
 
 type ZodLikeIssue = {

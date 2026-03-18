@@ -1,20 +1,38 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 浮层背景色
 $popover-bg: var(--wot-popover-bg, $filled-oppo) !default;
+// 浮层文字颜色
 $popover-color: var(--wot-popover-color, $text-secondary) !default;
+// 浮层阴影
 $popover-box-shadow: var(--wot-popover-box-shadow, 0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
+// 箭头阴影
 $popover-arrow-box-shadow: var(--wot-popover-arrow-box-shadow, 0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
+// 浮层边框颜色
 $popover-border-color: var(--wot-popover-border-color, $border-main) !default;
+// 浮层圆角
 $popover-radius: var(--wot-popover-radius, $radius-main) !default;
+// 箭头尺寸
 $popover-arrow-size: var(--wot-popover-arrow-size, $n8) !default;
+// 浮层字号
 $popover-font-size: var(--wot-popover-font-size, $typography-body-size-main) !default;
+// 浮层行高
 $popover-line-height: var(--wot-popover-line-height, $typography-body-line--height-size-main) !default;
+// 浮层内边距
 $popover-padding: var(--wot-popover-padding, $padding-loose) !default;
+// 浮层层级
 $popover-z-index: var(--wot-popover-z-index, 500) !default;
+// 关闭图标尺寸
 $popover-close-icon-size: var(--wot-popover-close-icon-size, $n12) !default;
+// 关闭图标颜色
 $popover-close-icon-color: var(--wot-popover-close-icon-color, $icon-secondary) !default;
+// 关闭图标内边距
 $popover-close-icon-padding: var(--wot-popover-close-icon-padding, $padding-super-tight) !default;
+// 菜单图标大小
+$popover-menu-icon-size: var(--wot-popover-menu-icon-size, $n18) !default;
+// 菜单图标右侧间距
+$popover-menu-icon-margin-right: var(--wot-popover-menu-icon-margin-right, $spacing-super-tight) !default;
 
 
 @include b(popover) {
@@ -22,14 +40,14 @@ $popover-close-icon-padding: var(--wot-popover-close-icon-padding, $padding-supe
   display: inline-block;
 
   @include edeep(menu-icon) {
-    font-size: 18px;
-    margin-right: 5px;
+    font-size: $popover-menu-icon-size;
+    margin-right: $popover-menu-icon-margin-right;
   }
 
   @include e(menu) {
     position: relative;
     display: inline-block;
-    padding: 0 $popover-padding;
+    padding: $padding-zero $popover-padding;
     white-space: nowrap;
     background: $popover-bg;
     border-radius: $popover-radius;
@@ -37,7 +55,7 @@ $popover-close-icon-padding: var(--wot-popover-close-icon-padding, $padding-supe
 
   @include e(menu-inner) {
     position: relative;
-    padding: $popover-padding 0;
+    padding: $popover-padding $padding-zero;
     display: flex;
     align-items: center;
 

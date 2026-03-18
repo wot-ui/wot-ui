@@ -1,11 +1,16 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-$rate-color: var(--wd-rate-color, $filled-extra-strong);
-$rate-active-color: var(--wd-rate-active-color, $classifyapplication-Yellow-content);
-$rate-size: var(--wd-rate-size, $n24);
-$rate-disabled-opacity: var(--wd-rate-disabled-opacity, $opacity-disabled);
-$rate-item-space: var(--wd-rate-item-space, $spacing-extra-tight);
+// 未激活图标颜色
+$rate-color: var(--wot-rate-color, $filled-extra-strong) !default;
+// 激活图标颜色
+$rate-active-color: var(--wot-rate-active-color, $classifyapplication-Yellow-content) !default;
+// 图标尺寸
+$rate-size: var(--wot-rate-size, $n24) !default;
+// 禁用态透明度
+$rate-disabled-opacity: var(--wot-rate-disabled-opacity, $opacity-disabled) !default;
+// 图标间距
+$rate-item-space: var(--wot-rate-item-space, $spacing-extra-tight) !default;
 
 @include b(rate) {
   display: inline-block;
@@ -43,7 +48,7 @@ $rate-item-space: var(--wd-rate-item-space, $spacing-extra-tight);
 
   @include when(disabled) {
     cursor: not-allowed;
-    opacity: $opacity-disabled;
+    opacity: $rate-disabled-opacity;
   }
 
   @include when(block) {

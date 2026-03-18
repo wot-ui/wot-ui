@@ -1,41 +1,51 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
-// --- 按钮相关 ---
+// 操作按钮尺寸
 $input-number-action-size: var(--wot-input-number-action-size, $n28) !default;
+// 操作按钮背景色
 $input-number-action-bg: var(--wot-input-number-action-bg, $filled-bottom) !default;
+// 操作按钮颜色
 $input-number-action-color: var(--wot-input-number-action-color, $icon-secondary) !default;
+// 操作按钮圆角
 $input-number-action-border-radius: var(--wot-input-number-action-border-radius, $radius-main) !default;
+// 圆角模式操作按钮圆角
 $input-number-action-border-radius-full: var(--wot-input-number-action-border-radius-full, $radius-radius-full) !default;
+// 操作按钮禁用颜色
 $input-number-action-disabled-color: var(--wot-input-number-action-disabled-color, $icon-disabled) !default;
-
-// --- 分割线相关 ---
+// 操作按钮分割线宽度
 $input-number-action-divider-width: var(--wot-input-number-action-divider-width, $n1) !default;
-$input-number-action-divider-bg: var(--wot-input-number-action-divider-color, $filled-oppo) !default;
+// 操作按钮分割线颜色
+$input-number-action-divider-bg: var(--wot-input-number-action-divider-bg, $filled-oppo) !default;
+// 分离模式分割线颜色
 $input-number-action-divider-split-bg: var(--wot-input-number-action-divider-split-bg, $filled-strong) !default;
+// 分离模式分割线高度
 $input-number-action-divider-split-height: var(--wot-input-number-action-divider-split-height, $n18) !default;
-
-// --- 图标相关 ---
+// 图标尺寸
 $input-number-icon-size: var(--wot-input-number-icon-size, $n12) !default;
+// 图标线宽
 $input-number-icon-weight: var(--wot-input-number-icon-weight, $n3) !default;
-
-// --- 输入框相关 ---
+// 输入框宽度
 $input-number-input-width: var(--wot-input-number-input-width, $n36) !default;
+// 输入框高度
 $input-number-input-height: var(--wot-input-number-input-height, $n28) !default;
+// 输入框内边距
 $input-number-input-padding: var(--wot-input-number-input-padding, 0 $padding-tight) !default;
+// 输入框背景色
 $input-number-input-bg: var(--wot-input-number-input-bg, $filled-bottom) !default;
+// 输入框文字颜色
 $input-number-input-color: var(--wot-input-number-input-color, $text-main) !default;
-$input-number-fs: var(--wot-input-number-fs, $typography-label-size-large) !default;
-
-// --- 边框相关 ---
+// 输入框文字字号
+$input-number-font-size: var(--wot-input-number-font-size, $typography-label-size-large) !default;
+// 主题边框颜色
 $input-number-border-color: var(--wot-input-number-border-color, $border-main) !default;
-
-// --- 禁用状态 ---
+// 禁用态透明度
 $input-number-disabled-opacity: var(--wot-input-number-disabled-opacity, $opacity-disabled) !default;
-
-// --- primary 主题专用 ---
+// primary 主题主按钮背景色
 $input-number-action-primary-bg: var(--wot-input-number-action-primary-bg, $primary-6) !default;
+// primary 主题主按钮颜色
 $input-number-action-primary-color: var(--wot-input-number-action-primary-color, $icon-white) !default;
+// primary 主题次按钮颜色
 $input-number-action-primary-sub-color: var(--wot-input-number-action-primary-sub-color, $primary-6) !default;
 
 
@@ -138,7 +148,7 @@ $input-number-action-primary-sub-color: var(--wot-input-number-action-primary-su
     outline: none;
     text-align: center;
     color: $input-number-input-color;
-    font-size: $input-number-fs;
+    font-size: $input-number-font-size;
     font-weight: $font-weight-medium;
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;

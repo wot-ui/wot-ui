@@ -38,7 +38,7 @@ $img-cropper-canvas-z-index: var(--wot-img-cropper-canvas-z-index, 10) !default;
 // 底部操作栏层级
 $img-cropper-footer-z-index: var(--wot-img-cropper-footer-z-index, 10) !default;
 // 底部操作栏内边距
-$img-cropper-footer-padding: var(--wot-img-cropper-footer-bottom, $padding-extra-loose) !default;
+$img-cropper-footer-padding: var(--wot-img-cropper-footer-padding, $padding-extra-loose) !default;
 // 底部按钮向上边距
 $img-cropper-footer-btn-margin: var(--wot-img-cropper-footer-btn-margin, $n32) !default;
 // 取消按钮文字颜色

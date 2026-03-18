@@ -5,9 +5,9 @@
 $fab-trigger-width: var(--wot-fab-trigger-width, $n60) !default;
 // 浮动按钮触发器高度
 $fab-trigger-height: var(--wot-fab-trigger-height, $n60) !default;
-// 动作列表内边距
+// 动作列表主轴内边距
 $fab-actions-padding: var(--wot-fab-actions-padding, $padding-extra-loose) !default;
-// 浮动按钮 z-index
+// 浮动按钮层级
 $fab-z-index: var(--wot-fab-z-index, 99) !default;
 // 动作按钮展开/收起动画偏移距离
 $fab-transition-offset: var(--wot-fab-transition-offset, $n40) !default;

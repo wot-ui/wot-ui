@@ -1,32 +1,37 @@
 @use '../styles/mixin/mixin' as *;
 @use '../styles/variable.scss' as *;
 
-/* ================================ 组件SCSS变量 ================================ */
-
-/* 颜色变量 */
+// 默认文字颜色
 $divider-color-default: var(--wot-divider-color-default, $text-auxiliary) !default;
+// 分割线颜色
 $divider-color-line: var(--wot-divider-color-line, $border-main) !default;
-
-/* 间距变量 */
-$divider-padding: var(--wot-divider-padding, $padding-zero $padding-extra-loose) !default; // 两边间距
-$divider-margin: var(--wot-divider-margin, $spacing-extra-loose $spacing-zero) !default; // 上下间距
-
-/* 尺寸变量 */
-$divider-line-height: var(--wot-divider-line-height, $n3) !default; // 分割线高度
+// 组件水平内边距
+$divider-padding: var(--wot-divider-padding, $padding-zero $padding-extra-loose) !default;
+// 组件垂直外边距
+$divider-margin: var(--wot-divider-margin, $spacing-extra-loose $spacing-zero) !default;
+// 分割线厚度
+$divider-line-height: var(--wot-divider-line-height, $n3) !default;
+// 内容文字行高
 $divider-size-line-height: var(--wot-divider-size-line-height, $typography-body-line--height-size-main) !default;
+// 纵向分割线高度
 $divider-size-vertical-height: var(--wot-divider-size-vertical-height, $spacing-extra-loose) !default;
+// 纵向分割线宽度
 $divider-size-vertical-line-width: var(--wot-divider-size-vertical-line-width,  $n3) !default;
+// 左对齐模式左侧线段宽度
 $divider-size-content-left-width: var(--wot-divider-size-content-left-width, 10%) !default;
+// 右对齐模式右侧线段宽度
 $divider-size-content-right-width: var(--wot-divider-size-content-right-width, 10%) !default;
-
-/* 字体变量 */
-$divider-fs-default: var(--wot-divider-fs-default, $typography-body-size-main) !default;
-
-/* 间距变量 */
+// 默认文字字号
+$divider-font-size-default: var(--wot-divider-font-size-default, $typography-body-size-main) !default;
+// 默认外边距
 $divider-margin-default: var(--wot-divider-margin-default, $spacing-extra-loose) !default;
+// 纵向模式内容间距
 $divider-margin-vertical-content: var(--wot-divider-margin-vertical-content, $spacing-tight) !default;
+// 内容左侧间距
 $divider-margin-content-left: var(--wot-divider-margin-content-left, $spacing-loose) !default;
+// 内容右侧间距
 $divider-margin-content-right: var(--wot-divider-margin-content-right, $spacing-loose) !default;
+// 默认内边距
 $divider-padding-default: var(--wot-divider-padding-default, $spacing-zero) !default;
 
 @include b(divider) {
@@ -36,7 +41,7 @@ $divider-padding-default: var(--wot-divider-padding-default, $spacing-zero) !def
   margin: $divider-margin;
   align-items: center;
   color: $divider-color-default;
-  font-size: $divider-fs-default;
+  font-size: $divider-font-size-default;
 
   &::after,
   &::before {

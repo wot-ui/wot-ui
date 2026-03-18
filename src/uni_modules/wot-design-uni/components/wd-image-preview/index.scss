@@ -1,15 +1,23 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
-// 组件级 CSS 变量
+// 预览蒙层背景色
 $image-preview-bg: var(--wot-image-preview-bg, $opac-9_75) !default;
+// 页码文字颜色
 $image-preview-index-color: var(--wot-image-preview-index-color, $text-white) !default;
+// 页码顶部间距
 $image-preview-index-margin: var(--wot-image-preview-index-margin, $spacing-extra-loose) !default;
+// 页码文字字号
 $image-preview-index-font-size: var(--wot-image-preview-index-font-size, $typography-title-size-main) !default;
+// 页码文字字重
 $image-preview-index-font-weight: var(--wot-image-preview-index-font-weight, $typography-title-font-weight-main) !default;
+// 页码文字行高
 $image-preview-index-line-height: var(--wot-image-preview-index-line-height, $typography-title-line--height-size-main) !default;
+// 关闭图标尺寸
 $image-preview-close-size: var(--wot-image-preview-close-size, $n24) !default;
+// 关闭图标颜色
 $image-preview-close-color: var(--wot-image-preview-close-color, $icon-white) !default;
+// 关闭按钮边距
 $image-preview-close-margin: var(--wot-image-preview-close-margin, $spacing-extra-loose) !default;
 
 @include b(image-preview) {

@@ -29,7 +29,7 @@
           <view :class="`wd-datetime-picker__range-item ${showStart ? 'is-active' : ''}`" @click="onTabChange('start')">
             {{ showTabLabel[0] || translate('start') }}
           </view>
-          <view class="wd-datetime-picker__range-sperator"></view>
+          <view class="wd-datetime-picker__range-separator"></view>
           <view :class="`wd-datetime-picker__range-item ${!showStart ? 'is-active' : ''}`" @click="onTabChange('end')">
             {{ showTabLabel[1] || translate('end') }}
           </view>

@@ -1,42 +1,60 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
-/* ================================ 组件SCSS变量 ================================ */
-/* 颜色变量 */
+// 操作块背景色
 $switch-color-action-bg: var(--wot-switch-color-action-bg, $base-white) !default;
+// 操作块图标颜色
 $switch-color-action-icon: var(--wot-switch-color-action-icon, $primary-6) !default;
+// 激活态背景色
 $switch-color-active-bg: var(--wot-switch-color-active-bg, $primary-6) !default;
+// 内部文案激活态颜色
 $switch-color-inner-active-text: var(--wot-switch-color-inner-active-text, $text-white) !default;
+// 内部文案非激活态颜色
 $switch-color-inner-inactive-text: var(--wot-switch-color-inner-inactive-text, $text-auxiliary) !default;
+// 内部图标激活态颜色
 $switch-color-active-icon: var(--wot-switch-color-active-icon, $icon-white) !default;
+// 非激活态背景色
 $switch-color-inactive-bg: var(--wot-switch-color-inactive-bg, $filled-strong) !default;
+// 非激活态图标颜色
 $switch-color-inactive-icon: var(--wot-switch-color-inactive-icon, $icon-auxiliary) !default;
 
-/* 间距变量 */
+// 水平内边距
 $switch-left-right-padding: var(--wot-switch-left-right-padding, $padding-tight) !default;
+// 垂直内边距
 $switch-top-bottom-padding: var(--wot-switch-top-bottom-padding, $padding-ultra-tight) !default;
 
-/* 尺寸变量 */
-$switch-size: var(--wot-switch-size, $n26) !default; // switch 尺寸
-$switch-size-icon: var(--wot-switch-size-icon-height, 0.5em) !default;
+// 组件尺寸
+$switch-size: var(--wot-switch-size, $n26) !default;
+// 内部图标尺寸
+$switch-size-icon: var(--wot-switch-size-icon, 0.5em) !default;
+// 操作块高度
 $switch-size-action-height: var(--wot-switch-size-action-height, 1em) !default;
+// 操作块宽度
 $switch-size-action-width: var(--wot-switch-size-action-width, 1em) !default;
-$switch-size-action-icon: var(--wot-switch-size-action-icon-size, 0.5em) !default;
+// 操作块图标尺寸
+$switch-size-action-icon: var(--wot-switch-size-action-icon, 0.5em) !default;
+// 内部容器高度
 $switch-size-inner-height: var(--wot-switch-size-inner-height, calc($switch-size-action-height + $switch-top-bottom-padding * 2)) !default;
+// 内部容器最小宽度
 $switch-size-inner-min-width: var(--wot-switch-size-inner-min-width, calc(1.8em + $switch-top-bottom-padding * 2)) !default;
 
-/* 字体变量 */
-$switch-inner-fs: var(--wot-switch-inner-fs, $typography-body-size-main) !default;
+// 内部文案字号
+$switch-inner-font-size: var(--wot-switch-inner-font-size, $typography-body-size-main) !default;
 
-/* 圆角变量 */
+// 方角模式圆角
 $switch-radius: var(--wot-switch-radius, $radius-main) !default;
+// 圆角模式圆角
 $switch-radius-full: var(--wot-switch-radius-full, $radius-radius-full) !default;
 
+// 方角模式操作块圆角
 $switch-radius-action: var(--wot-switch-radius-action, $radius-small) !default;
+// 圆角模式操作块圆角
 $switch-radius-action-full: var(--wot-switch-radius-action-full, $radius-radius-full) !default;
 
-/* 其他变量 */
-$switch-spaceing: var(--wot-switch-spaceing, $spacing-super-tight) !default;
+// 图标与文案间距
+$switch-spacing: var(--wot-switch-spacing, $spacing-super-tight) !default;
+// 过渡时长
 $switch-transition-duration: var(--wot-switch-transition-duration, 0.3s) !default;
+// 禁用态透明度
 $switch-disabled: var(--wot-switch-disabled, $opacity-disabled) !default;
 
 @include b(switch) {
@@ -106,7 +124,7 @@ $switch-disabled: var(--wot-switch-disabled, $opacity-disabled) !default;
   @include e(action-text) {}
 
   @include e(inner-text) {
-    font-size: $switch-inner-fs;
+    font-size: $switch-inner-font-size;
   }
 
   @include edeep(inner-icon) {
@@ -127,12 +145,12 @@ $switch-disabled: var(--wot-switch-disabled, $opacity-disabled) !default;
 
     :deep(.wd-switch__inner-icon) {
       color: $switch-color-active-icon;
-      margin-right: $switch-spaceing;
+      margin-right: $switch-spacing;
     }
 
     .wd-switch__inner-text {
       color: $switch-color-inner-active-text;
-      margin-right: $switch-spaceing;
+      margin-right: $switch-spacing;
     }
 
     .wd-switch__action {
@@ -148,12 +166,12 @@ $switch-disabled: var(--wot-switch-disabled, $opacity-disabled) !default;
 
     :deep(.wd-switch__inner-icon) {
       color: $switch-color-inactive-icon;
-      margin-left: $switch-spaceing;
+      margin-left: $switch-spacing;
     }
 
     .wd-switch__inner-text {
       color: $switch-color-inner-inactive-text;
-      margin-left: $switch-spaceing;
+      margin-left: $switch-spacing;
     }
   }
 }

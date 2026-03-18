@@ -1,14 +1,22 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
-// 组件级 CSS 变量定义
-$statustip-icon-color: var(--wot-statustip-icon-color, $icon-disabled) !default; // 图标颜色
-$statustip-tip-font-size: var(--wot-statustip-tip-font-size, $typography-body-size-extra-large) !default; // 字号
-$statustip-tip-line-height: var(--wot-statustip-tip-line-height, $typography-body-line--height-size-extra-large) !default; // 文字行高
-$statustip-tip-font-weight: var(--wot-statustip-tip-font-weight, $typography-body-font-weight-strong) !default; // 文字字重
-$statustip-tip-color: var(--wot-statustip-tip-color, $text-main) !default; // 文字颜色
-$statustip-tip-margin-top: var(--wot-statustip-tip-margin-top, $spacing-extra-tight) !default; // 文字上边距
-$statustip-icon-size: var(--wot-statustip-icon-size, $n98) !default; // 图标尺寸
+// 图标颜色
+$status-tip-icon-color: var(--wot-status-tip-icon-color, $icon-disabled) !default;
+// 文案字号
+$status-tip-text-font-size: var(--wot-status-tip-text-font-size, $typography-body-size-extra-large) !default;
+// 文案行高
+$status-tip-text-line-height: var(--wot-status-tip-text-line-height, $typography-body-line--height-size-extra-large) !default;
+// 文案字重
+$status-tip-text-font-weight: var(--wot-status-tip-text-font-weight, $typography-body-font-weight-strong) !default;
+// 文案颜色
+$status-tip-text-color: var(--wot-status-tip-text-color, $text-main) !default;
+// 文案顶部间距
+$status-tip-text-margin-top: var(--wot-status-tip-text-margin-top, $spacing-extra-tight) !default;
+// 图标尺寸
+$status-tip-icon-size: var(--wot-status-tip-icon-size, $n98) !default;
+// 组件底部内边距
+$status-tip-padding-bottom: var(--wot-status-tip-padding-bottom, $spacing-ultra-loose) !default;
 
 @include b(status-tip) {
   width: 100%;
@@ -17,21 +25,21 @@ $statustip-icon-size: var(--wot-statustip-icon-size, $n98) !default; // 图标�
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 24px;
+  padding-bottom: $status-tip-padding-bottom;
 
   @include edeep(icon) {
     margin: 0 auto;
-    width: $statustip-icon-size;
-    height: $statustip-icon-size;
-    font-size: $statustip-icon-size;
-    color: $statustip-icon-color;
+    width: $status-tip-icon-size;
+    height: $status-tip-icon-size;
+    font-size: $status-tip-icon-size;
+    color: $status-tip-icon-color;
   }
   @include e(text) {
-    margin-top: $statustip-tip-margin-top;
-    font-size: $statustip-tip-font-size;
-    line-height: $statustip-tip-line-height;
-    font-weight: $statustip-tip-font-weight;
-    color: $statustip-tip-color;
+    margin-top: $status-tip-text-margin-top;
+    font-size: $status-tip-text-font-size;
+    line-height: $status-tip-text-line-height;
+    font-weight: $status-tip-text-font-weight;
+    color: $status-tip-text-color;
     text-align: center;
     word-break: break-all;
   }

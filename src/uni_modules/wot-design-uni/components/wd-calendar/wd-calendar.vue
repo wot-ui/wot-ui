@@ -42,7 +42,7 @@
           <view :class="`wd-calendar__range-item ${!calendarValue || !isArray(calendarValue) || !calendarValue[0] ? 'is-placeholder' : ''}`">
             {{ rangeLabel[0] }}
           </view>
-          <view class="wd-calendar__range-sperator"></view>
+          <view class="wd-calendar__range-separator"></view>
           <view :class="`wd-calendar__range-item ${!calendarValue || !isArray(calendarValue) || !calendarValue[1] ? 'is-placeholder' : ''}`">
             {{ rangeLabel[1] }}
           </view>

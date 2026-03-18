@@ -11,23 +11,18 @@ $search-input-height: var(--wot-search-input-height, $n36) !default;
 $search-field-padding: var(--wot-search-field-padding, $padding-zero $padding-loose) !default;
 // 输入框左侧搜索图标向右间距
 $search-left-icon-margin-right: var(--wot-search-left-icon-margin-right, $spacing-super-tight) !default;
-// --------------------- filled variant (default) --------------------- //
 // 输入框背景色 (filled)
 $search-input-bg: var(--wot-search-input-bg, $filled-bottom) !default;
 // 组件容器背景色 (filled)
 $search-bg: var(--wot-search-bg, $filled-oppo) !default;
 // 组件覆盖层背景色 (filled)
 $search-cover-bg: var(--wot-search-cover-bg, $filled-bottom) !default;
-
-// --------------------- light variant --------------------- //
 // light 模式容器背景色
 $search-light-bg: var(--wot-search-light-bg, $filled-bottom) !default;
 // light 模式内容块背景色
 $search-light-block-bg: var(--wot-search-light-block-bg, $filled-oppo) !default;
 // light 模式覆盖层背景色
 $search-light-cover-bg: var(--wot-search-light-cover-bg, $filled-oppo) !default;
-
-// --------------------- plain variant --------------------- //
 // plain 模式容器背景色
 $search-plain-bg: var(--wot-search-plain-bg, $filled-oppo) !default;
 // plain 模式内容块背景色
@@ -38,14 +33,12 @@ $search-plain-block-border-color: var(--wot-search-plain-block-border-color, $bo
 $search-plain-cover-bg: var(--wot-search-plain-cover-bg, $filled-oppo) !default;
 // block 向右间距
 $search-block-margin-right: var(--wot-search-block-margin-right, $spacing-extra-tight) !default;
-
 // 输入框字号
 $search-input-font-size: var(--wot-search-input-font-size, $typography-body-size-main) !default;
 // 输入框文字颜色
 $search-input-color: var(--wot-search-input-color, $text-main) !default;
 // 输入框文字行高
 $search-input-line-height: var(--wot-search-input-line-height, $typography-body-line--height-size-main) !default;
-
 // 搜索图标颜色
 $search-icon-color: var(--wot-search-icon-color, $icon-secondary) !default;
 // 搜索图标大小

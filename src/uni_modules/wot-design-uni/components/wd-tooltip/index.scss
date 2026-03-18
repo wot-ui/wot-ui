@@ -7,6 +7,7 @@ $tooltip-bg: var(--wot-tooltip-bg, $filled-oppo) !default;
 $tooltip-color: var(--wot-tooltip-color, $text-secondary) !default;
 // 阴影效果
 $tooltip-box-shadow: var(--wot-tooltip-box-shadow, 0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
+// 箭头阴影效果
 $tooltip-arrow-box-shadow: var(--wot-tooltip-arrow-box-shadow, 0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
 // 圆角大小
 $tooltip-radius: var(--wot-tooltip-radius, $radius-main) !default;

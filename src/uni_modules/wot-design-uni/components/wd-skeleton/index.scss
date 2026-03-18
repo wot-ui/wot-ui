@@ -1,17 +1,27 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
-// 组件级 CSS 变量定义
+// 行间距
 $skeleton-row-margin-bottom: var(--wot-skeleton-row-margin-bottom, $spacing-loose) !default;
+// 占位块背景色
 $skeleton-col-bg: var(--wot-skeleton-col-bg, $filled-strong) !default;
+// 文本占位高度
 $skeleton-text-height: var(--wot-skeleton-text-height, $n16) !default;
+// 矩形占位高度
 $skeleton-rect-height: var(--wot-skeleton-rect-height, $n16) !default;
+// 圆形占位尺寸
 $skeleton-circle-height: var(--wot-skeleton-circle-height, $n48) !default;
-$skeleton-border-radius-text: var(--wot-skeleton-border-radius-text, $radius-small) !default;
-$skeleton-border-radius-rect: var(--wot-skeleton-border-radius-rect, $radius-main) !default;
-$skeleton-border-radius-circle: var(--wot-skeleton-border-radius-circle, $radius-radius-full) !default;
+// 文本占位圆角
+$skeleton-text-border-radius: var(--wot-skeleton-text-border-radius, $radius-small) !default;
+// 矩形占位圆角
+$skeleton-rect-border-radius: var(--wot-skeleton-rect-border-radius, $radius-main) !default;
+// 圆形占位圆角
+$skeleton-circle-border-radius: var(--wot-skeleton-circle-border-radius, $radius-radius-full) !default;
+// 渐变动画高亮色
 $skeleton-animation-gradient: var(--wot-skeleton-animation-gradient, $filled-bottom) !default;
+// 闪烁动画高亮色
 $skeleton-animation-flashed: var(--wot-skeleton-animation-flashed, $filled-bottom) !default;
+// 闪烁动画透明度
 $skeleton-animation-flashed-opacity: var(--wot-skeleton-animation-flashed-opacity, $opacity-backdrop) !default;
 
 @include b(skeleton) {
@@ -29,7 +39,7 @@ $skeleton-animation-flashed-opacity: var(--wot-skeleton-animation-flashed-opacit
     }
   }
   @include e(col) {
-    border-radius: $skeleton-border-radius-text;
+    border-radius: $skeleton-text-border-radius;
     background-color: $skeleton-col-bg;
     display: flex;
     align-items: center;
@@ -44,20 +54,20 @@ $skeleton-animation-flashed-opacity: var(--wot-skeleton-animation-flashed-opacit
     &-text {
       width: 100%;
       height: $skeleton-text-height;
-      border-radius: $skeleton-border-radius-text;
+      border-radius: $skeleton-text-border-radius;
     }
 
     &-rect {
       width: 100%;
       height: $skeleton-rect-height;
-      border-radius: $skeleton-border-radius-rect;
+      border-radius: $skeleton-rect-border-radius;
     }
 
     &-circle {
       flex-shrink: 0;
       width: $skeleton-circle-height;
       height: $skeleton-circle-height;
-      border-radius: $skeleton-border-radius-circle;
+      border-radius: $skeleton-circle-border-radius;
     }
   }
   @include m(animation) {

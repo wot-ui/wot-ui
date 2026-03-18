@@ -1,7 +1,8 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-$overlay-bg: var(--wot-overlay-bg, $opac-7_55);
+// 遮罩层背景色
+$overlay-bg: var(--wot-overlay-bg, $opac-7_55) !default;
 
 @include b(overlay) {
   position: fixed;

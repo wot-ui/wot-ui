@@ -1,14 +1,25 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 折叠项头部内边距
 $collapse-item-header-padding: var(--wot-collapse-item-header-padding, $padding-extra-loose) !default;
+// 折叠项标题文字颜色
 $collapse-item-title-color: var(--wot-collapse-item-title-color, $text-main) !default;
-$collapse-item-title-fs: var(--wot-collapse-item-title-fs, $typography-body-size-extra-large) !default;
+// 折叠项标题文字字号
+$collapse-item-title-font-size: var(--wot-collapse-item-title-font-size, $typography-body-size-extra-large) !default;
+// 折叠项标题文字行高
 $collapse-item-title-line-height: var(--wot-collapse-item-title-line-height, $typography-body-line--height-size-extra-large) !default;
+// 折叠项箭头尺寸
 $collapse-item-arrow-size: var(--wot-collapse-item-arrow-size, $n16) !default;
+// 折叠项箭头颜色
 $collapse-item-arrow-color: var(--wot-collapse-item-arrow-color, $icon-secondary) !default;
+// 折叠项内容文字颜色
 $collapse-item-body-color: var(--wot-collapse-item-body-color, $text-auxiliary) !default;
-$collapse-item-body-fs: var(--wot-collapse-item-body-fs, $typography-label-size-large) !default;
+// 折叠项内容文字字号
+$collapse-item-body-font-size: var(--wot-collapse-item-body-font-size, $typography-label-size-large) !default;
+// 折叠项内容文字行高
+$collapse-item-body-line-height: var(--wot-collapse-item-body-line-height, $typography-label-line--height-size-large) !default;
+// 折叠项内容区域内边距
 $collapse-item-body-padding: var(--wot-collapse-item-body-padding, $padding-loose $padding-extra-loose) !default;
 
 @include b(collapse-item) {
@@ -42,7 +53,7 @@ $collapse-item-body-padding: var(--wot-collapse-item-body-padding, $padding-loos
   @include e(title) {
     color: $collapse-item-title-color;
     font-weight: $font-weight-medium;
-    font-size: $collapse-item-title-fs;
+    font-size: $collapse-item-title-font-size;
     line-height: $collapse-item-title-line-height;
   }
 
@@ -65,7 +76,8 @@ $collapse-item-body-padding: var(--wot-collapse-item-body-padding, $padding-loos
 
   @include e(body) {
     color: $collapse-item-body-color;
-    font-size: $collapse-item-body-fs;
+    font-size: $collapse-item-body-font-size;
+    line-height: $collapse-item-body-line-height;
     padding: $collapse-item-body-padding;
   }
 

@@ -31,7 +31,6 @@ declare module 'vue' {
     WdInputNumber: typeof import('./components/wd-input-number/wd-input-number.vue')['default']
     WdLoading: typeof import('./components/wd-loading/wd-loading.vue')['default']
     WdLoadmore: typeof import('./components/wd-loadmore/wd-loadmore.vue')['default']
-    WdMessageBox: typeof import('./components/wd-message-box/wd-message-box.vue')['default']
     WdDialog: typeof import('./components/wd-dialog/wd-dialog.vue')['default']
     WdOverlay: typeof import('./components/wd-overlay/wd-overlay.vue')['default']
     WdNoticeBar: typeof import('./components/wd-notice-bar/wd-notice-bar.vue')['default']

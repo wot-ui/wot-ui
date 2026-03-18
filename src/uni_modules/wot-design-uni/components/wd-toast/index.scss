@@ -14,7 +14,7 @@ $toast-border-radius: var(--wot-toast-border-radius, $radius-large) !default;
 // 背景色
 $toast-bg: var(--wot-toast-bg, $opacfilled-tooltip-toast-cover) !default;
 // 字号
-$toast-fs: var(--wot-toast-fs, $typography-body-size-extra-large) !default;
+$toast-font-size: var(--wot-toast-font-size, $typography-body-size-extra-large) !default;
 // 行高
 $toast-line-height: var(--wot-toast-line-height, $typography-body-line--height-size-extra-large) !default;
 // 图标大小
@@ -38,7 +38,7 @@ $toast-loading-margin-bottom: var(--wot-toast-loading-margin-bottom, $spacing-ex
   border-radius: $toast-border-radius;
   color: $toast-color;
   transition: all 0.2s;
-  font-size: $toast-fs;
+  font-size: $toast-font-size;
   box-sizing: border-box;
 
   @include when(vertical) {
@@ -46,7 +46,7 @@ $toast-loading-margin-bottom: var(--wot-toast-loading-margin-bottom, $spacing-ex
   }
 
   @include e(msg) {
-    font-size: $toast-fs;
+    font-size: $toast-font-size;
     word-break: break-all;
     line-height: $toast-line-height;
     text-align: left;

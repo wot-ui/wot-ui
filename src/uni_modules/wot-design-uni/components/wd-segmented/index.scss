@@ -1,31 +1,52 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 组件背景色
 $segmented-bg: var(--wot-segmented-bg, $filled-content) !default;
-$segmented-border-width: var(--wot-segmented-border-width, $n1) !default;
+// 组件边框宽度
+$segmented-border-width: var(--wot-segmented-border-width, $stroke-main) !default;
+// 组件内边距
 $segmented-padding: var(--wot-segmented-padding, $padding-super-tight) !default;
+// 组件圆角
 $segmented-radius: var(--wot-segmented-radius, $radius-main) !default;
+// 选项文字颜色
 $segmented-item-color: var(--wot-segmented-item-color, $text-secondary) !default;
+// 选项文字字号
 $segmented-item-font-size: var(--wot-segmented-item-font-size, $typography-body-size-extra-large) !default;
+// 选项文字行高
 $segmented-item-line-height: var(--wot-segmented-item-line-height, $typography-body-line--height-size-extra-large) !default;
+// 选项内边距
 $segmented-item-padding: var(--wot-segmented-item-padding, $padding-ultra-tight $padding-loose) !default;
+// 选项文字字重
 $segmented-item-font-weight: var(--wot-segmented-item-font-weight, $font-weight-regular) !default;
-$segmented-item-active-font-weight: var(--wot-segmented-item-active-font-weight, $font-weight-medium) !default;
-$segmented-item-active-bg: var(--wot-segmented-item-active-bg, $filled-oppo) !default;
-$segmented-item-active-color: var(--wot-segmented-item-active-color, $primary-6) !default;
+// 选项激活字重
+$segmented-item-font-weight-active: var(--wot-segmented-item-font-weight-active, $font-weight-medium) !default;
+// 选项激活背景色
+$segmented-item-bg-active: var(--wot-segmented-item-bg-active, $filled-oppo) !default;
+// 选项激活文字颜色
+$segmented-item-color-active: var(--wot-segmented-item-color-active, $primary-6) !default;
+// 选项禁用透明度
 $segmented-item-disabled-opacity: var(--wot-segmented-item-disabled-opacity, $opacity-disabled) !default;
-
-// Outline theme variables
+// 轮廓模式边框颜色
 $segmented-outline-border-color: var(--wot-segmented-outline-border-color, $border-main) !default;
+// 轮廓模式圆角
 $segmented-outline-radius: var(--wot-segmented-outline-radius, $radius-zero) !default;
+// 轮廓模式背景色
 $segmented-outline-bg: var(--wot-segmented-outline-bg, $filled-zero) !default;
+// 轮廓模式内边距
 $segmented-outline-padding: var(--wot-segmented-outline-padding, $padding-zero) !default;
+// 轮廓模式选项内边距
 $segmented-outline-item-padding: var(--wot-segmented-outline-item-padding, $padding-extra-tight $padding-extra-loose) !default;
+// 轮廓模式选项文字颜色
 $segmented-outline-item-color: var(--wot-segmented-outline-item-color, $text-secondary) !default;
-$segmented-outline-item-active-bg: var(--wot-segmented-outline-item-active-bg, $primary-6) !default;
-$segmented-outline-item-active-color: var(--wot-segmented-outline-item-active-color, $text-white) !default;
+// 轮廓模式选项激活背景色
+$segmented-outline-item-bg-active: var(--wot-segmented-outline-item-bg-active, $primary-6) !default;
+// 轮廓模式选项激活文字颜色
+$segmented-outline-item-color-active: var(--wot-segmented-outline-item-color-active, $text-white) !default;
+// 轮廓模式选项禁用文字颜色
 $segmented-outline-item-disabled-color: var(--wot-segmented-outline-item-disabled-color, $text-disabled) !default;
-$segmented-outline-item-active-disabled-bg: var(--wot-segmented-outline-item-active-disabled-bg, $filled-content) !default;
+// 轮廓模式选项激活禁用背景色
+$segmented-outline-item-bg-active-disabled: var(--wot-segmented-outline-item-bg-active-disabled, $filled-content) !default;
 
 @include b(segmented) {
   position: relative;
@@ -56,8 +77,8 @@ $segmented-outline-item-active-disabled-bg: var(--wot-segmented-outline-item-act
     border-radius: $segmented-radius;
 
     @include when(active) {
-      font-weight: $segmented-item-active-font-weight;
-      color: $segmented-item-active-color;
+      font-weight: $segmented-item-font-weight-active;
+      color: $segmented-item-color-active;
     }
 
     @include when(disabled) {
@@ -71,7 +92,7 @@ $segmented-outline-item-active-disabled-bg: var(--wot-segmented-outline-item-act
     top: $segmented-padding;
     left: $segmented-padding;
     height: calc(100% - #{$segmented-padding} * 2);
-    background: $segmented-item-active-bg;
+    background: $segmented-item-bg-active;
     border-radius: $segmented-radius;
   }
 
@@ -87,12 +108,12 @@ $segmented-outline-item-active-disabled-bg: var(--wot-segmented-outline-item-act
       opacity: 1;
 
       @include when(active) {
-        color: $segmented-outline-item-active-color;
-        background: $segmented-outline-item-active-bg;
+        color: $segmented-outline-item-color-active;
+        background: $segmented-outline-item-bg-active;
         border: none;
 
         &.is-disabled {
-          background: $segmented-outline-item-active-disabled-bg;
+          background: $segmented-outline-item-bg-active-disabled;
         }
       }
 

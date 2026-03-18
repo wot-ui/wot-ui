@@ -1,11 +1,16 @@
 @use '../styles/variable.scss'as *;
 @use '../styles/mixin/mixin'as *;
 
-$swiper-border-radius: var(--wot-swiper-border-radius, $radius-zero);
-$swiper-item-padding: var(--wot-swiper-item-padding, $padding-zero);
-$swiper-item-text-color: var(--wot-swiper-item-text-color, $text-white);
-$swiper-item-text-font-size: var(--wot-swiper-item-text-font-size, $typography-body-size-extra-large);
-$swiper-item-text-spacing: var(--wot-swiper-item-text-spacing, $spacing-loose);
+// 轮播容器圆角
+$swiper-border-radius: var(--wot-swiper-border-radius, $radius-zero) !default;
+// 轮播项内边距
+$swiper-item-padding: var(--wot-swiper-item-padding, $padding-zero) !default;
+// 轮播文案颜色
+$swiper-item-text-color: var(--wot-swiper-item-text-color, $text-white) !default;
+// 轮播文案字号
+$swiper-item-text-font-size: var(--wot-swiper-item-text-font-size, $typography-body-size-extra-large) !default;
+// 轮播文案定位间距
+$swiper-item-text-spacing: var(--wot-swiper-item-text-spacing, $spacing-loose) !default;
 
 @include b(swiper) {
   position: relative;

@@ -5,7 +5,7 @@
 $floating-panel-bg: var(--wot-floating-panel-bg, $filled-oppo) !default;
 // 面板圆角
 $floating-panel-radius: var(--wot-floating-panel-radius, $radius-large) !default;
-// 面板层级
+// 面板 z-index
 $floating-panel-z-index: var(--wot-floating-panel-z-index, 99) !default;
 // 头部高度
 $floating-panel-header-height: var(--wot-floating-panel-header-height, $n32) !default;

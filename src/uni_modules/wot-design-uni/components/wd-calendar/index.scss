@@ -1,31 +1,25 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-$calendar-bg: var(--wot-calendar-bg, $filled-oppo) !default;
-// Tabs 区域
+$calendar-bg: var(--wot-calendar-bg, $filled-oppo) !default; // 日历弹层背景色
 $calendar-tabs-width: var(--wot-calendar-tabs-width, 100%) !default; // Tabs 宽度
-$calendar-tabs-padding: var(--wot-calendar-tabs-margin, $padding-zero $padding-extra-loose) !default; // Tabs 外边距
-// 快捷选项
+$calendar-tabs-padding: var(--wot-calendar-tabs-padding, $padding-zero $padding-extra-loose) !default; // Tabs 内边距
 $calendar-shortcuts-padding: var(--wot-calendar-shortcuts-padding, $padding-extra-tight $padding-zero) !default; // 快捷选项内边距
 $calendar-tag-spacing-right: var(--wot-calendar-tag-spacing-right, $spacing-extra-loose) !default; // 标签右间距
-// 日期范围标签
-$calendar-range-padding: var(--wot-calendar-range-padding, 0 $padding-loose $padding-extra-loose) !default; // 范围标签内边距 
+$calendar-range-padding: var(--wot-calendar-range-padding, $padding-zero $padding-loose $padding-extra-loose) !default; // 范围标签内边距 
 $calendar-range-font-size: var(--wot-calendar-range-font-size, $typography-body-size-main) !default; // 范围标签字号
-// 范围标签项
 $calendar-range-item-font-size: var(--wot-calendar-range-item-font-size, $typography-body-size-extra-large) !default; // 范围标签项字号
 $calendar-range-item-font-weight: var(--wot-calendar-range-item-font-weight, $font-weight-medium) !default; // 范围标签项字重
 $calendar-range-item-line-height: var(--wot-calendar-range-item-line-height, $typography-body-line--height-size-extra-large) !default; // 范围标签项行高
 $calendar-range-item-padding: var(--wot-calendar-range-item-padding, $spacing-loose $spacing-zero) !default; // 范围标签项内边距
 $calendar-range-item-color: var(--wot-calendar-range-item-color, $primary-6) !default; // 范围标签项颜色
-$calendar-range-item-placeholder-color: var(--wot-calendar-range-item-placeholder-color, $text-placeholder) !default; // 占位符颜色
+$calendar-range-item-color-placeholder: var(--wot-calendar-range-item-color-placeholder, $text-placeholder) !default; // 占位符颜色
 $calendar-range-item-line-color: var(--wot-calendar-range-item-line-color, $primary-6) !default; // 范围标签项下划线颜色
-$calendar-range-item-line-placeholder-color: var(--wot-calendar-range-item-line-placeholder-color, $border-main) !default; // 范围标签项下划线占位符颜色
-// 分隔符
-$calendar-range-sperator-margin: var(--wot-calendar-range-sperator-margin, $spacing-zero $spacing-tight) !default; // 分隔符水平间距
-$calendar-range-sperator-color: var(--wot-calendar-range-sperator-color, $text-auxiliary) !default; // 分隔符颜色
-$calendar-range-sperator-width: var(--wot-calendar-range-sperator-width, $n8) !default; // 分隔符宽度
-$calendar-range-sperator-height: var(--wot-calendar-range-sperator-height, $n1) !default; // 分隔符高度
-// 确认按钮区域
+$calendar-range-item-line-color-placeholder: var(--wot-calendar-range-item-line-color-placeholder, $border-main) !default; // 范围标签项下划线占位符颜色
+$calendar-range-separator-margin: var(--wot-calendar-range-separator-margin, $spacing-zero $spacing-tight) !default; // 分隔符水平间距
+$calendar-range-separator-color: var(--wot-calendar-range-separator-color, $text-auxiliary) !default; // 分隔符颜色
+$calendar-range-separator-width: var(--wot-calendar-range-separator-width, $n8) !default; // 分隔符宽度
+$calendar-range-separator-height: var(--wot-calendar-range-separator-height, $n1) !default; // 分隔符高度
 $calendar-confirm-padding: var(--wot-calendar-confirm-padding, $padding-tight $padding-loose) !default; // 确认区域内边距
 $calendar-confirm-border-color: var(--wot-calendar-confirm-border-color, $border-light) !default; // 确认区域上边框颜色
 
@@ -76,18 +70,18 @@ $calendar-confirm-border-color: var(--wot-calendar-confirm-border-color, $border
     @include pixelBorder(bottom, 0, $calendar-range-item-line-color);
 
     @include when(placeholder) {
-      color: $calendar-range-item-placeholder-color;
-      @include pixelBorder(bottom, 0, $calendar-range-item-line-placeholder-color);
+      color: $calendar-range-item-color-placeholder;
+      @include pixelBorder(bottom, 0, $calendar-range-item-line-color-placeholder);
 
     }
   }
 
-  @include e(range-sperator) {
-    width: $calendar-range-sperator-width;
-    height: $calendar-range-sperator-height;
+  @include e(range-separator) {
+    width: $calendar-range-separator-width;
+    height: $calendar-range-separator-height;
     position: relative;
-    margin: $calendar-range-sperator-margin;
-    background: $calendar-range-sperator-color;
+    margin: $calendar-range-separator-margin;
+    background: $calendar-range-separator-color;
   }
 
   @include e(confirm) {

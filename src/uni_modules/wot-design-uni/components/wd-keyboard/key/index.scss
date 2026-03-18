@@ -1,22 +1,39 @@
 @use '../../styles/mixin/mixin.scss' as *;
 @use '../../styles/variable.scss' as *;
 
+// 按键高度
 $keyboard-key-height: var(--wot-keyboard-key-height, $n48) !default;
+// 按键间距
 $keyboard-key-padding: var(--wot-keyboard-key-padding, $padding-tight) !default;
+// 按键字号
 $keyboard-key-font-size: var(--wot-keyboard-key-font-size, $typography-title-size-extra-large) !default;
+// 按键行高
 $keyboard-key-line-height: var(--wot-keyboard-key-line-height, $typography-title-line--height-size-extra-large) !default;
+// 车牌按键字号
 $keyboard-key-car-font-size: var(--wot-keyboard-key-car-font-size, $typography-title-size-main) !default;
+// 车牌按键行高
 $keyboard-key-car-line-height: var(--wot-keyboard-key-car-line-height, $typography-title-line--height-size-main) !default;
+// 按键字重
 $keyboard-key-font-weight: var(--wot-keyboard-key-font-weight, $font-weight-medium) !default;
+// 按键背景色
 $keyboard-key-bg: var(--wot-keyboard-key-bg, $filled-oppo) !default;
+// 按键圆角
 $keyboard-key-radius: var(--wot-keyboard-key-radius, $radius-main) !default;
-$keyboard-key-active-bg: var(--wot-keyboard-key-active-bg, $filled-strong) !default;
+// 按键激活背景色
+$keyboard-key-bg-active: var(--wot-keyboard-key-bg-active, $filled-strong) !default;
+// 删除键字号
 $keyboard-key-delete-font-size: var(--wot-keyboard-key-delete-font-size, $typography-title-size-main) !default;
+// 删除键行高
 $keyboard-key-delete-line-height: var(--wot-keyboard-key-delete-line-height, $typography-title-line--height-size-main) !default;
+// 删除键字重
 $keyboard-key-delete-font-weight: var(--wot-keyboard-key-delete-font-weight, $font-weight-medium) !default;
+// 主按钮文字颜色
 $keyboard-key-primary-color: var(--wot-keyboard-key-primary-color, $base-white) !default;
+// 主按钮背景色
 $keyboard-key-primary-bg: var(--wot-keyboard-key-primary-bg, $primary-6) !default;
-$keyboard-key-primary-active-bg: var(--wot-keyboard-key-primary-active-bg, $primary-7) !default;
+// 主按钮激活背景色
+$keyboard-key-primary-bg-active: var(--wot-keyboard-key-primary-bg-active, $primary-7) !default;
+// 按键图标尺寸
 $keyboard-key-icon-size: var(--wot-keyboard-key-icon-size, $n22) !default;
 
 .wd-key-wrapper {
@@ -43,7 +60,7 @@ $keyboard-key-icon-size: var(--wot-keyboard-key-icon-size, $n22) !default;
   border-radius: $keyboard-key-radius;
 
   @include m(active) {
-    background: $keyboard-key-active-bg;
+    background: $keyboard-key-bg-active;
   }
 
   @include when(car) {
@@ -72,7 +89,7 @@ $keyboard-key-icon-size: var(--wot-keyboard-key-icon-size, $n22) !default;
     background: $keyboard-key-primary-bg;
 
     &.wd-key--active {
-      background: $keyboard-key-primary-active-bg;
+      background: $keyboard-key-primary-bg-active;
     }
   }
 
@@ -84,4 +101,3 @@ $keyboard-key-icon-size: var(--wot-keyboard-key-icon-size, $n22) !default;
     font-size: $keyboard-key-icon-size;
   }
 }
-

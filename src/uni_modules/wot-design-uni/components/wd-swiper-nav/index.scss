@@ -1,27 +1,46 @@
 @use '../styles/variable.scss'as *;
 @use '../styles/mixin/mixin'as *;
 
+// 导航定位间距
 $swiper-nav-spacing: var(--wot-swiper-nav-spacing, $spacing-tight) !default;
 // dot & dots-bar
+// dot 颜色
 $swiper-nav-dot-color: var(--wot-swiper-nav-dot-color, $filled-extra-strong) !default;
-$swiper-nav-dot-active-color: var(--wot-swiper-nav-dot-active-color, $icon-white) !default;
+// dot 激活颜色
+$swiper-nav-dot-color-active: var(--wot-swiper-nav-dot-color-active, $icon-white) !default;
+// dot 尺寸
 $swiper-nav-dot-size: var(--wot-swiper-nav-dot-size, $n6) !default;
+// dot 间距
 $swiper-nav-dot-margin: var(--wot-swiper-nav-dot-margin, $spacing-super-tight) !default;
-$swiper-nav-dots-bar-active-width: var(--wot-swiper-nav-dots-bar-active-width, $n15) !default;
+// dots-bar 激活宽度
+$swiper-nav-dots-bar-width-active: var(--wot-swiper-nav-dots-bar-width-active, $n15) !default;
+// dot 圆角
 $swiper-nav-dot-border-radius: var(--wot-swiper-nav-dot-border-radius, $radius-radius-full) !default;
 // fraction
+// 分数模式文字颜色
 $swiper-nav-fraction-color: var(--wot-swiper-nav-fraction-color, $icon-white) !default;
+// 分数模式背景色
 $swiper-nav-fraction-bg: var(--wot-swiper-nav-fraction-bg, $opacfilled-main-cover) !default;
+// 分数模式行高
 $swiper-nav-fraction-line-height: var(--wot-swiper-nav-fraction-line-height, $typography-label-line--height-size-large) !default;
+// 分数模式字号
 $swiper-nav-fraction-font-size: var(--wot-swiper-nav-fraction-font-size, $typography-label-size-large) !default;
+// 分数模式内边距
 $swiper-nav-fraction-padding: var(--wot-swiper-nav-fraction-padding, $padding-ultra-tight $padding-extra-tight) !default;
+// 分数模式圆角
 $swiper-nav-fraction-border-radius: var(--wot-swiper-nav-fraction-border-radius, $radius-main) !default;
 // button
+// 按钮图标颜色
 $swiper-nav-btn-color: var(--wot-swiper-nav-btn-color, $icon-white) !default;
+// 按钮背景色
 $swiper-nav-btn-bg: var(--wot-swiper-nav-btn-bg, $opacfilled-main-cover) !default;
+// 按钮尺寸
 $swiper-nav-btn-size: var(--wot-swiper-nav-btn-size, $n24) !default;
+// 按钮图标尺寸
 $swiper-nav-btn-icon-size: var(--wot-swiper-nav-btn-icon-size, $n16) !default;
+// 按钮水平间距
 $swiper-nav-btn-spacing: var(--wot-swiper-nav-btn-spacing, $spacing-loose) !default;
+// 按钮圆角
 $swiper-nav-btn-border-radius: var(--wot-swiper-nav-btn-border-radius, $radius-radius-full) !default;
 
 @include b(swiper-nav) {
@@ -81,7 +100,7 @@ $swiper-nav-btn-border-radius: var(--wot-swiper-nav-btn-border-radius, $radius-r
       }
 
       @include when(active) {
-        background: $swiper-nav-dot-active-color;
+        background: $swiper-nav-dot-color-active;
       }
     }
 
@@ -90,14 +109,14 @@ $swiper-nav-btn-border-radius: var(--wot-swiper-nav-btn-border-radius, $radius-r
       @include when(vertical) {
         @include when(active) {
           width: $swiper-nav-dot-size;
-          height: $swiper-nav-dots-bar-active-width;
+          height: $swiper-nav-dots-bar-width-active;
         }
       }
 
       @include when(active) {
-        width: $swiper-nav-dots-bar-active-width;
+        width: $swiper-nav-dots-bar-width-active;
         border-radius: $swiper-nav-dot-border-radius;
-        background: $swiper-nav-dot-active-color;
+        background: $swiper-nav-dot-color-active;
       }
     }
   }

@@ -1,19 +1,33 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 选择器视图背景色
 $picker-view-bg: var(--wot-picker-view-bg, $filled-oppo) !default;
+// 选择器视图内边距
 $picker-view-padding: var(--wot-picker-view-padding, $padding-zero $padding-loose) !default;
+// 遮罩渐变起始色
 $picker-view-mask-start-color: var(--wot-picker-view-mask-start-color, $opacwhite-10_85) !default;
+// 遮罩渐变结束色
 $picker-view-mask-end-color: var(--wot-picker-view-mask-end-color, $opacwhite-5_20) !default;
+// 遮罩背景渐变
 $picker-view-mask-bg: var(--wot-picker-view-mask-bg, linear-gradient(180deg, $picker-view-mask-start-color, $picker-view-mask-end-color), linear-gradient(0deg, $picker-view-mask-start-color, $picker-view-mask-end-color)) !default;
+// 禁用态透明度
 $picker-view-disabled-opacity: var(--wot-picker-view-disabled-opacity, $opacity-disabled) !default;
+// 列项高度
 $picker-view-column-item-height: var(--wot-picker-view-column-item-height, $n44) !default;
+// 列项字号
 $picker-view-column-item-font-size: var(--wot-picker-view-column-item-font-size, $typography-body-size-extra-large) !default;
+// 列项文字颜色
 $picker-view-column-item-color: var(--wot-picker-view-column-item-color, $text-main) !default;
+// 列项内边距
 $picker-view-column-item-padding: var(--wot-picker-view-column-item-padding, 0 $padding-tight) !default;
+// 列项禁用文字颜色
 $picker-view-column-item-disabled-color: var(--wot-picker-view-column-item-disabled-color, $text-disabled) !default;
-$picker-view-column-item-active-font-weight: var(--wot-picker-view-column-item-active-font-weight, $font-weight-medium) !default;
+// 列项激活字重
+$picker-view-column-item-font-weight-active: var(--wot-picker-view-column-item-font-weight-active, $font-weight-medium) !default;
+// 滚轮背景色
 $picker-view-roller-bg: var(--wot-picker-view-roller-bg, $filled-bottom) !default;
+// 滚轮圆角
 $picker-view-roller-border-radius: var(--wot-picker-view-roller-border-radius, $radius-main) !default;
 
 @include b(picker-view) {
@@ -73,7 +87,7 @@ $picker-view-roller-border-radius: var(--wot-picker-view-roller-border-radius, $
     }
 
     @include m(active) {
-      font-weight: $picker-view-column-item-active-font-weight;
+      font-weight: $picker-view-column-item-font-weight-active;
     }
   }
 }

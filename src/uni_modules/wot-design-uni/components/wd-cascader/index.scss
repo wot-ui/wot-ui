@@ -1,20 +1,35 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
+// 级联选择器弹层背景色
 $cascader-bg: var(--wot-cascader-bg, $filled-oppo) !default;
-$cascader-list-height: var(--wot-cascader-list-height, 336px) !default;
+// 选项列表高度
+$cascader-list-height: var(--wot-cascader-list-height, calc(336 * #{$n1})) !default;
+// 选项文字颜色
 $cascader-list-item-color: var(--wot-cascader-list-item-color, $text-main) !default;
-$cascader-list-item-disabled-opacity: var(--wot-cascader-list-item-disabled-opacity, $opacity-disabled) !default;
+// 选项禁用态透明度
+$cascader-list-item-opacity-disabled: var(--wot-cascader-list-item-opacity-disabled, $opacity-disabled) !default;
+// 选项文字字号
 $cascader-list-item-font-size: var(--wot-cascader-list-item-font-size, $typography-body-size-extra-large) !default;
+// 选项文字行高
 $cascader-list-item-line-height: var(--wot-cascader-list-item-line-height, $typography-body-line--height-size-extra-large) !default;
+// 选项内边距
 $cascader-list-item-padding: var(--wot-cascader-list-item-padding, $padding-extra-loose $padding-loose) !default;
-$cascader-list-item-checked-color: var(--wot-cascader-list-item-checked-color, $primary-6) !default;
-$cascader-list-item-checked-font-weight: var(--wot-cascader-list-item-checked-font-weight, $font-weight-medium) !default;
+// 选项选中态文字颜色
+$cascader-list-item-color-checked: var(--wot-cascader-list-item-color-checked, $primary-6) !default;
+// 选项选中态文字字重
+$cascader-list-item-font-weight-checked: var(--wot-cascader-list-item-font-weight-checked, $font-weight-medium) !default;
+// 选项提示文字颜色
 $cascader-list-tip-color: var(--wot-cascader-list-tip-color, $text-secondary) !default;
+// 选项提示文字字号
 $cascader-list-tip-font-size: var(--wot-cascader-list-tip-font-size, $typography-label-size-main) !default;
+// 选项提示文字行高
 $cascader-list-tip-line-height: var(--wot-cascader-list-tip-line-height, $typography-label-line--height-size-main) !default;
+// 选项提示顶部外边距
 $cascader-list-tip-margin-top: var(--wot-cascader-list-tip-margin-top, $spacing-ultra-tight) !default;
+// 选中图标尺寸
 $cascader-list-checked-icon-size: var(--wot-cascader-list-checked-icon-size, $n20) !default;
+// 选中图标与文字间距
 $cascader-list-checked-icon-spacing: var(--wot-cascader-list-checked-icon-spacing, $spacing-tight) !default;
 
 @include b(cascader) {
@@ -54,14 +69,14 @@ $cascader-list-checked-icon-spacing: var(--wot-cascader-list-checked-icon-spacin
     padding: $cascader-list-item-padding;
 
     @include m(selected) {
-      color: $cascader-list-item-checked-color;
+      color: $cascader-list-item-color-checked;
         @include me(list-item-label) {
-        font-weight: $cascader-list-item-checked-font-weight;
+        font-weight: $cascader-list-item-font-weight-checked;
       }
     }
 
     @include m(disabled) {
-      opacity: $cascader-list-item-disabled-opacity;
+      opacity: $cascader-list-item-opacity-disabled;
     }
   }
 
@@ -88,6 +103,6 @@ $cascader-list-checked-icon-spacing: var(--wot-cascader-list-checked-icon-spacin
   @include edeep(checked) {
     margin-left: $cascader-list-checked-icon-spacing;
     font-size: $cascader-list-checked-icon-size;
-    color: $cascader-list-item-checked-color;
+    color: $cascader-list-item-color-checked;
   }
 }

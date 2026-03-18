@@ -2,7 +2,6 @@
 @use '../index.scss'as *;
 
 @include b(month-panel) {
-  font-size: $calendar-view-font-size;
 
   @include e(controls) {
     display: flex;
@@ -28,7 +27,7 @@
       margin-right: $calendar-view-control-icon-spacing;
     }
     @include when(disabled){
-      color: $calendar-view-control-disabled-color;
+      color: $calendar-view-control-color-disabled;
       cursor: not-allowed;
     }
   }

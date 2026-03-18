@@ -1,17 +1,27 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
+// 日期时间选择器弹窗圆角
 $datetime-picker-popup-radius: var(--wot-datetime-picker-popup-radius, $radius-large $radius-large $radius-zero $radius-zero) !default;
+// 标题文字颜色
 $datetime-picker-title-color: var(--wot-datetime-picker-title-color, $text-main) !default;
+// 标题区域高度
 $datetime-picker-title-height: var(--wot-datetime-picker-title-height, $n56) !default;
+// 标题文字字号
 $datetime-picker-title-font-size: var(--wot-datetime-picker-title-font-size, $typography-title-size-main) !default;
+// 标题文字行高
 $datetime-picker-title-line-height: var(--wot-datetime-picker-title-line-height, $typography-title-line--height-size-main) !default;
+// 标题文字字重
 $datetime-picker-title-font-weight: var(--wot-datetime-picker-title-font-weight, $font-weight-medium) !default;
+// 标题区域内边距
 $datetime-picker-title-padding: var(--wot-datetime-picker-title-padding, $padding-zero $padding-loose) !default;
+// 操作按钮字号
 $datetime-picker-action-font-size: var(--wot-datetime-picker-action-font-size, $typography-body-size-large) !default;
+// 操作按钮行高
 $datetime-picker-action-line-height: var(--wot-datetime-picker-action-line-height, $typography-body-line--height-size-large) !default;
+// 操作按钮文字颜色
 $datetime-picker-action-color: var(--wot-datetime-picker-action-color, $primary-6) !default;
-// 范围标签内边距 
+// 范围标签内边距
 $datetime-picker-range-padding: var(--wot-datetime-picker-range-padding, 0 $padding-loose $padding-extra-loose) !default;
 // 范围标签字号
 $datetime-picker-range-font-size: var(--wot-datetime-picker-range-font-size, $typography-body-size-main) !default;
@@ -32,13 +42,13 @@ $datetime-picker-range-item-line-color: var(--wot-datetime-picker-range-item-lin
 // 范围标签项下划线占位符颜色
 $datetime-picker-range-item-line-placeholder-color: var(--wot-datetime-picker-range-item-line-placeholder-color, $border-main) !default;
 // 分隔符水平间距
-$datetime-picker-range-sperator-margin: var(--wot-datetime-picker-range-sperator-margin, $spacing-zero $spacing-tight) !default;
+$datetime-picker-range-separator-margin: var(--wot-datetime-picker-range-separator-margin, $spacing-zero $spacing-tight) !default;
 // 分隔符颜色
-$datetime-picker-range-sperator-color: var(--wot-datetime-picker-range-sperator-color, $text-auxiliary) !default;
+$datetime-picker-range-separator-color: var(--wot-datetime-picker-range-separator-color, $text-auxiliary) !default;
 // 分隔符宽度
-$datetime-picker-range-sperator-width: var(--wot-datetime-picker-range-sperator-width, $n8) !default;
+$datetime-picker-range-separator-width: var(--wot-datetime-picker-range-separator-width, $n8) !default;
 // 分隔符高度
-$datetime-picker-range-sperator-height: var(--wot-datetime-picker-range-sperator-height, $n1) !default;
+$datetime-picker-range-separator-height: var(--wot-datetime-picker-range-separator-height, $n1) !default;
 
 @include b(datetime-picker) {
 
@@ -102,12 +112,12 @@ $datetime-picker-range-sperator-height: var(--wot-datetime-picker-range-sperator
     }
   }
 
-  @include e(range-sperator) {
-    width: $datetime-picker-range-sperator-width;
-    height: $datetime-picker-range-sperator-height;
+  @include e(range-separator) {
+    width: $datetime-picker-range-separator-width;
+    height: $datetime-picker-range-separator-height;
     position: relative;
-    margin: $datetime-picker-range-sperator-margin;
-    background: $datetime-picker-range-sperator-color;
+    margin: $datetime-picker-range-separator-margin;
+    background: $datetime-picker-range-separator-color;
   }
 
   @include e(hidden) {

@@ -1,10 +1,14 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-$popup-bg: var(--wot-popup-bg, $filled-oppo);
-$popup-close-color: var(--wot-popup-close-color, $icon-auxiliary);
-$popup-close-size: var(--wot-popup-close-size, $n24);
-$popup-close-margin: var(--wot-popup-close-margin, $spacing-loose);
+// 弹窗背景色
+$popup-bg: var(--wot-popup-bg, $filled-oppo) !default;
+// 关闭图标颜色
+$popup-close-color: var(--wot-popup-close-color, $icon-auxiliary) !default;
+// 关闭图标尺寸
+$popup-close-size: var(--wot-popup-close-size, $n24) !default;
+// 关闭图标外边距
+$popup-close-margin: var(--wot-popup-close-margin, $spacing-loose) !default;
 
 @include b(popup) {
   position: fixed;
@@ -26,15 +30,15 @@ $popup-close-margin: var(--wot-popup-close-margin, $spacing-loose);
     transform: translate3d(-50%, -50%, 0);
     transform-origin: 0% 0%;
 
-    &.wd-zoom-in-enter,
-    &.wd-zoom-in-leave-to {
+    &.wd-transition--zoom-in-enter,
+    &.wd-transition--zoom-in-leave-to {
       transform: scale(0.8) translate3d(-50%, -50%, 0) !important;
     }
 
     @include when(deep) {
 
-      &.wd-zoom-in-enter,
-      &.wd-zoom-in-leave-to {
+      &.wd-transition--zoom-in-enter,
+      &.wd-transition--zoom-in-leave-to {
         transform: scale(0.1) translate3d(-50%, -50%, 0) !important;
       }
     }

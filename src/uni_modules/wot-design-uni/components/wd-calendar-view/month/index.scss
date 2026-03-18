@@ -30,19 +30,19 @@
 
     @include when(disabled) {
       .wd-month__day-text {
-        color: $calendar-view-disabled-color;
+        color: $calendar-view-color-disabled;
       }
     }
 
     @include when(current) {
-      color: $calendar-view-active-color;
+      color: $calendar-view-color-active;
     }
 
     @include when(selected, multiple-selected) {
       .wd-month__day-container {
-        border-radius: $calendar-view-active-border-radius;
-        background: $calendar-view-active-color;
-        color: $calendar-view-selected-color;
+        border-radius: $calendar-view-border-radius-active;
+        background: $calendar-view-color-active;
+        color: $calendar-view-color-selected;
       }
     }
 
@@ -54,8 +54,8 @@
     }
     @include when(multiple-middle) {
       .wd-month__day-container {
-        background: $calendar-view-active-color;
-        color: $calendar-view-selected-color;
+        background: $calendar-view-color-active;
+        color: $calendar-view-color-selected;
       }
     }
 
@@ -75,9 +75,9 @@
       }
 
       .wd-month__day-container {
-        background: $calendar-view-active-color;
-        color: $calendar-view-selected-color;
-        border-radius: $calendar-view-active-border-radius 0 0 $calendar-view-active-border-radius;
+        background: $calendar-view-color-active;
+        color: $calendar-view-color-selected;
+        border-radius: $calendar-view-border-radius-active 0 0 $calendar-view-border-radius-active;
       }
     }
 
@@ -94,17 +94,17 @@
       }
 
       .wd-month__day-container {
-        background: $calendar-view-active-color;
-        color: $calendar-view-selected-color;
-        border-radius: 0 $calendar-view-active-border-radius $calendar-view-active-border-radius 0;
+        background: $calendar-view-color-active;
+        color: $calendar-view-color-selected;
+        border-radius: 0 $calendar-view-border-radius-active $calendar-view-border-radius-active 0;
       }
     }
 
     @include when(same) {
       .wd-month__day-container {
-        background: $calendar-view-active-color;
-        color: $calendar-view-selected-color;
-        border-radius: $calendar-view-active-border-radius;
+        background: $calendar-view-color-active;
+        color: $calendar-view-color-selected;
+        border-radius: $calendar-view-border-radius-active;
       }
     }
 

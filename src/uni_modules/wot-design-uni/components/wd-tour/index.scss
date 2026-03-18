@@ -3,27 +3,31 @@
 
 // 层级
 $tour-z-index: var(--wot-tour-z-index, 999) !default;
-// 动画
+// 动画时长
 $tour-animation-duration: var(--wot-tour-animation-duration, 0.3s) !default;
+// 高亮动画时间函数
 $tour-highlight-animation-timing: var(--wot-tour-highlight-animation-timing, ease-in-out) !default;
-
 // 高亮区域阴影颜色
 $tour-highlight-shadow-color: var(--wot-tour-highlight-shadow-color, $opac-7_55) !default;
-
-// 弹层
+// 弹层层级
 $tour-popover-z-index: var(--wot-tour-popover-z-index, 1000) !default;
+// 弹层最大宽度
 $tour-popover-max-width: var(--wot-tour-popover-max-width, calc($n1 * 340)) !default;
+// 弹层最小宽度
 $tour-popover-min-width: var(--wot-tour-popover-min-width, calc($n1 * 200)) !default;
+// 弹层背景色
 $tour-popover-bg: var(--wot-tour-popover-bg, $filled-oppo) !default;
+// 弹层内边距
 $tour-popover-padding: var(--wot-tour-popover-padding, $padding-loose) !default;
+// 弹层圆角
 $tour-popover-radius: var(--wot-tour-popover-radius, $radius-main) !default;
-
-// 信息框
+// 信息框字号
 $tour-info-font-size: var(--wot-tour-info-font-size, $typography-body-size-main) !default;
+// 信息框行高
 $tour-info-line-height: var(--wot-tour-info-line-height, $typography-body-line--height-size-main) !default;
+// 信息框文字颜色
 $tour-info-color: var(--wot-tour-info-color, $text-main) !default;
-
-// 操作区域间距
+// 操作区域上边距
 $tour-buttons-margin-top: var(--wot-tour-buttons-margin-top, $spacing-tight) !default;
 
 @include b(tour) {

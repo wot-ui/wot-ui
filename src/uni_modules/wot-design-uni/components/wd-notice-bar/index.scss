@@ -1,25 +1,35 @@
 @use '../styles/variable.scss' as *;
 @use '../styles/mixin/mixin.scss' as *;
 
+// 公告栏内边距
 $notice-bar-padding: var(--wot-notice-bar-padding, $padding-main $padding-loose) !default;
+// 公告栏文字字号
 $notice-bar-font-size: var(--wot-notice-bar-font-size, $typography-body-size-main) !default;
+// 公告栏圆角
 $notice-bar-radius: var(--wot-notice-bar-radius, $radius-zero) !default;
+// 公告栏文字行高
 $notice-bar-line-height: var(--wot-notice-bar-line-height, $typography-body-line--height-size-main) !default;
-
+// 警告态背景色
 $notice-bar-warning-bg: var(--wot-notice-bar-warning-bg, $warning-surface) !default;
+// 警告态文字颜色
 $notice-bar-warning-color: var(--wot-notice-bar-warning-color, $warning-main) !default;
-
+// 信息态背景色
 $notice-bar-info-bg: var(--wot-notice-bar-info-bg, $primary-1) !default;
+// 信息态文字颜色
 $notice-bar-info-color: var(--wot-notice-bar-info-color, $primary-6) !default;
-
+// 危险态背景色
 $notice-bar-danger-bg: var(--wot-notice-bar-danger-bg, $danger-surface) !default;
+// 危险态文字颜色
 $notice-bar-danger-color: var(--wot-notice-bar-danger-color, $danger-main) !default;
-
+// 前缀图标大小
 $notice-bar-prefix-size: var(--wot-notice-bar-prefix-size, $n20) !default;
-$notice-bar-prefix-margin: var(--wot-notice-bar-prefix-margin-right, $spacing-tight) !default;
-
+// 前缀图标右侧间距
+$notice-bar-prefix-margin-right: var(--wot-notice-bar-prefix-margin-right, $spacing-tight) !default;
+// 后缀图标大小
 $notice-bar-suffix-size: var(--wot-notice-bar-suffix-size, $n20) !default;
-$notice-bar-suffix-margin: var(--wot-notice-bar-suffix-margin-left, $spacing-tight) !default;
+// 后缀图标左侧间距
+$notice-bar-suffix-margin-left: var(--wot-notice-bar-suffix-margin-left, $spacing-tight) !default;
+// 后缀图标颜色
 $notice-bar-suffix-color: var(--wot-notice-bar-suffix-color, inherit) !default;
 
 @include b(notice-bar) {
@@ -43,7 +53,7 @@ $notice-bar-suffix-color: var(--wot-notice-bar-suffix-color, inherit) !default;
     color: $notice-bar-danger-color;
   }
   @include edeep(prefix) {
-    margin-right: $notice-bar-prefix-margin;
+    margin-right: $notice-bar-prefix-margin-right;
     font-size: $notice-bar-prefix-size;
     line-height: $notice-bar-prefix-size;
   }
@@ -52,7 +62,7 @@ $notice-bar-suffix-color: var(--wot-notice-bar-suffix-color, inherit) !default;
     font-size: $notice-bar-suffix-size;
     line-height: $notice-bar-suffix-size;
     color: $notice-bar-suffix-color;
-    margin-left: $notice-bar-suffix-margin;
+    margin-left: $notice-bar-suffix-margin-left;
   }
   @include e(wrap) {
     position: relative;

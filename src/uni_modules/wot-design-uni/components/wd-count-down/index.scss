@@ -1,13 +1,16 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 倒计时文本颜色
 $count-down-text-color: var(--wot-count-down-text-color, $text-main) !default;
-$count-down-fs: var(--wot-count-down-font-size, $typography-body-size-main) !default;
+// 倒计时文本字号
+$count-down-font-size: var(--wot-count-down-font-size, $typography-body-size-main) !default;
+// 倒计时文本行高
 $count-down-line-height: var(--wot-count-down-line-height, $typography-body-line--height-size-main) !default;
 
 
 @include b(count-down) {
   color: $count-down-text-color;
-  font-size: $count-down-fs;
+  font-size: $count-down-font-size;
   line-height: $count-down-line-height;
 }

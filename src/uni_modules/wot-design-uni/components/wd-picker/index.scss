@@ -1,16 +1,27 @@
 @use '../styles/mixin/mixin.scss' as *;
 @use '../styles/variable.scss' as *;
 
+// 选择器工具栏高度
 $picker-toolbar-height: var(--wot-picker-toolbar-height, $n44) !default;
+// 选择器背景色
 $picker-bg: var(--wot-picker-bg, $filled-oppo) !default;
-$picker-confirm-action-color: var(--wot-picker-confirm-action-color, $primary-6) !default;
-$picker-cancel-action-color: var(--wot-picker-cancel-action-color, $text-secondary) !default;
+// 确认按钮文字颜色
+$picker-action-color-confirm: var(--wot-picker-action-color-confirm, $primary-6) !default;
+// 取消按钮文字颜色
+$picker-action-color-cancel: var(--wot-picker-action-color-cancel, $text-secondary) !default;
+// 操作按钮禁用颜色
 $picker-action-disabled-color: var(--wot-picker-action-disabled-color, $text-disabled) !default;
+// 操作按钮字号
 $picker-action-font-size: var(--wot-picker-action-font-size, $typography-body-size-extra-large) !default;
+// 标题文字颜色
 $picker-title-color: var(--wot-picker-title-color, $text-main) !default;
+// 标题文字字号
 $picker-title-font-size: var(--wot-picker-title-font-size, $typography-title-size-main) !default;
+// 标题文字字重
 $picker-title-font-weight: var(--wot-picker-title-font-weight, $font-weight-medium) !default;
+// 标题文字行高
 $picker-title-line-height: var(--wot-picker-title-line-height, $typography-title-line--height-size-main) !default;
+// 弹窗圆角
 $picker-radius: var(--wot-picker-radius, $radius-large) !default;
 
 @include b(picker) {
@@ -41,11 +52,11 @@ $picker-radius: var(--wot-picker-radius, $radius-large) !default;
     padding: 0 15px;
 
     @include m(cancel) {
-      color: $picker-cancel-action-color;
+      color: $picker-action-color-cancel;
     }
 
     @include m(confirm) {
-      color: $picker-confirm-action-color;
+      color: $picker-action-color-confirm;
     }
   }
 

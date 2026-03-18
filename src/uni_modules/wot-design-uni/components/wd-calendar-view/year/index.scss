@@ -30,20 +30,20 @@
 
     @include when(disabled) {
       .wd-year__month-text {
-        color: $calendar-view-disabled-color;
+        color: $calendar-view-color-disabled;
       }
     }
 
     @include when(current) {
-      color: $calendar-view-active-color;
+      color: $calendar-view-color-active;
     }
 
     @include when(selected) {
-      color: $calendar-view-selected-color;
+      color: $calendar-view-color-selected;
 
       .wd-year__month-container {
-        border-radius: $calendar-view-active-border-radius;
-        background: $calendar-view-active-color;
+        border-radius: $calendar-view-border-radius-active;
+        background: $calendar-view-color-active;
       }
     }
 
@@ -53,13 +53,13 @@
     }
 
     @include when(start) {
-      color: $calendar-view-selected-color;
+      color: $calendar-view-color-selected;
 
       .wd-year__month-container {
         position: relative;
         z-index: 1;
-        background: $calendar-view-active-color;
-        border-radius: $calendar-view-active-border-radius 0 0 $calendar-view-active-border-radius;
+        background: $calendar-view-color-active;
+        border-radius: $calendar-view-border-radius-active 0 0 $calendar-view-border-radius-active;
       }
 
       &::after {
@@ -79,13 +79,13 @@
     }
 
     @include when(end) {
-      color: $calendar-view-selected-color;
+      color: $calendar-view-color-selected;
 
       .wd-year__month-container {
         position: relative;
         z-index: 1;
-        background: $calendar-view-active-color;
-        border-radius: 0 $calendar-view-active-border-radius $calendar-view-active-border-radius 0;
+        background: $calendar-view-color-active;
+        border-radius: 0 $calendar-view-border-radius-active $calendar-view-border-radius-active 0;
       }
 
       &::after {
@@ -102,11 +102,11 @@
     }
 
     @include when(same) {
-      color: $calendar-view-selected-color;
+      color: $calendar-view-color-selected;
 
       .wd-year__month-container {
-        background: $calendar-view-active-color;
-        border-radius: $calendar-view-active-border-radius;
+        background: $calendar-view-color-active;
+        border-radius: $calendar-view-border-radius-active;
       }
     }
     @include when(last-row){

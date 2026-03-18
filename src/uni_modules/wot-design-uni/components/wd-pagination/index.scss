@@ -1,18 +1,31 @@
 @use '../styles/variable.scss' as *;
 @use '../styles/mixin/_mixin.scss' as *;
 
+// 分页背景色
 $pagination-bg: var(--wot-pagination-bg, $filled-oppo) !default;
-$pagination-padding: var(--wot-pagination-content-padding, $padding-loose) !default;
+// 分页内边距
+$pagination-padding: var(--wot-pagination-padding, $padding-loose) !default;
+// 分页图标尺寸
 $pagination-icon-size: var(--wot-pagination-icon-size, $n16) !default;
+// 辅助文案颜色
 $pagination-message-color: var(--wot-pagination-message-color, $text-secondary) !default;
+// 辅助文案字号
 $pagination-message-font-size: var(--wot-pagination-message-font-size, $typography-body-size-main) !default;
+// 辅助文案行高
 $pagination-message-line-height: var(--wot-pagination-message-line-height, $typography-body-line--height-size-main) !default;
+// 辅助文案顶部间距
 $pagination-message-margin-top: var(--wot-pagination-message-margin-top, $spacing-super-tight) !default;
+// 翻页按钮最小宽度
 $pagination-nav-width: var(--wot-pagination-nav-width, $n64) !default;
+// 页码字号
 $pagination-size-font-size: var(--wot-pagination-size-font-size, $typography-title-size-main) !default;
+// 页码行高
 $pagination-size-line-height: var(--wot-pagination-size-line-height, $typography-title-line--height-size-main) !default;
+// 页码颜色
 $pagination-size-color: var(--wot-pagination-size-color, $text-main) !default;
+// 当前页码颜色
 $pagination-size-current-color: var(--wot-pagination-size-current-color, $primary-6) !default;
+// 分隔符外边距
 $pagination-size-separator-margin: var(--wot-pagination-size-separator-margin, $spacing-zero $spacing-super-tight) !default;
 
 @include b(pagination) {

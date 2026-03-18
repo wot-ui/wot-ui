@@ -1,18 +1,28 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-// 组件级 CSS 变量定义
-$grid-item-font-size: var(--wot-grid-item-font-size, $typography-body-size-extra-large) !default; // 字体大小
-$grid-item-line-height: var(--wot-grid-item-line-height, $typography-body-line--height-size-extra-large) !default; // 行高
-$grid-item-bg: var(--wot-grid-item-bg, $filled-oppo) !default; // 背景颜色
-$grid-item-padding: var(--wot-grid-item-padding, $padding-loose $padding-loose) !default; // 内容的 padding
-$grid-item-hover-bg: var(--wot-grid-item-hover-bg, $feedback-hover) !default; // hover 背景色
-$grid-item-icon-size: var(--wot-grid-item-icon-size, $n32) !default; // 图标大小
-$grid-item-icon-color: var(--wot-grid-item-icon-color, $icon-secondary) !default; // 图标颜色
-$grid-item-border-width: var(--wot-grid-item-border-width, $stroke-main) !default; // 边框宽度
-$grid-item-border-color: var(--wot-grid-item-border-color, $border-main) !default; // 边框颜色
-$grid-item-text-color: var(--wot-grid-item-text-color, $text-main) !default; // 文字颜色
-$grid-item-text-spacing: var(--wot-grid-item-text-spacing, $spacing-super-tight) !default; // 文字间距
+// 网格项文字字号
+$grid-item-font-size: var(--wot-grid-item-font-size, $typography-body-size-extra-large) !default;
+// 网格项文字行高
+$grid-item-line-height: var(--wot-grid-item-line-height, $typography-body-line--height-size-extra-large) !default;
+// 网格项背景色
+$grid-item-bg: var(--wot-grid-item-bg, $filled-oppo) !default;
+// 网格项内容内边距
+$grid-item-padding: var(--wot-grid-item-padding, $padding-loose $padding-loose) !default;
+// 网格项悬浮背景色
+$grid-item-hover-bg: var(--wot-grid-item-hover-bg, $feedback-hover) !default;
+// 网格项图标尺寸
+$grid-item-icon-size: var(--wot-grid-item-icon-size, $n32) !default;
+// 网格项图标颜色
+$grid-item-icon-color: var(--wot-grid-item-icon-color, $icon-secondary) !default;
+// 网格项边框宽度
+$grid-item-border-width: var(--wot-grid-item-border-width, $stroke-main) !default;
+// 网格项边框颜色
+$grid-item-border-color: var(--wot-grid-item-border-color, $border-main) !default;
+// 网格项文字颜色
+$grid-item-text-color: var(--wot-grid-item-text-color, $text-main) !default;
+// 网格项文字间距
+$grid-item-text-spacing: var(--wot-grid-item-text-spacing, $spacing-super-tight) !default;
 
 @include b(grid-item) {
   box-sizing: border-box;

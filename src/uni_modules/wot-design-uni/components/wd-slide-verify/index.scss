@@ -15,8 +15,8 @@ $slide-verify-track-bg: var(--wot-slide-verify-track-bg, $success-main) !default
 $slide-verify-disabled-opacity: var(--wot-slide-verify-disabled-opacity, $opacity-disabled) !default;
 // 提示文字颜色
 $slide-verify-text-color: var(--wot-slide-verify-text-color, $text-main) !default;
-// 提示文字大小
-$slide-verify-text-size: var(--wot-slide-verify-text-size, $typography-label-size-main) !default;
+// 提示文字字号
+$slide-verify-text-font-size: var(--wot-slide-verify-text-font-size, $typography-label-size-main) !default;
 // 提示文字行高
 $slide-verify-text-line-height: var(--wot-slide-verify-text-line-height, $typography-label-line--height-size-main) !default;
 // 成功态文字颜色
@@ -55,7 +55,7 @@ $slide-verify-success-icon-size: var(--wot-slide-verify-success-icon-size, $n20)
 
   @include e(text-inner) {
     color: $slide-verify-text-color;
-    font-size: $slide-verify-text-size;
+    font-size: $slide-verify-text-font-size;
     line-height: $slide-verify-text-line-height;
     transition: color 0.3s ease;
   }

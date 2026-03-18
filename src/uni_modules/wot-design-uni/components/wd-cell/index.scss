@@ -1,53 +1,84 @@
 @use '../styles/variable.scss' as *;
 @use '../styles/mixin/mixin.scss' as *;
 
-/* ================================ 组件SCSS变量 ================================ */
-/* 颜色变量 */
+// 单元格背景色
 $cell-bg: var(--wot-cell-bg, $filled-oppo) !default;
+// 单元格激活态背景色
 $cell-bg-active: var(--wot-cell-bg-active, $filled-bottom) !default;
+// 标题文字颜色
 $cell-title-color: var(--wot-cell-title-color, $text-main) !default;
+// 标签文字颜色
 $cell-label-color: var(--wot-cell-label-color, $text-auxiliary) !default;
+// 值文字颜色
 $cell-value-color: var(--wot-cell-value-color, $text-secondary) !default;
+// 图标颜色
 $cell-icon-color: var(--wot-cell-icon-color, $icon-secondary) !default;
+// 主题色
 $cell-theme-color: var(--wot-cell-theme-color, $primary-6) !default;
+// 箭头颜色
 $cell-arrow-color: var(--wot-cell-arrow-color, $icon-auxiliary) !default;
+// 边框颜色
 $cell-border-color: var(--wot-cell-border-color, $border-main) !default;
+// 清除图标颜色
 $cell-clear-color: var(--wot-cell-clear-color, $icon-disabled) !default;
+// 点击态背景色
 $cell-tap-bg: var(--wot-cell-tap-bg, $primary-1) !default;
+// 必填标记颜色
 $cell-required-color: var(--wot-cell-required-color, $danger-main) !default;
-$cell-placeholder-color: var(--wot-cell-placeholder-color, $text-placeholder) !default; // 占位符颜色
-
-/* 尺寸变量 */
+// 占位符颜色
+$cell-placeholder-color: var(--wot-cell-placeholder-color, $text-placeholder) !default;
+// 箭头图标尺寸
 $cell-arrow-size: var(--wot-cell-arrow-size, $n20) !default;
+// 图标尺寸
 $cell-icon-size: var(--wot-cell-icon-size, $n20) !default;
-
-/* 字体变量 */
+// 标题字号
 $cell-title-font-size: var(--wot-cell-title-font-size, $typography-body-size-main) !default;
+// 标题行高
 $cell-title-line-height: var(--wot-cell-title-line-height, $typography-body-line--height-size-main) !default;
+// 标签字号
 $cell-label-font-size: var(--wot-cell-label-font-size, $typography-body-size-main) !default;
+// 标签行高
 $cell-label-line-height: var(--wot-cell-label-line-height, $typography-body-line--height-size-main) !default;
+// 值字号
 $cell-value-font-size: var(--wot-cell-value-font-size, $typography-body-size-main) !default;
+// 值行高
 $cell-value-line-height: var(--wot-cell-value-line-height, $typography-body-line--height-size-main) !default;
+// 大尺寸值字号
 $cell-value-font-size-large: var(--wot-cell-value-font-size-large, $typography-body-size-extra-large) !default;
+// 大尺寸值行高
 $cell-value-line-height-large: var(--wot-cell-value-line-height-large, $typography-body-line--height-size-extra-large) !default;
+// 大尺寸标题字号
 $cell-title-font-size-large: var(--wot-cell-title-font-size-large, $typography-body-size-extra-large) !default;
+// 大尺寸标题行高
 $cell-title-line-height-large: var(--wot-cell-title-line-height-large, $typography-body-line--height-size-extra-large) !default;
+// 大尺寸标签字号
 $cell-label-font-size-large: var(--wot-cell-label-font-size-large, $typography-body-size-extra-large) !default;
+// 大尺寸标签行高
 $cell-label-line-height-large: var(--wot-cell-label-line-height-large, $typography-body-line--height-size-extra-large) !default;
+// 必填标记字号
 $cell-required-font-size: var(--wot-cell-required-font-size, $typography-body-size-main) !default;
+// 必填标记行高
 $cell-required-line-height: var(--wot-cell-required-line-height, $typography-body-line--height-size-main) !default;
-$cell-placeholder-font-size: var(--wot-cell-placeholder-font-size, $typography-body-size-main) !default; // 占位符字体大小
-$cell-placeholder-line-height: var(--wot-cell-placeholder-line-height, $typography-body-line--height-size-main) !default; // 占位符行高
-
-/* 间距变量 */
+// 占位符字号
+$cell-placeholder-font-size: var(--wot-cell-placeholder-font-size, $typography-body-size-main) !default;
+// 占位符行高
+$cell-placeholder-line-height: var(--wot-cell-placeholder-line-height, $typography-body-line--height-size-main) !default;
+// 单元格内边距
 $cell-padding: var(--wot-cell-padding, $padding-loose) !default;
+// 大尺寸单元格内边距
 $cell-padding-large: var(--wot-cell-padding-large, $padding-extra-loose) !default;
-$cell-padding-vertical-top: var(--wot-cell-padding-vertical-top, $padding-extra-loose) !default;
-$cell-margin-required: var(--wot-cell-margin-required, $padding-super-tight) !default;
+// 纵向布局右侧顶部内边距
+$cell-vertical-padding-top: var(--wot-cell-vertical-padding-top, $padding-extra-loose) !default;
+// 必填标记外边距
+$cell-required-margin: var(--wot-cell-required-margin, $padding-super-tight) !default;
+// 前缀图标右侧间距
 $cell-icon-spacing-right: var(--wot-cell-icon-spacing-right, $spacing-super-tight) !default;
-$cell-margin-horizontal: var(--wot-cell-margin-horizontal, $spacing-loose) !default; // 水平布局时左右区域间距
-$cell-arrow-margin-left: var(--wot-cell-arrow-margin-left, $spacing-tight) !default; // 箭头左侧间距
-$cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !default; // 标签顶部间距
+// 水平布局左右区域间距
+$cell-margin-horizontal: var(--wot-cell-margin-horizontal, $spacing-loose) !default;
+// 箭头左侧间距
+$cell-arrow-margin-left: var(--wot-cell-arrow-margin-left, $spacing-tight) !default;
+// 标签顶部间距
+$cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !default;
 
 @include b(cell) {
   position: relative;
@@ -72,7 +103,7 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
       display: block;
 
       .wd-cell__right {
-        margin-top: $cell-padding-vertical-top;
+        margin-top: $cell-vertical-padding-top;
       }
 
       .wd-cell__value {
@@ -111,11 +142,11 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
     font-size: $cell-required-font-size;
     line-height: $cell-required-line-height;
     color: $cell-required-color;
-    margin-left: $cell-margin-required;
+    margin-left: $cell-required-margin;
 
     @include m(left) {
       margin-left: 0;
-      margin-right: $cell-margin-required;
+      margin-right: $cell-required-margin;
     }
   }
 

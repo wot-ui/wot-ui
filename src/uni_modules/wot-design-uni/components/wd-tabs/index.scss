@@ -1,40 +1,73 @@
 @use '../styles/variable.scss'as *;
 @use '../styles/mixin/mixin.scss'as *;
 
-
+// 导航背景色
 $tabs-nav-bg: var(--wot-tabs-nav-bg, $filled-oppo) !default;
+// 导航吸顶宽度
 $tabs-nav-sticky-width: var(--wot-tabs-nav-sticky-width, 100vw) !default;
+// 导航文字颜色
 $tabs-nav-color: var(--wot-tabs-nav-color, $text-secondary) !default;
-$tabs-nav-active-color: var(--wot-tabs-nav-active-color, $primary-6) !default;
-$tabs-nav-active-font-weight: var(--wot-tabs-nav-active-font-weight, $font-weight-medium) !default;
+// 导航激活文字颜色
+$tabs-nav-color-active: var(--wot-tabs-nav-color-active, $primary-6) !default;
+// 导航激活文字字重
+$tabs-nav-font-weight-active: var(--wot-tabs-nav-font-weight-active, $font-weight-medium) !default;
+// 导航项字号
 $tabs-nav-item-font-size: var(--wot-tabs-nav-item-font-size, $typography-body-size-extra-large) !default;
+// 导航项行高
 $tabs-nav-item-line-height: var(--wot-tabs-nav-item-line-height, $typography-body-line--height-size-extra-large) !default;
+// 导航项内边距
 $tabs-nav-item-padding: var(--wot-tabs-nav-item-padding, $padding-main $padding-extra-loose) !default;
-$tabs-nav-disabled-color: var(--wot-tabs-nav-disabled-color, $text-disabled) !default;
+// 导航禁用文字颜色
+$tabs-nav-color-disabled: var(--wot-tabs-nav-color-disabled, $text-disabled) !default;
+// 导航线背景色
 $tabs-nav-line-bg: var(--wot-tabs-nav-line-bg, $primary-6) !default;
+// 导航线高度
 $tabs-nav-line-height: var(--wot-tabs-nav-line-height, $n4) !default;
+// 导航线宽度
 $tabs-nav-line-width: var(--wot-tabs-nav-line-width, $n24) !default;
+// 导航线底部偏移
 $tabs-nav-line-bottom: var(--wot-tabs-nav-line-bottom, $n2) !default;
+// 过渡时长
 $tabs-duration: var(--wot-tabs-duration, 0.3s) !default;
+// 地图模式遮罩背景
 $tabs-map-modal-bg: var(--wot-tabs-map-modal-bg, $opac-7_55) !default;
+// 地图模式箭头尺寸
 $tabs-map-arrow-size: var(--wot-tabs-map-arrow-size, $n16) !default;
+// 地图模式箭头颜色
 $tabs-map-arrow-color: var(--wot-tabs-map-arrow-color, $icon-secondary) !default;
+// 地图模式按钮宽度
 $tabs-map-btn-width: var(--wot-tabs-map-btn-width, $n44) !default;
+// 地图模式按钮高度
 $tabs-map-btn-height: var(--wot-tabs-map-btn-height, $n44) !default;
+// 地图模式按钮前景渐变背景
 $tabs-map-btn-before-bg: var(--wot-tabs-map-btn-before-bg, linear-gradient(270deg, $filled-oppo 0%, $base-transparent 100%)) !default;
+// 地图模式通用文字颜色
 $tabs-map-color: var(--wot-tabs-map-color, $text-main) !default;
+// 地图模式头部字号
 $tabs-map-header-font-size: var(--wot-tabs-map-header-font-size, $typography-body-size-extra-large) !default;
+// 地图模式头部行高
 $tabs-map-header-line-height: var(--wot-tabs-map-header-line-height, $typography-body-line--height-size-extra-large) !default;
+// 地图模式头部内边距
 $tabs-map-header-padding: var(--wot-tabs-map-header-padding, $padding-main $padding-extra-loose) !default;
+// 地图模式导航按钮间距
 $tabs-map-nav-btn-gap: var(--wot-tabs-map-nav-btn-gap, $spacing-main) !default;
+// 地图模式导航按钮禁用透明度
 $tabs-map-nav-btn-disabled-opacity: var(--wot-tabs-map-nav-btn-disabled-opacity, $opacity-disabled) !default;
+// 地图模式导航按钮背景
 $tabs-map-nav-btn-bg: var(--wot-tabs-map-nav-btn-bg, $filled-bottom) !default;
+// 地图模式导航按钮文字颜色
 $tabs-map-nav-btn-color: var(--wot-tabs-map-nav-btn-color, $text-main) !default;
+// 地图模式导航按钮圆角
 $tabs-map-nav-btn-radius: var(--wot-tabs-map-nav-btn-radius, $radius-main) !default;
+// 地图模式导航按钮字号
 $tabs-map-nav-btn-font-size: var(--wot-tabs-map-nav-btn-font-size, $typography-body-size-ultra-large) !default;
+// 地图模式导航按钮行高
 $tabs-map-nav-btn-line-height: var(--wot-tabs-map-nav-btn-line-height, $typography-body-line--height-size-ultra-large) !default;
+// 地图模式导航按钮内边距
 $tabs-map-nav-btn-padding: var(--wot-tabs-map-nav-btn-padding, $padding-tight $padding-extra-loose) !default;
+// 地图模式内容内边距
 $tabs-map-body-padding: var(--wot-tabs-map-body-padding, $padding-loose $padding-extra-loose) !default;
+// 地图模式内容背景色
 $tabs-map-body-bg: var(--wot-tabs-map-body-bg, $filled-oppo) !default;
 
 
@@ -87,12 +120,12 @@ $tabs-map-body-bg: var(--wot-tabs-map-body-bg, $filled-oppo) !default;
     transition: color $tabs-duration;
 
     @include when(active) {
-      font-weight: $tabs-nav-active-font-weight;
-      color: $tabs-nav-active-color;
+      font-weight: $tabs-nav-font-weight-active;
+      color: $tabs-nav-color-active;
     }
 
     @include when(disabled) {
-      color: $tabs-nav-disabled-color;
+      color: $tabs-nav-color-disabled;
     }
   }
 
@@ -263,8 +296,8 @@ $tabs-map-body-bg: var(--wot-tabs-map-body-bg, $filled-oppo) !default;
     transition: color $tabs-duration, border-color $tabs-duration;
 
     @include when(active) {
-      color: $tabs-nav-active-color;
-      border-color: $tabs-nav-active-color;
+      color: $tabs-nav-color-active;
+      border-color: $tabs-nav-color-active;
       background: $tabs-nav-bg
     }
 

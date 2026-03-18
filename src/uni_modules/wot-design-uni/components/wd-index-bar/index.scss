@@ -8,8 +8,8 @@ $index-bar-index-height: var(--wot-index-bar-index-height, $typography-label-lin
 $index-bar-index-font-weight: var(--wot-index-bar-index-font-weight, $font-weight-medium) !default;
 $index-bar-index-color: var(--wot-index-bar-index-color, $text-auxiliary) !default;
 $index-bar-index-border-radius: var(--wot-index-bar-index-border-radius, $radius-radius-full) !default;
-$index-bar-index-active-color: var(--wot-index-bar-index-active-color, $text-white) !default;
-$index-bar-index-active-bg: var(--wot-index-bar-index-active-bg, $primary-6) !default;
+$index-bar-index-color-active: var(--wot-index-bar-index-color-active, $text-white) !default;
+$index-bar-index-bg-active: var(--wot-index-bar-index-bg-active, $primary-6) !default;
 $index-bar-current-index-size: var(--wot-index-bar-current-index-size, $n56) !default;
 $index-bar-current-index-bg: var(--wot-index-bar-current-index-bg, $primary-6) !default;
 $index-bar-current-index-color: var(--wot-index-bar-current-index-color, $text-white) !default;
@@ -61,8 +61,8 @@ $index-bar-current-index-z-index: var(--wot-index-bar-current-index-z-index, 10)
     justify-content: center;
     border-radius: $index-bar-index-border-radius;
     @include when(active) {
-      color: $index-bar-index-active-color;
-      background: $index-bar-index-active-bg;
+      color: $index-bar-index-color-active;
+      background: $index-bar-index-bg-active;
     }
   }
 }

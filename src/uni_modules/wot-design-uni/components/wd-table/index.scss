@@ -1,15 +1,25 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 表格背景色
 $table-bg: var(--wot-table-bg, $filled-oppo) !default;
+// 表格文字颜色
 $table-color: var(--wot-table-color, $text-main) !default;
+// 斑马纹背景色
 $table-stripe-bg: var(--wot-table-stripe-bg, $filled-bottom) !default;
+// 边框颜色
 $table-border-color: var(--wot-table-border-color, $border-main) !default;
-$table-border-width: var(--wot-table-border-width, $n1) !default;
+// 边框宽度
+$table-border-width: var(--wot-table-border-width, $stroke-main) !default;
+// 单元格字号
 $table-cell-font-size: var(--wot-table-cell-font-size, $typography-body-size-main) !default;
+// 单元格行高
 $table-cell-line-height: var(--wot-table-cell-line-height, $typography-body-line--height-size-main) !default;
+// 单元格内边距
 $table-cell-padding: var(--wot-table-cell-padding, $padding-loose $padding-extra-loose) !default;
+// 固定列阴影渐变背景
 $table-shadow-gradient: var(--wot-table-shadow-gradient, linear-gradient(270deg, $base-transparent 0%, $opac-2_04 100%)) !default;
+// 排序按钮高度
 $table-sort-button-height: var(--wot-table-sort-button-height, $n20) !default;
 
 @include b(table) {

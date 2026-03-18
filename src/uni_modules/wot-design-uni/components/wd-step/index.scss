@@ -49,7 +49,7 @@ $step-icon-size: var(--wot-step-icon-size, $n18) !default;
 // 等待或默认状态下图标的颜色
 $step-icon-color: var(--wot-step-icon-color, $icon-auxiliary) !default;
 // 激活 (如 process 或 finished) 状态下图标的颜色
-$step-icon-active-color: var(--wot-step-icon-active-color, $primary-6) !default;
+$step-icon-color-active: var(--wot-step-icon-color-active, $primary-6) !default;
 // 错误 (error) 状态下图标的颜色
 $step-icon-error-color: var(--wot-step-icon-error-color, $danger-main) !default;
 // 未激活部分的占位文本颜色
@@ -91,7 +91,7 @@ $step-title-font-weight: var(--wot-step-title-font-weight, $font-weight-regular)
 // 等待与完成状态下标题的颜色
 $step-title-color: var(--wot-step-title-color, $text-secondary) !default;
 // 进行中状态下标题的激活颜色
-$step-title-active-color: var(--wot-step-title-active-color, $primary-6) !default;
+$step-title-color-active: var(--wot-step-title-color-active, $primary-6) !default;
 // 错误状态下标题的颜色
 $step-title-error-color: var(--wot-step-title-error-color, $danger-main) !default;
 
@@ -208,10 +208,10 @@ $step-description-padding: var(--wot-step-description-padding, $padding-zero $pa
 
       :deep(.wd-step__icon) {
         @if $status==finished {
-          color: $step-icon-active-color;
+          color: $step-icon-color-active;
         }
         @else if $status==process {
-          color: $step-icon-active-color;
+          color: $step-icon-color-active;
         }
         @else if $status==error {
           color: $step-icon-error-color;
@@ -229,7 +229,7 @@ $step-description-padding: var(--wot-step-description-padding, $padding-zero $pa
           color: $step-title-color;
         }
         @else if $status==process {
-          color: $step-title-active-color;
+          color: $step-title-color-active;
         }
         @else if $status==error {
           color: $step-title-error-color;

@@ -2,7 +2,8 @@
 @use '../styles/mixin/mixin' as *;
 @use '../styles/iconfont/iconfont.scss' as *;
 
-$icon-font-size: var(--icon-font-size, $typography-body-size-main) !default;
+// 图标字号
+$icon-font-size: var(--wot-icon-font-size, $typography-body-size-main) !default;
 
 @include b(icon) {
   display: inline-block;

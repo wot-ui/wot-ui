@@ -1,19 +1,32 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-$collapse-bg: var(--wot-collapse-bg, $filled-oppo) !default; // 背景颜色
-$collapse-body-color: var(--wot-collapse-body-color, $text-auxiliary) !default; // 内容颜色
-$collapse-body-fs: var(--wot-collapse-body-fs, $typography-label-size-large) !default; // 内容字号
-$collapse-padding: var(--wot-collapse-padding, $padding-loose) !default; // 左右间距
-$collapse-body-padding: var(--wot-collapse-body-padding, $padding-extra-loose $padding-loose) !default; // body padding
-$collapse-title-color: var(--wot-collapse-title-color, $text-main) !default; // 标题颜色
-$collapse-title-fs: var(--wot-collapse-title-fs, $typography-body-size-extra-large) !default; // 标题字号
-$collapse-arrow-size: var(--wot-collapse-arrow-size, $n16) !default; // 箭头大小
-$collapse-arrow-color: var(--wot-collapse-arrow-color, $icon-main) !default; // 箭头颜色
-$collapse-more-fs: var(--wot-collapse-retract-fs, $typography-body-size-main) !default; // 更多按钮文字字号
-$collapse-more-color: var(--wot-collapse-more-color, $primary-6) !default; // 更多按钮文字颜色
-$collapse-more-margin-top: var(--wot-collapse-more-margin-top, $spacing-main) !default; // 更多按钮向上的间距
-$collapse-more-text-margin-right: var(--wot-collapse-more-text-margin-right, $spacing-super-tight) !default; // 更多按钮文字向右的间距
+// 折叠面板背景颜色
+$collapse-bg: var(--wot-collapse-bg, $filled-oppo) !default;
+// 折叠内容文字颜色
+$collapse-body-color: var(--wot-collapse-body-color, $text-auxiliary) !default;
+// 折叠内容文字字号
+$collapse-body-font-size: var(--wot-collapse-body-font-size, $typography-label-size-large) !default;
+// 折叠容器左右内边距
+$collapse-padding: var(--wot-collapse-padding, $padding-loose) !default;
+// 折叠内容区域内边距
+$collapse-body-padding: var(--wot-collapse-body-padding, $padding-extra-loose $padding-loose) !default;
+// 折叠标题文字颜色
+$collapse-title-color: var(--wot-collapse-title-color, $text-main) !default;
+// 折叠标题文字字号
+$collapse-title-font-size: var(--wot-collapse-title-font-size, $typography-body-size-extra-large) !default;
+// 折叠箭头尺寸
+$collapse-arrow-size: var(--wot-collapse-arrow-size, $n16) !default;
+// 折叠箭头颜色
+$collapse-arrow-color: var(--wot-collapse-arrow-color, $icon-main) !default;
+// 更多按钮文字字号
+$collapse-more-font-size: var(--wot-collapse-more-font-size, $typography-body-size-main) !default;
+// 更多按钮文字颜色
+$collapse-more-color: var(--wot-collapse-more-color, $primary-6) !default;
+// 更多按钮上边距
+$collapse-more-margin-top: var(--wot-collapse-more-margin-top, $spacing-main) !default;
+// 更多按钮文字右侧间距
+$collapse-more-text-margin-right: var(--wot-collapse-more-text-margin-right, $spacing-super-tight) !default;
 
 @include b(collapse) {
   background: $collapse-bg;
@@ -22,7 +35,7 @@ $collapse-more-text-margin-right: var(--wot-collapse-more-text-margin-right, $sp
     padding: $collapse-padding;
   }
   @include e(content) {
-    font-size: $collapse-body-fs;
+    font-size: $collapse-body-font-size;
     color: $collapse-body-color;
 
     @include when(retract) {
@@ -33,7 +46,7 @@ $collapse-more-text-margin-right: var(--wot-collapse-more-text-margin-right, $sp
   }
   @include e(more) {
     display: inline-block;
-    font-size: $collapse-more-fs;
+    font-size: $collapse-more-font-size;
     margin-top: $collapse-more-margin-top;
     color: $collapse-more-color;
     user-select: none;

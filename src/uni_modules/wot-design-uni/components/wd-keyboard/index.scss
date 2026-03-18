@@ -1,15 +1,25 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 键盘背景色
 $keyboard-bg: var(--wot-keyboard-bg, $filled-content) !default;
+// 键盘文字颜色
 $keyboard-color: var(--wot-keyboard-color, $text-main) !default;
+// 键盘内容间距
 $keyboard-padding: var(--wot-keyboard-padding, $padding-tight) !default;
+// 键盘头部高度
 $keyboard-header-height: var(--wot-keyboard-header-height, $n40) !default;
+// 键盘标题颜色
 $keyboard-title-color: var(--wot-keyboard-title-color, $text-secondary) !default;
+// 键盘标题字号
 $keyboard-title-font-size: var(--wot-keyboard-title-font-size, $typography-body-size-main) !default;
+// 关闭按钮文字颜色
 $keyboard-close-color: var(--wot-keyboard-close-color, $primary-6) !default;
-$keyboard-close-hover-opacity: var(--wot-keyboard-close-hover-opacity, $opacity-dimmer) !default;
+// 关闭按钮悬浮透明度
+$keyboard-close-opacity-hover: var(--wot-keyboard-close-opacity-hover, $opacity-dimmer) !default;
+// 关闭按钮字号
 $keyboard-close-font-size: var(--wot-keyboard-close-font-size, $typography-body-size-main) !default;
+// 关闭按钮内边距
 $keyboard-close-padding: var(--wot-keyboard-close-padding, $padding-zero $padding-loose) !default;
 
 @include b(keyboard) {
@@ -81,7 +91,7 @@ $keyboard-close-padding: var(--wot-keyboard-close-padding, $padding-zero $paddin
     border: none;
 
     &:active {
-      opacity: $keyboard-close-hover-opacity;
+      opacity: $keyboard-close-opacity-hover;
     }
 
   }

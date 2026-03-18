@@ -34,6 +34,10 @@ import { transitionProps, type TransitionName } from './types'
 import { AbortablePromise } from '../common/AbortablePromise'
 
 const getClassNames = (name?: TransitionName | TransitionName[]) => {
+  const transitionClass = (transitionName: string, phase: string) => {
+    return `wd-transition--${transitionName}-${phase}`
+  }
+
   let enter: string = `${props.enterClass} ${props.enterActiveClass}`
   let enterTo: string = `${props.enterToClass} ${props.enterActiveClass}`
   let leave: string = `${props.leaveClass} ${props.leaveActiveClass}`
@@ -41,16 +45,16 @@ const getClassNames = (name?: TransitionName | TransitionName[]) => {
 
   if (Array.isArray(name)) {
     for (let index = 0; index < name.length; index++) {
-      enter = `wd-${name[index]}-enter wd-${name[index]}-enter-active ${enter}`
-      enterTo = `wd-${name[index]}-enter-to wd-${name[index]}-enter-active ${enterTo}`
-      leave = `wd-${name[index]}-leave wd-${name[index]}-leave-active ${leave}`
-      leaveTo = `wd-${name[index]}-leave-to wd-${name[index]}-leave-active ${leaveTo}`
+      enter = `${transitionClass(name[index], 'enter')} ${transitionClass(name[index], 'enter-active')} ${enter}`
+      enterTo = `${transitionClass(name[index], 'enter-to')} ${transitionClass(name[index], 'enter-active')} ${enterTo}`
+      leave = `${transitionClass(name[index], 'leave')} ${transitionClass(name[index], 'leave-active')} ${leave}`
+      leaveTo = `${transitionClass(name[index], 'leave-to')} ${transitionClass(name[index], 'leave-active')} ${leaveTo}`
     }
   } else if (name) {
-    enter = `wd-${name}-enter wd-${name}-enter-active ${enter}`
-    enterTo = `wd-${name}-enter-to wd-${name}-enter-active ${enterTo}`
-    leave = `wd-${name}-leave wd-${name}-leave-active ${leave}`
-    leaveTo = `wd-${name}-leave-to wd-${name}-leave-active ${leaveTo}`
+    enter = `${transitionClass(name, 'enter')} ${transitionClass(name, 'enter-active')} ${enter}`
+    enterTo = `${transitionClass(name, 'enter-to')} ${transitionClass(name, 'enter-active')} ${enterTo}`
+    leave = `${transitionClass(name, 'leave')} ${transitionClass(name, 'leave-active')} ${leave}`
+    leaveTo = `${transitionClass(name, 'leave-to')} ${transitionClass(name, 'leave-active')} ${leaveTo}`
   }
   return {
     enter: enter,

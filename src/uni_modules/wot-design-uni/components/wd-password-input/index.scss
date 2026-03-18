@@ -7,6 +7,8 @@ $password-input-height: var(--wot-password-input-height, $n50) !default;
 $password-input-margin: var(--wot-password-input-margin, $n16) !default;
 // 输入字号
 $password-input-font-size: var(--wot-password-input-font-size, $typography-title-size-large) !default;
+// 输入行高
+$password-input-line-height: var(--wot-password-input-line-height, $typography-title-line--height-size-large) !default;
 // 输入格圆角
 $password-input-radius: var(--wot-password-input-radius, $n6) !default;
 // 输入格背景色
@@ -17,12 +19,16 @@ $password-input-info-color: var(--wot-password-input-info-color, $text-auxiliary
 $password-input-info-font-size: var(--wot-password-input-info-font-size, $typography-body-size-main) !default;
 // 边框颜色
 $password-input-border-color: var(--wot-password-input-border-color, $border-main) !default;
+// 边框宽度
+$password-input-border-width: var(--wot-password-input-border-width, $stroke-main) !default;
 // 错误提示颜色
 $password-input-error-info-color: var(--wot-password-input-error-info-color, $danger-main) !default;
 // 密码点尺寸
 $password-input-dot-size: var(--wot-password-input-dot-size, $n10) !default;
 // 密码点颜色
 $password-input-dot-color: var(--wot-password-input-dot-color, $text-main) !default;
+// 密码点圆角
+$password-input-dot-radius: var(--wot-password-input-dot-radius, $radius-radius-full) !default;
 // 输入文本颜色
 $password-input-text-color: var(--wot-password-input-text-color, $text-main) !default;
 // 光标颜色
@@ -55,11 +61,11 @@ $password-input-cursor-duration: var(--wot-password-input-cursor-duration, 1s) !
     height: 100%;
     color: $password-input-text-color;
     font-size: $password-input-font-size;
-    line-height: 1.2;
+    line-height: $password-input-line-height;
     background: $password-input-bg;
 
     @include when(border) {
-      border: 1px solid $password-input-border-color;
+      border: $password-input-border-width solid $password-input-border-color;
 
       &:not(:last-child) {
         border-right: none;
@@ -84,7 +90,7 @@ $password-input-cursor-duration: var(--wot-password-input-cursor-duration, 1s) !
     width: $password-input-dot-size;
     height: $password-input-dot-size;
     background: $password-input-dot-color;
-    border-radius: 100%;
+    border-radius: $password-input-dot-radius;
     transform: translate(-50%, -50%);
     visibility: hidden;
   }

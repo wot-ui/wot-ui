@@ -2,29 +2,35 @@
 @use '../styles/variable.scss'as *;
 
 $checkbox-label-margin: var(--wot-checkbox-label-margin, $spacing-tight) !default; // 文字与图标距离
-$checkbox-checked-color: var(--wot-checkbox-checked-color, $primary-6) !default; // 选中颜色
+$checkbox-color-checked: var(--wot-checkbox-color-checked, $primary-6) !default; // 选中颜色
 $checkbox-icon-size: var(--wot-checkbox-icon-size, $n22) !default; // 图标尺寸
-$checkbox-unchecked-color: var(--wot-checkbox-unchecked-color, $coolgrey-3) !default; // 图标颜色
-$checkbox-label-fs: var(--wot-checkbox-label-fs, $typography-body-size-main) !default; // 文字字号
+$checkbox-unchecked-color: var(--wot-checkbox-unchecked-color, $coolgrey-3) !default; // 未选中图标颜色
+$checkbox-label-font-size: var(--wot-checkbox-label-font-size, $typography-body-size-main) !default; // 文字字号
 $checkbox-label-color: var(--wot-checkbox-label-color, $text-main) !default; // 文字颜色
 $checkbox-label-line-height: var(--wot-checkbox-label-line-height, $typography-body-line--height-size-main) !default; // 文字行高
-$checkbox-disabled: var(--wot-checkbox-disabled, $opacity-disabled) !default; // 禁用
-$checkbox-vertical-padding: var(--wot-checkbox-vertical-margin, $spacing-extra-loose $padding-zero) !default; // 垂直模式多个单选框距离
-$checkbox-horizontal-margin: var(--wot-checkbox-horizontal-margin, 0 $spacing-extra-loose 0 0) !default; // 水平模式多个单选框距离
-$checkbox-button-margin: var(--wot-checkbox-button-margin, 0 $spacing-extra-loose $spacing-extra-loose 0) !default; // 按钮模式多个单选框距离
-$checkbox-button-border-width: var(--wot-checkbox-border-width, $n1) !default; // 边框宽度
+$checkbox-opacity-disabled: var(--wot-checkbox-opacity-disabled, $opacity-disabled) !default; // 禁用态透明度
+$checkbox-vertical-padding: var(--wot-checkbox-vertical-padding, $spacing-extra-loose $padding-zero) !default; // 垂直模式多个单选框距离
+$checkbox-horizontal-margin: var(--wot-checkbox-horizontal-margin, $spacing-zero $spacing-extra-loose $spacing-zero $spacing-extra-loose) !default; // 水平模式多个单选框距离
+$checkbox-button-margin: var(--wot-checkbox-button-margin, $spacing-zero $spacing-extra-loose $spacing-extra-loose $spacing-zero) !default; // 按钮模式多个单选框距离
+$checkbox-button-border-width: var(--wot-checkbox-button-border-width, $n1) !default; // 边框宽度
 $checkbox-button-shape-border-radius: var(--wot-checkbox-button-shape-border-radius, $radius-radius-full) !default; // 按钮模式图标圆角大小
 $checkbox-button-shape-size: var(--wot-checkbox-button-shape-size, $n26) !default; // 按钮模式图标容器大小
-$checkbox-button-fs: var(--wot-checkbox-button-fs, $typography-body-size-main) !default; // 按钮模式字号
+$checkbox-button-font-size: var(--wot-checkbox-button-font-size, $typography-body-size-main) !default; // 按钮模式字号
 $checkbox-button-line-height: var(--wot-checkbox-button-line-height, $typography-body-line--height-size-main) !default; // 按钮模式行高
 $checkbox-button-bg: var(--wot-checkbox-button-bg, $filled-bottom) !default; // 按钮模式背景颜色
-$checkbox-button-checked-bg: var(--wot-checkbox-button-checked-bg, $filled-oppo) !default; // 按钮模式选中状态背景颜色
-$checkbox-button-icon-size: var(--wot-checkbox-icon-size, $n10) !default; // 图标尺寸
-$checkbox-button-min-width: var(--wot-checkbox-button-min-width, 74px) !default; // 按钮模式最小宽
-$checkbox-button-max-width: var(--wot-checkbox-button-max-width, 148px) !default; // 按钮模式最大宽
+$checkbox-button-bg-checked: var(--wot-checkbox-button-bg-checked, $filled-oppo) !default; // 按钮模式选中状态背景颜色
+$checkbox-button-icon-size: var(--wot-checkbox-icon-size, $n10) !default; // 按钮模式图标尺寸
+$checkbox-button-min-width: var(--wot-checkbox-button-min-width, calc(74 * #{$n1})) !default; // 按钮模式最小宽
+$checkbox-button-max-width: var(--wot-checkbox-button-max-width, calc(148 * #{$n1})) !default; // 按钮模式最大宽
 $checkbox-button-border-radius: var(--wot-checkbox-button-border-radius, $radius-main) !default; // 按钮圆角大小
 $checkbox-button-padding: var(--wot-checkbox-button-padding, $padding-extra-tight $padding-extra-loose) !default; // 按钮模式内边距
 $checkbox-button-icon-color: var(--wot-checkbox-button-icon-color, $icon-white) !default; // 按钮模式图标颜色
+$checkbox-button-shape-top: var(--wot-checkbox-button-shape-top, calc(-1 * #{$n11})) !default; // 按钮模式勾角顶部偏移
+$checkbox-button-shape-left: var(--wot-checkbox-button-shape-left, calc(-1 * #{$n9})) !default; // 按钮模式勾角左侧偏移
+$checkbox-button-shape-right: var(--wot-checkbox-button-shape-right, calc(-1 * #{$n9})) !default; // 按钮模式勾角右侧偏移
+$checkbox-button-icon-top: var(--wot-checkbox-button-icon-top, calc(13 * #{$n1})) !default; // 按钮模式图标顶部偏移
+$checkbox-button-icon-right: var(--wot-checkbox-button-icon-right, $n4) !default; // 按钮模式图标右侧偏移
+$checkbox-button-icon-left: var(--wot-checkbox-button-icon-left, $n4) !default; // 按钮模式图标左侧偏移
 
 @include b(checkbox) {
   position: relative;
@@ -71,7 +77,7 @@ $checkbox-button-icon-color: var(--wot-checkbox-button-icon-color, $icon-white) 
   }
 
   @include e(label) {
-    font-size: $checkbox-label-fs;
+    font-size: $checkbox-label-font-size;
     color: $checkbox-label-color;
     line-height: $checkbox-label-line-height;
     word-break: break-all;
@@ -86,13 +92,13 @@ $checkbox-button-icon-color: var(--wot-checkbox-button-icon-color, $icon-white) 
 
   @include when(checked) {
     :deep(.wd-checkbox__icon) {
-      color: $checkbox-checked-color;
+      color: $checkbox-color-checked;
     }
   }
 
   @include when(indeterminate) {
     :deep(.wd-checkbox__icon) {
-      color: $checkbox-checked-color;
+      color: $checkbox-color-checked;
     }
   }
 
@@ -103,7 +109,7 @@ $checkbox-button-icon-color: var(--wot-checkbox-button-icon-color, $icon-white) 
     margin: $checkbox-button-margin;
     border-radius: $checkbox-button-border-radius;
     background: $checkbox-button-bg;
-    font-size: $checkbox-button-fs;
+    font-size: $checkbox-button-font-size;
     box-sizing: border-box;
     border: $checkbox-button-border-width solid $checkbox-button-bg;
 
@@ -117,8 +123,8 @@ $checkbox-button-icon-color: var(--wot-checkbox-button-icon-color, $icon-white) 
 
     .wd-checkbox__shape {
       position: absolute;
-      top: -11px;
-      left: -9px;
+      top: $checkbox-button-shape-top;
+      left: $checkbox-button-shape-left;
       width: $checkbox-button-shape-size;
       height: $checkbox-button-shape-size;
       border-radius: $checkbox-button-shape-border-radius;
@@ -127,8 +133,8 @@ $checkbox-button-icon-color: var(--wot-checkbox-button-icon-color, $icon-white) 
 
     :deep(.wd-checkbox__icon) {
       position: absolute;
-      top: 13px;
-      right: 4px;
+      top: $checkbox-button-icon-top;
+      right: $checkbox-button-icon-right;
       font-size: $checkbox-button-icon-size;
       line-height: $checkbox-button-icon-size;
       height: $checkbox-button-icon-size;
@@ -138,28 +144,28 @@ $checkbox-button-icon-color: var(--wot-checkbox-button-icon-color, $icon-white) 
     &.wd-checkbox--right {
       .wd-checkbox__shape {
         left: auto;
-        right: -9px;
+        right: $checkbox-button-shape-right;
       }
 
       :deep(.wd-checkbox__icon) {
         right: auto;
-        left: 4px;
+        left: $checkbox-button-icon-left;
       }
     }
 
     @include when(checked) {
-      color: $checkbox-checked-color;
+      color: $checkbox-color-checked;
       border-color: currentColor;
-      background: $checkbox-button-checked-bg;
+      background: $checkbox-button-bg-checked;
 
       .wd-checkbox__shape {
-        color: $checkbox-checked-color;
+        color: $checkbox-color-checked;
         background: currentColor;
       }
     }
   }
 
   @include when(disabled) {
-    opacity: $checkbox-disabled;
+    opacity: $checkbox-opacity-disabled;
   }
 }

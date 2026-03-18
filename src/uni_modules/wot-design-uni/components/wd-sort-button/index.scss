@@ -1,23 +1,38 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-// 基础样式变量
-$sort-button-height: var(--wot-sort-button-height, $n48) !default; // 组件高度
-$sort-button-font-size: var(--wot-sort-button-font-size, $typography-body-size-main) !default; // 字号
-$sort-button-arrow-icon-size: var(--wot-sort-button-arrow-icon-size, $n24) !default; // 图标大小
+// 组件高度
+$sort-button-height: var(--wot-sort-button-height, $n48) !default;
+// 文字字号
+$sort-button-text-font-size: var(--wot-sort-button-text-font-size, $typography-body-size-main) !default;
+// 文字行高
+$sort-button-text-line-height: var(--wot-sort-button-text-line-height, $typography-body-line--height-size-main) !default;
+// 箭头图标尺寸
+$sort-button-arrow-icon-size: var(--wot-sort-button-arrow-icon-size, $n24) !default;
+// 右侧区域尺寸
 $sort-button-right-size: var(--wot-sort-button-right-size, $n16) !default;
-$sort-button-icon-color: var(--wot-sort-button-font-color, $icon-auxiliary) !default;
-$sort-button-icon-active-color: var(--wot-sort-button-icon-active-color, $primary-6) !default; // 激活态图标颜色
-$sort-button-color: var(--wot-sort-button-color, $text-secondary) !default; // 文字颜色
-$sort-button-active-color: var(--wot-sort-button-active-color, $text-main) !default; // 激活态文字颜色
-$sort-button-active-font-weight: var(--wot-sort-button-active-font-weight, $font-weight-medium) !default; // 激活态字重
-// 下划线变量
-$sort-button-line-width: var(--wot-sort-button-line-width, $n24) !default; // 下划线宽度
-$sort-button-line-height: var(--wot-sort-button-line-height, $n4) !default; // 下划线高度
-$sort-button-line-color: var(--wot-sort-button-line-color, $primary-6) !default; // 下划线颜色
-$sort-button-line-bottom: var(--wot-sort-button-line-bottom, $spacing-ultra-tight) !default; // 下划线底部距离
-$sort-button-right-spacing-left: var(--wot-sort-button-right-spacing-left, $spacing-extra-tight) !default; // 左侧间距
-$sort-button-sort-spacing: var(--wot-sort-button-sort-spacing, $spacing-ultra-tight) !default; // 顶部间距
+// 图标颜色
+$sort-button-icon-color: var(--wot-sort-button-icon-color, $icon-auxiliary) !default;
+// 图标激活颜色
+$sort-button-icon-color-active: var(--wot-sort-button-icon-color-active, $primary-6) !default;
+// 文字颜色
+$sort-button-color: var(--wot-sort-button-color, $text-secondary) !default;
+// 文字激活颜色
+$sort-button-color-active: var(--wot-sort-button-color-active, $text-main) !default;
+// 文字激活字重
+$sort-button-font-weight-active: var(--wot-sort-button-font-weight-active, $font-weight-medium) !default;
+// 下划线宽度
+$sort-button-line-width: var(--wot-sort-button-line-width, $n24) !default;
+// 下划线高度
+$sort-button-line-height: var(--wot-sort-button-line-height, $n4) !default;
+// 下划线颜色
+$sort-button-line-color: var(--wot-sort-button-line-color, $primary-6) !default;
+// 下划线底部距离
+$sort-button-line-bottom: var(--wot-sort-button-line-bottom, $spacing-ultra-tight) !default;
+// 右侧区域左间距
+$sort-button-right-spacing-left: var(--wot-sort-button-right-spacing-left, $spacing-extra-tight) !default;
+// 排序图标纵向间距
+$sort-button-sort-spacing: var(--wot-sort-button-sort-spacing, $spacing-ultra-tight) !default;
 
 @include b(sort-button) {
   display: inline-flex;
@@ -47,7 +62,8 @@ $sort-button-sort-spacing: var(--wot-sort-button-sort-spacing, $spacing-ultra-ti
   }
 
   @include e(wrapper) {
-    font-size: $sort-button-font-size;
+    font-size: $sort-button-text-font-size;
+    line-height: $sort-button-text-line-height;
     color: $sort-button-color;
     word-break: break-all;
     white-space: nowrap;
@@ -63,8 +79,8 @@ $sort-button-sort-spacing: var(--wot-sort-button-sort-spacing, $spacing-ultra-ti
     height: 100%;
 
     @include when(active) {
-      font-weight: $sort-button-active-font-weight;
-      color: $sort-button-active-color;
+      font-weight: $sort-button-font-weight-active;
+      color: $sort-button-color-active;
     }
   }
 
@@ -92,7 +108,7 @@ $sort-button-sort-spacing: var(--wot-sort-button-sort-spacing, $spacing-ultra-ti
     transform-origin: top;
 
     @include m(active){
-      color: $sort-button-icon-active-color;
+      color: $sort-button-icon-color-active;
     }
   }
   
@@ -103,7 +119,7 @@ $sort-button-sort-spacing: var(--wot-sort-button-sort-spacing, $spacing-ultra-ti
     transform-origin: bottom;
 
     @include m(active){
-      color: $sort-button-icon-active-color;
+      color: $sort-button-icon-color-active;
     }
   }
 

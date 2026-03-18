@@ -1,9 +1,13 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
+// 幕帘内容圆角
 $curtain-content-radius: var(--wot-curtain-content-radius, $radius-large) !default;
+// 幕帘关闭图标颜色
 $curtain-content-close-color: var(--wot-curtain-content-close-color, $text-white) !default;
+// 幕帘关闭图标尺寸
 $curtain-content-close-size: var(--wot-curtain-content-close-size, $n32) !default;
+// 幕帘关闭图标偏移
 $curtain-content-close-inset: var(--wot-curtain-content-close-inset, $spacing-extra-loose) !default;
 
 :deep() {

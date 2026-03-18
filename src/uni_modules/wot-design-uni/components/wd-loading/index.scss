@@ -1,33 +1,41 @@
 @use '../styles/mixin/mixin.scss'as *;
 @use '../styles/variable.scss'as *;
 
-/* ================================ 组件SCSS变量 ================================ */
-
-/* 颜色变量 */
+// 主色模式颜色
 $loading-color-main: var(--wot-loading-color-main, $primary-6) !default;
+// 常规模式颜色
 $loading-color-normal: var(--wot-loading-color-normal, $icon-secondary) !default;
+// 白色模式颜色
 $loading-color-white: var(--wot-loading-color-white, $icon-white) !default;
+// 文本颜色
 $loading-color-text: var(--wot-loading-color-text, $text-main) !default;
-
-/* 尺寸变量 */
+// 组件基准尺寸
 $loading-size: var(--wot-loading-size, $n28) !default;
+// 容器宽度
 $loading-size-width: var(--wot-loading-size-width, 1em) !default;
+// 容器高度
 $loading-size-height: var(--wot-loading-size-height, 1em) !default;
+// 圆形加载器描边宽度
 $loading-spinner-circle-stroke-width: var(--wot-loading-spinner-circle-stroke-width, 15%) !default;
+// 圆形加载器圆角
 $loading-spinner-circle-radius: var(--wot-loading-spinner-circle-radius, $radius-radius-full) !default;
+// 旋转动画时长
 $loading-spinner-animation-duration: var(--wot-loading-spinner-animation-duration, 0.8s) !default;
+// 条状点宽度
 $loading-spinner-dot-width: var(--wot-loading-spinner-dot-width, 10%) !default;
+// 条状点高度
 $loading-spinner-dot-height: var(--wot-loading-spinner-dot-height, 25%) !default;
+// 条状点圆角
 $loading-spinner-dot-radius: var(--wot-loading-spinner-dot-radius, $radius-radius-full) !default;
+// 点状加载器单点尺寸
 $loading-spinner-dots-dot-size: var(--wot-loading-spinner-dots-dot-size, 20%) !default;
+// 点状加载器单点圆角
 $loading-spinner-dots-dot-radius: var(--wot-loading-spinner-dots-dot-radius, $radius-radius-full) !default;
+// 加载器内边距
 $loading-spinner-padding: var(--wot-loading-spinner-padding, $padding-ultra-tight) !default;
-
-
-/* 间距变量 */
+// 文本与加载器间距
 $loading-text-spacing: var(--wot-loading-text-spacing, $spacing-extra-tight) !default;
-
-/* 文本变量 */
+// 文本字号
 $loading-text-font-size: var(--wot-loading-text-font-size, $n14) !default;
 
 
