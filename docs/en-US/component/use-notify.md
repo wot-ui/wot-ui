@@ -12,7 +12,7 @@ You need to import the wd-notify component in the page as a mounting point.
 ```
 
 ```ts
-import { useNotify } from '@/uni_modules/wot-design-uni'
+import { useNotify } from '@/uni_modules/wot-ui'
 
 const { showNotify } = useNotify()
 

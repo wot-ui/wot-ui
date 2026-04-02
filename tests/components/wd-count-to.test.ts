@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdCountTo from '@/uni_modules/wot-design-uni/components/wd-count-to/wd-count-to.vue'
-import WdText from '@/uni_modules/wot-design-uni/components/wd-text/wd-text.vue'
+import WdCountTo from '@/uni_modules/wot-ui/components/wd-count-to/wd-count-to.vue'
+import WdText from '@/uni_modules/wot-ui/components/wd-text/wd-text.vue'
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
 import { nextTick } from 'vue'
 

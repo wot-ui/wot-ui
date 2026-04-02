@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
-import WdRootPortal from '@/uni_modules/wot-design-uni/components/wd-root-portal/wd-root-portal.vue'
+import WdRootPortal from '@/uni_modules/wot-ui/components/wd-root-portal/wd-root-portal.vue'
 import { describe, test, expect, vi } from 'vitest'
 
 describe('WdRootPortal', () => {

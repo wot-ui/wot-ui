@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest'
 import { ref, reactive, nextTick, defineComponent, inject, h } from 'vue'
 import { mount } from '@vue/test-utils'
-import { useConfigProvider, USE_CONFIG_PROVIDER_KEY } from '@/uni_modules/wot-design-uni/composables/useConfigProvider'
+import { useConfigProvider, USE_CONFIG_PROVIDER_KEY } from '@/uni_modules/wot-ui/composables/useConfigProvider'
 
 const ChildComponent = defineComponent({
   setup() {

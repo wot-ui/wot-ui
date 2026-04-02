@@ -38,7 +38,7 @@
 ```
 
 ```ts [ts]
-import { useToast, useQueue } from '@/uni_modules/wot-design-uni'
+import { useToast, useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 const toast = useToast()
@@ -149,7 +149,7 @@ function handleAction(action: string) {
 
 ```ts [ts]
 import { ref } from 'vue'
-import type { SwipeActionStatus } from '@/uni_modules/wot-design-uni/components/wd-swipe-action/types'
+import type { SwipeActionStatus } from '@/uni_modules/wot-ui/components/wd-swipe-action/types'
 
 const value = ref<SwipeActionStatus>('close')
 
@@ -190,8 +190,8 @@ function noop() {}
 ```
 
 ```ts [ts]
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { SwipeActionBeforeClose } from '@/uni_modules/wot-design-uni/components/wd-swipe-action/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { SwipeActionBeforeClose } from '@/uni_modules/wot-ui/components/wd-swipe-action/types'
 
 const toast = useToast()
 
@@ -238,8 +238,8 @@ const beforeClose: SwipeActionBeforeClose = (reason, position) => {
 ```
 
 ```ts
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { SwipeActionClickEvent } from '@/uni_modules/wot-design-uni/components/wd-swipe-action/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { SwipeActionClickEvent } from '@/uni_modules/wot-ui/components/wd-swipe-action/types'
 
 const toast = useToast()
 

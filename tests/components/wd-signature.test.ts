@@ -1,9 +1,9 @@
 import { config, mount } from '@vue/test-utils'
-import WdSignature from '@/uni_modules/wot-design-uni/components/wd-signature/wd-signature.vue'
-import WdButton from '@/uni_modules/wot-design-uni/components/wd-button/wd-button.vue'
+import WdSignature from '@/uni_modules/wot-ui/components/wd-signature/wd-signature.vue'
+import WdButton from '@/uni_modules/wot-ui/components/wd-button/wd-button.vue'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import type { SignatureResult } from '@/uni_modules/wot-design-uni/components/wd-signature/types'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import type { SignatureResult } from '@/uni_modules/wot-ui/components/wd-signature/types'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 config.global.components = { WdLoading }
 
 const touchEvent = (x: number, y: number) => ({

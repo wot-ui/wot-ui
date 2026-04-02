@@ -11,13 +11,13 @@
 
 <p align="center">
 
-<a href="https://github.com/Moonofweisheng/wot-design-uni">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Moonofweisheng/wot-design-uni?logo=github&color=%234d80f0&link=https%3A%2F%2Fgithub.com%2FMoonofweisheng%2Fwot-design-uni&style=flat-square">
+<a href="https://github.com/wot-ui/wot-ui">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/wot-ui/wot-ui?logo=github&color=%234d80f0&link=https%3A%2F%2Fgithub.com%2Fwot-ui%2Fwot-ui&style=flat-square">
  </a>
 
 
-<a href="https://github.com/Moonofweisheng/wot-design-uni">
-  <img alt="GitHub" src="https://img.shields.io/codecov/c/github/Moonofweisheng/wot-design-uni?style=flat-square">
+<a href="https://github.com/wot-ui/wot-ui">
+  <img alt="GitHub" src="https://img.shields.io/codecov/c/github/wot-ui/wot-ui?style=flat-square">
  </a>
 
 <a href="https://www.npmjs.com/package/wot-design-uni">
@@ -40,8 +40,6 @@
 
 <p align="center">
   🚀 <a href="https://wot-ui.cn">Documentation (Recommended)</a>&nbsp;
-  ✈️ <a href="https://wot-design-uni.pages.dev/">Documentation (Cloudflare)</a>&nbsp;
-  🔥 <a href="https://wot-design-uni.netlify.app/">Documentation (Netlify)</a>&nbsp;
 </p>
 
 ## ✨ Features
@@ -73,14 +71,14 @@ For detailed instructions, see [Quick Start](https://wot-ui.cn/guide/quick-use.h
 
 - [FAQ](https://wot-ui.cn/guide/common-problems.html)
 - [Changelog](https://wot-ui.cn/guide/changelog.html)
-- [Discussions](https://github.com/Moonofweisheng/wot-design-uni/discussions)
+- [Discussions](https://github.com/wot-ui/wot-ui/discussions)
 - [QQ Group](https://wot-ui.cn/guide/join-group.html)
 
 ## Showcase
 
 Check out some excellent [examples](https://wot-ui.cn/guide/cases.html) here!
 
-We welcome contributions of excellent demos and cases. Feel free to submit your case in this [issue](https://github.com/Moonofweisheng/wot-design-uni/issues/16).
+We welcome contributions of excellent demos and cases. Feel free to submit your case in this [issue](https://github.com/wot-ui/wot-ui/issues/16).
 
 ## Ecosystem
 
@@ -102,14 +100,14 @@ We welcome contributions of excellent demos and cases. Feel free to submit your 
 
 Please read our [Contributing Guide](./.github/CONTRIBUTING.md) before making changes to the code.
 
-If you encounter any issues, please feel free to submit an [Issue](https://github.com/Moonofweisheng/wot-design-uni/issues). We also welcome your [Pull Requests](https://github.com/Moonofweisheng/wot-design-uni/pulls).
+If you encounter any issues, please feel free to submit an [Issue](https://github.com/wot-ui/wot-ui/issues). We also welcome your [Pull Requests](https://github.com/wot-ui/wot-ui/pulls).
 
 ## Contributors
 
-Thanks to all the [developers](https://github.com/Moonofweisheng/wot-design-uni/graphs/contributors) who have contributed to Wot UI.
+Thanks to all the [developers](https://github.com/wot-ui/wot-ui/graphs/contributors) who have contributed to Wot UI.
 
-<a href="https://github.com/Moonofweisheng/wot-design-uni/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Moonofweisheng/wot-design-uni" />
+<a href="https://github.com/wot-ui/wot-ui/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=wot-ui/wot-ui" />
 </a>
 
 ## Donate
@@ -141,4 +139,4 @@ After donating, your nickname and message will be displayed on the [donor list](
 
 This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). Feel free to enjoy and participate in open source.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Moonofweisheng/wot-design-uni&type=Date)](https://star-history.com/#Moonofweisheng/wot-design-uni&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=wot-ui/wot-ui&type=Date)](https://star-history.com/#wot-ui/wot-ui&Date)

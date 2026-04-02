@@ -18,7 +18,7 @@ Alert 仅展示确认按钮，常用于消息通知。
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -40,7 +40,7 @@ Confirm 通过 `Promise` 返回用户操作结果，`then` 对应确认，`catch
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -69,7 +69,7 @@ Prompt 会展示输入框，可用于采集文本并进行校验。
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -98,7 +98,7 @@ const openPrompt = () => {
 ```
 
 ```ts
-import { useDialog, useToast } from '@/uni_modules/wot-design-uni'
+import { useDialog, useToast } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 const toast = useToast()
@@ -130,7 +130,7 @@ Prompt 同时支持正则校验 `input-pattern` 与函数校验 `input-validate`
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -159,7 +159,7 @@ const openPromptValidate = () => {
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -183,7 +183,7 @@ const openTextTheme = () => {
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -212,7 +212,7 @@ const openActions = () => {
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -236,7 +236,7 @@ const openStyledDialog = () => {
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -271,7 +271,7 @@ const openCustomButtons = () => {
 
 ```ts
 import { ref } from 'vue'
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const rate = ref(1)
 const slotDialog = useDialog('wd-dialog-slot')
@@ -293,7 +293,7 @@ const openSlotDialog = () => {
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 

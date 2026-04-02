@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { describe, test, expect } from 'vitest'
 import { nextTick } from 'vue'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 
 describe('WdLoading', () => {
   // 测试基本渲染

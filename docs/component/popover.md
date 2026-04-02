@@ -26,7 +26,7 @@ Popover 的定位规则与 [Tooltip](/component/tooltip.html) 保持一致，支
 ```
 ```ts [typescript]
 import { ref } from 'vue'
-import { useQueue } from '@/uni_modules/wot-design-uni'
+import { useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 const showBasic = ref<boolean>(false)
@@ -45,8 +45,8 @@ const showBasic = ref<boolean>(false)
 ```
 ```ts [typescript]
 import { ref } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { PopoverMenuItem } from '@/uni_modules/wot-design-uni/components/wd-popover/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { PopoverMenuItem } from '@/uni_modules/wot-ui/components/wd-popover/types'
 
 const { show: showToast } = useToast()
 const showMenu = ref<boolean>(false)
@@ -135,7 +135,7 @@ const showControlled = ref<boolean>(false)
 ```
 ```ts [typescript]
 import { ref } from 'vue'
-import type { PlacementType } from '@/uni_modules/wot-design-uni/components/wd-popover/types'
+import type { PlacementType } from '@/uni_modules/wot-ui/components/wd-popover/types'
 
 const placement = ref<PlacementType>('bottom')
 const showPlacement = ref<boolean>(false)
@@ -220,7 +220,7 @@ const showCustom = ref<boolean>(false)
 ```
 ```ts [typescript]
 import { nextTick, ref } from 'vue'
-import type { PlacementType, PopoverInstance } from '@/uni_modules/wot-design-uni/components/wd-popover/types'
+import type { PlacementType, PopoverInstance } from '@/uni_modules/wot-ui/components/wd-popover/types'
 
 const placement = ref<PlacementType>('bottom')
 const showDynamic = ref<boolean>(false)

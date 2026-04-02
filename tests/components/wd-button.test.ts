@@ -1,7 +1,7 @@
 import { mount, config } from '@vue/test-utils'
-import WdButton from '@/uni_modules/wot-design-uni/components/wd-button/wd-button.vue'
-import wdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdButton from '@/uni_modules/wot-ui/components/wd-button/wd-button.vue'
+import wdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
 import {
@@ -11,7 +11,7 @@ import {
   type ButtonLang,
   type ButtonScope,
   type ButtonVariant
-} from '@/uni_modules/wot-design-uni/components/wd-button/types'
+} from '@/uni_modules/wot-ui/components/wd-button/types'
 
 // Register WdLoading globally for tests as it is not imported in WdButton
 config.global.components['wd-loading'] = WdLoading

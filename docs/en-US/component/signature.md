@@ -162,7 +162,7 @@ Use the signature pad in a popup by combining with the `wd-popup` component. It'
 
 ```typescript
 import { ref } from 'vue'
-import type { SignatureInstance, SignatureResult } from '@/uni_modules/wot-design-uni/components/wd-signature/types'
+import type { SignatureInstance, SignatureResult } from '@/uni_modules/wot-ui/components/wd-signature/types'
 
 const show = ref(false)
 const img = ref<Partial<SignatureResult>>({})

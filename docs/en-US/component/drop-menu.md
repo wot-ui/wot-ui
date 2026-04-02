@@ -24,7 +24,7 @@ If there is a scenario where the user manually clicks somewhere outside the `dro
 ```
 
 ```typescript
-import { useQueue } from '@/uni_modules/wot-design-uni'
+import { useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 const value1 = ref<number>(0)
@@ -136,8 +136,8 @@ The `before-toggle` function cannot prevent the expansion/closure operations of 
 ```
 
 ```typescript
-import { useDialog } from '@/uni_modules/wot-design-uni'
-import type { DropMenuItemBeforeToggle } from '@/uni_modules/wot-design-uni/components/wd-drop-menu-item/types'
+import { useDialog } from '@/uni_modules/wot-ui'
+import type { DropMenuItemBeforeToggle } from '@/uni_modules/wot-ui/components/wd-drop-menu-item/types'
 
 const messageBox = useDialog()
 

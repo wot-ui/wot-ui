@@ -82,7 +82,7 @@ After obtaining joining qualifications through either of these two methods, you 
 ***Quick Problem Location Tips***
 1. Read component documentation to check for any omissions.
 2. Check [Common Problems](/en-US/guide/common-problems) for similar issues.
-3. Check [Github issues](https://github.com/Moonofweisheng/wot-design-uni/issues) for similar problems.
+3. Check [Github issues](https://github.com/wot-ui/wot-ui/issues) for similar problems.
 4. Review [Changelog](/en-US/guide/changelog) for relevant updates.
 5. Learn [How To Ask Questions The Smart Way](https://lug.ustc.edu.cn/wiki/doc/smart-questions/), how to quickly ask the right questions.
 6. The communication groups mainly provide a platform for mutual assistance and exchange. Please communicate friendly and don't be a freeloader. Thank you for your support.

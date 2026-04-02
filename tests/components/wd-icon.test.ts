@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 
 describe('WdIcon', () => {

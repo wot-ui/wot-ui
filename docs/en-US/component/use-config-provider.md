@@ -12,7 +12,7 @@ Needs to be used together with the `ConfigProvider` component. Wrap your compone
 ## Basic Usage
 
 ```ts
-import { useConfigProvider } from '@/uni_modules/wot-design-uni'
+import { useConfigProvider } from '@/uni_modules/wot-ui'
 import { reactive, ref } from 'vue'
 
 // Use reactive

@@ -1,6 +1,6 @@
-# wot-design-uni 测试指南
+# wot-ui 测试指南
 
-本文档提供了 wot-design-uni 组件库的测试策略、工作流程和最佳实践指南。
+本文档提供了 wot-ui 组件库的测试策略、工作流程和最佳实践指南。
 
 ## 目录
 
@@ -14,7 +14,7 @@
 
 ## 测试策略
 
-wot-design-uni 采用以下测试策略：
+wot-ui 采用以下测试策略：
 
 ### 分层测试
 
@@ -41,7 +41,7 @@ wot-design-uni 采用以下测试策略：
 
 ## 测试工作流
 
-wot-design-uni 使用 GitHub Actions 自动化测试流程，主要工作流文件是 `.github/workflows/component-testing.yml`。
+wot-ui 使用 GitHub Actions 自动化测试流程，主要工作流文件是 `.github/workflows/component-testing.yml`。
 
 ### 触发条件
 
@@ -114,7 +114,7 @@ pnpm test:h5
 ```typescript
 import { mount } from '@vue/test-utils'
 import { describe, test, expect, vi } from 'vitest'
-import WdComponent from '../../src/uni_modules/wot-design-uni/components/wd-component/wd-component.vue'
+import WdComponent from '../../src/uni_modules/wot-ui/components/wd-component/wd-component.vue'
 
 describe('WdComponent', () => {
   // 测试基本渲染

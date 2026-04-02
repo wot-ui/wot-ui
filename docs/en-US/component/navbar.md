@@ -55,7 +55,7 @@ Add clickable buttons on the right side of the navigation bar.
 ```
 
 ```ts
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const { show: showToast } = useToast()
 

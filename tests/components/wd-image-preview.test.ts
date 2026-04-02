@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
 import { describe, test, expect, vi } from 'vitest'
 import { defineComponent, nextTick } from 'vue'
-import WdImagePreview from '@/uni_modules/wot-design-uni/components/wd-image-preview/wd-image-preview.vue'
-import { getImageUrl, useImagePreview } from '@/uni_modules/wot-design-uni/components/wd-image-preview'
+import WdImagePreview from '@/uni_modules/wot-ui/components/wd-image-preview/wd-image-preview.vue'
+import { getImageUrl, useImagePreview } from '@/uni_modules/wot-ui/components/wd-image-preview'
 import '../mocks/wd-transition.mock'
 
 const IMAGES = ['https://example.com/img1.jpg', 'https://example.com/img2.jpg', 'https://example.com/img3.jpg']

@@ -82,7 +82,7 @@ Get the component instance through `ref` and call the `reset` method to reset th
 
 ```typescript
 import { ref } from 'vue'
-import type { SlideVerifyInstance } from '@/uni_modules/wot-design-uni/components/wd-slide-verify/type'
+import type { SlideVerifyInstance } from '@/uni_modules/wot-ui/components/wd-slide-verify/type'
 
 const slideVerifyRef = ref<SlideVerifyInstance>()
 

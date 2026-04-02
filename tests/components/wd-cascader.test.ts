@@ -1,8 +1,8 @@
 import { config, mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
 import { describe, expect, test, vi } from 'vitest'
-import WdCascader from '@/uni_modules/wot-design-uni/components/wd-cascader/wd-cascader.vue'
-import WdBadge from '@/uni_modules/wot-design-uni/components/wd-badge/wd-badge.vue'
+import WdCascader from '@/uni_modules/wot-ui/components/wd-cascader/wd-cascader.vue'
+import WdBadge from '@/uni_modules/wot-ui/components/wd-badge/wd-badge.vue'
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 config.global.components = { WdBadge }

@@ -11,13 +11,13 @@
 
 <p align="center">
 
-<a href="https://github.com/Moonofweisheng/wot-design-uni">
-  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Moonofweisheng/wot-design-uni?logo=github&color=%234d80f0&link=https%3A%2F%2Fgithub.com%2FMoonofweisheng%2Fwot-design-uni&style=flat-square">
+<a href="https://github.com/wot-ui/wot-ui">
+  <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/wot-ui/wot-ui?logo=github&color=%234d80f0&link=https%3A%2F%2Fgithub.com%2Fwot-ui%2Fwot-ui&style=flat-square">
  </a>
 
 
-<a href="https://github.com/Moonofweisheng/wot-design-uni">
-  <img alt="GitHub" src="https://img.shields.io/codecov/c/github/Moonofweisheng/wot-design-uni?style=flat-square">
+<a href="https://github.com/wot-ui/wot-ui">
+  <img alt="GitHub" src="https://img.shields.io/codecov/c/github/wot-ui/wot-ui?style=flat-square">
  </a>
 
 <a href="https://www.npmjs.com/package/wot-design-uni">
@@ -40,8 +40,6 @@
 
 <p align="center">
   🚀 <a href="https://wot-ui.cn">文档网站 (推荐)</a>&nbsp;
-  ✈️ <a href="https://wot-design-uni.pages.dev/">文档网站（cloudflare）</a>&nbsp;
-  🔥 <a href="https://wot-design-uni.netlify.app/">文档网站 (Netlify)</a>
 </p>
 
 ## ✨ 特性
@@ -75,7 +73,7 @@
 
 [这里](https://wot-ui.cn/guide/cases.html)我们收集了一些优秀的案例，欢迎大家体验！
 
-我们也非常欢迎大家一起贡献优秀的 Demo 与案例，欢迎在此 [issue](https://github.com/Moonofweisheng/wot-design-uni/issues/16) 提交案例。
+我们也非常欢迎大家一起贡献优秀的 Demo 与案例，欢迎在此 [issue](https://github.com/wot-ui/wot-ui/issues/16) 提交案例。
 
 ## 周边生态
 
@@ -90,21 +88,20 @@
 | [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | 一个 uni-app 小程序端构建后支持 CI（持续集成）的插件 |
 | [my-uni](https://github.com/wot-ui/my-uni)                                        | 摸鱼 uni 插件库合集  |
 | [unibest](https://github.com/unibest-tech/unibest)                                                              | 基于 wot-ui 的 uni-app 模板                  |
-| [wot-design-uni AI 助手](https://www.coze.cn/store/bot/7347916532258701363)                                 | 一个能回答你关于 wot-ui 组件库问题的智能助手 |
 | [uni-ku-root](https://github.com/uni-ku/root)                                                               | 一个模拟 App.vue 原有能力的根组件插件                  |
 
 ## 贡献指南
 
 修改代码请阅读我们的 [贡献指南](./.github/CONTRIBUTING.md)。
 
-使用过程中发现任何问题都可以提 [Issue](https://github.com/Moonofweisheng/wot-design-uni/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/Moonofweisheng/wot-design-uni/pulls)。
+使用过程中发现任何问题都可以提 [Issue](https://github.com/wot-ui/wot-ui/issues) 给我们，当然，我们也非常欢迎你给我们发 [PR](https://github.com/wot-ui/wot-ui/pulls)。
 
 ## 贡献者们
 
-感谢以下所有给 Wot UI 贡献过代码的 [开发者](https://github.com/Moonofweisheng/wot-design-uni/graphs/contributors)。
+感谢以下所有给 Wot UI 贡献过代码的 [开发者](https://github.com/wot-ui/wot-ui/graphs/contributors)。
 
-<a href="https://github.com/Moonofweisheng/wot-design-uni/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Moonofweisheng/wot-design-uni" />
+<a href="https://github.com/wot-ui/wot-ui/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=wot-ui/wot-ui" />
 </a>
 
 ## 捐赠本项目
@@ -129,9 +126,9 @@
 
 ## 鸣谢
 
-- [wot-design](https://github.com/jd-ftf/wot-design-mini) - 感谢 wot-design 团队多年来的不断维护，让 wot-design-uni 能够站在巨人的肩膀上。
-- [uni-helper](https://github.com/uni-helper) - 感谢 uni-helper 团队提供的 uni-app 工具库，让 wot-design-uni 能够更方便地使用。
-- [捐赠者](https://wot-ui.cn/reward/donor.html) - 感谢所有捐赠者，是你们的捐赠让 wot-design-uni 能够更好地发展。
+- [wot-design](https://github.com/jd-ftf/wot-design-mini) - 感谢 wot-design 团队多年来的不断维护，让 wot-ui 能够站在巨人的肩膀上。
+- [uni-helper](https://github.com/uni-helper) - 感谢 uni-helper 团队提供的 uni-app 工具库，让 wot-ui 能够更方便地使用。
+- [捐赠者](https://wot-ui.cn/reward/donor.html) - 感谢所有捐赠者，是你们的捐赠让 wot-ui 能够更好地发展。
 
 
 ## 开源协议
@@ -139,4 +136,4 @@
 本项目基于 [MIT](https://zh.wikipedia.org/wiki/MIT%E8%A8%B1%E5%8F%AF%E8%AD%89) 协议，请自由地享受和参与开源。
 
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Moonofweisheng/wot-design-uni&type=Date)](https://star-history.com/#Moonofweisheng/wot-design-uni&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=wot-ui/wot-ui&type=Date)](https://star-history.com/#wot-ui/wot-ui&Date)

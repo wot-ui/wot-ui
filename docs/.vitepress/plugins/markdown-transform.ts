@@ -1,5 +1,5 @@
 import { Plugin } from 'vite';
-import { camelCase } from '../../../src/uni_modules/wot-design-uni/common/util'
+import { camelCase } from '../../../src/uni_modules/wot-ui/common/util'
 import path from 'path'
 import i18n from '../locales/markdown-transform'
 
@@ -12,12 +12,12 @@ export function MarkdownTransform(): Plugin {
       if (!id.includes('/component')) return
       if (id.includes('/use-')) return
 
-      const GITHUB_URL = 'https://github.com/Moonofweisheng/wot-design-uni/tree/master'
+      const GITHUB_URL = 'https://github.com/wot-ui/wot-ui/tree/master'
       const componentId = path.basename(id, '.md')
       const componentName = `wd-${componentId}`
       const camelComponentId = camelCase(componentId)
       const demoUrl = `${GITHUB_URL}/src/subPages/${camelComponentId}`
-      const componentUrl = `${GITHUB_URL}/src/uni_modules/wot-design-uni/components/${componentName}`
+      const componentUrl = `${GITHUB_URL}/src/uni_modules/wot-ui/components/${componentName}`
       
       // 根据文件路径判断当前语言
       const lang = id.includes('/en-US/') ? 'en-US' : 'zh-CN'

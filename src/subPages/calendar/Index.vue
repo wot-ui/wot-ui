@@ -123,14 +123,14 @@
   <wd-dialog />
 </template>
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 import dayjs from 'dayjs'
-import type { CalendarDayItem, CalendarFormatter } from '@/uni_modules/wot-design-uni/components/wd-calendar-view/types'
-import type { CalendarBeforeConfirm, CalendarOnShortcutsClickOption } from '@/uni_modules/wot-design-uni/components/wd-calendar/types'
+import type { CalendarDayItem, CalendarFormatter } from '@/uni_modules/wot-ui/components/wd-calendar-view/types'
+import type { CalendarBeforeConfirm, CalendarOnShortcutsClickOption } from '@/uni_modules/wot-ui/components/wd-calendar/types'
 import { nextTick, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { getWeekNumber } from '@/uni_modules/wot-design-uni/components/wd-calendar-view/utils'
-import { padZero } from '@/uni_modules/wot-design-uni/common/util'
+import { getWeekNumber } from '@/uni_modules/wot-ui/components/wd-calendar-view/utils'
+import { padZero } from '@/uni_modules/wot-ui/common/util'
 
 const { t } = useI18n()
 

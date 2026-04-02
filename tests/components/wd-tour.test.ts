@@ -1,10 +1,10 @@
 import { mount, config } from '@vue/test-utils'
-import WdTour from '@/uni_modules/wot-design-uni/components/wd-tour/wd-tour.vue'
+import WdTour from '@/uni_modules/wot-ui/components/wd-tour/wd-tour.vue'
 import { describe, test, expect, vi, beforeEach, afterAll } from 'vitest'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 
 // 模拟 useLockScroll 函数
-vi.mock('@/uni_modules/wot-design-uni/composables/useLockScroll', () => ({
+vi.mock('@/uni_modules/wot-ui/composables/useLockScroll', () => ({
   default: vi.fn(() => ({
     lock: vi.fn(),
     unlock: vi.fn()

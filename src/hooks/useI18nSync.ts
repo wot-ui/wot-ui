@@ -4,7 +4,7 @@
  * @Description: 国际化同步hook，用于处理示例项目和docs项目之间的国际化同步
  */
 import { computed, onBeforeMount } from 'vue'
-import { Locale } from '../uni_modules/wot-design-uni/locale'
+import { Locale } from '../uni_modules/wot-ui/locale'
 import i18n from '../locale'
 
 // 支持的语言列表

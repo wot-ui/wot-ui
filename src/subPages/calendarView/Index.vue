@@ -72,7 +72,7 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import type { CalendarFormatter } from '@/uni_modules/wot-design-uni/components/wd-calendar-view/types'
+import type { CalendarFormatter } from '@/uni_modules/wot-ui/components/wd-calendar-view/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

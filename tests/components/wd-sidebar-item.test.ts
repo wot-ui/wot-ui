@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils'
 import { describe, test, expect, vi } from 'vitest'
 import { nextTick } from 'vue'
-import WdSidebarItem from '@/uni_modules/wot-design-uni/components/wd-sidebar-item/wd-sidebar-item.vue'
-import WdSidebar from '@/uni_modules/wot-design-uni/components/wd-sidebar/wd-sidebar.vue'
-import WdBadge from '@/uni_modules/wot-design-uni/components/wd-badge/wd-badge.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdSidebarItem from '@/uni_modules/wot-ui/components/wd-sidebar-item/wd-sidebar-item.vue'
+import WdSidebar from '@/uni_modules/wot-ui/components/wd-sidebar/wd-sidebar.vue'
+import WdBadge from '@/uni_modules/wot-ui/components/wd-badge/wd-badge.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 
 const globalComponents = { WdSidebar, WdSidebarItem, WdBadge, WdIcon }
 

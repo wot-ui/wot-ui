@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
 
-import WdCurtain from '@/uni_modules/wot-design-uni/components/wd-curtain/wd-curtain.vue'
+import WdCurtain from '@/uni_modules/wot-ui/components/wd-curtain/wd-curtain.vue'
 import { describe, expect, test, vi } from 'vitest'
 
 describe('WdCurtain', () => {

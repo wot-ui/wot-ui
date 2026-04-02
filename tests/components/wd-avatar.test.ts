@@ -1,7 +1,7 @@
 import { config, mount } from '@vue/test-utils'
-import WdAvatar from '@/uni_modules/wot-design-uni/components/wd-avatar/wd-avatar.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import WdImg from '@/uni_modules/wot-design-uni/components/wd-img/wd-img.vue'
+import WdAvatar from '@/uni_modules/wot-ui/components/wd-avatar/wd-avatar.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import WdImg from '@/uni_modules/wot-ui/components/wd-img/wd-img.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 config.global.components = { WdIcon, WdImg }
 

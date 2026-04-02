@@ -144,8 +144,8 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { TabsInstance } from '@/uni_modules/wot-design-uni/components/wd-tabs/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { TabsInstance } from '@/uni_modules/wot-ui/components/wd-tabs/types'
 import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

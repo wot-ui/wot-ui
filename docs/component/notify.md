@@ -15,7 +15,7 @@
 ```
 
 ```ts
-import { useNotify } from '@/uni_modules/wot-design-uni'
+import { useNotify } from '@/uni_modules/wot-ui'
 
 const { showNotify, closeNotify } = useNotify()
 

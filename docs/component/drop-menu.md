@@ -27,7 +27,7 @@
 
 ```ts
 import { ref } from 'vue'
-import { useQueue } from '@/uni_modules/wot-design-uni'
+import { useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 const value1 = ref(0)
@@ -95,8 +95,8 @@ const handleChange2 = ({ value }: { value: string | number }) => {
 
 ```ts
 import { ref } from 'vue'
-import { useDialog } from '@/uni_modules/wot-design-uni'
-import type { DropMenuItemBeforeToggle } from '@/uni_modules/wot-design-uni/components/wd-drop-menu-item/types'
+import { useDialog } from '@/uni_modules/wot-ui'
+import type { DropMenuItemBeforeToggle } from '@/uni_modules/wot-ui/components/wd-drop-menu-item/types'
 
 const dialog = useDialog()
 const value = ref(0)
@@ -170,8 +170,8 @@ const handleBeforeToggle: DropMenuItemBeforeToggle = ({ status }) => {
 
 ```ts
 import { ref } from 'vue'
-import type { SliderInstance } from '@/uni_modules/wot-design-uni/components/wd-slider/types'
-import type { DropMenuItemInstance } from '@/uni_modules/wot-design-uni/components/wd-drop-menu-item/types'
+import type { SliderInstance } from '@/uni_modules/wot-ui/components/wd-slider/types'
+import type { DropMenuItemInstance } from '@/uni_modules/wot-ui/components/wd-drop-menu-item/types'
 
 const dropMenu = ref<DropMenuItemInstance>()
 const slider = ref<SliderInstance>()

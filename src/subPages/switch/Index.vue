@@ -62,8 +62,8 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useDialog } from '@/uni_modules/wot-design-uni'
-import type { SwitchBeforeChange } from '@/uni_modules/wot-design-uni/components/wd-switch/types'
+import { useDialog } from '@/uni_modules/wot-ui'
+import type { SwitchBeforeChange } from '@/uni_modules/wot-ui/components/wd-switch/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 

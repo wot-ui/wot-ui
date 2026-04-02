@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils'
 import { describe, test, expect } from 'vitest'
 import { nextTick } from 'vue'
-import WdFormItem from '@/uni_modules/wot-design-uni/components/wd-form-item/wd-form-item.vue'
-import WdForm from '@/uni_modules/wot-design-uni/components/wd-form/wd-form.vue'
-import WdCell from '@/uni_modules/wot-design-uni/components/wd-cell/wd-cell.vue'
+import WdFormItem from '@/uni_modules/wot-ui/components/wd-form-item/wd-form-item.vue'
+import WdForm from '@/uni_modules/wot-ui/components/wd-form/wd-form.vue'
+import WdCell from '@/uni_modules/wot-ui/components/wd-cell/wd-cell.vue'
 
 const globalComponents = { WdFormItem, WdForm, WdCell }
 

@@ -5,7 +5,7 @@ description: 为组件创建单元测试的标准流程
 
 # 创建测试技能
 
-本技能用于为 `wot-design-uni` 项目中的组件创建单元测试。测试框架使用 `vitest` 和 `@vue/test-utils`。
+本技能用于为 `wot-ui` 项目中的组件创建单元测试。测试框架使用 `vitest` 和 `@vue/test-utils`。
 
 ## 目录结构
 
@@ -16,8 +16,8 @@ description: 为组件创建单元测试的标准流程
 ### 1. 确认组件信息
 
 - **组件名称**: 例如 `icon`, `button`
-- **组件路径**: `src/uni_modules/wot-design-uni/components/wd-{组件名}/wd-{组件名}.vue`
-- **Props 定义**: `src/uni_modules/wot-design-uni/components/wd-{组件名}/types.ts`
+- **组件路径**: `src/uni_modules/wot-ui/components/wd-{组件名}/wd-{组件名}.vue`
+- **Props 定义**: `src/uni_modules/wot-ui/components/wd-{组件名}/types.ts`
 
 ### 2. 创建测试文件
 
@@ -29,7 +29,7 @@ description: 为组件创建单元测试的标准流程
 
 ```typescript
 import { mount } from '@vue/test-utils'
-import Wd{组件名帕斯卡} from '@/uni_modules/wot-design-uni/components/wd-{组件名}/wd-{组件名}.vue'
+import Wd{组件名帕斯卡} from '@/uni_modules/wot-ui/components/wd-{组件名}/wd-{组件名}.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 
 describe('Wd{组件名帕斯卡}', () => {

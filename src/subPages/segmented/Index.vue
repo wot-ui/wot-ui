@@ -62,7 +62,7 @@
   </view>
 </template>
 <script lang="ts" setup>
-import type { SegmentedInstance, SegmentedOption } from '@/uni_modules/wot-design-uni/components/wd-segmented/types'
+import type { SegmentedInstance, SegmentedOption } from '@/uni_modules/wot-ui/components/wd-segmented/types'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 

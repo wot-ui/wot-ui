@@ -49,7 +49,7 @@ version: 1.3.8
 ```
 
 ```ts
-import type { CountToInstance } from '@/uni_modules/wot-design-uni/components/wd-count-to/types'
+import type { CountToInstance } from '@/uni_modules/wot-ui/components/wd-count-to/types'
 
 const countTo = ref<CountToInstance>()
 

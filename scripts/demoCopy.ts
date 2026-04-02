@@ -1,12 +1,3 @@
-/*
- * @Author: weisheng
- * @Date: 2025-01-24 00:01:44
- * @LastEditTime: 2025-01-24 00:03:16
- * @LastEditors: weisheng
- * @Description:
- * @FilePath: /wot-design-uni/scripts/demoCopy.ts
- * 记得注释
- */
 import fs from 'fs'
 import path from 'path'
 

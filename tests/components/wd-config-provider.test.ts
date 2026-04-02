@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import { describe, test, expect } from 'vitest'
-import type { ConfigProviderThemeVars } from '@/uni_modules/wot-design-uni'
-import WdConfigProvider from '@/uni_modules/wot-design-uni/components/wd-config-provider/wd-config-provider.vue'
-import WdRootPortal from '@/uni_modules/wot-design-uni/components/wd-root-portal/wd-root-portal.vue'
+import type { ConfigProviderThemeVars } from '@/uni_modules/wot-ui'
+import WdConfigProvider from '@/uni_modules/wot-ui/components/wd-config-provider/wd-config-provider.vue'
+import WdRootPortal from '@/uni_modules/wot-ui/components/wd-root-portal/wd-root-portal.vue'
 
 describe('WdConfigProvider', () => {
   // 测试基本渲染

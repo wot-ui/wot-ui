@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdDivider from '@/uni_modules/wot-design-uni/components/wd-divider/wd-divider.vue'
+import WdDivider from '@/uni_modules/wot-ui/components/wd-divider/wd-divider.vue'
 import { describe, test, expect } from 'vitest'
 
 describe('WdDivider', () => {

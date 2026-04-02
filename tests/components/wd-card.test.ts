@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import WdCard from '@/uni_modules/wot-design-uni/components/wd-card/wd-card.vue'
+import WdCard from '@/uni_modules/wot-ui/components/wd-card/wd-card.vue'
 import { describe, expect, test, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
-import type { CardType } from '@/uni_modules/wot-design-uni/components/wd-card/types'
+import type { CardType } from '@/uni_modules/wot-ui/components/wd-card/types'
 
 describe('WdCard', () => {
   beforeEach(() => {

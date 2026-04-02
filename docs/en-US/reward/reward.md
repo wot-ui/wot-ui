@@ -1,6 +1,6 @@
 # 🥤A Cup of Coffee
 
-If you find this project helpful for your work, you can support the development of the component library through the following ways. Your contribution will help this project continue to grow. After donating, your avatar, nickname, and homepage will be displayed on the donor list in the `wot design uni` documentation.
+If you find this project helpful for your work, you can support the development of the component library through the following ways. Your contribution will help this project continue to grow. After donating, your avatar, nickname, and homepage will be displayed on the donor list in the `Wot UI` documentation.
 
 :::tip Reminder
 After making a donation, you can send an email to 1780903673@qq.com or contact through social platforms like GitHub or WeChat groups to provide your donor name, message, and link (the link can be your blog, GitHub, personal website, company product, etc.). If possible, please make sure to leave your Github username.

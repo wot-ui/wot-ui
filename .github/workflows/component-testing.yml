@@ -6,7 +6,7 @@ on:
     branches:
       - master
     paths:
-      - 'src/uni_modules/wot-design-uni/components/**'
+      - 'src/uni_modules/wot-ui/components/**'
       - 'tests/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
@@ -17,7 +17,7 @@ on:
     branches:
       - master
     paths:
-      - 'src/uni_modules/wot-design-uni/components/**'
+      - 'src/uni_modules/wot-ui/components/**'
       - 'tests/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
@@ -67,7 +67,7 @@ jobs:
         uses: tj-actions/changed-files@v42
         with:
           files: |
-            src/uni_modules/wot-design-uni/components/**
+            src/uni_modules/wot-ui/components/**
             tests/**
 
       - name: Set components to test
@@ -84,7 +84,7 @@ jobs:
             # 根据变更文件确定要测试的组件
             COMPONENTS=()
             for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-              if [[ $file == src/uni_modules/wot-design-uni/components/* ]]; then
+              if [[ $file == src/uni_modules/wot-ui/components/* ]]; then
                 COMPONENT_NAME=$(echo $file | sed -n 's/.*components\/\([^\/]*\)\/.*/\1/p')
                 if [[ ! -z "$COMPONENT_NAME" && ! " ${COMPONENTS[@]} " =~ " ${COMPONENT_NAME} " ]]; then
                   COMPONENTS+=("$COMPONENT_NAME")

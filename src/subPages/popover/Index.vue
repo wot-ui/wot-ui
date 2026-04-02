@@ -66,10 +66,10 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 import { nextTick, ref } from 'vue'
-import { useQueue } from '@/uni_modules/wot-design-uni'
-import type { PlacementType, PopoverInstance, PopoverMenuItem } from '@/uni_modules/wot-design-uni/components/wd-popover/types'
+import { useQueue } from '@/uni_modules/wot-ui'
+import type { PlacementType, PopoverInstance, PopoverMenuItem } from '@/uni_modules/wot-ui/components/wd-popover/types'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const { closeOutside } = useQueue()
@@ -131,7 +131,7 @@ function changeSize() {
 }
 </script>
 <style lang="scss">
-@use '@/uni_modules/wot-design-uni/styles/variable.scss' as *;
+@use '@/uni_modules/wot-ui/styles/variable.scss' as *;
 
 .page-popover {
   width: 100%;

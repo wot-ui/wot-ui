@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdPickerView from '@/uni_modules/wot-design-uni/components/wd-picker-view/wd-picker-view.vue'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdPickerView from '@/uni_modules/wot-ui/components/wd-picker-view/wd-picker-view.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 import { describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
 

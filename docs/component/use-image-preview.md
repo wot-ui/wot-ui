@@ -12,7 +12,7 @@
 ```
 
 ```ts
-import { useImagePreview } from '@/uni_modules/wot-design-uni'
+import { useImagePreview } from '@/uni_modules/wot-ui'
 
 const { previewImage } = useImagePreview()
 
@@ -61,7 +61,7 @@ previewImage([
 ```
 
 ```typescript
-import { useImagePreview } from '@/uni_modules/wot-design-uni'
+import { useImagePreview } from '@/uni_modules/wot-ui'
 
 const { previewImage } = useImagePreview('slot-preview')
 

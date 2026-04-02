@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import WdCellGroup from '@/uni_modules/wot-design-uni/components/wd-cell-group/wd-cell-group.vue'
-import WdCell from '@/uni_modules/wot-design-uni/components/wd-cell/wd-cell.vue'
+import WdCellGroup from '@/uni_modules/wot-ui/components/wd-cell-group/wd-cell-group.vue'
+import WdCell from '@/uni_modules/wot-ui/components/wd-cell/wd-cell.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { pause } from '@/uni_modules/wot-design-uni/common/util'
+import { pause } from '@/uni_modules/wot-ui/common/util'
 
 describe('WdCellGroup', () => {
   beforeEach(() => {

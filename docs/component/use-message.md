@@ -12,7 +12,7 @@ alert 弹框只有确定按钮，用于强提醒。
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const message = useDialog()
 
 function alert() {
@@ -30,7 +30,7 @@ function alert() {
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const message = useDialog()
 
 function confirm() {
@@ -58,7 +58,7 @@ prompt 会展示一个输入框，并可以进行输入校验。
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const message = useDialog()
 
 function prompt() {

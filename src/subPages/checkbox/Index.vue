@@ -160,7 +160,7 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { CheckboxGroupInstance } from '@/uni_modules/wot-design-uni/components/wd-checkbox-group/types'
+import type { CheckboxGroupInstance } from '@/uni_modules/wot-ui/components/wd-checkbox-group/types'
 
 const value1 = ref<number[]>([1])
 const value2 = ref<number[]>([1])

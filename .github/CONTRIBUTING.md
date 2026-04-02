@@ -18,7 +18,7 @@
 - 使用 `git clone` 将自己 github 上 fork 得到的源码同步到到你的本地
 - 请确保基于 `master` 分支进行开发，我们只接受此分支上的代码贡献。
 
-### 镜像仓库
+<!-- ### 镜像仓库
 
 如果 GitHub 克隆速度较慢，你也可以直接克隆 Wot UI 在 gitee 上的[镜像仓库](https://gitee.com/wot-design-uni/wot-design-uni)：
 
@@ -26,7 +26,7 @@
 git clone https://gitee.com/wot-design-uni/wot-design-uni.git
 ```
 
-镜像仓库仅用于加快国内的访问速度，请勿在镜像仓库中提 issue 和 Pull Request。
+镜像仓库仅用于加快国内的访问速度，请勿在镜像仓库中提 issue 和 Pull Request。 -->
 
 ### 代码规范
 
@@ -204,7 +204,7 @@ type：commit message
 
 ```bash
 # 添加主仓库到 remote
-git remote add upstream https://github.com/Moonofweisheng/wot-design-uni.git
+git remote add upstream https://github.com/wot-ui/wot-ui.git
 
 # 拉取主仓库最新代码
 git fetch upstream

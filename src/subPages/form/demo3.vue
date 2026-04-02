@@ -178,14 +178,14 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useToast, zodAdapter } from '@/uni_modules/wot-design-uni'
-import { isArray } from '@/uni_modules/wot-design-uni/common/util'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
+import { isArray } from '@/uni_modules/wot-ui/common/util'
 import { useCascaderAreaData } from '@vant/area-data'
-import { type FormInstance, type FormSchema, type FormSchemaIssue } from '@/uni_modules/wot-design-uni/components/wd-form/types'
-import type { SliderInstance } from '@/uni_modules/wot-design-uni/components/wd-slider/types'
-import type { SlideVerifyInstance } from '@/uni_modules/wot-design-uni/components/wd-slide-verify/types'
-import type { UploadFileItem } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
-import type { CascaderOption } from '@/uni_modules/wot-design-uni/components/wd-cascader/types'
+import { type FormInstance, type FormSchema, type FormSchemaIssue } from '@/uni_modules/wot-ui/components/wd-form/types'
+import type { SliderInstance } from '@/uni_modules/wot-ui/components/wd-slider/types'
+import type { SlideVerifyInstance } from '@/uni_modules/wot-ui/components/wd-slide-verify/types'
+import type { UploadFileItem } from '@/uni_modules/wot-ui/components/wd-upload/types'
+import type { CascaderOption } from '@/uni_modules/wot-ui/components/wd-cascader/types'
 const { t } = useI18n()
 
 import dayjs from 'dayjs'

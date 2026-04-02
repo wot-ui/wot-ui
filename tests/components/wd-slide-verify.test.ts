@@ -1,6 +1,6 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
-import WdSlideVerify from '@/uni_modules/wot-design-uni/components/wd-slide-verify/wd-slide-verify.vue'
+import WdSlideVerify from '@/uni_modules/wot-ui/components/wd-slide-verify/wd-slide-verify.vue'
 
 describe('wd-slide-verify', () => {
   test('基本渲染', () => {

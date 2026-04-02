@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdProgress from '@/uni_modules/wot-design-uni/components/wd-progress/wd-progress.vue'
+import WdProgress from '@/uni_modules/wot-ui/components/wd-progress/wd-progress.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 
 describe('进度条组件', () => {

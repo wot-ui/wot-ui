@@ -12,7 +12,7 @@ Declare `wd-video-preview` on the page first, then call `useVideoPreview()` to o
 ```
 
 ```ts
-import { useVideoPreview } from '@/uni_modules/wot-design-uni'
+import { useVideoPreview } from '@/uni_modules/wot-ui'
 
 const { previewVideo } = useVideoPreview()
 
@@ -48,7 +48,7 @@ Use `selector` to distinguish multiple instances on the same page. `useVideoPrev
 ```
 
 ```ts
-import { useVideoPreview } from '@/uni_modules/wot-design-uni'
+import { useVideoPreview } from '@/uni_modules/wot-ui'
 
 const { previewVideo } = useVideoPreview()
 const { previewVideo: previewSubVideo } = useVideoPreview('sub-preview')

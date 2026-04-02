@@ -78,9 +78,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import { useDialog } from '@/uni_modules/wot-design-uni'
-import type { SliderInstance } from '@/uni_modules/wot-design-uni/components/wd-slider/types'
-import type { DropMenuItemBeforeToggle } from '@/uni_modules/wot-design-uni/components/wd-drop-menu-item/types'
+import { useDialog } from '@/uni_modules/wot-ui'
+import type { SliderInstance } from '@/uni_modules/wot-ui/components/wd-slider/types'
+import type { DropMenuItemBeforeToggle } from '@/uni_modules/wot-ui/components/wd-drop-menu-item/types'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()

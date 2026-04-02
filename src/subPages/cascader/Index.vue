@@ -56,10 +56,10 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 import { useCascaderAreaData } from '@vant/area-data'
 import { useI18n } from 'vue-i18n'
-import { type CascaderOption, type CascaderLazyLoad } from '@/uni_modules/wot-design-uni/components/wd-cascader/types'
+import { type CascaderOption, type CascaderLazyLoad } from '@/uni_modules/wot-ui/components/wd-cascader/types'
 
 const { t } = useI18n()
 const toast = useToast()

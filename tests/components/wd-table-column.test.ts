@@ -1,9 +1,9 @@
 import { config, mount } from '@vue/test-utils'
 import { describe, test, expect } from 'vitest'
 import { nextTick } from 'vue'
-import WdTableColumn from '@/uni_modules/wot-design-uni/components/wd-table-column/wd-table-column.vue'
-import WdTable from '@/uni_modules/wot-design-uni/components/wd-table/wd-table.vue'
-import WdSortButton from '@/uni_modules/wot-design-uni/components/wd-sort-button/wd-sort-button.vue'
+import WdTableColumn from '@/uni_modules/wot-ui/components/wd-table-column/wd-table-column.vue'
+import WdTable from '@/uni_modules/wot-ui/components/wd-table/wd-table.vue'
+import WdSortButton from '@/uni_modules/wot-ui/components/wd-sort-button/wd-sort-button.vue'
 
 const globalComponents = { WdTable, WdTableColumn, WdSortButton }
 

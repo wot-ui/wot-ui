@@ -1,9 +1,9 @@
 import { mount, config } from '@vue/test-utils'
-import WdFab from '@/uni_modules/wot-design-uni/components/wd-fab/wd-fab.vue'
-import WdDialog from '@/uni_modules/wot-design-uni/components/wd-dialog/wd-dialog.vue'
+import WdFab from '@/uni_modules/wot-ui/components/wd-fab/wd-fab.vue'
+import WdDialog from '@/uni_modules/wot-ui/components/wd-dialog/wd-dialog.vue'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 
 function touchEvent(x: number, y: number) {
   return {

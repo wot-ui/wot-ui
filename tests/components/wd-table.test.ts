@@ -1,7 +1,7 @@
 import { config, mount } from '@vue/test-utils'
-import WdTable from '@/uni_modules/wot-design-uni/components/wd-table/wd-table.vue'
-import WdTableColumn from '@/uni_modules/wot-design-uni/components/wd-table-column/wd-table-column.vue'
-import WdSortButton from '@/uni_modules/wot-design-uni/components/wd-sort-button/wd-sort-button.vue'
+import WdTable from '@/uni_modules/wot-ui/components/wd-table/wd-table.vue'
+import WdTableColumn from '@/uni_modules/wot-ui/components/wd-table-column/wd-table-column.vue'
+import WdSortButton from '@/uni_modules/wot-ui/components/wd-sort-button/wd-sort-button.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
 

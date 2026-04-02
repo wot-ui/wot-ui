@@ -15,7 +15,7 @@
 演示页对应内容：基础表格、排序事件、行点击事件。
 
 ```ts
-import type { TableColumn } from '@/uni_modules/wot-design-uni/components/wd-table-column/types'
+import type { TableColumn } from '@/uni_modules/wot-ui/components/wd-table-column/types'
 import { ref } from 'vue'
 
 interface TableData {
@@ -84,7 +84,7 @@ function handleRowClick({ rowIndex }: { rowIndex: number }) {
 通过 `span-method` 控制单元格跨行跨列。回调返回 `{ rowspan, colspan }`，返回空值时按 `{ rowspan: 1, colspan: 1 }` 处理。
 
 ```ts
-import type { SpanMethodParams } from '@/uni_modules/wot-design-uni/components/wd-table/types'
+import type { SpanMethodParams } from '@/uni_modules/wot-ui/components/wd-table/types'
 import { computed } from 'vue'
 
 const spanData = computed(() => dataList.value.slice(0, 5))

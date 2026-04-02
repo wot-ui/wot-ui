@@ -16,7 +16,7 @@ Alert dialog only has a confirm button, used for strong reminders.
 ```
 
 ```typescript
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const dialog = useDialog()
 
 function alert() {
@@ -32,7 +32,7 @@ Alert dialog with title.
 ```
 
 ```typescript
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const dialog = useDialog()
 
 function alert() {
@@ -51,7 +51,7 @@ If the content text is too long, the dialog box height will not increase, but wi
 ```
 
 ```typescript
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const dialog = useDialog()
 
 function alert() {
@@ -72,7 +72,7 @@ Used to prompt user operations.
 ```
 
 ```typescript
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const dialog = useDialog()
 
 function confirm() {
@@ -100,7 +100,7 @@ Prompt will display an input box and can perform input validation.
 ```
 
 ```typescript
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const dialog = useDialog()
 
 function prompt() {
@@ -132,7 +132,7 @@ If the provided dialog content does not meet requirements, you can use slots to 
 ```
 
 ```typescript
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 const rate = ref<number>(1)
 const dialog = useDialog('wd-dialog-slot')
 
@@ -168,7 +168,7 @@ Set the `beforeConfirm` function to run when clicking confirm. It receives the c
 ```
 
 ```typescript
-import { useDialog, useToast } from '@/uni_modules/wot-design-uni'
+import { useDialog, useToast } from '@/uni_modules/wot-ui'
 const dialog = useDialog()
 const toast = useToast()
 

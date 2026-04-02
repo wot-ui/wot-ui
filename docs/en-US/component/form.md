@@ -45,7 +45,7 @@ In the form, use `model` to specify the form data object. Each `form item compon
 ```typescript [typescript]
 <script lang="ts" setup>
 import { z } from 'zod'
-import { zodAdapter } from '@/uni_modules/wot-design-uni'
+import { zodAdapter } from '@/uni_modules/wot-ui'
 const { success: showSuccess } = useToast()
 
 const model = reactive<{

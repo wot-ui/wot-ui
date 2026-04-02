@@ -10,7 +10,7 @@
 
 ```html
 <view class="watermark-wrap">
-	<wd-watermark :full-screen="false" content="wot-design-uni"></wd-watermark>
+	<wd-watermark :full-screen="false" content="wot-ui"></wd-watermark>
 </view>
 ```
 
@@ -45,7 +45,7 @@
 默认情况下组件会铺满页面。结合 `layout` 可以在网格布局与错位布局之间切换，也可以在文字水印和图片水印之间切换。
 
 ```html
-<wd-watermark content="wot-design-uni" :width="130" :height="140" layout="grid"></wd-watermark>
+<wd-watermark content="wot-ui" :width="130" :height="140" layout="grid"></wd-watermark>
 ```
 
 ### 自定义层级和透明度
@@ -53,7 +53,7 @@
 通过 `opacity` 设置透明度，通过 `z-index` 控制水印层级。
 
 ```html
-<wd-watermark content="wot-design-uni" :opacity="0.4" :z-index="1200"></wd-watermark>
+<wd-watermark content="wot-ui" :opacity="0.4" :z-index="1200"></wd-watermark>
 ```
 
 ## Watermark Attributes

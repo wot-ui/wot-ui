@@ -5,7 +5,7 @@ Used for handling file upload and selection related logic.
 ## Basic Usage
 
 ```ts
-import { useUpload } from '@/uni_modules/wot-design-uni'
+import { useUpload } from '@/uni_modules/wot-ui'
 
 const { startUpload, abort, chooseFile, UPLOAD_STATUS } = useUpload()
 

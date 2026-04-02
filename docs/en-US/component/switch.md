@@ -51,7 +51,7 @@ Set the `before-change` property as a hook before modification. It receives the 
 ```
 
 ```typescript
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const message = useDialog()
 

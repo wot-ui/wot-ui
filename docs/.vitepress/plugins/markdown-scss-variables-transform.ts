@@ -61,7 +61,7 @@ export function MarkdownScssVariablesTransform(): Plugin {
 
       // Extract variables from each component's index.scss
       for (const comp of targetComponents) {
-        const scssPath = path.resolve(rootDir, `src/uni_modules/wot-design-uni/components/${comp}/index.scss`)
+        const scssPath = path.resolve(rootDir, `src/uni_modules/wot-ui/components/${comp}/index.scss`)
         if (fs.existsSync(scssPath)) {
           const scssContent = fs.readFileSync(scssPath, 'utf8')
           const vars = parseScssVariables(scssContent)

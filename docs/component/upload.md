@@ -24,7 +24,7 @@
 
 ```ts [ts]
 import { ref } from 'vue'
-import type { UploadFile } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
+import type { UploadFile } from '@/uni_modules/wot-ui/components/wd-upload/types'
 
 const action = 'https://69bd04402bc2a25b22ad0a49.mockapi.io/upload'
 
@@ -98,7 +98,7 @@ const fileList = ref<UploadFile[]>([
 
 ```ts [ts]
 import { ref } from 'vue'
-import type { UploadFile, UploadInstance } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
+import type { UploadFile, UploadInstance } from '@/uni_modules/wot-ui/components/wd-upload/types'
 
 const uploadRef = ref<UploadInstance>()
 const fileList = ref<UploadFile[]>([])
@@ -206,7 +206,7 @@ const fileList = ref<UploadFile[]>([])
 ```
 
 ```ts [ts]
-import type { UploadMethod } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
+import type { UploadMethod } from '@/uni_modules/wot-ui/components/wd-upload/types'
 
 const customUpload: UploadMethod = (file, formData, options) => {
   const task = uni.uploadFile({

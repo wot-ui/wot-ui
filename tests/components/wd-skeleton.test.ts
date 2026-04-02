@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
-import WdSkeleton from '@/uni_modules/wot-design-uni/components/wd-skeleton/wd-skeleton.vue'
+import WdSkeleton from '@/uni_modules/wot-ui/components/wd-skeleton/wd-skeleton.vue'
 import { describe, test, expect } from 'vitest'
-import type { SkeletonRowCol, SkeletonTheme } from '@/uni_modules/wot-design-uni/components/wd-skeleton/types'
+import type { SkeletonRowCol, SkeletonTheme } from '@/uni_modules/wot-ui/components/wd-skeleton/types'
 
 describe('WdSkeleton', () => {
   // 测试基本渲染

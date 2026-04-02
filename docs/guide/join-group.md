@@ -84,7 +84,7 @@
 ***快速定位问题小技巧***
 1. 阅读组件文档，查看是否有遗漏。
 2. 查看[常见问题](/guide/common-problems)，是否有类似问题。
-3. 查看[Github issues](https://github.com/Moonofweisheng/wot-design-uni/issues)，是否有类似问题。
+3. 查看[Github issues](https://github.com/wot-ui/wot-ui/issues)，是否有类似问题。
 4. 翻看[更新日志](/guide/changelog)，查看是否有相关更新。
 5. 学习[提问的智慧](https://lug.ustc.edu.cn/wiki/doc/smart-questions/)，如何快速提出正确的问题。
 6. 交流群主要是提供一个互助交流的平台，请友好交流，不做伸手党，感谢支持。

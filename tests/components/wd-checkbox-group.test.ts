@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdCheckboxGroup from '@/uni_modules/wot-design-uni/components/wd-checkbox-group/wd-checkbox-group.vue'
-import WdCheckbox from '@/uni_modules/wot-design-uni/components/wd-checkbox/wd-checkbox.vue'
+import WdCheckboxGroup from '@/uni_modules/wot-ui/components/wd-checkbox-group/wd-checkbox-group.vue'
+import WdCheckbox from '@/uni_modules/wot-ui/components/wd-checkbox/wd-checkbox.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
 

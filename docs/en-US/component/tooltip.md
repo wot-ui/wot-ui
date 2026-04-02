@@ -33,7 +33,7 @@ If there is a scenario where the user manually clicks somewhere outside of `tool
 ```
 
 ```typescript
-import { useQueue } from '@/uni_modules/wot-design-uni'
+import { useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 
@@ -66,7 +66,7 @@ Currently, when using the `content` slot, the component cannot correctly obtain 
 ```
 
 ```typescript
-import { useQueue } from '@/uni_modules/wot-design-uni'
+import { useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 const show = ref<boolean>(false)

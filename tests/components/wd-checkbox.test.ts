@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdCheckbox from '@/uni_modules/wot-design-uni/components/wd-checkbox/wd-checkbox.vue'
+import WdCheckbox from '@/uni_modules/wot-ui/components/wd-checkbox/wd-checkbox.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 
 describe('WdCheckbox', () => {

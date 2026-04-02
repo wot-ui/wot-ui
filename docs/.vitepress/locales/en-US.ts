@@ -124,7 +124,7 @@ export default defineConfig({
       text: 'Last Updated'
     },
     editLink: {
-      pattern: 'https://github.com/Moonofweisheng/wot-design-uni/edit/master/docs/:path',
+      pattern: 'https://github.com/wot-ui/wot-ui/edit/master/docs/:path',
       text: 'Edit this page on GitHub'
     },
     nav: [

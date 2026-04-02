@@ -105,10 +105,10 @@ export default {
 
 ### Using with TypeScript
 
-When defining `themeVars` in TypeScript, it's recommended to use the **ConfigProviderThemeVars** type provided by **wot-design-uni**, which can provide comprehensive type hints:
+When defining `themeVars` in TypeScript, it's recommended to use the **ConfigProviderThemeVars** type provided by **wot-ui**, which can provide comprehensive type hints:
 
 ```ts
-import type { ConfigProviderThemeVars } from 'wot-design-uni'
+import type { ConfigProviderThemeVars } from '@wot-ui/ui'
 
 const themeVars: ConfigProviderThemeVars = {
   colorTheme: 'red'
@@ -203,7 +203,7 @@ const { theme, themeVars } = useTheme({
 ```ts
 // src/composables/useTheme.ts
 
-import type { ConfigProviderThemeVars } from 'wot-design-uni'
+import type { ConfigProviderThemeVars } from '@wot-ui/ui'
 import { ref } from 'vue'
 
 const theme = ref<'light' | 'dark'>()
@@ -262,4 +262,4 @@ For detailed documentation, please refer to [useConfigProvider](/en-US/component
 
 In environments like WeChat Mini Program, due to component rendering limitations (such as native slot scope isolation), components rendered in slots may not be able to access the context of the `ConfigProvider` component wrapped outside the slot outlet. In addition, using `root-portal` to move nodes to the root node may also cause context loss.
 
-To solve this problem, `wot-design-uni` provides the `useConfigProvider` composable function, allowing you to inject configuration directly in JS logic, ensuring that deeply nested or cross-component tree components can also correctly obtain theme styles.
+To solve this problem, `wot-ui` provides the `useConfigProvider` composable function, allowing you to inject configuration directly in JS logic, ensuring that deeply nested or cross-component tree components can also correctly obtain theme styles.

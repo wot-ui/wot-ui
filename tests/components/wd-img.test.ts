@@ -1,8 +1,8 @@
 import { config, mount } from '@vue/test-utils'
-import WdImg from '@/uni_modules/wot-design-uni/components/wd-img/wd-img.vue'
+import WdImg from '@/uni_modules/wot-ui/components/wd-img/wd-img.vue'
 import { describe, test, expect } from 'vitest'
-import type { ImageMode } from '@/uni_modules/wot-design-uni/components/wd-img/types'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import type { ImageMode } from '@/uni_modules/wot-ui/components/wd-img/types'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 config.global.components = { WdIcon }
 describe('WdImg', () => {
   // 测试基本渲染

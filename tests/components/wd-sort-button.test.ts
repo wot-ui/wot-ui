@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdSortButton from '../../src/uni_modules/wot-design-uni/components/wd-sort-button/wd-sort-button.vue'
+import WdSortButton from '../../src/uni_modules/wot-ui/components/wd-sort-button/wd-sort-button.vue'
 import { describe, expect, test } from 'vitest'
 
 describe('WdSortButton', () => {

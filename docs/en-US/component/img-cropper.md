@@ -116,8 +116,8 @@ Combined with `useUpload`, you can implement automatic image upload after croppi
 
 ```typescript
 import { ref } from 'vue'
-import { useUpload, useToast } from '@/uni_modules/wot-design-uni'
-import { type UploadFileItem } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
+import { useUpload, useToast } from '@/uni_modules/wot-ui'
+import { type UploadFileItem } from '@/uni_modules/wot-ui/components/wd-upload/types'
 
 const { startUpload, UPLOAD_STATUS } = useUpload()
 const { show: showToast } = useToast()

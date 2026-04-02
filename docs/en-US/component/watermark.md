@@ -7,7 +7,7 @@ Add specified images or text on pages or components, which can be used for copyr
 Place the WaterMark component in the page, you can set the watermark display content through the `content` field, and set the height and width of a single watermark through `width` and `height` to display a full-screen watermark.
 
 ```html
-<wd-watermark content="wot-design-uni" :width="130" :height="130"></wd-watermark>
+<wd-watermark content="wot-ui" :width="130" :height="130"></wd-watermark>
 ```
 
 ### Image Watermark
@@ -24,7 +24,7 @@ Set the network image address or Base64 image through the `image` field, and set
 Set whether it is a full-screen watermark through `full-screen`.
 
 ```html
-<wd-watermark content="wot-design-uni" :full-screen="false"></wd-watermark>
+<wd-watermark content="wot-ui" :full-screen="false"></wd-watermark>
 ```
 
 ### Custom Layer Level and Opacity
@@ -32,7 +32,7 @@ Set whether it is a full-screen watermark through `full-screen`.
 Set opacity through `opacity` and watermark layer level through `z-index`.
 
 ```html
-<wd-watermark content="wot-design-uni" :opacity="0.4"></wd-watermark>
+<wd-watermark content="wot-ui" :opacity="0.4"></wd-watermark>
 ```
 
 ## Attributes

@@ -104,7 +104,7 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { type NoticeBarInstance } from '@/uni_modules/wot-design-uni/components/wd-notice-bar/types'
+import { type NoticeBarInstance } from '@/uni_modules/wot-ui/components/wd-notice-bar/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

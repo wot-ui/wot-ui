@@ -1,8 +1,8 @@
 import { createI18n } from 'vue-i18n'
 import zhCN from './zh-CN.json'
 import enUS from './en-US.json'
-import Locale from '../uni_modules/wot-design-uni/locale'
-import WotEnUS from '../uni_modules/wot-design-uni/locale/lang/en-US'
+import Locale from '../uni_modules/wot-ui/locale'
+import WotEnUS from '../uni_modules/wot-ui/locale/lang/en-US'
 
 Locale.add({ 'en-US': WotEnUS })
 

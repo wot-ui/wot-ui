@@ -186,7 +186,7 @@ Set the `before-confirm` function. When the user clicks the "Confirm" button, th
 ```
 
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const toast = useToast()
 const columns = ref(['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', 'Option 7'])

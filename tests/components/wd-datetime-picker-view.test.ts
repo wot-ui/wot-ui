@@ -1,10 +1,7 @@
 import { mount } from '@vue/test-utils'
-import WdDatetimePickerView from '@/uni_modules/wot-design-uni/components/wd-datetime-picker-view/wd-datetime-picker-view.vue'
+import WdDatetimePickerView from '@/uni_modules/wot-ui/components/wd-datetime-picker-view/wd-datetime-picker-view.vue'
 import { describe, expect, test, vi } from 'vitest'
-import {
-  type DatetimePickerViewFilter,
-  type DatetimePickerViewFormatter
-} from '@/uni_modules/wot-design-uni/components/wd-datetime-picker-view/types'
+import { type DatetimePickerViewFilter, type DatetimePickerViewFormatter } from '@/uni_modules/wot-ui/components/wd-datetime-picker-view/types'
 import { nextTick } from 'vue'
 
 describe('WdDatetimePickerView 日期时间选择器视图', () => {

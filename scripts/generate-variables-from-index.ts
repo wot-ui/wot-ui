@@ -12,12 +12,12 @@ function readFileSafe(p: string): string {
 
 function resolvePaths() {
   const rootDir = path.resolve(__dirname, '..')
-  const themeDir = path.join(rootDir, 'src/uni_modules/wot-design-uni/styles/theme')
+  const themeDir = path.join(rootDir, 'src/uni_modules/wot-ui/styles/theme')
   const baseDir = path.join(themeDir, 'base')
   const indexScss = path.join(themeDir, 'index.scss')
   const lightScss = path.join(themeDir, 'light.scss')
   const darkScss = path.join(themeDir, 'dark.scss')
-  const variableScss = path.join(rootDir, 'src/uni_modules/wot-design-uni/styles/variable.scss')
+  const variableScss = path.join(rootDir, 'src/uni_modules/wot-ui/styles/variable.scss')
   return { rootDir, themeDir, baseDir, indexScss, lightScss, darkScss, variableScss }
 }
 

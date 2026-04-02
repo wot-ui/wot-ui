@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import WdInputNumber from '@/uni_modules/wot-design-uni/components/wd-input-number/wd-input-number.vue'
+import WdInputNumber from '@/uni_modules/wot-ui/components/wd-input-number/wd-input-number.vue'
 import { describe, test, expect, vi } from 'vitest'
 import { nextTick, defineComponent, ref, toRefs } from 'vue'
-import { type InputNumberProps } from '@/uni_modules/wot-design-uni/components/wd-input-number/types'
+import { type InputNumberProps } from '@/uni_modules/wot-ui/components/wd-input-number/types'
 
 // 辅助函数：创建带v-model的包装组件
 function createWrapper(props: Partial<InputNumberProps> = {}, vModelValue: number | string = 1) {

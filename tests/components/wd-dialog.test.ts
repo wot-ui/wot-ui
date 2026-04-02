@@ -1,10 +1,10 @@
 import { config, mount } from '@vue/test-utils'
 import { defineComponent, nextTick } from 'vue'
 import { describe, expect, test, vi } from 'vitest'
-import WdDialog from '@/uni_modules/wot-design-uni/components/wd-dialog/wd-dialog.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import { useDialog } from '@/uni_modules/wot-design-uni/components/wd-dialog'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdDialog from '@/uni_modules/wot-ui/components/wd-dialog/wd-dialog.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import { useDialog } from '@/uni_modules/wot-ui/components/wd-dialog'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 config.global.components = { WdIcon, WdLoading }

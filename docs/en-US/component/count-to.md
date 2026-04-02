@@ -58,7 +58,7 @@ Start the animation using the `start` method, pause it using the `pause` method,
 ```
 
 ```ts
-import type { CountToInstance } from '@/uni_modules/wot-design-uni/components/wd-count-to/types'
+import type { CountToInstance } from '@/uni_modules/wot-ui/components/wd-count-to/types'
 
 const countTo = ref<CountToInstance>()
 

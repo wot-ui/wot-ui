@@ -82,7 +82,7 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { show: showToast } = useToast()

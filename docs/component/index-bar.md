@@ -155,7 +155,7 @@ function handleClick(index: string, city: string) {
 
 ```typescript [typescript]
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 import { nextTick, onMounted, ref } from 'vue'
 
 const { show: showToast } = useToast()

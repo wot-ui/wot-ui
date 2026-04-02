@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { ProgressColor, ProgressStatus } from '@/uni_modules/wot-design-uni/components/wd-progress/types'
+import type { ProgressColor, ProgressStatus } from '@/uni_modules/wot-ui/components/wd-progress/types'
 import { ref } from 'vue'
 
 const basePercentage = 50

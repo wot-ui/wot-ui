@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import WdBadge from '@/uni_modules/wot-design-uni/components/wd-badge/wd-badge.vue'
+import WdBadge from '@/uni_modules/wot-ui/components/wd-badge/wd-badge.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
-import type { BadgeType } from '@/uni_modules/wot-design-uni/components/wd-badge/types'
+import type { BadgeType } from '@/uni_modules/wot-ui/components/wd-badge/types'
 
 describe('WdBadge', () => {
   beforeEach(() => {

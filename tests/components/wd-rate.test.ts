@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdRate from '@/uni_modules/wot-design-uni/components/wd-rate/wd-rate.vue'
+import WdRate from '@/uni_modules/wot-ui/components/wd-rate/wd-rate.vue'
 import { describe, test, expect, vi } from 'vitest'
 import { nextTick } from 'vue'
 

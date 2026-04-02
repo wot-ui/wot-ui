@@ -138,7 +138,7 @@ function handleConfirm({ selectedItems }: any) {
 
 ```typescript
 import { ref } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const toast = useToast()
 const show = ref(false)

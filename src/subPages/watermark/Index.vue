@@ -1,6 +1,6 @@
 <template>
   <template v-if="showGlobalWatermark">
-    <wd-watermark v-if="globalType === 'text'" :width="130" :height="140" content="wot-design-uni" :layout="globalLayout"></wd-watermark>
+    <wd-watermark v-if="globalType === 'text'" :width="130" :height="140" content="wot-ui" :layout="globalLayout"></wd-watermark>
     <wd-watermark
       v-else-if="globalType === 'image'"
       image="https://wot-ui.cn/logo.png"
@@ -17,7 +17,7 @@
       <demo-group title="组件类型">
         <demo-group-item title="局部文字水印">
           <view class="watermark-wrap">
-            <wd-watermark :full-screen="false" content="wot-design-uni"></wd-watermark>
+            <wd-watermark :full-screen="false" content="wot-ui"></wd-watermark>
             <wd-cell-group border>
               <wd-cell title="消息通知" center>
                 <wd-switch v-model="switchVal1" />

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdLoadmore from '@/uni_modules/wot-design-uni/components/wd-loadmore/wd-loadmore.vue'
+import WdLoadmore from '@/uni_modules/wot-ui/components/wd-loadmore/wd-loadmore.vue'
 import { describe, expect, test } from 'vitest'
 
 describe('WdLoadmore', () => {

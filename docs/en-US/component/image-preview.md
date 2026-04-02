@@ -12,7 +12,7 @@ Open image preview using the `useImagePreview` function.
 ```
 
 ```typescript
-import { useImagePreview } from 'wot-design-uni'
+import { useImagePreview } from '@wot-ui/ui'
 
 const imagePreview = useImagePreview()
 
@@ -103,7 +103,7 @@ You can also use it as a component and control it via ref.
 
 ```typescript
 import { ref } from 'vue'
-import type { ImagePreviewInstance } from 'wot-design-uni'
+import type { ImagePreviewInstance } from '@wot-ui/ui'
 
 const imagePreviewRef = ref<ImagePreviewInstance>()
 const images = ref([

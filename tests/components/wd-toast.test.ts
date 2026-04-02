@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils'
-import WdToast from '@/uni_modules/wot-design-uni/components/wd-toast/wd-toast.vue'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import WdOverlay from '@/uni_modules/wot-design-uni/components/wd-overlay/wd-overlay.vue'
-import WdTransition from '@/uni_modules/wot-design-uni/components/wd-transition/wd-transition.vue'
+import WdToast from '@/uni_modules/wot-ui/components/wd-toast/wd-toast.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import WdOverlay from '@/uni_modules/wot-ui/components/wd-overlay/wd-overlay.vue'
+import WdTransition from '@/uni_modules/wot-ui/components/wd-transition/wd-transition.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick, defineComponent } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni/components/wd-toast/index'
-import type { ToastOptions } from '@/uni_modules/wot-design-uni/components/wd-toast/types'
+import { useToast } from '@/uni_modules/wot-ui/components/wd-toast/index'
+import type { ToastOptions } from '@/uni_modules/wot-ui/components/wd-toast/types'
 
 // 创建一个包含 WdToast 和使用 useToast 的测试组件
 const createTestComponent = () => {

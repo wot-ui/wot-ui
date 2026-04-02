@@ -12,7 +12,7 @@
 ```
 
 ```ts
-import { useVideoPreview } from '@/uni_modules/wot-design-uni'
+import { useVideoPreview } from '@/uni_modules/wot-ui'
 
 const { previewVideo } = useVideoPreview()
 
@@ -48,7 +48,7 @@ previewVideo({
 ```
 
 ```ts
-import { useVideoPreview } from '@/uni_modules/wot-design-uni'
+import { useVideoPreview } from '@/uni_modules/wot-ui'
 
 const { previewVideo } = useVideoPreview()
 const { previewVideo: previewSubVideo } = useVideoPreview('sub-preview')

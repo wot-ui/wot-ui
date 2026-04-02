@@ -175,8 +175,8 @@
 </template>
 
 <script lang="ts" setup>
-import { objToStyle } from '@/uni_modules/wot-design-uni/common/util'
-import { type TourChangeDetail } from '@/uni_modules/wot-design-uni/components/wd-tour/types'
+import { objToStyle } from '@/uni_modules/wot-ui/common/util'
+import { type TourChangeDetail } from '@/uni_modules/wot-ui/components/wd-tour/types'
 import { ref, watch, nextTick } from 'vue'
 
 const showBasicTour = ref(false)

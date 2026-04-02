@@ -161,8 +161,8 @@ Through `before-change`, you can validate and intercept before the input value c
 
 ```typescript
 import { ref } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { InputNumberBeforeChange } from '@/uni_modules/wot-design-uni/components/wd-input-number/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { InputNumberBeforeChange } from '@/uni_modules/wot-ui/components/wd-input-number/types'
 const { loading, close } = useToast()
 
 const value = ref<number>(1)

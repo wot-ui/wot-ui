@@ -18,7 +18,7 @@ interface TransitionProps {
  * 极简版 wd-transition 组件模拟
  * 为了解决测试中的渲染时序问题，这个版本会立即渲染内容，不依赖于任何异步操作
  */
-vi.mock('@/uni_modules/wot-design-uni/components/wd-transition/wd-transition.vue', () => ({
+vi.mock('@/uni_modules/wot-ui/components/wd-transition/wd-transition.vue', () => ({
   default: {
     name: 'wd-transition',
     props: {

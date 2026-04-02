@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdSticky from '@/uni_modules/wot-design-uni/components/wd-sticky/wd-sticky.vue'
-import WdResize from '@/uni_modules/wot-design-uni/components/wd-resize/wd-resize.vue'
+import WdSticky from '@/uni_modules/wot-ui/components/wd-sticky/wd-sticky.vue'
+import WdResize from '@/uni_modules/wot-ui/components/wd-resize/wd-resize.vue'
 import { describe, test, expect } from 'vitest'
 
 describe('吸顶组件', () => {

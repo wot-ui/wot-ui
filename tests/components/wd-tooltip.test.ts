@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
-import WdTooltip from '@/uni_modules/wot-design-uni/components/wd-tooltip/wd-tooltip.vue'
+import WdTooltip from '@/uni_modules/wot-ui/components/wd-tooltip/wd-tooltip.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { type PlacementType } from '@/uni_modules/wot-design-uni/components/wd-tooltip/types'
+import { type PlacementType } from '@/uni_modules/wot-ui/components/wd-tooltip/types'
 
 describe('WdTooltip', () => {
   beforeEach(() => {

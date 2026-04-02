@@ -18,7 +18,7 @@
 ```
 
 ```typescript
-import { useImagePreview } from 'wot-design-uni'
+import { useImagePreview } from '@wot-ui/ui'
 
 const { previewImage } = useImagePreview()
 
@@ -121,7 +121,7 @@ previewImage({
 通过回调函数监听预览事件。
 
 ```typescript
-import { useImagePreview } from 'wot-design-uni'
+import { useImagePreview } from '@wot-ui/ui'
 
 const { previewImage, closeImagePreview } = useImagePreview()
 
@@ -165,7 +165,7 @@ function handleClose() {
 ```
 
 ```typescript
-import { useImagePreview } from 'wot-design-uni'
+import { useImagePreview } from '@wot-ui/ui'
 
 const { previewImage } = useImagePreview('slot-preview')
 
@@ -195,7 +195,7 @@ function handleSlotPreview() {
 
 ```typescript
 import { ref } from 'vue'
-import type { ImagePreviewInstance } from 'wot-design-uni'
+import type { ImagePreviewInstance } from '@wot-ui/ui'
 
 const imagePreviewRef = ref<ImagePreviewInstance>()
 const images = ref([

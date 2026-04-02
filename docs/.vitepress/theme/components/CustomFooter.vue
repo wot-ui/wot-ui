@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2025-05-08 22:54:27
- * @LastEditTime: 2026-03-27 12:38:07
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/docs/.vitepress/theme/components/CustomFooter.vue
- * 记得注释
--->
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
 import { useData} from 'vitepress'

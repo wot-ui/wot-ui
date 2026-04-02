@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
-import WdTag from '@/uni_modules/wot-design-uni/components/wd-tag/wd-tag.vue'
+import WdTag from '@/uni_modules/wot-ui/components/wd-tag/wd-tag.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { type TagType } from '@/uni_modules/wot-design-uni/components/wd-tag/types'
+import { type TagType } from '@/uni_modules/wot-ui/components/wd-tag/types'
 
 describe('WdTag', () => {
   beforeEach(() => {

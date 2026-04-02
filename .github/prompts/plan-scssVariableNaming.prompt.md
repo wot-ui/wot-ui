@@ -1,4 +1,4 @@
-# wot-design-uni 组件 SCSS 变量命名规范
+# wot-ui 组件 SCSS 变量命名规范
 
 ---
 

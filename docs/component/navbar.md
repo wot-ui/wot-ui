@@ -60,7 +60,7 @@ function handleClickLeft() {
 ```
 
 ```ts
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const { show: showToast } = useToast()
 

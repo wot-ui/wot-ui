@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdPopover from '@/uni_modules/wot-design-uni/components/wd-popover/wd-popover.vue'
+import WdPopover from '@/uni_modules/wot-ui/components/wd-popover/wd-popover.vue'
 import { describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
 

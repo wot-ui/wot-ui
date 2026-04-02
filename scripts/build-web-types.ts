@@ -118,7 +118,7 @@ generateWebTypes({
   name,
   version,
   entry,
-  outDir: path.resolve(__dirname, '../src/uni_modules/wot-design-uni'),
+  outDir: path.resolve(__dirname, '../src/uni_modules/wot-ui'),
   reComponentName,
   reDocUrl,
   reWebTypesSource,

@@ -90,7 +90,7 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import type { ImageMode } from '@/uni_modules/wot-design-uni/components/wd-img/types'
+import type { ImageMode } from '@/uni_modules/wot-ui/components/wd-img/types'
 import blackMao from './black_mao.png'
 import blackMaoPreview from './black_mao_1.png'
 

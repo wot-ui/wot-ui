@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdGap from '@/uni_modules/wot-design-uni/components/wd-gap/wd-gap.vue'
+import WdGap from '@/uni_modules/wot-ui/components/wd-gap/wd-gap.vue'
 import { describe, test, expect } from 'vitest'
 
 describe('WdGap', () => {

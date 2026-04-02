@@ -5,7 +5,7 @@
 ## 基础用法
 
 ```ts
-import { useUpload } from '@/uni_modules/wot-design-uni'
+import { useUpload } from '@/uni_modules/wot-ui'
 
 const { startUpload, abort, chooseFile, UPLOAD_STATUS } = useUpload()
 

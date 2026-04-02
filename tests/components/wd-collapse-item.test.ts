@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdCollapseItem from '@/uni_modules/wot-design-uni/components/wd-collapse-item/wd-collapse-item.vue'
-import WdCollapse from '@/uni_modules/wot-design-uni/components/wd-collapse/wd-collapse.vue'
+import WdCollapseItem from '@/uni_modules/wot-ui/components/wd-collapse-item/wd-collapse-item.vue'
+import WdCollapse from '@/uni_modules/wot-ui/components/wd-collapse/wd-collapse.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
 

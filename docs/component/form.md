@@ -40,7 +40,7 @@ pnpm add zod
 
 ```ts
 import { z } from 'zod'
-import { zodAdapter } from '@/uni_modules/wot-design-uni'
+import { zodAdapter } from '@/uni_modules/wot-ui'
 
 // 通过 zodAdapter 转换 zod 的模式对象
 const schema = zodAdapter(
@@ -59,7 +59,7 @@ const schema = zodAdapter(
 如果需要控制必填星号（`*`）的显示，你还可以提供 `isRequired` 方法：
 
 ```ts
-import type { FormSchema } from '@/uni_modules/wot-design-uni/components/wd-form/types'
+import type { FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
 
 const customSchema: FormSchema = {
   // 校验逻辑
@@ -108,8 +108,8 @@ const customSchema: FormSchema = {
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
 import { z } from 'zod'
-import { useToast, zodAdapter } from '@/uni_modules/wot-design-uni'
-import type { FormInstance } from '@/uni_modules/wot-design-uni/components/wd-form/types'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
+import type { FormInstance } from '@/uni_modules/wot-ui/components/wd-form/types'
 
 const { success: showSuccess } = useToast()
 
@@ -204,8 +204,8 @@ function handleSubmit() {
 <script lang="ts" setup>
 import { computed, reactive, ref, watch } from 'vue'
 import { z } from 'zod'
-import { useToast, zodAdapter } from '@/uni_modules/wot-design-uni'
-import type { FormInstance, FormSchema } from '@/uni_modules/wot-design-uni/components/wd-form/types'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
+import type { FormInstance, FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
 
 const { success: showSuccess } = useToast()
 const model = reactive<{
@@ -336,7 +336,7 @@ function handleSubmit() {
 
 ```typescript [typescript]
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 import { reactive, ref } from 'vue'
 
 interface PhoneItem {
@@ -468,8 +468,8 @@ const submit = () => {
 
 ```typescript [typescript]
 <script lang="ts" setup>
-import { useToast, zodAdapter } from '@/uni_modules/wot-design-uni'
-import type { FormInstance, FormSchema } from '@/uni_modules/wot-design-uni/components/wd-form/types'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
+import type { FormInstance, FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
 import dayjs from 'dayjs'
 import { computed, reactive, ref, watch } from 'vue'
 import { z } from 'zod'
@@ -686,8 +686,8 @@ function handleSubmit() {
 
 ```typescript [typescript]
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { FormInstance } from '@/uni_modules/wot-design-uni/components/wd-form/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { FormInstance } from '@/uni_modules/wot-ui/components/wd-form/types'
 import { reactive, ref } from 'vue'
 
 const { success: showSuccess } = useToast()
@@ -932,14 +932,14 @@ function handleValidate() {
 
 ```ts [typescript]
 <script lang="ts" setup>
-import { useToast, zodAdapter } from '@/uni_modules/wot-design-uni'
-import { isArray } from '@/uni_modules/wot-design-uni/common/util'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
+import { isArray } from '@/uni_modules/wot-ui/common/util'
 import { useCascaderAreaData } from '@vant/area-data'
-import { type FormInstance, type FormSchema, type FormSchemaIssue } from '@/uni_modules/wot-design-uni/components/wd-form/types'
-import type { SliderInstance } from '@/uni_modules/wot-design-uni/components/wd-slider/types'
-import type { SlideVerifyInstance } from '@/uni_modules/wot-design-uni/components/wd-slide-verify/types'
-import type { UploadFileItem } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
-import type { CascaderOption } from '@/uni_modules/wot-design-uni/components/wd-cascader/types'
+import { type FormInstance, type FormSchema, type FormSchemaIssue } from '@/uni_modules/wot-ui/components/wd-form/types'
+import type { SliderInstance } from '@/uni_modules/wot-ui/components/wd-slider/types'
+import type { SlideVerifyInstance } from '@/uni_modules/wot-ui/components/wd-slide-verify/types'
+import type { UploadFileItem } from '@/uni_modules/wot-ui/components/wd-upload/types'
+import type { CascaderOption } from '@/uni_modules/wot-ui/components/wd-cascader/types'
 
 import dayjs from 'dayjs'
 import { computed, nextTick, reactive, ref, watch } from 'vue'

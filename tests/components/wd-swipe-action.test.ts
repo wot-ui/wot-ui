@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import WdSwipeAction from '@/uni_modules/wot-design-uni/components/wd-swipe-action/wd-swipe-action.vue'
+import WdSwipeAction from '@/uni_modules/wot-ui/components/wd-swipe-action/wd-swipe-action.vue'
 import { describe, expect, test, vi } from 'vitest'
 
 function createTouchEvent(x: number, y: number) {

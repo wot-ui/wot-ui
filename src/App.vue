@@ -3,7 +3,7 @@ import { onLaunch, onShow, onHide, onThemeChange } from '@dcloudio/uni-app'
 import { useDark } from './store'
 import { useI18nSync } from './hooks/useI18nSync'
 import { useIframeMessage } from './hooks/useIframeMessage'
-import { getSystemInfo } from './uni_modules/wot-design-uni/common/util'
+import { getSystemInfo } from './uni_modules/wot-ui/common/util'
 
 // 初始化国际化
 const darkMode = useDark()
@@ -36,7 +36,7 @@ onHide(() => {
 </script>
 <style lang="scss">
 @use '@/iconfont/index.css';
-@use './uni_modules/wot-design-uni/styles/theme/index.scss' as *;
+@use './uni_modules/wot-ui/styles/theme/index.scss' as *;
 @use './theme/presets.scss' as *;
 
 ::-webkit-scrollbar {

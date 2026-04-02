@@ -281,7 +281,7 @@ Set the `display-format` property to customize the form display, and set the `in
 ```
 
 ```typescript
-import { dayjs } from '@/uni_modules/wot-design-uni'
+import { dayjs } from '@/uni_modules/wot-ui'
 
 const value = ref<string>('')
 
@@ -313,7 +313,7 @@ Set the `before-confirm` function to run when the user clicks the `confirm` butt
 ```
 
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const toast = useToast()
 
@@ -413,7 +413,7 @@ You can get the Calendar instance through ref and call instance methods. You can
 
 ```typescript
 import { ref } from 'vue'
-import type { CalendarInstance } from '@/uni_modules/wot-design-uni/components/wd-calendar/types'
+import type { CalendarInstance } from '@/uni_modules/wot-ui/components/wd-calendar/types'
 
 const calendar = ref<CalendarInstance>()
 const value = ref<number>(Date.now())

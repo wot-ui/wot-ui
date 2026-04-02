@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
-import WdActionSheet from '@/uni_modules/wot-design-uni/components/wd-action-sheet/wd-action-sheet.vue'
-import WdPopup from '@/uni_modules/wot-design-uni/components/wd-popup/wd-popup.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdActionSheet from '@/uni_modules/wot-ui/components/wd-action-sheet/wd-action-sheet.vue'
+import WdPopup from '@/uni_modules/wot-ui/components/wd-popup/wd-popup.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 import { describe, expect, test } from 'vitest'
-import type { Action, Panel } from '@/uni_modules/wot-design-uni/components/wd-action-sheet/types'
+import type { Action, Panel } from '@/uni_modules/wot-ui/components/wd-action-sheet/types'
 import { h, nextTick } from 'vue'
 
 describe('WdActionSheet', () => {

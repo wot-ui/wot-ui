@@ -5,7 +5,7 @@
 ## 基础用法
 
 ```ts
-import { useCountDown } from '@/uni_modules/wot-design-uni'
+import { useCountDown } from '@/uni_modules/wot-ui'
 
 const { start, pause, reset, current } = useCountDown({
   time: 60 * 1000,

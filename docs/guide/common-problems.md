@@ -125,19 +125,19 @@ export default {
 
 由于平台更新改变了默认的样式隔离策略导致的。详见 [样式覆盖 - 特定平台样式穿透失效](./custom-style.md#特定平台样式穿透失效)。
 
-## 为什么组件库文档中都是从`@/uni_modules/wot-design-uni`导入方法和工具类？
+## 为什么组件库文档中都是从`@/uni_modules/wot-ui`导入方法和工具类？
 
-当前组件库本身的开发方式是将组件库代码放到`@/uni_modules/wot-design-uni`这个目录的，所以文档中都是从`@/uni_modules/wot-design-uni`导入方法和工具类，使用`npm`方式安装组件库的时候可以这样调整：
+当前组件库本身的开发方式是将组件库代码放到`@/uni_modules/wot-ui`这个目录的，所以文档中都是从`@/uni_modules/wot-ui`导入方法和工具类，使用`npm`方式安装组件库的时候可以这样调整：
 
 ```ts
 // useToast、useNotify等同理
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 ```
 
 替换为
 
 ```ts
-import { useDialog } from 'wot-design-uni'
+import { useDialog } from '@wot-ui/ui'
 ```
 
 ## uni-app 如何自定义编译平台，例如钉钉小程序？
@@ -233,4 +233,4 @@ function handleOpened() {
 
 ## 关于我们
 
-**如果您的问题不在上述列表中或您有更好的建议，请联系我们 [Moonofweisheng](https://github.com/Moonofweisheng/wot-design-uni)**
+**如果您的问题不在上述列表中或您有更好的建议，请联系我们 [Moonofweisheng](https://github.com/wot-ui/wot-ui)**

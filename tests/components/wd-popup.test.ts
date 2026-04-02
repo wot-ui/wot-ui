@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
-import WdOverlay from '@/uni_modules/wot-design-uni/components/wd-overlay/wd-overlay.vue'
-import WdPopup from '@/uni_modules/wot-design-uni/components/wd-popup/wd-popup.vue'
+import WdOverlay from '@/uni_modules/wot-ui/components/wd-overlay/wd-overlay.vue'
+import WdPopup from '@/uni_modules/wot-ui/components/wd-popup/wd-popup.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 
 const globalComponents = {

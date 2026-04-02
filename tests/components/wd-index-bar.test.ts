@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdIndexBar from '@/uni_modules/wot-design-uni/components/wd-index-bar/wd-index-bar.vue'
-import WdIndexAnchor from '@/uni_modules/wot-design-uni/components/wd-index-anchor/wd-index-anchor.vue'
+import WdIndexBar from '@/uni_modules/wot-ui/components/wd-index-bar/wd-index-bar.vue'
+import WdIndexAnchor from '@/uni_modules/wot-ui/components/wd-index-anchor/wd-index-anchor.vue'
 import { describe, expect, test, vi, beforeEach, afterEach } from 'vitest'
 import { nextTick } from 'vue'
 

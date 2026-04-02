@@ -64,7 +64,7 @@
 ```
 
 ```ts
-import type { ProgressColor } from '@/uni_modules/wot-design-uni/components/wd-progress/types'
+import type { ProgressColor } from '@/uni_modules/wot-ui/components/wd-progress/types'
 
 const colorObject: ProgressColor[] = [
   {

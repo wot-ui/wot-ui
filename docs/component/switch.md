@@ -114,7 +114,7 @@ const checked = ref<boolean>(true)
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const message = useDialog()
 

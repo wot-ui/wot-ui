@@ -75,7 +75,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { SignatureInstance, SignatureResult } from '@/uni_modules/wot-design-uni/components/wd-signature/types'
+import type { SignatureInstance, SignatureResult } from '@/uni_modules/wot-ui/components/wd-signature/types'
 import { ref } from 'vue'
 
 const img = ref<Partial<SignatureResult>>({})

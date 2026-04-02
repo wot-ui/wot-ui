@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdEmpty from '@/uni_modules/wot-design-uni/components/wd-empty/wd-empty.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdEmpty from '@/uni_modules/wot-ui/components/wd-empty/wd-empty.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 
 describe('WdEmpty', () => {

@@ -134,8 +134,8 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import type { TableColumn } from '@/uni_modules/wot-design-uni/components/wd-table-column/types'
-import type { SpanMethodParams } from '@/uni_modules/wot-design-uni/components/wd-table/types'
+import type { TableColumn } from '@/uni_modules/wot-ui/components/wd-table-column/types'
+import type { SpanMethodParams } from '@/uni_modules/wot-ui/components/wd-table/types'
 import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 

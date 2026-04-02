@@ -33,8 +33,8 @@ Set the trigger type through `type`, and set whether the floating button is disa
 ```
 ```ts [typescript]
 import { ref } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { FabType } from '@/uni_modules/wot-design-uni/components/wd-fab/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { FabType } from '@/uni_modules/wot-ui/components/wd-fab/types'
 
 const { show: showToast } = useToast()
 const type = ref<FabType>('primary')
@@ -70,8 +70,8 @@ Through `position` to set the floating button trigger's position, and `direction
 ```
 ```ts [typescript]
 import { ref } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { FabPosition, FabDirection } from '@/uni_modules/wot-design-uni/components/wd-fab/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { FabPosition, FabDirection } from '@/uni_modules/wot-ui/components/wd-fab/types'
 
 const { show: showToast } = useToast()
 const position = ref<FabPosition>('left-bottom')
@@ -126,7 +126,7 @@ Customize the trigger through the `trigger` slot, `expandable` controls whether 
 </wd-fab>
 ```
 ```ts [typescript]
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const { show: showToast } = useToast()
 

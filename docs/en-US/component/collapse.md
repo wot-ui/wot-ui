@@ -71,7 +71,7 @@ By passing a `beforeExpend` function to the `wd-collapse-item` component, you ca
 ```
 
 ```ts
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 const toast = useToast()
 const value = ref<string[]>(['item1'])
 

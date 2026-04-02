@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdRow from '@/uni_modules/wot-design-uni/components/wd-row/wd-row.vue'
-import WdCol from '@/uni_modules/wot-design-uni/components/wd-col/wd-col.vue'
+import WdRow from '@/uni_modules/wot-ui/components/wd-row/wd-row.vue'
+import WdCol from '@/uni_modules/wot-ui/components/wd-col/wd-col.vue'
 import { describe, test, expect } from 'vitest'
 
 describe('布局组件', () => {

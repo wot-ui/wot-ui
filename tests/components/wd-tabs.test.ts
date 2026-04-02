@@ -1,11 +1,11 @@
 import { mount, config } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
-import WdTabs from '@/uni_modules/wot-design-uni/components/wd-tabs/wd-tabs.vue'
-import WdTab from '@/uni_modules/wot-design-uni/components/wd-tab/wd-tab.vue'
-import WdBadge from '@/uni_modules/wot-design-uni/components/wd-badge/wd-badge.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import { pause } from '@/uni_modules/wot-design-uni/common/util'
+import WdTabs from '@/uni_modules/wot-ui/components/wd-tabs/wd-tabs.vue'
+import WdTab from '@/uni_modules/wot-ui/components/wd-tab/wd-tab.vue'
+import WdBadge from '@/uni_modules/wot-ui/components/wd-badge/wd-badge.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import { pause } from '@/uni_modules/wot-ui/common/util'
 
 // 全局组件
 const globalComponents = {
@@ -384,8 +384,8 @@ describe('WdTabs 和 WdTab 组件', () => {
       `,
         data() {
           return {
-            tabData: ['Wot Design Uni'],
-            activeTab: 'Wot Design Uni'
+            tabData: ['Wot UI'],
+            activeTab: 'Wot UI'
           }
         }
       },

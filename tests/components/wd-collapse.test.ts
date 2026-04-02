@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
-import WdCollapse from '@/uni_modules/wot-design-uni/components/wd-collapse/wd-collapse.vue'
-import WdCollapseItem from '@/uni_modules/wot-design-uni/components/wd-collapse-item/wd-collapse-item.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdCollapse from '@/uni_modules/wot-ui/components/wd-collapse/wd-collapse.vue'
+import WdCollapseItem from '@/uni_modules/wot-ui/components/wd-collapse-item/wd-collapse-item.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
 

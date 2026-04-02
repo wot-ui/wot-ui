@@ -11,9 +11,9 @@ type ThemeVarGroup = {
   fields: ThemeVarField[]
 }
 
-const tsFilePath = path.resolve(__dirname, '../src/uni_modules/wot-design-uni/components/wd-config-provider/types.ts')
-const globalScssPath = path.resolve(__dirname, '../src/uni_modules/wot-design-uni/styles/variable.scss')
-const componentsRootPath = path.resolve(__dirname, '../src/uni_modules/wot-design-uni/components')
+const tsFilePath = path.resolve(__dirname, '../src/uni_modules/wot-ui/components/wd-config-provider/types.ts')
+const globalScssPath = path.resolve(__dirname, '../src/uni_modules/wot-ui/styles/variable.scss')
+const componentsRootPath = path.resolve(__dirname, '../src/uni_modules/wot-ui/components')
 
 const toCamelCase = (value: string) => {
   const segments = value.split('-').filter(Boolean)

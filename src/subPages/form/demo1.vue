@@ -28,8 +28,8 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useToast, zodAdapter } from '@/uni_modules/wot-design-uni'
-import type { FormInstance, FormSchema } from '@/uni_modules/wot-design-uni/components/wd-form/types'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
+import type { FormInstance, FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
 import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { z } from 'zod'

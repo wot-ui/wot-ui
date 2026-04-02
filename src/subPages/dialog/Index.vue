@@ -108,7 +108,7 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useDialog, useToast } from '@/uni_modules/wot-design-uni'
+import { useDialog, useToast } from '@/uni_modules/wot-ui'
 import { ref } from 'vue'
 
 import blackMao from '../img/black_mao.png'

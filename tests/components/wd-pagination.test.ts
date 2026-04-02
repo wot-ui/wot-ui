@@ -1,7 +1,7 @@
 import { mount, config } from '@vue/test-utils'
-import WdPagination from '@/uni_modules/wot-design-uni/components/wd-pagination/wd-pagination.vue'
+import WdPagination from '@/uni_modules/wot-ui/components/wd-pagination/wd-pagination.vue'
 import { describe, test, expect, vi } from 'vitest'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 config.global.components = { WdLoading }
 describe('WdPagination', () => {
   // 测试基本渲染

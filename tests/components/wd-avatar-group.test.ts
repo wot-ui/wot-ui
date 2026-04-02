@@ -1,9 +1,9 @@
 import { mount, config } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import WdAvatarGroup from '@/uni_modules/wot-design-uni/components/wd-avatar-group/wd-avatar-group.vue'
-import WdAvatar from '@/uni_modules/wot-design-uni/components/wd-avatar/wd-avatar.vue'
+import WdAvatarGroup from '@/uni_modules/wot-ui/components/wd-avatar-group/wd-avatar-group.vue'
+import WdAvatar from '@/uni_modules/wot-ui/components/wd-avatar/wd-avatar.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 config.global.components = { WdIcon }
 describe('WdAvatarGroup', () => {
   beforeEach(() => {

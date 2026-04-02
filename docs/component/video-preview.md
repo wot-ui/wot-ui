@@ -25,8 +25,8 @@
 ```
 
 ```ts [ts]
-import { useVideoPreview } from '@/uni_modules/wot-design-uni/components/wd-video-preview'
-import type { PreviewVideo } from '@/uni_modules/wot-design-uni/components/wd-video-preview/types'
+import { useVideoPreview } from '@/uni_modules/wot-ui/components/wd-video-preview'
+import type { PreviewVideo } from '@/uni_modules/wot-ui/components/wd-video-preview/types'
 
 const { previewVideo } = useVideoPreview()
 
@@ -60,7 +60,7 @@ function open() {
 ```
 
 ```ts [ts]
-import { useVideoPreview } from '@/uni_modules/wot-design-uni/components/wd-video-preview'
+import { useVideoPreview } from '@/uni_modules/wot-ui/components/wd-video-preview'
 
 const { previewVideo: openMainPreview } = useVideoPreview()
 const { previewVideo: openSubPreview } = useVideoPreview('sub-preview')
@@ -96,7 +96,7 @@ previewVideo({
 
 ```ts [ts]
 import { ref } from 'vue'
-import type { VideoPreviewInstance, PreviewVideo } from '@/uni_modules/wot-design-uni/components/wd-video-preview/types'
+import type { VideoPreviewInstance, PreviewVideo } from '@/uni_modules/wot-ui/components/wd-video-preview/types'
 
 const videoPreviewRef = ref<VideoPreviewInstance>()
 

@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils'
-import WdSelectPicker from '@/uni_modules/wot-design-uni/components/wd-select-picker/wd-select-picker.vue'
+import WdSelectPicker from '@/uni_modules/wot-ui/components/wd-select-picker/wd-select-picker.vue'
 import { describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
-import WdSearch from '@/uni_modules/wot-design-uni/components/wd-search/wd-search.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdSearch from '@/uni_modules/wot-ui/components/wd-search/wd-search.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 
 const globalComponents = {
   WdSearch,

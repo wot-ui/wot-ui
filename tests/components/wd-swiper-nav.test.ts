@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import WdSwiperNav from '@/uni_modules/wot-design-uni/components/wd-swiper-nav/wd-swiper-nav.vue'
+import WdSwiperNav from '@/uni_modules/wot-ui/components/wd-swiper-nav/wd-swiper-nav.vue'
 import { describe, test, expect } from 'vitest'
-import type { DirectionType, IndicatorPositionType } from '@/uni_modules/wot-design-uni/components/wd-swiper/types'
-import type { SwiperIndicatorType } from '@/uni_modules/wot-design-uni/components/wd-swiper-nav/types'
+import type { DirectionType, IndicatorPositionType } from '@/uni_modules/wot-ui/components/wd-swiper/types'
+import type { SwiperIndicatorType } from '@/uni_modules/wot-ui/components/wd-swiper-nav/types'
 
 // 默认属性值
 const defaultProps = {

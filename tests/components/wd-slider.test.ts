@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import WdSlider from '@/uni_modules/wot-design-uni/components/wd-slider/wd-slider.vue'
+import WdSlider from '@/uni_modules/wot-ui/components/wd-slider/wd-slider.vue'
 import { describe, test, expect } from 'vitest'
 
 function mountSlider(options: Record<string, any> = {}) {

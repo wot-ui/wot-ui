@@ -1,9 +1,9 @@
 import { config, mount } from '@vue/test-utils'
 import { describe, test, expect } from 'vitest'
 import { nextTick } from 'vue'
-import WdTab from '@/uni_modules/wot-design-uni/components/wd-tab/wd-tab.vue'
-import WdTabs from '@/uni_modules/wot-design-uni/components/wd-tabs/wd-tabs.vue'
-import WdBadge from '@/uni_modules/wot-design-uni/components/wd-badge/wd-badge.vue'
+import WdTab from '@/uni_modules/wot-ui/components/wd-tab/wd-tab.vue'
+import WdTabs from '@/uni_modules/wot-ui/components/wd-tabs/wd-tabs.vue'
+import WdBadge from '@/uni_modules/wot-ui/components/wd-badge/wd-badge.vue'
 
 const globalComponents = { WdTab, WdTabs, WdBadge }
 

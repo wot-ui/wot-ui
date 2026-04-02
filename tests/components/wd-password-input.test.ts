@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdPasswordInput from '../../src/uni_modules/wot-design-uni/components/wd-password-input/wd-password-input.vue'
+import WdPasswordInput from '../../src/uni_modules/wot-ui/components/wd-password-input/wd-password-input.vue'
 import { describe, expect, test } from 'vitest'
 
 describe('WdPasswordInput', () => {

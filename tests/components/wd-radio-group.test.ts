@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdRadioGroup from '@/uni_modules/wot-design-uni/components/wd-radio-group/wd-radio-group.vue'
-import WdRadio from '@/uni_modules/wot-design-uni/components/wd-radio/wd-radio.vue'
+import WdRadioGroup from '@/uni_modules/wot-ui/components/wd-radio-group/wd-radio-group.vue'
+import WdRadio from '@/uni_modules/wot-ui/components/wd-radio/wd-radio.vue'
 import { describe, test, expect, vi } from 'vitest'
 import { nextTick } from 'vue'
 

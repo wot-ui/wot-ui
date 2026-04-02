@@ -1,9 +1,9 @@
 import { config, mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
-import WdKeyboard from '@/uni_modules/wot-design-uni/components/wd-keyboard/wd-keyboard.vue'
+import WdKeyboard from '@/uni_modules/wot-ui/components/wd-keyboard/wd-keyboard.vue'
 import { describe, expect, test } from 'vitest'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 config.global.components = { WdLoading, WdIcon }
 
 describe('WdKeyboard', () => {

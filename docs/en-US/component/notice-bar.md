@@ -93,7 +93,7 @@ import { ref } from 'vue'
 const textArray = ref([
   'Welcome to wot design uni',
   'This component library is built based on uniapp ->Vue3, ts',
-  'Project address: https://github.com/Moonofweisheng/wot-design-uni',
+  'Project address: https://github.com/wot-ui/wot-ui',
   'Our goal is to create the strongest uniapp component library',
   'Sincerely invite everyone to build together',
   'This is a message notification, this is a message notification, this is a message notification, this is a message notification, this is a message notification'
@@ -138,7 +138,7 @@ const notice = ref<NoticeBarInstance>()
 const textArray = ref([
   'Welcome to wot design uni',
   'This component library is built based on uniapp ->Vue3, ts',
-  'Project address: https://github.com/Moonofweisheng/wot-design-uni',
+  'Project address: https://github.com/wot-ui/wot-ui',
   'Our goal is to create the strongest uniapp component library',
   'Sincerely invite everyone to build together',
   'This is a message notification, this is a message notification, this is a message notification, this is a message notification, this is a message notification'

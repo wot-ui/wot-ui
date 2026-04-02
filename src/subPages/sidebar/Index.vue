@@ -60,8 +60,8 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { SidebarBeforeChange } from '@/uni_modules/wot-design-uni/components/wd-sidebar/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { SidebarBeforeChange } from '@/uni_modules/wot-ui/components/wd-sidebar/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { loading: showLoading, close: closeLoading } = useToast()

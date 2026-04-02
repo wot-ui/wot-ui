@@ -12,7 +12,7 @@ version: 1.14.0
 ## 基础用法
 
 ```ts
-import { useConfigProvider } from '@/uni_modules/wot-design-uni'
+import { useConfigProvider } from '@/uni_modules/wot-ui'
 import { reactive, ref } from 'vue'
 
 // 使用 reactive

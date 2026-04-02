@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdSearch from '../../src/uni_modules/wot-design-uni/components/wd-search/wd-search.vue'
+import WdSearch from '../../src/uni_modules/wot-ui/components/wd-search/wd-search.vue'
 import { describe, expect, test, vi } from 'vitest'
 
 async function flushSearchTimers(ms = 200) {

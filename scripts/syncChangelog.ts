@@ -47,7 +47,7 @@ syncChangelog({
   fromPath: path.resolve(cwd, 'CHANGELOG.md'),
   targets: [
     {
-      path: path.resolve(cwd, 'src/uni_modules/wot-design-uni/changelog.md')
+      path: path.resolve(cwd, 'src/uni_modules/wot-ui/changelog.md')
     },
     {
       path: path.resolve(cwd, 'docs/guide/changelog.md')

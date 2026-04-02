@@ -76,9 +76,9 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { PickerOption } from '@/uni_modules/wot-design-uni/components/wd-picker-view/types'
-import type { PickerBeforeConfirm } from '@/uni_modules/wot-design-uni/components/wd-picker/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { PickerOption } from '@/uni_modules/wot-ui/components/wd-picker-view/types'
+import type { PickerBeforeConfirm } from '@/uni_modules/wot-ui/components/wd-picker/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 

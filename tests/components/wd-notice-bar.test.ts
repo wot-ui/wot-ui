@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdNoticeBar from '@/uni_modules/wot-design-uni/components/wd-notice-bar/wd-notice-bar.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdNoticeBar from '@/uni_modules/wot-ui/components/wd-notice-bar/wd-notice-bar.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
 

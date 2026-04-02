@@ -38,7 +38,7 @@
 </template>
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue'
-import { useNotify } from '@/uni_modules/wot-design-uni'
+import { useNotify } from '@/uni_modules/wot-ui'
 import { useI18n } from 'vue-i18n'
 
 const { showNotify } = useNotify()

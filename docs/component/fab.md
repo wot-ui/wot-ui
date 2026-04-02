@@ -33,8 +33,8 @@
 ```
 ```ts [typescript]
 import { ref } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { FabType } from '@/uni_modules/wot-design-uni/components/wd-fab/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { FabType } from '@/uni_modules/wot-ui/components/wd-fab/types'
 
 const { show: showToast } = useToast()
 const type = ref<FabType>('primary')
@@ -70,8 +70,8 @@ const type = ref<FabType>('primary')
 ```
 ```ts [typescript]
 import { ref } from 'vue'
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { FabPosition, FabDirection } from '@/uni_modules/wot-design-uni/components/wd-fab/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { FabPosition, FabDirection } from '@/uni_modules/wot-ui/components/wd-fab/types'
 
 const { show: showToast } = useToast()
 const position = ref<FabPosition>('left-bottom')
@@ -126,7 +126,7 @@ const active = ref<boolean>(false)
 </wd-fab>
 ```
 ```ts [typescript]
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const { show: showToast } = useToast()
 

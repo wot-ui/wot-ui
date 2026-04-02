@@ -1,10 +1,10 @@
 {
-  "name": "wot-design-uni",
+  "name": "wot-ui",
   "version": "1.14.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Moonofweisheng/wot-design-uni.git"
+    "url": "https://github.com/wot-ui/wot-ui.git"
   },
   "scripts": {
     "dev:app": "uni -p app",
@@ -52,7 +52,7 @@
     "release-patch": "standard-version --release-as patch",
     "release-tag": "esno ./scripts/release.ts",
     "build:web-types": "esno ./scripts/build-web-types.ts",
-    "compiler": "esno ./scripts/compiler.ts",
+    "build:lib": "esno ./scripts/build-lib.ts",
     "upload:mp-weixin": "uni build -p mp-weixin && minici --platform weixin",
     "upload:mp-alipay": "uni build -p mp-alipay && minici --platform alipay",
     "upload:mp-dingtalk": "uni build -p mp-dingtalk && minici --platform dd",

@@ -58,9 +58,9 @@ export default {
 </script>
 <script lang="ts" setup>
 import { computed, ref, onMounted, nextTick } from 'vue'
-import { setNotifyDefaultOptions, useConfigProvider, useQueue } from '@/uni_modules/wot-design-uni'
-import type { Action } from '@/uni_modules/wot-design-uni/components/wd-action-sheet/types'
-import type { ConfigProviderTheme } from '@/uni_modules/wot-design-uni/components/wd-config-provider/types'
+import { setNotifyDefaultOptions, useConfigProvider, useQueue } from '@/uni_modules/wot-ui'
+import type { Action } from '@/uni_modules/wot-ui/components/wd-action-sheet/types'
+import type { ConfigProviderTheme } from '@/uni_modules/wot-ui/components/wd-config-provider/types'
 import { useDark } from '../../store'
 import { useRewardAd } from '@/store/useRewardAd'
 

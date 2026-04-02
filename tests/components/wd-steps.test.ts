@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdSteps from '@/uni_modules/wot-design-uni/components/wd-steps/wd-steps.vue'
-import WdStep from '@/uni_modules/wot-design-uni/components/wd-step/wd-step.vue'
+import WdSteps from '@/uni_modules/wot-ui/components/wd-steps/wd-steps.vue'
+import WdStep from '@/uni_modules/wot-ui/components/wd-step/wd-step.vue'
 import { describe, expect, test } from 'vitest'
 
 describe('WdSteps', () => {

@@ -212,7 +212,7 @@ import blackMao from '../img/black_mao.png'
 </script>
 
 <style lang="scss" scoped>
-@use '../../uni_modules/wot-design-uni/styles/variable.scss' as *;
+@use '../../uni_modules/wot-ui/styles/variable.scss' as *;
 
 // 通用工具类
 .footer-group {
@@ -458,7 +458,4 @@ import blackMao from '../img/black_mao.png'
     line-height: 1.4;
   }
 }
-
-// 深色模式适配 (根据需要，如果 wot-design-uni 自动处理变量则不需要太多重写，但为了保险起见，使用 CSS 变量通常会自动适配)
-// 如果 variable.scss 中的变量是 CSS var() 形式，则深色模式自动生效。
 </style>

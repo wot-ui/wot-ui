@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import WdFloatingPanel from '@/uni_modules/wot-design-uni/components/wd-floating-panel/wd-floating-panel.vue'
+import WdFloatingPanel from '@/uni_modules/wot-ui/components/wd-floating-panel/wd-floating-panel.vue'
 import { describe, expect, test } from 'vitest'
 
 function touchEvent(x: number, y: number, datasetId?: string) {

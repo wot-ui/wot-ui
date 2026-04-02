@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdSegmented from '@/uni_modules/wot-design-uni/components/wd-segmented/wd-segmented.vue'
+import WdSegmented from '@/uni_modules/wot-ui/components/wd-segmented/wd-segmented.vue'
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
 import { nextTick } from 'vue'
 

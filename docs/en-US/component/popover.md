@@ -21,7 +21,7 @@ If there is a scenario where users manually click somewhere outside the `popover
 ```
 
 ```typescript
-import { useQueue } from '@/uni_modules/wot-design-uni'
+import { useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 function handleChange({ show }) {
@@ -57,7 +57,7 @@ Data structure of objects in the `content` array for list mode:
 ```
 
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const toast = useToast()
 

@@ -12,7 +12,7 @@
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -36,7 +36,7 @@ const openAlert = () => {
 ```
 
 ```ts [脚本]
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 
@@ -80,7 +80,7 @@ const openPrompt = () => {
 ```
 
 ```ts
-import { useDialog } from '@/uni_modules/wot-design-uni'
+import { useDialog } from '@/uni_modules/wot-ui'
 
 const dialogA = useDialog('dialog-a')
 const dialogB = useDialog('dialog-b')
@@ -104,7 +104,7 @@ const openB = () => {
 ```
 
 ```ts
-import { useDialog, useToast } from '@/uni_modules/wot-design-uni'
+import { useDialog, useToast } from '@/uni_modules/wot-ui'
 
 const dialog = useDialog()
 const toast = useToast()

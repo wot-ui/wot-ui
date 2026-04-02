@@ -145,7 +145,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useToast } from '../../uni_modules/wot-design-uni/components/wd-toast'
+import { useToast } from '../../uni_modules/wot-ui/components/wd-toast'
 
 const toast = useToast()
 

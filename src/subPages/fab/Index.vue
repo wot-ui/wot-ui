@@ -121,8 +121,8 @@
   </view>
 </template>
 <script lang="ts" setup>
-import { useQueue, useToast } from '@/uni_modules/wot-design-uni'
-import { type FabPosition, type FabType } from '@/uni_modules/wot-design-uni/components/wd-fab/types'
+import { useQueue, useToast } from '@/uni_modules/wot-ui'
+import { type FabPosition, type FabType } from '@/uni_modules/wot-ui/components/wd-fab/types'
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

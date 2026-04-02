@@ -1,8 +1,8 @@
 import { config, mount } from '@vue/test-utils'
-import WdImgCropper from '@/uni_modules/wot-design-uni/components/wd-img-cropper/wd-img-cropper.vue'
+import WdImgCropper from '@/uni_modules/wot-ui/components/wd-img-cropper/wd-img-cropper.vue'
 import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 config.global.components = { WdLoading }
 describe('WdImgCropper 图片裁剪组件', () => {
   beforeEach(() => {

@@ -2,12 +2,12 @@ import { mount } from '@vue/test-utils'
 import { describe, test, expect } from 'vitest'
 import { nextTick } from 'vue'
 import { z } from 'zod'
-import WdForm from '@/uni_modules/wot-design-uni/components/wd-form/wd-form.vue'
-import WdFormItem from '@/uni_modules/wot-design-uni/components/wd-form-item/wd-form-item.vue'
-import WdInput from '@/uni_modules/wot-design-uni/components/wd-input/wd-input.vue'
-import WdCell from '@/uni_modules/wot-design-uni/components/wd-cell/wd-cell.vue'
-import { zodAdapter } from '@/uni_modules/wot-design-uni/components/wd-form/adapters/zod'
-import type { FormSchema } from '@/uni_modules/wot-design-uni/components/wd-form/types'
+import WdForm from '@/uni_modules/wot-ui/components/wd-form/wd-form.vue'
+import WdFormItem from '@/uni_modules/wot-ui/components/wd-form-item/wd-form-item.vue'
+import WdInput from '@/uni_modules/wot-ui/components/wd-input/wd-input.vue'
+import WdCell from '@/uni_modules/wot-ui/components/wd-cell/wd-cell.vue'
+import { zodAdapter } from '@/uni_modules/wot-ui/components/wd-form/adapters/zod'
+import type { FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
 
 const globalComponents = {
   WdForm,

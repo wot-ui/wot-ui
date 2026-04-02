@@ -1,4 +1,4 @@
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 import { ref } from 'vue'
 
 // 是否免除广告，免除后不再显示广告

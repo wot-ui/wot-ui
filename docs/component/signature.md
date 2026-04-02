@@ -21,7 +21,7 @@ version: 1.6.0
 ```
 
 ```ts
-import type { SignatureResult } from '@/uni_modules/wot-design-uni/components/wd-signature/types'
+import type { SignatureResult } from '@/uni_modules/wot-ui/components/wd-signature/types'
 
 function handleConfirm(result: SignatureResult) {
   if (result.success) {
@@ -115,7 +115,7 @@ const disabled = ref(true)
 
 ```ts [ts]
 import { ref } from 'vue'
-import type { SignatureInstance, SignatureResult } from '@/uni_modules/wot-design-uni/components/wd-signature/types'
+import type { SignatureInstance, SignatureResult } from '@/uni_modules/wot-ui/components/wd-signature/types'
 
 const showPopup = ref(false)
 const signatureRef = ref<SignatureInstance>()
@@ -187,7 +187,7 @@ function handlePopupConfirm(result: SignatureResult) {
 ```
 
 ```ts [ts]
-import { pause } from '@/uni_modules/wot-design-uni/common/util'
+import { pause } from '@/uni_modules/wot-ui/common/util'
 
 const height = ref(0)
 const width = ref(0)
@@ -284,7 +284,7 @@ onMounted(() => {
 ```
 
 ```ts [ts]
-import { pause } from '@/uni_modules/wot-design-uni/common/util'
+import { pause } from '@/uni_modules/wot-ui/common/util'
 
 const height = ref(0)
 const width = ref(0)

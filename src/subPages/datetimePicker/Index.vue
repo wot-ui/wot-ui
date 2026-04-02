@@ -78,13 +78,13 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { DatetimePickerViewFilter, DatetimePickerViewFormatter } from '@/uni_modules/wot-design-uni/components/wd-datetime-picker-view/types'
-import type { DatetimePickerDisplayFormatTabLabel } from '@/uni_modules/wot-design-uni/components/wd-datetime-picker/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { DatetimePickerViewFilter, DatetimePickerViewFormatter } from '@/uni_modules/wot-ui/components/wd-datetime-picker-view/types'
+import type { DatetimePickerDisplayFormatTabLabel } from '@/uni_modules/wot-ui/components/wd-datetime-picker/types'
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import dayjs from 'dayjs'
-import { isArray } from '@/uni_modules/wot-design-uni/common/util'
+import { isArray } from '@/uni_modules/wot-ui/common/util'
 const { t } = useI18n()
 
 const show1 = ref(false)

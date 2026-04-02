@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdResize from '@/uni_modules/wot-design-uni/components/wd-resize/wd-resize.vue'
+import WdResize from '@/uni_modules/wot-ui/components/wd-resize/wd-resize.vue'
 import { describe, test, expect } from 'vitest'
 
 describe('WdResize', () => {

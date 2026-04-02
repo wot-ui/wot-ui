@@ -1,11 +1,11 @@
 import '../mocks/wd-transition.mock'
 import { mount } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
-import WdDropMenu from '@/uni_modules/wot-design-uni/components/wd-drop-menu/wd-drop-menu.vue'
-import WdDropMenuItem from '@/uni_modules/wot-design-uni/components/wd-drop-menu-item/wd-drop-menu-item.vue'
-import WdPopup from '@/uni_modules/wot-design-uni/components/wd-popup/wd-popup.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import WdOverlay from '@/uni_modules/wot-design-uni/components/wd-overlay/wd-overlay.vue'
+import WdDropMenu from '@/uni_modules/wot-ui/components/wd-drop-menu/wd-drop-menu.vue'
+import WdDropMenuItem from '@/uni_modules/wot-ui/components/wd-drop-menu-item/wd-drop-menu-item.vue'
+import WdPopup from '@/uni_modules/wot-ui/components/wd-popup/wd-popup.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import WdOverlay from '@/uni_modules/wot-ui/components/wd-overlay/wd-overlay.vue'
 import { nextTick } from 'vue'
 
 const globalComponents = {

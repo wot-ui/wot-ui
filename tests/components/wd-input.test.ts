@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import WdInput from '@/uni_modules/wot-design-uni/components/wd-input/wd-input.vue'
+import WdInput from '@/uni_modules/wot-ui/components/wd-input/wd-input.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
-import { type InputType, type InputClearTrigger, type InputConfirmType, type InputMode } from '@/uni_modules/wot-design-uni/components/wd-input/types'
+import { type InputType, type InputClearTrigger, type InputConfirmType, type InputMode } from '@/uni_modules/wot-ui/components/wd-input/types'
 
 // 辅助函数，用于访问组件内部属性和方法
 function getVM(wrapper: any): any {

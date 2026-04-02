@@ -175,7 +175,7 @@ function handleClick({ index, name }) {
 ```
 
 ```ts [ts]
-import type { TabsInstance } from '@/uni_modules/wot-design-uni/components/wd-tabs/types'
+import type { TabsInstance } from '@/uni_modules/wot-ui/components/wd-tabs/types'
 
 const showPopup = ref(false)
 const tabsRef = ref<TabsInstance>()

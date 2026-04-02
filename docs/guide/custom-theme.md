@@ -97,7 +97,7 @@ const themeVars = reactive<ConfigProviderThemeVars>({
 ```scss [App.vue]
 /* App.vue */
 <!-- 在入口文件引入主题变量 -->
-@use './uni_modules/wot-design-uni/styles/theme/index.scss' as *;
+@use './uni_modules/wot-ui/styles/theme/index.scss' as *;
 @use './theme/brand-a.scss' as *;
 ```
 ```html [config-provider]

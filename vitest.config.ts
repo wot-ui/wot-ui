@@ -1,12 +1,3 @@
-/*
- * @Author: weisheng
- * @Date: 2025-04-09 00:02:58
- * @LastEditTime: 2026-01-04 15:00:52
- * @LastEditors: weisheng
- * @Description:
- * @FilePath: /wot-design-uni/vitest.config.ts
- * 记得注释
- */
 import { defineConfig } from 'vitest/config'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
@@ -45,7 +36,7 @@ export default defineConfig({
       reporter: ['text', 'json', 'html', 'json-summary'],
       include: [
         // 只包含组件源文件
-        'src/uni_modules/wot-design-uni/components/**/*.{vue,ts}'
+        'src/uni_modules/wot-ui/components/**/*.{vue,ts}'
       ],
       exclude: [
         // 排除不需要测试的文件
@@ -56,7 +47,7 @@ export default defineConfig({
         'dist/**',
         '**/*.js',
         '**/*.d.ts',
-        'src/uni_modules/wot-design-uni/common/**/*.{vue,ts}'
+        'src/uni_modules/wot-ui/common/**/*.{vue,ts}'
       ],
       // 当测试单个组件时，不应用全局阈值
       thresholds:

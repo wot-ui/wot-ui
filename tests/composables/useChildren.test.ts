@@ -1,4 +1,4 @@
-import { flattenVNodes } from '@/uni_modules/wot-design-uni/composables/useChildren'
+import { flattenVNodes } from '@/uni_modules/wot-ui/composables/useChildren'
 import { describe, expect, it } from 'vitest'
 import { h, type VNode } from 'vue'
 

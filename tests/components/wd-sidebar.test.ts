@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdSidebar from '@/uni_modules/wot-design-uni/components/wd-sidebar/wd-sidebar.vue'
+import WdSidebar from '@/uni_modules/wot-ui/components/wd-sidebar/wd-sidebar.vue'
 import { describe, expect, test, vi } from 'vitest'
 
 describe('侧边栏组件', () => {

@@ -10,7 +10,7 @@ Single column picker, pass a numeric array to `columns` and set `v-model` for bi
 <wd-picker-view :columns="columns" v-model="value" @change="onChange" />
 ```
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 const toast = useToast()
 const columns = ref(['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6', 'Option 7'])
 const value3 = ref<string>('')

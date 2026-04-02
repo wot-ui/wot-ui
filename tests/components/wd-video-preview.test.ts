@@ -1,9 +1,9 @@
 import { mount } from '@vue/test-utils'
-import WdVideoPreview from '@/uni_modules/wot-design-uni/components/wd-video-preview/wd-video-preview.vue'
+import WdVideoPreview from '@/uni_modules/wot-ui/components/wd-video-preview/wd-video-preview.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { defineComponent, nextTick } from 'vue'
-import { type PreviewVideo } from '@/uni_modules/wot-design-uni/components/wd-video-preview/types'
-import { useVideoPreview } from '@/uni_modules/wot-design-uni/components/wd-video-preview'
+import { type PreviewVideo } from '@/uni_modules/wot-ui/components/wd-video-preview/types'
+import { useVideoPreview } from '@/uni_modules/wot-ui/components/wd-video-preview'
 
 const createUseVideoPreviewTestComponent = () => {
   return defineComponent({

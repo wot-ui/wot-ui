@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import '../mocks/wd-transition.mock'
-import WdPopup from '@/uni_modules/wot-design-uni/components/wd-popup/wd-popup.vue'
-import WdKey from '@/uni_modules/wot-design-uni/components/wd-keyboard/key/index.vue'
-import WdKeyboard from '@/uni_modules/wot-design-uni/components/wd-keyboard/wd-keyboard.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdPopup from '@/uni_modules/wot-ui/components/wd-popup/wd-popup.vue'
+import WdKey from '@/uni_modules/wot-ui/components/wd-keyboard/key/index.vue'
+import WdKeyboard from '@/uni_modules/wot-ui/components/wd-keyboard/wd-keyboard.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 import { nextTick, ref } from 'vue'
 
 const globalComponents = {

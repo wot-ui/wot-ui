@@ -23,7 +23,7 @@
 ```
 
 ```ts [ts]
-import { useQueue } from '@/uni_modules/wot-design-uni'
+import { useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 ```
@@ -125,7 +125,7 @@ function control() {
 
 ```ts [ts]
 import { ref } from 'vue'
-import type { TooltipInstance } from '@/uni_modules/wot-design-uni/components/wd-tooltip/types'
+import type { TooltipInstance } from '@/uni_modules/wot-ui/components/wd-tooltip/types'
 
 const tooltipRef = ref<TooltipInstance>()
 const dynamicTooltipWidth = ref(90)

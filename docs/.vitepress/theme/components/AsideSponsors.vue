@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2025-09-21 17:13:45
- * @LastEditTime: 2025-09-21 22:57:29
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/docs/.vitepress/theme/components/AsideSponsors.vue
- * 记得注释
--->
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useAdSponsor } from '../composables/adSponsor'

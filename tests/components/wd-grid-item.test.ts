@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdGridItem from '@/uni_modules/wot-design-uni/components/wd-grid-item/wd-grid-item.vue'
+import WdGridItem from '@/uni_modules/wot-ui/components/wd-grid-item/wd-grid-item.vue'
 import { describe, test, expect, vi } from 'vitest'
 
 describe('WdGridItem', () => {

@@ -1,11 +1,11 @@
 import { mount } from '@vue/test-utils'
-import WdUpload from '@/uni_modules/wot-design-uni/components/wd-upload/wd-upload.vue'
+import WdUpload from '@/uni_modules/wot-ui/components/wd-upload/wd-upload.vue'
 import { describe, expect, test, vi, beforeEach } from 'vitest'
-import { type UploadFile } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
+import { type UploadFile } from '@/uni_modules/wot-ui/components/wd-upload/types'
 import { nextTick } from 'vue'
 
 const previewVideoSpy = vi.fn()
-vi.mock('@/uni_modules/wot-design-uni/components/wd-video-preview', () => ({
+vi.mock('@/uni_modules/wot-ui/components/wd-video-preview', () => ({
   useVideoPreview: () => ({
     previewVideo: previewVideoSpy,
     closeVideoPreview: vi.fn()

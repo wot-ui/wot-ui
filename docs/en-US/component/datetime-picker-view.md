@@ -12,7 +12,7 @@ An encapsulation of the Picker component with date and time options built intern
 <wd-datetime-picker-view v-model="value" label="Date Selection" @change="handleChange" />
 ```
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 const toast = useToast()
 const value = ref<number>(Date.now())
 

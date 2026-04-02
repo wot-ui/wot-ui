@@ -10,7 +10,7 @@ You need to import this component in the page as a mounting point.
 ```
 
 ```ts
-import { useNotify } from '@/uni_modules/wot-design-uni'
+import { useNotify } from '@/uni_modules/wot-ui'
 
 const { showNotify, closeNotify } = useNotify()
 
@@ -103,7 +103,7 @@ export default {
 // App.vue
 <script setup lang="ts">
   import { onLaunch } from '@dcloudio/uni-app'
-  import { setNotifyDefaultOptions } from '@/uni_modules/wot-design-uni'
+  import { setNotifyDefaultOptions } from '@/uni_modules/wot-ui'
 
   onLaunch(() => {
     setNotifyDefaultOptions({
@@ -175,7 +175,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-  import { useNotify } from '@/uni_modules/wot-design-uni'
+  import { useNotify } from '@/uni_modules/wot-ui'
 
   const { showNotify } = useNotify()
 </script>

@@ -26,8 +26,8 @@
 </template>
 
 <script lang="ts" setup>
-import { type PreviewVideo, type VideoPreviewInstance } from '@/uni_modules/wot-design-uni/components/wd-video-preview/types'
-import { useVideoPreview } from '@/uni_modules/wot-design-uni/components/wd-video-preview'
+import { type PreviewVideo, type VideoPreviewInstance } from '@/uni_modules/wot-ui/components/wd-video-preview/types'
+import { useVideoPreview } from '@/uni_modules/wot-ui/components/wd-video-preview'
 import { ref } from 'vue'
 import blackMao from '../img/black_mao.png'
 

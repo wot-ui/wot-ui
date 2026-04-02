@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
-import WdSwiper from '@/uni_modules/wot-design-uni/components/wd-swiper/wd-swiper.vue'
+import WdSwiper from '@/uni_modules/wot-ui/components/wd-swiper/wd-swiper.vue'
 import { describe, expect, test, vi } from 'vitest'
-import WdSwiperNav from '@/uni_modules/wot-design-uni/components/wd-swiper-nav/wd-swiper-nav.vue'
+import WdSwiperNav from '@/uni_modules/wot-ui/components/wd-swiper-nav/wd-swiper-nav.vue'
 
 describe('WdSwiper', () => {
   test('基本渲染', async () => {

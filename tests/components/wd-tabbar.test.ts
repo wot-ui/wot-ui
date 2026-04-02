@@ -1,8 +1,8 @@
 import { config, mount } from '@vue/test-utils'
-import WdTabbar from '@/uni_modules/wot-design-uni/components/wd-tabbar/wd-tabbar.vue'
-import WdTabbarItem from '@/uni_modules/wot-design-uni/components/wd-tabbar-item/wd-tabbar-item.vue'
-import WdBadge from '@/uni_modules/wot-design-uni/components/wd-badge/wd-badge.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdTabbar from '@/uni_modules/wot-ui/components/wd-tabbar/wd-tabbar.vue'
+import WdTabbarItem from '@/uni_modules/wot-ui/components/wd-tabbar-item/wd-tabbar-item.vue'
+import WdBadge from '@/uni_modules/wot-ui/components/wd-badge/wd-badge.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, expect, test } from 'vitest'
 import { nextTick } from 'vue'
 

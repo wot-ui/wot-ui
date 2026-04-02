@@ -121,7 +121,7 @@
 </template>
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { useQueue } from '@/uni_modules/wot-design-uni'
+import { useQueue } from '@/uni_modules/wot-ui'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const { closeOutside } = useQueue()

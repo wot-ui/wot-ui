@@ -1,11 +1,11 @@
 ---
 trigger: always_on
-description: wot-design-uni 组件 SCSS 变量命名规范的可复用规则，包含属性关键词、状态/变体命名、语义令牌等参考表
+description: wot-ui 组件 SCSS 变量命名规范的可复用规则，包含属性关键词、状态/变体命名、语义令牌等参考表
 ---
 
 # SCSS 变量命名规则
 
-本规则定义了 wot-design-uni 组件 SCSS 变量的命名标准，供相关 SKILL 引用。
+本规则定义了 wot-ui 组件 SCSS 变量的命名标准，供相关 SKILL 引用。
 
 ---
 

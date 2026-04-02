@@ -7,15 +7,15 @@ body:
     attributes:
       value: |
         在向我们提交 Bug 报告前，请优先使用以下方式尝试解决问题：
-        - 在组件文档 [wot-design-uni](https://wot-ui.cn/) 确认使用方法是否正确
-        - 尝试在 [Issue](https://github.com/Moonofweisheng/wot-design-uni/issues) 列表中搜索相同问题
-        - 如果不是反馈 Bug，请到 [Discussions 讨论区](https://github.com/Moonofweisheng/wot-design-uni/discussions) 发帖。
+        - 在组件文档 [wot-ui](https://wot-ui.cn/) 确认使用方法是否正确
+        - 尝试在 [Issue](https://github.com/wot-ui/wot-ui/issues) 列表中搜索相同问题
+        - 如果不是反馈 Bug，请到 [Discussions 讨论区](https://github.com/wot-ui/wot-ui/discussions) 发帖。
 
   - type: input
     id: version
     attributes:
       label: Wot UI 版本号
-      description: 你正在使用的组件库版本号（请填写 wot-design-uni/package.json 里实际安装的版本）
+      description: 你正在使用的组件库版本号
       placeholder: 例如：0.1.1
     validations:
       required: true
@@ -41,7 +41,7 @@ body:
     attributes:
       label: 复现Demo地址（如不提供，将被直接关闭）
       description: |
-        我们需要你提供一个最小重现demo，以便于我们帮你排查问题。你可以通过 [create-uni](https://github.com/uni-helper/create-uni) 快速创建一个wot-design-uni项目，并添加相关复现逻辑来提供。不要随便填写一个东西，这会导致你的 issue 被直接关闭。即使在你看来问题很容易复现，也请认真对待，因为一个完整复现demo可以大大提高我们排查问题的效率。
+        我们需要你提供一个最小重现demo，以便于我们帮你排查问题。你可以通过 [create-uni](https://github.com/uni-helper/create-uni) 快速创建一个wot-ui项目，并添加相关复现逻辑来提供。不要随便填写一个东西，这会导致你的 issue 被直接关闭。即使在你看来问题很容易复现，也请认真对待，因为一个完整复现demo可以大大提高我们排查问题的效率。
     validations:
       required: true
 

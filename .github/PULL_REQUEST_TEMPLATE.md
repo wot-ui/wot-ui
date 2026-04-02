@@ -1,5 +1,5 @@
 <!--
-请务必阅读[贡献指南](https://github.com/Moonofweisheng/wot-design-uni/blob/master/.github/CONTRIBUTING.md)
+请务必阅读[贡献指南](https://github.com/wot-ui/wot-ui/blob/master/.github/CONTRIBUTING.md)
 -->
 
 <!-- (将"[ ]"更新为"[x]"以勾选一个框) -->

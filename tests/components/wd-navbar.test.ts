@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdNavbar from '@/uni_modules/wot-design-uni/components/wd-navbar/wd-navbar.vue'
+import WdNavbar from '@/uni_modules/wot-ui/components/wd-navbar/wd-navbar.vue'
 import { describe, test, expect } from 'vitest'
 
 describe('WdNavbar', () => {

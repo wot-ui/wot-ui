@@ -17,7 +17,7 @@ The Toast component is a functional component that can be used by calling the `$
 ```
 
 ```typescript
-import { useToast } from 'wot-design-uni'
+import { useToast } from '@wot-ui/ui'
 
 export default {
   setup() {

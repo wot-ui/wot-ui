@@ -22,15 +22,15 @@ Before using, please make sure you have learned Vue's official [Quick Start](htt
 ::: code-group
 
 ```bash [npm]
-npm i wot-design-uni
+npm i @wot-ui/ui
 ```
 
 ```bash [yarn]
-yarn add wot-design-uni
+yarn add @wot-ui/ui
 ```
 
 ```bash [pnpm]
-pnpm add wot-design-uni
+pnpm add @wot-ui/ui
 ```
 
 :::
@@ -43,10 +43,10 @@ In the `uni-app plugin market`, choose to import using `HBuildX`, or manually cr
 
 ```bash
 - uni_modules
-- - - wot-design-uni 
+- - - wot-ui 
 ```
 
-Download link: <a href="https://ext.dcloud.net.cn/plugin?id=13889"><span>wot-design-uni</span></a>
+Download link: <a href="https://ext.dcloud.net.cn/plugin?id=13889"><span>wot-ui</span></a>
 
 ## Sass
 
@@ -98,7 +98,7 @@ As long as the component path follows the specification (see [easycom](https://u
  "easycom": {
   "autoscan": true,
   "custom": {
-    "^wd-(.*)": "wot-design-uni/components/wd-$1/wd-$1.vue"
+    "^wd-(.*)": "wot-ui/components/wd-$1/wd-$1.vue"
   }
  },
  
@@ -115,7 +115,7 @@ If you're not familiar with `easycom`, you can also achieve automatic component 
 
 :::tip Reminder
 
-- Recommended to use `@uni-helper/vite-plugin-uni-components@0.0.9` and above, as it includes the built-in `resolver` for `wot-design-uni` starting from version 0.0.9.
+- Recommended to use `@uni-helper/vite-plugin-uni-components@0.0.9` and above, as it includes the built-in `resolver` for `wot-ui` starting from version 0.0.9.
 - If you see many `Sourcemap for points to missing source files​` in the console when using this solution, try upgrading `Vite` to version 4.5.x or above.
 
 :::
@@ -175,7 +175,7 @@ For cli projects using `uni_modules` installation, no configuration is needed as
 // tsconfig.json
 {
   "compilerOptions": {
-    "types": ["wot-design-uni/global"]
+    "types": ["wot-ui/global"]
   }
 }
 ```

@@ -57,7 +57,7 @@
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import type { SkeletonRowCol, SkeletonProps } from '../../uni_modules/wot-design-uni/components/wd-skeleton/types'
+import type { SkeletonRowCol, SkeletonProps } from '../../uni_modules/wot-ui/components/wd-skeleton/types'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const themeList = [

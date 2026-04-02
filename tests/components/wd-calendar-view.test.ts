@@ -1,14 +1,14 @@
 import { config, mount } from '@vue/test-utils'
-import WdCalendarView from '@/uni_modules/wot-design-uni/components/wd-calendar-view/wd-calendar-view.vue'
-import monthPanel from '@/uni_modules/wot-design-uni/components/wd-calendar-view/monthPanel/month-panel.vue'
-import yearPanel from '@/uni_modules/wot-design-uni/components/wd-calendar-view/yearPanel/year-panel.vue'
-import year from '@/uni_modules/wot-design-uni/components/wd-calendar-view/year/year.vue'
-import month from '@/uni_modules/wot-design-uni/components/wd-calendar-view/month/month.vue'
+import WdCalendarView from '@/uni_modules/wot-ui/components/wd-calendar-view/wd-calendar-view.vue'
+import monthPanel from '@/uni_modules/wot-ui/components/wd-calendar-view/monthPanel/month-panel.vue'
+import yearPanel from '@/uni_modules/wot-ui/components/wd-calendar-view/yearPanel/year-panel.vue'
+import year from '@/uni_modules/wot-ui/components/wd-calendar-view/year/year.vue'
+import month from '@/uni_modules/wot-ui/components/wd-calendar-view/month/month.vue'
 
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
-import { type CalendarFormatter, type CalendarTimeFilter } from '@/uni_modules/wot-design-uni/components/wd-calendar-view/types'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import { type CalendarFormatter, type CalendarTimeFilter } from '@/uni_modules/wot-ui/components/wd-calendar-view/types'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 config.global.components = { monthPanel, yearPanel, year, month, WdIcon }
 describe('WdCalendarView', () => {
   beforeEach(() => {

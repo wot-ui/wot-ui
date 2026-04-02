@@ -92,7 +92,7 @@ const themeVars = reactive({
 ::: code-group
 
 ```ts [ts]
-import type { ConfigProviderThemeVars } from 'wot-design-uni'
+import type { ConfigProviderThemeVars } from '@wot-ui/ui'
 
 const themeVars: ConfigProviderThemeVars = {
   buttonPrimaryBgColor: '#07c160',
@@ -101,7 +101,7 @@ const themeVars: ConfigProviderThemeVars = {
 ```
 
 ```ts [ts]
-import type { ConfigProviderThemeVars } from '@/uni_modules/wot-design-uni/components/wd-config-provider/types'
+import type { ConfigProviderThemeVars } from '@/uni_modules/wot-ui/components/wd-config-provider/types'
 
 const localThemeVars: ConfigProviderThemeVars = {
   cellTitleColor: '#4d80f0'
@@ -179,7 +179,7 @@ const { theme, themeVars } = useTheme({
 2. 编写控制主题的组合式函数。
 
 ```ts
-import type { ConfigProviderThemeVars } from 'wot-design-uni'
+import type { ConfigProviderThemeVars } from '@wot-ui/ui'
 import { ref } from 'vue'
 
 const theme = ref<'light' | 'dark'>('light')
@@ -225,7 +225,7 @@ const { theme, toggleTheme } = useTheme()
 #### 引入
 
 ```ts
-import { useConfigProvider } from 'wot-design-uni'
+import { useConfigProvider } from '@wot-ui/ui'
 ```
 
 #### 使用
@@ -235,7 +235,7 @@ import { useConfigProvider } from 'wot-design-uni'
 ```vue
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { useConfigProvider } from 'wot-design-uni'
+import { useConfigProvider } from '@wot-ui/ui'
 
 const themeVars = reactive({
   buttonPrimaryBg: '#07c160',

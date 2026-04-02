@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import WdCountDown from '@/uni_modules/wot-design-uni/components/wd-count-down/wd-count-down.vue'
+import WdCountDown from '@/uni_modules/wot-ui/components/wd-count-down/wd-count-down.vue'
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
 import { nextTick } from 'vue'
-import type { CountDownExpose } from '@/uni_modules/wot-design-uni/components/wd-count-down/types'
+import type { CountDownExpose } from '@/uni_modules/wot-ui/components/wd-count-down/types'
 
 describe('WdCountDown 倒计时组件', () => {
   beforeEach(() => {

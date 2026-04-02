@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils'
-import WdBacktop from '@/uni_modules/wot-design-uni/components/wd-backtop/wd-backtop.vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
-import WdTransition from '@/uni_modules/wot-design-uni/components/wd-transition/wd-transition.vue'
+import WdBacktop from '@/uni_modules/wot-ui/components/wd-backtop/wd-backtop.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import WdTransition from '@/uni_modules/wot-ui/components/wd-transition/wd-transition.vue'
 import { describe, test, expect } from 'vitest'
 import { nextTick } from 'vue'
-import { type BacktopShape } from '@/uni_modules/wot-design-uni/components/wd-backtop/types'
+import { type BacktopShape } from '@/uni_modules/wot-ui/components/wd-backtop/types'
 
 describe('WdBacktop', () => {
   // 测试基本渲染

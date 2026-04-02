@@ -1,11 +1,11 @@
 import { config, mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
-import WdNotify from '@/uni_modules/wot-design-uni/components/wd-notify/wd-notify.vue'
+import WdNotify from '@/uni_modules/wot-ui/components/wd-notify/wd-notify.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { type NotifyPosition, type NotifyType } from '@/uni_modules/wot-design-uni/components/wd-notify/types'
-import { useNotify } from '@/uni_modules/wot-design-uni/components/wd-notify'
+import { type NotifyPosition, type NotifyType } from '@/uni_modules/wot-ui/components/wd-notify/types'
+import { useNotify } from '@/uni_modules/wot-ui/components/wd-notify'
 import { defineComponent, nextTick } from 'vue'
-import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 config.global.components = { WdIcon }
 // 创建一个测试组件，使用 useNotify
 const TestComponent = defineComponent({

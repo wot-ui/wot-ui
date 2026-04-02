@@ -47,7 +47,7 @@ const active = ref(0)
 ```
 
 ```ts
-import type { SidebarBeforeChange } from '@/uni_modules/wot-design-uni/components/wd-sidebar/types'
+import type { SidebarBeforeChange } from '@/uni_modules/wot-ui/components/wd-sidebar/types'
 
 const beforeChange: SidebarBeforeChange = (value) => {
   return new Promise((resolve) => {

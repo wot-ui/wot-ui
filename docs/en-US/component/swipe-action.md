@@ -34,7 +34,7 @@ If there is a scenario where the user manually clicks somewhere outside of `swip
 ```
 
 ```typescript
-import { useToast, useQueue } from '@/uni_modules/wot-design-uni'
+import { useToast, useQueue } from '@/uni_modules/wot-ui'
 
 const { closeOutside } = useQueue()
 
@@ -156,7 +156,7 @@ The hook function receives two parameters: `reason` and `position`.
 ```
 
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const toast = useToast()
 
@@ -194,7 +194,7 @@ The callback function's parameter indicates the clicked position, where `left` a
 ```
 
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const toast = useToast()
 

@@ -1,101 +1,79 @@
-name: Create Release Tag
+name: Release and Publish
 
 on:
   push:
     tags:
-      - 'v*' # 推送标签，比如 v1.0, v20.15.10
+      - 'v*'
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
-  build:
-    name: 创建发布
+  release:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 检出代码
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: 获取当前和上一个标签
-        id: get_tags
-        run: |
-          git fetch --prune --unshallow
-          tags=($(git tag -l --sort=-version:refname))
-          current_tag=${tags[0]}
-          previous_tag=${tags[1]}
-          echo "::set-output name=current_tag::$current_tag"
-          echo "::set-output name=previous_tag::$previous_tag"
-
-      - name: 提取并分类提交消息
-        id: extract_commit_messages
-        run: |
-          set -e
-          current_tag="${{ steps.get_tags.outputs.current_tag }}"
-          previous_tag="${{ steps.get_tags.outputs.previous_tag }}"
-          commit_messages=$(git log --pretty=format:"%s %h" "$previous_tag".."$current_tag" | grep -E 'feat|fix|docs|perf')
-          feat_messages=$(echo "$commit_messages" | grep 'feat' || true)
-          fix_messages=$(echo "$commit_messages" | grep 'fix' || true)
-          docs_messages=$(echo "$commit_messages" | grep 'docs' || true)
-          perf_messages=$(echo "$commit_messages" | grep 'perf' || true)
-          echo "::set-output name=feat_messages::${feat_messages[@]}"
-          echo "::set-output name=fix_messages::${fix_messages[@]}"
-          echo "::set-output name=docs_messages::${docs_messages[@]}"
-          echo "::set-output name=perf_messages::${perf_messages[@]}"
-
-      - name: 获取当前分支名
-        id: get_branch_name
-        run: |
-          branch_name=$(git rev-parse --abbrev-ref HEAD)
-          echo "::set-output name=branch_name::$branch_name"
-
-      - name: 发布说明
-        id: generate_release_notes
-        run: |
-            # 提取提交消息分类
-            feat_messages=("${{ steps.extract_commit_messages.outputs.feat_messages }}")
-            fix_messages=("${{ steps.extract_commit_messages.outputs.fix_messages }}")
-            docs_messages=("${{ steps.extract_commit_messages.outputs.docs_messages }}")
-            perf_messages=("${{ steps.extract_commit_messages.outputs.perf_messages }}")
-        
-            # 生成发布说明的Markdown字符串
-            release_notes="> 请查看 [更新日志](./CHANGELOG.md) 获取所有变更详情。  \n## 更新内容：  \n"
-        
-            if [[ -n "$feat_messages" ]]; then
-              release_notes="$release_notes\n### ✨ Features | 新功能:  \n"
-              for message in "${feat_messages[@]}"; do
-                release_notes="$release_notes\n- $message"
-              done
-            fi
-        
-            if [[ -n "$fix_messages" ]]; then
-              release_notes="$release_notes\n### 🐛 Bug Fixes | Bug 修复:  \n"
-              for message in "${fix_messages[@]}"; do
-                release_notes="$release_notes\n- $message"
-              done
-            fi
-        
-            if [[ -n "$docs_messages" ]]; then
-              release_notes="$release_notes\n### ✏️ Documentation | 文档:  \n"
-              for message in "${docs_messages[@]}"; do
-                release_notes="$release_notes\n- $message"
-              done
-            fi
-        
-            if [[ -n "$perf_messages" ]]; then
-              release_notes="$release_notes\n### ⚡ Performance Improvements | 性能优化:  \n"
-              for message in "${perf_messages[@]}"; do
-                release_notes="$release_notes\n- $message"
-              done
-            fi
-            echo "::set-output name=release_notes::$release_notes"
-        
-
-      - name: 写入生成的发布说明到 changelog.md
-        run: |
-              echo -e "${{ steps.generate_release_notes.outputs.release_notes }}" > changelog.md
-              cat changelog.md
-
-      - name: 创建标签的发布
-        id: release_tag
-        uses: ncipollo/release-action@v1
         with:
-          generateReleaseNotes: "false"  # 禁用自动生成发布说明
-          bodyfile: changelog.md
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.9.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_ENV"
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build web types
+        run: pnpm build:web-types
+
+      - name: Build lib package
+        run: pnpm build:lib
+
+      - name: Check npm version
+        run: npm -v
+
+      - name: Publish package
+        run: |
+          cd lib
+          npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Generate GitHub changelog
+        run: pnpx changelogithub
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Release summary
+        run: |
+          echo "## Release Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Version: ${{ github.ref_name }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Published Packages" >> "$GITHUB_STEP_SUMMARY"
+          echo "- ✅ wot-ui" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Build Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "✅ Build and publish completed" >> "$GITHUB_STEP_SUMMARY"

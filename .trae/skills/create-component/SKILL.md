@@ -9,7 +9,7 @@ description: 在 wot-ui 项目中创建新组件的标准流程
 
 ## 组件目录结构
 
-每个组件位于 `src/uni_modules/wot-design-uni/components/wd-{组件名}/` 目录下，包含以下文件：
+每个组件位于 `src/uni_modules/wot-ui/components/wd-{组件名}/` 目录下，包含以下文件：
 
 ```
 wd-{组件名}/
@@ -25,7 +25,7 @@ wd-{组件名}/
 ### 1. 创建组件目录
 
 ```bash
-mkdir -p src/uni_modules/wot-design-uni/components/wd-{组件名}
+mkdir -p src/uni_modules/wot-ui/components/wd-{组件名}
 ```
 
 ---
@@ -284,7 +284,7 @@ uni-app 支持跨平台条件编译：
 
 ### 5. 注册全局类型声明 (`global.d.ts`)
 
-在 `src/uni_modules/wot-design-uni/global.d.ts` 中添加组件类型声明：
+在 `src/uni_modules/wot-ui/global.d.ts` 中添加组件类型声明：
 
 ```typescript
 declare module 'vue' {

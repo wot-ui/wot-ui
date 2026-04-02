@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import WdStickyBox from '@/uni_modules/wot-design-uni/components/wd-sticky-box/wd-sticky-box.vue'
-import WdResize from '@/uni_modules/wot-design-uni/components/wd-resize/wd-resize.vue'
+import WdStickyBox from '@/uni_modules/wot-ui/components/wd-sticky-box/wd-sticky-box.vue'
+import WdResize from '@/uni_modules/wot-ui/components/wd-resize/wd-resize.vue'
 import { describe, test, expect, vi } from 'vitest'
 
 // 由于 wd-sticky-box 组件依赖于 uni-app 的特定 API，

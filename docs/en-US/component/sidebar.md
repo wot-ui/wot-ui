@@ -55,7 +55,7 @@ Set the `change` method to listen to events when switching navigation items.
 ```
 
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
+import { useToast } from '@/uni_modules/wot-ui'
 
 const toast = useToast()
 const active = ref<number>(1)
@@ -78,8 +78,8 @@ Through the `before-change` property, you can execute specific logic before swit
 ```
 
 ```typescript
-import { useToast } from '@/uni_modules/wot-design-uni'
-import type { SidebarBeforeChange } from '@/uni_modules/wot-design-uni/components/wd-sidebar/types'
+import { useToast } from '@/uni_modules/wot-ui'
+import type { SidebarBeforeChange } from '@/uni_modules/wot-ui/components/wd-sidebar/types'
 import { ref } from 'vue'
 const { loading: showLoading, close: closeLoading } = useToast()
 
@@ -124,7 +124,7 @@ The anchor usage of the sidebar component can help users quickly navigate to spe
 ```typescript [typescript]
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { getRect, isArray } from '@/uni_modules/wot-design-uni/common/util'
+import { getRect, isArray } from '@/uni_modules/wot-ui/common/util'
 
 const active = ref<number>(1)
 const scrollTop = ref<number>(0)

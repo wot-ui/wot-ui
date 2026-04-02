@@ -3,7 +3,7 @@ import { execSync } from 'child_process'
 import { writeFileSync, readFileSync, readdirSync, statSync } from 'fs'
 import path from 'path'
 
-const src = path.resolve(__dirname, '../src/uni_modules/wot-design-uni')
+const src = path.resolve(__dirname, '../src/uni_modules/wot-ui')
 const oldVersion = require('../package.json').version
 const LOWEST_VERSION = '$LOWEST_VERSION$'
 
@@ -77,7 +77,7 @@ inquirer
     handleLowestVersion(path.resolve(__dirname, '../docs'), newVersion)
 
     console.log(`√ bumping version in package.json from ${oldVersion} to ${newVersion}`)
-    const tarfetPackageJson = require('../src/uni_modules/wot-design-uni/package.json')
+    const tarfetPackageJson = require('../src/uni_modules/wot-ui/package.json')
     tarfetPackageJson.version = newVersion
     writeFileSync(path.resolve(src, 'package.json'), JSON.stringify(tarfetPackageJson))
     // 生成制品

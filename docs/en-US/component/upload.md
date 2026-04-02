@@ -7,7 +7,7 @@ All currently supported platforms in the component library support video uploadi
 :::
 
 ::: warning About WeChat Mini Program Privacy Agreement
-`upload` uses three privacy interfaces on the WeChat Mini Program platform: `wx.chooseImage`, `wx.chooseMedia`, and `wx.chooseVideo`, which require configuration of the WeChat privacy agreement. You can refer to the [Mini Program Privacy Agreement Development Guide](https://developers.weixin.qq.com/miniprogram/dev/framework/user-privacy/PrivacyAuthorize.html) for related configuration and development, otherwise the upload function will not work. It is recommended to use [WeChat Mini Program Privacy Protection Pop-up](https://ext.dcloud.net.cn/plugin?id=14346) or the [WeChat Privacy Agreement Pop-up](https://github.com/Moonofweisheng/wot-design-uni/tree/master/src/components/wd-privacy-popup) used in the component library demo.
+`upload` uses three privacy interfaces on the WeChat Mini Program platform: `wx.chooseImage`, `wx.chooseMedia`, and `wx.chooseVideo`, which require configuration of the WeChat privacy agreement. You can refer to the [Mini Program Privacy Agreement Development Guide](https://developers.weixin.qq.com/miniprogram/dev/framework/user-privacy/PrivacyAuthorize.html) for related configuration and development, otherwise the upload function will not work. It is recommended to use [WeChat Mini Program Privacy Protection Pop-up](https://ext.dcloud.net.cn/plugin?id=14346) or the [WeChat Privacy Agreement Pop-up](https://github.com/wot-ui/wot-ui/tree/master/src/components/wd-privacy-popup) used in the component library demo.
 :::
 
 ## Basic Usage
@@ -122,7 +122,7 @@ Set the `before-preview` function. When the user clicks the image to preview, th
 ```
 
 ```typescript
-import { useToast, useDialog } from '@/uni_modules/wot-design-uni'
+import { useToast, useDialog } from '@/uni_modules/wot-ui'
 
 const messageBox = useDialog()
 const toast = useToast()
@@ -168,7 +168,7 @@ Set the `before-upload` function. When the user selects an image and clicks conf
 ```
 
 ```typescript
-import { useToast, useDialog } from '@/uni_modules/wot-design-uni'
+import { useToast, useDialog } from '@/uni_modules/wot-ui'
 
 const messageBox = useDialog()
 const toast = useToast()
@@ -214,7 +214,7 @@ Set the `before-remove` function. When the user clicks the close button, the `be
 ```
 
 ```typescript
-import { useToast, useDialog } from '@/uni_modules/wot-design-uni'
+import { useToast, useDialog } from '@/uni_modules/wot-ui'
 
 const messageBox = useDialog()
 const toast = useToast()
@@ -261,7 +261,7 @@ Set the `before-choose` function. When the user clicks to awaken the upload opti
 ```
 
 ```typescript
-import { useToast, useDialog } from '@/uni_modules/wot-design-uni'
+import { useToast, useDialog } from '@/uni_modules/wot-ui'
 
 const messageBox = useDialog()
 const toast = useToast()

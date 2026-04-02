@@ -12,14 +12,14 @@ import uni from '@dcloudio/vite-plugin-uni'
 export default defineConfig({
   ...
   optimizeDeps: {
-    exclude: ['wot-design-uni']
+    exclude: ['@wot-ui/ui']
   }
   ...
 })
 
 ```
 
-Use [optimizeDeps.exclude](https://cn.vitejs.dev/config/dep-optimization-options.html#optimizedeps-exclude) to forcibly exclude the `wot-design-uni` module from pre-building. In `uni_modules` mode, no processing is needed.
+Use [optimizeDeps.exclude](https://cn.vitejs.dev/config/dep-optimization-options.html#optimizedeps-exclude) to forcibly exclude the `@wot-ui/ui` module from pre-building. In `uni_modules` mode, no processing is needed.
 
 :::
 
@@ -28,9 +28,9 @@ Use [optimizeDeps.exclude](https://cn.vitejs.dev/config/dep-optimization-options
 We implement multi-language support through the **Locale** component. You can use the **Locale.use** method to switch the current language.
 
 ```typescript
-import { Locale } from 'wot-design-uni'
+import { Locale } from '@wot-ui/ui'
 // Import English language pack
-import enUS from 'wot-design-uni/locale/lang/en-US'
+import enUS from '@wot-ui/ui/locale/lang/en-US'
 
 Locale.use('en-US', enUS)
 ```
@@ -40,7 +40,7 @@ Locale.use('en-US', enUS)
 You can modify and extend the text through the **Locale.add** method, for example:
 
 ```typescript
-import { Locale } from 'wot-design-uni'
+import { Locale } from '@wot-ui/ui'
 
 const messages = {
   'zh-CN': {
@@ -73,4 +73,4 @@ Locale.add(messages)
 | Turkish | tr-TR | `v1.3.12` |
 | Russian | ru-RU | `v1.3.12` |
 
-If you need to use other languages, you are welcome to contribute a [PR](https://github.com/Moonofweisheng/wot-design-uni/pulls). Just add a language configuration file [here](https://github.com/Moonofweisheng/wot-design-uni/tree/master/src/uni_modules/wot-design-uni/locale/lang).
+If you need to use other languages, you are welcome to contribute a [PR](https://github.com/wot-ui/wot-ui/pulls). Just add a language configuration file [here](https://github.com/wot-ui/wot-ui/tree/master/src/uni_modules/wot-ui/locale/lang).

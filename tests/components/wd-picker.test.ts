@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import WdPicker from '@/uni_modules/wot-design-uni/components/wd-picker/wd-picker.vue'
+import WdPicker from '@/uni_modules/wot-ui/components/wd-picker/wd-picker.vue'
 import { describe, test, expect } from 'vitest'
 
 describe('WdPicker', () => {
