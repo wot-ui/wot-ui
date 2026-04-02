@@ -20,6 +20,43 @@ vi.stubGlobal('uni', {
       fail?.({ errMsg: 'upload failed' })
     }
     return mockUploadTask
+  }),
+  chooseMedia: vi.fn().mockImplementation((options) => {
+    if (options.success) {
+      options.success({
+        tempFiles: [
+          {
+            tempFilePath: 'https://example.com/image.jpg',
+            thumbTempFilePath: 'https://example.com/image.jpg',
+            fileType: 'image',
+            size: 1024,
+            duration: 0
+          }
+        ],
+        type: 'image'
+      })
+    }
+    if (options.complete) options.complete()
+  }),
+  chooseImage: vi.fn().mockImplementation((options) => {
+    if (options.success) {
+      options.success({
+        tempFilePaths: ['https://example.com/image.jpg'],
+        tempFiles: [{ path: 'https://example.com/image.jpg', size: 1024 }]
+      })
+    }
+    if (options.complete) options.complete()
+  }),
+  chooseVideo: vi.fn().mockImplementation((options) => {
+    if (options.success) {
+      options.success({
+        tempFilePath: 'https://example.com/video.mp4',
+        thumbTempFilePath: 'https://example.com/thumb.jpg',
+        size: 1024 * 1024,
+        duration: 10
+      })
+    }
+    if (options.complete) options.complete()
   })
 })
 
@@ -28,6 +65,25 @@ describe('useUpload', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
+    // Reset chooseMedia to default success implementation between tests to prevent
+    // per-test overrides (e.g., fail mocks) from leaking into subsequent tests.
+    ;(global as any).uni.chooseMedia = vi.fn().mockImplementation((options: any) => {
+      if (options.success) {
+        options.success({
+          tempFiles: [
+            {
+              tempFilePath: 'https://example.com/image.jpg',
+              thumbTempFilePath: 'https://example.com/image.jpg',
+              fileType: 'image',
+              size: 1024,
+              duration: 0
+            }
+          ],
+          type: 'image'
+        })
+      }
+      if (options.complete) options.complete()
+    })
   })
 
   // 测试基本上传功能
@@ -311,15 +367,18 @@ describe('useUpload', () => {
 
   // 测试选择图片文件
   it('should choose image files', async () => {
-    const mockChooseImage = vi.fn().mockImplementation((options) => {
+    // In test env, both #ifdef MP-WEIXIN and #ifndef MP-WEIXIN blocks are active;
+    // chooseMedia is called first and resolves the promise, so mock it with expected data.
+    const mockChooseMedia = vi.fn().mockImplementation((options) => {
       options.success({
         tempFiles: [
-          { path: 'temp/image1.jpg', size: 1024, name: 'image1.jpg' },
-          { path: 'temp/image2.jpg', size: 2048, name: 'image2.jpg' }
-        ]
+          { tempFilePath: 'temp/image1.jpg', thumbTempFilePath: 'temp/image1.jpg', fileType: 'image', size: 1024, duration: 0 },
+          { tempFilePath: 'temp/image2.jpg', thumbTempFilePath: 'temp/image2.jpg', fileType: 'image', size: 2048, duration: 0 }
+        ],
+        type: 'image'
       })
     })
-    ;(global as any).uni.chooseImage = mockChooseImage
+    ;(global as any).uni.chooseMedia = mockChooseMedia
 
     const files = await chooseFile({
       accept: 'image',
@@ -336,24 +395,22 @@ describe('useUpload', () => {
     expect(files[0]).toEqual({
       path: 'temp/image1.jpg',
       size: 1024,
-      name: 'image1.jpg',
       type: 'image',
-      thumb: 'temp/image1.jpg'
+      thumb: 'temp/image1.jpg',
+      duration: 0
     })
   })
 
   // 测试选择视频文件
   it('should choose video file', async () => {
-    const mockChooseVideo = vi.fn().mockImplementation((options) => {
+    // In test env, chooseMedia is called first and resolves the promise.
+    const mockChooseMedia = vi.fn().mockImplementation((options) => {
       options.success({
-        tempFilePath: 'temp/video.mp4',
-        size: 10240,
-        duration: 15,
-        thumbTempFilePath: 'temp/thumb.jpg',
-        name: 'video.mp4'
+        tempFiles: [{ tempFilePath: 'temp/video.mp4', thumbTempFilePath: 'temp/thumb.jpg', fileType: 'video', size: 10240, duration: 15 }],
+        type: 'video'
       })
     })
-    ;(global as any).uni.chooseVideo = mockChooseVideo
+    ;(global as any).uni.chooseMedia = mockChooseMedia
 
     const files = await chooseFile({
       accept: 'video',
@@ -370,7 +427,6 @@ describe('useUpload', () => {
     expect(files[0]).toEqual({
       path: 'temp/video.mp4',
       size: 10240,
-      name: 'video.mp4',
       type: 'video',
       thumb: 'temp/thumb.jpg',
       duration: 15
@@ -379,10 +435,11 @@ describe('useUpload', () => {
 
   // 测试选择文件失败的情况
   it('should handle choose file failure', async () => {
-    const mockChooseImage = vi.fn().mockImplementation((options) => {
+    // In test env, chooseMedia is called first; mock it to fail so the promise rejects.
+    const mockChooseMedia = vi.fn().mockImplementation((options) => {
       options.fail(new Error('Permission denied'))
     })
-    ;(global as any).uni.chooseImage = mockChooseImage
+    ;(global as any).uni.chooseMedia = mockChooseMedia
 
     await expect(
       chooseFile({

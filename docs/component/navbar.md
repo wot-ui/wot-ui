@@ -167,32 +167,32 @@ function handleBackHome() {
 
 :::
 
-## Navbar Attributes
+## Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 标题文字 | string | - |
-| left-text | 左侧文案 | string | - |
-| right-text | 右侧文案 | string | - |
-| left-arrow | 是否显示左侧箭头 | boolean | false |
-| bordered | 是否显示下边框 | boolean | false |
-| fixed | 是否固定到顶部 | boolean | false |
-| placeholder | 固定在顶部时，在标签位置生成一个等高的占位元素 | boolean | false |
-| z-index | 导航栏 z-index | number | 10 |
-| safe-area-inset-top | 是否开启顶部安全区适配 | boolean | false |
-| left-disabled | 是否禁用左侧按钮，禁用时透明度降低，且无法点击 | boolean | false |
-| right-disabled | 是否禁用右侧按钮，禁用时透明度降低，且无法点击 | boolean | false |
-| custom-class | 根节点样式类名 | string | - |
-| custom-style | 根节点样式 | string | - |
+| title | 标题文字 | `string` | - |
+| left-text | 左侧文案 | `string` | - |
+| right-text | 右侧文案 | `string` | - |
+| left-arrow | 是否显示左侧箭头 | `boolean` | `false` |
+| bordered | 是否显示下边框 | `boolean` | `false` |
+| fixed | 是否固定到顶部 | `boolean` | `false` |
+| placeholder | 固定在顶部时，在标签位置生成一个等高的占位元素 | `boolean` | `false` |
+| z-index | 导航栏 z-index | `number` | `10` |
+| safe-area-inset-top | 是否开启顶部安全区适配 | `boolean` | `false` |
+| left-disabled | 是否禁用左侧按钮，禁用时透明度降低，且无法点击 | `boolean` | `false` |
+| right-disabled | 是否禁用右侧按钮，禁用时透明度降低，且无法点击 | `boolean` | `false` |
+| custom-class | 根节点样式类名 | `string` | - |
+| custom-style | 根节点样式 | `string` | - |
 
-## Navbar Events
+## Events
 
 | 事件名称 | 说明 | 参数 |
 | --- | --- | --- |
 | click-left | 点击左侧按钮时触发 | - |
 | click-right | 点击右侧按钮时触发 | - |
 
-## Navbar Slots
+## Slots
 
 | name | 说明 |
 | --- | --- |
@@ -205,8 +205,8 @@ function handleBackHome() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| custom-class | 根节点样式类名 | string | - |
-| custom-style | 根节点样式 | string | - |
+| custom-class | 根节点样式类名 | `string` | - |
+| custom-style | 根节点样式 | `string` | - |
 
 ## NavbarCapsule Events
 

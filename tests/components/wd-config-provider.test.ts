@@ -60,8 +60,7 @@ describe('WdConfigProvider', () => {
   test('将主题变量注入为CSS变量', () => {
     const themeVars: ConfigProviderThemeVars = {
       buttonPrimaryColor: '#1989fa',
-      buttonErrorColor: '#ee0a24',
-      buttonMediumHeight: '40px'
+      buttonDangerColor: '#ee0a24'
     }
     const wrapper = mount(WdConfigProvider, {
       props: { themeVars }
@@ -72,8 +71,7 @@ describe('WdConfigProvider', () => {
 
     // 检查转换后的变量名（驼峰转短横线）
     expect(style).toContain('--wot-button-primary-color: #1989fa')
-    expect(style).toContain('--wot-button-error-color: #ee0a24')
-    expect(style).toContain('--wot-button-medium-height: 40px')
+    expect(style).toContain('--wot-button-danger-color: #ee0a24')
   })
 
   // 测试动态更新主题
@@ -81,20 +79,20 @@ describe('WdConfigProvider', () => {
     const wrapper = mount(WdConfigProvider, {
       props: {
         themeVars: {
-          colorTheme: '#1989fa'
+          primary6: '#1989fa'
         }
       }
     })
 
-    expect(wrapper.attributes('style')).toContain('--wot-color-theme: #1989fa')
+    expect(wrapper.attributes('style')).toContain('--wot-primary-6: #1989fa')
 
     await wrapper.setProps({
       themeVars: {
-        colorTheme: '#2c68ff'
+        primary6: '#2c68ff'
       }
     })
 
-    expect(wrapper.attributes('style')).toContain('--wot-color-theme: #2c68ff')
+    expect(wrapper.attributes('style')).toContain('--wot-primary-6: #2c68ff')
   })
 
   // 测试自定义类名
@@ -112,7 +110,7 @@ describe('WdConfigProvider', () => {
     const wrapper = mount(WdConfigProvider, {
       props: {
         customStyle,
-        themeVars: { colorTheme: '#1989fa' } // 添加一个主题变量，确保 themeStyle 计算属性会包含 customStyle
+        themeVars: { primary6: '#1989fa' } // 添加一个主题变量，确保 themeStyle 计算属性会包含 customStyle
       }
     })
     expect(wrapper.attributes('style')).toContain(customStyle)
@@ -121,7 +119,7 @@ describe('WdConfigProvider', () => {
   // 测试主题继承
   test('从父级提供者继承主题', () => {
     const parentTheme: ConfigProviderThemeVars = {
-      colorTheme: '#1989fa'
+      primary6: '#1989fa'
     }
 
     // 由于我们无法在测试中嵌套组件，我们只测试父组件的样式
@@ -133,7 +131,7 @@ describe('WdConfigProvider', () => {
     })
 
     const parentStyle = wrapper.attributes('style')
-    expect(parentStyle).toContain(`--wot-color-theme: ${parentTheme.colorTheme}`)
+    expect(parentStyle).toContain(`--wot-primary-6: ${parentTheme.primary6}`)
   })
 
   // 测试同时设置主题模式和主题变量

@@ -1,7 +1,8 @@
-import { mount } from '@vue/test-utils'
+import { mount, config } from '@vue/test-utils'
 import WdPagination from '@/uni_modules/wot-design-uni/components/wd-pagination/wd-pagination.vue'
 import { describe, test, expect, vi } from 'vitest'
-
+import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+config.global.components = { WdLoading }
 describe('WdPagination', () => {
   // 测试基本渲染
   test('基本渲染', () => {
@@ -11,9 +12,9 @@ describe('WdPagination', () => {
         totalPage: 10
       }
     })
-    expect(wrapper.find('.wd-pager').exists()).toBe(true)
-    expect(wrapper.find('.wd-pager__content').exists()).toBe(true)
-    expect(wrapper.find('.wd-pager__current').text()).toBe('1')
+    expect(wrapper.find('.wd-pagination').exists()).toBe(true)
+    expect(wrapper.find('.wd-pagination__content').exists()).toBe(true)
+    expect(wrapper.find('.wd-pagination__current').text()).toBe('1')
   })
 
   // 测试当前页显示
@@ -24,10 +25,10 @@ describe('WdPagination', () => {
         totalPage: 10
       }
     })
-    expect(wrapper.find('.wd-pager__current').text()).toBe('5')
+    expect(wrapper.find('.wd-pagination__current').text()).toBe('5')
 
     await wrapper.setProps({ modelValue: 7 })
-    expect(wrapper.find('.wd-pager__current').text()).toBe('7')
+    expect(wrapper.find('.wd-pagination__current').text()).toBe('7')
   })
 
   // 测试总页数计算
@@ -41,7 +42,7 @@ describe('WdPagination', () => {
     })
 
     // 验证总页数显示
-    expect(wrapper.find('.wd-pager__size').exists()).toBe(true)
+    expect(wrapper.find('.wd-pagination__size').exists()).toBe(true)
   })
 
   // 测试文本模式
@@ -55,7 +56,7 @@ describe('WdPagination', () => {
     })
 
     // 验证没有图标类
-    expect(wrapper.findAll('.wd-pager__icon').length).toBe(0)
+    expect(wrapper.findAll('.wd-pagination__icon').length).toBe(0)
   })
 
   // 测试自定义上一页/下一页文本
@@ -91,8 +92,8 @@ describe('WdPagination', () => {
       }
     })
 
-    expect(wrapper.find('.wd-pager__message').exists()).toBe(true)
-    const message = wrapper.find('.wd-pager__message').text()
+    expect(wrapper.find('.wd-pagination__message').exists()).toBe(true)
+    const message = wrapper.find('.wd-pagination__message').text()
     expect(message.length).toBeGreaterThan(0)
   })
 
@@ -106,7 +107,7 @@ describe('WdPagination', () => {
       }
     })
 
-    expect(wrapper.find('.wd-pager__message').exists()).toBe(false)
+    expect(wrapper.find('.wd-pagination__message').exists()).toBe(false)
   })
 
   // 测试只有一页时显示
@@ -119,7 +120,7 @@ describe('WdPagination', () => {
       }
     })
 
-    expect(wrapper.find('.wd-pager').exists()).toBe(true)
+    expect(wrapper.find('.wd-pagination').exists()).toBe(true)
   })
 
   // 测试点击上一页
@@ -188,7 +189,7 @@ describe('WdPagination', () => {
       }
     })
 
-    expect(wrapper.find('.wd-pager').classes()).toContain(customClass)
+    expect(wrapper.find('.wd-pagination').classes()).toContain(customClass)
   })
 
   // 测试自定义样式
@@ -202,6 +203,6 @@ describe('WdPagination', () => {
       }
     })
 
-    expect(wrapper.find('.wd-pager').attributes('style')).toBe(customStyle)
+    expect(wrapper.find('.wd-pagination').attributes('style')).toBe(customStyle)
   })
 })

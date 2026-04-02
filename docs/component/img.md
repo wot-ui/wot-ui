@@ -158,6 +158,7 @@ const previewURL = blackMaoPreview
 | show-error | 是否展示默认失败态 | `boolean` | `true` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
+| custom-image | 内部 `image` 节点自定义类名 | `string` | `''` |
 
 ## Events
 
@@ -173,10 +174,3 @@ const previewURL = blackMaoPreview
 | --- | --- |
 | loading | 自定义图片加载中的展示内容 |
 | error | 自定义图片加载失败后的展示内容 |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-image | 内部 `image` 节点样式类 |

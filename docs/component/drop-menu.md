@@ -190,35 +190,35 @@ const handleOpened = () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| z-index | 弹层层级 | number | 12 |
-| direction | 菜单展开方向，可选值为 `up`、`down` | DropDirection | down |
-| modal | 是否展示蒙层 | boolean | true |
-| close-on-click-modal | 是否点击蒙层时关闭 | boolean | true |
-| duration | 菜单展开/收起动画时长，单位 ms | number | 200 |
-| custom-class | 根节点自定义类名 | string | `''` |
-| custom-style | 根节点自定义样式 | string | `''` |
+| z-index | 弹层层级 | `number` | `12` |
+| direction | 菜单展开方向，可选值为 `up`、`down` | `DropDirection` | `'down'` |
+| modal | 是否展示蒙层 | `boolean` | `true` |
+| close-on-click-modal | 是否点击蒙层时关闭 | `boolean` | `true` |
+| duration | 菜单展开/收起动画时长，单位 ms | `number` | `200` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## DropMenuItem Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model / modelValue | 当前选中值 | string \| number | - |
-| disabled | 是否禁用菜单 | boolean | false |
+| v-model / modelValue | 当前选中值 | `string \| number` | - |
+| disabled | 是否禁用菜单 | `boolean` | `false` |
 | options | 菜单选项列表，默认结构为 `{ label, value, tip }` | `Array<Record<string, any>>` | `[]` |
-| icon-name | 选中项图标名称 | string | check |
-| title | 菜单标题，设置后优先展示标题文案 | string | - |
-| icon | 菜单右侧图标 | string | caret-down |
-| icon-size | 菜单图标尺寸 | string \| number | - |
-| before-toggle ^(1.3.7) | 菜单开关前拦截函数，接收 `{ status }`，返回 `boolean` 或 `Promise<boolean>` | DropMenuItemBeforeToggle | - |
-| value-key | 选项值字段名 | string | value |
-| label-key | 选项文本字段名 | string | label |
-| tip-key | 选项说明字段名 | string | tip |
-| custom-popup-class ^(1.5.0) | 自定义下拉 popup 样式类 | string | `''` |
-| custom-popup-style ^(1.5.0) | 自定义下拉 popup 样式 | string | `''` |
-| popup-height ^(1.13.0) | popup 高度，未设置时默认最大高度为 80% | string | `''` |
-| root-portal ^(1.11.0) | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | boolean | false |
-| custom-class | 根节点自定义类名 | string | `''` |
-| custom-style | 根节点自定义样式 | string | `''` |
+| icon-name | 选中项图标名称 | `string` | `'check'` |
+| title | 菜单标题，设置后优先展示标题文案 | `string` | - |
+| icon | 菜单右侧图标 | `string` | `'caret-down'` |
+| icon-size | 菜单图标尺寸 | `string \| number` | - |
+| before-toggle ^(1.3.7) | 菜单开关前拦截函数，接收 `{ status }`，返回 `boolean` 或 `Promise<boolean>` | `DropMenuItemBeforeToggle` | - |
+| value-key | 选项值字段名 | `string` | `'value'` |
+| label-key | 选项文本字段名 | `string` | `'label'` |
+| tip-key | 选项说明字段名 | `string` | `'tip'` |
+| custom-popup-class ^(1.5.0) | 自定义下拉 popup 样式类 | `string` | `''` |
+| custom-popup-style ^(1.5.0) | 自定义下拉 popup 样式 | `string` | `''` |
+| popup-height ^(1.13.0) | popup 高度，未设置时默认最大高度为 80% | `string` | `''` |
+| root-portal ^(1.11.0) | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## DropMenuItem Events
 
@@ -253,19 +253,3 @@ const handleOpened = () => {
 | --- | --- | --- |
 | default | 自定义菜单内容 | - |
 
-## 外部样式类
-
-### DropMenu
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | DropMenu 根节点样式类 |
-
-### DropMenuItem
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | DropMenuItem 根节点样式类 |
-| custom-title | DropMenuItem 左侧文字样式类 |
-| custom-icon | DropMenuItem 右侧 icon 样式类 |
-| custom-popup-class ^(1.5.0) | DropMenuItem 下拉 popup 样式类 |

@@ -113,18 +113,20 @@ const value = ref<number[]>([20, 60])
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | model-value / v-model | 当前滑块值，单滑块为 `number`，双滑块为 `number[]` | `SliderValue` | `0` |
-| min | 最小值 | number | `0` |
-| max | 最大值 | number | `100` |
-| step | 步长 | number | `1` |
-| range | 是否为双向滑块模式 | boolean | `false` |
-| vertical | 是否垂直展示 | boolean | `false` |
-| theme | 滑块风格，可选值为 `default`、`capsule` | `SliderTheme` | `default` |
-| disabled | 是否禁用 | boolean | `false` |
-| show-extreme-value | 是否显示最小值和最大值文本 | boolean | `false` |
-| popover-visible | 气泡显示模式，可选值为 `always`、`normal`、`never` | `SliderPopoverVisible` | `normal` |
+| min | 最小值 | `number` | `0` |
+| max | 最大值 | `number` | `100` |
+| step | 步长 | `number` | `1` |
+| range | 是否为双向滑块模式 | `boolean` | `false` |
+| vertical | 是否垂直展示 | `boolean` | `false` |
+| theme | 滑块风格，可选值为 `default`、`capsule` | `SliderTheme` | `'default'` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| show-extreme-value | 是否显示最小值和最大值文本 | `boolean` | `false` |
+| popover-visible | 气泡显示模式，可选值为 `always`、`normal`、`never` | `SliderPopoverVisible` | `'normal'` |
 | marks | 刻度标记，支持数组或对象形式 | `SliderMarks` | - |
-| active-color | 进度条激活态颜色 | string | `''` |
-| inactive-color | 进度条未激活态颜色 | string | `''` |
+| active-color | 进度条激活态颜色 | `string` | `''` |
+| inactive-color | 进度条未激活态颜色 | `string` | `''` |
+| custom-class | 根节点样式类 | `string` | `''` |
+| custom-style | 根节点样式 | `string` | `''` |
 
 ## Events
 
@@ -141,9 +143,3 @@ const value = ref<number[]>([20, 60])
 | --- | --- | --- |
 | initSlider | 初始化 slider 尺寸数据 | - |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-style | 根节点样式 |

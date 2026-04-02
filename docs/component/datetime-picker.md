@@ -146,7 +146,7 @@ const formatter = (type: string, value: number) => {
 ```
 
 ```ts
-const filter = (type: string, values: number[]) => {
+const filter = ({ type, values }: { type: string; values: number[] }) => {
   if (type === 'minute') {
     return values.filter((value) => value % 5 === 0)
   }
@@ -174,7 +174,7 @@ const displayFormatTabLabel = (items: Array<{ label: string | number }>) => {
 | --- | --- | --- | --- |
 | v-model / modelValue | 绑定值。`time` 类型为字符串；区间模式为数组；其余类型为时间戳 | `string \| number \| Array<string \| number>` | - |
 | visible / v-model:visible | 是否显示弹窗 | boolean | false |
-| type | 选择器类型，可选值为 `datetime`、`date`、`year-month`、`time`、`year` | DateTimeType | datetime |
+| type | 选择器类型，可选值为 `datetime`、`date`、`year-month`、`time`、`year` | string | datetime |
 | title | 弹出层标题 | string | - |
 | cancel-button-text | 取消按钮文案 | string | - |
 | confirm-button-text | 确认按钮文案 | string | - |
@@ -220,10 +220,3 @@ const displayFormatTabLabel = (items: Array<{ label: string | number }>) => {
 | --- | --- | --- |
 | open | 打开 picker 弹框 | - |
 | close | 关闭 picker 弹框 | - |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |
-| custom-view-class | pickerView 外部自定义样式 |

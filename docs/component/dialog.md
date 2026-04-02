@@ -327,32 +327,33 @@ const openOpenTypeDialog = () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 标题 | string | `''` |
-| msg | 消息内容 | string | `''` |
-| type | 弹框类型，可选值为 `alert`、`confirm`、`prompt` | DialogType | alert |
-| theme | 按钮风格，可选值为 `button`、`text` | DialogTheme | button |
-| zIndex | 弹窗层级 | number | 99 |
-| lazyRender | 弹层内容懒渲染 | boolean | true |
-| headerImage | 顶部通栏图片地址 | string | - |
-| icon | 图标名称。可选值为 `success`、`info`、`warning`、`danger`，也可传自定义图标名 | string | - |
-| iconColor | 图标颜色 | string | - |
+| title | 标题 | `string` | `''` |
+| msg | 消息内容 | `string` | `''` |
+| type | 弹框类型，可选值为 `alert`、`confirm`、`prompt` | `DialogType` | `'alert'` |
+| theme | 按钮风格，可选值为 `button`、`text` | `DialogTheme` | `'button'` |
+| zIndex | 弹窗层级 | `number` | `99` |
+| lazyRender | 弹层内容懒渲染 | `boolean` | `true` |
+| headerImage | 顶部通栏图片地址 | `string` | - |
+| icon | 图标名称。可选值为 `success`、`info`、`warning`、`danger`，也可传自定义图标名 | `string` | - |
+| iconColor | 图标颜色 | `string` | - |
 | iconProps | 透传 `wd-icon` 的属性 | `Partial<IconProps>` | - |
 | inputValue | Prompt 输入框初始值 | `string \| number` | - |
 | inputProps | Prompt 模式下 `wd-input` 属性 | `Partial<InputProps>` | - |
 | textareaProps | Prompt 模式下 `wd-textarea` 属性 | `Partial<TextareaProps>` | - |
-| inputPattern | Prompt 输入正则校验规则 | RegExp | - |
+| inputPattern | Prompt 输入正则校验规则 | `RegExp` | - |
 | inputValidate | Prompt 输入函数校验规则，返回 `boolean` 或错误信息字符串 | `(inputValue: string \| number) => boolean \| string` | - |
-| inputError | Prompt 校验失败提示文案 | string | - |
-| actionLayout | 操作按钮排列方式，可选值为 `horizontal`、`vertical` | DialogActionLayout | horizontal |
-| showCancelButton | 是否显示取消按钮 | boolean | `alert` 为 false，`confirm/prompt` 为 true |
-| confirmButtonText | 确认按钮文案 | string | - |
-| cancelButtonText | 取消按钮文案 | string | - |
-| confirmButtonProps ^(1.5.0) | 确认按钮高级配置，支持传字符串、对象或 `null` | DialogBoxButtonOption | `{}` |
-| cancelButtonProps ^(1.5.0) | 取消按钮高级配置，支持传字符串、对象或 `null` | DialogBoxButtonOption | 由 `showCancelButton` 推导 |
-| actions | 自定义操作按钮数组，配置后优先级高于确认/取消按钮 | DialogAction[] | - |
-| closeOnClickModal | 是否支持点击遮罩关闭（返回 action 为 `modal`） | boolean | false |
-| showClose | 是否显示右上角关闭按钮 | boolean | false |
-| beforeConfirm | 确认前拦截函数，返回 `boolean` 或 `Promise<boolean>` | DialogBeforeConfirm | - |
+| inputError | Prompt 校验失败提示文案 | `string` | - |
+| showErr | 是否展示错误信息 | `boolean` | `false` |
+| actionLayout | 操作按钮排列方式，可选值为 `horizontal`、`vertical` | `DialogActionLayout` | `'horizontal'` |
+| showCancelButton | 是否显示取消按钮 | `boolean` | `alert` 为 false，`confirm/prompt` 为 true |
+| confirmButtonText | 确认按钮文案 | `string` | - |
+| cancelButtonText | 取消按钮文案 | `string` | - |
+| confirmButtonProps ^(1.5.0) | 确认按钮高级配置，支持传字符串、对象或 `null` | `DialogBoxButtonOption` | `{}` |
+| cancelButtonProps ^(1.5.0) | 取消按钮高级配置，支持传字符串、对象或 `null` | `DialogBoxButtonOption` | 由 `showCancelButton` 推导 |
+| actions | 自定义操作按钮数组，配置后优先级高于确认/取消按钮 | `DialogAction[]` | - |
+| closeOnClickModal | 是否支持点击遮罩关闭（返回 action 为 `modal`） | `boolean` | `false` |
+| showClose | 是否显示右上角关闭按钮 | `boolean` | `false` |
+| beforeConfirm | 确认前拦截函数，返回 `boolean` 或 `Promise<boolean>` | `DialogBeforeConfirm` | - |
 
 ## Attributes
 
@@ -360,8 +361,10 @@ const openOpenTypeDialog = () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| selector | 指定唯一标识，用于区分页面中的多个实例 | string | `''` |
-| root-portal ^(1.11.0) | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | boolean | false |
+| selector | 指定唯一标识，用于区分页面中的多个实例 | `string` | `''` |
+| root-portal ^(1.11.0) | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Slots
 
@@ -372,9 +375,3 @@ const openOpenTypeDialog = () => {
 | title | 自定义标题区域 | `{ icon, title, iconProps }` |
 | default | 自定义内容区域 | `{ msg, type, inputValue, showErr, inputError }` |
 | actions | 自定义操作区 | `{ confirm, cancel, close }` |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |

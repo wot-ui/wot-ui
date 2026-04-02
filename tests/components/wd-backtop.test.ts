@@ -4,6 +4,7 @@ import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
 import WdTransition from '@/uni_modules/wot-design-uni/components/wd-transition/wd-transition.vue'
 import { describe, test, expect } from 'vitest'
 import { nextTick } from 'vue'
+import { type BacktopShape } from '@/uni_modules/wot-design-uni/components/wd-backtop/types'
 
 describe('WdBacktop', () => {
   // 测试基本渲染
@@ -97,7 +98,7 @@ describe('WdBacktop', () => {
     await nextTick()
 
     expect(wrapper.findComponent(WdIcon).exists()).toBe(true)
-    expect(wrapper.findComponent(WdIcon).props('name')).toBe('backtop')
+    expect(wrapper.findComponent(WdIcon).props('name')).toBe('to-top')
     expect(wrapper.findComponent(WdIcon).classes()).toContain('wd-backtop__backicon')
   })
 
@@ -147,7 +148,7 @@ describe('WdBacktop', () => {
 
   // 测试不同形状
   test('不同形状渲染', async () => {
-    const shapes = ['circle', 'square']
+    const shapes: BacktopShape[] = ['circle', 'square']
 
     for (const shape of shapes) {
       const wrapper = mount(WdBacktop, {

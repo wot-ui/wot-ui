@@ -201,6 +201,8 @@ const handleClick = () => {
 | color | 文字颜色 | string | `''` |
 | alt | 图片加载失败时的占位文本 | string | `''` |
 | mode | 图片填充模式，同 uni-app image 组件的 mode | string | aspectFill |
+| custom-class | 根节点自定义类名 | string | - |
+| custom-style | 根节点自定义样式 | string | - |
 
 ## Avatar Events
 
@@ -215,13 +217,6 @@ const handleClick = () => {
 | --- | --- |
 | default | 自定义头像内容 |
 
-## Avatar 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-style | 根节点内联样式 |
-
 ## AvatarGroup Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -232,16 +227,11 @@ const handleClick = () => {
 | size | 统一设置组内头像尺寸，支持预设尺寸或自定义数值/单位字符串 | string \| number | normal |
 | collapse-avatar | 超出最大数量时折叠头像显示文本 | string | `''` |
 | vertical | 是否垂直展示 | boolean | false |
+| custom-class | 根节点自定义类名 | string | - |
+| custom-style | 根节点自定义样式 | string | - |
 
 ## AvatarGroup Slots
 
 | 名称 | 说明 |
 | --- | --- |
 | default | 头像列表，放置 wd-avatar 组件 |
-
-## AvatarGroup 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-style | 根节点内联样式 |

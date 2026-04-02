@@ -4,6 +4,51 @@ import './suppress-warnings'
 
 // 全局设置 uni 相关 API 的 mock
 vi.stubGlobal('uni', {
+  getDeviceInfo: vi.fn().mockReturnValue({
+    deviceBrand: 'apple',
+    deviceModel: 'iPhone',
+    devicePixelRatio: 2,
+    osName: 'ios',
+    osVersion: '17.0',
+    platform: 'ios'
+  }),
+  getWindowInfo: vi.fn().mockReturnValue({
+    pixelRatio: 2,
+    screenWidth: 375,
+    screenHeight: 800,
+    windowWidth: 375,
+    windowHeight: 667,
+    windowTop: 0,
+    statusBarHeight: 20,
+    safeArea: {
+      bottom: 780,
+      height: 667,
+      left: 0,
+      right: 375,
+      top: 20,
+      width: 375
+    },
+    safeAreaInsets: {
+      bottom: 20,
+      left: 0,
+      right: 0,
+      top: 20
+    }
+  }),
+  getAppBaseInfo: vi.fn().mockReturnValue({
+    language: 'zh-CN',
+    version: '1.0.0',
+    theme: 'light'
+  }),
+  // 模拟微信胶囊按钮信息 API
+  getMenuButtonBoundingClientRect: vi.fn().mockReturnValue({
+    width: 87,
+    height: 32,
+    top: 4,
+    right: 375,
+    bottom: 36,
+    left: 288
+  }),
   // 设置 getSystemInfoSync 方法
   getSystemInfoSync: vi.fn().mockReturnValue({
     brand: 'devtools',
@@ -333,6 +378,35 @@ vi.stubGlobal('uni', {
     return Promise.resolve({
       tempFilePaths: ['https://example.com/image.jpg'],
       tempFiles: [{ path: 'https://example.com/image.jpg', size: 1024 }]
+    })
+  }),
+  chooseMedia: vi.fn().mockImplementation((options) => {
+    if (options.success) {
+      options.success({
+        tempFiles: [
+          {
+            tempFilePath: 'https://example.com/image.jpg',
+            thumbTempFilePath: 'https://example.com/image.jpg',
+            fileType: 'image',
+            size: 1024,
+            duration: 0
+          }
+        ],
+        type: 'image'
+      })
+    }
+    if (options.complete) options.complete()
+    return Promise.resolve({
+      tempFiles: [
+        {
+          tempFilePath: 'https://example.com/image.jpg',
+          thumbTempFilePath: 'https://example.com/image.jpg',
+          fileType: 'image',
+          size: 1024,
+          duration: 0
+        }
+      ],
+      type: 'image'
     })
   }),
   // 模拟保存图片相关 API

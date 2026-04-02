@@ -47,7 +47,7 @@ describe('WdCell', () => {
     const icon = 'setting'
 
     const wrapper = mount(WdCell, {
-      props: { icon },
+      props: { prefixIcon: icon },
       global: {
         components: {
           WdIcon
@@ -56,7 +56,7 @@ describe('WdCell', () => {
     })
 
     expect(wrapper.findComponent(WdIcon).exists()).toBe(true)
-    expect(wrapper.find('.wd-cell__icon').exists()).toBe(true)
+    expect(wrapper.find('.wd-cell__prefix').exists()).toBe(true)
   })
 
   // 测试可点击状态
@@ -351,12 +351,13 @@ describe('WdCell', () => {
   // 测试插槽
   test('渲染插槽', () => {
     const wrapper = mount(WdCell, {
+      props: { useTitleSlot: true },
       slots: {
         title: '<div class="custom-title">自定义标题</div>',
-        icon: '<div class="custom-icon">自定义图标</div>',
+        prefix: '<div class="custom-icon">自定义图标</div>',
         label: '<div class="custom-label">自定义标签</div>',
         default: '<div class="custom-value">自定义内容</div>',
-        'right-icon': '<div class="custom-right-icon">自定义右侧图标</div>'
+        suffix: '<div class="custom-right-icon">自定义右侧图标</div>'
       },
       global: {
         components: {
@@ -410,8 +411,8 @@ describe('WdCell', () => {
 
     const wrapper = mount(WdCell, {
       props: {
-        icon: 'setting',
-        customIconClass
+        prefixIcon: 'setting',
+        customPrefixClass: customIconClass
       },
       global: {
         components: {
@@ -420,7 +421,7 @@ describe('WdCell', () => {
       }
     })
 
-    expect(wrapper.find('.wd-cell__icon').classes()).toContain(customIconClass)
+    expect(wrapper.find('.wd-cell__prefix').classes()).toContain(customIconClass)
   })
 
   // 测试自定义标题类名

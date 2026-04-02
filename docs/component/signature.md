@@ -333,28 +333,30 @@ onMounted(() => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| pen-color | 签名笔颜色 | string | `#000` |
-| line-width | 签名笔宽度 | number | `3` |
-| confirm-text | 确认按钮文本 | string | 内置文案 |
-| clear-text | 清空按钮文本 | string | 内置文案 |
-| revoke-text | 撤回按钮文本 | string | 内置文案 |
-| restore-text | 恢复按钮文本 | string | 内置文案 |
-| file-type | 导出图片类型，可选值为 `png`、`jpg` | `png` / `jpg` | `png` |
-| quality | 导出图片质量，取值范围为 `0` 到 `1` | number | `1` |
-| export-scale | 导出图片缩放比例 | number | `1` |
-| disabled | 是否禁用签名板 | boolean | `false` |
-| height | 画布高度 | string / number | - |
-| width | 画布宽度 | string / number | - |
-| background-color | 画板背景色 | string | - |
-| disable-scroll | 是否禁用画布滚动 | boolean | `true` |
-| enable-history | 是否开启历史记录 | boolean | `false` |
-| step | 撤回和恢复的步长 | number | `1` |
-| undo-text | 撤销按钮文本 | string | 内置文案 |
-| redo-text | 恢复按钮文本 | string | 内置文案 |
-| pressure | 是否开启压感模式 | boolean | `false` |
-| max-width | 压感模式下的最大笔触宽度 | number | `6` |
-| min-width | 压感模式下的最小笔触宽度 | number | `2` |
-| min-speed | 压感模式下的最小速度阈值 | number | `1.5` |
+| pen-color | 签名笔颜色 | `string` | `'#000'` |
+| line-width | 签名笔宽度 | `number` | `3` |
+| confirm-text | 确认按钮文本 | `string` | 内置文案 |
+| clear-text | 清空按钮文本 | `string` | 内置文案 |
+| revoke-text | 撤回按钮文本 | `string` | 内置文案 |
+| restore-text | 恢复按钮文本 | `string` | 内置文案 |
+| file-type | 导出图片类型，可选值为 `png`、`jpg` | `'png' \| 'jpg'` | `'png'` |
+| quality | 导出图片质量，取值范围为 `0` 到 `1` | `number` | `1` |
+| export-scale | 导出图片缩放比例 | `number` | `1` |
+| disabled | 是否禁用签名板 | `boolean` | `false` |
+| height | 画布高度 | `string \| number` | - |
+| width | 画布宽度 | `string \| number` | - |
+| background-color | 画板背景色 | `string` | - |
+| disable-scroll | 是否禁用画布滚动 | `boolean` | `true` |
+| enable-history | 是否开启历史记录 | `boolean` | `false` |
+| step | 撤回和恢复的步长 | `number` | `1` |
+| undo-text | 撤销按钮文本 | `string` | 内置文案 |
+| redo-text | 恢复按钮文本 | `string` | 内置文案 |
+| pressure | 是否开启压感模式 | `boolean` | `false` |
+| max-width | 压感模式下的最大笔触宽度 | `number` | `6` |
+| min-width | 压感模式下的最小笔触宽度 | `number` | `2` |
+| min-speed | 压感模式下的最小速度阈值 | `number` | `1.5` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Events
 
@@ -382,9 +384,3 @@ onMounted(() => {
 | --- | --- | --- |
 | footer | 自定义底部操作区 | `{ clear, confirm, currentStep, revoke, restore, canUndo, canRedo, historyList }` |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点自定义类名 |
-| custom-style | 根节点自定义样式 |

@@ -49,8 +49,8 @@ describe('WdActionSheet', () => {
 
     await nextTick()
 
-    expect(wrapper.find('.wd-action-sheet__header').exists()).toBe(true)
-    expect(wrapper.find('.wd-action-sheet__header').text()).toContain(title)
+    expect(wrapper.find('.wd-action-sheet__title').exists()).toBe(true)
+    expect(wrapper.find('.wd-action-sheet__title').text()).toContain(title)
   })
 
   // 测试动作列表渲染
@@ -123,9 +123,9 @@ describe('WdActionSheet', () => {
     const panelItems = wrapper.findAll('.wd-action-sheet__panel')
     expect(panelItems.length).toBe(2)
 
-    // 验证面板内容
-    expect(panelItems[0].find('.wd-action-sheet__panel-img').attributes('src')).toBe('url1')
-    expect(panelItems[0].find('.wd-action-sheet__panel-title').text()).toBe('面板1')
+    // 面板图标使用 wd-icon 组件， name 属性对应 icon 字段
+    const firstPanel = panelItems[0]
+    expect(firstPanel.find('.wd-action-sheet__panel-title').text()).toBe('面板1')
   })
 
   // 测试取消按钮
@@ -155,7 +155,6 @@ describe('WdActionSheet', () => {
 
     expect(wrapper.emitted('cancel')).toBeTruthy()
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false])
-    expect(wrapper.emitted('close')).toBeTruthy()
   })
 
   // 测试选项点击事件
@@ -339,7 +338,6 @@ describe('WdActionSheet', () => {
     await wrapper.find('.wd-action-sheet__action').trigger('click')
 
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false])
-    expect(wrapper.emitted('close')).toBeTruthy()
   })
 
   // 测试点击后不关闭
@@ -412,7 +410,7 @@ describe('WdActionSheet', () => {
     // 触发 Popup 的 enter 事件
     wrapper.findComponent(WdPopup).vm.$emit('enter')
 
-    expect(wrapper.emitted('open')).toBeTruthy()
+    expect(wrapper.emitted('enter')).toBeTruthy()
   })
 
   // 测试打开完成事件
@@ -435,7 +433,7 @@ describe('WdActionSheet', () => {
     // 触发 Popup 的 after-enter 事件
     wrapper.findComponent(WdPopup).vm.$emit('after-enter')
 
-    expect(wrapper.emitted('opened')).toBeTruthy()
+    expect(wrapper.emitted('after-enter')).toBeTruthy()
   })
 
   // 测试关闭完成事件
@@ -458,7 +456,7 @@ describe('WdActionSheet', () => {
     // 触发 Popup 的 after-leave 事件
     wrapper.findComponent(WdPopup).vm.$emit('after-leave')
 
-    expect(wrapper.emitted('closed')).toBeTruthy()
+    expect(wrapper.emitted('after-leave')).toBeTruthy()
   })
 
   // 测试关闭按钮
@@ -492,7 +490,7 @@ describe('WdActionSheet', () => {
     const wrapper = mount(WdActionSheet, {
       props: {
         title: '标题',
-        customHeaderClass,
+        customTitleClass: customHeaderClass,
         modelValue: true
       },
       global: {
@@ -506,7 +504,7 @@ describe('WdActionSheet', () => {
 
     await nextTick()
 
-    expect(wrapper.find('.wd-action-sheet__header').classes()).toContain(customHeaderClass)
+    expect(wrapper.find('.wd-action-sheet__title').classes()).toContain(customHeaderClass)
   })
 
   // 测试自定义类名

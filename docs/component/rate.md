@@ -95,19 +95,21 @@ function handleChange({ value }: { value: number }) {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 当前分数 | number / null | null |
-| num | 评分最大值 | number | 5 |
-| readonly | 是否只读 | boolean | false |
-| size | 图标大小 | string | - |
-| space | 图标间距 | string / number | - |
-| color | 未选中图标颜色 | string | - |
-| active-color | 选中图标颜色，支持 `string` 或 `string[]` | string / string[] | - |
-| icon | 未选中图标类名 | string | star-fill |
-| active-icon | 选中图标类名 | string | star-fill |
-| disabled | 是否禁用 | boolean | false |
-| allow-half | 是否允许半选 | boolean | false |
-| clearable | 是否允许再次点击后清除 | boolean | false |
-| block | 是否块级显示 | boolean | false |
+| v-model | 当前分数 | `number \| null` | `null` |
+| num | 评分最大值 | `number` | `5` |
+| readonly | 是否只读 | `boolean` | `false` |
+| size | 图标大小 | `string` | - |
+| space | 图标间距 | `string \| number` | - |
+| color | 未选中图标颜色 | `string` | - |
+| active-color | 选中图标颜色，支持 `string` 或 `string[]` | `string \| string[]` | - |
+| icon | 未选中图标类名 | `string` | `'star-fill'` |
+| active-icon | 选中图标类名 | `string` | `'star-fill'` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| allow-half | 是否允许半选 | `boolean` | `false` |
+| clearable | 是否允许再次点击后清除 | `boolean` | `false` |
+| block | 是否块级显示 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Events
 
@@ -115,8 +117,3 @@ function handleChange({ value }: { value: number }) {
 | --- | --- | --- |
 | change | 点击图标修改分值时触发 | `{ value }` |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |

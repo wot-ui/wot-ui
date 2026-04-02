@@ -2,6 +2,39 @@ import { mount } from '@vue/test-utils'
 import WdWatermark from '@/uni_modules/wot-design-uni/components/wd-watermark/wd-watermark.vue'
 import { describe, test, expect, beforeAll, vi } from 'vitest'
 
+async function flushWatermark() {
+  await Promise.resolve()
+  await new Promise((resolve) => setTimeout(resolve, 20))
+}
+
+function mockImmediateImageLoad() {
+  const OriginalImage = window.Image
+  class MockImage {
+    onload: (() => void) | null = null
+    onerror: (() => void) | null = null
+    crossOrigin: string | null = null
+    referrerPolicy: string | null = null
+    private _src = ''
+
+    set src(value: string) {
+      this._src = value
+      setTimeout(() => this.onload?.(), 0)
+    }
+
+    get src() {
+      return this._src
+    }
+  }
+
+  ;(window as any).Image = MockImage
+  ;(globalThis as any).Image = MockImage
+
+  return () => {
+    ;(window as any).Image = OriginalImage
+    ;(globalThis as any).Image = OriginalImage
+  }
+}
+
 // 在测试开始前模拟 Canvas API 和 uni API
 beforeAll(() => {
   // 模拟 uni API
@@ -246,5 +279,164 @@ describe('WdWatermark', () => {
     })
     await wrapper.setProps({ content: 'updated' })
     expect((wrapper.vm as any).content).toBe('updated')
+  })
+
+  test('图片水印（URL）可生成 background-image', async () => {
+    const restoreImage = mockImmediateImageLoad()
+    const wrapper = mount(WdWatermark, {
+      props: {
+        image: 'https://example.com/logo.png'
+      }
+    })
+
+    await flushWatermark()
+
+    const style = wrapper.attributes('style') || ''
+    expect(style).toContain('background-image:')
+    restoreImage()
+  })
+
+  test('图片水印（base64 + staggered）可生成背景并应用双列尺寸', async () => {
+    const restoreImage = mockImmediateImageLoad()
+    const wrapper = mount(WdWatermark, {
+      props: {
+        image: 'data:image/png;base64,abc',
+        width: 120,
+        gutterX: 24,
+        layout: 'staggered'
+      }
+    })
+
+    await flushWatermark()
+
+    const style = wrapper.attributes('style') || ''
+    expect(style).toContain('background-image:')
+    expect(style).toContain('background-size: 288px')
+    restoreImage()
+  })
+
+  test('文本水印可生成 background-image（覆盖文本绘制路径）', async () => {
+    const wrapper = mount(WdWatermark, {
+      props: {
+        content: '文本水印内容-用于覆盖文本绘制'
+      }
+    })
+
+    await flushWatermark()
+
+    const style = wrapper.attributes('style') || ''
+    expect(style).toContain('background-image:')
+  })
+
+  test('staggered 文本水印可在属性更新后重建背景', async () => {
+    const wrapper = mount(WdWatermark, {
+      props: {
+        content: '初始文本',
+        layout: 'staggered',
+        width: 100,
+        gutterX: 20
+      }
+    })
+
+    await wrapper.setProps({ content: '更新后的文本内容更长' })
+    await flushWatermark()
+
+    const style = wrapper.attributes('style') || ''
+    expect(style).toContain('background-size: 240px')
+    expect(style).toContain('background-image:')
+  })
+
+  test('直接调用 drawTextOffScreen 可生成 base64 背景', async () => {
+    const wrapper = mount(WdWatermark)
+    const ctx: any = {
+      font: '',
+      fillStyle: '',
+      textBaseline: 'middle',
+      textAlign: 'center',
+      measureText: vi.fn().mockReturnValue({ width: 20 }),
+      fillText: vi.fn(),
+      save: vi.fn(),
+      restore: vi.fn(),
+      translate: vi.fn(),
+      rotate: vi.fn()
+    }
+    const canvas: any = {
+      width: 120,
+      height: 120,
+      toDataURL: vi.fn().mockReturnValue('data:image/png;base64,draw-text-offscreen')
+    }
+
+    await (wrapper.vm as any).drawTextOffScreen(ctx, 'abc', 100, 100, -20, 16, 'Arial', 'normal', 400, '#000', canvas, 'staggered')
+    await flushWatermark()
+
+    expect(canvas.toDataURL).toHaveBeenCalled()
+    expect(wrapper.attributes('style') || '').toContain('background-image:')
+  })
+
+  test('直接调用 drawTextOnScreen 会调用 canvasToTempFilePath', async () => {
+    const wrapper = mount(WdWatermark)
+    const ctx: any = {
+      setFontSize: vi.fn(),
+      setTextBaseline: vi.fn(),
+      setTextAlign: vi.fn(),
+      setFillStyle: vi.fn(),
+      fillText: vi.fn(),
+      save: vi.fn(),
+      restore: vi.fn(),
+      translate: vi.fn(),
+      rotate: vi.fn(),
+      measureText: vi.fn().mockReturnValue({ width: 20 }),
+      draw: vi.fn()
+    }
+
+    const toTempSpy = vi.spyOn(uni, 'canvasToTempFilePath')
+    await (wrapper.vm as any).drawTextOnScreen(ctx, 'abc', 100, 100, -20, 16, '#000', 'staggered', 120, 120)
+    await flushWatermark()
+
+    expect(ctx.draw).toHaveBeenCalled()
+    expect(toTempSpy).toHaveBeenCalled()
+  })
+
+  test('直接调用 drawImageOffScreen 与 drawImageOnScreen 覆盖图片绘制分支', async () => {
+    const wrapper = mount(WdWatermark)
+
+    const offscreenCtx: any = {
+      save: vi.fn(),
+      restore: vi.fn(),
+      translate: vi.fn(),
+      rotate: vi.fn(),
+      drawImage: vi.fn()
+    }
+    const image: any = {
+      onload: null,
+      onerror: null,
+      set src(_v: string) {
+        setTimeout(() => this.onload?.(), 0)
+      }
+    }
+    const canvas: any = {
+      width: 120,
+      height: 120,
+      toDataURL: vi.fn().mockReturnValue('data:image/png;base64,draw-image-offscreen')
+    }
+
+    ;(wrapper.vm as any).drawImageOffScreen(offscreenCtx, image, 'data:image/png;base64,abc', 20, 20, -30, 100, 100, canvas, 'staggered')
+    await flushWatermark()
+
+    const onscreenCtx: any = {
+      save: vi.fn(),
+      restore: vi.fn(),
+      translate: vi.fn(),
+      rotate: vi.fn(),
+      drawImage: vi.fn(),
+      draw: vi.fn((_: any, cb: any) => cb && cb())
+    }
+    const toTempSpy = vi.spyOn(uni, 'canvasToTempFilePath')
+    ;(wrapper.vm as any).drawImageOnScreen(onscreenCtx, 'x.png', 20, 20, -30, 100, 100, 'staggered', 120, 120)
+    await flushWatermark()
+
+    expect(offscreenCtx.drawImage).toHaveBeenCalled()
+    expect(onscreenCtx.drawImage).toHaveBeenCalled()
+    expect(toTempSpy).toHaveBeenCalled()
   })
 })

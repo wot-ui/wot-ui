@@ -83,7 +83,7 @@ onPageScroll((event) => {
 | duration | 返回顶部滚动时间，单位为 `ms` | `number` | `100` |
 | z-index | 组件层级 | `number` | `10` |
 | icon-style | 自定义图标样式 | `string` | `''` |
-| shape | 按钮形状，可选值为 `circle`、`square` | `BacktopShape` | `circle` |
+| shape | 按钮形状，可选值为 `circle`、`square` | string | `circle` |
 | bottom | 距离屏幕底部的距离，单位为 `px` | `number` | `100` |
 | right | 距离屏幕右侧的距离，单位为 `px` | `number` | `20` |
 | custom-style | 自定义根节点样式 | `string` | `''` |

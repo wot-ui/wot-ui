@@ -2,31 +2,33 @@ import { mount } from '@vue/test-utils'
 import WdSearch from '../../src/uni_modules/wot-design-uni/components/wd-search/wd-search.vue'
 import { describe, expect, test, vi } from 'vitest'
 
+async function flushSearchTimers(ms = 200) {
+  vi.advanceTimersByTime(ms)
+  await Promise.resolve()
+}
+
 describe('WdSearch', () => {
   test('基本渲染', async () => {
     const wrapper = mount(WdSearch)
     expect(wrapper.classes()).toContain('wd-search')
   })
 
-  test('输入功能', async () => {
+  test('输入功能会触发 update:modelValue 与 change', async () => {
     const wrapper = mount(WdSearch, {
       props: {
         modelValue: '',
-        placeholderLeft: true // 确保输入框始终可见
+        placeholderLeft: true
       }
     })
 
-    // 找到输入框并模拟输入事件
     const input = wrapper.find('.wd-search__input')
-
-    // 模拟输入事件
     await input.trigger('input', {
       detail: { value: '搜索内容' }
     })
 
-    // 验证事件是否被触发
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(wrapper.emitted('change')).toBeTruthy()
+    expect((wrapper.emitted('change') as any[])[0][0]).toEqual({ value: '搜索内容' })
   })
 
   test('占位符文本', async () => {
@@ -34,83 +36,157 @@ describe('WdSearch', () => {
     const wrapper = mount(WdSearch, {
       props: {
         placeholder,
-        placeholderLeft: true // 确保输入框始终可见
+        placeholderLeft: true
       }
     })
 
-    // 检查 props 是否正确传递
-    const vm = wrapper.vm as any
-    expect(vm.placeholder).toBe(placeholder)
-
-    // 检查模板中是否包含占位符文本
-    const template = wrapper.html()
-    expect(template).toContain(placeholder)
+    expect(wrapper.html()).toContain(placeholder)
   })
 
-  test('清空按钮', async () => {
+  test('清空按钮在 focusWhenClear=false 时会清空并触发 clear', async () => {
+    vi.useFakeTimers()
+
     const wrapper = mount(WdSearch, {
       props: {
-        modelValue: '搜索内容',
-        placeholderLeft: true // 确保输入框始终可见
+        modelValue: '搜索内容'
       }
     })
 
-    // 手动触发 clear 事件
-    wrapper.vm.$emit('clear')
+    const clearPromise = (wrapper.vm as any).handleClear()
+    await flushSearchTimers(120)
+    await clearPromise
 
-    // 验证 clear 事件是否被触发
+    const emitted = wrapper.emitted() as Record<string, any[]>
     expect(wrapper.emitted('clear')).toBeTruthy()
+    expect(emitted['update:modelValue']).toBeTruthy()
+    expect(emitted['update:modelValue'][emitted['update:modelValue'].length - 1][0]).toBe('')
+    vi.useRealTimers()
+  })
+
+  test('清空按钮在 focusWhenClear=true 时保持可输入态', async () => {
+    vi.useFakeTimers()
+
+    const wrapper = mount(WdSearch, {
+      props: {
+        modelValue: 'abc',
+        focusWhenClear: true
+      }
+    })
+
+    const clearPromise = (wrapper.vm as any).handleClear()
+    await flushSearchTimers(120)
+    await clearPromise
+
+    const emitted = wrapper.emitted('clear') as any[]
+    expect(emitted).toBeTruthy()
+    vi.useRealTimers()
   })
 
   test('取消按钮', async () => {
     const wrapper = mount(WdSearch, {
       props: {
-        hideCancel: false // 显示取消按钮
+        hideCancel: false
       }
     })
 
-    // 找到取消按钮并点击
     const cancelButton = wrapper.find('.wd-search__cancel')
     expect(cancelButton.exists()).toBeTruthy()
 
     await cancelButton.trigger('click')
-
-    // 验证 cancel 事件是否被触发
     expect(wrapper.emitted('cancel')).toBeTruthy()
   })
 
   test('搜索按钮', async () => {
     const wrapper = mount(WdSearch, {
       props: {
-        placeholderLeft: true // 确保输入框始终可见
+        placeholderLeft: true
       }
     })
 
-    // 模拟输入框的 confirm 事件
     const input = wrapper.find('.wd-search__input')
     await input.trigger('confirm', {
       detail: { value: '搜索内容' }
     })
 
-    // 验证 search 事件是否被触发
     expect(wrapper.emitted('search')).toBeTruthy()
   })
 
-  test('禁用状态', async () => {
+  test('禁用状态下点击容器触发 click', async () => {
     const wrapper = mount(WdSearch, {
       props: {
-        disabled: true,
-        placeholderLeft: true // 确保输入框始终可见
+        disabled: true
       }
     })
 
-    // 检查 props 是否正确传递
-    const vm = wrapper.vm as any
-    expect(vm.disabled).toBe(true)
+    await wrapper.find('.wd-search__block').trigger('click')
+    expect(wrapper.emitted('click')).toBeTruthy()
+  })
 
-    // 检查模板中是否包含禁用状态
-    const template = wrapper.html()
-    expect(template).toContain('disabled')
+  test('closeCover 会关闭占位遮罩', async () => {
+    vi.useFakeTimers()
+
+    const wrapper = mount(WdSearch, {
+      props: {
+        focus: false
+      }
+    })
+
+    const closePromise = (wrapper.vm as any).closeCover()
+    await flushSearchTimers(220)
+    await closePromise
+    expect((wrapper.vm as any).showPlaceHolder).toBe(false)
+
+    vi.useRealTimers()
+  })
+
+  test('disabled + focus=true 时不会触发 closeCover 分支', async () => {
+    vi.useFakeTimers()
+
+    const wrapper = mount(WdSearch, {
+      props: {
+        focus: true,
+        disabled: true
+      }
+    })
+
+    await flushSearchTimers(150)
+    expect((wrapper.vm as any).showInput).toBe(false)
+    vi.useRealTimers()
+  })
+
+  test('blur 在 clearing=true 时早退，不触发 blur 事件', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdSearch, {
+      props: {
+        modelValue: 'abc'
+      }
+    })
+
+    ;(wrapper.vm as any).clearing = true
+    const blurPromise = (wrapper.vm as any).handleBlur()
+    await flushSearchTimers(220)
+    await blurPromise
+
+    expect(wrapper.emitted('blur')).toBeFalsy()
+    vi.useRealTimers()
+  })
+
+  test('blur 正常路径会触发 blur 事件', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdSearch, {
+      props: {
+        modelValue: 'abc'
+      }
+    })
+
+    const blurPromise = (wrapper.vm as any).handleBlur()
+    await flushSearchTimers(220)
+    await blurPromise
+
+    const blurEvents = wrapper.emitted('blur') as any[]
+    expect(blurEvents).toBeTruthy()
+    expect(blurEvents[0][0]).toEqual({ value: 'abc' })
+    vi.useRealTimers()
   })
 
   test('自定义样式', async () => {
@@ -127,13 +203,11 @@ describe('WdSearch', () => {
   test('搜索图标', async () => {
     const wrapper = mount(WdSearch, {
       props: {
-        placeholderLeft: true // 确保输入框始终可见
+        placeholderLeft: true
       }
     })
 
-    // 检查模板中是否包含搜索图标
-    const template = wrapper.html()
-    expect(template).toContain('wd-icon')
+    expect(wrapper.find('.wd-search__search-left-icon').exists()).toBe(true)
   })
 
   test('最大长度限制', async () => {
@@ -141,11 +215,10 @@ describe('WdSearch', () => {
     const wrapper = mount(WdSearch, {
       props: {
         maxlength,
-        placeholderLeft: true // 确保输入框始终可见
+        placeholderLeft: true
       }
     })
 
-    // 检查输入框的最大长度限制
     const input = wrapper.find('.wd-search__input')
     expect(input.attributes('maxlength')).toBe(maxlength.toString())
   })

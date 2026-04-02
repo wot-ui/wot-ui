@@ -1,7 +1,11 @@
-import { mount } from '@vue/test-utils'
+import { config, mount } from '@vue/test-utils'
 import WdSwitch from '@/uni_modules/wot-design-uni/components/wd-switch/wd-switch.vue'
 import { describe, test, expect, vi } from 'vitest'
 import { nextTick } from 'vue'
+import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+
+config.global.components = { WdIcon, WdLoading }
 
 describe('WdSwitch', () => {
   // 测试基本渲染

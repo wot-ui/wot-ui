@@ -1,8 +1,9 @@
-import { mount } from '@vue/test-utils'
+import { config, mount } from '@vue/test-utils'
 import WdImgCropper from '@/uni_modules/wot-design-uni/components/wd-img-cropper/wd-img-cropper.vue'
 import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { nextTick } from 'vue'
-
+import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+config.global.components = { WdLoading }
 describe('WdImgCropper 图片裁剪组件', () => {
   beforeEach(() => {
     vi.clearAllMocks()
@@ -53,8 +54,8 @@ describe('WdImgCropper 图片裁剪组件', () => {
     await nextTick()
 
     expect(wrapper.props('aspectRatio')).toBe('3:2')
-    // 验证裁剪框的宽高比是否正确设置
-    const cutBody = wrapper.find('.wd-img-cropper__cut--body')
+    // 验证裁剪框的实际类名
+    const cutBody = wrapper.find('.wd-img-cropper__cut-body')
     expect(cutBody.exists()).toBe(true)
   })
 
@@ -83,8 +84,8 @@ describe('WdImgCropper 图片裁剪组件', () => {
     })
     await nextTick()
 
-    const cancelButton = wrapper.find('.is-cancel')
-    const confirmButton = wrapper.find('.wd-button')
+    const cancelButton = wrapper.find('.wd-img-cropper__cancel')
+    const confirmButton = wrapper.findAll('.wd-button')[1]
 
     expect(cancelButton.text()).toBe('返回')
     expect(confirmButton.text()).toBe('完成')
@@ -140,7 +141,7 @@ describe('WdImgCropper 图片裁剪组件', () => {
     await nextTick()
 
     // 点击取消按钮
-    const cancelButton = wrapper.find('.is-cancel')
+    const cancelButton = wrapper.find('.wd-img-cropper__cancel')
     await cancelButton.trigger('click')
 
     expect(onCancel).toHaveBeenCalled()
@@ -158,8 +159,8 @@ describe('WdImgCropper 图片裁剪组件', () => {
     })
     await nextTick()
 
-    // 点击确认按钮
-    const confirmButton = wrapper.find('.wd-button')
+    // 点击确认按钮（列表中第二个 .wd-button 是确认按钮）
+    const confirmButton = wrapper.findAll('.wd-button')[1]
     await confirmButton.trigger('click')
 
     // 由于实际裁剪过程涉及到 canvas 操作，这里只能验证事件触发

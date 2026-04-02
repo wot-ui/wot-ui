@@ -63,7 +63,7 @@ const reset = () => countTo.value?.reset()
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | color | 文本颜色 | string | `''` |
-| type ^(1.3.9) | 主题类型，可选值为 `default`、`primary`、`success`、`warning`、`error` | CountToType | default |
+| type ^(1.3.9) | 主题类型，可选值为 `default`、`primary`、`success`、`warning`、`error` | string | default |
 | start-val | 起始值 | number | 0 |
 | end-val | 最终值 | number | 2024 |
 | duration | 从起始值到结束值数字变动的时间（毫秒） | number | 3000 |
@@ -99,9 +99,3 @@ const reset = () => countTo.value?.reset()
 | default | 主体数字内容 | - |
 | prefix | 前缀内容 | - |
 | suffix | 后缀内容 | - |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |

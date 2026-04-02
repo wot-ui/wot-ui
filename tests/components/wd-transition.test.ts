@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import WdTransition from '@/uni_modules/wot-design-uni/components/wd-transition/wd-transition.vue'
 import { describe, test, expect } from 'vitest'
-import { TransitionName } from '@/uni_modules/wot-design-uni/components/wd-transition/types'
+import { type TransitionName } from '@/uni_modules/wot-design-uni/components/wd-transition/types'
 
 describe('WdTransition', () => {
   // 测试基本渲染

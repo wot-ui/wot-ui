@@ -248,7 +248,7 @@ function close() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 设置菜单显示隐藏 | boolean | - |
+| v-model | 设置菜单显示隐藏 | boolean | false |
 | actions | 菜单选项，详见下方 Action 数据结构 | `Action[]` | `[]` |
 | panels | 自定义宫格面板项，支持一维 `Panel[]` 与二维 `Panel[][]`（多行） | `Array<Panel \| Panel[]>` | `[]` |
 | title | 标题 | string | - |
@@ -261,6 +261,8 @@ function close() {
 | safe-area-inset-bottom | 弹出面板是否设置底部安全距离（iPhone X 类型机型） | boolean | true |
 | root-portal | 是否从页面中脱离出来（H5: teleport，App: renderjs，小程序: root-portal） | boolean | false |
 | custom-title-class | 标题区域自定义类名 | string | - |
+| custom-class | 根节点自定义类名 | string | - |
+| custom-style | 根节点自定义样式 | string | - |
 
 ## Events
 
@@ -298,10 +300,3 @@ function close() {
 | --- | --- | --- |
 | default | 自定义内容区，传入后会覆盖默认 actions/panels 渲染 | - |
 | close | 自定义标题栏右侧关闭区域 | `{ close }` |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |
-| custom-title-class | 标题区域样式 |

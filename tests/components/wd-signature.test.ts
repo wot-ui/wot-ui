@@ -1,10 +1,21 @@
-import { mount } from '@vue/test-utils'
+import { config, mount } from '@vue/test-utils'
 import WdSignature from '@/uni_modules/wot-design-uni/components/wd-signature/wd-signature.vue'
 import WdButton from '@/uni_modules/wot-design-uni/components/wd-button/wd-button.vue'
-import { describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 import type { SignatureResult } from '@/uni_modules/wot-design-uni/components/wd-signature/types'
+import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+config.global.components = { WdLoading }
+
+const touchEvent = (x: number, y: number) => ({
+  preventDefault: vi.fn(),
+  touches: [{ x, y }]
+})
 
 describe('WdSignature', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
   // 基本渲染测试
   test('基本渲染', () => {
     const wrapper = mount(WdSignature, {
@@ -259,6 +270,103 @@ describe('WdSignature', () => {
     })
     expect(wrapper.vm.confirm).toBeDefined()
     wrapper.vm.confirm()
+  })
+
+  test('确认导出失败时返回 success=false', async () => {
+    vi.spyOn(uni as any, 'canvasToTempFilePath').mockImplementation(({ fail }: any) => {
+      fail?.()
+      return undefined as any
+    })
+
+    const wrapper = mount(WdSignature, {
+      global: {
+        components: { WdButton }
+      }
+    })
+
+    wrapper.vm.confirm()
+
+    const emitted = wrapper.emitted('confirm')
+    expect(emitted).toBeTruthy()
+    const result = emitted![0][0] as SignatureResult
+    expect(result.success).toBe(false)
+    expect(result.tempFilePath).toBe('')
+  })
+
+  test('启用历史记录时，绘制后可撤销，撤销后可恢复', async () => {
+    const ctxMock: any = {
+      setLineWidth: vi.fn(),
+      setStrokeStyle: vi.fn(),
+      setLineJoin: vi.fn(),
+      setLineCap: vi.fn(),
+      setFillStyle: vi.fn(),
+      beginPath: vi.fn(),
+      moveTo: vi.fn(),
+      lineTo: vi.fn(),
+      quadraticCurveTo: vi.fn(),
+      stroke: vi.fn(),
+      fillRect: vi.fn(),
+      clearRect: vi.fn(),
+      scale: vi.fn(),
+      draw: vi.fn()
+    }
+    vi.spyOn(uni, 'createCanvasContext').mockReturnValue(ctxMock)
+
+    const nowSpy = vi.spyOn(Date, 'now')
+    nowSpy.mockReturnValueOnce(100).mockReturnValueOnce(110).mockReturnValueOnce(120).mockReturnValueOnce(130).mockReturnValue(140)
+
+    const wrapper = mount(WdSignature, {
+      props: {
+        enableHistory: true,
+        pressure: true,
+        step: 1
+      },
+      global: {
+        components: { WdButton }
+      }
+    })
+
+    const canvas = wrapper.find('canvas')
+    await canvas.trigger('touchstart', touchEvent(10, 10))
+    await canvas.trigger('touchmove', touchEvent(40, 30))
+    await canvas.trigger('touchmove', touchEvent(80, 60))
+    await canvas.trigger('touchend', touchEvent(80, 60))
+
+    const buttonsAfterDraw = wrapper.findAllComponents(WdButton)
+    expect(buttonsAfterDraw[0].props('disabled')).toBe(false)
+    expect(buttonsAfterDraw[1].props('disabled')).toBe(true)
+
+    wrapper.vm.revoke()
+    await wrapper.vm.$nextTick()
+    const buttonsAfterRevoke = wrapper.findAllComponents(WdButton)
+    expect(buttonsAfterRevoke[0].props('disabled')).toBe(true)
+    expect(buttonsAfterRevoke[1].props('disabled')).toBe(false)
+
+    wrapper.vm.restore()
+    await wrapper.vm.$nextTick()
+    const buttonsAfterRestore = wrapper.findAllComponents(WdButton)
+    expect(buttonsAfterRestore[0].props('disabled')).toBe(false)
+    expect(buttonsAfterRestore[1].props('disabled')).toBe(true)
+  })
+
+  test('disabled=true 时不触发 signing 事件', async () => {
+    const wrapper = mount(WdSignature, {
+      props: {
+        disabled: true
+      },
+      global: {
+        components: { WdButton }
+      }
+    })
+
+    const canvas = wrapper.find('canvas')
+    await canvas.trigger('touchstart', touchEvent(20, 20))
+    await canvas.trigger('touchmove', touchEvent(40, 40))
+    await canvas.trigger('touchend', touchEvent(40, 40))
+
+    expect(wrapper.emitted('start')).toBeTruthy()
+    expect(wrapper.emitted('signing')).toBeFalsy()
+    expect(wrapper.emitted('end')).toBeTruthy()
   })
 
   test('exposed方法 - revoke和restore', () => {

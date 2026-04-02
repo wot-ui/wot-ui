@@ -97,7 +97,7 @@ const formatter = (type: string, value: number) => {
 ```
 
 ```ts
-const filter = (type: string, values: number[]) => {
+const filter = ({ type, values }: { type: string; values: number[] }) => {
   if (type === 'minute') {
     return values.filter((value) => value % 5 === 0)
   }

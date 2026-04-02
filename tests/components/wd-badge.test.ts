@@ -28,7 +28,7 @@ describe('WdBadge', () => {
       const wrapper = mount(WdBadge, {
         props: {
           type,
-          modelValue: 5 // 需要设置值才能显示徽标
+          value: 5 // 需要设置值才能显示徽标
         }
       })
 
@@ -43,7 +43,7 @@ describe('WdBadge', () => {
     const value = 5
 
     const wrapper = mount(WdBadge, {
-      props: { modelValue: value }
+      props: { value }
     })
 
     await nextTick()
@@ -55,7 +55,7 @@ describe('WdBadge', () => {
   test('最大值徽标', async () => {
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 100,
+        value: 100,
         max: 99
       }
     })
@@ -70,7 +70,7 @@ describe('WdBadge', () => {
     const wrapper = mount(WdBadge, {
       props: {
         isDot: true,
-        modelValue: 5 // 需要设置值才能显示徽标
+        value: 5 // 需要设置值才能显示徽标
       }
     })
 
@@ -88,7 +88,7 @@ describe('WdBadge', () => {
     const wrapper = mount(WdBadge, {
       props: {
         bgColor,
-        modelValue: 5 // 需要设置值才能显示徽标
+        value: 5 // 需要设置值才能显示徽标
       }
     })
 
@@ -118,7 +118,7 @@ describe('WdBadge', () => {
 
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 5,
+        value: 5,
         top
       }
     })
@@ -134,7 +134,7 @@ describe('WdBadge', () => {
 
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 5,
+        value: 5,
         right
       }
     })
@@ -148,7 +148,7 @@ describe('WdBadge', () => {
   test('隐藏徽标', async () => {
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 5,
+        value: 5,
         hidden: true
       }
     })
@@ -162,7 +162,7 @@ describe('WdBadge', () => {
   test('值为0且showZero为false时隐藏徽标', async () => {
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 0,
+        value: 0,
         showZero: false
       }
     })
@@ -176,7 +176,7 @@ describe('WdBadge', () => {
   test('值为0且showZero为true时显示徽标', async () => {
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 0,
+        value: 0,
         showZero: true
       }
     })
@@ -193,7 +193,7 @@ describe('WdBadge', () => {
 
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 5,
+        value: 5,
         customClass
       }
     })
@@ -209,7 +209,7 @@ describe('WdBadge', () => {
 
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 5,
+        value: 5,
         customStyle
       }
     })
@@ -223,7 +223,7 @@ describe('WdBadge', () => {
   test('属性变化时更新', async () => {
     const wrapper = mount(WdBadge, {
       props: {
-        modelValue: 5
+        value: 5
       }
     })
 
@@ -233,7 +233,7 @@ describe('WdBadge', () => {
 
     // 更新属性
     await wrapper.setProps({
-      modelValue: 10
+      value: 10
     })
 
     expect(wrapper.find('.wd-badge__content').text()).toBe('10')

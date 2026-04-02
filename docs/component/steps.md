@@ -137,20 +137,24 @@ function nextStep() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| active | 当前激活步骤下标 | number | `0` |
-| vertical | 是否垂直方向展示 | boolean | `false` |
-| dot | 是否使用点状步骤条 | boolean | `false` |
-| space | 步骤条间距，默认自动计算 | string | `''` |
-| align-center | 是否水平居中，只对横向步骤条有效 | boolean | `false` |
+| active | 当前激活步骤下标 | `number` | `0` |
+| vertical | 是否垂直方向展示 | `boolean` | `false` |
+| dot | 是否使用点状步骤条 | `boolean` | `false` |
+| space | 步骤条间距，默认自动计算 | `string` | `''` |
+| align-center | 是否水平居中，只对横向步骤条有效 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Step Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 步骤标题，不传时显示默认文案 | string | - |
-| description | 步骤描述 | string | - |
-| icon | 步骤图标 | string | - |
+| title | 步骤标题，不传时显示默认文案 | `string` | - |
+| description | 步骤描述 | `string` | - |
+| icon | 步骤图标 | `string` | - |
 | status | 步骤状态，可选值为 `finished`、`process`、`error`、`wait` | `StepStatus` | - |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Steps Slots
 
@@ -166,16 +170,3 @@ function nextStep() {
 | title | 自定义步骤标题 |
 | description | 自定义步骤描述 |
 
-## Steps 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-style | 根节点样式 |
-
-## Step 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-style | 根节点样式 |

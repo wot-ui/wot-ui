@@ -107,10 +107,12 @@ const showContent = ref(true)
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| theme | 骨架屏主题，可选值为 `text`、`avatar`、`paragraph`、`image` | `SkeletonTheme` | `text` |
+| theme | 骨架屏主题，可选值为 `text`、`avatar`、`paragraph`、`image` | `SkeletonTheme` | `'text'` |
 | row-col | 自定义每行占位配置，用于设置行列数量、宽高、间距、圆角和占位类型等 | `SkeletonRowCol[]` | `[]` |
-| loading | 是否显示骨架屏 | boolean | `true` |
+| loading | 是否显示骨架屏 | `boolean` | `true` |
 | animation | 动画类型，可选值为 `gradient`、`flashed` | `SkeletonAnimation` | `''` |
+| custom-class | 自定义样式类名 | `string \| string[] \| Record<string, boolean>` | `''` |
+| custom-style | 自定义内联样式 | `CSSProperties` | `{}` |
 
 ## Slots
 
@@ -118,9 +120,3 @@ const showContent = ref(true)
 | --- | --- |
 | default | `loading` 结束后展示的实际内容 |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点自定义类名 |
-| custom-style | 根节点自定义样式 |

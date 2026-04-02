@@ -1,6 +1,7 @@
-import { mount } from '@vue/test-utils'
+import { mount, config } from '@vue/test-utils'
 import WdTour from '@/uni_modules/wot-design-uni/components/wd-tour/wd-tour.vue'
-import { describe, test, expect, vi, beforeEach } from 'vitest'
+import { describe, test, expect, vi, beforeEach, afterAll } from 'vitest'
+import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
 
 // 模拟 useLockScroll 函数
 vi.mock('@/uni_modules/wot-design-uni/composables/useLockScroll', () => ({
@@ -10,9 +11,20 @@ vi.mock('@/uni_modules/wot-design-uni/composables/useLockScroll', () => ({
   }))
 }))
 
+config.global.components = { WdLoading }
+config.global.stubs = {
+  ...(config.global.stubs || {}),
+  'rich-text': {
+    template: '<div class="rich-text-stub"><slot /></div>'
+  }
+}
+
 // 模拟uni对象
 const mockUni = {
   createSelectorQuery: vi.fn(() => ({
+    in: vi.fn(function () {
+      return {}
+    }),
     select: vi.fn(() => ({
       boundingClientRect: vi.fn((callback) => {
         // 模拟元素位置信息
@@ -46,10 +58,28 @@ const mockUni = {
   getMenuButtonBoundingClientRect: vi.fn()
 }
 
-// 模拟全局uni对象
-Object.defineProperty(global, 'uni', {
-  value: mockUni
-})
+const originalUniMethods: Record<string, any> = {}
+
+function patchUniMethods() {
+  const uniGlobal = ((global as any).uni ||= {})
+  Object.keys(mockUni).forEach((key) => {
+    if (!(key in originalUniMethods)) {
+      originalUniMethods[key] = uniGlobal[key]
+    }
+    uniGlobal[key] = (mockUni as any)[key]
+  })
+}
+
+function restoreUniMethods() {
+  const uniGlobal = ((global as any).uni ||= {})
+  Object.keys(mockUni).forEach((key) => {
+    if (key in originalUniMethods) {
+      uniGlobal[key] = originalUniMethods[key]
+    } else {
+      delete uniGlobal[key]
+    }
+  })
+}
 
 describe('WdTour', () => {
   const steps = [
@@ -64,10 +94,14 @@ describe('WdTour', () => {
   ]
 
   beforeEach(() => {
+    patchUniMethods()
     vi.clearAllMocks()
     // 重置模拟函数
     mockUni.createSelectorQuery.mockClear()
     mockUni.createSelectorQuery.mockImplementation(() => ({
+      in: vi.fn(function () {
+        return {}
+      }),
       select: vi.fn(() => ({
         boundingClientRect: vi.fn((callback) => {
           // 模拟元素位置信息
@@ -85,6 +119,10 @@ describe('WdTour', () => {
         })
       }))
     }))
+  })
+
+  afterAll(() => {
+    restoreUniMethods()
   })
 
   // 测试基本渲染
@@ -131,7 +169,7 @@ describe('WdTour', () => {
 
     expect(wrapper.find('.wd-tour__info').exists()).toBe(true)
     // 验证富文本内容是否正确渲染
-    const richText = wrapper.find('.wd-tour__info rich-text')
+    const richText = wrapper.find('.wd-tour__info .rich-text-stub')
     expect(richText.exists()).toBe(true)
   })
 
@@ -417,7 +455,7 @@ describe('WdTour', () => {
     await new Promise((resolve) => setTimeout(resolve, 100))
 
     expect(wrapper.find('.custom-content').exists()).toBe(true)
-    expect(wrapper.find('.wd-tour__info').exists()).toBe(false)
+    expect(wrapper.find('.wd-tour__info rich-text').exists()).toBe(false)
   })
 
   // 测试自定义按钮插槽
@@ -510,6 +548,9 @@ describe('WdTour', () => {
   test('处理元素查找错误', async () => {
     // 模拟找不到元素的情况
     mockUni.createSelectorQuery.mockImplementation(() => ({
+      in: vi.fn(function () {
+        return {}
+      }),
       select: vi.fn(() => ({
         boundingClientRect: vi.fn((callback) => {
           // 模拟找不到元素

@@ -1,8 +1,24 @@
 import { mount } from '@vue/test-utils'
 import WdVideoPreview from '@/uni_modules/wot-design-uni/components/wd-video-preview/wd-video-preview.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { nextTick } from 'vue'
-import { PreviewVideo } from '@/uni_modules/wot-design-uni/components/wd-video-preview/types'
+import { defineComponent, nextTick } from 'vue'
+import { type PreviewVideo } from '@/uni_modules/wot-design-uni/components/wd-video-preview/types'
+import { useVideoPreview } from '@/uni_modules/wot-design-uni/components/wd-video-preview'
+
+const createUseVideoPreviewTestComponent = () => {
+  return defineComponent({
+    components: { WdVideoPreview },
+    template: '<div><wd-video-preview /><wd-video-preview selector="custom" /></div>',
+    setup() {
+      const videoPreview = useVideoPreview()
+      const customVideoPreview = useVideoPreview('custom')
+      return {
+        videoPreview,
+        customVideoPreview
+      }
+    }
+  })
+}
 
 describe('WdVideoPreview', () => {
   beforeEach(() => {
@@ -13,16 +29,16 @@ describe('WdVideoPreview', () => {
   test('基本渲染', () => {
     const wrapper = mount(WdVideoPreview)
 
-    // 初始状态下不应该显示
-    expect(wrapper.find('.wd-video-preview').exists()).toBe(false)
+    // 初始状态下应该存在但隐藏（display:none via wd-transition）
+    expect(wrapper.find('.wd-video-preview').attributes('style')).toContain('display: none')
   })
 
   // 测试打开和关闭
   test('打开和关闭视频预览', async () => {
     const wrapper = mount(WdVideoPreview)
 
-    // 初始状态下不应该显示
-    expect(wrapper.find('.wd-video-preview').exists()).toBe(false)
+    // 初始状态下应该存在但隐藏
+    expect(wrapper.find('.wd-video-preview').attributes('style')).toContain('display: none')
 
     // 打开预览
     const video: PreviewVideo = {
@@ -32,10 +48,10 @@ describe('WdVideoPreview', () => {
     }
 
     ;(wrapper.vm as any).open(video)
-    await nextTick()
+    await new Promise((r) => setTimeout(r, 100))
 
-    // 应该显示预览
-    expect(wrapper.find('.wd-video-preview').exists()).toBe(true)
+    // 应该显示预览（display:none 移除）
+    expect(wrapper.find('.wd-video-preview').attributes('style')).not.toContain('display: none')
 
     // 检查视频属性
     const videoElement = wrapper.find('video')
@@ -46,10 +62,10 @@ describe('WdVideoPreview', () => {
 
     // 关闭预览
     ;(wrapper.vm as any).close()
-    await nextTick()
+    await new Promise((r) => setTimeout(r, 600))
 
     // 应该隐藏预览
-    expect(wrapper.find('.wd-video-preview').exists()).toBe(false)
+    expect(wrapper.find('.wd-video-preview').attributes('style')).toContain('display: none')
   })
 
   // 测试点击关闭按钮
@@ -64,10 +80,10 @@ describe('WdVideoPreview', () => {
 
     // 模拟关闭方法调用，因为在测试环境中可能无法找到关闭按钮
     ;(wrapper.vm as any).close()
-    await nextTick()
+    await new Promise((r) => setTimeout(r, 600))
 
     // 应该隐藏预览
-    expect(wrapper.find('.wd-video-preview').exists()).toBe(false)
+    expect(wrapper.find('.wd-video-preview').attributes('style')).toContain('display: none')
   })
 
   // 测试点击背景关闭
@@ -82,10 +98,10 @@ describe('WdVideoPreview', () => {
 
     // 点击背景
     await wrapper.find('.wd-video-preview').trigger('click')
-    await nextTick()
+    await new Promise((r) => setTimeout(r, 600))
 
     // 应该隐藏预览
-    expect(wrapper.find('.wd-video-preview').exists()).toBe(false)
+    expect(wrapper.find('.wd-video-preview').attributes('style')).toContain('display: none')
   })
 
   // 测试点击视频区域不关闭
@@ -139,7 +155,7 @@ describe('WdVideoPreview', () => {
     })
     await nextTick()
 
-    expect(wrapper.find('.wd-video-preview').attributes('style')).toBe(customStyle)
+    expect(wrapper.find('.wd-video-preview').attributes('style')).toContain(customStyle)
   })
 
   // 测试暴露的方法
@@ -149,5 +165,43 @@ describe('WdVideoPreview', () => {
     // 检查是否暴露了 open 和 close 方法
     expect(typeof (wrapper.vm as any).open).toBe('function')
     expect(typeof (wrapper.vm as any).close).toBe('function')
+  })
+
+  test('useVideoPreview: 打开默认实例并写入视频信息', async () => {
+    const TestComponent = createUseVideoPreviewTestComponent()
+    const wrapper = mount(TestComponent)
+    const previewVm = wrapper.findAllComponents(WdVideoPreview)[0].vm as any
+
+    ;(wrapper.vm as any).videoPreview.previewVideo({
+      url: 'https://example.com/hook.mp4',
+      poster: 'https://example.com/hook.jpg',
+      title: 'Hook Video'
+    })
+    await nextTick()
+
+    expect(previewVm.state.show).toBe(true)
+    expect(previewVm.previewVideo.url).toBe('https://example.com/hook.mp4')
+    expect(previewVm.previewVideo.poster).toBe('https://example.com/hook.jpg')
+    expect(previewVm.previewVideo.title).toBe('Hook Video')
+    ;(wrapper.vm as any).videoPreview.closeVideoPreview()
+    await nextTick()
+    expect(previewVm.state.show).toBe(false)
+  })
+
+  test('useVideoPreview: 自定义 selector 仅影响对应实例', async () => {
+    const TestComponent = createUseVideoPreviewTestComponent()
+    const wrapper = mount(TestComponent)
+    const defaultVm = wrapper.findAllComponents(WdVideoPreview)[0].vm as any
+    const customVm = wrapper.findAllComponents(WdVideoPreview)[1].vm as any
+
+    ;(wrapper.vm as any).customVideoPreview.previewVideo({
+      url: 'https://example.com/custom.mp4',
+      title: 'Custom Video'
+    })
+    await nextTick()
+
+    expect(defaultVm.state.show).toBe(false)
+    expect(customVm.state.show).toBe(true)
+    expect(customVm.previewVideo.url).toBe('https://example.com/custom.mp4')
   })
 })

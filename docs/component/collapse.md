@@ -211,11 +211,3 @@ collapseRef.value?.toggleAll({ expanded: true, skipDisabled: true })
 | --- | --- | --- |
 | title | 自定义标题区域 | `{ expanded, disabled, isFirst }` |
 | default | 折叠栏内容 | - |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | Collapse / CollapseItem 根节点样式 |
-| custom-body-class ^(1.4.0) | CollapseItem 内容容器样式类 |
-| custom-more-slot-class | Collapse 查看更多插槽外部样式类 |

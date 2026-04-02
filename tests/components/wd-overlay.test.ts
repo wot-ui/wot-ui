@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
 import WdOverlay from '@/uni_modules/wot-design-uni/components/wd-overlay/wd-overlay.vue'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect } from 'vitest'
 
 describe('WdOverlay', () => {
   // 测试基本渲染

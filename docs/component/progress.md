@@ -114,29 +114,25 @@ function reduce() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| percentage | 进度数值，最大值为 `100` | number | 0 |
-| hide-text | 是否隐藏进度文字 | boolean | false |
-| color | 进度条颜色，可选值为 `string`、`string[]`、`ProgressColor[]` | string / string[] / ProgressColor[] | - |
-| status | 进度条状态，可选值为 `success`、`danger`、`warning` | string | - |
-| duration | 进度增加 `1%` 所需毫秒数 | number | 30 |
-| percent-position | 百分比显示位置配置，`type` 可选 `inner`、`outer`，`align` 可选 `left`、`center`、`right` | PercentPosition | `{ align: 'right', type: 'outer' }` |
+| percentage | 进度数值，最大值为 `100` | `number` | `0` |
+| hide-text | 是否隐藏进度文字 | `boolean` | `false` |
+| color | 进度条颜色，可选值为 `string`、`string[]`、`ProgressColor[]` | `string \| string[] \| ProgressColor[]` | - |
+| status | 进度条状态，可选值为 `success`、`danger`、`warning` | `string` | - |
+| duration | 进度增加 `1%` 所需毫秒数 | `number` | `30` |
+| percent-position | 百分比显示位置配置，`type` 可选 `inner`、`outer`，`align` 可选 `left`、`center`、`right` | `PercentPosition` | `{ align: 'right', type: 'outer' }` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ### ProgressColor
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| color | 颜色值 | string | - |
-| percentage | 颜色生效的进度阈值 | number | - |
+| color | 颜色值 | `string` | - |
+| percentage | 颜色生效的进度阈值 | `number` | - |
 
 ### PercentPosition
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 百分比显示位置，可选值为 `inner`、`outer` | string | outer |
-| align | 百分比文本对齐方式，可选值为 `left`、`center`、`right` | string | right |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |
+| type | 百分比显示位置，可选值为 `inner`、`outer` | `string` | `'outer'` |
+| align | 百分比文本对齐方式，可选值为 `left`、`center`、`right` | `string` | `'right'` |

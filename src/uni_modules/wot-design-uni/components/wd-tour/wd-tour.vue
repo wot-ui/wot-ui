@@ -13,36 +13,36 @@
 
         <view class="wd-tour__buttons" v-if="showTourButtons">
           <!-- 上一步按钮 -->
-          <view v-if="currentIndex > 0" @click.stop="handlePrev">
+          <view class="wd-tour__prev" v-if="currentIndex > 0" @click.stop="handlePrev">
             <slot name="prev">
-              <wd-button size="mini" variant="text">
+              <wd-button class="wd-tour__prev-default" size="mini" variant="text">
                 {{ prevText }}
               </wd-button>
             </slot>
           </view>
 
           <!-- 跳过按钮 -->
-          <view @click.stop="handleSkip">
+          <view class="wd-tour__skip" @click.stop="handleSkip">
             <slot name="skip">
-              <wd-button size="mini" variant="text">
+              <wd-button class="wd-tour__skip-default" size="mini" variant="text">
                 {{ skipText }}
               </wd-button>
             </slot>
           </view>
 
           <!-- 下一步按钮 -->
-          <view v-if="currentIndex !== steps.length - 1" @click.stop="handleNext">
+          <view class="wd-tour__next" v-if="currentIndex !== steps.length - 1" @click.stop="handleNext">
             <slot name="next">
-              <wd-button size="mini">
+              <wd-button class="wd-tour__next-default" size="mini">
                 {{ `${nextText}(${currentIndex + 1}/${steps.length})` }}
               </wd-button>
             </slot>
           </view>
 
           <!-- 完成按钮 -->
-          <view v-if="currentIndex === steps.length - 1" @click.stop="handleFinish">
+          <view class="wd-tour__finish" v-if="currentIndex === steps.length - 1" @click.stop="handleFinish">
             <slot name="finish">
-              <wd-button size="mini" type="primary">
+              <wd-button class="wd-tour__finish-default" size="mini" type="primary">
                 {{ finishText }}
               </wd-button>
             </slot>

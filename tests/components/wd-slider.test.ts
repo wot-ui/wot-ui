@@ -251,4 +251,82 @@ describe('WdSlider', () => {
     expect(lineStyle).toContain('width: 60%')
     expect(lineStyle).toContain('left: 20%')
   })
+
+  test('touch 拖拽流程触发 dragstart/dragmove/dragend/change', () => {
+    const wrapper = mountSlider({
+      props: {
+        modelValue: 20,
+        min: 0,
+        max: 100
+      }
+    })
+
+    ;(wrapper.vm as any).trackSize = 100
+    ;(wrapper.vm as any).onTouchStart({ touches: [{ clientX: 20, clientY: 0 }] }, 0)
+    ;(wrapper.vm as any).onTouchMove({ touches: [{ clientX: 60, clientY: 0 }] })
+    ;(wrapper.vm as any).onTouchEnd()
+
+    expect(wrapper.emitted('dragstart')).toBeTruthy()
+    expect(wrapper.emitted('dragmove')).toBeTruthy()
+    expect(wrapper.emitted('dragend')).toBeTruthy()
+    expect(wrapper.emitted('change')).toBeTruthy()
+  })
+
+  test('disabled 时 onBarClick 与 touch 相关方法早退', () => {
+    const wrapper = mountSlider({
+      props: {
+        modelValue: 20,
+        disabled: true
+      }
+    })
+
+    const beforeChange = wrapper.emitted('change')?.length || 0
+
+    ;(wrapper.vm as any).onBarClick({ detail: { x: 80, y: 0 } })
+    ;(wrapper.vm as any).onTouchMove({ touches: [{ clientX: 80, clientY: 0 }] })
+    ;(wrapper.vm as any).onTouchEnd()
+
+    const afterChange = wrapper.emitted('change')?.length || 0
+    expect(afterChange).toBe(beforeChange)
+  })
+
+  test('range 模式下 handleBarClickAt 会更新最近滑块', () => {
+    const wrapper = mountSlider({
+      props: {
+        range: true,
+        min: 0,
+        max: 100,
+        modelValue: [20, 80]
+      }
+    })
+
+    ;(wrapper.vm as any).trackSize = 100
+    ;(wrapper.vm as any).handleBarClickAt(70)
+
+    // update:modelValue 由 watch(modelValue) 触发
+    return nextTick().then(() => {
+      const updates = wrapper.emitted('update:modelValue') as any[]
+      expect(updates).toBeTruthy()
+      expect(updates[updates.length - 1][0]).toEqual([20, 70])
+      expect(wrapper.emitted('change')).toBeTruthy()
+    })
+  })
+
+  test('onBarClick 会根据点击位置更新单值滑块', async () => {
+    const wrapper = mountSlider({
+      props: {
+        modelValue: 0,
+        min: 0,
+        max: 100
+      }
+    })
+
+    await (wrapper.vm as any).onBarClick({ detail: { x: 50, y: 0 } })
+    await nextTick()
+
+    const updates = wrapper.emitted('update:modelValue') as any[]
+    expect(updates).toBeTruthy()
+    expect(updates[updates.length - 1][0]).toBe(50)
+    expect(wrapper.emitted('change')).toBeTruthy()
+  })
 })

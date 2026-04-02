@@ -3,7 +3,7 @@
 `V2` 版本，组件主题系统基于 [CSS 变量](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties) 构建，通过覆盖这些 CSS 变量，可以实现定制主题、动态切换主题、局部定制和组件级覆盖等功能。
 
 ## 主题变量
-`Design Token` 是设计上承载设计决策的最小实体 ，也就是主题变量，`Design Token` 通常采用三层架构：基础变量、语义变量和组件变量，通过修改 `Design Token` 可以实现不同的组件样式，在这里 [theme](https://github.com/wot-ui/wot-ui/tree/main/src/uni_modules/wot-ui/styles/theme) 你可以看到组件库全部的 `Design Token`。
+`Design Token` 是设计上承载设计决策的最小实体 ，也就是主题变量，我们的 `Design Token` 采用三层架构：基础变量、语义变量和组件变量，通过修改 `Design Token` 可以实现不同的组件样式。在这里 [theme](https://github.com/wot-ui/wot-ui/tree/main/src/uni_modules/wot-ui/styles/theme) 你可以看到组件库的全部 `Design Token`。
 
 ### 基础变量
 

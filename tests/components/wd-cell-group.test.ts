@@ -56,8 +56,9 @@ describe('WdCellGroup', () => {
 
   // 测试使用插槽
   test('测试 useSlot 属性', () => {
+    // cell-group 没有 useSlot prop，标题区域在有 title/value/title-slot/value-slot 时显示
     const wrapper = mount(WdCellGroup, {
-      props: { useSlot: true }
+      props: { title: '标题' }
     })
 
     expect(wrapper.find('.wd-cell-group__title').exists()).toBe(true)

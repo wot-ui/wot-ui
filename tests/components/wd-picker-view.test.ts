@@ -31,7 +31,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
@@ -39,10 +39,10 @@ describe('WdPickerView', () => {
     })
 
     // 检查是否正确渲染了列
-    expect(wrapper.findAll('.wd-picker-view-column').length).toBe(1)
+    expect(wrapper.findAll('.wd-picker-view__column').length).toBe(1)
 
     // 检查是否正确设置了 modelValue
-    expect(wrapper.props('modelValue')).toBe('1')
+    expect(wrapper.props('modelValue')).toEqual(['1'])
 
     // 检查是否正确设置了 columns
     expect(wrapper.props('columns')).toEqual(columns)
@@ -70,7 +70,7 @@ describe('WdPickerView', () => {
     })
 
     // 检查是否正确渲染了列
-    expect(wrapper.findAll('.wd-picker-view-column').length).toBe(2)
+    expect(wrapper.findAll('.wd-picker-view__column').length).toBe(2)
 
     // 检查是否正确设置了 modelValue
     expect(wrapper.props('modelValue')).toEqual(['1', 'a'])
@@ -87,7 +87,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '2'
+        modelValue: ['2']
       },
       global: {
         components: globalComponents
@@ -95,7 +95,7 @@ describe('WdPickerView', () => {
     })
 
     // 检查是否正确设置了 modelValue
-    expect(wrapper.props('modelValue')).toBe('2')
+    expect(wrapper.props('modelValue')).toEqual(['2'])
 
     // 检查内部的 selectedIndex 是否正确设置
     expect((wrapper.vm as any).selectedIndex).toEqual([1])
@@ -109,7 +109,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
@@ -138,7 +138,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
@@ -155,7 +155,7 @@ describe('WdPickerView', () => {
   test('自定义样式', () => {
     const wrapper = mount(WdPickerView, {
       props: {
-        modelValue: '',
+        modelValue: [],
         customClass: 'custom-picker-view',
         customStyle: 'height: 200px;'
       },
@@ -167,18 +167,17 @@ describe('WdPickerView', () => {
     expect(wrapper.attributes('style')).toBe('height: 200px;')
   })
 
-  test('加载状态', () => {
+  test('主容器渲染', () => {
     const wrapper = mount(WdPickerView, {
       props: {
-        modelValue: '',
-        loading: true
+        modelValue: []
       },
       global: {
         components: globalComponents
       }
     })
-    expect(wrapper.find('.wd-picker-view__loading').exists()).toBeTruthy()
-    expect(wrapper.findComponent({ name: 'wd-loading' }).exists()).toBeTruthy()
+    // wd-picker-view__main 容器存在
+    expect(wrapper.find('.wd-picker-view__main').exists()).toBeTruthy()
   })
 
   test('列高度', () => {
@@ -186,7 +185,7 @@ describe('WdPickerView', () => {
     const visibleItemCount = 4
     const wrapper = mount(WdPickerView, {
       props: {
-        modelValue: '',
+        modelValue: [],
         itemHeight,
         visibleItemCount
       },
@@ -212,18 +211,17 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
       }
     })
 
-    // 检查是否正确暴露了方法
+    // 检查是否正确暴露了方法（getSelectedOptions/getSelectedValues/getColumnsData/getColumnData/getColumnIndex/getSelectedLabels/getSelectedIndex/resetColumns）
     const vm = wrapper.vm as any
     expect(typeof vm.getSelectedOptions).toBe('function')
     expect(typeof vm.getSelectedValues).toBe('function')
-    expect(typeof vm.setColumnData).toBe('function')
     expect(typeof vm.getColumnsData).toBe('function')
     expect(typeof vm.getColumnData).toBe('function')
     expect(typeof vm.getColumnIndex).toBe('function')
@@ -231,11 +229,11 @@ describe('WdPickerView', () => {
     expect(typeof vm.getSelectedIndex).toBe('function')
     expect(typeof vm.resetColumns).toBe('function')
 
-    // 测试 getSelectedOptions 方法
-    expect(vm.getSelectedOptions()).toEqual({ value: '1', label: '选项1' })
+    // getSelectedOptions 始终返回数组
+    expect(vm.getSelectedOptions()).toEqual([{ value: '1', label: '选项1' }])
 
-    // 测试 getSelectedValues 方法
-    expect(vm.getSelectedValues()).toBe('1')
+    // getSelectedValues 始终返回数组
+    expect(vm.getSelectedValues()).toEqual(['1'])
 
     // 测试 getColumnsData 方法
     expect(vm.getColumnsData()).toEqual([
@@ -259,7 +257,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
@@ -281,7 +279,7 @@ describe('WdPickerView', () => {
       props: {
         columns,
         // 尝试选中禁用项
-        modelValue: '2'
+        modelValue: ['2']
       },
       global: {
         components: globalComponents
@@ -293,37 +291,41 @@ describe('WdPickerView', () => {
     expect(vm.selectedIndex).toEqual([0])
   })
 
-  test('columnChange 回调使用 Promise 风格', async () => {
+  test('手动触发 change 事件', async () => {
     const columns = [
       { value: '1', label: '选项1' },
       { value: '2', label: '选项2' }
     ]
-    let resolveCallback: (() => void) | null = null
-    const columnChange = vi.fn((picker, selects, index, resolve) => {
-      // 模拟异步操作
-      resolveCallback = resolve
-    })
 
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1',
-        columnChange
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
       }
     })
 
-    // columnChange 应该是一个函数
-    expect(typeof wrapper.props('columnChange')).toBe('function')
+    // 手动触发 change 事件验证事件结构
+    wrapper.vm.$emit('change', {
+      selectedValues: ['2'],
+      selectedOptions: [{ value: '2', label: '选项2' }],
+      selectedLabels: ['选项2'],
+      selectedIndexes: [1],
+      columnIndex: 0
+    })
+
+    const emitted = wrapper.emitted('change')
+    expect(emitted).toBeTruthy()
+    expect(emitted![0][0]).toMatchObject({ selectedValues: ['2'], columnIndex: 0 })
   })
 
   test('空列数据处理', async () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns: [],
-        modelValue: ''
+        modelValue: []
       },
       global: {
         components: globalComponents
@@ -337,7 +339,7 @@ describe('WdPickerView', () => {
     // 更新为有数据的列
     await wrapper.setProps({
       columns: [{ value: '1', label: '选项1' }],
-      modelValue: '1'
+      modelValue: ['1']
     })
 
     expect(vm.formatColumns.length).toBe(1)
@@ -377,7 +379,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
@@ -401,7 +403,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
@@ -422,7 +424,7 @@ describe('WdPickerView', () => {
     ])
   })
 
-  test('setColumnData 方法正确设置列数据', () => {
+  test('getColumnData 返回指定列数据', () => {
     const columns = [
       [
         { value: '1', label: '选项1' },
@@ -444,16 +446,15 @@ describe('WdPickerView', () => {
     })
 
     const vm = wrapper.vm as any
-    const newColumnData = [
-      { value: 'x', label: '新选项X' },
-      { value: 'y', label: '新选项Y' }
-    ]
-
-    vm.setColumnData(1, newColumnData, 0)
-
-    expect(vm.formatColumns[1]).toEqual([
-      { value: 'x', label: '新选项X' },
-      { value: 'y', label: '新选项Y' }
+    // getColumnData(0) 返回第一列数据
+    expect(vm.getColumnData(0)).toEqual([
+      { value: '1', label: '选项1' },
+      { value: '2', label: '选项2' }
+    ])
+    // getColumnData(1) 返回第二列数据
+    expect(vm.getColumnData(1)).toEqual([
+      { value: 'a', label: '选项A' },
+      { value: 'b', label: '选项B' }
     ])
   })
 
@@ -465,7 +466,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents
@@ -475,9 +476,9 @@ describe('WdPickerView', () => {
     const vm = wrapper.vm as any
     const result = vm.getSelectedOptions()
 
-    // 单列应该返回对象而不是数组
-    expect(Array.isArray(result)).toBe(false)
-    expect(result).toEqual({ value: '1', label: '选项1' })
+    // getSelectedOptions 始终返回数组（单列也是长度为 1 的数组）
+    expect(Array.isArray(result)).toBe(true)
+    expect(result).toEqual([{ value: '1', label: '选项1' }])
   })
 
   test('多列选择器 getSelectedOptions 返回数组', () => {
@@ -512,6 +513,87 @@ describe('WdPickerView', () => {
     ])
   })
 
+  test('cascade 模式切换首列后更新后续列并触发 change', async () => {
+    const columns = [
+      {
+        value: 'fruit',
+        label: '水果',
+        children: [
+          { value: 'apple', label: '苹果' },
+          { value: 'banana', label: '香蕉' }
+        ]
+      },
+      {
+        value: 'drink',
+        label: '饮品',
+        children: [
+          { value: 'tea', label: '茶' },
+          { value: 'coffee', label: '咖啡' }
+        ]
+      }
+    ]
+
+    const wrapper = mount(WdPickerView, {
+      props: {
+        columns,
+        cascade: true,
+        modelValue: ['fruit', 'apple']
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    await nextTick()
+    ;(wrapper.vm as any).onChange({ detail: { value: [1, 0] } })
+    await nextTick()
+    await nextTick()
+
+    const emitted = wrapper.emitted('change') as any[]
+    expect(emitted).toBeTruthy()
+    expect(emitted[0][0].columnIndex).toBe(0)
+    expect((wrapper.vm as any).selectedValues[0]).toBe('drink')
+  })
+
+  test('onChange 选择未变化时不触发 update:modelValue', async () => {
+    const wrapper = mount(WdPickerView, {
+      props: {
+        columns: [
+          { value: '1', label: '选项1' },
+          { value: '2', label: '选项2' }
+        ],
+        modelValue: ['1']
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    await nextTick()
+    await wrapper.find('.wd-picker-view__main').trigger('change', { detail: { value: [0] } })
+    await nextTick()
+
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
+  })
+
+  test('pickstart/pickend 事件透传', async () => {
+    const wrapper = mount(WdPickerView, {
+      props: {
+        columns: [{ value: '1', label: '选项1' }],
+        modelValue: ['1']
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    await wrapper.find('.wd-picker-view__main').trigger('pickstart')
+    await wrapper.find('.wd-picker-view__main').trigger('pickend')
+
+    expect(wrapper.emitted('pickstart')).toBeTruthy()
+    expect(wrapper.emitted('pickend')).toBeTruthy()
+  })
+
   test('单列选择器 getSelectedValues 返回单个值', () => {
     const columns = [
       { value: '1', label: '选项1' },
@@ -520,7 +602,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '2'
+        modelValue: ['2']
       },
       global: {
         components: globalComponents
@@ -530,8 +612,8 @@ describe('WdPickerView', () => {
     const vm = wrapper.vm as any
     const result = vm.getSelectedValues()
 
-    // 单列应该返回单个值
-    expect(result).toBe('2')
+    // getSelectedValues 始终返回数组（单列也是长度为 1 的数组）
+    expect(result).toEqual(['2'])
   })
 
   test('多列选择器 getSelectedValues 返回数组', () => {
@@ -572,7 +654,7 @@ describe('WdPickerView', () => {
     const wrapper = mount(WdPickerView, {
       props: {
         columns,
-        modelValue: '1'
+        modelValue: ['1']
       },
       global: {
         components: globalComponents

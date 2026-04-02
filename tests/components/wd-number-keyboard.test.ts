@@ -1,21 +1,24 @@
-import { mount } from '@vue/test-utils'
+import { config, mount } from '@vue/test-utils'
 import '../mocks/wd-transition.mock'
-import WdNumberKeyboard from '@/uni_modules/wot-design-uni/components/wd-number-keyboard/wd-number-keyboard.vue'
+import WdKeyboard from '@/uni_modules/wot-design-uni/components/wd-keyboard/wd-keyboard.vue'
 import { describe, expect, test } from 'vitest'
+import WdLoading from '@/uni_modules/wot-design-uni/components/wd-loading/wd-loading.vue'
+import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
+config.global.components = { WdLoading, WdIcon }
 
-describe('WdNumberKeyboard', () => {
+describe('WdKeyboard', () => {
   test('基本渲染', async () => {
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         modelValue: ''
       }
     })
-    expect(wrapper.find('.wd-number-keyboard').exists()).toBe(true)
+    expect(wrapper.find('.wd-keyboard').exists()).toBe(true)
   })
 
   test('显示状态', async () => {
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         modelValue: ''
@@ -30,7 +33,7 @@ describe('WdNumberKeyboard', () => {
   })
 
   test('按键点击', async () => {
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         modelValue: ''
@@ -48,7 +51,7 @@ describe('WdNumberKeyboard', () => {
   })
 
   test('删除按键', async () => {
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         showDeleteKey: true,
@@ -71,7 +74,7 @@ describe('WdNumberKeyboard', () => {
   })
 
   test('关闭按钮', async () => {
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         closeText: '关闭',
@@ -80,7 +83,7 @@ describe('WdNumberKeyboard', () => {
     })
 
     // 找到关闭按钮
-    const closeButton = wrapper.find('.wd-number-keyboard__close')
+    const closeButton = wrapper.find('.wd-keyboard__close')
     expect(closeButton.exists()).toBe(true)
 
     // 模拟点击关闭按钮
@@ -95,7 +98,7 @@ describe('WdNumberKeyboard', () => {
 
   test('标题显示', async () => {
     const title = '数字键盘'
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         title,
@@ -104,13 +107,13 @@ describe('WdNumberKeyboard', () => {
     })
 
     // 检查标题是否正确显示
-    const titleElement = wrapper.find('.wd-number-keyboard__title')
+    const titleElement = wrapper.find('.wd-keyboard__title')
     expect(titleElement.exists()).toBe(true)
     expect(titleElement.text()).toBe(title)
   })
 
   test('键盘模式 - default', async () => {
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         mode: 'default',
@@ -119,7 +122,7 @@ describe('WdNumberKeyboard', () => {
     })
 
     // 检查是否没有侧边栏
-    expect(wrapper.find('.wd-number-keyboard__sidebar').exists()).toBe(false)
+    expect(wrapper.find('.wd-keyboard__sidebar').exists()).toBe(false)
 
     // 检查键盘按键数量
     const keys = wrapper.findAllComponents({ name: 'wd-key' })
@@ -127,7 +130,7 @@ describe('WdNumberKeyboard', () => {
   })
 
   test('键盘模式 - custom', async () => {
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         mode: 'custom',
@@ -136,11 +139,11 @@ describe('WdNumberKeyboard', () => {
     })
 
     // 检查是否有侧边栏
-    expect(wrapper.find('.wd-number-keyboard__sidebar').exists()).toBe(true)
+    expect(wrapper.find('.wd-keyboard__sidebar').exists()).toBe(true)
   })
 
   test('随机键盘顺序', async () => {
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         randomKeyOrder: true,
@@ -155,7 +158,7 @@ describe('WdNumberKeyboard', () => {
 
   test('额外按键 - 单个', async () => {
     const extraKey = '.'
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         extraKey,
@@ -171,7 +174,7 @@ describe('WdNumberKeyboard', () => {
 
   test('额外按键 - 多个', async () => {
     const extraKeys = ['00', '.']
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         mode: 'custom',
@@ -188,7 +191,7 @@ describe('WdNumberKeyboard', () => {
 
   test('最大长度限制', async () => {
     const maxlength = 3
-    const wrapper = mount(WdNumberKeyboard, {
+    const wrapper = mount(WdKeyboard, {
       props: {
         visible: true,
         maxlength,

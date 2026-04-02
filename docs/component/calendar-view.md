@@ -163,9 +163,3 @@
 | current | 当前日期 |
 | multiple-middle | 多日期范围选择，开始与结束之间的日期 |
 | multiple-selected | 多日期范围选择，选中的日期 |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |

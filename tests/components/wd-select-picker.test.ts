@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import WdSelectPicker from '@/uni_modules/wot-design-uni/components/wd-select-picker/wd-select-picker.vue'
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
+import { nextTick } from 'vue'
 import WdSearch from '@/uni_modules/wot-design-uni/components/wd-search/wd-search.vue'
 import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
 
@@ -152,5 +153,126 @@ describe('WdSelectPicker', () => {
     vm.close()
     expect(emitted['update:visible'][1]).toEqual([false])
     expect(emitted['close']).toBeTruthy()
+  })
+
+  test('radio 且 showConfirm=false 时 handleChange 自动确认', async () => {
+    const columns = [
+      { value: '1', label: '选项1' },
+      { value: '2', label: '选项2' }
+    ]
+    const wrapper = mount(WdSelectPicker, {
+      props: {
+        modelValue: '',
+        columns,
+        type: 'radio',
+        showConfirm: false
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    ;(wrapper.vm as any).open()
+    ;(wrapper.vm as any).handleChange({ value: '2' })
+    await nextTick()
+
+    const emitted = wrapper.emitted() as Record<string, any[]>
+    expect(emitted['confirm']).toBeTruthy()
+    expect(emitted['update:modelValue']).toBeTruthy()
+    expect(emitted['update:modelValue'][0][0]).toBe('2')
+  })
+
+  test('loading=true 时 onConfirm 直接触发 confirm 并关闭', async () => {
+    const wrapper = mount(WdSelectPicker, {
+      props: {
+        modelValue: '',
+        loading: true,
+        columns: [{ value: '1', label: '选项1' }]
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    ;(wrapper.vm as any).open()
+    ;(wrapper.vm as any).onConfirm()
+    await nextTick()
+
+    const emitted = wrapper.emitted() as Record<string, any[]>
+    expect(emitted['confirm']).toBeTruthy()
+    expect(emitted['close']).toBeTruthy()
+    expect(emitted['update:visible']).toBeTruthy()
+  })
+
+  test('filterable 模式下过滤列并展示高亮状态', async () => {
+    const wrapper = mount(WdSelectPicker, {
+      props: {
+        modelValue: '',
+        filterable: true,
+        columns: [
+          { value: '1', label: '苹果' },
+          { value: '2', label: '香蕉' }
+        ]
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    ;(wrapper.vm as any).handleFilterChange({ value: '苹' })
+    await nextTick()
+
+    expect((wrapper.vm as any).showHighlightText).toBe(true)
+    expect((wrapper.vm as any).filterColumns.length).toBe(1)
+    expect((wrapper.vm as any).filterColumns[0].value).toBe('1')
+  })
+
+  test('未确认关闭时回滚到上次选中值', async () => {
+    const wrapper = mount(WdSelectPicker, {
+      props: {
+        type: 'radio',
+        modelValue: '1',
+        columns: [
+          { value: '1', label: '选项1' },
+          { value: '2', label: '选项2' }
+        ]
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    ;(wrapper.vm as any).open()
+    ;(wrapper.vm as any).handleChange({ value: '2' })
+    expect((wrapper.vm as any).selectList).toBe('2')
+    ;(wrapper.vm as any).close()
+    await nextTick()
+    expect((wrapper.vm as any).selectList).toBe('1')
+  })
+
+  test('checkbox 确认时返回 selectedItems 数组', async () => {
+    const wrapper = mount(WdSelectPicker, {
+      props: {
+        type: 'checkbox',
+        modelValue: ['1'],
+        columns: [
+          { value: '1', label: '选项1' },
+          { value: '2', label: '选项2' }
+        ]
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    ;(wrapper.vm as any).open()
+    ;(wrapper.vm as any).selectList = ['1', '2']
+    ;(wrapper.vm as any).handleConfirm()
+    await nextTick()
+
+    const emitted = wrapper.emitted('confirm') as any[]
+    expect(emitted).toBeTruthy()
+    expect(emitted[0][0].value).toEqual(['1', '2'])
+    expect(emitted[0][0].selectedItems.length).toBe(2)
   })
 })

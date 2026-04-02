@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdTextarea from '@/uni_modules/wot-design-uni/components/wd-textarea/wd-textarea.vue'
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, vi } from 'vitest'
 
 describe('WdTextarea', () => {
   // 测试基本渲染
@@ -146,5 +146,90 @@ describe('WdTextarea', () => {
   test('自定义高度范围', () => {
     // 组件不支持直接设置 autosize 对象，跳过此测试
     expect(true).toBe(true)
+  })
+
+  test('clearTrigger=always 时展示清空按钮并触发 clear', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: 'abc',
+        clearable: true,
+        clearTrigger: 'always'
+      }
+    })
+
+    const clear = wrapper.find('.wd-textarea__clear')
+    expect(clear.exists()).toBe(true)
+
+    const clearPromise = (wrapper.vm as any).handleClear()
+    vi.advanceTimersByTime(100)
+    await clearPromise
+
+    const emitted = wrapper.emitted() as Record<string, any[]>
+    expect(emitted['clear']).toBeTruthy()
+    expect(emitted['update:modelValue']).toBeTruthy()
+    expect(emitted['update:modelValue'][emitted['update:modelValue'].length - 1][0]).toBe('')
+    vi.useRealTimers()
+  })
+
+  test('clearTrigger=focus 时聚焦后才展示清空按钮', async () => {
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: 'abc',
+        clearable: true,
+        clearTrigger: 'focus'
+      }
+    })
+
+    expect(wrapper.find('.wd-textarea__clear').exists()).toBe(false)
+
+    await (wrapper.vm as any).handleFocus({ detail: { value: 'abc' } })
+    expect(wrapper.find('.wd-textarea__clear').exists()).toBe(true)
+  })
+
+  test('showWordLimit 开启时初始化会按 maxlength 截断', () => {
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: '1234567',
+        maxlength: 5,
+        showWordLimit: true
+      }
+    })
+
+    const emitted = wrapper.emitted('update:modelValue') as any[]
+    expect(emitted).toBeTruthy()
+    expect(emitted[0][0]).toBe('12345')
+    expect(wrapper.find('.wd-textarea__count').text()).toContain('5/5')
+  })
+
+  test('readonly 时渲染遮罩层', () => {
+    const wrapper = mount(WdTextarea, {
+      props: {
+        readonly: true,
+        modelValue: 'readonly text'
+      }
+    })
+
+    expect(wrapper.find('.wd-textarea__readonly-mask').exists()).toBe(true)
+  })
+
+  test('blur 事件在非 clearing 状态下携带 cursor', async () => {
+    vi.useFakeTimers()
+
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: 'abc'
+      }
+    })
+
+    const blurPromise = (wrapper.vm as any).handleBlur({ detail: { cursor: 2 } })
+    vi.advanceTimersByTime(200)
+    await blurPromise
+
+    const blurEvents = wrapper.emitted('blur') as any[]
+    expect(blurEvents).toBeTruthy()
+    expect(blurEvents[0][0]).toEqual({ value: 'abc', cursor: 2 })
+
+    vi.useRealTimers()
   })
 })

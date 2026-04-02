@@ -1285,6 +1285,14 @@ function handleIconClick() {
 | hide-asterisk | 是否隐藏必填星号 | `boolean` | `false` |
 | ellipsis | 是否超出隐藏显示省略号 | `boolean` | `false` |
 
+## Methods
+
+| 方法名称 | 说明 | 参数 | 返回值 |
+| -------- | ------------------------------------------------------------------------------ | --------------- | --------------- |
+| validate | 验证表单，支持传入一个 prop 来验证单个表单项，不传入 prop 时，会验证所有表单项，1.6.0 版本起支持传入数组 | `prop?: string \| string[]` | `Promise<{ valid: boolean, errors: ErrorMessage[] }>` |
+| reset | 重置表单项的验证提示 | - | - |
+
+
 ### FormItem Attributes
 
 该组件的所有属性除了支持特定表单项配置外，同时也继承自 `Form` 组件的公共配置（如 `border`、`center`、`size`、`title-width` 等）。
@@ -1311,22 +1319,12 @@ function handleIconClick() {
 | validate   | 校验函数，返回问题数组         | `(model) => FormSchemaIssue[] \| Promise<FormSchemaIssue[]>` |
 | isRequired | 可选，用于推导必填星号         | `(path: string) => boolean \| undefined`                     |
 
-## Events
-
-### Form Events
+## FormItem Events
 
 | 事件名称 | 说明 | 参数 |
 | -------- | ------------------------------------------------------------------------------ | --------------- |
-| validate | 验证表单，支持传入一个 prop 来验证单个表单项，不传入 prop 时，会验证所有表单项，1.6.0 版本起支持传入数组 | `prop?: string \| string[]` |
+| click | 点击表单项时触发 | - |
 
-## Methods
-
-### Form Methods
-
-| 方法名称 | 说明 | 参数 | 返回值 |
-| -------- | ------------------------------------------------------------------------------ | --------------- | --------------- |
-| validate | 验证表单，支持传入一个 prop 来验证单个表单项，不传入 prop 时，会验证所有表单项，1.6.0 版本起支持传入数组 | `prop?: string \| string[]` | `Promise<{ valid: boolean, errors: ErrorMessage[] }>` |
-| reset | 重置表单项的验证提示 | - | - |
 
 ## 外部样式类
 

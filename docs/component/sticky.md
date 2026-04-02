@@ -102,8 +102,10 @@ onShow(() => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| z-index | 层级 | number | `1` |
-| offset-top | 吸顶距离 | number | `0` |
+| z-index | 层级 | `number` | `1` |
+| offset-top | 吸顶距离 | `number` | `0` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Sticky Slots
 

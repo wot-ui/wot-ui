@@ -209,16 +209,18 @@ const tabbar = ref(1)
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| model-value / v-model | 选中标签的索引值或者名称 | number / string | `0` |
-| fixed | 是否固定在底部 | boolean | `false` |
-| bordered | 是否显示顶部边框 | boolean | `false` |
-| safe-area-inset-bottom | 是否设置底部安全区 | boolean | `false` |
-| shape | 标签栏形状，可选值为 `default`、`round` | `TabbarShape` | `default` |
-| active-color | 激活标签颜色 | string | - |
-| inactive-color | 未激活标签颜色 | string | - |
-| placeholder | 固定在底部时，是否生成等高占位元素 | boolean | `false` |
-| z-index | 组件层级 | number | `10` |
+| model-value / v-model | 选中标签的索引值或者名称 | `number \| string` | `0` |
+| fixed | 是否固定在底部 | `boolean` | `false` |
+| bordered | 是否显示顶部边框 | `boolean` | `false` |
+| safe-area-inset-bottom | 是否设置底部安全区 | `boolean` | `false` |
+| shape | 标签栏形状，可选值为 `default`、`round` | `TabbarShape` | `'default'` |
+| active-color | 激活标签颜色 | `string` | - |
+| inactive-color | 未激活标签颜色 | `string` | - |
+| placeholder | 固定在底部时，是否生成等高占位元素 | `boolean` | `false` |
+| z-index | 组件层级 | `number` | `10` |
 | before-change | 切换前的回调函数，返回 `false` 可阻止切换，支持返回 `Promise<boolean>` | `TabbarBeforeChange` | - |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Events
 
@@ -243,13 +245,15 @@ const tabbar = ref(1)
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 标签页标题 | string | - |
-| name | 唯一标识符，不传时默认使用索引值 | string / number | - |
-| icon | 图标名称 | string | - |
-| value | 徽标显示值 | number / string | - |
-| is-dot | 是否显示点状徽标 | boolean | `false` |
-| max | 徽标最大值 | number | `99` |
+| title | 标签页标题 | `string` | - |
+| name | 唯一标识符，不传时默认使用索引值 | `string \| number` | - |
+| icon | 图标名称 | `string` | - |
+| value | 徽标显示值 | `number \| string` | - |
+| is-dot | 是否显示点状徽标 | `boolean` | `false` |
+| max | 徽标最大值 | `number` | `99` |
 | badge-props ^(0.1.50) | 自定义徽标属性，会透传给 Badge 组件 | `BadgeProps` | - |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## TabbarItem Slots
 
@@ -257,10 +261,3 @@ const tabbar = ref(1)
 | --- | --- | --- |
 | default | 自定义整个标签项内容 | - |
 | icon | 自定义图标 | `{ active }` |
-
-## TabbarItem 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-style | 根节点样式 |

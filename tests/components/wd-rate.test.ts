@@ -198,7 +198,8 @@ describe('评分组件', () => {
 
     // 检查颜色
     expect((wrapper.vm as any).iconStyle).toContain(`background:${color}`)
-    expect((wrapper.vm as any).activeValue).toBe(activeColor)
+    // iconActiveStyle 进行主动颜色计算，应包含 activeColor
+    expect((wrapper.vm as any).iconActiveStyle).toContain(`background:${activeColor}`)
   })
 
   // 测试分段颜色
@@ -215,8 +216,8 @@ describe('评分组件', () => {
 
     await nextTick()
 
-    // 应该使用第一个颜色
-    expect((wrapper1.vm as any).activeValue).toBe(activeColor[0])
+    // 应该使用第一个颜色（低分， modelValue=2 <= num*0.6=3）
+    expect((wrapper1.vm as any).iconActiveStyle).toContain(`background:${activeColor[0]}`)
 
     // 测试高分段颜色
     const wrapper2 = mount(WdRate, {
@@ -228,26 +229,23 @@ describe('评分组件', () => {
 
     await nextTick()
 
-    // 应该使用第二个颜色
-    expect((wrapper2.vm as any).activeValue).toBe(activeColor[1])
+    // 应该使用第二个颜色（高分， modelValue=4 > num*0.6=3）
+    expect((wrapper2.vm as any).iconActiveStyle).toContain(`background:${activeColor[1]}`)
   })
 
-  // 测试禁用颜色
+  // 测试禁用状态颜色（rate 组件禁用是通过 is-disabled 类和 CSS 变量控制）
   test('禁用颜色', async () => {
-    const disabledColor = '#999999'
-
     const wrapper = mount(WdRate, {
       props: {
         modelValue: 3,
-        disabled: true,
-        disabledColor
+        disabled: true
       }
     })
 
     await nextTick()
 
-    // 检查禁用颜色
-    expect((wrapper.vm as any).iconActiveStyle).toContain(`background:${disabledColor}`)
+    // 禁用时根元素应有 is-disabled 类
+    expect(wrapper.classes()).toContain('is-disabled')
   })
 
   // 测试自定义大小

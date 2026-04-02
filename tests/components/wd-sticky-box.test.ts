@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import WdStickyBox from '@/uni_modules/wot-design-uni/components/wd-sticky-box/wd-sticky-box.vue'
 import WdResize from '@/uni_modules/wot-design-uni/components/wd-resize/wd-resize.vue'
-import { describe, test, expect } from 'vitest'
+import { describe, test, expect, vi } from 'vitest'
 
 // 由于 wd-sticky-box 组件依赖于 uni-app 的特定 API，
 // 这些在测试环境中不容易模拟，所以我们只进行基本的测试
@@ -96,5 +96,137 @@ describe('吸顶容器组件', () => {
     // 验证尺寸更新
     expect(vm.boxStyle.width).toBe(200)
     expect(vm.boxStyle.height).toBe(100)
+  })
+
+  test('handleRelativeTo: 绝对定位分支', () => {
+    const wrapper = mount(WdStickyBox, {
+      global: {
+        components: { WdResize },
+        stubs: { 'wd-resize': true }
+      }
+    })
+
+    const vm = wrapper.vm as any
+    const exposed = {
+      offsetTop: 10,
+      stickyState: {
+        height: 50,
+        state: 'fixed'
+      },
+      setPosition: vi.fn()
+    }
+
+    vm.handleRelativeTo(exposed, {
+      boundingClientRect: {
+        bottom: 20,
+        top: 0,
+        height: 200
+      }
+    })
+
+    expect(exposed.setPosition).toHaveBeenCalledWith(true, 'absolute', 150)
+  })
+
+  test('handleRelativeTo: 固定定位分支', () => {
+    const wrapper = mount(WdStickyBox, {
+      global: {
+        components: { WdResize },
+        stubs: { 'wd-resize': true }
+      }
+    })
+
+    const vm = wrapper.vm as any
+    const exposed = {
+      offsetTop: 20,
+      stickyState: {
+        height: 50,
+        state: 'absolute'
+      },
+      setPosition: vi.fn()
+    }
+
+    vm.handleRelativeTo(exposed, {
+      boundingClientRect: {
+        bottom: 300,
+        top: 40,
+        height: 240
+      }
+    })
+
+    expect(exposed.setPosition).toHaveBeenCalled()
+    expect(exposed.setPosition.mock.calls[0][0]).toBe(false)
+    expect(exposed.setPosition.mock.calls[0][1]).toBe('fixed')
+  })
+
+  test('createObserver 创建并缓存 observer，deleteObserver 可移除', () => {
+    const wrapper = mount(WdStickyBox, {
+      global: {
+        components: { WdResize },
+        stubs: { 'wd-resize': true }
+      }
+    })
+
+    const vm = wrapper.vm as any
+    const child = {
+      $: {
+        uid: 1001
+      }
+    }
+
+    const observer = vm.createObserver(child)
+    expect(observer).toBeTruthy()
+    expect(vm.observerMap.size).toBe(1)
+
+    vm.deleteObserver(child)
+    expect(vm.observerMap.size).toBe(0)
+  })
+
+  test('deleteObserver 在不存在 observer 时安全返回', () => {
+    const wrapper = mount(WdStickyBox, {
+      global: {
+        components: { WdResize },
+        stubs: { 'wd-resize': true }
+      }
+    })
+
+    const vm = wrapper.vm as any
+    const child = {
+      $: {
+        uid: 404
+      }
+    }
+
+    expect(() => vm.deleteObserver(child)).not.toThrow()
+  })
+
+  test('observerForChild 可创建监听并在容器过小时触发绝对定位', async () => {
+    const wrapper = mount(WdStickyBox, {
+      global: {
+        components: { WdResize },
+        stubs: { 'wd-resize': true }
+      }
+    })
+
+    const vm = wrapper.vm as any
+    vm.boxStyle.height = 30
+
+    const child = {
+      $: {
+        uid: 2002,
+        exposed: {
+          stickyState: {
+            height: 50,
+            state: 'fixed'
+          },
+          offsetTop: 8,
+          setPosition: vi.fn()
+        }
+      }
+    }
+
+    await vm.observerForChild(child)
+
+    expect(child.$.exposed.setPosition).toHaveBeenCalled()
+    expect(vm.observerMap.size).toBe(1)
   })
 })

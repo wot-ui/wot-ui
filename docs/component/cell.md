@@ -225,8 +225,6 @@
 | hide-asterisk | 是否隐藏必填星号 | boolean | false |
 | ellipsis | 内容是否超出隐藏显示省略号 | boolean | false |
 | use-title-slot | 是否启用 title 插槽 | boolean | true |
-| prop | 表单域 `model` 字段名，使用表单校验时必填 | string | - |
-| rules | 表单验证规则，结合 `wd-form` 使用 | `FormItemRule[]` | `[]` |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 | custom-prefix-class | 前置图标自定义样式类 | string | `''` |
@@ -234,15 +232,6 @@
 | custom-label-class | label 区域自定义样式类 | string | `''` |
 | custom-value-class | value 区域自定义样式类 | string | `''` |
 | custom-title-class | title 区域自定义样式类 | string | `''` |
-
-### FormItemRule 数据结构
-
-| 键名 | 说明 | 类型 |
-| --- | --- | --- |
-| required | 是否为必选字段 | `boolean` |
-| message | 错误提示文案 | `string` |
-| validator | 通过函数进行校验，可以返回一个 `Promise` 进行异步校验 | `(value, rule) => boolean \| Promise` |
-| pattern | 通过正则表达式进行校验，无法匹配表示校验不通过 | `RegExp` |
 
 ## Cell Events
 
@@ -266,14 +255,3 @@
 | label | 描述信息区域 | - |
 | default | 右侧内容区域 | - |
 | suffix | 后置图标区域（is-link 为 false 时生效） | - |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | Cell / CellGroup 根节点样式 |
-| custom-prefix-class | Cell 前置图标自定义样式 |
-| custom-suffix-class | Cell 后置图标自定义样式 |
-| custom-label-class | Cell label 自定义样式 |
-| custom-value-class | Cell value 自定义样式 |
-| custom-title-class | Cell title 自定义样式 |

@@ -74,8 +74,10 @@ sidebar 也可以作为左侧目录，右侧内容区按当前选中项整屏切
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| model-value / v-model | 当前激活项的值 | string / number | 0 |
-| before-change ^(1.4.0) | 切换前钩子，接收目标值，返回 `boolean` 或 `Promise<boolean>` | function | - |
+| model-value / v-model | 当前激活项的值 | `string \| number` | `0` |
+| before-change ^(1.4.0) | 切换前钩子，接收目标值，返回 `boolean` 或 `Promise<boolean>` | `function` | - |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Sidebar Events
 
@@ -99,14 +101,16 @@ sidebar 也可以作为左侧目录，右侧内容区按当前选中项整屏切
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| label | 当前选项标题 | string | - |
-| value | 当前选项值，唯一标识 | string / number | - |
-| badge | 徽标显示值 | string / number | - |
+| label | 当前选项标题 | `string` | - |
+| value | 当前选项值，唯一标识 | `string \| number` | - |
+| badge | 徽标显示值 | `string \| number` | - |
 | badge-props ^(0.1.50) | 自定义徽标属性，会透传给 Badge 组件 | `Partial<BadgeProps>` | - |
-| icon | 图标名称 | string | - |
-| is-dot | 是否显示点状徽标 | boolean | false |
-| max | 徽标最大值 | number | 99 |
-| disabled | 是否禁用当前选项 | boolean | false |
+| icon | 图标名称 | `string` | - |
+| is-dot | 是否显示点状徽标 | `boolean` | `false` |
+| max | 徽标最大值 | `number` | `99` |
+| disabled | 是否禁用当前选项 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## SidebarItem Slots
 
@@ -114,8 +118,3 @@ sidebar 也可以作为左侧目录，右侧内容区按当前选中项整屏切
 | --- | --- |
 | icon | 自定义图标内容 |
 
-## SidebarItem 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |

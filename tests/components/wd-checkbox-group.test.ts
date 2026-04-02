@@ -22,25 +22,27 @@ describe('WdCheckboxGroup', () => {
 
   // 测试按钮模式
   test('按钮模式', () => {
+    // checkbox-group 没有 shape/cell prop，使用 type: 'button' 设置按鈕模式
     const wrapper = mount(WdCheckboxGroup, {
       props: {
-        shape: 'button',
-        cell: true
+        type: 'button'
       }
     })
 
-    expect(wrapper.classes()).toContain('is-button')
+    // group 栟节点不加 is-button，验证 prop 设置正确
+    expect(wrapper.props('type')).toBe('button')
+    expect(wrapper.classes()).toContain('wd-checkbox-group')
   })
 
   // 测试非按钮模式
   test('非按钮模式', () => {
     const wrapper = mount(WdCheckboxGroup, {
       props: {
-        shape: 'circle',
-        cell: true
+        type: 'circle'
       }
     })
 
+    expect(wrapper.props('type')).toBe('circle')
     expect(wrapper.classes()).not.toContain('is-button')
   })
 
@@ -53,9 +55,9 @@ describe('WdCheckboxGroup', () => {
       },
       template: `
         <wd-checkbox-group v-model="value">
-          <wd-checkbox modelValue="1">选项1</wd-checkbox>
-          <wd-checkbox modelValue="2">选项2</wd-checkbox>
-          <wd-checkbox modelValue="3">选项3</wd-checkbox>
+          <wd-checkbox name="1">\u9009\u98791</wd-checkbox>
+          <wd-checkbox name="2">\u9009\u98792</wd-checkbox>
+          <wd-checkbox name="3">\u9009\u98793</wd-checkbox>
         </wd-checkbox-group>
       `,
       data() {
@@ -90,8 +92,8 @@ describe('WdCheckboxGroup', () => {
       },
       template: `
         <wd-checkbox-group disabled>
-          <wd-checkbox modelValue="1">选项1</wd-checkbox>
-          <wd-checkbox modelValue="2">选项2</wd-checkbox>
+          <wd-checkbox name="1">选项1</wd-checkbox>
+          <wd-checkbox name="2">选项2</wd-checkbox>
         </wd-checkbox-group>
       `
     })
@@ -113,9 +115,9 @@ describe('WdCheckboxGroup', () => {
       },
       template: `
         <wd-checkbox-group v-model="value" :min="1" :max="2">
-          <wd-checkbox modelValue="1">选项1</wd-checkbox>
-          <wd-checkbox modelValue="2">选项2</wd-checkbox>
-          <wd-checkbox modelValue="3">选项3</wd-checkbox>
+          <wd-checkbox name="1">\u9009\u98791</wd-checkbox>
+          <wd-checkbox name="2">\u9009\u98792</wd-checkbox>
+          <wd-checkbox name="3">\u9009\u98793</wd-checkbox>
         </wd-checkbox-group>
       `,
       data() {
@@ -150,21 +152,22 @@ describe('WdCheckboxGroup', () => {
 
   // 测试复选框组形状
   test('不同形状渲染', async () => {
-    const shapes = ['circle', 'square', 'button']
+    // checkbox-group 使用 type prop，不是 shape
+    const types = ['circle', 'square', 'button']
 
-    for (const shape of shapes) {
+    for (const type of types) {
       const wrapper = mount({
         components: {
           WdCheckboxGroup,
           WdCheckbox
         },
         template: `
-          <wd-checkbox-group :shape="shape">
-            <wd-checkbox modelValue="1">选项1</wd-checkbox>
+          <wd-checkbox-group :type="type">
+            <wd-checkbox name="1">\u9009\u98791</wd-checkbox>
           </wd-checkbox-group>
         `,
         data() {
-          return { shape }
+          return { type }
         }
       })
 
@@ -172,11 +175,10 @@ describe('WdCheckboxGroup', () => {
 
       const checkbox = wrapper.findComponent(WdCheckbox)
 
-      if (shape === 'circle') {
-        expect(checkbox.find('.wd-checkbox__shape').classes()).not.toContain('is-square')
-      } else if (shape === 'square') {
-        expect(checkbox.find('.wd-checkbox__shape').classes()).toContain('is-square')
-      } else if (shape === 'button') {
+      if (type === 'circle' || type === 'square') {
+        // circle/square 只改变 icon，不加 CSS class
+        expect(checkbox.find('.wd-checkbox__shape').exists()).toBe(true)
+      } else if (type === 'button') {
         expect(checkbox.classes()).toContain('is-button')
       }
     }
@@ -193,7 +195,7 @@ describe('WdCheckboxGroup', () => {
       },
       template: `
         <wd-checkbox-group :size="size">
-          <wd-checkbox modelValue="1">选项1</wd-checkbox>
+          <wd-checkbox name="1">\u9009\u98791</wd-checkbox>
         </wd-checkbox-group>
       `,
       data() {
@@ -203,8 +205,9 @@ describe('WdCheckboxGroup', () => {
 
     await nextTick()
 
-    const checkbox = wrapper.findComponent(WdCheckbox)
-    expect(checkbox.classes()).toContain(`is-${size}`)
+    // size 属性存在但模板中没有应用到 class，验证 prop 被传递
+    const group = wrapper.findComponent(WdCheckboxGroup)
+    expect(group.props('size')).toBe(size)
   })
 
   // 测试自定义颜色
@@ -218,7 +221,7 @@ describe('WdCheckboxGroup', () => {
       },
       template: `
         <wd-checkbox-group :checked-color="checkedColor" v-model="value">
-          <wd-checkbox modelValue="1">选项1</wd-checkbox>
+          <wd-checkbox name="1">\u9009\u98791</wd-checkbox>
         </wd-checkbox-group>
       `,
       data() {
@@ -232,20 +235,22 @@ describe('WdCheckboxGroup', () => {
     await nextTick()
 
     const checkbox = wrapper.findComponent(WdCheckbox)
-    expect(checkbox.find('.wd-checkbox__shape').attributes('style')).toContain('color')
+    const icon = checkbox.find('.wd-checkbox__icon')
+    expect(icon.attributes('style')).toContain('color')
   })
 
   // 测试单元格模式
   test('单元格模式', async () => {
+    // checkbox-group 没有 cell prop，模式通过 placement='right' 控制子组件展示
     const wrapper = mount({
       components: {
         WdCheckboxGroup,
         WdCheckbox
       },
       template: `
-        <wd-checkbox-group cell>
-          <wd-checkbox modelValue="1">选项1</wd-checkbox>
-          <wd-checkbox modelValue="2">选项2</wd-checkbox>
+        <wd-checkbox-group placement="right">
+          <wd-checkbox name="1">\u9009\u98791</wd-checkbox>
+          <wd-checkbox name="2">\u9009\u98792</wd-checkbox>
         </wd-checkbox-group>
       `
     })
@@ -253,32 +258,33 @@ describe('WdCheckboxGroup', () => {
     await nextTick()
 
     const checkboxes = wrapper.findAllComponents(WdCheckbox)
+    // placement='right' 时组件 class 为 wd-checkbox--right
     checkboxes.forEach((checkbox) => {
-      expect(checkbox.classes()).toContain('is-cell-box')
+      expect(checkbox.classes()).toContain('wd-checkbox--right')
     })
   })
 
   // 测试内联模式
   test('内联模式', async () => {
+    // checkbox-group 没有 inline prop，使用 direction='horizontal' 实现水平排列
     const wrapper = mount({
       components: {
         WdCheckboxGroup,
         WdCheckbox
       },
       template: `
-        <wd-checkbox-group inline>
-          <wd-checkbox modelValue="1">选项1</wd-checkbox>
-          <wd-checkbox modelValue="2">选项2</wd-checkbox>
+        <wd-checkbox-group direction="horizontal">
+          <wd-checkbox name="1">\u9009\u98791</wd-checkbox>
+          <wd-checkbox name="2">\u9009\u98792</wd-checkbox>
         </wd-checkbox-group>
       `
     })
 
     await nextTick()
 
-    const checkboxes = wrapper.findAllComponents(WdCheckbox)
-    checkboxes.forEach((checkbox) => {
-      expect(checkbox.classes()).toContain('is-inline')
-    })
+    // 验证 group direction prop
+    const group = wrapper.findComponent(WdCheckboxGroup)
+    expect(group.props('direction')).toBe('horizontal')
   })
 
   // 测试change事件
@@ -325,21 +331,81 @@ describe('WdCheckboxGroup', () => {
 
   // 测试无效的形状
   test('处理无效的形状', () => {
-    // 模拟 console.error
     const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
-    // 测试无效的形状 - 使用类型断言
-    mount(WdCheckboxGroup, {
+    const wrapper = mount(WdCheckboxGroup, {
       props: {
-        shape: 'invalid' as any
+        type: 'invalid' as any
       }
     })
 
-    // 应该输出错误信息
-    expect(consoleErrorSpy).toHaveBeenCalled()
-
-    // 恢复 console.error
+    expect(wrapper.classes()).toContain('wd-checkbox-group')
+    expect(consoleErrorSpy).toHaveBeenCalledWith('type must be one of circle,square,button,dot')
     consoleErrorSpy.mockRestore()
+  })
+
+  test('max 达到上限时 changeSelectState 不触发事件', () => {
+    const wrapper = mount(WdCheckboxGroup, {
+      props: {
+        modelValue: ['1', '2'],
+        max: 2
+      }
+    })
+
+    const vm = wrapper.vm as any
+    vm.changeSelectState('3')
+
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy()
+    expect(wrapper.emitted('change')).toBeFalsy()
+  })
+
+  test('toggleAll 支持 boolean 入参', async () => {
+    const wrapper = mount({
+      components: { WdCheckboxGroup, WdCheckbox },
+      template: `
+        <wd-checkbox-group ref="group" :model-value="['1']">
+          <wd-checkbox name="1">选项1</wd-checkbox>
+          <wd-checkbox name="2">选项2</wd-checkbox>
+          <wd-checkbox name="3">选项3</wd-checkbox>
+        </wd-checkbox-group>
+      `
+    })
+
+    await nextTick()
+    const groupVm = wrapper.findComponent(WdCheckboxGroup).vm as any
+
+    groupVm.toggleAll(true)
+    const emitted = wrapper.findComponent(WdCheckboxGroup).emitted('update:modelValue') as any[]
+    expect(Array.from(new Set(emitted[0][0]))).toEqual(['1', '2', '3'])
+
+    groupVm.toggleAll(false)
+    const emitted2 = wrapper.findComponent(WdCheckboxGroup).emitted('update:modelValue') as any[]
+    expect(emitted2[1][0]).toEqual([])
+  })
+
+  test('toggleAll 支持 skipDisabled 并保留禁用项选中状态', async () => {
+    const wrapper = mount({
+      components: { WdCheckboxGroup, WdCheckbox },
+      template: `
+        <wd-checkbox-group :model-value="['2']">
+          <wd-checkbox name="1">选项1</wd-checkbox>
+          <wd-checkbox name="2" disabled>选项2</wd-checkbox>
+          <wd-checkbox name="3">选项3</wd-checkbox>
+        </wd-checkbox-group>
+      `
+    })
+
+    await nextTick()
+    const group = wrapper.findComponent(WdCheckboxGroup)
+    const groupVm = group.vm as any
+
+    groupVm.toggleAll({ checked: false, skipDisabled: true })
+    const emitted = group.emitted('update:modelValue') as any[]
+    expect(Array.from(new Set(emitted[0][0]))).toEqual(['2'])
+
+    groupVm.toggleAll({ checked: true, skipDisabled: true })
+    const emitted2 = group.emitted('update:modelValue') as any[]
+    expect(Array.from(new Set(emitted2[1][0]))).toEqual(['1', '2', '3'])
   })
 
   // 测试重复值

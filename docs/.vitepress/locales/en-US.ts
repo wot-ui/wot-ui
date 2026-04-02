@@ -3,6 +3,118 @@ import { getDocsComponentNavItems, getDocsComponentSidebar } from '../../../src/
 
 const componentNavItems = getDocsComponentNavItems('en-US')
 const componentSidebar = getDocsComponentSidebar('en-US')
+const guideGroups = [
+  {
+    text: 'Basics',
+    items: [
+      {
+        text: 'Introduction',
+        link: '/en-US/guide/introduction',
+      },
+      {
+        text: 'Design',
+        link: '/en-US/guide/design',
+      },
+      {
+        text: 'Quick Start',
+        link: '/en-US/guide/quick-use',
+      }
+    ]
+  },
+  {
+    text: 'Development',
+    items: [
+      {
+        text: 'Custom Theme',
+        link: '/en-US/guide/custom-theme',
+      },
+      {
+        text: 'Custom Style',
+        link: '/en-US/guide/custom-style',
+      },
+      {
+        text: 'Dark Mode',
+        link: '/en-US/guide/dark-mode',
+      },
+      {
+        text: 'Internationalization',
+        link: '/en-US/guide/locale',
+      },
+      {
+        text: 'CLI',
+        link: '/en-US/guide/cli',
+      },
+      {
+        text: 'Templates',
+        link: '/en-US/guide/templates',
+      },
+      {
+        text: 'Common Problems',
+        link: '/en-US/guide/common-problems',
+      }
+    ]
+  },
+  {
+    text: 'AI',
+    items: [
+      {
+        text: 'llms.txt',
+        link: '/en-US/guide/llms-txt',
+      },
+      {
+        text: 'Skills',
+        link: '/en-US/guide/skills',
+      }
+    ]
+  },
+  {
+    text: 'Community',
+    items: [
+      {
+        text: 'Cases',
+        link: '/en-US/guide/cases',
+      },
+      {
+        text: 'Changelog',
+        link: '/en-US/guide/changelog',
+      },
+      {
+        text: 'Join Group',
+        link: '/en-US/guide/join-group',
+      }
+    ]
+  }
+]
+const ecosystemNavItems = [
+  {
+    text: 'Official',
+    items: [
+      { text: 'Official Template wot-starter', link: 'https://starter.wot-ui.cn/' },
+      { text: 'My Uni Plugin', link: 'https://my-uni.wot-ui.cn/' },
+      { text: 'VS Code IntelliSense Plugin', link: 'https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense' },
+      { text: 'wot-starter-retail', link: 'https://github.com/wot-ui/wot-starter-retail' },
+    ]
+  },
+  {
+    text: 'Templates',
+    items: [
+      { text: 'vitesse-uni-app', link: 'https://vitesse-docs.netlify.app/' },
+      { text: 'unibest', link: 'https://unibest.tech/' },
+    ]
+  },
+  {
+    text: 'Resources',
+    items: [
+      { text: 'Mini Program CI Tool', link: 'https://github.com/Moonofweisheng/uni-mini-ci' },
+      { text: 'Uni Helper', link: 'https://uni-helper.js.org/' },
+      { text: 'uni-ku', link: 'https://github.com/uni-ku' },
+    ]
+  }
+]
+const supportNavItems = [
+  { text: '🥤Buy Me a Coffee', link: '/en-US/reward/reward' },
+  { text: 'About the Author', link: 'https://blog.wot-ui.cn/about' },
+]
 
 export default defineConfig({
   lang: 'en-US',
@@ -18,199 +130,26 @@ export default defineConfig({
     nav: [
       {
         text: 'Guide',
-        activeMatch: '/guide/',
-        items: [
-          {
-            text: 'Basics',
-            items: [
-              {
-                text: 'Introduction',
-                link: '/en-US/guide/introduction',
-              },
-              {
-                text: 'Design',
-                link: '/en-US/guide/design',
-              },
-              {
-                text: 'Quick Start',
-                link: '/en-US/guide/quick-use',
-              }
-            ]
-          },
-          {
-            text: 'Advanced',
-            items: [
-              {
-                text: 'Custom Style',
-                link: '/en-US/guide/custom-style',
-              },
-              {
-                text: 'Custom Theme',
-                link: '/en-US/guide/custom-theme',
-              },
-              {
-                text: 'Dark Mode',
-                link: '/en-US/guide/dark-mode',
-              },
-              {
-                text: 'Internationalization',
-                link: '/en-US/guide/locale',
-              },
-              {
-                text: 'CLI',
-                link: '/en-US/guide/cli',
-              },
-              {
-                text: 'Templates',
-                link: '/en-US/guide/templates',
-              },
-              {
-                text: 'Common Problems',
-                link: '/en-US/guide/common-problems',
-              }
-            ]
-          },
-          {
-            text: 'AI',
-            items: [
-              {
-                text: 'llms.txt',
-                link: '/en-US/guide/llms-txt',
-              },
-              {
-                text: 'Skills',
-                link: '/en-US/guide/skills',
-              }
-            ]
-          },
-          {
-            text: 'Others',
-            items: [
-              {
-                text: 'Changelog',
-                link: '/en-US/guide/changelog',
-              },
-              {
-                text: 'Join Group',
-                link: '/en-US/guide/join-group',
-              },
-              {
-                text: '⭐ Cases',
-                link: '/en-US/guide/cases',
-              }
-            ]
-          }
-        ]
+        activeMatch: '/en-US/guide/',
+        items: guideGroups
       },
       {
         text: 'Components',
-        activeMatch: '/component/',
+        activeMatch: '/en-US/component/',
         items: componentNavItems
       },
-      { text: '🥤Buy Me a Coffee', link: '/en-US/reward/reward', activeMatch: '/reward/' },
-      { text: 'Blog', link: 'https://blog.wot-ui.cn/about' },
       {
-        text: 'Templates', items: [
-          { text: 'Quick Start Template wot-starter', link: 'https://starter.wot-ui.cn/' },
-          { text: 'vitesse-uni-app', link: 'https://vitesse-docs.netlify.app/' },
-          { text: 'wot-starter-retail', link: 'https://github.com/wot-ui/wot-starter-retail' },
-          { text: 'unibest', link: 'https://unibest.tech/' },
-        ]
+        text: 'Ecosystem',
+        items: ecosystemNavItems
       },
       {
-        text: 'Resources', items: [
-          { text: 'Quick Start Template', link: 'https://starter.wot-ui.cn/' },
-          { text: 'VS Code IntelliSense Plugin', link: 'https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense' },
-          { text: 'Vue3 uni-app Router', link: 'https://moonofweisheng.github.io/uni-mini-router/' },
-          { text: 'Mini Program CI Tool', link: 'https://github.com/Moonofweisheng/uni-mini-ci' },
-          { text: 'Uni Helper', link: 'https://uni-helper.js.org/' },
-          { text: 'uni-ku', link: 'https://github.com/uni-ku' },
-        ]
+        text: 'Support',
+        activeMatch: '/en-US/reward/',
+        items: supportNavItems
       },
     ],
     sidebar: {
-      '/en-US/guide/': [
-        {
-          text: 'Basics',
-          items: [
-            {
-              text: 'Introduction',
-              link: '/en-US/guide/introduction',
-            },
-            {
-              text: 'Design',
-              link: '/en-US/guide/design',
-            },
-            {
-              text: 'Quick Start',
-              link: '/en-US/guide/quick-use',
-            }
-          ]
-        },
-        {
-          text: 'Advanced',
-          items: [
-            {
-              text: 'Custom Style',
-              link: '/en-US/guide/custom-style',
-            },
-            {
-              text: 'Custom Theme',
-              link: '/en-US/guide/custom-theme',
-            },
-            {
-              text: 'Dark Mode',
-              link: '/en-US/guide/dark-mode',
-            },
-            {
-              text: 'Internationalization',
-              link: '/en-US/guide/locale',
-            },
-            {
-              text: 'CLI',
-              link: '/en-US/guide/cli',
-            },
-            {
-              text: 'Templates',
-              link: '/en-US/guide/templates',
-            },
-            {
-              text: 'Common Problems',
-              link: '/en-US/guide/common-problems',
-            }
-          ]
-        },
-        {
-          text: 'AI',
-          items: [
-            {
-              text: 'llms.txt',
-              link: '/en-US/guide/llms-txt',
-            },
-            {
-              text: 'Skills',
-              link: '/en-US/guide/skills',
-            }
-          ]
-        },
-        {
-          text: 'Others',
-          items: [
-            {
-              text: 'Changelog',
-              link: '/en-US/guide/changelog',
-            },
-            {
-              text: 'Join Group',
-              link: '/en-US/guide/join-group',
-            },
-            {
-              text: '⭐ Cases',
-              link: '/en-US/guide/cases',
-            }
-          ]
-        }
-      ],
+      '/en-US/guide/': guideGroups,
       '/en-US/reward/': [
         {
           text: '🥤Buy Me a Coffee',
@@ -220,10 +159,9 @@ export default defineConfig({
           text: 'Donor List',
           link: '/en-US/reward/donor',
         },
-        // 赞助渠道
         {
           text: 'Sponsor',
-          link: '/reward/sponsor',
+          link: '/en-US/reward/sponsor',
         }
       ],
       '/en-US/component/': componentSidebar

@@ -8,7 +8,7 @@ describe('WdStep', () => {
   test('基本渲染', () => {
     const wrapper = mount(WdStep)
     expect(wrapper.classes()).toContain('wd-step')
-    expect(wrapper.classes()).toContain('is-wait')
+    expect(wrapper.classes()).toContain('wd-step--wait')
   })
 
   // 测试自定义标题
@@ -53,7 +53,7 @@ describe('WdStep', () => {
         status
       }
     })
-    expect(wrapper.classes()).toContain(`is-${status}`)
+    expect(wrapper.classes()).toContain(`wd-step--${status}`)
   })
 
   // 测试与 Steps 的交互

@@ -2,6 +2,12 @@ import { mount } from '@vue/test-utils'
 import WdNoticeBar from '@/uni_modules/wot-design-uni/components/wd-notice-bar/wd-notice-bar.vue'
 import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
 import { describe, expect, test, vi, beforeEach } from 'vitest'
+import { nextTick } from 'vue'
+
+vi.mock('@dcloudio/uni-app', () => ({
+  onShow: vi.fn(),
+  onHide: vi.fn()
+}))
 
 const globalComponents = {
   WdIcon
@@ -134,5 +140,114 @@ describe('WdNoticeBar', () => {
     // 检查 props 是否正确设置
     expect(wrapper.props('wrapable')).toBe(true)
     expect(wrapper.props('scrollable')).toBe(false)
+  })
+
+  test('handleClose 后组件隐藏', async () => {
+    const wrapper = mount(WdNoticeBar, {
+      global: { components: globalComponents },
+      props: {
+        closable: true,
+        text: 'close me'
+      }
+    })
+
+    await wrapper.find('.wd-notice-bar__suffix').trigger('click')
+    await nextTick()
+
+    expect(wrapper.find('.wd-notice-bar').exists()).toBe(false)
+  })
+
+  test('reset 会重置过渡状态与索引', async () => {
+    const wrapper = mount(WdNoticeBar, {
+      global: { components: globalComponents },
+      props: {
+        text: ['a', 'b'],
+        direction: 'vertical'
+      }
+    })
+
+    ;(wrapper.vm as any).setTransition({ duration: 1, delay: 1, translate: -20 })
+    ;(wrapper.vm as any).currentIndex = 1
+    ;(wrapper.vm as any).verticalIndex = 1
+    ;(wrapper.vm as any).reset()
+    await nextTick()
+
+    expect((wrapper.vm as any).currentIndex).toBe(0)
+    expect((wrapper.vm as any).verticalIndex).toBe(0)
+    expect((wrapper.vm as any).animation).toContain('transform:none')
+  })
+
+  test('next 在末尾时回到首位并触发 next 事件', () => {
+    const wrapper = mount(WdNoticeBar, {
+      global: { components: globalComponents },
+      props: {
+        text: ['a', 'b', 'c'],
+        direction: 'vertical'
+      }
+    })
+
+    ;(wrapper.vm as any).currentIndex = 2
+    ;(wrapper.vm as any).next()
+
+    expect((wrapper.vm as any).currentIndex).toBe(0)
+    const nextEvents = wrapper.emitted('next') as any[]
+    expect(nextEvents).toBeTruthy()
+    expect(nextEvents[0][0]).toBe(0)
+  })
+
+  test('animationEnd(水平) 会触发后续 next 逻辑', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdNoticeBar, {
+      global: { components: globalComponents },
+      props: {
+        text: 'horizontal text',
+        direction: 'horizontal',
+        scrollable: true
+      }
+    })
+
+    ;(wrapper.vm as any).wrapWidth = 100
+    ;(wrapper.vm as any).animationEnd()
+    vi.advanceTimersByTime(40)
+    await nextTick()
+
+    expect(wrapper.emitted('next')).toBeTruthy()
+    vi.useRealTimers()
+  })
+
+  test('animationEnd(垂直) 在轮播末尾会重置 verticalIndex', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdNoticeBar, {
+      global: { components: globalComponents },
+      props: {
+        text: ['a', 'b'],
+        direction: 'vertical'
+      }
+    })
+
+    ;(wrapper.vm as any).verticalIndex = 1
+    ;(wrapper.vm as any).animationEnd()
+    vi.advanceTimersByTime(40)
+    await nextTick()
+
+    expect((wrapper.vm as any).verticalIndex).toBe(0)
+    vi.useRealTimers()
+  })
+
+  test('数组文本点击事件返回当前索引与文本', async () => {
+    const wrapper = mount(WdNoticeBar, {
+      global: { components: globalComponents },
+      props: {
+        text: ['one', 'two'],
+        direction: 'vertical'
+      }
+    })
+
+    ;(wrapper.vm as any).currentIndex = 1
+    await wrapper.find('.wd-notice-bar__content').trigger('click')
+
+    const clickEvents = wrapper.emitted('click') as any[]
+    expect(clickEvents).toBeTruthy()
+    expect(clickEvents[0][0]).toEqual({ index: 1, text: 'two' })
   })
 })

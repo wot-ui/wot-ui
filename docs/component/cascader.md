@@ -166,9 +166,3 @@ const lazyLoad = (option, tabIndex, resolve) => {
 | --- | --- | --- |
 | open | 打开级联弹窗 | - |
 | close | 关闭级联弹窗 | - |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |

@@ -242,12 +242,13 @@ export type RectResultType<T extends boolean> = T extends true ? UniApp.NodeInfo
  */
 export function getRect<T extends boolean>(selector: string, all: T, scope?: any, useFields?: boolean): Promise<RectResultType<T>> {
   return new Promise<RectResultType<T>>((resolve, reject) => {
-    let query: UniNamespace.SelectorQuery | null = null
-    if (scope) {
-      query = uni.createSelectorQuery().in(scope)
-    } else {
-      query = uni.createSelectorQuery()
+    const selectorQuery = uni.createSelectorQuery?.()
+    if (!selectorQuery) {
+      reject(new Error('createSelectorQuery is not available'))
+      return
     }
+
+    const query = scope && isFunction((selectorQuery as any).in) ? (selectorQuery as any).in(scope) : selectorQuery
 
     const method = all ? 'selectAll' : 'select'
 

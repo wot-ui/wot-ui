@@ -1,8 +1,9 @@
-import { mount } from '@vue/test-utils'
+import { config, mount } from '@vue/test-utils'
 import WdAvatar from '@/uni_modules/wot-design-uni/components/wd-avatar/wd-avatar.vue'
 import WdIcon from '@/uni_modules/wot-design-uni/components/wd-icon/wd-icon.vue'
 import WdImg from '@/uni_modules/wot-design-uni/components/wd-img/wd-img.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
+config.global.components = { WdIcon, WdImg }
 
 describe('WdAvatar', () => {
   beforeEach(() => {
@@ -14,7 +15,7 @@ describe('WdAvatar', () => {
     const wrapper = mount(WdAvatar)
 
     expect(wrapper.classes()).toContain('wd-avatar')
-    expect(wrapper.classes()).toContain('wd-avatar--round')
+    expect(wrapper.classes()).toContain('is-round')
     expect(wrapper.classes()).toContain('wd-avatar--normal')
   })
 
@@ -108,8 +109,7 @@ describe('WdAvatar', () => {
       props: { shape: 'round' }
     })
 
-    expect(wrapper.classes()).toContain('wd-avatar--round')
-    expect(wrapper.attributes('style')).toContain('border-radius')
+    expect(wrapper.classes()).toContain('is-round')
   })
 
   // 测试形状 - 方形
@@ -118,7 +118,7 @@ describe('WdAvatar', () => {
       props: { shape: 'square' }
     })
 
-    expect(wrapper.classes()).toContain('wd-avatar--square')
+    expect(wrapper.classes()).toContain('is-square')
   })
 
   // 测试背景颜色
@@ -129,7 +129,8 @@ describe('WdAvatar', () => {
       props: { bgColor }
     })
 
-    expect(wrapper.attributes('style')).toContain('background-color')
+    // 组件使用 background 简写而非 background-color
+    expect(wrapper.attributes('style')).toContain('background')
     expect(wrapper.attributes('style')).toContain('rgb(245, 245, 245)')
   })
 
@@ -154,7 +155,7 @@ describe('WdAvatar', () => {
       props: { bgColor, color, text: '测试' }
     })
 
-    expect(wrapper.attributes('style')).toContain('background-color')
+    expect(wrapper.attributes('style')).toContain('background')
     expect(wrapper.attributes('style')).toContain('rgb(24, 144, 255)')
     expect(wrapper.attributes('style')).toContain('color')
     expect(wrapper.attributes('style')).toContain('rgb(255, 255, 255)')
@@ -278,21 +279,15 @@ describe('WdAvatar', () => {
 
   // 测试不同尺寸的像素值
   test('不同尺寸对应的像素值', () => {
-    const sizeMap = {
-      large: 76,
-      medium: 64,
-      normal: 54,
-      small: 48
-    }
+    const sizes = ['large', 'medium', 'normal', 'small'] as const
 
-    Object.entries(sizeMap).forEach(([size, pixel]) => {
+    sizes.forEach((size) => {
       const wrapper = mount(WdAvatar, {
         props: { size }
       })
 
-      const style = wrapper.attributes('style')
-      expect(style).toContain(`width: ${pixel}px`)
-      expect(style).toContain(`height: ${pixel}px`)
+      // 预设尺寸除了添加 CSS 类名外，不会设置内联宽高尺寸
+      expect(wrapper.classes()).toContain(`wd-avatar--${size}`)
     })
   })
 
@@ -312,9 +307,10 @@ describe('WdAvatar', () => {
   // 测试字体大小计算
   test('字体大小根据尺寸自动计算', () => {
     const wrapper = mount(WdAvatar, {
-      props: { size: 'large' }
+      props: { size: '80px' }
     })
 
+    // 自定义尺寸时会设置内联 font-size
     const style = wrapper.attributes('style')
     expect(style).toContain('font-size')
   })

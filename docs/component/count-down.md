@@ -107,12 +107,6 @@ const reset = () => countDown.value?.reset()
 | --- | --- | --- |
 | default | 自定义倒计时展示内容 | `{ current: TimeData }` |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |
-
 ### format 格式
 
 | 格式 | 说明 |

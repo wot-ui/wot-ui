@@ -144,19 +144,21 @@ function handlePopupShow() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value / v-model:value | 当前选中的值 | string / number | - |
-| disabled | 是否禁用分段器 | boolean | false |
-| options | 数据集合 | `string[] / number[] / SegmentedOption[]` | [] |
-| theme | 分段器主题，可选值为 `card`、`outline` | string | card |
-| vibrate-short | 切换选项时是否触发短振动 | boolean | false |
+| value / v-model:value | 当前选中的值 | `string \| number` | - |
+| disabled | 是否禁用分段器 | `boolean` | `false` |
+| options | 数据集合 | `string[] \| number[] \| SegmentedOption[]` | `[]` |
+| theme | 分段器主题，可选值为 `card`、`outline` | `string` | `'card'` |
+| vibrate-short | 切换选项时是否触发短振动 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ### SegmentedOption
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 选项值 | string / number | - |
-| disabled | 是否禁用该选项 | boolean | false |
-| payload | 附加数据，可用于插槽渲染 | any | - |
+| value | 选项值 | `string \| number` | - |
+| disabled | 是否禁用该选项 | `boolean` | `false` |
+| payload | 附加数据，可用于插槽渲染 | `any` | - |
 
 ## Events
 
@@ -177,8 +179,3 @@ function handlePopupShow() {
 | --- | --- | --- |
 | label | 选项标签内容 | `{ option: SegmentedOption }` |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 自定义样式类 |

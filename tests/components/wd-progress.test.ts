@@ -126,4 +126,75 @@ describe('进度条组件', () => {
     // 检查状态类名是否正确应用在根元素，遵循 BEM modifier 规范
     expect(wrapper.classes()).toContain('wd-progress--success')
   })
+
+  test('percentage 越界时输出错误日志', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    mount(WdProgress, {
+      props: {
+        percentage: 101
+      }
+    })
+
+    expect(errorSpy).toHaveBeenCalledWith('The value of percentage must be between 0 and 100')
+    errorSpy.mockRestore()
+  })
+
+  test('color 为空数组时走无色分支并按 percentage 更新宽度', async () => {
+    const wrapper = mount(WdProgress, {
+      props: {
+        percentage: 40,
+        color: []
+      }
+    })
+
+    await wrapper.vm.$nextTick()
+    vi.runAllTimers()
+    await wrapper.vm.$nextTick()
+    await Promise.resolve()
+    await Promise.resolve()
+
+    expect(wrapper.find('.wd-progress__inner').attributes('style')).toContain('width: 40%')
+  })
+
+  test('对象色阶按百分比排序后参与前进渲染', async () => {
+    const wrapper = mount(WdProgress, {
+      props: {
+        percentage: 30,
+        duration: 10,
+        color: [
+          { color: 'red', percentage: 80 },
+          { color: 'blue', percentage: 20 }
+        ]
+      }
+    })
+
+    vi.advanceTimersByTime(80)
+    await Promise.resolve()
+
+    expect(wrapper.find('.wd-progress__inner').attributes('style')).toContain('background: blue')
+  })
+
+  test('百分比回退时走 backward 分支并更新颜色', async () => {
+    const wrapper = mount(WdProgress, {
+      props: {
+        percentage: 80,
+        duration: 10,
+        color: [
+          { color: 'blue', percentage: 20 },
+          { color: 'red', percentage: 80 }
+        ]
+      }
+    })
+
+    vi.advanceTimersByTime(80)
+    await Promise.resolve()
+
+    await wrapper.setProps({ percentage: 30 })
+    // 等待首次动画清理 animationTimer 后再触发回退渲染
+    vi.advanceTimersByTime(260)
+    vi.advanceTimersByTime(80)
+    await Promise.resolve()
+
+    expect(wrapper.find('.wd-progress__inner').attributes('style')).toContain('background: red')
+  })
 })

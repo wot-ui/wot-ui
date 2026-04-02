@@ -134,20 +134,20 @@
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| gutter | 列元素之间的间距（单位为 px） | number | 0 |
-| justify | 主轴对齐方式，可选值为 `start`、`center`、`end`、`space-between`、`space-around`、`space-evenly` | RowJustify | start |
-| align | 交叉轴对齐方式，可选值为 `top`、`middle`、`bottom` | RowAlign | top |
-| custom-class | 根节点样式类名 | string | - |
-| custom-style | 根节点样式 | string | - |
+| gutter | 列元素之间的间距（单位为 px） | `number` | `0` |
+| justify | 主轴对齐方式，可选值为 `start`、`center`、`end`、`space-between`、`space-around`、`space-evenly` | `string` | `start` |
+| align | 交叉轴对齐方式，可选值为 `top`、`middle`、`bottom` | `string` | `top` |
+| custom-class | 根节点样式类名 | `string` | - |
+| custom-style | 根节点样式 | `string` | - |
 
 ## Col Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| span | 列元素宽度（栅格占据的列数，共 24 列） | number | 24 |
-| offset | 列元素偏移距离（栅格左侧的间隔列数） | number | 0 |
-| custom-class | 根节点样式类名 | string | - |
-| custom-style | 根节点样式 | string | - |
+| span | 列元素宽度（栅格占据的列数，共 24 列） | `number` | `24` |
+| offset | 列元素偏移距离（栅格左侧的间隔列数） | `number` | `0` |
+| custom-class | 根节点样式类名 | `string` | - |
+| custom-style | 根节点样式 | `string` | - |
 
 ## Row Slots
 

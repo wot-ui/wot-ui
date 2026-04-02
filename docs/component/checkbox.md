@@ -241,10 +241,3 @@
 | name | 说明 | 参数 |
 | --- | --- | --- |
 | default | 复选框列表内容 | - |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | Checkbox / CheckboxGroup 根节点样式 |
-| custom-label-class | Checkbox 文本样式 |

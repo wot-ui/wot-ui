@@ -73,7 +73,7 @@ onLoad(() => {
 
 ::: code-group
 ```html [vue/html]
-<wd-floating-panel :contentDraggable="false">
+<wd-floating-panel :content-draggable="false">
   <view class="inner-content">内容区不可以拖拽</view>
 </wd-floating-panel>
 ```
@@ -91,12 +91,14 @@ onLoad(() => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model:height ^(1.3.12) | 当前面板的显示高度 | number | `0` |
-| anchors ^(1.3.12) | 设置自定义锚点, 单位 `px` | number[] | `[100, windowHeight * 0.6]` |
-| duration ^(1.3.12) | 动画时长，单位 `ms`，设置为 `0` 可以禁用动画 | number | `300` |
-| contentDraggable ^(1.3.12) | 允许拖拽内容容器 | boolean  | `true` |
-| safeAreaInsetBottom ^(1.3.12) | 是否开启底部安全区适配 | boolean | `false` |
-| showScrollbar ^(1.3.12) | 是否开启滚动条 | boolean | `true` |
+| v-model:height ^(1.3.12) | 当前面板的显示高度 | `number` | `0` |
+| anchors ^(1.3.12) | 设置自定义锚点, 单位 `px` | `number[]` | `[100, windowHeight * 0.6]` |
+| duration ^(1.3.12) | 动画时长，单位 `ms`，设置为 `0` 可以禁用动画 | `number` | `300` |
+| content-draggable ^(1.3.12) | 允许拖拽内容容器 | `boolean` | `true` |
+| safe-area-inset-bottom ^(1.3.12) | 是否开启底部安全区适配 | `boolean` | `false` |
+| show-scrollbar ^(1.3.12) | 是否开启滚动条 | `boolean` | `true` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Slots
 
@@ -109,10 +111,3 @@ onLoad(() => {
 | 方法名 | 说明 | 参数 |
 | --- | --- | --- |
 | heightChange | 面板显示高度改变且结束拖动后触发 ^(1.3.12) | `{ height: number }` |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 ^(1.3.12) |
-| custom-style | 根节点样式 ^(1.3.12) |

@@ -168,15 +168,17 @@ const value = ref(1)
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 当前选中的值，会自动匹配对应 `wd-radio` 的 `value` | string / number / boolean | - |
-| type | 单选框类型，可选值为 `circle`、`dot`、`square`、`button` | string | circle |
-| checked-color | 选中状态的图标颜色 | string | - |
-| unchecked-color | 未选中状态的图标颜色 | string | - |
-| disabled | 是否禁用整组单选框 | boolean | false |
-| readonly | 是否只读 | boolean | false |
-| placement | 图标位置，可选值为 `left`、`right` | string | left |
-| direction | 布局方向，可选值为 `horizontal`、`vertical` | string | vertical |
-| allow-uncheck | 是否允许取消当前已选中的值 | boolean | false |
+| v-model | 当前选中的值，会自动匹配对应 `wd-radio` 的 `value` | `string \| number \| boolean` | - |
+| type | 单选框类型，可选值为 `circle`、`dot`、`square`、`button` | `string` | `circle` |
+| checked-color | 选中状态的图标颜色 | `string` | - |
+| unchecked-color | 未选中状态的图标颜色 | `string` | - |
+| disabled | 是否禁用整组单选框 | `boolean` | `false` |
+| readonly | 是否只读 | `boolean` | `false` |
+| placement | 图标位置，可选值为 `left`、`right` | `string` | `left` |
+| direction | 布局方向，可选值为 `horizontal`、`vertical` | `string` | `vertical` |
+| allow-uncheck | 是否允许取消当前已选中的值 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## RadioGroup Events
 
@@ -188,15 +190,17 @@ const value = ref(1)
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 单选项的值，会与 `wd-radio-group` 的 `v-model` 匹配 | string / number / boolean | - |
-| type | 单选框类型，可选值为 `circle`、`dot`、`square`、`button` | string | 继承自 `wd-radio-group` |
-| checked-color | 选中状态的图标颜色 | string | 继承自 `wd-radio-group` |
-| unchecked-color | 未选中状态的图标颜色 | string | 继承自 `wd-radio-group` |
-| disabled | 是否禁用当前单选项 | boolean | 继承自 `wd-radio-group` |
-| readonly | 是否只读 | boolean | 继承自 `wd-radio-group` |
-| placement | 图标位置，可选值为 `left`、`right` | string | 继承自 `wd-radio-group` |
-| direction | 布局方向，可选值为 `horizontal`、`vertical` | string | 继承自 `wd-radio-group` |
-| custom-label-class | 自定义文本节点类名 | string | - |
+| value | 单选项的值，会与 `wd-radio-group` 的 `v-model` 匹配 | `string \| number \| boolean` | - |
+| type | 单选框类型，可选值为 `circle`、`dot`、`square`、`button` | `string` | 继承自 `wd-radio-group` |
+| checked-color | 选中状态的图标颜色 | `string` | 继承自 `wd-radio-group` |
+| unchecked-color | 未选中状态的图标颜色 | `string` | 继承自 `wd-radio-group` |
+| disabled | 是否禁用当前单选项 | `boolean` | 继承自 `wd-radio-group` |
+| readonly | 是否只读 | `boolean` | 继承自 `wd-radio-group` |
+| placement | 图标位置，可选值为 `left`、`right` | `string` | 继承自 `wd-radio-group` |
+| direction | 布局方向，可选值为 `horizontal`、`vertical` | `string` | 继承自 `wd-radio-group` |
+| custom-label-class | 自定义文本节点类名 | `string` | - |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Slots
 
@@ -205,9 +209,3 @@ const value = ref(1)
 | wd-radio | default | 单选项文本内容 | - |
 | wd-radio | icon | 自定义图标内容 | `{ isChecked }` |
 
-## 外部样式类
-
-| 组件 | 类名 | 说明 |
-| --- | --- | --- |
-| wd-radio-group | custom-class | 单选组根节点样式 |
-| wd-radio | custom-class | 单选项根节点样式 |

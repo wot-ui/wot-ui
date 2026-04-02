@@ -151,7 +151,7 @@
 | icon | 图标类名 | string | - |
 | classPrefix ^(0.1.27) | 图标类名前缀 | string | wd-icon |
 | loading-props | 加载配置项 | `Partial<LoadingProps>` | - |
-| open-type | 开放能力类型，详见下方 `ButtonOpenType` | ButtonOpenType | - |
+| open-type | 开放能力类型，详见下方 `ButtonOpenType` | string | - |
 | hover-stop-propagation | 阻止祖先节点点击态 | boolean | false |
 | hover-start-time | 按下后多久出现点击态（ms） | number | 20 |
 | hover-stay-time | 松开后多久移除点击态（ms） | number | 70 |
@@ -163,7 +163,10 @@
 | app-parameter | 打开 APP 传参（`open-type=launchApp` 时有效） | string | - |
 | show-message-card | 显示会话消息卡片（`open-type=contact` 时有效） | boolean | false |
 | button-id ^(1.3.6) | 按钮唯一标识 | string | - |
-| scope ^(1.3.14) | 支付宝授权范围，可选值为 `phoneNumber`、`userInfo`（`open-type=getAuthorize` 时有效） | ButtonScope | - |
+| scope ^(1.3.14) | 支付宝授权范围，可选值为 `phoneNumber`、`userInfo`（`open-type=getAuthorize` 时有效） | string | - |
+| loading-color | 加载图标颜色 | string | - |
+| custom-class | 根节点自定义类名 | string | - |
+| custom-style | 根节点自定义样式 | string | - |
 
 ### ButtonOpenType 开放能力
 
@@ -219,9 +222,3 @@
 | name | 说明 |
 | --- | --- |
 | default | 按钮内容 |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |

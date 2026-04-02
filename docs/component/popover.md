@@ -245,18 +245,18 @@ function changeSize() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 是否显示气泡 | boolean | `false` |
+| v-model | 是否显示气泡 | `boolean` | `false` |
 | content | 显示内容，`normal` 模式下为字符串，`menu` 模式下为 `PopoverMenuItem[]`，也可以通过 `content` 插槽传入 | `string \| PopoverMenuItem[]` | - |
 | mode | 当前显示模式，可选值为 `normal`、`menu` | `PopoverMode` | `normal` |
 | placement | 弹出位置，可选值为 `top`、`top-start`、`top-end`、`bottom`、`bottom-start`、`bottom-end`、`left`、`left-start`、`left-end`、`right`、`right-start`、`right-end` | `PlacementType` | `bottom` |
 | offset | 偏移量，支持 number、number[] 或 `{ x: number, y: number }` | `PopoverOffset` | `0` |
-| visible-arrow | 是否显示箭头 | boolean | `true` |
-| disabled | 是否禁用 | boolean | `false` |
-| show-close | 是否显示关闭按钮 | boolean | `false` |
-| custom-class | 根节点自定义类名 | string | `''` |
-| custom-style | 根节点自定义样式 | string | `''` |
-| custom-arrow | 箭头节点自定义类名 | string | `''` |
-| custom-pop | 气泡内容容器自定义类名 | string | `''` |
+| visible-arrow | 是否显示箭头 | `boolean` | `true` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| show-close | 是否显示关闭按钮 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
+| custom-arrow | 箭头节点自定义类名 | `string` | `''` |
+| custom-pop | 气泡内容容器自定义类名 | `string` | `''` |
 
 ## Events
 
@@ -282,10 +282,3 @@ function changeSize() {
 | default | 触发器区域内容 | - |
 | content | 自定义气泡内容 | - |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-arrow | 箭头节点样式类 |
-| custom-pop | 气泡内容容器样式类 |

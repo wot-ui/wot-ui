@@ -15,38 +15,39 @@ describe('WdLoading', () => {
     await nextTick()
 
     expect(wrapper.classes()).toContain('wd-loading')
-    expect(wrapper.find('.wd-loading__body').exists()).toBe(true)
-    expect(wrapper.find('.wd-loading__svg').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner-wraper').exists()).toBe(true)
   })
 
-  // 测试 ring 类型的 loading
-  test('ring类型加载', async () => {
+  // 测试 circular 类型的 loading
+  test('circular类型加载', async () => {
     const wrapper = mount(WdLoading, {
       props: {
-        type: 'ring',
+        type: 'circular',
         customStyle: ''
       }
     })
 
     await nextTick()
 
-    // 检查 SVG 元素是否存在
-    expect(wrapper.find('.wd-loading__svg').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner--circular').exists()).toBe(true)
   })
 
-  // 测试 outline 类型的 loading
-  test('outline类型加载', async () => {
+  // 测试 dots 类型的 loading
+  test('dots类型加载', async () => {
     const wrapper = mount(WdLoading, {
       props: {
-        type: 'outline',
+        type: 'dots',
         customStyle: ''
       }
     })
 
     await nextTick()
 
-    // 检查 SVG 元素是否存在
-    expect(wrapper.find('.wd-loading__svg').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner--dots').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner-dot').exists()).toBe(true)
   })
 
   // 测试 spinner 类型的 loading
@@ -60,17 +61,18 @@ describe('WdLoading', () => {
 
     await nextTick()
 
-    // 检查 SVG 元素是否存在
-    expect(wrapper.find('.wd-loading__svg').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner--spinner').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner-dot').exists()).toBe(true)
   })
 
-  // 测试自定义颜色 - ring 类型
-  test('ring类型自定义颜色', async () => {
+  // 测试自定义颜色 - circular 类型
+  test('circular类型自定义颜色', async () => {
     const color = '#ff0000'
 
     const wrapper = mount(WdLoading, {
       props: {
-        type: 'ring',
+        type: 'circular',
         color,
         customStyle: ''
       }
@@ -78,17 +80,18 @@ describe('WdLoading', () => {
 
     await nextTick()
 
-    // 检查 props 是否正确设置
+    // 检查颜色是否渲染到根样式
     expect(wrapper.props('color')).toBe(color)
+    expect(wrapper.attributes('style')).toContain('color')
   })
 
-  // 测试自定义颜色 - outline 类型
-  test('outline类型自定义颜色', async () => {
+  // 测试自定义颜色 - dots 类型
+  test('dots类型自定义颜色', async () => {
     const color = '#ff0000'
 
     const wrapper = mount(WdLoading, {
       props: {
-        type: 'outline',
+        type: 'dots',
         color,
         customStyle: ''
       }
@@ -96,8 +99,9 @@ describe('WdLoading', () => {
 
     await nextTick()
 
-    // 检查 props 是否正确设置
+    // 检查颜色是否渲染到根样式
     expect(wrapper.props('color')).toBe(color)
+    expect(wrapper.attributes('style')).toContain('color')
   })
 
   // 测试自定义大小 - 像素值
@@ -166,21 +170,22 @@ describe('WdLoading', () => {
   })
 
   // 测试类型变化
-  test('类型变化时更新SVG', async () => {
+  test('类型变化时更新spinner', async () => {
     const wrapper = mount(WdLoading, {
       props: {
-        type: 'ring',
+        type: 'circular',
         customStyle: ''
       }
     })
 
     await nextTick()
+    expect(wrapper.find('.wd-loading__spinner--circular').exists()).toBe(true)
 
     // 更改类型
-    await wrapper.setProps({ type: 'outline' })
+    await wrapper.setProps({ type: 'spinner' })
+    await nextTick()
 
-    // 检查 props 是否正确更新
-    expect(wrapper.props('type')).toBe('outline')
+    expect(wrapper.find('.wd-loading__spinner--spinner').exists()).toBe(true)
   })
 
   // 测试大小变化
@@ -201,42 +206,38 @@ describe('WdLoading', () => {
     expect(wrapper.props('size')).toBe('50px')
   })
 
-  // 测试中间色计算
-  test('计算中间色', async () => {
-    const color = '#ff0000'
-
+  // 测试 inheritColor
+  test('inheritColor 继承颜色', async () => {
     const wrapper = mount(WdLoading, {
       props: {
-        type: 'ring',
-        color,
+        inheritColor: true,
         customStyle: ''
       }
     })
 
     await nextTick()
 
-    // 检查 props 是否正确设置
-    expect(wrapper.props('color')).toBe(color)
+    expect(wrapper.props('inheritColor')).toBe(true)
   })
 
-  // 测试无效类型处理
-  test('处理无效类型', async () => {
-    // 对于无效类型，我们只测试组件是否正确渲染，而不是测试内部实现
+  // 测试 direction 方向属性
+  test('水平方向', async () => {
     const wrapper = mount(WdLoading, {
       props: {
-        type: 'ring', // 使用有效类型
+        direction: 'horizontal',
+        text: '加载中',
         customStyle: ''
       }
     })
 
     await nextTick()
 
-    // 检查组件是否正确渲染
-    expect(wrapper.find('.wd-loading__svg').exists()).toBe(true)
+    expect(wrapper.classes()).toContain('wd-loading--horizontal')
+    expect(wrapper.find('.wd-loading__text').exists()).toBe(true)
   })
 
-  // 测试 SVG ID 唯一性
-  test('生成唯一SVG ID', async () => {
+  // 测试多实例各自独立
+  test('多实例各自正常渲染', async () => {
     const wrapper1 = mount(WdLoading, {
       props: {
         customStyle: ''
@@ -246,13 +247,13 @@ describe('WdLoading', () => {
 
     const wrapper2 = mount(WdLoading, {
       props: {
+        type: 'spinner',
         customStyle: ''
       }
     })
     await nextTick()
 
-    // 检查两个组件是否都正确渲染
-    expect(wrapper1.find('.wd-loading__svg').exists()).toBe(true)
-    expect(wrapper2.find('.wd-loading__svg').exists()).toBe(true)
+    expect(wrapper1.find('.wd-loading__spinner--circular').exists()).toBe(true)
+    expect(wrapper2.find('.wd-loading__spinner--spinner').exists()).toBe(true)
   })
 })

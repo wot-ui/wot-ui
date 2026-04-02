@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdIndexAnchor from '@/uni_modules/wot-design-uni/components/wd-index-anchor/wd-index-anchor.vue'
-import { describe, test, expect, vi } from 'vitest'
+import { describe, test, expect } from 'vitest'
 
 describe('WdIndexAnchor', () => {
   // 测试基本渲染

@@ -61,14 +61,9 @@
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| height | 间隔槽高度，支持数字（单位 `px`）或字符串（如 `20rpx`） | `string \| number` | 14 |
-| bg-color | 背景颜色 | string | transparent |
-| safe-area-bottom | 是否开启底部安全区适配 | boolean | false |
-| custom-class | 根节点自定义类名 | string | `''` |
-| custom-style | 根节点自定义样式 | string | `''` |
+| height | 间隔槽高度，支持数字（单位 `px`）或字符串（如 `20rpx`） | `string \| number` | `14` |
+| bg-color | 背景颜色 | `string` | `'transparent'` |
+| safe-area-bottom | 是否开启底部安全区适配 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点自定义样式类 |

@@ -32,8 +32,8 @@ describe('WdDatetimePicker 日期时间选择器', () => {
 
     // 检查是否渲染了 popup
     expect(wrapper.findComponent(WdPopup).exists()).toBe(true)
-    // 检查是否渲染了 toolbar
-    expect(wrapper.find('.wd-datetime-picker__toolbar').exists()).toBe(true)
+    // 检查是否渲染了 wraper
+    expect(wrapper.find('.wd-datetime-picker__wraper').exists()).toBe(true)
     // 检查是否渲染了 view
     expect(wrapper.findComponent(WdDatetimePickerView).exists()).toBe(true)
   })
@@ -53,12 +53,14 @@ describe('WdDatetimePicker 日期时间选择器', () => {
     await wrapper.vm.$nextTick()
     await nextTick()
 
-    const title = wrapper.find('.wd-datetime-picker__title')
+    const title = wrapper.find('.wd-datetime-picker__title-text')
     expect(title.exists()).toBe(true)
     expect(title.text()).toBe('选择时间')
 
-    expect(wrapper.find('.wd-datetime-picker__action--cancel').text()).toBe('放弃')
-    expect(wrapper.findAll('.wd-datetime-picker__action')[1].text()).toBe('确定')
+    // 取消和确定按鈕都在 wd-datetime-picker__title 内的 wd-datetime-picker__action
+    const actions = wrapper.findAll('.wd-datetime-picker__action')
+    expect(actions[0].text()).toBe('放弃')
+    expect(actions[1].text()).toBe('确定')
   })
 
   test('cancel 事件', async () => {
@@ -74,8 +76,8 @@ describe('WdDatetimePicker 日期时间选择器', () => {
     })
     await wrapper.vm.$nextTick()
 
-    // 点击取消按钮
-    await wrapper.find('.wd-datetime-picker__action--cancel').trigger('click')
+    // 点击取消按鈕（第一个 action）
+    await wrapper.findAll('.wd-datetime-picker__action')[0].trigger('click')
     expect(wrapper.emitted('cancel')).toBeTruthy()
   })
 
@@ -130,20 +132,15 @@ describe('WdDatetimePicker 日期时间选择器', () => {
       props: {
         modelValue: Date.now(),
         visible: true,
-        loading: true,
         rootPortal: false
       },
       global: globalConfig
     })
     await wrapper.vm.$nextTick()
 
-    // 检查 confirm 按钮是否有 loading class
-    const confirmBtn = wrapper.findAll('.wd-datetime-picker__action')[1]
-    expect(confirmBtn.classes()).toContain('is-loading')
-
-    // 检查 view 是否有 loading
+    // 组件显示时包含内部 datetime-picker-view
     const view = wrapper.findComponent(WdDatetimePickerView)
-    expect(view.props('loading')).toBe(true)
+    expect(view.exists()).toBe(true)
   })
 
   test('内部视图集成与值同步', async () => {
@@ -179,8 +176,8 @@ describe('WdDatetimePicker 日期时间选择器', () => {
   })
 
   test('beforeConfirm 钩子', async () => {
-    const beforeConfirm = vi.fn((value, resolve) => {
-      resolve(false) // 阻止确认
+    const beforeConfirm = vi.fn(() => {
+      return false // 阻止确认
     })
 
     const wrapper = mount(WdDatetimePicker, {
@@ -199,5 +196,121 @@ describe('WdDatetimePicker 日期时间选择器', () => {
 
     expect(beforeConfirm).toHaveBeenCalled()
     expect(wrapper.emitted('confirm')).toBeFalsy() // 不应触发 confirm
+  })
+
+  test('region 模式下展示范围切换并触发 toggle', async () => {
+    const start = new Date(2024, 0, 1).getTime()
+    const end = new Date(2024, 0, 3).getTime()
+    const wrapper = mount(WdDatetimePicker, {
+      props: {
+        modelValue: [start, end],
+        type: 'date',
+        visible: true,
+        rootPortal: false
+      },
+      global: globalConfig
+    })
+
+    await nextTick()
+
+    expect(wrapper.find('.wd-datetime-picker__range').exists()).toBe(true)
+    await wrapper.findAll('.wd-datetime-picker__range-item')[1].trigger('click')
+
+    const toggleEvents = wrapper.emitted('toggle') as any[]
+    expect(toggleEvents).toBeTruthy()
+    expect(toggleEvents[toggleEvents.length - 1][0]).toBe(end)
+  })
+
+  test('onChangeStart 在区间模式下超过结束值时会被校正', async () => {
+    const start = new Date(2024, 0, 1).getTime()
+    const end = new Date(2024, 0, 2).getTime()
+    const wrapper = mount(WdDatetimePicker, {
+      props: {
+        modelValue: [start, end],
+        type: 'date',
+        visible: true,
+        rootPortal: false
+      },
+      global: globalConfig
+    })
+
+    await nextTick()
+    ;(wrapper.vm as any).onChangeStart({
+      value: new Date(2024, 0, 5).getTime(),
+      columns: [{ type: 'year' }, { type: 'month' }, { type: 'date' }]
+    })
+
+    await nextTick()
+    const changeEvents = wrapper.emitted('change') as any[]
+    expect(changeEvents).toBeTruthy()
+    const value = changeEvents[changeEvents.length - 1][0].value
+    expect(value[0]).toBe(value[1])
+  })
+
+  test('onChangeEnd 在区间模式下早于开始值时会被校正', async () => {
+    const start = new Date(2024, 0, 5).getTime()
+    const end = new Date(2024, 0, 6).getTime()
+    const wrapper = mount(WdDatetimePicker, {
+      props: {
+        modelValue: [start, end],
+        type: 'date',
+        visible: true,
+        rootPortal: false
+      },
+      global: globalConfig
+    })
+
+    await nextTick()
+    ;(wrapper.vm as any).onChangeEnd({
+      value: new Date(2024, 0, 1).getTime(),
+      columns: [{ type: 'year' }, { type: 'month' }, { type: 'date' }]
+    })
+
+    await nextTick()
+    const changeEvents = wrapper.emitted('change') as any[]
+    expect(changeEvents).toBeTruthy()
+    const value = changeEvents[changeEvents.length - 1][0].value
+    expect(value[0]).toBe(value[1])
+  })
+
+  test('pickstart 后 confirm 会延迟到 pickend 再触发', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdDatetimePicker, {
+      props: {
+        modelValue: Date.now(),
+        visible: true,
+        rootPortal: false
+      },
+      global: globalConfig
+    })
+
+    await nextTick()
+    ;(wrapper.vm as any).onPickStart()
+    ;(wrapper.vm as any).onConfirm()
+    expect(wrapper.emitted('confirm')).toBeFalsy()
+    ;(wrapper.vm as any).onPickEnd()
+    vi.advanceTimersByTime(60)
+    await nextTick()
+
+    expect(wrapper.emitted('confirm')).toBeTruthy()
+    vi.useRealTimers()
+  })
+
+  test('expose open/close 可控制弹窗显隐', async () => {
+    const wrapper = mount(WdDatetimePicker, {
+      props: {
+        modelValue: Date.now(),
+        visible: false,
+        rootPortal: false
+      },
+      global: globalConfig
+    })
+
+    ;(wrapper.vm as any).open()
+    await nextTick()
+    expect(wrapper.emitted('open')).toBeTruthy()
+    ;(wrapper.vm as any).close()
+    await nextTick()
+    expect(wrapper.emitted('cancel')).toBeTruthy()
   })
 })

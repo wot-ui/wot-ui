@@ -47,12 +47,12 @@ setTimeout(() => {
 
 ### 通过 CSS 变量覆盖
 
-`Wot` 组件通过 CSS 变量组织样式。你可以直接覆盖这些变量来调整组件外观。
+`Wot UI` 组件通过 CSS 变量组织样式。你可以直接覆盖这些变量来调整组件外观。
 
 ```css
 :root,
 page {
-  --wot-button-normal-bg: green;
+  --wot-button-primary-bg: green;
 }
 ```
 
@@ -78,7 +78,7 @@ page {
 import { reactive } from 'vue'
 
 const themeVars = reactive({
-  buttonPrimaryBgColor: '#07c160',
+  buttonPrimaryBg: '#07c160',
   buttonPrimaryColor: '#ffffff'
 })
 ```
@@ -238,7 +238,7 @@ import { reactive } from 'vue'
 import { useConfigProvider } from 'wot-design-uni'
 
 const themeVars = reactive({
-  buttonPrimaryBgColor: '#07c160',
+  buttonPrimaryBg: '#07c160',
   buttonPrimaryColor: '#ffffff'
 })
 
@@ -250,10 +250,10 @@ useConfigProvider({ themeVars })
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| theme | 主题风格，可选值为 `light`、`dark` | `ConfigProviderTheme` | `light` |
+| theme | 主题风格，可选值为 `light`、`dark` | string | `light` |
 | theme-vars | 自定义主题变量 | `ConfigProviderThemeVars` | `{}` |
-| custom-class ^(1.3.9) | 根节点自定义样式类 | `string` | `''` |
-| custom-style ^(1.3.9) | 根节点自定义样式 | `string` | `''` |
+| custom-class ^(1.3.9) | 根节点自定义样式类 | string | `''` |
+| custom-style ^(1.3.9) | 根节点自定义样式 | string | `''` |
 
 ## ConfigProvider Slots
 

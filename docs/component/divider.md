@@ -90,13 +90,13 @@
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| color | 自定义颜色，支持所有合法颜色值 | string | - |
-| content-position ^(1.5.0) | 内容位置，可选值为 `left`、`center`、`right` | DividerPosition | center |
-| dashed ^(1.5.0) | 是否显示为虚线 | boolean | false |
-| vertical ^(1.5.0) | 是否显示为垂直分割线 | boolean | false |
-| hairline ^(1.5.0) | 是否显示为 0.5px 细线 | boolean | true |
-| custom-class | 根节点自定义类名 | string | `''` |
-| custom-style | 根节点自定义样式 | string | `''` |
+| color | 自定义颜色，支持所有合法颜色值 | `string` | - |
+| content-position ^(1.5.0) | 内容位置，可选值为 `left`、`center`、`right` | `DividerPosition` | `'center'` |
+| dashed ^(1.5.0) | 是否显示为虚线 | `boolean` | `false` |
+| vertical ^(1.5.0) | 是否显示为垂直分割线 | `boolean` | `false` |
+| hairline ^(1.5.0) | 是否显示为 0.5px 细线 | `boolean` | `true` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Slots
 

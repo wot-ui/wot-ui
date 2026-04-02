@@ -133,10 +133,10 @@
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 显示值 | string / number | - |
+| value | 显示值 | string \| number | - |
 | max | 最大值，超过后显示 `{max}+`，仅当 `value` 为 number 时生效 | number | - |
-| top | 为正时，角标向下偏移对应像素 | string / number | - |
-| right | 为正时，角标向左偏移对应像素 | string / number | - |
+| top | 为正时，角标向下偏移对应像素 | string \| number | - |
+| right | 为正时，角标向左偏移对应像素 | string \| number | - |
 | is-dot | 红色点状标注 | boolean | false |
 | hidden | 隐藏 badge | boolean | false |
 | type | 类型，支持 `primary / success / warning / danger / info` | string | - |
@@ -144,15 +144,11 @@
 | show-zero | 是否显示 0 | boolean | false |
 | shape | 徽标形状，支持 `circle / square / bubble` | string | circle |
 | border | 是否显示白色描边 | boolean | false |
+| custom-class | 根节点自定义类名 | string | - |
+| custom-style | 根节点自定义样式 | string | - |
 
 ## Slots
 
 | 名称 | 说明 |
 | --- | --- |
 | default | 徽标包裹的内容 |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |

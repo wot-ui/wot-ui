@@ -129,38 +129,40 @@ const beforeConfirm = (value: string[]) => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 选中项，`checkbox` 时为数组，`radio` 时为 `string`、`number` 或 `boolean` | `string | number | boolean | (string | number | boolean)[]` | - |
-| visible / v-model:visible | 控制弹层显示状态 | boolean | false |
-| title | 弹出层标题 | string | 选择器 |
-| checked-color | 单选框或复选框选中颜色 | string | - |
-| min | 最小选中数量，仅 `checkbox` 生效 | number | 0 |
-| max | 最大选中数量，`0` 表示不限制，仅 `checkbox` 生效 | number | 0 |
-| select-size | 选择器内部选项尺寸 | string | - |
-| loading | 是否显示加载状态 | boolean | false |
-| loading-color | 加载图标颜色 | string | #4D80F0 |
-| close-on-click-modal | 点击遮罩是否关闭 | boolean | true |
+| v-model | 选中项，`checkbox` 时为数组，`radio` 时为 `string`、`number` 或 `boolean` | `string \| number \| boolean \| (string \| number \| boolean)[]` | - |
+| visible / v-model:visible | 控制弹层显示状态 | `boolean` | `false` |
+| title | 弹出层标题 | `string` | `'选择器'` |
+| checked-color | 单选框或复选框选中颜色 | `string` | - |
+| min | 最小选中数量，仅 `checkbox` 生效 | `number` | `0` |
+| max | 最大选中数量，`0` 表示不限制，仅 `checkbox` 生效 | `number` | `0` |
+| select-size | 选择器内部选项尺寸 | `string` | - |
+| loading | 是否显示加载状态 | `boolean` | `false` |
+| loading-color | 加载图标颜色 | `string` | `'#4D80F0'` |
+| close-on-click-modal | 点击遮罩是否关闭 | `boolean` | `true` |
 | columns | 选择器数据，一维数组 | `Record<string, any>[]` | `[]` |
-| type | 选择器类型，可选值为 `checkbox`、`radio` | string | checkbox |
-| value-key | 选项对象中值字段的 key | string | value |
-| label-key | 选项对象中展示文本字段的 key | string | label |
-| confirm-button-text | 确认按钮文案 | string | 确认 |
-| before-confirm | 确认前校验函数，接收当前选中值，返回 `boolean` 或 `Promise<boolean>` | function | - |
-| z-index | 弹层层级 | number | 15 |
-| safe-area-inset-bottom | 是否适配底部安全区 | boolean | true |
-| filterable | 是否支持本地搜索 | boolean | false |
-| filter-placeholder | 搜索框占位符 | string | 搜索 |
-| scroll-into-view ^(0.1.34) | 重新打开时是否滚动到选中项 | boolean | true |
-| custom-content-class | 自定义弹层内容区域类名 | string | '' |
-| show-confirm ^(1.2.8) | 是否显示确认按钮，仅 `radio` 模式生效 | boolean | true |
-| root-portal ^(1.11.0) | 是否从页面结构中脱离出来，用于解决 fixed 失效问题 | boolean | false |
+| type | 选择器类型，可选值为 `checkbox`、`radio` | `string` | `'checkbox'` |
+| value-key | 选项对象中值字段的 key | `string` | `'value'` |
+| label-key | 选项对象中展示文本字段的 key | `string` | `'label'` |
+| confirm-button-text | 确认按钮文案 | `string` | `'确认'` |
+| before-confirm | 确认前校验函数，接收当前选中值，返回 `boolean` 或 `Promise<boolean>` | `function` | - |
+| z-index | 弹层层级 | `number` | `15` |
+| safe-area-inset-bottom | 是否适配底部安全区 | `boolean` | `true` |
+| filterable | 是否支持本地搜索 | `boolean` | `false` |
+| filter-placeholder | 搜索框占位符 | `string` | `'搜索'` |
+| scroll-into-view ^(0.1.34) | 重新打开时是否滚动到选中项 | `boolean` | `true` |
+| custom-content-class | 自定义弹层内容区域类名 | `string` | `''` |
+| show-confirm ^(1.2.8) | 是否显示确认按钮，仅 `radio` 模式生效 | `boolean` | `true` |
+| root-portal ^(1.11.0) | 是否从页面结构中脱离出来，用于解决 fixed 失效问题 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## 选项数据结构
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 选项值 | string / number / boolean | - |
-| label | 选项文案 | string | - |
-| disabled | 是否禁用该选项 | boolean | false |
+| value | 选项值 | `string \| number \| boolean` | - |
+| label | 选项文案 | `string` | - |
+| disabled | 是否禁用该选项 | `boolean` | `false` |
 
 ## Events
 
@@ -179,9 +181,3 @@ const beforeConfirm = (value: string[]) => {
 | open | 打开弹层 | `() => void` |
 | close | 关闭弹层 | `() => void` |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |
-| custom-content-class | 弹层内容区域样式 |

@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import WdText from '@/uni_modules/wot-design-uni/components/wd-text/wd-text.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { TextType } from '@/uni_modules/wot-design-uni/components/wd-text/types'
+import { type TextType } from '@/uni_modules/wot-design-uni/components/wd-text/types'
 
 describe('WdText', () => {
   beforeEach(() => {

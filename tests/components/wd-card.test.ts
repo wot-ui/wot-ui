@@ -15,7 +15,7 @@ describe('WdCard', () => {
     await nextTick()
 
     expect(wrapper.classes()).toContain('wd-card')
-    expect(wrapper.classes()).not.toContain('is-rectangle') // 默认不是矩形卡片
+    expect(wrapper.classes()).not.toContain('wd-card--rectangle') // 默认不是矩形卡片
   })
 
   test('矩形卡片', async () => {
@@ -27,7 +27,7 @@ describe('WdCard', () => {
 
     await nextTick()
 
-    expect(wrapper.classes()).toContain('is-rectangle')
+    expect(wrapper.classes()).toContain('wd-card--rectangle')
   })
 
   test('标题渲染', async () => {
@@ -54,7 +54,7 @@ describe('WdCard', () => {
 
     await nextTick()
 
-    expect(wrapper.find('.wd-card__title-content').exists()).toBe(true)
+    expect(wrapper.find('.wd-card__title').exists()).toBe(true)
     expect(wrapper.find('.custom-title').exists()).toBe(true)
     expect(wrapper.find('.custom-title').text()).toBe('自定义标题')
   })
@@ -127,7 +127,7 @@ describe('WdCard', () => {
 
     await nextTick()
 
-    expect(wrapper.find('.wd-card__title-content').classes()).toContain(customTitleClass)
+    expect(wrapper.find('.wd-card__title').classes()).toContain(customTitleClass)
   })
 
   test('自定义内容类名', async () => {
@@ -181,7 +181,7 @@ describe('WdCard', () => {
 
     expect(wrapper.classes()).toContain('custom-card')
     expect(wrapper.attributes('style')).toBe('background: rgb(245, 245, 245);')
-    expect(wrapper.find('.wd-card__title-content').classes()).toContain('custom-title')
+    expect(wrapper.find('.wd-card__title').classes()).toContain('custom-title')
     expect(wrapper.find('.wd-card__content').classes()).toContain('custom-content')
     expect(wrapper.find('.wd-card__footer').classes()).toContain('custom-footer')
   })
@@ -195,7 +195,7 @@ describe('WdCard', () => {
 
     await nextTick()
 
-    expect(wrapper.find('.wd-card__title-content').exists()).toBe(false)
+    expect(wrapper.find('.wd-card__title').exists()).toBe(false)
   })
 
   test('没有底部插槽时不渲染底部容器', async () => {

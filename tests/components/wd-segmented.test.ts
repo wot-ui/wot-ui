@@ -1,10 +1,12 @@
 import { mount } from '@vue/test-utils'
 import WdSegmented from '@/uni_modules/wot-design-uni/components/wd-segmented/wd-segmented.vue'
-import { describe, test, expect, vi, beforeEach } from 'vitest'
+import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
 import { nextTick } from 'vue'
 
 describe('分段器组件', () => {
   beforeEach(() => {
+    // 使用假定时器，防止 pause(33ms) 的 setTimeout 在测试结束后泄漏
+    vi.useFakeTimers()
     // 模拟 createSelectorQuery 方法
     vi.spyOn(uni, 'createSelectorQuery').mockImplementation(() => {
       // 创建一个更简单但更健壮的 mock 对象
@@ -177,20 +179,22 @@ describe('分段器组件', () => {
     expect(emitted['update:value'][0]).toEqual(['option3'])
   })
 
-  // 测试不同尺寸
+  // 测试不同主题（size prop 不存在，通过 theme prop 区分样式）
   test('渲染不同尺寸', () => {
-    const sizes = ['large', 'middle', 'small'] as const
+    // wd-segmented 没有 size prop，通过 theme 区分外观（'card' | 'outline' | ''）
+    const themes = ['card', 'outline'] as const
 
-    sizes.forEach((size) => {
+    themes.forEach((theme) => {
       const wrapper = mount(WdSegmented, {
         props: {
           value: 'option1',
           options: ['option1', 'option2'],
-          size
+          theme
         }
       })
 
-      expect(wrapper.find(`.wd-segmented__item.is-${size}`).exists()).toBe(true)
+      // theme 会在根元素上生成 wd-segmented--{theme} 类
+      expect(wrapper.classes().some((c) => c.includes(theme))).toBe(true)
     })
   })
 
@@ -264,5 +268,11 @@ describe('分段器组件', () => {
     })
 
     expect(wrapper.attributes('style')).toBe(customStyle)
+  })
+
+  afterEach(() => {
+    // 清除所有待执行的定时器并恢复真实定时器
+    vi.clearAllTimers()
+    vi.useRealTimers()
   })
 })

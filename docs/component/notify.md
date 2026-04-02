@@ -161,18 +161,21 @@ export default {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 类型，可选值为 `primary` `success` `warning` `danger` | NotifyType | danger |
-| message | 展示文案，支持通过`\n`换行 | string | - |
-| duration | 展示时长(ms)，值为 0 时，notify 不会消失 | number | 3000 |
-| visible | 显示状态（支持 v-model） | boolean | false |
-| position | 弹出位置，可选值为 `top` `bottom` | NotifyPosition | top |
-| color | 字体颜色 | string | - |
-| background | 背景颜色 | string | - |
-| safeHeight | 顶部安全高度 | number / string | - |
-| selector | 指定唯一标识 | string | - |
-| root-portal | 是否从页面中脱离出来，用于解决各种 fixed 失效问题 | boolean | false |
-| closable | 是否显示关闭按钮 | boolean | false |
-| variant | 展示形态，可选值为 `filled` `floating` | NotifyVariant | filled |
+| type | 类型，可选值为 `primary` `success` `warning` `danger` | `NotifyType` | `danger` |
+| message | 展示文案，支持通过`\n`换行 | `string \| number` | - |
+| duration | 展示时长(ms)，值为 0 时，notify 不会消失 | `number` | `3000` |
+| visible | 显示状态（支持 v-model） | `boolean` | `false` |
+| position | 弹出位置，可选值为 `top` `bottom` | `NotifyPosition` | `top` |
+| color | 字体颜色 | `string` | - |
+| background | 背景颜色 | `string` | - |
+| z-index | 将组件的 z-index 层级设置为一个固定值 | `number` | `99` |
+| safe-height | 顶部安全高度 | `number \| string` | - |
+| selector | 指定唯一标识 | `string` | - |
+| root-portal | 是否从页面中脱离出来，用于解决各种 fixed 失效问题 | `boolean` | `false` |
+| closable | 是否显示关闭按钮 | `boolean` | `false` |
+| variant | 展示形态，可选值为 `filled` `floating` | `NotifyVariant` | `filled` |
+| custom-class | 根节点样式类名 | `string` | - |
+| custom-style | 根节点样式 | `string` | - |
 
 ## Events
 
@@ -203,15 +206,19 @@ export default {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 类型，可选值为 `primary` `success` `warning` `danger` | NotifyType | danger |
-| message | 展示文案，支持通过`\n`换行 | string | - |
-| duration | 展示时长(ms)，值为 0 时，notify 不会消失 | number | 3000 |
-| position | 弹出位置，可选值为 `top` `bottom` | NotifyPosition | top |
-| color | 字体颜色 | string | - |
-| background | 背景颜色 | string | - |
-| safeHeight | 顶部安全高度 | number / string | - |
-| closable | 是否显示关闭按钮 | boolean | false |
-| variant | 展示形态，可选值为 `filled` `floating` | NotifyVariant | filled |
+| type | 类型，可选值为 `primary` `success` `warning` `danger` | `NotifyType` | `danger` |
+| message | 展示文案，支持通过`\n`换行 | `string \| number` | - |
+| duration | 展示时长(ms)，值为 0 时，notify 不会消失 | `number` | `3000` |
+| position | 弹出位置，可选值为 `top` `bottom` | `NotifyPosition` | `top` |
+| color | 字体颜色 | `string` | - |
+| background | 背景颜色 | `string` | - |
+| zIndex | 将组件的 z-index 层级设置为一个固定值 | `number` | `99` |
+| safeHeight | 顶部安全高度 | `number \| string` | - |
+| rootPortal | 是否从页面中脱离出来，用于解决各种 fixed 失效问题 | `boolean` | `false` |
+| closable | 是否显示关闭按钮 | `boolean` | `false` |
+| variant | 展示形态，可选值为 `filled` `floating` | `NotifyVariant` | `filled` |
+| customClass | 根节点样式类名 | `string` | - |
+| customStyle | 根节点样式 | `string` | - |
 | onClick | 点击时的回调函数 | `(event: MouseEvent) => void` | - |
 | onClosed | 关闭时的回调函数 | `() => void` | - |
 | onOpened | 展示后的回调函数 | `() => void` | - |

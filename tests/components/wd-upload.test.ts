@@ -4,6 +4,16 @@ import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { type UploadFile } from '@/uni_modules/wot-design-uni/components/wd-upload/types'
 import { nextTick } from 'vue'
 
+const previewVideoSpy = vi.fn()
+vi.mock('@/uni_modules/wot-design-uni/components/wd-video-preview', () => ({
+  useVideoPreview: () => ({
+    previewVideo: previewVideoSpy,
+    closeVideoPreview: vi.fn()
+  }),
+  getVideoPreviewOptionKey: (selector: string) => `__VIDEO_PREVIEW_OPTION__${selector}`,
+  defaultOptions: { url: '', poster: '', title: '', show: false, zIndex: 1000 }
+}))
+
 describe('WdUpload', () => {
   // 在每个测试前重置所有模拟
   beforeEach(() => {
@@ -135,8 +145,8 @@ describe('WdUpload', () => {
   })
 
   test('文件上传前钩子', async () => {
-    const beforeUpload = vi.fn((options) => {
-      options.resolve(true)
+    const beforeUpload = vi.fn(() => {
+      return true
     })
     const wrapper = mount(WdUpload, {
       props: {
@@ -147,8 +157,8 @@ describe('WdUpload', () => {
   })
 
   test('文件预览功能', async () => {
-    const beforePreview = vi.fn((options) => {
-      options.resolve(true)
+    const beforePreview = vi.fn(() => {
+      return true
     })
     const wrapper = mount(WdUpload, {
       props: {
@@ -162,6 +172,7 @@ describe('WdUpload', () => {
   })
 
   test('视频预览功能', async () => {
+    previewVideoSpy.mockClear()
     const wrapper = mount(WdUpload, {
       props: {
         fileList: [
@@ -174,15 +185,11 @@ describe('WdUpload', () => {
       }
     })
 
-    // 模拟videoPreview.open方法
-    const openSpy = vi.fn()
-    ;(wrapper.vm as any).videoPreview = { open: openSpy }
-
     // 点击视频缩略图
     const videoThumb = wrapper.find('.wd-upload__video')
     await videoThumb.trigger('click')
 
-    expect(openSpy).toHaveBeenCalled()
+    expect(previewVideoSpy).toHaveBeenCalled()
   })
 
   test('自定义上传方法', async () => {
@@ -518,5 +525,103 @@ describe('WdUpload', () => {
     // 验证是否被调用
     expect(buildFormData).toHaveBeenCalled()
     expect(startUploadFilesSpy).toHaveBeenCalledWith({ custom: 'data' })
+  })
+
+  test('图片预览失败时触发 onPreviewFail', async () => {
+    const onPreviewFail = vi.fn()
+    const previewImageSpy = vi.spyOn(uni, 'previewImage').mockImplementation((options: any) => {
+      options?.fail?.()
+    })
+
+    const wrapper = mount(WdUpload, {
+      props: {
+        onPreviewFail,
+        fileList: [{ url: 'https://example.com/image1.jpg', name: 'image1.jpg' }]
+      }
+    })
+
+    await (wrapper.vm as any).onPreviewImage({ url: 'https://example.com/image1.jpg', name: 'image1.jpg' })
+
+    expect(previewImageSpy).toHaveBeenCalled()
+    expect(onPreviewFail).toHaveBeenCalled()
+  })
+
+  test('图片预览失败时无 onPreviewFail 会走默认 toast', async () => {
+    const previewImageSpy = vi.spyOn(uni, 'previewImage').mockImplementation((options: any) => {
+      options?.fail?.()
+    })
+    const showToastSpy = vi.spyOn(uni, 'showToast')
+
+    const wrapper = mount(WdUpload, {
+      props: {
+        fileList: [{ url: 'https://example.com/image1.jpg', name: 'image1.jpg' }]
+      }
+    })
+
+    await (wrapper.vm as any).onPreviewImage({ url: 'https://example.com/image1.jpg', name: 'image1.jpg' })
+
+    expect(previewImageSpy).toHaveBeenCalled()
+    expect(showToastSpy).toHaveBeenCalledWith({ title: '预览图片失败', icon: 'none' })
+  })
+
+  test('onPreviewFile 在非 reupload 时调用 openDocument', async () => {
+    ;(uni as any).openDocument = vi.fn()
+    const openDocumentSpy = vi.spyOn(uni as any, 'openDocument')
+    const file = { url: 'https://example.com/doc.pdf', name: 'doc.pdf' }
+    const wrapper = mount(WdUpload, {
+      props: {
+        reupload: false,
+        fileList: [file]
+      }
+    })
+
+    await (wrapper.vm as any).onPreviewFile(file)
+
+    expect(openDocumentSpy).toHaveBeenCalledWith({
+      filePath: file.url,
+      showMenu: true
+    })
+  })
+
+  test('reupload=true 时预览行为不会进入预览方法', async () => {
+    const imageFile = { url: 'https://example.com/image1.jpg', name: 'image1.jpg' }
+    const videoFile = { url: 'https://example.com/video1.mp4', name: 'video1.mp4' }
+    const docFile = { url: 'https://example.com/doc.pdf', name: 'doc.pdf' }
+    const previewImageSpy = vi.spyOn(uni, 'previewImage')
+    ;(uni as any).openDocument = vi.fn()
+    const openDocumentSpy = vi.spyOn(uni as any, 'openDocument')
+    previewVideoSpy.mockClear()
+
+    const wrapper = mount(WdUpload, {
+      props: {
+        reupload: true,
+        fileList: [imageFile, videoFile, docFile]
+      }
+    })
+
+    await (wrapper.vm as any).onPreviewImage(imageFile)
+    await (wrapper.vm as any).onPreviewVideo(videoFile)
+    await (wrapper.vm as any).onPreviewFile(docFile)
+
+    expect(previewImageSpy).not.toHaveBeenCalled()
+    expect(previewVideoSpy).not.toHaveBeenCalled()
+    expect(openDocumentSpy).not.toHaveBeenCalled()
+  })
+
+  test('removeFile 会通过 beforeRemove 拦截并在 done 后删除', async () => {
+    const beforeRemove = vi.fn().mockReturnValue(true)
+    const wrapper = mount(WdUpload, {
+      props: {
+        beforeRemove,
+        fileList: [{ url: 'https://example.com/image1.jpg', name: 'image1.jpg' }]
+      }
+    })
+
+    await (wrapper.vm as any).removeFile(0)
+
+    expect(beforeRemove).toHaveBeenCalled()
+    const emitted = wrapper.emitted() as Record<string, any[]>
+    expect(emitted['remove']).toBeTruthy()
+    expect(emitted['update:fileList']).toBeTruthy()
   })
 })

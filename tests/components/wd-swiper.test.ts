@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdSwiper from '@/uni_modules/wot-design-uni/components/wd-swiper/wd-swiper.vue'
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 import WdSwiperNav from '@/uni_modules/wot-design-uni/components/wd-swiper-nav/wd-swiper-nav.vue'
 
 describe('WdSwiper', () => {
@@ -131,5 +131,142 @@ describe('WdSwiper', () => {
     const emitted = wrapper.emitted() as Record<string, any[]>
     expect(emitted['change']).toBeTruthy()
     expect(emitted['change'][0][0]).toEqual({ current: 1, source: 'touch' })
+  })
+
+  test('props.current 越界时按 loop 规则归位', async () => {
+    const wrapper = mount(WdSwiper, {
+      props: {
+        current: 0,
+        loop: false,
+        list: [{ image: 'a.jpg' }, { image: 'b.jpg' }]
+      },
+      global: {
+        components: {
+          'wd-swiper-nav': WdSwiperNav
+        }
+      }
+    })
+
+    await wrapper.setProps({ current: -1 })
+    await wrapper.setProps({ current: 10 })
+
+    const updates = wrapper.emitted('update:current') as any[]
+    expect(updates).toBeTruthy()
+    expect(updates[updates.length - 1][0]).toBe(1)
+  })
+
+  test('loop=true 时 props.current 越界会循环到首尾', async () => {
+    const wrapper = mount(WdSwiper, {
+      props: {
+        current: 1,
+        loop: true,
+        list: [{ image: 'a.jpg' }, { image: 'b.jpg' }, { image: 'c.jpg' }]
+      },
+      global: {
+        components: {
+          'wd-swiper-nav': WdSwiperNav
+        }
+      }
+    })
+
+    await wrapper.setProps({ current: -2 })
+    await wrapper.setProps({ current: 8 })
+
+    const updates = wrapper.emitted('update:current') as any[]
+    expect(updates).toBeTruthy()
+    expect(updates[0][0]).toBe(2)
+    expect(updates[updates.length - 1][0]).toBe(0)
+  })
+
+  test('handleIndicatorChange 在非 loop 下命中边界时不切换', () => {
+    const wrapper = mount(WdSwiper, {
+      props: {
+        current: 0,
+        loop: false,
+        list: [{ image: 'a.jpg' }, { image: 'b.jpg' }]
+      },
+      global: {
+        components: {
+          'wd-swiper-nav': WdSwiperNav
+        }
+      }
+    })
+
+    ;(wrapper.vm as any).handleIndicatorChange({ dir: 'prev' })
+    expect(wrapper.emitted('update:current')).toBeFalsy()
+  })
+
+  test('handleIndicatorChange 在 loop 下支持首尾循环', () => {
+    const wrapper = mount(WdSwiper, {
+      props: {
+        current: 0,
+        loop: true,
+        list: [{ image: 'a.jpg' }, { image: 'b.jpg' }]
+      },
+      global: {
+        components: {
+          'wd-swiper-nav': WdSwiperNav
+        }
+      }
+    })
+
+    ;(wrapper.vm as any).handleIndicatorChange({ dir: 'prev' })
+    const updates = wrapper.emitted('update:current') as any[]
+    expect(updates).toBeTruthy()
+    expect(updates[0][0]).toBe(1)
+  })
+
+  test('handleChange 与 handleAnimationfinish 会同步 current 并发射事件', () => {
+    const wrapper = mount(WdSwiper, {
+      props: {
+        current: 0,
+        list: [{ image: 'a.jpg' }, { image: 'b.jpg' }]
+      },
+      global: {
+        components: {
+          'wd-swiper-nav': WdSwiperNav
+        }
+      }
+    })
+
+    ;(wrapper.vm as any).handleChange({ detail: { current: 1, source: 'touch' } })
+    ;(wrapper.vm as any).handleAnimationfinish({ detail: { current: 0, source: 'autoplay' } })
+
+    expect(wrapper.emitted('change')).toBeTruthy()
+    expect(wrapper.emitted('animationfinish')).toBeTruthy()
+    const updates = wrapper.emitted('update:current') as any[]
+    expect(updates).toBeTruthy()
+    expect(updates.length).toBeGreaterThan(0)
+  })
+
+  test('视频播放控制分支：start/stop 与 stopAutoplayWhenVideoPlay', () => {
+    ;(global as any).uni = (global as any).uni || {}
+    const play = vi.fn()
+    const pause = vi.fn()
+    ;(global as any).uni.createVideoContext = vi.fn(() => ({ play, pause }))
+
+    const wrapper = mount(WdSwiper, {
+      props: {
+        autoplayVideo: true,
+        stopPreviousVideo: true,
+        stopAutoplayWhenVideoPlay: true,
+        list: [
+          { type: 'video', value: 'a.mp4' },
+          { type: 'video', value: 'b.mp4' }
+        ]
+      },
+      global: {
+        components: {
+          'wd-swiper-nav': WdSwiperNav
+        }
+      }
+    })
+
+    ;(wrapper.vm as any).handleVideoPaly()
+    ;(wrapper.vm as any).handleVideoChange(0, 1)
+
+    expect((global as any).uni.createVideoContext).toHaveBeenCalled()
+    expect(play).toHaveBeenCalled()
+    expect(pause).toHaveBeenCalled()
   })
 })

@@ -62,15 +62,15 @@
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 加载指示器类型，可选值为 `circular`、`spinner`、`dots` | LoadingType | circular |
-| color | 设置加载指示器颜色 | string | - |
-| size | 设置加载指示器大小 | number / string | - |
-| text | 加载指示器文字 | string | - |
-| direction | 排列方向，可选值为 `vertical`、`horizontal` | LoadingDirection | vertical |
-| inheritColor | 是否继承父元素颜色 | boolean | false |
-| custom-class | 根节点样式类名 | string | - |
-| custom-style | 根节点样式 | string | - |
-| custom-spinner-class | 自定义加载指示器样式类 | string | - |
+| type | 加载指示器类型，可选值为 `circular`、`spinner`、`dots` | `LoadingType` | `circular` |
+| color | 设置加载指示器颜色 | `string` | - |
+| size | 设置加载指示器大小 | `number \| string` | - |
+| text | 加载指示器文字 | `string` | - |
+| direction | 排列方向，可选值为 `vertical`、`horizontal` | `LoadingDirection` | `vertical` |
+| inherit-color | 是否继承父元素颜色 | `boolean` | `false` |
+| custom-class | 根节点样式类名 | `string` | - |
+| custom-style | 根节点样式 | `string` | - |
+| custom-spinner-class | 自定义加载指示器样式类 | `string` | - |
 
 ## Slots
 

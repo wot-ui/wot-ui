@@ -127,34 +127,29 @@ const beforeChange = (value) => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| model-value / v-model | 绑定值 | boolean / string / number | `false` |
-| disabled | 是否禁用 | boolean | `false` |
-| inactive-action-icon | 非激活状态操作按钮图标 | string | - |
-| active-action-icon | 激活状态操作按钮图标 | string | - |
-| active-icon | 激活状态图标，设置后会忽略 `active-text` | string | - |
-| inactive-icon | 非激活状态图标，设置后会忽略 `inactive-text` | string | - |
-| active-text | 激活状态文本 | string | `''` |
-| inactive-text | 非激活状态文本 | string | `''` |
-| active-value | 激活值 | boolean / string / number | `true` |
-| inactive-value | 非激活值 | boolean / string / number | `false` |
-| active-color | 激活颜色 | string | - |
-| inactive-color | 非激活颜色 | string | - |
-| size | 开关大小 | string / number | - |
-| shape | 形状，可选值为 `round`、`square` | `SwitchShape` | `round` |
-| loading | 是否显示加载中 | boolean | `false` |
+| model-value / v-model | 绑定值 | `boolean \| string \| number` | `false` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| inactive-action-icon | 非激活状态操作按钮图标 | `string` | - |
+| active-action-icon | 激活状态操作按钮图标 | `string` | - |
+| active-icon | 激活状态图标，设置后会忽略 `active-text` | `string` | - |
+| inactive-icon | 非激活状态图标，设置后会忽略 `inactive-text` | `string` | - |
+| active-text | 激活状态文本 | `string` | `''` |
+| inactive-text | 非激活状态文本 | `string` | `''` |
+| active-value | 激活值 | `boolean \| string \| number` | `true` |
+| inactive-value | 非激活值 | `boolean \| string \| number` | `false` |
+| active-color | 激活颜色 | `string` | - |
+| inactive-color | 非激活颜色 | `string` | - |
+| size | 开关大小 | `string \| number` | - |
+| shape | 形状，可选值为 `round`、`square` | `SwitchShape` | `'round'` |
+| loading | 是否显示加载中 | `boolean` | `false` |
 | loading-props | 加载配置项 | `Partial<LoadingProps>` | - |
 | before-change | 修改前钩子 | `SwitchBeforeChange` | - |
-| class-prefix | 图标类名前缀 | string | `wd-icon` |
+| class-prefix | 图标类名前缀 | `string` | `'wd-icon'` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Events
 
 | 事件名称 | 说明 | 参数 |
 | --- | --- | --- |
 | change | 值修改事件 | `{ value }` |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-style | 根节点样式 |

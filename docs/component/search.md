@@ -198,19 +198,21 @@ function changeSearchType({ item }) {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 输入框内容，双向绑定 | string | '' |
-| custom-input-class | 自定义输入框类名 | string | '' |
-| placeholder | 搜索框占位文本 | string | 搜索 |
-| cancel-txt | 搜索框右侧文本 | string | 取消 |
-| variant | 搜索框变体，可选值为 `plain`、`filled`、`light` | string | plain |
-| hide-cancel | 是否隐藏右侧文本 | boolean | false |
-| disabled | 是否禁用搜索框 | boolean | false |
-| maxlength | 原生属性，设置最大长度，`-1` 表示无限制 | number | -1 |
-| placeholder-left | placeholder 是否左对齐 | boolean | false |
-| focus ^(0.1.63) | 是否自动聚焦 | boolean | false |
-| focus-when-clear ^(0.1.63) | 是否在点击清空按钮后聚焦输入框 | boolean | false |
-| placeholder-style ^(1.6.0) | 原生属性，指定 placeholder 的样式，目前仅支持 `color`、`font-size` 和 `font-weight` | string | - |
-| placeholder-class ^(1.6.0) | 原生属性，指定 placeholder 的样式类 | string | '' |
+| v-model | 输入框内容，双向绑定 | `string` | `''` |
+| custom-input-class | 自定义输入框类名 | `string` | `''` |
+| placeholder | 搜索框占位文本 | `string` | `'搜索'` |
+| cancel-txt | 搜索框右侧文本 | `string` | `'取消'` |
+| variant | 搜索框变体，可选值为 `plain`、`filled`、`light` | `string` | `'plain'` |
+| hide-cancel | 是否隐藏右侧文本 | `boolean` | `false` |
+| disabled | 是否禁用搜索框 | `boolean` | `false` |
+| maxlength | 原生属性，设置最大长度，`-1` 表示无限制 | `number \| string` | `-1` |
+| placeholder-left | placeholder 是否左对齐 | `boolean` | `false` |
+| focus ^(0.1.63) | 是否自动聚焦 | `boolean` | `false` |
+| focus-when-clear ^(0.1.63) | 是否在点击清空按钮后聚焦输入框 | `boolean` | `false` |
+| placeholder-style ^(1.6.0) | 原生属性，指定 placeholder 的样式，目前仅支持 `color`、`font-size` 和 `font-weight` | `string` | - |
+| placeholder-class ^(1.6.0) | 原生属性，指定 placeholder 的样式类 | `string` | `''` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Events
 
@@ -231,10 +233,3 @@ function changeSearchType({ item }) {
 | prefix | 输入框左侧自定义内容 |
 | input-suffix | 输入框内部右侧自定义内容 |
 | suffix | 输入框右侧自定义内容 |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式 |
-| custom-input-class | 输入框节点样式 |

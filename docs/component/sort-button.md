@@ -53,10 +53,12 @@ function handleChange({ value }) {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | model-value / v-model | 当前排序方向值，`1` 表示升序，`0` 表示重置状态，`-1` 表示降序 | `SortButtonValue` | `0` |
-| title | 排序按钮文案 | string | `''` |
-| allow-reset | 是否允许重置为未选中状态 | boolean | `false` |
-| desc-first | 是否优先切换为降序 | boolean | `false` |
-| line | 是否显示下划线 | boolean | `false` |
+| title | 排序按钮文案 | `string` | `''` |
+| allow-reset | 是否允许重置为未选中状态 | `boolean` | `false` |
+| desc-first | 是否优先切换为降序 | `boolean` | `false` |
+| line | 是否显示下划线 | `boolean` | `false` |
+| custom-class | 根节点自定义类名 | `string` | `''` |
+| custom-style | 根节点自定义样式 | `string` | `''` |
 
 ## Events
 
@@ -64,9 +66,3 @@ function handleChange({ value }) {
 | --- | --- | --- |
 | change | 排序方向变化时触发 | `{ value }` |
 
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |
-| custom-style | 根节点样式 |
