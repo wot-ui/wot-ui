@@ -1,12 +1,11 @@
+/**
+ * 将 docs 目录下 Markdown 中形如 ^(1.2.3) 的版本标记转换为 VitePress Badge 组件。
+ * 仅处理普通文本内容，跳过代码块、行内代码，以及已经手写了 <Badge> 的行。
+ */
 import { Plugin } from 'vite'
 
 const VERSION_MARK_RE = /\^\((\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?)\)/g
 const INLINE_CODE_RE = /`[^`]*`/g
-
-function isTableLine(line: string) {
-  const trimmed = line.trim()
-  return trimmed.startsWith('|') && trimmed.includes('|')
-}
 
 function replaceVersionMarkerOutsideInlineCode(line: string) {
   const ranges: Array<{ start: number; end: number }> = []
@@ -43,7 +42,6 @@ export function MarkdownVersionBadgeTransform(): Plugin {
           return line
         }
         if (inFence) return line
-        if (!isTableLine(line)) return line
         if (line.includes('<Badge')) return line
         return replaceVersionMarkerOutsideInlineCode(line)
       })
