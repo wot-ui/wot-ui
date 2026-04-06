@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType, InjectionKey, ComputedRef } from 'vue'
-import { makeStringProp, baseProps } from '../../common/props'
+import { makeStringProp, baseProps } from '../common/props'
 
 export type ConfigProviderTheme = 'light' | 'dark' | ''
 
@@ -21,7 +21,6 @@ export const configProviderProps = {
 export type ConfigProviderProps = ExtractPropTypes<typeof configProviderProps>
 
 export type ConfigProviderProvide = {
-  theme?: ComputedRef<ConfigProviderTheme>
   themeStyle: ComputedRef<string>
 }
 
@@ -422,7 +421,6 @@ export type actionSheetThemeVars = {
   actionSheetCancelColor?: string // 取消按钮文字颜色
   actionSheetCancelFontSize?: string // 取消按钮字体大小
   actionSheetCancelLineHeight?: string // 取消按钮行高
-  actionSheetCancelMarginTop?: string // 取消按钮顶部外边距
   actionSheetCancelPadding?: string // 取消按钮内边距
   actionSheetCloseColor?: string // 关闭图标颜色
   actionSheetCloseFontSize?: string // 关闭图标尺寸
@@ -432,6 +430,8 @@ export type actionSheetThemeVars = {
   actionSheetDescriptionLineHeight?: string // 描述文本行高
   actionSheetDescriptionMarginTop?: string // 描述文本顶部外边距
   actionSheetDisabledColor?: string // 禁用态文字颜色
+  actionSheetGapBg?: string // 取消按钮与操作项的间隔背景色
+  actionSheetGapHeight?: string // 取消按钮顶部外边距
   actionSheetLoadingSize?: string // 加载图标尺寸
   actionSheetPanelBg?: string // 面板区域背景色
   actionSheetPanelImgRadius?: string // 面板图片圆角
@@ -445,6 +445,7 @@ export type actionSheetThemeVars = {
   actionSheetPanelTitleLineHeight?: string // 面板标题行高
   actionSheetPanelWidth?: string // 单个面板宽度
   actionSheetRadius?: string // 底部弹层圆角
+  actionSheetTitleBg?: string // 标题背景色
   actionSheetTitleColor?: string // 标题文字颜色
   actionSheetTitleFontSize?: string // 标题字体大小
   actionSheetTitleFontWeight?: string // 标题字重
@@ -479,14 +480,14 @@ export type backtopThemeVars = {
   backtopBg?: string // 背景色
   backtopBorderColor?: string // 边框颜色
   backtopColor?: string // 按钮图标颜色
-  backtopHeight?: string // 高度
+  backtopHeight?: string // 按钮高度
   backtopIconSize?: string // 按钮图标尺寸
   backtopRadius?: string // 方形模式圆角
   backtopRadiusCircle?: string // 圆形模式圆角
   backtopTextColor?: string // 文本颜色
   backtopTextFontSize?: string // 文本字号
   backtopTextLineHeight?: string // 文本行高
-  backtopWidth?: string // s宽度
+  backtopWidth?: string // 按钮宽度
   backtopZIndex?: string // 组件层级
 }
 
@@ -680,7 +681,13 @@ export type cardThemeVars = {
 }
 
 export type cascaderThemeVars = {
+  cascaderActionRight?: string // 关闭图标右侧偏移
   cascaderBg?: string // 级联选择器弹层背景色
+  cascaderConfirmColor?: string // checkStrictly模式确认按钮颜色
+  cascaderConfirmFontSize?: string // checkStrictly模式确认按钮字号
+  cascaderConfirmFontWeight?: string // checkStrictly模式确认按钮字重
+  cascaderConfirmLineHeight?: string // checkStrictly模式确认按钮行高
+  cascaderConfirmOpacityDisabled?: string // checkStrictly模式确认按钮禁用透明度
   cascaderListCheckedIconSize?: string // 选中图标尺寸
   cascaderListCheckedIconSpacing?: string // 选中图标与文字间距
   cascaderListHeight?: string // 选项列表高度
@@ -695,6 +702,8 @@ export type cascaderThemeVars = {
   cascaderListTipFontSize?: string // 选项提示文字字号
   cascaderListTipLineHeight?: string // 选项提示文字行高
   cascaderListTipMarginTop?: string // 选项提示顶部外边距
+  cascaderLoadingIconSize?: string // loading 图标尺寸
+  cascaderLoadingOpacity?: string // loading 状态下选项区透明度
 }
 
 export type cellGroupThemeVars = {
@@ -781,7 +790,6 @@ export type checkboxThemeVars = {
   checkboxLabelMargin?: string // 文字与图标距离
   checkboxOpacityDisabled?: string // 禁用态透明度
   checkboxUncheckedColor?: string // 未选中图标颜色
-  checkboxVerticalPadding?: string // 垂直模式多个单选框距离
 }
 
 export type circleThemeVars = {
@@ -965,6 +973,17 @@ export type dropMenuThemeVars = {
   dropMenuTextLineHeight?: string // 菜单文字行高
 }
 
+export type emptyThemeVars = {
+  emptyIconColor?: string // 图标颜色
+  emptyIconSize?: string // 图标尺寸
+  emptyPaddingBottom?: string // 组件底部内边距
+  emptyTextColor?: string // 文案颜色
+  emptyTextFontSize?: string // 文案字号
+  emptyTextFontWeight?: string // 文案字重
+  emptyTextLineHeight?: string // 文案行高
+  emptyTextMarginTop?: string // 文案顶部间距
+}
+
 export type fabThemeVars = {
   fabActionsPadding?: string // 动作列表主轴内边距
   fabTransitionOffset?: string // 动作按钮展开/收起动画偏移距离
@@ -1145,6 +1164,7 @@ export type loadingThemeVars = {
   loadingSpinnerDotWidth?: string // 条状点宽度
   loadingSpinnerPadding?: string // 加载器内边距
   loadingTextFontSize?: string // 文本字号
+  loadingTextLineHeight?: string // 文本行高
   loadingTextSpacing?: string // 文本与加载器间距
 }
 
@@ -1160,51 +1180,6 @@ export type loadmoreThemeVars = {
   loadmoreRefreshFontSize?: string // 刷新图标字号
   loadmoreRefreshLineHeight?: string // 刷新图标行高
   loadmoreRetrySpacing?: string // 重试文案与图标间距
-}
-
-export type messageBoxThemeVars = {
-  messageBoxActionsPadding?: string
-  messageBoxActionsPaddingVertical?: string
-  messageBoxActionsSpacing?: string
-  messageBoxActionsSpacingVertical?: string
-  messageBoxActionTextBorder?: string
-  messageBoxActionTextBorderColor?: string
-  messageBoxActionTextButtonPadding?: string
-  messageBoxActoonsConfirmFontWeight?: string
-  messageBoxBg?: string
-  messageBoxBodyElementSpacing?: string
-  messageBoxBodyPadding?: string
-  messageBoxCloseIconColor?: string
-  messageBoxCloseIconRight?: string
-  messageBoxCloseIconSize?: string
-  messageBoxCloseIconTop?: string
-  messageBoxContentColor?: string
-  messageBoxContentFontSize?: string
-  messageBoxContentInputBg?: string
-  messageBoxContentInputErrorColor?: string
-  messageBoxContentInputFontSize?: string
-  messageBoxContentInputLineHeight?: string
-  messageBoxContentInputPaddingTop?: string
-  messageBoxContentLineHeight?: string
-  messageBoxContentMaxHeight?: string
-  messageBoxContentPadding?: string
-  messageBoxErrorColor?: string
-  messageBoxIconMarginBottom?: string
-  messageBoxIconSize?: string
-  messageBoxImgBorderRadius?: string
-  messageBoxPrimaryColor?: string
-  messageBoxRadius?: string
-  messageBoxScrollbarColor?: string
-  messageBoxScrollbarRadius?: string
-  messageBoxScrollbarWidth?: string
-  messageBoxSuccessColor?: string
-  messageBoxTitleColor?: string
-  messageBoxTitleFontSize?: string
-  messageBoxTitleFontWeight?: string
-  messageBoxTitleLineHeight?: string
-  messageBoxTitleMarginBottom?: string
-  messageBoxWarningColor?: string
-  messageBoxWidth?: string
 }
 
 export type navbarCapsuleThemeVars = {
@@ -1255,6 +1230,11 @@ export type noticeBarThemeVars = {
 export type notifyThemeVars = {
   notifyDangerBg?: string // 危险态背景色
   notifyDangerColor?: string // 危险态文字颜色
+  notifyFloatingBg?: string // floating 变体背景色
+  notifyFloatingColor?: string // floating 变体文字颜色
+  notifyFloatingMarginHorizontal?: string // floating 变体左右间距
+  notifyFloatingMarginVertical?: string // floating 变体上下间距
+  notifyFloatingRadius?: string // floating 变体圆角
   notifyFontSize?: string // 通知文字字号
   notifyIconSize?: string // 图标尺寸
   notifyIconSpacing?: string // 图标间距
@@ -1366,6 +1346,7 @@ export type popupThemeVars = {
   popupCloseColor?: string // 关闭图标颜色
   popupCloseMargin?: string // 关闭图标外边距
   popupCloseSize?: string // 关闭图标尺寸
+  popupRadius?: string // 弹窗圆角：根据弹出位置自动适配
 }
 
 export type progressThemeVars = {
@@ -1419,7 +1400,6 @@ export type radioThemeVars = {
   radioLabelLineHeight?: string // 文案行高
   radioLabelMargin?: string // 文案与图标间距
   radioUncheckedColor?: string // 未选中图标颜色
-  radioVerticalPadding?: string // 垂直模式间距
 }
 
 export type rateThemeVars = {
@@ -1495,7 +1475,7 @@ export type segmentedThemeVars = {
 }
 
 export type selectPickerThemeVars = {
-  selectPickerBg?: string
+  selectPickerBg?: string // 选择器背景色
   selectPickerFooterBorderColor?: string // 确认区域上边框颜色
   selectPickerFooterPadding?: string // 底部内边距
   selectPickerLoadingIconSize?: string // loading 图标尺寸
@@ -1637,17 +1617,6 @@ export type sortButtonThemeVars = {
   sortButtonSortSpacing?: string // 排序图标纵向间距
   sortButtonTextFontSize?: string // 文字字号
   sortButtonTextLineHeight?: string // 文字行高
-}
-
-export type emptyThemeVars = {
-  emptyIconColor?: string // 图标颜色
-  emptyIconSize?: string // 图标尺寸
-  emptyPaddingBottom?: string // 组件底部内边距
-  emptyTextColor?: string // 文案颜色
-  emptyTextFontSize?: string // 文案字号
-  emptyTextFontWeight?: string // 文案字重
-  emptyTextLineHeight?: string // 文案行高
-  emptyTextMarginTop?: string // 文案顶部间距
 }
 
 export type stepThemeVars = {
@@ -1964,35 +1933,35 @@ export type tourThemeVars = {
 }
 
 export type uploadThemeVars = {
-  uploadBorderColor?: string // upload的外边框颜色
-  uploadBorderRadius?: string // upload的外边框圆角
-  uploadCloseBg?: string // 移除按钮背景色
-  uploadCloseBorderRadius?: string // 移除按钮圆角
-  uploadCloseIconColor?: string // 移除按钮颜色
-  uploadCloseIconSize?: string // 移除按钮尺寸
-  uploadClosePadding?: string // 移除按钮padding
+  uploadBorderColor?: string // 上传项边框颜色
+  uploadCloseBg?: string // 关闭按钮背景色
+  uploadCloseIconColor?: string // 关闭按钮图标颜色
+  uploadCloseIconSize?: string // 关闭按钮图标尺寸
+  uploadClosePadding?: string // 关闭按钮内边距
+  uploadCloseRadius?: string // 关闭按钮圆角
   uploadCoverIconSize?: string // 视频/文件图标尺寸
-  uploadEvokeBg?: string // 唤起项的背景色
-  uploadEvokeColor?: string // 唤起项的图标颜色
-  uploadEvokeDisabledColor?: string // 唤起项禁用颜色
+  uploadEvokeBg?: string // 唤起项背景色
+  uploadEvokeColor?: string // 唤起项文字颜色
+  uploadEvokeColorDisabled?: string // 唤起项禁用文字颜色
   uploadEvokeFontSize?: string // 唤起项文字大小
-  uploadEvokeIconColor?: string // 唤起项的图标颜色
-  uploadEvokeIconDisabledColor?: string // 唤起项禁用颜色
+  uploadEvokeIconColor?: string // 唤起项图标颜色
+  uploadEvokeIconColorDisabled?: string // 唤起项禁用图标颜色
   uploadEvokeIconSize?: string // 唤起项的图标大小
   uploadEvokeLineHeight?: string // 唤起项文字行高
-  uploadFileColor?: string // 文件名字颜色
-  uploadFileFontSize?: string // 文件名字号
-  uploadFileLineHeight?: string // 文件名字行高
-  uploadFilePadding?: string // 文件、视频名字padding
-  uploadMaskBg?: string // 预览文件名背景色
-  uploadPreviewIconColor?: string // 预览内部图标颜色
-  uploadPreviewIconSize?: string // 预览内部图标尺寸
-  uploadPreviewMargin?: string // 预览间距
+  uploadFileColor?: string // 文件名文字颜色
+  uploadFileFontSize?: string // 文件名文字字号
+  uploadFileLineHeight?: string // 文件名文字行高
+  uploadFilePadding?: string // 文件/视频名称内边距
+  uploadMaskBg?: string // 遮罩层背景色
+  uploadPreviewIconColor?: string // 预览态内部图标颜色
+  uploadPreviewIconSize?: string // 预览态内部图标尺寸
+  uploadPreviewMargin?: string // 预览项外边距
   uploadProgressColor?: string // 进度文字颜色
   uploadProgressFontSize?: string // 进度文字字号
   uploadProgressLineHeight?: string // 进度文字行高
-  uploadRowSpacing?: string // 项行间距
-  uploadSize?: string // upload的外边框默认尺寸
+  uploadRadius?: string // 上传项圆角
+  uploadRowSpacing?: string // 上传项行间距
+  uploadSize?: string // 上传项尺寸
   uploadVideoIconColor?: string // 视频播放图标颜色
   uploadVideoIconSize?: string // 视频图标尺寸
 }
@@ -2035,6 +2004,7 @@ export type ConfigProviderThemeVars = baseThemeVars &
   dividerThemeVars &
   dropMenuItemThemeVars &
   dropMenuThemeVars &
+  emptyThemeVars &
   fabThemeVars &
   floatingPanelThemeVars &
   formItemThemeVars &
@@ -2049,7 +2019,6 @@ export type ConfigProviderThemeVars = baseThemeVars &
   keyboardThemeVars &
   loadingThemeVars &
   loadmoreThemeVars &
-  messageBoxThemeVars &
   navbarCapsuleThemeVars &
   navbarThemeVars &
   noticeBarThemeVars &
@@ -2075,7 +2044,6 @@ export type ConfigProviderThemeVars = baseThemeVars &
   sliderThemeVars &
   slideVerifyThemeVars &
   sortButtonThemeVars &
-  emptyThemeVars &
   stepThemeVars &
   swiperNavThemeVars &
   swiperThemeVars &
