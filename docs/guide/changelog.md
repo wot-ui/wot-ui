@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.2](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2026-04-06)
+
+
+### ✨ Features | 新功能
+
+* ✨ WIP ([73317ee](https://github.com/wot-ui/wot-ui/commit/73317ee090cef1f55d8619919aa8a05b43eb1ccd))
+
 ## [2.0.0-alpha.1](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.0...v2.0.0-alpha.1) (2026-04-06)
 
 
