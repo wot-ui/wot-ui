@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="https://wot-ui.cn/logo.png" width="200">
+    <img alt="logo" src="https://v2.wot-ui.cn/logo.svg" width="200">
 </p>
 <h1 align="center">Wot UI</h1>
 

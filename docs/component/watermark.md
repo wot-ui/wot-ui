@@ -24,7 +24,7 @@
 
 ```html
 <view class="watermark-wrap">
-	<wd-watermark :full-screen="false" image="https://wot-ui.cn/logo.png" :image-width="38" :image-height="38"></wd-watermark>
+	<wd-watermark :full-screen="false" image="https://v2.wot-ui.cn/logo.svg" :image-width="38" :image-height="38"></wd-watermark>
 </view>
 ```
 

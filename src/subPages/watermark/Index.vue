@@ -3,7 +3,7 @@
     <wd-watermark v-if="globalType === 'text'" :width="130" :height="140" content="wot-ui" :layout="globalLayout"></wd-watermark>
     <wd-watermark
       v-else-if="globalType === 'image'"
-      image="https://wot-ui.cn/logo.png"
+      image="https://v2.wot-ui.cn/logo.svg"
       :width="130"
       :height="140"
       :image-width="38"
@@ -46,7 +46,7 @@
 
         <demo-group-item title="局部图片水印">
           <view class="watermark-wrap">
-            <wd-watermark :full-screen="false" image="https://wot-ui.cn/logo.png" :image-width="38" :image-height="38"></wd-watermark>
+            <wd-watermark :full-screen="false" image="https://v2.wot-ui.cn/logo.svg" :image-width="38" :image-height="38"></wd-watermark>
             <wd-checkbox-group v-model="checkVal" type="square" placement="right">
               <wd-checkbox name="1">查看权限</wd-checkbox>
               <wd-checkbox name="2">编辑权限</wd-checkbox>
