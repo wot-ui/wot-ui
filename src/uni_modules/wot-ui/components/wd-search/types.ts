@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-03-11 15:14:39
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-search/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-search/types.ts
  * 记得注释
  */
 import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp } from '../../common/props'

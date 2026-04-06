@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2024-12-07 18:41:41
- * @LastEditTime: 2024-12-07 21:28:08
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/docs/.vitepress/theme/components/VPContent.vue
- * 记得注释
--->
 <script setup lang="ts">
 import { useData } from 'vitepress';
 import NotFound from 'vitepress/dist/client/theme-default//NotFound.vue'

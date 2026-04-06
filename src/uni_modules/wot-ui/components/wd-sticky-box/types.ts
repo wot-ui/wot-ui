@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-06-01 16:04:56
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-sticky-box/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-sticky-box/types.ts
  * 记得注释
  */
 import type { ComponentInternalInstance, InjectionKey } from 'vue'

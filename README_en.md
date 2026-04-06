@@ -7,7 +7,7 @@
 <p><a href="./README.md">简体中文</a> | English</p>
 </div>
 
-<p align="center">📱 A uni-app component library built with Vue3 + TypeScript, inspired by <a href="https://github.com/jd-ftf/wot-design-mini?tab=readme-ov-file">wot-design</a></p>
+<p align="center">📱 A lightweight, polished, AI-friendly uni-app component library</p>
 
 <p align="center">
 
@@ -20,20 +20,16 @@
   <img alt="GitHub" src="https://img.shields.io/codecov/c/github/wot-ui/wot-ui?style=flat-square">
  </a>
 
-<a href="https://www.npmjs.com/package/wot-design-uni">
-  <img alt="npm" src="https://img.shields.io/npm/dm/wot-design-uni?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fwot-design-uni&style=flat-square">
+<a href="https://www.npmjs.com/package/@wot-ui/ui">
+  <img alt="npm" src="https://img.shields.io/npm/dm/@wot-ui/ui?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@wot-ui/ui&style=flat-square">
 </a>
 
- <a href="https://www.npmjs.com/package/wot-design-uni">
-  <img alt="npm" src="https://img.shields.io/npm/v/wot-design-uni?logo=npm&color=%234d80f0&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fwot-design-uni&style=flat-square">
+ <a href="https://www.npmjs.com/package/@wot-ui/ui">
+  <img alt="npm" src="https://img.shields.io/npm/v/@wot-ui/ui?logo=npm&color=%234d80f0&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@wot-ui/ui&style=flat-square">
 </a>
 
 <a href="https://github.com/actions-cool/" target="_blank" referrerpolicy="no-referrer">
   <img src="https://img.shields.io/badge/using-actions--cool-red?style=flat-square" alt="actions-cool" />
-</a>
-
-<a href="https://app.netlify.com/sites/wot-design-uni/deploys" target="_blank" referrerpolicy="no-referrer">
-  <img src="https://api.netlify.com/api/v1/badges/0991d8a9-0fb0-483b-8961-5bde066bbd50/deploy-status" alt="deploy-status" />
 </a>
 
 </p>
@@ -44,9 +40,10 @@
 
 ## ✨ Features
 
-- 🎯 Multi-platform support: WeChat Mini Program, Alipay Mini Program, DingTalk Mini Program, H5, APP, etc.
+- 🎯 Broad multi-platform support, including WeChat Mini Program, Alipay Mini Program, DingTalk Mini Program, H5, APP, and more.
 - 🚀 80+ high-quality components covering mainstream mobile scenarios.
-- 💪 Built with TypeScript, providing a robust component type system.
+- 💪 Built with TypeScript and equipped with a solid component type system.
+- 🤖 Provides an AI-friendly design system.
 - 🌍 Internationalization support with 15 built-in language packs.
 - 📖 Rich documentation and component examples.
 - 🎨 Theme customization through CSS variables.
@@ -54,7 +51,7 @@
 
 ## 📱 Preview
 
-Scan the QR code to view the demo. Note: Due to WeChat review restrictions, the current WeChat Mini Program demo may not be the latest version. You can clone the code locally for preview.
+Scan the QR code to view the demo. Note: due to WeChat review restrictions, the current WeChat Mini Program demo may not be the latest version. You can clone the code locally for preview.
 
 <p style="display:flex;gap:24px">
 <img src="https://wot-ui.cn/wx.jpg" width="200" height="200"/>
@@ -67,13 +64,6 @@ Scan the QR code to view the demo. Note: Due to WeChat review restrictions, the 
 
 For detailed instructions, see [Quick Start](https://wot-ui.cn/guide/quick-use.html).
 
-## Links
-
-- [FAQ](https://wot-ui.cn/guide/common-problems.html)
-- [Changelog](https://wot-ui.cn/guide/changelog.html)
-- [Discussions](https://github.com/wot-ui/wot-ui/discussions)
-- [QQ Group](https://wot-ui.cn/guide/join-group.html)
-
 ## Showcase
 
 Check out some excellent [examples](https://wot-ui.cn/guide/cases.html) here!
@@ -84,16 +74,14 @@ We welcome contributions of excellent demos and cases. Feel free to submit your 
 
 | Project                                                                                                        | Description                                                 |
 | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [wot-starter](https://github.com/wot-ui/wot-starter)                  | A wot-ui quick start project based on [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app)     |
-| [wot-ui-intellisense](https://github.com/wot-ui/wot-ui-intellisense)                  | wot-ui vscode code completion plugin     |
-| [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app)                                            | A collection of excellent development resources for uni-app multi-platform unified development framework            |
-| [create-uni](https://github.com/uni-helper/create-uni)                                                      | Quickly create uni-app projects                                |
-| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail)                                  | A uni-app retail industry template based on wot-ui          |
-| [Wot UI Snippets](https://marketplace.visualstudio.com/items?itemName=kiko.wot-design-uni-snippets) | wot-ui code snippets                            |
-| [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | A uni-app mini-program build plugin that supports CI (Continuous Integration) |
-| [my-uni](https://github.com/wot-ui/my-uni)                                        | A lightweight uni-app router library based on vue3 and TypeScript  |
+| [wot-starter](https://github.com/wot-ui/wot-starter)                  | A wot-ui quick-start project based on [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app)     |
+| [wot-ui-intellisense](https://github.com/wot-ui/wot-ui-intellisense)                  | VS Code IntelliSense extension for wot-ui     |
+| [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app)                                            | A curated collection of excellent uni-app resources for multi-platform development            |
+| [create-uni](https://github.com/uni-helper/create-uni)                                                      | Quickly create a uni-app project                                |
+| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail)                                  | A retail-oriented uni-app template based on wot-ui          |
+| [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | A plugin that adds CI support for uni-app mini program builds |
+| [my-uni](https://github.com/wot-ui/my-uni)                                        | A collection of utility uni plugins  |
 | [unibest](https://github.com/unibest-tech/unibest)                                                              | A uni-app template based on wot-ui                  |
-| [wot-design-uni AI Assistant](https://www.coze.cn/store/bot/7347916532258701363)                                 | An intelligent assistant that can answer your questions about wot-ui component library |
 | [uni-ku-root](https://github.com/uni-ku/root)                                                               | A root component plugin that simulates the original capabilities of App.vue                  |
 
 ## Contributing
@@ -112,9 +100,9 @@ Thanks to all the [developers](https://github.com/wot-ui/wot-ui/graphs/contribut
 
 ## Donate
 
-Developing a UI component library is time-consuming work, especially when it needs to be adapted for multiple platforms. The Wot UI team often works late into the night...
+Developing a UI component library is time-consuming work, especially when it needs to support multiple platforms. The Wot UI team often works late into the night...
 
-If you find Wot UI helpful in your development work, you can donate to support our development work. Any amount is welcome, even if it's just a cola.
+If Wot UI has helped your development work, you can donate to support its ongoing development. There is no minimum amount, even a cola is appreciated.
 
 After donating, your nickname and message will be displayed on the [donor list](https://wot-ui.cn/reward/donor.html).
 
@@ -131,9 +119,9 @@ After donating, your nickname and message will be displayed on the [donor list](
 
 ## Acknowledgments
 
-- [wot-design](https://github.com/jd-ftf/wot-design-mini) - Thanks to the wot-design team for their years of maintenance.
-- [uni-helper](https://github.com/uni-helper) - Thanks to the uni-helper team for providing uni-app tool libraries.
-- [Donors](https://wot-ui.cn/reward/donor.html) - Thanks to all donors who help Wot UI grow better.
+- [wot-design](https://github.com/jd-ftf/wot-design-mini) - Thanks to the wot-design team for years of continuous maintenance, which allowed wot-ui to build on a strong foundation.
+- [uni-helper](https://github.com/uni-helper) - Thanks to the uni-helper team for providing the uni-app toolchain that makes wot-ui easier to use.
+- [Donors](https://wot-ui.cn/reward/donor.html) - Thanks to all donors whose support helps wot-ui continue to grow.
 
 ## License
 

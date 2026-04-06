@@ -4,7 +4,7 @@
  * @LastEditTime: 2024-03-18 10:48:33
  * @LastEditors: weisheng
  * @Description: Divider 分割线
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-divider/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-divider/types.ts
  * 记得注释
  */
 import type { ExtractPropTypes } from 'vue'

@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2025-07-17 10:27:32
- * @LastEditTime: 2026-03-24 11:49:09
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/src/subPages/floatingPanel/Index.vue
- * 记得注释
--->
 <template>
   <wd-toast></wd-toast>
   <view class="loating-panel">

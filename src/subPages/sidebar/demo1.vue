@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2023-11-05 12:09:52
- * @LastEditTime: 2025-03-31 23:05:54
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/src/pages/sidebar/demo1.vue
- * 记得注释
--->
 <template>
   <page-wraper>
     <view class="wraper">

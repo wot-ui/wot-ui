@@ -1,11 +1,3 @@
-/*
- * @Author: weisheng
- * @Date: 2024-03-15 11:36:12
- * @LastEditTime: 2026-01-16 16:09:46
- * @LastEditors: weisheng
- * @Description: Badge 徽标组件类型定义
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-badge/types.ts
- */
 import type { ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeStringProp, numericProp } from '../../common/props'
 

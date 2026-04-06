@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-01-22 16:54:27
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-input-number/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-input-number/types.ts
  * 记得注释
  */
 import type { ExtractPropTypes, PropType } from 'vue'

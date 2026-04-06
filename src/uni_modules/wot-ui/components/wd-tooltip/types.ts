@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-03-04 11:02:59
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-tooltip/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-tooltip/types.ts
  * 记得注释
  */
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'

@@ -1,11 +1,3 @@
-<!--
- * @Author: 810505339
- * @Date: 2025-02-11 21:17:21
- * @LastEditors: weisheng
- * @LastEditTime: 2025-09-21 19:35:08
- * @FilePath: /wot-design-uni/src/subPages/signature/Index.vue
- * 记得注释
--->
 <template>
   <page-wraper>
     <view class="page-signature">

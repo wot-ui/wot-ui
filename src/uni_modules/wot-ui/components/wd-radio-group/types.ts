@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-03-25 16:22:03
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-radio-group/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-radio-group/types.ts
  * 记得注释
  */
 import { type ExtractPropTypes, type InjectionKey } from 'vue'

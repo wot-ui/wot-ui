@@ -1,11 +1,3 @@
-<!--
- * @Author: North
- * @Date: 2026-01-01
- * @LastEditTime: 2026-03-03 14:07:06
- * @LastEditors: weisheng
- * @Description: Avatar 头像组件，支持图片、文本或图标展示
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-avatar/wd-avatar.vue
--->
 <template>
   <view v-if="isShow" :class="rootClass" :style="rootStyle" @click="handleClick">
     <!-- 默认插槽优先 -->

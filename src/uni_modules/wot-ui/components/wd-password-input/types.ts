@@ -1,10 +1,10 @@
 /*
  * @Author: weisheng
- * @Date: 2024-03-15 20:40:34
- * @LastEditTime: 2024-03-18 15:12:17
+ * @Date: 2025-05-08 22:54:27
+ * @LastEditTime: 2026-04-06 23:08:37
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: \wot-design-uni\src\uni_modules\wot-design-uni\components\wd-password-input\types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-password-input/types.ts
  * 记得注释
  */
 import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp } from '../../common/props'

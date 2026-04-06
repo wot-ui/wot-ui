@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-01-23 14:57:01
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-icon/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-icon/types.ts
  * 记得注释
  */
 import { baseProps, makeBooleanProp, makeRequiredProp, makeStringProp, numericProp } from '../../common/props'

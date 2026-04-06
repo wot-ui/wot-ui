@@ -1,10 +1,10 @@
 /*
  * @Author: weisheng
- * @Date: 2024-09-01 15:42:04
- * @LastEditTime: 2026-01-19 23:15:16
+ * @Date: 2026-03-13 17:20:03
+ * @LastEditTime: 2026-04-06 23:06:51
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-transition/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-transition/types.ts
  * 记得注释
  */
 import type { ExtractPropTypes, PropType } from 'vue'

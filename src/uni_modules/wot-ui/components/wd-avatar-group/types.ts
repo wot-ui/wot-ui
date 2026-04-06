@@ -1,12 +1,3 @@
-/*
- * @Author: weisheng
- * @Date: 2025-12-30
- * @LastEditTime: 2026-01-16 14:11:54
- * @LastEditors: weisheng
- * @Description: AvatarGroup 头像组类型定义
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-avatar-group/types.ts
- * 记得注释
- */
 import type { ExtractPropTypes, PropType } from 'vue'
 import type { InjectionKey } from 'vue'
 import { baseProps, makeStringProp, makeNumericProp } from '../../common/props'

@@ -20,20 +20,16 @@
   <img alt="GitHub" src="https://img.shields.io/codecov/c/github/wot-ui/wot-ui?style=flat-square">
  </a>
 
-<a href="https://www.npmjs.com/package/wot-design-uni">
-  <img alt="npm" src="https://img.shields.io/npm/dm/wot-design-uni?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fwot-design-uni&style=flat-square">
+<a href="https://www.npmjs.com/package/@wot-ui/ui">
+  <img alt="npm" src="https://img.shields.io/npm/dm/@wot-ui/ui?logo=npm&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@wot-ui/ui&style=flat-square">
 </a>
 
- <a href="https://www.npmjs.com/package/wot-design-uni">
-  <img alt="npm" src="https://img.shields.io/npm/v/wot-design-uni?logo=npm&color=%234d80f0&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fwot-design-uni&style=flat-square">
+ <a href="https://www.npmjs.com/package/@wot-ui/ui">
+  <img alt="npm" src="https://img.shields.io/npm/v/@wot-ui/ui?logo=npm&color=%234d80f0&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F@wot-ui/ui&style=flat-square">
 </a>
 
 <a href="https://github.com/actions-cool/" target="_blank" referrerpolicy="no-referrer">
   <img src="https://img.shields.io/badge/using-actions--cool-red?style=flat-square" alt="actions-cool" />
-</a>
-
-<a href="https://app.netlify.com/sites/wot-design-uni/deploys" target="_blank" referrerpolicy="no-referrer">
-  <img src="https://api.netlify.com/api/v1/badges/0991d8a9-0fb0-483b-8961-5bde066bbd50/deploy-status" alt="deploy-status" />
 </a>
 
 </p>
@@ -84,7 +80,6 @@
 | [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app)                                            | 多端统一开发框架 uni-app 优秀开发资源汇总            |
 | [create-uni](https://github.com/uni-helper/create-uni)                                                      | 快速创建 uni-app 项目                                |
 | [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail)                                  | 基于 wot-ui 的 uni-app 零售行业模板          |
-| [Wot UI Snippets](https://marketplace.visualstudio.com/items?itemName=kiko.wot-design-uni-snippets) | wot-ui 代码块提示                            |
 | [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | 一个 uni-app 小程序端构建后支持 CI（持续集成）的插件 |
 | [my-uni](https://github.com/wot-ui/my-uni)                                        | 摸鱼 uni 插件库合集  |
 | [unibest](https://github.com/unibest-tech/unibest)                                                              | 基于 wot-ui 的 uni-app 模板                  |

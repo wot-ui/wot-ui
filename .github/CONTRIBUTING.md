@@ -18,16 +18,6 @@
 - 使用 `git clone` 将自己 github 上 fork 得到的源码同步到到你的本地
 - 请确保基于 `master` 分支进行开发，我们只接受此分支上的代码贡献。
 
-<!-- ### 镜像仓库
-
-如果 GitHub 克隆速度较慢，你也可以直接克隆 Wot UI 在 gitee 上的[镜像仓库](https://gitee.com/wot-design-uni/wot-design-uni)：
-
-```bash
-git clone https://gitee.com/wot-design-uni/wot-design-uni.git
-```
-
-镜像仓库仅用于加快国内的访问速度，请勿在镜像仓库中提 issue 和 Pull Request。 -->
-
 ### 代码规范
 
 在编写代码时，请注意：

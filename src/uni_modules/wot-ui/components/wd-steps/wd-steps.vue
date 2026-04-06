@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-02-26 14:41:35
  * @LastEditors: weisheng
  * @Description: 
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-steps/wd-steps.vue
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-steps/wd-steps.vue
  * 记得注释
 -->
 <template>

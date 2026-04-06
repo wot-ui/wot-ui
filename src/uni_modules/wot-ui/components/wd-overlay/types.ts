@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-01-19 16:46:33
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-overlay/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-overlay/types.ts
  * 记得注释
  */
 import type { PropType } from 'vue'

@@ -4,7 +4,7 @@
  * @LastEditTime: 2025-09-09 10:00:00
  * @LastEditors: rusheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-curtain/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-curtain/types.ts
  * 记得注释
  */
 import type { ExtractPropTypes } from 'vue'

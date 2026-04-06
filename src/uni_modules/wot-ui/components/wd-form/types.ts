@@ -1,12 +1,3 @@
-/*
- * @Author: weisheng
- * @Date: 2023-12-14 11:21:58
- * @LastEditTime: 2026-03-16 15:12:18
- * @LastEditors: weisheng
- * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-form/types.ts
- * 记得注释
- */
 import { type ComponentPublicInstance, type ExtractPropTypes, type InjectionKey, type PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeRequiredProp, numericProp } from '../../common/props'
 import type { CellLayout, CellSize, CellValueAlign, CellAsteriskPosition } from '../wd-cell/types'

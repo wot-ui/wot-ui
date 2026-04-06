@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-03-30 15:40:29
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-popup/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-popup/types.ts
  * 记得注释
  */
 import type { PropType } from 'vue'

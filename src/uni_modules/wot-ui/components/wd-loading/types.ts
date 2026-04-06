@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-01-23 14:59:32
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-loading/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-loading/types.ts
  * 记得注释
  */
 import type { ExtractPropTypes } from 'vue'

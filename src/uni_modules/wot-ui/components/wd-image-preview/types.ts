@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-03-03 12:57:28
  * @LastEditors: weisheng
  * @Description: ImagePreview 图片预览
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-image-preview/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-image-preview/types.ts
  * 记得注释
  */
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'

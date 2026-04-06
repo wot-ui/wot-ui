@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-03-27 17:16:22
  * @LastEditors: weisheng
  * @Description: 
- * @FilePath: /wot-design-uni/components/wd-tabbar/wd-tabbar.vue
+ * @FilePath: /wot-ui/components/wd-tabbar/wd-tabbar.vue
  * 记得注释
 -->
 <template>

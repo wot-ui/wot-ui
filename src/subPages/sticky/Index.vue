@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2023-06-13 11:47:12
- * @LastEditTime: 2026-02-26 14:44:34
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/src/subPages/sticky/Index.vue
- * 记得注释
--->
 <template>
   <page-wraper>
     <view class="page-sticky page-sticky__stage">

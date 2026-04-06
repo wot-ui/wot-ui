@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2026-03-13 17:20:03
- * @LastEditTime: 2026-04-02 16:57:15
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/src/subPages/divider/Index.vue
- * 记得注释
--->
 <template>
   <page-wraper>
     <view class="page-divider">

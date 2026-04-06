@@ -110,7 +110,7 @@ Pass a `string[]` to the `text` property to enable multi-text carousel. The `nex
 import { ref } from 'vue'
 
 const textArray = ref([
-  'Welcome to wot design uni',
+  'Welcome to wot-ui',
   'This component library is built with uniapp -> Vue3, TypeScript',
   'Project URL: https://github.com/wot-ui/wot-ui',
   'Our goal is to build the best uniapp component library',
@@ -170,7 +170,7 @@ import { type NoticeBarInstance } from '@/uni_modules/wot-design-uni/components/
 const notice = ref<NoticeBarInstance>()
 
 const textArray = ref([
-  'Welcome to wot design uni',
+  'Welcome to ui',
   'This component library is built with uniapp -> Vue3, TypeScript',
   'Project URL: https://github.com/wot-ui/wot-ui',
   'Our goal is to build the best uniapp component library',

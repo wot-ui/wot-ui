@@ -1,10 +1,10 @@
 /*
  * @Author: weisheng
- * @Date: 2025-09-21 19:12:03
- * @LastEditTime: 2025-09-21 19:52:54
+ * @Date: 2025-09-23 13:02:59
+ * @LastEditTime: 2026-04-06 21:48:45
  * @LastEditors: weisheng
  * @Description: 
- * @FilePath: /wot-design-uni/docs/.vitepress/theme/composables/adSponsor.ts
+ * @FilePath: /wot-ui/docs/.vitepress/theme/composables/adSponsor.ts
  * 记得注释
  */
 import { ref, onMounted } from 'vue'

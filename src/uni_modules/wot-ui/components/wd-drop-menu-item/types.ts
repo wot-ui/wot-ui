@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-03-24 11:47:17
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-drop-menu-item/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-drop-menu-item/types.ts
  * 记得注释
  */
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'

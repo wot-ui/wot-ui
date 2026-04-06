@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2026-01-21 16:32:23
- * @LastEditTime: 2026-03-24 17:50:11
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/src/subPages/imagePreview/Index.vue
- * 记得注释
--->
 <template>
   <page-wraper>
     <view class="page-image-preview">

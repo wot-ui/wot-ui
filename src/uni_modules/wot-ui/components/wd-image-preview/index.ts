@@ -4,7 +4,7 @@
  * @LastEditTime: 2026-03-03 11:51:46
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-image-preview/index.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-image-preview/index.ts
  * 记得注释
  */
 import { inject, provide, ref } from 'vue'

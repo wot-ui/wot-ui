@@ -1,10 +1,10 @@
 /*
  * @Author: weisheng
- * @Date: 2024-06-30 23:09:08
- * @LastEditTime: 2026-03-03 12:50:12
+ * @Date: 2026-03-13 17:20:03
+ * @LastEditTime: 2026-04-06 21:50:37
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-design-uni/src/uni_modules/wot-ui/components/wd-video-preview/types.ts
+ * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-video-preview/types.ts
  * 记得注释
  */
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'

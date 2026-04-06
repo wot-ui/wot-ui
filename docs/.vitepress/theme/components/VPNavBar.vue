@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2024-12-07 12:18:28
- * @LastEditTime: 2024-12-07 15:15:28
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-design-uni/docs/.vitepress/theme/components/VPNavBar.vue
- * 记得注释
--->
 <script lang="ts" setup>
 import { useWindowScroll } from '@vueuse/core'
 import { ref, watchPostEffect } from 'vue'
