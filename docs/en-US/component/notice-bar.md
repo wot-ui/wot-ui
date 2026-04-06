@@ -148,7 +148,7 @@ function handleClick(result: { text: string; index: number }) {
 }
 ```
 
-### Reset Animation ^(1.3.13)
+### Reset Animation
 
 Get the component instance via `ref` and call the `reset` method to reset the animation. When you encounter animation anomalies with `NoticeBar`, you can call the `reset` method to reset the animation.
 
@@ -207,13 +207,13 @@ function handleReset() {
 | --- | --- | --- |
 | close | Triggered when clicking the close button | - |
 | next | Triggered when switching to the next text | `index: number` |
-| click ^(1.2.16) | Triggered when clicking the content area | `{ text: string, index: number }` |
+| click | Triggered when clicking the content area | `{ text: string, index: number }` |
 
 ## Methods
 
 | Method Name | Description | Parameters |
 | --- | --- | --- |
-| reset ^(1.3.13) | Reset animation | - |
+| reset | Reset animation | - |
 
 ## Slots
 

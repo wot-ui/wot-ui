@@ -127,7 +127,7 @@ image {
 | loading-text | 加载状态文案 | `string` | 国际化文案“正在努力加载中...” |
 | finished-text | 加载完成文案 | `string` | 国际化文案“已加载完毕” |
 | error-text | 加载失败文案；“点击重试”为组件内独立提示文案，不包含在该属性默认值中 | `string` | 国际化文案“加载失败” |
-| loading-props ^(1.3.14) | 内部 `wd-loading` 的属性配置，类型参见下方 `LoadingProps` | `Partial<LoadingProps>` | - |
+| loading-props | 内部 `wd-loading` 的属性配置，类型参见下方 `LoadingProps` | `Partial<LoadingProps>` | - |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

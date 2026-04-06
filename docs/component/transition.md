@@ -101,7 +101,7 @@
 | leave-class | 离开过渡的开始状态类名 | `string` | `''` |
 | leave-active-class | 离开过渡的激活状态类名 | `string` | `''` |
 | leave-to-class | 离开过渡的结束状态类名 | `string` | `''` |
-| disable-touch-move ^(1.11.0) | 是否阻止触摸滚动 | `boolean` | `false` |
+| disable-touch-move | 是否阻止触摸滚动 | `boolean` | `false` |
 | custom-style | 自定义根节点样式 | `string` | `''` |
 | custom-class | 自定义根节点样式类 | `string` | `''` |
 

@@ -247,8 +247,8 @@ useConfigProvider({ themeVars })
 | --- | --- | --- | --- |
 | theme | Theme style, optional values are `light`, `dark` | string | `light` |
 | theme-vars | Custom theme variables | `ConfigProviderThemeVars` | `{}` |
-| custom-class ^(1.3.9) | Root node custom style class | string | `''` |
-| custom-style ^(1.3.9) | Root node custom style | string | `''` |
+| custom-class | Root node custom style class | string | `''` |
+| custom-style | Root node custom style | string | `''` |
 
 ## ConfigProvider Slots
 

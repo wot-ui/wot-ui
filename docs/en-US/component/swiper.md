@@ -196,7 +196,7 @@ Fully customize indicator display through the `indicator` slot.
 
 ## Special Styles
 
-### Video Carousel ^(1.3.13)
+### Video Carousel
 
 ```html
 <wd-swiper :list="videoList" autoplay :indicator="{ type: 'fraction' }" indicator-position="top-right"></wd-swiper>
@@ -213,7 +213,7 @@ const videoList = ref([
 ])
 ```
 
-### Manual Video Playback ^(1.3.13)
+### Manual Video Playback
 
 ```html
 <wd-swiper
@@ -225,7 +225,7 @@ const videoList = ref([
 ></wd-swiper>
 ```
 
-### Stop Carousel When Playing Video ^(1.3.13)
+### Stop Carousel When Playing Video
 
 ```html
 <wd-swiper
@@ -281,8 +281,8 @@ Customize carousel item content through the default slot.
 | interval | Auto-play interval time, unit is `ms` | `number` | `5000` |
 | list | Carousel data list, supports string array or object array | <code>string[] &#124; SwiperItem[]</code> | `[]` |
 | loop | Whether to loop playback | `boolean` | `true` |
-| video-loop ^(1.6.0) | Whether video loops playback | `boolean` | `true` |
-| muted ^(1.6.0) | Whether video plays muted | `boolean` | `true` |
+| video-loop | Whether video loops playback | `boolean` | `true` |
+| muted | Whether video plays muted | `boolean` | `true` |
 | next-margin | Rear margin | <code>string &#124; number</code> | `0` |
 | indicator-position | Indicator position, optional values are `left`, `top-left`, `top`, `top-right`, `bottom-left`, `bottom`, `bottom-right`, `right` | `IndicatorPositionType` | `bottom` |
 | previous-margin | Front margin | <code>string &#124; number</code> | `0` |
@@ -291,13 +291,13 @@ Customize carousel item content through the default slot.
 | indicator | Indicator configuration, pass `false` to hide indicator | <code>boolean &#124; Partial&lt;SwiperIndicatorProps&gt;</code> | `true` |
 | image-mode | Image cropping mode, refer to uni-app Image component `mode` | `ImageMode` | `aspectFill` |
 | show-menu-by-longpress | Whether to enable long-press image to show QR code recognition menu | `boolean` | `false` |
-| value-key ^(1.3.7) | Image address field name in option objects | `string` | `value` |
-| text-key ^(1.3.13) | Title field name in option objects | `string` | `text` |
-| autoplay-video ^(1.3.13) | Whether video auto-plays | `boolean` | `true` |
-| stop-previous-video ^(1.3.13) | Whether to stop previous video playback when switching carousel items | `boolean` | `true` |
-| stop-autoplay-when-video-play ^(1.3.13) | Whether to stop auto-play when video is playing | `boolean` | `false` |
-| adjust-height ^(1.3.13) | Automatically adjust container height based on item height, optional values are `first`, `current`, `highest`, `none`, only supported on Alipay Mini Program | `AdjustHeightType` | `highest` |
-| adjust-vertical-height ^(1.3.13) | Force `adjust-height` to take effect when `vertical` is `true`, only supported on Alipay Mini Program | `boolean` | `false` |
+| value-key | Image address field name in option objects | `string` | `value` |
+| text-key | Title field name in option objects | `string` | `text` |
+| autoplay-video | Whether video auto-plays | `boolean` | `true` |
+| stop-previous-video | Whether to stop previous video playback when switching carousel items | `boolean` | `true` |
+| stop-autoplay-when-video-play | Whether to stop auto-play when video is playing | `boolean` | `false` |
+| adjust-height | Automatically adjust container height based on item height, optional values are `first`, `current`, `highest`, `none`, only supported on Alipay Mini Program | `AdjustHeightType` | `highest` |
+| adjust-vertical-height | Force `adjust-height` to take effect when `vertical` is `true`, only supported on Alipay Mini Program | `boolean` | `false` |
 | custom-indicator-class | Custom indicator class name | `string` | `''` |
 | custom-image-class | Custom image class name | `string` | `''` |
 | custom-prev-image-class | Custom previous image class name | `string` | `''` |
@@ -340,7 +340,7 @@ Transition easing animation type, optional values are `default`, `linear`, `ease
 
 Indicator position, optional values are `left`, `top-left`, `top`, `top-right`, `bottom-left`, `bottom`, `bottom-right`, `right`.
 
-### AdjustHeightType ^(1.3.13)
+### AdjustHeightType
 
 Auto height strategy, optional values are `first`, `current`, `highest`, `none`.
 
@@ -356,7 +356,7 @@ Carousel item object configuration, supports extended fields.
 | --- | --- | --- | --- |
 | value | Image or video address | `string` | - |
 | poster | Video cover address | `string` | - |
-| type ^(1.4.0) | Resource type, optional values are `image`, `video` | `SwiperItemType` | - |
+| type | Resource type, optional values are `image`, `video` | `SwiperItemType` | - |
 
 ### SwiperIndicator Attributes
 

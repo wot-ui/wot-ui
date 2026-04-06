@@ -221,7 +221,7 @@
 | square | 是否将格子固定为正方形 | `boolean` | `false` |
 | clickable | 是否开启格子点击反馈 | `boolean` | `false` |
 | bg-color | 背景颜色设置 | `string` | - |
-| hover-class ^(1.9.0) | 指定 grid-item 按下去的样式类 | `string` | `'wd-grid-item__content--hover'` |
+| hover-class | 指定 grid-item 按下去的样式类 | `string` | `'wd-grid-item__content--hover'` |
 | center | 是否将格子内容居中显示 | `boolean` | `true` |
 | direction | 格子内容排列的方向，可选值为 `horizontal`、`vertical` | `string` | `'vertical'` |
 | reverse | 是否调换图标和文本的位置 | `boolean` | `false` |
@@ -241,7 +241,7 @@
 | is-dot | 是否显示图标右上角小红点 | `boolean` | `false` |
 | value | 图标右上角徽标显示值 | `string \| number` | - |
 | max | 图标右上角徽标最大值，超过最大值会显示 `{max}+` | `number` | `99` |
-| badge-props ^(0.1.50) | 自定义徽标属性，透传给 [Badge 组件](/component/badge#attributes) | `BadgeProps` | - |
+| badge-props | 自定义徽标属性，透传给 [Badge 组件](/component/badge#attributes) | `BadgeProps` | - |
 | url | 点击后跳转的链接地址 | `string` | - |
 | link-type | 页面跳转方式，可选值为 `navigateTo`、`switchTab`、`reLaunch`、`redirectTo` | `string` | `'navigateTo'` |
 | custom-class | 根节点自定义类名 | `string` | `''` |

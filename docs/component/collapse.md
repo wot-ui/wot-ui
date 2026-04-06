@@ -114,10 +114,6 @@ const beforeExpend = (name: string) => {
 
 `collapse` 支持嵌套。由于 `collapse-item` 内容容器存在默认 `padding`，嵌套时建议用 `custom-body-style` 或 `custom-body-class` 覆盖。
 
-::: tip 提示
-`custom-body-style` 和 `custom-body-class` 在 `^(1.4.0)` 及以上版本支持。
-:::
-
 ```html
 <wd-collapse v-model="collapseRoot">
   <wd-collapse-item v-for="item in 5" :key="item" :name="`${item}`" :title="`标签${item}`" custom-body-style="padding:0 0 0 14px">
@@ -155,8 +151,8 @@ collapseRef.value?.toggleAll({ expanded: true, skipDisabled: true })
 | disabled | 是否禁用该折叠栏 | boolean | false |
 | before-expend | 打开前拦截函数，接收 `name` 参数，返回 `boolean` 或 `Promise<boolean>` | `CollapseItemBeforeExpand` | - |
 | border | 是否显示边框 | boolean | true |
-| custom-body-class ^(1.4.0) | 折叠栏内容容器自定义类名 | string | `''` |
-| custom-body-style ^(1.4.0) | 折叠栏内容容器自定义样式 | string | `''` |
+| custom-body-class | 折叠栏内容容器自定义类名 | string | `''` |
+| custom-body-style | 折叠栏内容容器自定义样式 | string | `''` |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 

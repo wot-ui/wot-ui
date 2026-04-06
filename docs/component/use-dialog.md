@@ -175,8 +175,8 @@ const openBeforeConfirm = () => {
 | showCancelButton | 是否显示取消按钮 | boolean | `alert` 为 false，`confirm/prompt` 为 true |
 | confirmButtonText | 确认按钮文案 | string | - |
 | cancelButtonText | 取消按钮文案 | string | - |
-| confirmButtonProps ^(1.5.0) | 确认按钮配置，支持字符串、对象或 `null` | DialogBoxButtonOption | `{}` |
-| cancelButtonProps ^(1.5.0) | 取消按钮配置，支持字符串、对象或 `null` | DialogBoxButtonOption | 由 `showCancelButton` 推导 |
+| confirmButtonProps | 确认按钮配置，支持字符串、对象或 `null` | DialogBoxButtonOption | `{}` |
+| cancelButtonProps | 取消按钮配置，支持字符串、对象或 `null` | DialogBoxButtonOption | 由 `showCancelButton` 推导 |
 | actions | 自定义操作按钮数组；配置后优先级高于确认/取消按钮 | DialogAction[] | - |
 | closeOnClickModal | 是否支持点击遮罩关闭 | boolean | false |
 | showClose | 是否显示右上角关闭按钮 | boolean | false |

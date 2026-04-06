@@ -207,10 +207,10 @@ function changeSearchType({ item }) {
 | disabled | 是否禁用搜索框 | `boolean` | `false` |
 | maxlength | 原生属性，设置最大长度，`-1` 表示无限制 | `number \| string` | `-1` |
 | placeholder-left | placeholder 是否左对齐 | `boolean` | `false` |
-| focus ^(0.1.63) | 是否自动聚焦 | `boolean` | `false` |
-| focus-when-clear ^(0.1.63) | 是否在点击清空按钮后聚焦输入框 | `boolean` | `false` |
-| placeholder-style ^(1.6.0) | 原生属性，指定 placeholder 的样式，目前仅支持 `color`、`font-size` 和 `font-weight` | `string` | - |
-| placeholder-class ^(1.6.0) | 原生属性，指定 placeholder 的样式类 | `string` | `''` |
+| focus | 是否自动聚焦 | `boolean` | `false` |
+| focus-when-clear | 是否在点击清空按钮后聚焦输入框 | `boolean` | `false` |
+| placeholder-style | 原生属性，指定 placeholder 的样式，目前仅支持 `color`、`font-size` 和 `font-weight` | `string` | - |
+| placeholder-class | 原生属性，指定 placeholder 的样式类 | `string` | `''` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 
@@ -224,7 +224,7 @@ function changeSearchType({ item }) {
 | clear | 点击清空按钮时触发 | - |
 | cancel | 点击右侧文本时触发 | `{ value }` |
 | change | 输入框内容变化时触发 | `{ value }` |
-| click ^(1.14.0) | 禁用状态下点击组件时触发 | - |
+| click | 禁用状态下点击组件时触发 | - |
 
 ## Slots
 

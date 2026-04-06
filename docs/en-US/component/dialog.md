@@ -348,8 +348,8 @@ const openOpenTypeDialog = () => {
 | showCancelButton | Whether to show cancel button | `boolean` | `alert` is false, `confirm/prompt` is true |
 | confirmButtonText | Confirm button text | `string` | - |
 | cancelButtonText | Cancel button text | `string` | - |
-| confirmButtonProps ^(1.5.0) | Confirm button advanced configuration, supports passing string, object or `null` | `DialogBoxButtonOption` | `{}` |
-| cancelButtonProps ^(1.5.0) | Cancel button advanced configuration, supports passing string, object or `null` | `DialogBoxButtonOption` | Derived from `showCancelButton` |
+| confirmButtonProps | Confirm button advanced configuration, supports passing string, object or `null` | `DialogBoxButtonOption` | `{}` |
+| cancelButtonProps | Cancel button advanced configuration, supports passing string, object or `null` | `DialogBoxButtonOption` | Derived from `showCancelButton` |
 | actions | Custom action button array, takes priority over confirm/cancel buttons after configuration | `DialogAction[]` | - |
 | closeOnClickModal | Whether to support clicking mask to close (returns action as `modal`) | `boolean` | `false` |
 | showClose | Whether to show top right close button | `boolean` | `false` |
@@ -362,7 +362,7 @@ const openOpenTypeDialog = () => {
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | selector | Specify unique identifier, used to distinguish multiple instances in page | `string` | `''` |
-| root-portal ^(1.11.0) | Whether to detach from page document flow rendering, used to solve fixed invalidation problem | `boolean` | `false` |
+| root-portal | Whether to detach from page document flow rendering, used to solve fixed invalidation problem | `boolean` | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

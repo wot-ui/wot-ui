@@ -175,8 +175,8 @@ const openBeforeConfirm = () => {
 | showCancelButton | Whether to show cancel button | boolean | `alert` is false, `confirm/prompt` is true |
 | confirmButtonText | Confirm button text | string | - |
 | cancelButtonText | Cancel button text | string | - |
-| confirmButtonProps ^(1.5.0) | Confirm button configuration, supports string, object or `null` | DialogBoxButtonOption | `{}` |
-| cancelButtonProps ^(1.5.0) | Cancel button configuration, supports string, object or `null` | DialogBoxButtonOption | Derived from `showCancelButton` |
+| confirmButtonProps | Confirm button configuration, supports string, object or `null` | DialogBoxButtonOption | `{}` |
+| cancelButtonProps | Cancel button configuration, supports string, object or `null` | DialogBoxButtonOption | Derived from `showCancelButton` |
 | actions | Custom action button array; higher priority than confirm/cancel buttons after configuration | DialogAction[] | - |
 | closeOnClickModal | Whether to support closing by clicking mask | boolean | false |
 | showClose | Whether to show top-right close button | boolean | false |

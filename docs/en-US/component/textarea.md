@@ -119,8 +119,8 @@ For current form scenarios, it is recommended to have `wd-form` and `wd-form-ite
 | maxlength | Maximum input length, set to `-1` for unlimited length | `number` | `-1` |
 | clearable | Whether to show clear button | `boolean` | `false` |
 | show-word-limit | Whether to show word count, requires `maxlength` to be set | `boolean` | `false` |
-| clear-trigger ^(1.3.7) | Clear button display timing, optional values are `focus`, `always` | `InputClearTrigger` | `always` |
-| focus-when-clear ^(1.3.7) | Whether to auto-focus after clicking clear button | `boolean` | `true` |
+| clear-trigger | Clear button display timing, optional values are `focus`, `always` | `InputClearTrigger` | `always` |
+| focus-when-clear | Whether to auto-focus after clicking clear button | `boolean` | `true` |
 | error | Whether to show error state | `boolean` | `false` |
 | focus | Whether to get focus | `boolean` | `false` |
 | auto-focus | Whether to auto-focus and bring up keyboard | `boolean` | `false` |
@@ -136,9 +136,9 @@ For current form scenarios, it is recommended to have `wd-form` and `wd-form-ite
 | adjust-position | Whether to automatically push up page when keyboard pops up | `boolean` | `true` |
 | disable-default-padding | Whether to remove default padding on iOS | `boolean` | `false` |
 | hold-keyboard | Whether to keep keyboard open when clicking page while focused | `boolean` | `false` |
-| ignore-composition-event ^(1.3.11) | Whether to ignore text composition system event processing; when `false`, composition-related events will be triggered, and `input` will be triggered during composition | `boolean` | `true` |
-| inputmode ^(1.5.0) | Input mode hint, optional values are `none`, `text`, `decimal`, `numeric`, `tel`, `search`, `email`, `url` | `InputMode` | `text` |
-| enable-native ^(1.14.0) | Whether to enable native input box in Alipay Mini Program, set to `false` to avoid content shifting up after keyboard pops up | `boolean` | `true` |
+| ignore-composition-event | Whether to ignore text composition system event processing; when `false`, composition-related events will be triggered, and `input` will be triggered during composition | `boolean` | `true` |
+| inputmode | Input mode hint, optional values are `none`, `text`, `decimal`, `numeric`, `tel`, `search`, `email`, `url` | `InputMode` | `text` |
+| enable-native | Whether to enable native input box in Alipay Mini Program, set to `false` to avoid content shifting up after keyboard pops up | `boolean` | `true` |
 | compact | Whether to enable compact mode; when not explicitly set, it will be automatically enabled in `wd-form-item` | `boolean` | - |
 | custom-textarea-class | Textarea custom class name | `string` | `''` |
 | custom-class | Root node custom class name | `string` | `''` |

@@ -149,10 +149,10 @@ In `radio` mode, you can hide the confirm button with `show-confirm="false"` to 
 | safe-area-inset-bottom | Whether to adapt to bottom safe area | `boolean` | `true` |
 | filterable | Whether to support local search | `boolean` | `false` |
 | filter-placeholder | Search box placeholder | `string` | `'Search'` |
-| scroll-into-view ^(0.1.34) | Whether to scroll to selected item when reopened | `boolean` | `true` |
+| scroll-into-view | Whether to scroll to selected item when reopened | `boolean` | `true` |
 | custom-content-class | Custom popup content area class name | `string` | `''` |
-| show-confirm ^(1.2.8) | Whether to show confirm button, only effective in `radio` mode | `boolean` | `true` |
-| root-portal ^(1.11.0) | Whether to detach from page structure, used to solve fixed positioning issues | `boolean` | `false` |
+| show-confirm | Whether to show confirm button, only effective in `radio` mode | `boolean` | `true` |
+| root-portal | Whether to detach from page structure, used to solve fixed positioning issues | `boolean` | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 
@@ -172,7 +172,7 @@ In `radio` mode, you can hide the confirm button with `show-confirm="false"` to 
 | cancel | Triggered when clicking close button or mask to close | - |
 | confirm | Triggered when clicking confirm | `{ value, selectedItems }` |
 | open | Triggered when popup opens | - |
-| close ^(1.2.29) | Triggered when popup closes | - |
+| close | Triggered when popup closes | - |
 
 ## Methods
 

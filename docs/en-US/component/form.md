@@ -734,11 +734,11 @@ function handleValidate() {
 
 | Parameter | Description | Type | Default Value |
 | ------------- | ----------------------------------------------------------------------------------- | --------------------- | --------- |
-| model ^(0.2.0) | Form data object | `Record<string, any>` | - |
-| schema ^(1.16.0) | Form validation object | `FormSchema` | - |
+| model | Form data object | `Record<string, any>` | - |
+| schema | Form validation object | `FormSchema` | - |
 | validate-trigger | Validation trigger timing, optional values are `change`, `blur`, `submit` | `string \| string[]` | `submit` |
-| reset-on-change ^(0.2.16) | Whether to reset form prompt information when form data changes (when set to `false`, the developer needs to separately validate the changed item) | `boolean` | `true` |
-| error-type ^(1.3.8) | Validation error prompt method, optional values are `toast`, `message`, `none` | `string` | `message` |
+| reset-on-change | Whether to reset form prompt information when form data changes (when set to `false`, the developer needs to separately validate the changed item) | `boolean` | `true` |
+| error-type | Validation error prompt method, optional values are `toast`, `message`, `none` | `string` | `message` |
 | border | Whether to show border lines | `boolean` | `false` |
 | center | Whether to vertically center content | `boolean` | `false` |
 | size | Cell size, optional value is `large` | `string` | - |

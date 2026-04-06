@@ -63,7 +63,7 @@ const reset = () => countTo.value?.reset()
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | color | Text color | string | `''` |
-| type ^(1.3.9) | Theme type, optional values are `default`, `primary`, `success`, `warning`, `error` | string | default |
+| type | Theme type, optional values are `default`, `primary`, `success`, `warning`, `error` | string | default |
 | start-val | Starting value | number | 0 |
 | end-val | Final value | number | 2024 |
 | duration | Animation duration from start to end value (milliseconds) | number | 3000 |

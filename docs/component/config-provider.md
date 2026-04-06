@@ -252,8 +252,8 @@ useConfigProvider({ themeVars })
 | --- | --- | --- | --- |
 | theme | 主题风格，可选值为 `light`、`dark` | string | `light` |
 | theme-vars | 自定义主题变量 | `ConfigProviderThemeVars` | `{}` |
-| custom-class ^(1.3.9) | 根节点自定义样式类 | string | `''` |
-| custom-style ^(1.3.9) | 根节点自定义样式 | string | `''` |
+| custom-class | 根节点自定义样式类 | string | `''` |
+| custom-style | 根节点自定义样式 | string | `''` |
 
 ## ConfigProvider Slots
 

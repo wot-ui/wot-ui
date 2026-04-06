@@ -190,16 +190,16 @@ const displayFormatTabLabel = (items: Array<{ label: string | number }>) => {
 | max-hour | 最大小时（`time` 类型生效） | number | 23 |
 | min-minute | 最小分钟（`time` 类型生效） | number | 0 |
 | max-minute | 最大分钟（`time` 类型生效） | number | 59 |
-| use-second ^(1.10.0) | 是否显示秒选择，仅 `time` 和 `datetime` 生效 | boolean | false |
-| min-second ^(1.10.0) | 最小秒数，仅 `time` 和 `datetime` 生效 | number | 0 |
-| max-second ^(1.10.0) | 最大秒数，仅 `time` 和 `datetime` 生效 | number | 59 |
+| use-second | 是否显示秒选择，仅 `time` 和 `datetime` 生效 | boolean | false |
+| min-second | 最小秒数，仅 `time` 和 `datetime` 生效 | number | 0 |
+| max-second | 最大秒数，仅 `time` 和 `datetime` 生效 | number | 59 |
 | formatter | 自定义滚筒选项格式化函数 | DatetimePickerViewFormatter | - |
 | filter | 自定义过滤函数 | DatetimePickerViewFilter | - |
 | before-confirm | 确定前校验函数，接收 `(value)`，返回 `boolean` 或 `Promise<boolean>` | DatetimePickerBeforeConfirm | - |
 | display-format-tab-label | 区间模式下自定义 Tab 标签格式化函数 | DatetimePickerDisplayFormatTabLabel | - |
 | z-index | 弹窗层级 | number | 15 |
-| immediate-change ^(1.2.25) | 是否在手指松开时立即触发 change（仅微信/支付宝小程序） | boolean | false |
-| root-portal ^(1.11.0) | 是否脱离文档流渲染（H5: teleport，App: renderjs，小程序: root-portal） | boolean | false |
+| immediate-change | 是否在手指松开时立即触发 change（仅微信/支付宝小程序） | boolean | false |
+| root-portal | 是否脱离文档流渲染（H5: teleport，App: renderjs，小程序: root-portal） | boolean | false |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 | custom-view-class | pickerView 外部自定义样式类 | string | `''` |

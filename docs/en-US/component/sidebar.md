@@ -75,7 +75,7 @@ Set the `icon` property of `wd-sidebar-item` to display different icons in the n
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | model-value / v-model | Current active item's value | `string \| number` | `0` |
-| before-change ^(1.4.0) | Hook before switching, receives target value, returns `boolean` or `Promise<boolean>` | `function` | - |
+| before-change | Hook before switching, receives target value, returns `boolean` or `Promise<boolean>` | `function` | - |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 
@@ -104,7 +104,7 @@ Set the `icon` property of `wd-sidebar-item` to display different icons in the n
 | label | Current option title | `string` | - |
 | value | Current option value, unique identifier | `string \| number` | - |
 | badge | Badge display value | `string \| number` | - |
-| badge-props ^(0.1.50) | Custom badge properties, will be passed to Badge component | `Partial<BadgeProps>` | - |
+| badge-props | Custom badge properties, will be passed to Badge component | `Partial<BadgeProps>` | - |
 | icon | Icon name | `string` | - |
 | is-dot | Whether to display dot badge | `boolean` | `false` |
 | max | Badge maximum value | `number` | `99` |

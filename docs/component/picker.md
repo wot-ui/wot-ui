@@ -186,8 +186,8 @@ const beforeConfirm = (value: string[]) => {
 | close-on-click-modal | 点击遮罩层时是否关闭弹窗 | `boolean` | `true` |
 | z-index | 弹出层层级深度 | `number` | `15` |
 | safe-area-inset-bottom | 弹出面板是否设置默认的底部安全距离 | `boolean` | `true` |
-| immediate-change | 是否在手指松开时立即触发 `change` 而非滚动结束 ^(1.2.25) | `boolean` | `false` |
-| root-portal | 是否开启 `root-portal` 将组件脱离当前节点进行渲染 ^(1.11.0) | `boolean` | `false` |
+| immediate-change | 是否在手指松开时立即触发 `change` 而非滚动结束 | `boolean` | `false` |
+| root-portal | 是否开启 `root-portal` 将组件脱离当前节点进行渲染 | `boolean` | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 | custom-view-class | pickerView 组件的外部自定义样式类 | `string` | `''` |

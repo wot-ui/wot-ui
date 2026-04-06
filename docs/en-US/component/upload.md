@@ -77,7 +77,7 @@ Upload status feedback can be displayed through `success`, `fail` and `progress`
 <wd-upload :file-list="fileList" disabled :action="action" :success-status="[200, 201]" @change="handleChange"></wd-upload>
 ```
 
-### Manual Trigger Upload ^(1.3.8)
+### Manual Trigger Upload
 
 After setting `auto-upload="false"`, you can manually start upload through the component instance's `submit` method.
 
@@ -116,7 +116,7 @@ Limit the maximum number of files through `limit`.
 <wd-upload :file-list="fileList" :limit="3" :action="action" :success-status="[200, 201]" @change="handleChange"></wd-upload>
 ```
 
-### Overwrite Upload ^(1.5.0)
+### Overwrite Upload
 
 After setting `reupload`, re-selecting files will replace the previous item, suitable for single file overwrite scenarios like avatars.
 
@@ -142,7 +142,7 @@ The default upload evoke area can be replaced through the default slot.
 </wd-upload>
 ```
 
-### Custom Preview Style ^(1.3.12)
+### Custom Preview Style
 
 Content that covers the preview area can be customized through the `preview-cover` slot.
 
@@ -195,7 +195,7 @@ Content that covers the preview area can be customized through the `preview-cove
 <wd-upload :file-list="fileList" :action="action" :success-status="[200, 201]" @change="handleChange" :before-choose="beforeChoose"></wd-upload>
 ```
 
-### Custom Upload Method ^(1.3.8)
+### Custom Upload Method
 
 Upload behavior can be completely taken over through `upload-method`.
 
@@ -229,7 +229,7 @@ const customUpload: UploadMethod = (file, formData, options) => {
 
 :::
 
-### Filter by File Extension ^(1.9.0)
+### Filter by File Extension
 
 After setting `extension`, you can limit the suffix of selected files. H5 supports all type filtering, WeChat Mini Program supports `all` and `file` scenario filtering.
 
@@ -239,7 +239,7 @@ After setting `extension`, you can limit the suffix of selected files. H5 suppor
 
 ## Business Capabilities
 
-### Upload to Cloud Storage ^(0.1.61)
+### Upload to Cloud Storage
 
 `build-form-data` is used to dynamically build signature fields before actual upload, suitable for connecting to OSS, COS, OBS and other cloud storage services.
 
@@ -272,7 +272,7 @@ function buildFormData({ file, formData }) {
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| file-list / v-model:file-list ^(1.3.8) | Upload file list, for example `[{ url: 'https://xxx.cdn.com/xxx.jpg' }]` | `UploadFile[]` | `[]` |
+| file-list / v-model:file-list | Upload file list, for example `[{ url: 'https://xxx.cdn.com/xxx.jpg' }]` | `UploadFile[]` | `[]` |
 | action | Upload address | `string` | `''` |
 | header | Upload request header | `Record<string, any>` | `{}` |
 | multiple | Whether to support multiple file selection | `boolean` | `false` |
@@ -289,23 +289,23 @@ function buildFormData({ file, formData }) {
 | before-choose | Select file pre-hook | `UploadBeforeChoose` | - |
 | before-remove | Delete file pre-hook | `UploadBeforeRemove` | - |
 | before-preview | Image preview pre-hook | `UploadBeforePreview` | - |
-| build-form-data ^(0.1.61) | Hook for dynamically building upload `formData` | `UploadBuildFormData` | - |
+| build-form-data | Hook for dynamically building upload `formData` | `UploadBuildFormData` | - |
 | loading-type | Loading icon type | `LoadingType` | `circular` |
 | loading-color | Loading icon color | `string` | `#ffffff` |
 | loading-size | Loading icon size | `string` | `24px` |
-| accept ^(1.3.0) | Accepted file types, optional values are `image`, `video`, `media`, `all`, `file` | `UploadFileType` | `image` |
+| accept | Accepted file types, optional values are `image`, `video`, `media`, `all`, `file` | `UploadFileType` | `image` |
 | status-key | The key corresponding to the status field in `file` data structure | `string` | `status` |
-| compressed ^(1.3.0) | Whether to compress video, effective when `accept` is `video` or `media` | `boolean` | `true` |
-| max-duration ^(1.3.0) | Maximum video recording duration, in seconds | `number` | `60` |
-| camera ^(1.3.0) | Use front or back camera, optional values are `front`, `back` | `UploadCameraType` | `back` |
+| compressed | Whether to compress video, effective when `accept` is `video` or `media` | `boolean` | `true` |
+| max-duration | Maximum video recording duration, in seconds | `number` | `60` |
+| camera | Use front or back camera, optional values are `front`, `back` | `UploadCameraType` | `back` |
 | image-mode | `mode` property for preview image | `ImageMode` | `aspectFit` |
-| success-status ^(1.3.4) | Interface response success status code | `number \| number[]` | `200` |
+| success-status | Interface response success status code | `number \| number[]` | `200` |
 | custom-evoke-class | Custom upload button style class | `string` | `''` |
 | custom-preview-class | Custom preview list style class | `string` | `''` |
-| auto-upload ^(1.3.8) | Whether to auto-upload after selecting files, needs to manually call `submit` when closed | `boolean` | `true` |
-| reupload ^(1.5.0) | Whether to enable overwrite upload, will close image preview when enabled | `boolean` | `false` |
-| upload-method ^(1.3.8) | Custom upload method | `UploadMethod` | - |
-| extension ^(1.9.0) | Filter by file extension, H5 supports all type filtering, WeChat Mini Program supports `all` and `file` scenario filtering | `string[]` | - |
+| auto-upload | Whether to auto-upload after selecting files, needs to manually call `submit` when closed | `boolean` | `true` |
+| reupload | Whether to enable overwrite upload, will close image preview when enabled | `boolean` | `false` |
+| upload-method | Custom upload method | `UploadMethod` | - |
+| extension | Filter by file extension, H5 supports all type filtering, WeChat Mini Program supports `all` and `file` scenario filtering | `string[]` | - |
 | custom-class | Root node custom style class | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 
@@ -314,10 +314,10 @@ function buildFormData({ file, formData }) {
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | image | Image, supported on all platforms, WeChat Mini Program uses `chooseMedia` implementation | `UploadFileType` | - |
-| video ^(1.3.0) | Video, supported on all platforms, WeChat Mini Program uses `chooseMedia` implementation | `UploadFileType` | - |
-| media ^(1.3.0) | Image and video, only supported on WeChat Mini Program, uses `chooseMedia` implementation | `UploadFileType` | - |
-| file ^(1.3.0) | Regular file, only supported on WeChat Mini Program, uses `chooseMessageFile` implementation | `UploadFileType` | - |
-| all ^(1.3.0) | All file types, only supported on WeChat Mini Program and H5 | `UploadFileType` | - |
+| video | Video, supported on all platforms, WeChat Mini Program uses `chooseMedia` implementation | `UploadFileType` | - |
+| media | Image and video, only supported on WeChat Mini Program, uses `chooseMedia` implementation | `UploadFileType` | - |
+| file | Regular file, only supported on WeChat Mini Program, uses `chooseMessageFile` implementation | `UploadFileType` | - |
+| all | All file types, only supported on WeChat Mini Program and H5 | `UploadFileType` | - |
 
 ## file Data Structure
 
@@ -337,7 +337,7 @@ function buildFormData({ file, formData }) {
 | Name | Description |
 | --- | --- |
 | default | Custom upload evoke area |
-| preview-cover ^(1.3.12) | Custom content covering above the preview area, parameters are `{ file, index }` |
+| preview-cover | Custom content covering above the preview area, parameters are `{ file, index }` |
 
 ## Upload Events
 
@@ -350,11 +350,11 @@ function buildFormData({ file, formData }) {
 | chooseerror | Triggered when file selection fails | `any` |
 | change | Triggered when upload list changes | `UploadChangeEvent` |
 | remove | Triggered when file is removed | `UploadRemoveEvent` |
-| update:fileList ^(1.3.8) | Update event corresponding to `v-model:file-list` | `UploadFileItem[]` |
+| update:fileList | Update event corresponding to `v-model:file-list` | `UploadFileItem[]` |
 
 ## Upload Methods
 
 | Method Name | Description | Parameters |
 | --- | --- | --- |
-| submit ^(1.3.8) | Manually start upload | - |
+| submit | Manually start upload | - |
 | abort | Cancel upload | `(task?: UniApp.UploadTask) => void` |

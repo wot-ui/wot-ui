@@ -124,10 +124,10 @@ const filter = ({ type, values }: { type: string; values: number[] }) => {
 | max-hour | Maximum hour (effective for `time` type) | number | 23 |
 | min-minute | Minimum minute (effective for `time` type) | number | 0 |
 | max-minute | Maximum minute (effective for `time` type) | number | 59 |
-| use-second ^(1.10.0) | Whether to display seconds selection, only effective for `time` and `datetime` | boolean | false |
-| min-second ^(1.10.0) | Minimum seconds, only effective for `time` and `datetime` | number | 0 |
-| max-second ^(1.10.0) | Maximum seconds, only effective for `time` and `datetime` | number | 59 |
-| immediate-change ^(1.2.25) | Whether to trigger change immediately when finger is released (WeChat/Alipay Mini Program only) | boolean | false |
+| use-second | Whether to display seconds selection, only effective for `time` and `datetime` | boolean | false |
+| min-second | Minimum seconds, only effective for `time` and `datetime` | number | 0 |
+| max-second | Maximum seconds, only effective for `time` and `datetime` | number | 59 |
+| immediate-change | Whether to trigger change immediately when finger is released (WeChat/Alipay Mini Program only) | boolean | false |
 | boundary-min-date | Range mode start time minimum boundary (for linkage) | number | - |
 | boundary-max-date | Range mode end time maximum boundary (for linkage) | number | - |
 | custom-class | Custom class name for root node | string | `''` |

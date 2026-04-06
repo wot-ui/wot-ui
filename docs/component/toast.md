@@ -132,21 +132,21 @@ toast.success({
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | selector | 唯一挂载标识，多实例场景下用于区分不同 toast | `string` | `''` |
-| msg ^(1.7.0) | 默认提示文案 | `string` | `''` |
-| direction ^(1.7.0) | 默认排版方向，可选值为 `horizontal`、`vertical` | `ToastDirection` | `horizontal` |
-| icon-name ^(1.7.0) | 默认图标类型，可选值为 `success`、`error`、`warning`、`loading`、`info` | `ToastIconType` | `''` |
-| icon-size ^(1.7.0) | 默认图标大小 | `number` | - |
-| loading-type ^(1.7.0) | 默认加载图标类型，可选值为 `circular`、`spinner`、`dots` | `ToastLoadingType` | `circular` |
-| loading-color ^(1.7.0) | 默认加载图标颜色 | `string` | `#ffffff` |
-| loading-size ^(1.7.0) | 默认加载图标大小 | `number` | - |
-| icon-color ^(1.7.0) | 默认图标颜色 | `string` | - |
-| position ^(1.7.0) | 默认提示位置，可选值为 `top`、`middle-top`、`middle`、`bottom` | `ToastPositionType` | `middle` |
-| z-index ^(1.7.0) | 默认层级 | `number` | `100` |
-| cover ^(1.7.0) | 是否显示透明遮罩层 | `boolean` | `false` |
-| icon-class ^(1.7.0) | 默认图标类名 | `string` | `''` |
-| class-prefix ^(1.7.0) | 图标类名前缀 | `string` | `wd-icon` |
-| opened ^(1.7.0) | 完全展示后的回调 | <code>() =&gt; void</code> | - |
-| closed ^(1.7.0) | 完全关闭后的回调 | <code>() =&gt; void</code> | - |
+| msg | 默认提示文案 | `string` | `''` |
+| direction | 默认排版方向，可选值为 `horizontal`、`vertical` | `ToastDirection` | `horizontal` |
+| icon-name | 默认图标类型，可选值为 `success`、`error`、`warning`、`loading`、`info` | `ToastIconType` | `''` |
+| icon-size | 默认图标大小 | `number` | - |
+| loading-type | 默认加载图标类型，可选值为 `circular`、`spinner`、`dots` | `ToastLoadingType` | `circular` |
+| loading-color | 默认加载图标颜色 | `string` | `#ffffff` |
+| loading-size | 默认加载图标大小 | `number` | - |
+| icon-color | 默认图标颜色 | `string` | - |
+| position | 默认提示位置，可选值为 `top`、`middle-top`、`middle`、`bottom` | `ToastPositionType` | `middle` |
+| z-index | 默认层级 | `number` | `100` |
+| cover | 是否显示透明遮罩层 | `boolean` | `false` |
+| icon-class | 默认图标类名 | `string` | `''` |
+| class-prefix | 图标类名前缀 | `string` | `wd-icon` |
+| opened | 完全展示后的回调 | <code>() =&gt; void</code> | - |
+| closed | 完全关闭后的回调 | <code>() =&gt; void</code> | - |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

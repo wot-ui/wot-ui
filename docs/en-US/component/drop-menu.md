@@ -78,7 +78,7 @@ Set `direction` to `up` to make menu expand upward.
 </wd-drop-menu>
 ```
 
-### Async Open/Close ^(1.3.7)
+### Async Open/Close
 
 `before-toggle` triggers before menu opens/closes, receives `{ status }`, supports returning `boolean` or `Promise<boolean>`.
 
@@ -136,7 +136,7 @@ Can combine with layout components to achieve filter bar linkage display.
 </view>
 ```
 
-### Custom Menu Icon ^(1.3.7)
+### Custom Menu Icon
 
 Can set right icon through `icon`, set icon size through `icon-size`.
 
@@ -209,14 +209,14 @@ const handleOpened = () => {
 | title | Menu title, after setting, title text is displayed with priority | `string` | - |
 | icon | Menu right icon | `string` | `'caret-down'` |
 | icon-size | Menu icon size | `string \| number` | - |
-| before-toggle ^(1.3.7) | Menu toggle pre-interception function, receives `{ status }`, returns `boolean` or `Promise<boolean>` | `DropMenuItemBeforeToggle` | - |
+| before-toggle | Menu toggle pre-interception function, receives `{ status }`, returns `boolean` or `Promise<boolean>` | `DropMenuItemBeforeToggle` | - |
 | value-key | Option value field name | `string` | `'value'` |
 | label-key | Option text field name | `string` | `'label'` |
 | tip-key | Option description field name | `string` | `'tip'` |
-| custom-popup-class ^(1.5.0) | Custom dropdown popup style class | `string` | `''` |
-| custom-popup-style ^(1.5.0) | Custom dropdown popup style | `string` | `''` |
-| popup-height ^(1.13.0) | Popup height, when not set, default max height is 80% | `string` | `''` |
-| root-portal ^(1.11.0) | Whether to detach from page document flow rendering, used to solve fixed invalidation problem | `boolean` | `false` |
+| custom-popup-class | Custom dropdown popup style class | `string` | `''` |
+| custom-popup-style | Custom dropdown popup style | `string` | `''` |
+| popup-height | Popup height, when not set, default max height is 80% | `string` | `''` |
+| root-portal | Whether to detach from page document flow rendering, used to solve fixed invalidation problem | `boolean` | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

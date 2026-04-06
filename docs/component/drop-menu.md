@@ -78,7 +78,7 @@ const handleChange2 = ({ value }: { value: string | number }) => {
 </wd-drop-menu>
 ```
 
-### 异步打开/关闭 ^(1.3.7)
+### 异步打开/关闭
 
 `before-toggle` 在菜单打开/关闭前触发，接收 `{ status }`，支持返回 `boolean` 或 `Promise<boolean>`。
 
@@ -136,7 +136,7 @@ const handleBeforeToggle: DropMenuItemBeforeToggle = ({ status }) => {
 </view>
 ```
 
-### 自定义菜单图标 ^(1.3.7)
+### 自定义菜单图标
 
 可通过 `icon` 设置右侧图标，通过 `icon-size` 设置图标尺寸。
 
@@ -209,14 +209,14 @@ const handleOpened = () => {
 | title | 菜单标题，设置后优先展示标题文案 | `string` | - |
 | icon | 菜单右侧图标 | `string` | `'caret-down'` |
 | icon-size | 菜单图标尺寸 | `string \| number` | - |
-| before-toggle ^(1.3.7) | 菜单开关前拦截函数，接收 `{ status }`，返回 `boolean` 或 `Promise<boolean>` | `DropMenuItemBeforeToggle` | - |
+| before-toggle | 菜单开关前拦截函数，接收 `{ status }`，返回 `boolean` 或 `Promise<boolean>` | `DropMenuItemBeforeToggle` | - |
 | value-key | 选项值字段名 | `string` | `'value'` |
 | label-key | 选项文本字段名 | `string` | `'label'` |
 | tip-key | 选项说明字段名 | `string` | `'tip'` |
-| custom-popup-class ^(1.5.0) | 自定义下拉 popup 样式类 | `string` | `''` |
-| custom-popup-style ^(1.5.0) | 自定义下拉 popup 样式 | `string` | `''` |
-| popup-height ^(1.13.0) | popup 高度，未设置时默认最大高度为 80% | `string` | `''` |
-| root-portal ^(1.11.0) | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | `boolean` | `false` |
+| custom-popup-class | 自定义下拉 popup 样式类 | `string` | `''` |
+| custom-popup-style | 自定义下拉 popup 样式 | `string` | `''` |
+| popup-height | popup 高度，未设置时默认最大高度为 80% | `string` | `''` |
+| root-portal | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | `boolean` | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

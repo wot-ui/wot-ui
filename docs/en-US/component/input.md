@@ -182,8 +182,8 @@ For the current form scenario, it is recommended to use `wd-form` and `wd-form-i
 | disabled | Whether to disable | `boolean` | `false` |
 | readonly | Whether to read only | `boolean` | `false` |
 | clearable | Whether to display the clear button | `boolean` | `false` |
-| clear-trigger ^(1.3.7) | Clear button display timing, optional values are `focus`, `always` | `InputClearTrigger` | `always` |
-| focus-when-clear ^(1.3.7) | Whether to auto focus after clicking the clear button | `boolean` | `true` |
+| clear-trigger | Clear button display timing, optional values are `focus`, `always` | `InputClearTrigger` | `always` |
+| focus-when-clear | Whether to auto focus after clicking the clear button | `boolean` | `true` |
 | show-password | Whether to display the password toggle button | `boolean` | `false` |
 | prefix-icon | Prefix icon name | `string` | - |
 | suffix-icon | Suffix icon name | `string` | - |
@@ -201,9 +201,9 @@ For the current form scenario, it is recommended to use `wd-form` and `wd-form-i
 | confirm-type | Text on the bottom right button of the keyboard, optional values are `done`, `go`, `next`, `search`, `send` | `InputConfirmType` | `done` |
 | confirm-hold | Whether to keep the keyboard from closing when clicking the bottom right button of the keyboard | `boolean` | `false` |
 | always-embed | Whether to force input to be in the same layer state, only valid for WeChat Mini Program iOS | `boolean` | `false` |
-| ignore-composition-event ^(1.3.11) | Whether to ignore text composition system event processing; when `false`, composition related events will be triggered, and `input` will be triggered during composition | `boolean` | `true` |
-| inputmode ^(1.5.0) | Input mode hint, optional values are `none`, `text`, `decimal`, `numeric`, `tel`, `search`, `email`, `url` | `InputMode` | `text` |
-| enable-native ^(1.14.0) | Whether to enable native input box in Alipay Mini Program, set to `false` to avoid content shifting up after the keyboard pops up | `boolean` | `true` |
+| ignore-composition-event | Whether to ignore text composition system event processing; when `false`, composition related events will be triggered, and `input` will be triggered during composition | `boolean` | `true` |
+| inputmode | Input mode hint, optional values are `none`, `text`, `decimal`, `numeric`, `tel`, `search`, `email`, `url` | `InputMode` | `text` |
+| enable-native | Whether to enable native input box in Alipay Mini Program, set to `false` to avoid content shifting up after the keyboard pops up | `boolean` | `true` |
 | custom-input-class | Input box custom class name | `string` | `''` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |

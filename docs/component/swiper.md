@@ -196,7 +196,7 @@ const customSwiperList = ref([
 
 ## 特殊样式
 
-### 视频轮播 ^(1.3.13)
+### 视频轮播
 
 ```html
 <wd-swiper :list="videoList" autoplay :indicator="{ type: 'fraction' }" indicator-position="top-right"></wd-swiper>
@@ -213,7 +213,7 @@ const videoList = ref([
 ])
 ```
 
-### 手动播放视频 ^(1.3.13)
+### 手动播放视频
 
 ```html
 <wd-swiper
@@ -225,7 +225,7 @@ const videoList = ref([
 ></wd-swiper>
 ```
 
-### 播放视频时停止轮播 ^(1.3.13)
+### 播放视频时停止轮播
 
 ```html
 <wd-swiper
@@ -281,8 +281,8 @@ const videoList = ref([
 | interval | 自动轮播间隔时间，单位为 `ms` | `number` | `5000` |
 | list | 轮播数据列表，支持字符串数组或对象数组 | <code>string[] &#124; SwiperItem[]</code> | `[]` |
 | loop | 是否循环播放 | `boolean` | `true` |
-| video-loop ^(1.6.0) | 视频是否循环播放 | `boolean` | `true` |
-| muted ^(1.6.0) | 视频是否静音播放 | `boolean` | `true` |
+| video-loop | 视频是否循环播放 | `boolean` | `true` |
+| muted | 视频是否静音播放 | `boolean` | `true` |
 | next-margin | 后边距 | <code>string &#124; number</code> | `0` |
 | indicator-position | 指示器位置，可选值为 `left`、`top-left`、`top`、`top-right`、`bottom-left`、`bottom`、`bottom-right`、`right` | `IndicatorPositionType` | `bottom` |
 | previous-margin | 前边距 | <code>string &#124; number</code> | `0` |
@@ -291,13 +291,13 @@ const videoList = ref([
 | indicator | 指示器配置，传入 `false` 时隐藏指示器 | <code>boolean &#124; Partial&lt;SwiperIndicatorProps&gt;</code> | `true` |
 | image-mode | 图片裁剪模式，取值参考 uni-app Image 组件 `mode` | `ImageMode` | `aspectFill` |
 | show-menu-by-longpress | 是否开启长按图片显示识别小程序码菜单 | `boolean` | `false` |
-| value-key ^(1.3.7) | 选项对象中图片地址字段名 | `string` | `value` |
-| text-key ^(1.3.13) | 选项对象中标题字段名 | `string` | `text` |
-| autoplay-video ^(1.3.13) | 视频是否自动播放 | `boolean` | `true` |
-| stop-previous-video ^(1.3.13) | 切换轮播项时是否停止上一个视频播放 | `boolean` | `true` |
-| stop-autoplay-when-video-play ^(1.3.13) | 视频播放时是否停止自动轮播 | `boolean` | `false` |
-| adjust-height ^(1.3.13) | 自动根据滑块高度调整容器高度，可选值为 `first`、`current`、`highest`、`none`，仅支付宝小程序支持 | `AdjustHeightType` | `highest` |
-| adjust-vertical-height ^(1.3.13) | `vertical` 为 `true` 时强制让 `adjust-height` 生效，仅支付宝小程序支持 | `boolean` | `false` |
+| value-key | 选项对象中图片地址字段名 | `string` | `value` |
+| text-key | 选项对象中标题字段名 | `string` | `text` |
+| autoplay-video | 视频是否自动播放 | `boolean` | `true` |
+| stop-previous-video | 切换轮播项时是否停止上一个视频播放 | `boolean` | `true` |
+| stop-autoplay-when-video-play | 视频播放时是否停止自动轮播 | `boolean` | `false` |
+| adjust-height | 自动根据滑块高度调整容器高度，可选值为 `first`、`current`、`highest`、`none`，仅支付宝小程序支持 | `AdjustHeightType` | `highest` |
+| adjust-vertical-height | `vertical` 为 `true` 时强制让 `adjust-height` 生效，仅支付宝小程序支持 | `boolean` | `false` |
 | custom-indicator-class | 自定义指示器类名 | `string` | `''` |
 | custom-image-class | 自定义图片类名 | `string` | `''` |
 | custom-prev-image-class | 自定义前一个图片类名 | `string` | `''` |
@@ -340,7 +340,7 @@ const videoList = ref([
 
 指示器位置，可选值为 `left`、`top-left`、`top`、`top-right`、`bottom-left`、`bottom`、`bottom-right`、`right`。
 
-### AdjustHeightType ^(1.3.13)
+### AdjustHeightType
 
 自动高度策略，可选值为 `first`、`current`、`highest`、`none`。
 
@@ -356,7 +356,7 @@ const videoList = ref([
 | --- | --- | --- | --- |
 | value | 图片或视频地址 | `string` | - |
 | poster | 视频封面地址 | `string` | - |
-| type ^(1.4.0) | 资源类型，可选值为 `image`、`video` | `SwiperItemType` | - |
+| type | 资源类型，可选值为 `image`、`video` | `SwiperItemType` | - |
 
 ### SwiperIndicator Attributes
 

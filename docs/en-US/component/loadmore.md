@@ -127,7 +127,7 @@ image {
 | loading-text | Loading state text | `string` | Internationalized text "Loading..." |
 | finished-text | Loading finished text | `string` | Internationalized text "Loaded" |
 | error-text | Loading failed text; "Click to retry" is an independent prompt text within the component, not included in this property's default value | `string` | Internationalized text "Loading failed" |
-| loading-props ^(1.3.14) | Internal `wd-loading` property configuration, type see `LoadingProps` below | `Partial<LoadingProps>` | - |
+| loading-props | Internal `wd-loading` property configuration, type see `LoadingProps` below | `Partial<LoadingProps>` | - |
 | custom-class | Custom class name for root node | `string` | `''` |
 | custom-style | Custom style for root node | `string` | `''` |
 

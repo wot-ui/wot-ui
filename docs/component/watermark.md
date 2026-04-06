@@ -77,7 +77,7 @@
 | rotate | 水印旋转角度 | `number` | `-25` |
 | z-index | 水印层级 | `number` | `1100` |
 | opacity | 水印透明度，取值范围为 `0` 到 `1` | `number` | - |
-| layout ^(1.6.0) | 水印布局，可选值为 `grid`、`staggered` | `WatermarkLayout` | `grid` |
+| layout | 水印布局，可选值为 `grid`、`staggered` | `WatermarkLayout` | `grid` |
 | custom-style | 自定义根节点样式 | `string` | `''` |
 | custom-class | 自定义根节点样式类 | `string` | `''` |
 

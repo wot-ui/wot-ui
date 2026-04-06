@@ -165,7 +165,7 @@ function handlePopupShow() {
 | 事件名称 | 说明 | 参数 |
 | --- | --- | --- |
 | change | 选项切换时触发 | `SegmentedOption` |
-| click ^(1.2.20) | 选项点击时触发 | `SegmentedOption` |
+| click | 选项点击时触发 | `SegmentedOption` |
 
 ## Methods
 

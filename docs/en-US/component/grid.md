@@ -221,7 +221,7 @@ Enable clickable state through `clickable` property, and set page jump through `
 | square | Whether to fix grid as square | `boolean` | `false` |
 | clickable | Whether to enable grid click feedback | `boolean` | `false` |
 | bg-color | Background color setting | `string` | - |
-| hover-class ^(1.9.0) | Specify grid-item pressed style class | `string` | `'wd-grid-item__content--hover'` |
+| hover-class | Specify grid-item pressed style class | `string` | `'wd-grid-item__content--hover'` |
 | center | Whether to center grid content display | `boolean` | `true` |
 | direction | Grid content arrangement direction, optional values are `horizontal`, `vertical` | `string` | `'vertical'` |
 | reverse | Whether to swap icon and text positions | `boolean` | `false` |
@@ -241,7 +241,7 @@ Enable clickable state through `clickable` property, and set page jump through `
 | is-dot | Whether to show small red dot in upper right corner of icon | `boolean` | `false` |
 | value | Badge display value in upper right corner of icon | `string \| number` | - |
 | max | Badge maximum value in upper right corner of icon, exceeding maximum will display `{max}+` | `number` | `99` |
-| badge-props ^(0.1.50) | Custom badge properties, passed to [Badge component](/component/badge#attributes) | `BadgeProps` | - |
+| badge-props | Custom badge properties, passed to [Badge component](/component/badge#attributes) | `BadgeProps` | - |
 | url | Link address to jump to after clicking | `string` | - |
 | link-type | Page jump method, optional values are `navigateTo`, `switchTab`, `reLaunch`, `redirectTo` | `string` | `'navigateTo'` |
 | custom-class | Root node custom class name | `string` | `''` |

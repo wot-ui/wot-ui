@@ -43,7 +43,7 @@ const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
 const tab = ref('a')
 ```
 
-### Use Badge ^(1.4.0)
+### Use Badge
 
 Add badges to tabs through `badge-props`.
 
@@ -198,7 +198,7 @@ function handlePopupShow() {
 | v-model | Current active item, can be index or name | `number | string` | `0` |
 | slidable-num | Threshold for automatically enabling scrollable tabs | `number` | `6` |
 | map-num | Threshold for showing navigation map | `number` | `10` |
-| map-title ^(1.4.0) | Navigation map title | `string` | - |
+| map-title | Navigation map title | `string` | - |
 | sticky | Whether to enable sticky layout | `boolean` | `false` |
 | offset-top | Sticky offset | `number` | `0` |
 | swipeable | Whether to enable gesture swipe | `boolean` | `false` |
@@ -209,8 +209,8 @@ function handlePopupShow() {
 | inactive-color | Inactive item text color | `string` | `''` |
 | animated | Whether to enable switch animation | `boolean` | `false` |
 | duration | Animation duration, in milliseconds | `number` | `300` |
-| slidable ^(1.4.0) | Whether to enable scroll navigation, optional values are `auto`, `always` | `TabsSlidable` | `auto` |
-| show-scrollbar ^(1.14.0) | Whether to show scrollbar when scrolling | `boolean` | `false` |
+| slidable | Whether to enable scroll navigation, optional values are `auto`, `always` | `TabsSlidable` | `auto` |
+| show-scrollbar | Whether to show scrollbar when scrolling | `boolean` | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 
@@ -245,7 +245,7 @@ function handlePopupShow() {
 | title | Tab title | `string` | - |
 | disabled | Whether disabled | `boolean` | `false` |
 | lazy | Whether to lazy load content | `boolean` | `true` |
-| badge-props ^(1.4.0) | Badge properties, passed to Badge component | `Partial<BadgeProps>` | - |
+| badge-props | Badge properties, passed to Badge component | `Partial<BadgeProps>` | - |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

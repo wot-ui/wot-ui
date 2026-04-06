@@ -91,10 +91,10 @@ Add `vertical` to render divider as vertical direction, default slot does not ta
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | color | Custom color, supports all valid color values | `string` | - |
-| content-position ^(1.5.0) | Content position, optional values are `left`, `center`, `right` | `DividerPosition` | `'center'` |
-| dashed ^(1.5.0) | Whether to display as dashed line | `boolean` | `false` |
-| vertical ^(1.5.0) | Whether to display as vertical divider | `boolean` | `false` |
-| hairline ^(1.5.0) | Whether to display as 0.5px thin line | `boolean` | `true` |
+| content-position | Content position, optional values are `left`, `center`, `right` | `DividerPosition` | `'center'` |
+| dashed | Whether to display as dashed line | `boolean` | `false` |
+| vertical | Whether to display as vertical divider | `boolean` | `false` |
+| hairline | Whether to display as 0.5px thin line | `boolean` | `true` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

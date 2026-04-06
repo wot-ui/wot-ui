@@ -140,17 +140,17 @@ const handleClick = () => {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model:active ^(0.1.57) | 是否激活 | `boolean` | `false` |
-| type ^(0.1.57) | 悬浮按钮类型，可选值为 `primary`、`success`、`info`、`warning`、`danger` | `FabType` | `'primary'` |
-| position ^(0.1.57) | 悬浮按钮位置，可选值为 `left-top`、`right-top`、`left-bottom`、`right-bottom`、`left-center`、`right-center`、`top-center`、`bottom-center` | `FabPosition` | `'right-bottom'` |
-| draggable ^(1.2.19) | 按钮能否拖动 | `boolean` | `false` |
-| direction ^(0.1.57) | 悬浮按钮菜单弹出方向，可选值为 `top`、`right`、`bottom`、`left` | `FabDirection` | `'top'` |
-| disabled ^(0.1.57) | 是否禁用 | `boolean` | `false` |
-| inactive-icon ^(0.1.57) | 悬浮按钮未展开时的图标 | `string` | `'plus'` |
-| active-icon ^(0.1.57) | 悬浮按钮展开时的图标 | `string` | `'close'` |
-| z-index ^(0.1.57) | 自定义悬浮按钮层级 | `number` | `99` |
-| gap ^(1.2.26) | 自定义悬浮按钮与可视区域边缘的间距 | `FabGap` | `{ top: 16, right: 16, bottom: 16, left: 16 }` |
-| expandable ^(1.3.11) | 用于控制点击时是否展开菜单，设置为 `false` 时触发 `click` 事件 | `boolean` | `true` |
+| v-model:active | 是否激活 | `boolean` | `false` |
+| type | 悬浮按钮类型，可选值为 `primary`、`success`、`info`、`warning`、`danger` | `FabType` | `'primary'` |
+| position | 悬浮按钮位置，可选值为 `left-top`、`right-top`、`left-bottom`、`right-bottom`、`left-center`、`right-center`、`top-center`、`bottom-center` | `FabPosition` | `'right-bottom'` |
+| draggable | 按钮能否拖动 | `boolean` | `false` |
+| direction | 悬浮按钮菜单弹出方向，可选值为 `top`、`right`、`bottom`、`left` | `FabDirection` | `'top'` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| inactive-icon | 悬浮按钮未展开时的图标 | `string` | `'plus'` |
+| active-icon | 悬浮按钮展开时的图标 | `string` | `'close'` |
+| z-index | 自定义悬浮按钮层级 | `number` | `99` |
+| gap | 自定义悬浮按钮与可视区域边缘的间距 | `FabGap` | `{ top: 16, right: 16, bottom: 16, left: 16 }` |
+| expandable | 用于控制点击时是否展开菜单，设置为 `false` 时触发 `click` 事件 | `boolean` | `true` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 
@@ -167,18 +167,18 @@ const handleClick = () => {
 
 | 事件名称 | 说明 | 参数 |
 | --- | --- | --- |
-| click | `expandable` 设置为 `false` 时，点击悬浮组件内部但不触发内部逻辑时则抛出版事件 ^(1.3.11) | - |
+| click | `expandable` 设置为 `false` 时，点击悬浮组件内部但不触发内部逻辑时则抛出版事件 | - |
 
 ## Methods
 
 | 方法名 | 说明 | 参数 |
 | --- | --- | --- |
-| open | 展开菜单 ^(0.1.57) | - |
-| close | 收起菜单 ^(0.1.57) | - |
+| open | 展开菜单 | - |
+| close | 收起菜单 | - |
 
 ## Slots
 
 | name | 说明 |
 | --- | --- |
-| default | 动作按钮区域内容 ^(0.1.57) |
-| trigger | 触发器插槽，用于完全自定义点击触发锚点区域 ^(1.3.11) |
+| default | 动作按钮区域内容 |
+| trigger | 触发器插槽，用于完全自定义点击触发锚点区域 |

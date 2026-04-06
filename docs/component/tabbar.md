@@ -251,7 +251,7 @@ const tabbar = ref(1)
 | value | 徽标显示值 | `number \| string` | - |
 | is-dot | 是否显示点状徽标 | `boolean` | `false` |
 | max | 徽标最大值 | `number` | `99` |
-| badge-props ^(0.1.50) | 自定义徽标属性，会透传给 Badge 组件 | `BadgeProps` | - |
+| badge-props | 自定义徽标属性，会透传给 Badge 组件 | `BadgeProps` | - |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

@@ -303,9 +303,9 @@ const onDelete = () => showToast('Delete')
 | lock-scroll | Whether to lock background scrolling | `boolean` | `true` |
 | safe-area-inset-bottom | Whether to adapt to bottom safe area | `boolean` | `true` |
 | extra-key | Extra key, can pass single string or string array; `custom` mode supports two extra keys | `string \| string[]` | - |
-| root-portal ^(1.11.0) | Whether to detach from page structure, used to solve fixed positioning issues | `boolean` | `false` |
-| v-model:car-lang ^(1.13.0) | License plate keyboard language mode, effective when `mode=car`, optional values are `zh`, `en` | `CarKeyboardLang` | - |
-| auto-switch-lang ^(1.13.0) | Whether to automatically switch license plate keyboard language, effective when `mode=car` and `car-lang` is in uncontrolled state | `boolean` | `false` |
+| root-portal | Whether to detach from page structure, used to solve fixed positioning issues | `boolean` | `false` |
+| v-model:car-lang | License plate keyboard language mode, effective when `mode=car`, optional values are `zh`, `en` | `CarKeyboardLang` | - |
+| auto-switch-lang | Whether to automatically switch license plate keyboard language, effective when `mode=car` and `car-lang` is in uncontrolled state | `boolean` | `false` |
 | custom-class | Custom class name for root node | `string` | `''` |
 | custom-style | Custom style for root node | `string` | `''` |
 

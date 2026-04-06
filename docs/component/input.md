@@ -182,8 +182,8 @@ function handleInput(event) {
 | disabled | 是否禁用 | `boolean` | `false` |
 | readonly | 是否只读 | `boolean` | `false` |
 | clearable | 是否显示清空按钮 | `boolean` | `false` |
-| clear-trigger ^(1.3.7) | 清空按钮显示时机，可选值为 `focus`、`always` | `InputClearTrigger` | `always` |
-| focus-when-clear ^(1.3.7) | 点击清空按钮后是否自动聚焦 | `boolean` | `true` |
+| clear-trigger | 清空按钮显示时机，可选值为 `focus`、`always` | `InputClearTrigger` | `always` |
+| focus-when-clear | 点击清空按钮后是否自动聚焦 | `boolean` | `true` |
 | show-password | 是否显示密码切换按钮 | `boolean` | `false` |
 | prefix-icon | 前置图标名称 | `string` | - |
 | suffix-icon | 后置图标名称 | `string` | - |
@@ -201,9 +201,9 @@ function handleInput(event) {
 | confirm-type | 键盘右下角按钮文字，可选值为 `done`、`go`、`next`、`search`、`send` | `InputConfirmType` | `done` |
 | confirm-hold | 点击键盘右下角按钮时是否保持键盘不收起 | `boolean` | `false` |
 | always-embed | 是否强制 input 处于同层状态，仅微信小程序 iOS 生效 | `boolean` | `false` |
-| ignore-composition-event ^(1.3.11) | 是否忽略文本合成系统事件处理；为 `false` 时会触发 composition 相关事件，且合成期间会触发 `input` | `boolean` | `true` |
-| inputmode ^(1.5.0) | 输入模式提示，可选值为 `none`、`text`、`decimal`、`numeric`、`tel`、`search`、`email`、`url` | `InputMode` | `text` |
-| enable-native ^(1.14.0) | 支付宝小程序下是否启用原生输入框，设为 `false` 可避免弹起键盘后内容上移 | `boolean` | `true` |
+| ignore-composition-event | 是否忽略文本合成系统事件处理；为 `false` 时会触发 composition 相关事件，且合成期间会触发 `input` | `boolean` | `true` |
+| inputmode | 输入模式提示，可选值为 `none`、`text`、`decimal`、`numeric`、`tel`、`search`、`email`、`url` | `InputMode` | `text` |
+| enable-native | 支付宝小程序下是否启用原生输入框，设为 `false` 可避免弹起键盘后内容上移 | `boolean` | `true` |
 | custom-input-class | 输入框自定义类名 | `string` | `''` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |

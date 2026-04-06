@@ -184,8 +184,8 @@ const beforeConfirm = (value: string[]) => {
 | close-on-click-modal | Whether to close the popup when clicking the mask layer | `boolean` | `true` |
 | z-index | Popup layer z-index depth | `number` | `15` |
 | safe-area-inset-bottom | Whether the popup panel sets the default bottom safe distance | `boolean` | `true` |
-| immediate-change | Whether to trigger `change` immediately when finger is released instead of after scrolling ends ^(1.2.25) | `boolean` | `false` |
-| root-portal | Whether to enable `root-portal` to detach the component from the current node for rendering ^(1.11.0) | `boolean` | `false` |
+| immediate-change | Whether to trigger `change` immediately when finger is released instead of after scrolling ends | `boolean` | `false` |
+| root-portal | Whether to enable `root-portal` to detach the component from the current node for rendering | `boolean` | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 | custom-view-class | External custom style class for pickerView component | `string` | `''` |

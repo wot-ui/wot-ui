@@ -132,8 +132,8 @@ Implementation methods for different platforms are as follows:
 | modal-style | Custom mask style | `string` | - |
 | safe-area-inset-bottom | Whether the bottom popup adapts to the bottom safe area | `boolean` | `false` |
 | lazy-render | Whether the popup layer content is lazy rendered | `boolean` | `true` |
-| lock-scroll ^(0.1.30) | Whether to lock background scrolling; after locking, content within the mask will also be unable to scroll | `boolean` | `true` |
-| root-portal ^(1.11.0) | Whether to detach from the page structure, used to solve fixed positioning issues | `boolean` | `false` |
+| lock-scroll | Whether to lock background scrolling; after locking, content within the mask will also be unable to scroll | `boolean` | `true` |
+| root-portal | Whether to detach from the page structure, used to solve fixed positioning issues | `boolean` | `false` |
 | round | Whether to enable rounded corners; after enabling, automatically adapts based on popup position (bottom popup → top rounded corners, top popup → bottom rounded corners, center → all rounded corners) | `boolean` | `false` |
 | custom-class | Custom root node class name | `string` | - |
 | custom-style | Custom popup layer style | `string` | - |

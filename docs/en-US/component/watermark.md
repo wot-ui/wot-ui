@@ -77,6 +77,6 @@ Set opacity via `opacity`, and control watermark z-index via `z-index`.
 | rotate | Watermark rotation angle | `number` | `-25` |
 | z-index | Watermark z-index | `number` | `1100` |
 | opacity | Watermark opacity, value range is `0` to `1` | `number` | - |
-| layout ^(1.6.0) | Watermark layout, optional values are `grid`, `staggered` | `WatermarkLayout` | `grid` |
+| layout | Watermark layout, optional values are `grid`, `staggered` | `WatermarkLayout` | `grid` |
 | custom-style | Custom root node style | `string` | `''` |
 | custom-class | Custom root node style class | `string` | `''` |

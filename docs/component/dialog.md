@@ -348,8 +348,8 @@ const openOpenTypeDialog = () => {
 | showCancelButton | 是否显示取消按钮 | `boolean` | `alert` 为 false，`confirm/prompt` 为 true |
 | confirmButtonText | 确认按钮文案 | `string` | - |
 | cancelButtonText | 取消按钮文案 | `string` | - |
-| confirmButtonProps ^(1.5.0) | 确认按钮高级配置，支持传字符串、对象或 `null` | `DialogBoxButtonOption` | `{}` |
-| cancelButtonProps ^(1.5.0) | 取消按钮高级配置，支持传字符串、对象或 `null` | `DialogBoxButtonOption` | 由 `showCancelButton` 推导 |
+| confirmButtonProps | 确认按钮高级配置，支持传字符串、对象或 `null` | `DialogBoxButtonOption` | `{}` |
+| cancelButtonProps | 取消按钮高级配置，支持传字符串、对象或 `null` | `DialogBoxButtonOption` | 由 `showCancelButton` 推导 |
 | actions | 自定义操作按钮数组，配置后优先级高于确认/取消按钮 | `DialogAction[]` | - |
 | closeOnClickModal | 是否支持点击遮罩关闭（返回 action 为 `modal`） | `boolean` | `false` |
 | showClose | 是否显示右上角关闭按钮 | `boolean` | `false` |
@@ -362,7 +362,7 @@ const openOpenTypeDialog = () => {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | selector | 指定唯一标识，用于区分页面中的多个实例 | `string` | `''` |
-| root-portal ^(1.11.0) | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | `boolean` | `false` |
+| root-portal | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | `boolean` | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

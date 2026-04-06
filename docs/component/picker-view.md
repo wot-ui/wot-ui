@@ -198,9 +198,9 @@ const columns = ref([
 | visible-item-count | 可见选项数量 | `number` | `6` |
 | value-key | 选项对象中值字段对应的键名 | `string` | `'value'` |
 | label-key | 选项对象中文本字段对应的键名 | `string` | `'label'` |
-| immediate-change ^(1.2.25) | 是否在手指松开时立即触发 `change` 事件；若不开启，则在滚动动画结束后触发 | `boolean` | `false` |
-| cascade ^(2.0.0) | 是否开启级联模式；开启后 `columns` 应传入树形数据 | `boolean` | `false` |
-| children-key ^(2.0.0) | 级联模式下子节点字段对应的键名 | `string` | `'children'` |
+| immediate-change | 是否在手指松开时立即触发 `change` 事件；若不开启，则在滚动动画结束后触发 | `boolean` | `false` |
+| cascade | 是否开启级联模式；开启后 `columns` 应传入树形数据 | `boolean` | `false` |
+| children-key | 级联模式下子节点字段对应的键名 | `string` | `'children'` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

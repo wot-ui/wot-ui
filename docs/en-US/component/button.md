@@ -149,7 +149,7 @@ Set the `block` property.
 | loading | Loading button | boolean | false |
 | text | Button text | string | - |
 | icon | Icon class name | string | - |
-| classPrefix ^(0.1.27) | Icon class prefix | string | wd-icon |
+| classPrefix | Icon class prefix | string | wd-icon |
 | loading-props | Loading configuration | `Partial<LoadingProps>` | - |
 | open-type | Open capability type, see `ButtonOpenType` below | string | - |
 | hover-stop-propagation | Stop ancestor node click state | boolean | false |
@@ -162,8 +162,8 @@ Set the `block` property.
 | send-message-img | Conversation message card image (valid when `open-type=contact`) | string | Screenshot |
 | app-parameter | Open APP parameter (valid when `open-type=launchApp`) | string | - |
 | show-message-card | Show conversation message card (valid when `open-type=contact`) | boolean | false |
-| button-id ^(1.3.6) | Button unique identifier | string | - |
-| scope ^(1.3.14) | Alipay authorization scope, optional values are `phoneNumber`, `userInfo` (valid when `open-type=getAuthorize`) | string | - |
+| button-id | Button unique identifier | string | - |
+| scope | Alipay authorization scope, optional values are `phoneNumber`, `userInfo` (valid when `open-type=getAuthorize`) | string | - |
 | loading-color | Loading icon color | string | - |
 | custom-class | Root node custom class name | string | - |
 | custom-style | Root node custom style | string | - |
@@ -210,7 +210,7 @@ Set the `block` property.
 | getuserinfo | Get user info callback | `event` |
 | contact | Customer service message callback (`open-type=contact`) | `event` |
 | getphonenumber | Get phone number callback (`open-type=getPhoneNumber`) | `event` |
-| getrealtimephonenumber ^(1.13.0) | Get real-time phone number callback (`open-type=getRealtimePhoneNumber`) | `event` |
+| getrealtimephonenumber | Get real-time phone number callback (`open-type=getRealtimePhoneNumber`) | `event` |
 | error | Open capability error callback (`open-type=launchApp`) | `event` |
 | launchapp | Open APP success callback (`open-type=launchApp`) | `event` |
 | opensetting | Open authorization settings page callback (`open-type=openSetting`) | `event` |

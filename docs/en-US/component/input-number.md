@@ -229,19 +229,19 @@ After setting `long-press`, support long pressing the button to continuously inc
 | step-strictly | Whether to strictly increase or decrease by step value | `boolean` | `false` |
 | precision | Numeric precision | `number \| string` | `0` |
 | disabled | Whether to disable | `boolean` | `false` |
-| disable-input ^(0.2.14) | Whether to disable the input box | `boolean` | `false` |
-| disable-minus ^(0.2.14) | Whether to disable the minus button | `boolean` | `false` |
-| disable-plus ^(0.2.14) | Whether to disable the plus button | `boolean` | `false` |
+| disable-input | Whether to disable the input box | `boolean` | `false` |
+| disable-minus | Whether to disable the minus button | `boolean` | `false` |
+| disable-plus | Whether to disable the plus button | `boolean` | `false` |
 | without-input | Whether to not display the input box | `boolean` | `false` |
 | input-width | Input box width, supporting numbers and strings with units | `number \| string` | - |
 | allow-null | Whether to allow input value to be empty, set to `true` to allow passing empty string | `boolean` | `false` |
 | placeholder | Input box placeholder text | `string` | `''` |
-| adjust-position ^(1.3.11) | Whether to automatically push up the page when the keyboard pops up | `boolean` | `true` |
-| before-change ^(1.6.0) | Triggered before value change, return `false` to prevent value update, support returning `Promise<boolean>` | `(value: number \| string) => boolean \| Promise<boolean>` | - |
-| long-press ^(1.8.0) | Whether to allow long press to add/subtract | `boolean` | `false` |
-| immediate-change ^(1.10.0) | Whether to immediately respond to input changes, when `false`, only update on blur or button click | `boolean` | `true` |
-| update-on-init ^(1.10.0) | Whether to update `v-model` to the corrected value during initialization | `boolean` | `true` |
-| input-type ^(1.10.0) | Input box type, optional values are `number`, `digit` | `'number' \| 'digit'` | `digit` |
+| adjust-position | Whether to automatically push up the page when the keyboard pops up | `boolean` | `true` |
+| before-change | Triggered before value change, return `false` to prevent value update, support returning `Promise<boolean>` | `(value: number \| string) => boolean \| Promise<boolean>` | - |
+| long-press | Whether to allow long press to add/subtract | `boolean` | `false` |
+| immediate-change | Whether to immediately respond to input changes, when `false`, only update on blur or button click | `boolean` | `true` |
+| update-on-init | Whether to update `v-model` to the corrected value during initialization | `boolean` | `true` |
+| input-type | Input box type, optional values are `number`, `digit` | `'number' \| 'digit'` | `digit` |
 | theme | Theme style, optional values are `default`, `outline`, `outline-split`, `primary` | `InputNumberTheme` | `default` |
 | round | Whether to enable rounded style | `boolean` | `false` |
 | custom-class | Root node custom class name | `string` | `''` |

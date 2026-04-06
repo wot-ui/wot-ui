@@ -229,19 +229,19 @@ const beforeChange: InputNumberBeforeChange = (value) => {
 | step-strictly | 是否严格按步进值递增或递减 | `boolean` | `false` |
 | precision | 数值精度 | `number \| string` | `0` |
 | disabled | 是否禁用 | `boolean` | `false` |
-| disable-input ^(0.2.14) | 是否禁用输入框 | `boolean` | `false` |
-| disable-minus ^(0.2.14) | 是否禁用减号按钮 | `boolean` | `false` |
-| disable-plus ^(0.2.14) | 是否禁用加号按钮 | `boolean` | `false` |
+| disable-input | 是否禁用输入框 | `boolean` | `false` |
+| disable-minus | 是否禁用减号按钮 | `boolean` | `false` |
+| disable-plus | 是否禁用加号按钮 | `boolean` | `false` |
 | without-input | 是否不显示输入框 | `boolean` | `false` |
 | input-width | 输入框宽度，支持数字和带单位字符串 | `number \| string` | - |
 | allow-null | 是否允许输入值为空，设置为 `true` 后允许传入空字符串 | `boolean` | `false` |
 | placeholder | 输入框占位文本 | `string` | `''` |
-| adjust-position ^(1.3.11) | 键盘弹起时是否自动上推页面 | `boolean` | `true` |
-| before-change ^(1.6.0) | 数值变更前触发，返回 `false` 可阻止值更新，支持返回 `Promise<boolean>` | `(value: number \| string) => boolean \| Promise<boolean>` | - |
-| long-press ^(1.8.0) | 是否允许长按进行加减 | `boolean` | `false` |
-| immediate-change ^(1.10.0) | 是否立即响应输入变化，`false` 时仅在失焦或按钮点击时更新 | `boolean` | `true` |
-| update-on-init ^(1.10.0) | 是否在初始化时更新 `v-model` 为修正后的值 | `boolean` | `true` |
-| input-type ^(1.10.0) | 输入框类型，可选值为 `number`、`digit` | `'number' \| 'digit'` | `digit` |
+| adjust-position | 键盘弹起时是否自动上推页面 | `boolean` | `true` |
+| before-change | 数值变更前触发，返回 `false` 可阻止值更新，支持返回 `Promise<boolean>` | `(value: number \| string) => boolean \| Promise<boolean>` | - |
+| long-press | 是否允许长按进行加减 | `boolean` | `false` |
+| immediate-change | 是否立即响应输入变化，`false` 时仅在失焦或按钮点击时更新 | `boolean` | `true` |
+| update-on-init | 是否在初始化时更新 `v-model` 为修正后的值 | `boolean` | `true` |
+| input-type | 输入框类型，可选值为 `number`、`digit` | `'number' \| 'digit'` | `digit` |
 | theme | 主题风格，可选值为 `default`、`outline`、`outline-split`、`primary` | `InputNumberTheme` | `default` |
 | round | 是否启用圆角样式 | `boolean` | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
@@ -255,9 +255,3 @@ const beforeChange: InputNumberBeforeChange = (value) => {
 | focus | 输入框获取焦点时触发 | `{ value, height }` |
 | blur | 输入框失去焦点时触发 | `{ value }` |
 | update:modelValue | `v-model` 更新时触发 | `number \| string` |
-
-## 外部样式类
-
-| 类名 | 说明 |
-| --- | --- |
-| custom-class | 根节点样式类 |

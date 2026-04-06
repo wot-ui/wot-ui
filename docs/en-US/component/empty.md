@@ -85,8 +85,8 @@ Recommended styles (can be added in page or global styles):
 
 | name | Description |
 | --- | --- |
-| image | Custom image area content ^(1.3.12) |
-| bottom | Custom bottom content ^(1.14.0) |
+| image | Custom image area content |
+| bottom | Custom bottom content |
 
 ## External Style Classes
 

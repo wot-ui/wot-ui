@@ -53,7 +53,7 @@ Customize close button content and interaction through `close` slot.
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| v-model / modelValue ^(1.7.0) | Binding value, controls curtain display and close | boolean | false |
+| v-model / modelValue | Binding value, controls curtain display and close | boolean | false |
 | value | Binding value (deprecated, please use `modelValue`) | boolean | false |
 | src | Curtain image address, must use network address | string | - |
 | width | Curtain image width, default unit px | number | - |
@@ -61,12 +61,12 @@ Customize close button content and interaction through `close` slot.
 | close-position | Close button position, optional values are `inset`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right` | string | `inset` |
 | close-on-click-modal | Whether to close when clicking mask | boolean | false |
 | hide-when-close | Whether to hide popup when closing (`display: none`) | boolean | true |
-| z-index ^(1.4.0) | Set z-index | number | 10 |
-| custom-close-class ^(1.5.0) | Close button custom class name | string | `''` |
-| custom-close-style ^(1.5.0) | Close button custom style | string | `''` |
-| root-portal ^(1.11.0) | Whether to detach from page, used to solve fixed invalidation problem (H5: teleport, App: renderjs, Mini Program: root-portal) | boolean | false |
-| show-menu-by-longpress ^(1.13.0) | Enable long press image to show recognition mini program code menu, only WeChat Mini Program supports | boolean | false |
-| close-on-click ^(1.13.0) | Whether to close curtain when clicking image | boolean | true |
+| z-index | Set z-index | number | 10 |
+| custom-close-class | Close button custom class name | string | `''` |
+| custom-close-style | Close button custom style | string | `''` |
+| root-portal | Whether to detach from page, used to solve fixed invalidation problem (H5: teleport, App: renderjs, Mini Program: root-portal) | boolean | false |
+| show-menu-by-longpress | Enable long press image to show recognition mini program code menu, only WeChat Mini Program supports | boolean | false |
+| close-on-click | Whether to close curtain when clicking image | boolean | true |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 
@@ -91,4 +91,4 @@ Customize close button content and interaction through `close` slot.
 
 | name | Description | Parameters |
 | --- | --- | --- |
-| close ^(1.5.0) | Custom close button | - |
+| close | Custom close button | - |

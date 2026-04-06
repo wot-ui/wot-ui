@@ -91,12 +91,12 @@ By default, both the header area and content area of <b>FloatingPanel</b> can be
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| v-model:height ^(1.3.12) | Current display height of the panel | `number` | `0` |
-| anchors ^(1.3.12) | Set custom anchors, unit `px` | `number[]` | `[100, windowHeight * 0.6]` |
-| duration ^(1.3.12) | Animation duration, unit `ms`. Set to `0` to disable animation | `number` | `300` |
-| content-draggable ^(1.3.12) | Allow dragging content container | `boolean` | `true` |
-| safe-area-inset-bottom ^(1.3.12) | Whether to enable bottom safe area adaptation | `boolean` | `false` |
-| show-scrollbar ^(1.3.12) | Whether to enable scrollbar | `boolean` | `true` |
+| v-model:height | Current display height of the panel | `number` | `0` |
+| anchors | Set custom anchors, unit `px` | `number[]` | `[100, windowHeight * 0.6]` |
+| duration | Animation duration, unit `ms`. Set to `0` to disable animation | `number` | `300` |
+| content-draggable | Allow dragging content container | `boolean` | `true` |
+| safe-area-inset-bottom | Whether to enable bottom safe area adaptation | `boolean` | `false` |
+| show-scrollbar | Whether to enable scrollbar | `boolean` | `true` |
 | custom-class | Custom class name for root node | `string` | `''` |
 | custom-style | Custom style for root node | `string` | `''` |
 
@@ -104,10 +104,10 @@ By default, both the header area and content area of <b>FloatingPanel</b> can be
 
 | Name | Description |
 | ---- | -------- |
-| default | Default content area slot ^(1.3.12) |
+| default | Default content area slot |
 
 ## Events
 
 | Method Name | Description | Parameters |
 | --- | --- | --- |
-| heightChange | Triggered after panel display height changes and dragging ends ^(1.3.12) | `{ height: number }` |
+| heightChange | Triggered after panel display height changes and dragging ends | `{ height: number }` |

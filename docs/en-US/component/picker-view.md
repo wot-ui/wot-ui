@@ -198,9 +198,9 @@ const columns = ref([
 | visible-item-count | Number of visible options | `number` | `6` |
 | value-key | Key name for the value field in the option object | `string` | `'value'` |
 | label-key | Key name for the text field in the option object | `string` | `'label'` |
-| immediate-change ^(1.2.25) | Whether to trigger `change` event immediately when finger is released; if not enabled, triggers after scrolling animation ends | `boolean` | `false` |
-| cascade ^(2.0.0) | Whether to enable cascade mode; when enabled, `columns` should be passed tree data | `boolean` | `false` |
-| children-key ^(2.0.0) | Key name for child nodes in cascade mode | `string` | `'children'` |
+| immediate-change | Whether to trigger `change` event immediately when finger is released; if not enabled, triggers after scrolling animation ends | `boolean` | `false` |
+| cascade | Whether to enable cascade mode; when enabled, `columns` should be passed tree data | `boolean` | `false` |
+| children-key | Key name for child nodes in cascade mode | `string` | `'children'` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

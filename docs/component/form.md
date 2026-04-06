@@ -1270,11 +1270,11 @@ function handleIconClick() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | ------------- | ----------------------------------------------------------------------------------- | --------------------- | --------- |
-| model ^(0.2.0) | 表单数据对象 | `Record<string, any>` | - |
-| schema ^(1.16.0) | 表单校验对象 | `FormSchema` | - |
+| model | 表单数据对象 | `Record<string, any>` | - |
+| schema | 表单校验对象 | `FormSchema` | - |
 | validate-trigger | 校验触发时机，可选值为 `change`、`blur`、`submit` | `string \| string[]` | `submit` |
-| reset-on-change ^(0.2.16) | 表单数据变化时是否重置表单提示信息（设置为 `false` 时需要开发者单独对变更项进行校验） | `boolean` | `true` |
-| error-type ^(1.3.8) | 校验错误提示方式，可选值为 `toast`、`message`、`none` | `string` | `message` |
+| reset-on-change | 表单数据变化时是否重置表单提示信息（设置为 `false` 时需要开发者单独对变更项进行校验） | `boolean` | `true` |
+| error-type | 校验错误提示方式，可选值为 `toast`、`message`、`none` | `string` | `message` |
 | border | 是否展示边框线 | `boolean` | `false` |
 | center | 是否使内容垂直居中 | `boolean` | `false` |
 | size | 单元格大小，可选值为 `large` | `string` | - |

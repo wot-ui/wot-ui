@@ -114,10 +114,6 @@ In view more mode, `use-more-slot` can enable `more` slot to customize "expand/c
 
 `collapse` supports nesting. Since `collapse-item` content container has default `padding`, it is recommended to use `custom-body-style` or `custom-body-class` to override when nesting.
 
-::: tip Tip
-`custom-body-style` and `custom-body-class` are supported in version `^(1.4.0)` and above.
-:::
-
 ```html
 <wd-collapse v-model="collapseRoot">
   <wd-collapse-item v-for="item in 5" :key="item" :name="`${item}`" :title="`Tag${item}`" custom-body-style="padding:0 0 0 14px">
@@ -155,8 +151,8 @@ collapseRef.value?.toggleAll({ expanded: true, skipDisabled: true })
 | disabled | Whether to disable this collapse item | boolean | false |
 | before-expend | Pre-open interception function, receives `name` parameter, returns `boolean` or `Promise<boolean>` | `CollapseItemBeforeExpand` | - |
 | border | Whether to show border | boolean | true |
-| custom-body-class ^(1.4.0) | Collapse item content container custom class name | string | `''` |
-| custom-body-style ^(1.4.0) | Collapse item content container custom style | string | `''` |
+| custom-body-class | Collapse item content container custom class name | string | `''` |
+| custom-body-style | Collapse item content container custom style | string | `''` |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 

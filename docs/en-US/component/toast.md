@@ -132,21 +132,21 @@ toast.success({
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | selector | Unique mounting identifier, used to distinguish different toasts in multi-instance scenarios | `string` | `''` |
-| msg ^(1.7.0) | Default prompt text | `string` | `''` |
-| direction ^(1.7.0) | Default layout direction, optional values are `horizontal`, `vertical` | `ToastDirection` | `horizontal` |
-| icon-name ^(1.7.0) | Default icon type, optional values are `success`, `error`, `warning`, `loading`, `info` | `ToastIconType` | `''` |
-| icon-size ^(1.7.0) | Default icon size | `number` | - |
-| loading-type ^(1.7.0) | Default loading icon type, optional values are `circular`, `spinner`, `dots` | `ToastLoadingType` | `circular` |
-| loading-color ^(1.7.0) | Default loading icon color | `string` | `#ffffff` |
-| loading-size ^(1.7.0) | Default loading icon size | `number` | - |
-| icon-color ^(1.7.0) | Default icon color | `string` | - |
-| position ^(1.7.0) | Default prompt position, optional values are `top`, `middle-top`, `middle`, `bottom` | `ToastPositionType` | `middle` |
-| z-index ^(1.7.0) | Default z-index level | `number` | `100` |
-| cover ^(1.7.0) | Whether to show transparent mask layer | `boolean` | `false` |
-| icon-class ^(1.7.0) | Default icon class name | `string` | `''` |
-| class-prefix ^(1.7.0) | Icon class name prefix | `string` | `wd-icon` |
-| opened ^(1.7.0) | Callback after fully displayed | `() => void` | - |
-| closed ^(1.7.0) | Callback after fully closed | `() => void` | - |
+| msg | Default prompt text | `string` | `''` |
+| direction | Default layout direction, optional values are `horizontal`, `vertical` | `ToastDirection` | `horizontal` |
+| icon-name | Default icon type, optional values are `success`, `error`, `warning`, `loading`, `info` | `ToastIconType` | `''` |
+| icon-size | Default icon size | `number` | - |
+| loading-type | Default loading icon type, optional values are `circular`, `spinner`, `dots` | `ToastLoadingType` | `circular` |
+| loading-color | Default loading icon color | `string` | `#ffffff` |
+| loading-size | Default loading icon size | `number` | - |
+| icon-color | Default icon color | `string` | - |
+| position | Default prompt position, optional values are `top`, `middle-top`, `middle`, `bottom` | `ToastPositionType` | `middle` |
+| z-index | Default z-index level | `number` | `100` |
+| cover | Whether to show transparent mask layer | `boolean` | `false` |
+| icon-class | Default icon class name | `string` | `''` |
+| class-prefix | Icon class name prefix | `string` | `wd-icon` |
+| opened | Callback after fully displayed | `() => void` | - |
+| closed | Callback after fully closed | `() => void` | - |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

@@ -251,7 +251,7 @@ const tabbar = ref(1)
 | value | Badge display value | `number \| string` | - |
 | is-dot | Whether to show dot badge | `boolean` | `false` |
 | max | Badge maximum value | `number` | `99` |
-| badge-props ^(0.1.50) | Custom badge properties, passed to Badge component | `BadgeProps` | - |
+| badge-props | Custom badge properties, passed to Badge component | `BadgeProps` | - |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

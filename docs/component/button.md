@@ -149,7 +149,7 @@
 | loading | 加载中按钮 | boolean | false |
 | text | 按钮文本 | string | - |
 | icon | 图标类名 | string | - |
-| classPrefix ^(0.1.27) | 图标类名前缀 | string | wd-icon |
+| class-prefix | 图标类名前缀 | string | wd-icon |
 | loading-props | 加载配置项 | `Partial<LoadingProps>` | - |
 | open-type | 开放能力类型，详见下方 `ButtonOpenType` | string | - |
 | hover-stop-propagation | 阻止祖先节点点击态 | boolean | false |
@@ -162,8 +162,8 @@
 | send-message-img | 会话消息卡片图片（`open-type=contact` 时有效） | string | 截图 |
 | app-parameter | 打开 APP 传参（`open-type=launchApp` 时有效） | string | - |
 | show-message-card | 显示会话消息卡片（`open-type=contact` 时有效） | boolean | false |
-| button-id ^(1.3.6) | 按钮唯一标识 | string | - |
-| scope ^(1.3.14) | 支付宝授权范围，可选值为 `phoneNumber`、`userInfo`（`open-type=getAuthorize` 时有效） | string | - |
+| button-id | 按钮唯一标识 | string | - |
+| scope | 支付宝授权范围，可选值为 `phoneNumber`、`userInfo`（`open-type=getAuthorize` 时有效） | string | - |
 | loading-color | 加载图标颜色 | string | - |
 | custom-class | 根节点自定义类名 | string | - |
 | custom-style | 根节点自定义样式 | string | - |
@@ -210,7 +210,7 @@
 | getuserinfo | 获取用户信息回调 | `event` |
 | contact | 客服消息回调（`open-type=contact`） | `event` |
 | getphonenumber | 获取手机号回调（`open-type=getPhoneNumber`） | `event` |
-| getrealtimephonenumber ^(1.13.0) | 实时获取手机号回调（`open-type=getRealtimePhoneNumber`） | `event` |
+| getrealtimephonenumber | 实时获取手机号回调（`open-type=getRealtimePhoneNumber`） | `event` |
 | error | 开放能力错误回调（`open-type=launchApp`） | `event` |
 | launchapp | 打开 APP 成功回调（`open-type=launchApp`） | `event` |
 | opensetting | 打开授权设置页回调（`open-type=openSetting`） | `event` |

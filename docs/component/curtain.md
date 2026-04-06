@@ -53,7 +53,7 @@
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model / modelValue ^(1.7.0) | 绑定值，控制幕帘显示与关闭 | boolean | false |
+| v-model / modelValue | 绑定值，控制幕帘显示与关闭 | boolean | false |
 | value | 绑定值（已废弃，请使用 `modelValue`） | boolean | false |
 | src | 幕帘图片地址，必须使用网络地址 | string | - |
 | width | 幕帘图片宽度，默认单位 px | number | - |
@@ -61,12 +61,12 @@
 | close-position | 关闭按钮位置，可选值为 `inset`、`top`、`bottom`、`top-left`、`top-right`、`bottom-left`、`bottom-right` | string | `inset` |
 | close-on-click-modal | 点击遮罩是否关闭 | boolean | false |
 | hide-when-close | 关闭时是否隐藏弹出层（`display: none`） | boolean | true |
-| z-index ^(1.4.0) | 设置层级 | number | 10 |
-| custom-close-class ^(1.5.0) | 关闭按钮自定义类名 | string | `''` |
-| custom-close-style ^(1.5.0) | 关闭按钮自定义样式 | string | `''` |
-| root-portal ^(1.11.0) | 是否从页面中脱离，用于解决 fixed 失效问题（H5: teleport，App: renderjs，小程序: root-portal） | boolean | false |
-| show-menu-by-longpress ^(1.13.0) | 开启长按图片显示识别小程序码菜单，仅微信小程序支持 | boolean | false |
-| close-on-click ^(1.13.0) | 点击图片时是否关闭幕帘 | boolean | true |
+| z-index | 设置层级 | number | 10 |
+| custom-close-class | 关闭按钮自定义类名 | string | `''` |
+| custom-close-style | 关闭按钮自定义样式 | string | `''` |
+| root-portal | 是否从页面中脱离，用于解决 fixed 失效问题（H5: teleport，App: renderjs，小程序: root-portal） | boolean | false |
+| show-menu-by-longpress | 开启长按图片显示识别小程序码菜单，仅微信小程序支持 | boolean | false |
+| close-on-click | 点击图片时是否关闭幕帘 | boolean | true |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 
@@ -91,4 +91,4 @@
 
 | name | 说明 | 参数 |
 | --- | --- | --- |
-| close ^(1.5.0) | 自定义关闭按钮 | - |
+| close | 自定义关闭按钮 | - |

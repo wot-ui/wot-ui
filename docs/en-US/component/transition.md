@@ -101,7 +101,7 @@ Customize enter and leave animation class names through `enter-class`, `enter-ac
 | leave-class | Leave transition start state class name | `string` | `''` |
 | leave-active-class | Leave transition active state class name | `string` | `''` |
 | leave-to-class | Leave transition end state class name | `string` | `''` |
-| disable-touch-move ^(1.11.0) | Whether to prevent touch scrolling | `boolean` | `false` |
+| disable-touch-move | Whether to prevent touch scrolling | `boolean` | `false` |
 | custom-style | Custom root node style | `string` | `''` |
 | custom-class | Custom root node style class | `string` | `''` |
 

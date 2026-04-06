@@ -124,10 +124,10 @@ const filter = ({ type, values }: { type: string; values: number[] }) => {
 | max-hour | 最大小时（`time` 类型生效） | number | 23 |
 | min-minute | 最小分钟（`time` 类型生效） | number | 0 |
 | max-minute | 最大分钟（`time` 类型生效） | number | 59 |
-| use-second ^(1.10.0) | 是否显示秒选择，仅 `time` 和 `datetime` 生效 | boolean | false |
-| min-second ^(1.10.0) | 最小秒数，仅 `time` 和 `datetime` 生效 | number | 0 |
-| max-second ^(1.10.0) | 最大秒数，仅 `time` 和 `datetime` 生效 | number | 59 |
-| immediate-change ^(1.2.25) | 是否在手指松开时立即触发 change（仅微信/支付宝小程序） | boolean | false |
+| use-second | 是否显示秒选择，仅 `time` 和 `datetime` 生效 | boolean | false |
+| min-second | 最小秒数，仅 `time` 和 `datetime` 生效 | number | 0 |
+| max-second | 最大秒数，仅 `time` 和 `datetime` 生效 | number | 59 |
+| immediate-change | 是否在手指松开时立即触发 change（仅微信/支付宝小程序） | boolean | false |
 | boundary-min-date | 区间模式开始时间最小边界（用于联动） | number | - |
 | boundary-max-date | 区间模式结束时间最大边界（用于联动） | number | - |
 | custom-class | 根节点自定义类名 | string | `''` |

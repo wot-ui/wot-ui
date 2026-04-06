@@ -149,10 +149,10 @@ const beforeConfirm = (value: string[]) => {
 | safe-area-inset-bottom | 是否适配底部安全区 | `boolean` | `true` |
 | filterable | 是否支持本地搜索 | `boolean` | `false` |
 | filter-placeholder | 搜索框占位符 | `string` | `'搜索'` |
-| scroll-into-view ^(0.1.34) | 重新打开时是否滚动到选中项 | `boolean` | `true` |
+| scroll-into-view | 重新打开时是否滚动到选中项 | `boolean` | `true` |
 | custom-content-class | 自定义弹层内容区域类名 | `string` | `''` |
-| show-confirm ^(1.2.8) | 是否显示确认按钮，仅 `radio` 模式生效 | `boolean` | `true` |
-| root-portal ^(1.11.0) | 是否从页面结构中脱离出来，用于解决 fixed 失效问题 | `boolean` | `false` |
+| show-confirm | 是否显示确认按钮，仅 `radio` 模式生效 | `boolean` | `true` |
+| root-portal | 是否从页面结构中脱离出来，用于解决 fixed 失效问题 | `boolean` | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 
@@ -172,7 +172,7 @@ const beforeConfirm = (value: string[]) => {
 | cancel | 点击关闭按钮或遮罩关闭时触发 | - |
 | confirm | 点击确认时触发 | `{ value, selectedItems }` |
 | open | 弹层打开时触发 | - |
-| close ^(1.2.29) | 弹层关闭时触发 | - |
+| close | 弹层关闭时触发 | - |
 
 ## Methods
 

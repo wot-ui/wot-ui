@@ -190,16 +190,16 @@ const displayFormatTabLabel = (items: Array<{ label: string | number }>) => {
 | max-hour | Maximum hour (effective for `time` type) | number | 23 |
 | min-minute | Minimum minute (effective for `time` type) | number | 0 |
 | max-minute | Maximum minute (effective for `time` type) | number | 59 |
-| use-second ^(1.10.0) | Whether to show second selection, only effective for `time` and `datetime` | boolean | false |
-| min-second ^(1.10.0) | Minimum seconds, only effective for `time` and `datetime` | number | 0 |
-| max-second ^(1.10.0) | Maximum seconds, only effective for `time` and `datetime` | number | 59 |
+| use-second | Whether to show second selection, only effective for `time` and `datetime` | boolean | false |
+| min-second | Minimum seconds, only effective for `time` and `datetime` | number | 0 |
+| max-second | Maximum seconds, only effective for `time` and `datetime` | number | 59 |
 | formatter | Custom roller option format function | DatetimePickerViewFormatter | - |
 | filter | Custom filter function | DatetimePickerViewFilter | - |
 | before-confirm | Pre-confirm validation function, receives `(value)`, returns `boolean` or `Promise<boolean>` | DatetimePickerBeforeConfirm | - |
 | display-format-tab-label | Custom Tab label format function in range mode | DatetimePickerDisplayFormatTabLabel | - |
 | z-index | Popup z-index | number | 15 |
-| immediate-change ^(1.2.25) | Whether to trigger change immediately when finger is released (only WeChat/Alipay Mini Program) | boolean | false |
-| root-portal ^(1.11.0) | Whether to detach from document flow rendering (H5: teleport, App: renderjs, Mini Program: root-portal) | boolean | false |
+| immediate-change | Whether to trigger change immediately when finger is released (only WeChat/Alipay Mini Program) | boolean | false |
+| root-portal | Whether to detach from document flow rendering (H5: teleport, App: renderjs, Mini Program: root-portal) | boolean | false |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 | custom-view-class | pickerView external custom style class | string | `''` |

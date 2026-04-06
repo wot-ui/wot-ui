@@ -165,7 +165,7 @@ function handlePopupShow() {
 | Event Name | Description | Parameters |
 | --- | --- | --- |
 | change | Triggered when option switches | `SegmentedOption` |
-| click ^(1.2.20) | Triggered when option is clicked | `SegmentedOption` |
+| click | Triggered when option is clicked | `SegmentedOption` |
 
 ## Methods
 

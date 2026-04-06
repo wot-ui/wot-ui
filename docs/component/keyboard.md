@@ -303,9 +303,9 @@ const onDelete = () => showToast('删除')
 | lock-scroll | 是否锁定背景滚动 | `boolean` | `true` |
 | safe-area-inset-bottom | 是否适配底部安全区 | `boolean` | `true` |
 | extra-key | 额外按键，可传单个字符串或字符串数组；`custom` 模式下支持两个额外按键 | `string \| string[]` | - |
-| root-portal ^(1.11.0) | 是否从页面中脱离出来，用于解决 fixed 失效问题 | `boolean` | `false` |
-| v-model:car-lang ^(1.13.0) | 车牌键盘语言模式，当 `mode=car` 时生效，可选值为 `zh`、`en` | `CarKeyboardLang` | - |
-| auto-switch-lang ^(1.13.0) | 是否自动切换车牌键盘语言，当 `mode=car` 且 `car-lang` 为非受控状态时生效 | `boolean` | `false` |
+| root-portal | 是否从页面中脱离出来，用于解决 fixed 失效问题 | `boolean` | `false` |
+| v-model:car-lang | 车牌键盘语言模式，当 `mode=car` 时生效，可选值为 `zh`、`en` | `CarKeyboardLang` | - |
+| auto-switch-lang | 是否自动切换车牌键盘语言，当 `mode=car` 且 `car-lang` 为非受控状态时生效 | `boolean` | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

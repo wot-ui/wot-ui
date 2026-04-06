@@ -206,10 +206,10 @@ function changeSearchType({ item }) {
 | disabled | Whether to disable the search box | `boolean` | `false` |
 | maxlength | Native property, sets the maximum length, `-1` means no limit | `number \| string` | `-1` |
 | placeholder-left | Whether placeholder is left-aligned | `boolean` | `false` |
-| focus ^(0.1.63) | Whether to auto focus | `boolean` | `false` |
-| focus-when-clear ^(0.1.63) | Whether to focus the input box after clicking the clear button | `boolean` | `false` |
-| placeholder-style ^(1.6.0) | Native property, specifies the style of the placeholder, currently only supports `color`, `font-size` and `font-weight` | `string` | - |
-| placeholder-class ^(1.6.0) | Native property, specifies the style class of the placeholder | `string` | `''` |
+| focus | Whether to auto focus | `boolean` | `false` |
+| focus-when-clear | Whether to focus the input box after clicking the clear button | `boolean` | `false` |
+| placeholder-style | Native property, specifies the style of the placeholder, currently only supports `color`, `font-size` and `font-weight` | `string` | - |
+| placeholder-class | Native property, specifies the style class of the placeholder | `string` | `''` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 
@@ -223,7 +223,7 @@ function changeSearchType({ item }) {
 | clear | Triggered when clicking the clear button | - |
 | cancel | Triggered when clicking the right text | `{ value }` |
 | change | Triggered when input box content changes | `{ value }` |
-| click ^(1.14.0) | Triggered when clicking the component in disabled state | - |
+| click | Triggered when clicking the component in disabled state | - |
 
 ## Slots
 

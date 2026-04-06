@@ -43,7 +43,7 @@ const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
 const tab = ref('a')
 ```
 
-### 使用徽标 ^(1.4.0)
+### 使用徽标
 
 通过 `badge-props` 为标签添加徽标。
 
@@ -198,7 +198,7 @@ function handlePopupShow() {
 | v-model | 当前激活项，可为索引或名称 | `number | string` | `0` |
 | slidable-num | 自动开启滚动的标签数量阈值 | `number` | `6` |
 | map-num | 显示导航地图的标签数量阈值 | `number` | `10` |
-| map-title ^(1.4.0) | 导航地图标题 | `string` | - |
+| map-title | 导航地图标题 | `string` | - |
 | sticky | 是否开启粘性布局 | `boolean` | `false` |
 | offset-top | 吸顶偏移量 | `number` | `0` |
 | swipeable | 是否开启手势滑动 | `boolean` | `false` |
@@ -209,8 +209,8 @@ function handlePopupShow() {
 | inactive-color | 非激活项文字颜色 | `string` | `''` |
 | animated | 是否开启切换动画 | `boolean` | `false` |
 | duration | 动画时长，单位毫秒 | `number` | `300` |
-| slidable ^(1.4.0) | 是否开启滚动导航，可选值为 `auto`、`always` | `TabsSlidable` | `auto` |
-| show-scrollbar ^(1.14.0) | 滚动时是否显示滚动条 | `boolean` | `false` |
+| slidable | 是否开启滚动导航，可选值为 `auto`、`always` | `TabsSlidable` | `auto` |
+| show-scrollbar | 滚动时是否显示滚动条 | `boolean` | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 
@@ -245,7 +245,7 @@ function handlePopupShow() {
 | title | 标签标题 | `string` | - |
 | disabled | 是否禁用 | `boolean` | `false` |
 | lazy | 是否懒加载内容 | `boolean` | `true` |
-| badge-props ^(1.4.0) | 徽标属性，透传给 Badge 组件 | `Partial<BadgeProps>` | - |
+| badge-props | 徽标属性，透传给 Badge 组件 | `Partial<BadgeProps>` | - |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

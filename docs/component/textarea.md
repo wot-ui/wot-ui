@@ -119,8 +119,8 @@ const value = ref('')
 | maxlength | 最大输入长度，设置为 `-1` 时不限制长度 | `number` | `-1` |
 | clearable | 是否显示清空按钮 | `boolean` | `false` |
 | show-word-limit | 是否显示字数统计，需要同时设置 `maxlength` | `boolean` | `false` |
-| clear-trigger ^(1.3.7) | 清空按钮显示时机，可选值为 `focus`、`always` | `InputClearTrigger` | `always` |
-| focus-when-clear ^(1.3.7) | 点击清空按钮后是否自动聚焦 | `boolean` | `true` |
+| clear-trigger | 清空按钮显示时机，可选值为 `focus`、`always` | `InputClearTrigger` | `always` |
+| focus-when-clear | 点击清空按钮后是否自动聚焦 | `boolean` | `true` |
 | error | 是否展示错误状态 | `boolean` | `false` |
 | focus | 是否获取焦点 | `boolean` | `false` |
 | auto-focus | 是否自动聚焦并拉起键盘 | `boolean` | `false` |
@@ -136,9 +136,9 @@ const value = ref('')
 | adjust-position | 键盘弹起时是否自动上推页面 | `boolean` | `true` |
 | disable-default-padding | 是否去掉 iOS 下默认内边距 | `boolean` | `false` |
 | hold-keyboard | 聚焦时点击页面是否保持键盘不收起 | `boolean` | `false` |
-| ignore-composition-event ^(1.3.11) | 是否忽略文本合成系统事件处理；为 `false` 时会触发 composition 相关事件，且在合成期间会触发 `input` | `boolean` | `true` |
-| inputmode ^(1.5.0) | 输入模式提示，可选值为 `none`、`text`、`decimal`、`numeric`、`tel`、`search`、`email`、`url` | `InputMode` | `text` |
-| enable-native ^(1.14.0) | 支付宝小程序下是否启用原生输入框，设为 `false` 可避免弹起键盘后内容上移 | `boolean` | `true` |
+| ignore-composition-event | 是否忽略文本合成系统事件处理；为 `false` 时会触发 composition 相关事件，且在合成期间会触发 `input` | `boolean` | `true` |
+| inputmode | 输入模式提示，可选值为 `none`、`text`、`decimal`、`numeric`、`tel`、`search`、`email`、`url` | `InputMode` | `text` |
+| enable-native | 支付宝小程序下是否启用原生输入框，设为 `false` 可避免弹起键盘后内容上移 | `boolean` | `true` |
 | compact | 是否开启紧凑模式；未显式设置时，在 `wd-form-item` 中会自动启用 | `boolean` | - |
 | custom-textarea-class | textarea 自定义类名 | `string` | `''` |
 | custom-class | 根节点自定义类名 | `string` | `''` |

@@ -148,7 +148,7 @@ function handleClick(result: { text: string; index: number }) {
 }
 ```
 
-### 重置播放动画 ^(1.3.13)
+### 重置播放动画
 
 通过`ref`获取组件实例，调用`reset`方法即可重置播放动画。当你遇到`NoticeBar`的播放动画异常的情况时，可以调用`reset`方法重置动画。  
 
@@ -207,13 +207,13 @@ function handleReset() {
 | --- | --- | --- |
 | close | 点击关闭按钮时触发 | - |
 | next | 切换到下一条文本时触发 | `index: number` |
-| click ^(1.2.16) | 点击内容区时触发 | `{ text: string, index: number }` |
+| click | 点击内容区时触发 | `{ text: string, index: number }` |
 
 ## Methods
 
 | 方法名称 | 说明 | 参数 |
 | --- | --- | --- |
-| reset ^(1.3.13) | 重置播放动画 | - |
+| reset | 重置播放动画 | - |
 
 ## Slots
 

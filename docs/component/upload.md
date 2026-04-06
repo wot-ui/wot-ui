@@ -77,7 +77,7 @@ const fileList = ref<UploadFile[]>([
 <wd-upload :file-list="fileList" disabled :action="action" :success-status="[200, 201]" @change="handleChange"></wd-upload>
 ```
 
-### 手动触发上传 ^(1.3.8)
+### 手动触发上传
 
 设置 `auto-upload="false"` 后，可通过组件实例的 `submit` 方法手动开始上传。
 
@@ -116,7 +116,7 @@ const fileList = ref<UploadFile[]>([])
 <wd-upload :file-list="fileList" :limit="3" :action="action" :success-status="[200, 201]" @change="handleChange"></wd-upload>
 ```
 
-### 覆盖上传 ^(1.5.0)
+### 覆盖上传
 
 设置 `reupload` 后，重新选择文件会替换上一项，适合头像等单文件覆盖场景。
 
@@ -142,7 +142,7 @@ const fileList = ref<UploadFile[]>([])
 </wd-upload>
 ```
 
-### 自定义预览样式 ^(1.3.12)
+### 自定义预览样式
 
 通过 `preview-cover` 插槽可以自定义覆盖在预览区域上的内容。
 
@@ -195,7 +195,7 @@ const fileList = ref<UploadFile[]>([])
 <wd-upload :file-list="fileList" :action="action" :success-status="[200, 201]" @change="handleChange" :before-choose="beforeChoose"></wd-upload>
 ```
 
-### 自定义上传方法 ^(1.3.8)
+### 自定义上传方法
 
 通过 `upload-method` 可以完全接管上传行为。
 
@@ -229,7 +229,7 @@ const customUpload: UploadMethod = (file, formData, options) => {
 
 :::
 
-### 根据文件拓展名过滤 ^(1.9.0)
+### 根据文件拓展名过滤
 
 设置 `extension` 后，可以限制选择文件的后缀。H5 支持全部类型过滤，微信小程序支持 `all` 和 `file` 场景过滤。
 
@@ -239,7 +239,7 @@ const customUpload: UploadMethod = (file, formData, options) => {
 
 ## 业务能力
 
-### 上传至云存储 ^(0.1.61)
+### 上传至云存储
 
 `build-form-data` 用于在真正上传前动态构建签名字段，适合对接 OSS、COS、OBS 等云存储服务。
 
@@ -272,7 +272,7 @@ function buildFormData({ file, formData }) {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| file-list / v-model:file-list ^(1.3.8) | 上传文件列表，例如 <code>[{ url: 'https://xxx.cdn.com/xxx.jpg' }]</code> | `UploadFile[]` | `[]` |
+| file-list / v-model:file-list | 上传文件列表，例如 <code>[{ url: 'https://xxx.cdn.com/xxx.jpg' }]</code> | `UploadFile[]` | `[]` |
 | action | 上传地址 | `string` | `''` |
 | header | 上传请求头 | `Record<string, any>` | `{}` |
 | multiple | 是否支持多选文件 | `boolean` | `false` |
@@ -289,23 +289,23 @@ function buildFormData({ file, formData }) {
 | before-choose | 选择文件前置钩子 | `UploadBeforeChoose` | - |
 | before-remove | 删除文件前置钩子 | `UploadBeforeRemove` | - |
 | before-preview | 图片预览前置钩子 | `UploadBeforePreview` | - |
-| build-form-data ^(0.1.61) | 动态构建上传 `formData` 的钩子 | `UploadBuildFormData` | - |
+| build-form-data | 动态构建上传 `formData` 的钩子 | `UploadBuildFormData` | - |
 | loading-type | 加载中图标类型 | `LoadingType` | `circular` |
 | loading-color | 加载中图标颜色 | `string` | `#ffffff` |
 | loading-size | 加载中图标尺寸 | `string` | `24px` |
-| accept ^(1.3.0) | 接受的文件类型，可选值为 `image`、`video`、`media`、`all`、`file` | `UploadFileType` | `image` |
+| accept | 接受的文件类型，可选值为 `image`、`video`、`media`、`all`、`file` | `UploadFileType` | `image` |
 | status-key | `file` 数据结构中状态字段对应的 key | `string` | `status` |
-| compressed ^(1.3.0) | 是否压缩视频，当 `accept` 为 `video` 或 `media` 时生效 | `boolean` | `true` |
-| max-duration ^(1.3.0) | 拍摄视频最大时长，单位为秒 | `number` | `60` |
-| camera ^(1.3.0) | 使用前置或后置相机，可选值为 `front`、`back` | `UploadCameraType` | `back` |
+| compressed | 是否压缩视频，当 `accept` 为 `video` 或 `media` 时生效 | `boolean` | `true` |
+| max-duration | 拍摄视频最大时长，单位为秒 | `number` | `60` |
+| camera | 使用前置或后置相机，可选值为 `front`、`back` | `UploadCameraType` | `back` |
 | image-mode | 预览图片的 `mode` 属性 | `ImageMode` | `aspectFit` |
-| success-status ^(1.3.4) | 接口响应成功状态码 | <code>number &#124; number[]</code> | `200` |
+| success-status | 接口响应成功状态码 | <code>number &#124; number[]</code> | `200` |
 | custom-evoke-class | 自定义上传按钮样式类 | `string` | `''` |
 | custom-preview-class | 自定义预览列表样式类 | `string` | `''` |
-| auto-upload ^(1.3.8) | 是否选择文件后自动上传，关闭后需手动调用 `submit` | `boolean` | `true` |
-| reupload ^(1.5.0) | 是否开启覆盖上传，开启后会关闭图片预览 | `boolean` | `false` |
-| upload-method ^(1.3.8) | 自定义上传方法 | `UploadMethod` | - |
-| extension ^(1.9.0) | 根据文件拓展名过滤，H5 支持全部类型过滤，微信小程序支持 `all` 和 `file` 场景过滤 | `string[]` | - |
+| auto-upload | 是否选择文件后自动上传，关闭后需手动调用 `submit` | `boolean` | `true` |
+| reupload | 是否开启覆盖上传，开启后会关闭图片预览 | `boolean` | `false` |
+| upload-method | 自定义上传方法 | `UploadMethod` | - |
+| extension | 根据文件拓展名过滤，H5 支持全部类型过滤，微信小程序支持 `all` 和 `file` 场景过滤 | `string[]` | - |
 | custom-class | 根节点自定义样式类 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 
@@ -314,10 +314,10 @@ function buildFormData({ file, formData }) {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | image | 图片，全平台支持，微信小程序使用 `chooseMedia` 实现 | `UploadFileType` | - |
-| video ^(1.3.0) | 视频，全平台支持，微信小程序使用 `chooseMedia` 实现 | `UploadFileType` | - |
-| media ^(1.3.0) | 图片和视频，仅微信小程序支持，使用 `chooseMedia` 实现 | `UploadFileType` | - |
-| file ^(1.3.0) | 普通文件，仅微信小程序支持，使用 `chooseMessageFile` 实现 | `UploadFileType` | - |
-| all ^(1.3.0) | 全部类型文件，仅微信小程序和 H5 支持 | `UploadFileType` | - |
+| video | 视频，全平台支持，微信小程序使用 `chooseMedia` 实现 | `UploadFileType` | - |
+| media | 图片和视频，仅微信小程序支持，使用 `chooseMedia` 实现 | `UploadFileType` | - |
+| file | 普通文件，仅微信小程序支持，使用 `chooseMessageFile` 实现 | `UploadFileType` | - |
+| all | 全部类型文件，仅微信小程序和 H5 支持 | `UploadFileType` | - |
 
 ## file 数据结构
 
@@ -337,7 +337,7 @@ function buildFormData({ file, formData }) {
 | 名称 | 说明 |
 | --- | --- |
 | default | 自定义上传唤起区域 |
-| preview-cover ^(1.3.12) | 自定义覆盖在预览区域上方的内容，参数为 <code>{ file, index }</code> |
+| preview-cover | 自定义覆盖在预览区域上方的内容，参数为 <code>{ file, index }</code> |
 
 ## Upload Events
 
@@ -350,11 +350,11 @@ function buildFormData({ file, formData }) {
 | chooseerror | 选择文件失败时触发 | `any` |
 | change | 上传列表修改时触发 | `UploadChangeEvent` |
 | remove | 移除文件时触发 | `UploadRemoveEvent` |
-| update:fileList ^(1.3.8) | `v-model:file-list` 对应的更新事件 | `UploadFileItem[]` |
+| update:fileList | `v-model:file-list` 对应的更新事件 | `UploadFileItem[]` |
 
 ## Upload Methods
 
 | 方法名 | 说明 | 参数 |
 | --- | --- | --- |
-| submit ^(1.3.8) | 手动开始上传 | - |
+| submit | 手动开始上传 | - |
 | abort | 取消上传 | <code>(task?: UniApp.UploadTask) =&gt; void</code> |

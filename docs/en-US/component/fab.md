@@ -140,17 +140,17 @@ const handleClick = () => {
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| v-model:active ^(0.1.57) | Whether active | `boolean` | `false` |
-| type ^(0.1.57) | Floating button type, optional values are `primary`, `success`, `info`, `warning`, `danger` | `FabType` | `'primary'` |
-| position ^(0.1.57) | Floating button position, optional values are `left-top`, `right-top`, `left-bottom`, `right-bottom`, `left-center`, `right-center`, `top-center`, `bottom-center` | `FabPosition` | `'right-bottom'` |
-| draggable ^(1.2.19) | Whether the button can be dragged | `boolean` | `false` |
-| direction ^(0.1.57) | Floating button menu popup direction, optional values are `top`, `right`, `bottom`, `left` | `FabDirection` | `'top'` |
-| disabled ^(0.1.57) | Whether disabled | `boolean` | `false` |
-| inactive-icon ^(0.1.57) | Icon when floating button is not expanded | `string` | `'plus'` |
-| active-icon ^(0.1.57) | Icon when floating button is expanded | `string` | `'close'` |
-| z-index ^(0.1.57) | Custom floating button z-index | `number` | `99` |
-| gap ^(1.2.26) | Custom spacing between floating button and visible area edge | `FabGap` | `{ top: 16, right: 16, bottom: 16, left: 16 }` |
-| expandable ^(1.3.11) | Used to control whether to expand menu on click. When set to `false`, triggers `click` event | `boolean` | `true` |
+| v-model:active | Whether active | `boolean` | `false` |
+| type | Floating button type, optional values are `primary`, `success`, `info`, `warning`, `danger` | `FabType` | `'primary'` |
+| position | Floating button position, optional values are `left-top`, `right-top`, `left-bottom`, `right-bottom`, `left-center`, `right-center`, `top-center`, `bottom-center` | `FabPosition` | `'right-bottom'` |
+| draggable | Whether the button can be dragged | `boolean` | `false` |
+| direction | Floating button menu popup direction, optional values are `top`, `right`, `bottom`, `left` | `FabDirection` | `'top'` |
+| disabled | Whether disabled | `boolean` | `false` |
+| inactive-icon | Icon when floating button is not expanded | `string` | `'plus'` |
+| active-icon | Icon when floating button is expanded | `string` | `'close'` |
+| z-index | Custom floating button z-index | `number` | `99` |
+| gap | Custom spacing between floating button and visible area edge | `FabGap` | `{ top: 16, right: 16, bottom: 16, left: 16 }` |
+| expandable | Used to control whether to expand menu on click. When set to `false`, triggers `click` event | `boolean` | `true` |
 | custom-class | Custom class name for root node | `string` | `''` |
 | custom-style | Custom style for root node | `string` | `''` |
 
@@ -167,18 +167,18 @@ const handleClick = () => {
 
 | Event Name | Description | Parameters |
 | --- | --- | --- |
-| click | When `expandable` is set to `false`, triggered when clicking inside the floating component but not triggering internal logic ^(1.3.11) | - |
+| click | When `expandable` is set to `false`, triggered when clicking inside the floating component but not triggering internal logic | - |
 
 ## Methods
 
 | Method Name | Description | Parameters |
 | --- | --- | --- |
-| open | Expand menu ^(0.1.57) | - |
-| close | Collapse menu ^(0.1.57) | - |
+| open | Expand menu | - |
+| close | Collapse menu | - |
 
 ## Slots
 
 | name | Description |
 | --- | --- |
-| default | Action button area content ^(0.1.57) |
-| trigger | Trigger slot, used for fully customizing the click trigger anchor area ^(1.3.11) |
+| default | Action button area content |
+| trigger | Trigger slot, used for fully customizing the click trigger anchor area |
