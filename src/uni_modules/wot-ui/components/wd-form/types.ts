@@ -18,28 +18,6 @@ export type FormValidateEvent = (typeof FORM_VALIDATE_EVENTS)[number]
 
 export type FormValidateTrigger = FormValidateEvent
 
-export type FormProvide = {
-  props: {
-    model: Record<string, any>
-    schema?: FormSchema
-    validateTrigger?: FormValidateTrigger | FormValidateTrigger[]
-    border?: boolean
-    // 公共配置属性
-    center?: boolean
-    size?: CellSize
-    titleWidth?: string | number
-    layout?: CellLayout
-    valueAlign?: CellValueAlign
-    asteriskPosition?: CellAsteriskPosition
-    hideAsterisk?: boolean
-    ellipsis?: boolean
-  }
-  errorMessages?: Record<string, string>
-  validate?: (prop?: string | string[]) => Promise<{ valid: boolean; errors: ErrorMessage[] }>
-}
-
-export const FORM_KEY: InjectionKey<FormProvide> = Symbol('wd-form')
-
 export type ErrorMessage = {
   prop: string
   message: string
@@ -143,5 +121,13 @@ export type FormExpose = {
    */
   reset: () => void
 }
+
+export type FormProvide = {
+  props: Partial<FormProps>
+  errorMessages?: Record<string, string>
+  validate?: (prop?: string | string[]) => Promise<{ valid: boolean; errors: ErrorMessage[] }>
+}
+
+export const FORM_KEY: InjectionKey<FormProvide> = Symbol('wd-form')
 
 export type FormInstance = ComponentPublicInstance<FormProps, FormExpose>

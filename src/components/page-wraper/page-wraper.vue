@@ -60,7 +60,6 @@ export default {
 import { computed, ref, onMounted, nextTick } from 'vue'
 import { setNotifyDefaultOptions, useConfigProvider, useQueue } from '@/uni_modules/wot-ui'
 import type { Action } from '@/uni_modules/wot-ui/components/wd-action-sheet/types'
-import type { ConfigProviderTheme } from '@/uni_modules/wot-ui/components/wd-config-provider/types'
 import { useDark } from '../../store'
 import { useRewardAd } from '@/store/useRewardAd'
 import { useChildren } from '@/uni_modules/wot-ui/composables/useChildren'
@@ -166,8 +165,8 @@ const resolvedTheme = computed<string>(() => {
   return currentTheme.value
 })
 
-const configProviderTheme = computed<ConfigProviderTheme>(() => {
-  return resolvedTheme.value as ConfigProviderTheme
+const configProviderTheme = computed(() => {
+  return resolvedTheme.value
 })
 
 useConfigProvider({ theme: configProviderTheme })

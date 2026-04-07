@@ -1,14 +1,12 @@
 import type { ExtractPropTypes, PropType, InjectionKey, ComputedRef } from 'vue'
-import { makeStringProp, baseProps } from '../common/props'
-
-export type ConfigProviderTheme = 'light' | 'dark' | ''
+import { makeStringProp, baseProps } from '../../common/props'
 
 export const configProviderProps = {
   ...baseProps,
   /**
    * 主题风格，设置为 dark 来开启深色模式，全局生效
    */
-  theme: makeStringProp<ConfigProviderTheme>('light'),
+  theme: makeStringProp('light'),
   /**
    * 自定义主题变量
    */
