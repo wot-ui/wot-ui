@@ -85,6 +85,7 @@ export default defineConfig({
   },
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['meta', { name: 'algolia-site-verification', content: '2E05BE38F4B83874' }],
     ['script', {}, `
       var _hmt = _hmt || [];
       (function() {
