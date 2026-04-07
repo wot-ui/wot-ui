@@ -50,6 +50,14 @@
 <wd-button variant="dashed">主要按钮</wd-button>
 ```
 
+### 柔和
+
+设置 `variant="soft"`。
+
+```html
+<wd-button variant="soft">主要按钮</wd-button>
+```
+
 ### 文字
 
 设置 `variant="text"`。
@@ -140,7 +148,7 @@
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 按钮类型，可选值为 `primary`、`success`、`info`、`warning`、`danger` | string | primary |
-| variant | 按钮变体，可选值为 `base`、`plain`、`dashed`、`text` | string | base |
+| variant | 按钮变体，可选值为 `base`、`plain`、`dashed`、`soft`、`text` | string | base |
 | size | 按钮尺寸，可选值为 `mini`、`small`、`medium`、`large` | string | medium |
 | round | 圆角按钮 | boolean | false |
 | disabled | 禁用按钮 | boolean | false |

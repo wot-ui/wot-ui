@@ -139,6 +139,7 @@ const sizeItems = [
 const variantItems = [
   { title: '镂空', variant: 'plain' },
   { title: '虚线', variant: 'dashed' },
+  { title: '柔和', variant: 'soft' },
   { title: '文字', variant: 'text' }
 ] as const
 
