@@ -1476,6 +1476,7 @@ export type selectPickerThemeVars = {
   selectPickerBg?: string // 选择器背景色
   selectPickerFooterBorderColor?: string // 确认区域上边框颜色
   selectPickerFooterPadding?: string // 底部内边距
+  selectPickerItemPadding?: string // 选项内边距
   selectPickerLoadingIconSize?: string // loading 图标尺寸
   selectPickerLoadingOpacity?: string // loading 状态下透明度
   selectPickerTextActiveColor?: string // 选中态文字颜色
