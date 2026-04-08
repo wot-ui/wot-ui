@@ -1,21 +1,21 @@
 <template>
   <page-wraper>
     <view class="page-video-preview">
-      <demo-group title="组件类型">
-        <demo-group-item title="基本用法">
-          <wd-button @click="open">点击预览视频</wd-button>
+      <demo-group :title="$t('zu-jian-lei-xing')">
+        <demo-group-item :title="$t('ji-chu-yong-fa')">
+          <wd-button @click="open">{{ $t('dian-ji-yu-lan-shi-pin') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
-        <demo-group-item title="多实例调用">
+      <demo-group :title="$t('te-shu-yang-shi')">
+        <demo-group-item :title="$t('duo-shi-li-tiao-yong')">
           <view class="button-row">
-            <wd-button @click="open">默认实例</wd-button>
-            <wd-button @click="openSub">指定实例</wd-button>
+            <wd-button @click="open">{{ $t('mo-ren-shi-li') }}</wd-button>
+            <wd-button @click="openSub">{{ $t('zhi-ding-shi-li') }}</wd-button>
           </view>
         </demo-group-item>
-        <demo-group-item title="组件实例调用">
-          <wd-button @click="openByRef">通过 ref 打开</wd-button>
+        <demo-group-item :title="$t('zu-jian-shi-li-tiao-yong')">
+          <wd-button @click="openByRef">{{ $t('tong-guo-ref-da-kai') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
@@ -30,6 +30,9 @@ import { type PreviewVideo, type VideoPreviewInstance } from '@/uni_modules/wot-
 import { useVideoPreview } from '@/uni_modules/wot-ui/components/wd-video-preview'
 import { ref } from 'vue'
 import blackMao from '../img/black_mao.png'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const { previewVideo } = useVideoPreview()
 const { previewVideo: previewSubVideo } = useVideoPreview('sub-preview')
@@ -39,13 +42,13 @@ const videoPreviewRef = ref<VideoPreviewInstance>()
 const video: PreviewVideo = {
   url: 'https://unpkg.com/wot-design-uni-assets@1.0.3/VID_115503.mp4',
   poster: blackMao,
-  title: '视频预览'
+  title: t('shi-pin-yu-lan')
 }
 
 const subVideo: PreviewVideo = {
   url: 'https://unpkg.com/wot-design-uni-assets@1.0.3/VID_115503.mp4',
   poster: blackMao,
-  title: '指定实例预览'
+  title: t('zhi-ding-shi-li-yu-lan')
 }
 
 function open() {

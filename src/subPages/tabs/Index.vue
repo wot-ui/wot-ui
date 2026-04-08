@@ -2,7 +2,7 @@
   <page-wraper>
     <wd-toast />
 
-    <demo-group transparent title="组件类型">
+    <demo-group transparent :title="$t('zu-jian-lei-xing')">
       <demo-group-item no-padding :title="$t('jiBenYongFa')">
         <wd-tabs v-model="tab1" @change="handleChange">
           <block v-for="item in 4" :key="item">
@@ -35,7 +35,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group transparent title="组件状态">
+    <demo-group transparent :title="$t('zu-jian-zhuang-tai')">
       <demo-group-item no-padding :title="$t('nian-xing-bu-ju')">
         <wd-tabs v-model="tab2" sticky @change="handleChange">
           <block v-for="item in 4" :key="item">
@@ -56,8 +56,8 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group transparent title="组件样式">
-      <demo-group-item no-padding title="底部条样式">
+    <demo-group transparent :title="$t('zu-jian-yang-shi')">
+      <demo-group-item no-padding :title="$t('di-bu-tiao-yang-shi')">
         <view v-for="theme in lineThemes" :key="theme" class="tabs-theme-item">
           <view class="tabs-theme-item__label">Theme: {{ theme }}</view>
           <wd-tabs v-model="tabLineTheme[theme]" :line-theme="theme" @change="handleChange">
@@ -71,7 +71,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group transparent title="特殊样式">
+    <demo-group transparent :title="$t('te-shu-yang-shi')">
       <demo-group-item no-padding :title="$t('dian-ji-shi-jian')">
         <wd-tabs v-model="tab4" @click="handleClick" @change="handleChange">
           <block v-for="item in 4" :key="item">

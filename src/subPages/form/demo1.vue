@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <wd-form ref="form" :model="model" :schema="activeSchema" :title-width="120" border>
-      <wd-form-item title="校验引擎">
+      <wd-form-item :title="$t('xiao-yan-yin-qing')">
         <wd-switch v-model="useZod" size="20" active-text="Zod" inactive-text="自定义" />
       </wd-form-item>
       <wd-form-item :title="$t('wai-bi-ba-bu-ming')" prop="name">

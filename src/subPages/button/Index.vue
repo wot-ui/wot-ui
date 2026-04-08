@@ -1,17 +1,17 @@
 <template>
   <page-wraper>
     <view class="page-button">
-      <demo-group title="组件类型">
-        <demo-group-item title="类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
+        <demo-group-item :title="$t('lei-xing')">
           <wd-button v-for="item in typeItems" :key="`base-${item.type}`" :type="item.type">{{ $t(item.textKey) }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
-        <demo-group-item title="禁用">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
+        <demo-group-item :title="$t('jinYong')">
           <wd-button v-for="item in typeItems" :key="`disabled-${item.type}`" :type="item.type" disabled>{{ $t(item.textKey) }}</wd-button>
         </demo-group-item>
-        <demo-group-item title="加载">
+        <demo-group-item :title="$t('jia-zai')">
           <view class="demo-row">
             <wd-button v-for="item in typeItems" :key="`loading-${item.type}`" :type="item.type" loading>{{ $t('jia-zai-zhong-0') }}</wd-button>
           </view>
@@ -21,7 +21,7 @@
             </wd-button>
           </view>
         </demo-group-item>
-        <demo-group-item title="变体禁用">
+        <demo-group-item :title="$t('bian-ti-jin-yong')">
           <wd-button variant="plain" disabled>{{ $t('zhu-yao-an-niu') }}</wd-button>
           <wd-button type="success" variant="plain" disabled>{{ $t('cheng-gong-an-niu-0') }}</wd-button>
           <wd-button type="info" variant="dashed" disabled>{{ $t('xin-xi-an-niu') }}</wd-button>
@@ -30,7 +30,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item v-for="variant in variantItems" :key="variant.variant" :title="variant.title">
           <wd-button v-for="item in typeItems" :key="`${variant.variant}-${item.type}`" :type="item.type" :variant="variant.variant">
             {{ variant.variant === 'text' ? $t('an-niu-0') : $t(item.textKey) }}
@@ -38,11 +38,11 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
-        <demo-group-item title="尺寸">
+      <demo-group :title="$t('zu-jian-yang-shi')">
+        <demo-group-item :title="$t('chi-cun')">
           <wd-button v-for="item in sizeItems" :key="item.size" :size="item.size">{{ item.text }}</wd-button>
         </demo-group-item>
-        <demo-group-item title="细边框与圆角">
+        <demo-group-item :title="$t('xi-bian-kuang-yu-yuan-jiao')">
           <view class="demo-row">
             <wd-button v-for="item in typeItems" :key="`hairline-${item.type}`" :type="item.type" variant="plain" hairline>
               {{ $t(item.textKey) }}
@@ -54,7 +54,7 @@
             </wd-button>
           </view>
         </demo-group-item>
-        <demo-group-item title="圆角对比">
+        <demo-group-item :title="$t('yuan-jiao-dui-bi')">
           <view class="demo-row">
             <wd-button v-for="item in typeItems" :key="`plain-round-${item.type}`" :type="item.type" variant="plain" round>
               {{ $t(item.textKey) }}
@@ -68,20 +68,20 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
-        <demo-group-item title="custom-class 阴影">
+      <demo-group :title="$t('te-shu-yang-shi')">
+        <demo-group-item :title="$t('customclass-yin-ying')">
           <wd-button v-for="item in typeItems" :key="`shadow-${item.type}`" :type="item.type" custom-class="custom-shadow">
             {{ $t(item.textKey) }}
           </wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态">
-        <demo-group-item title="text 属性">
-          <wd-button text="默认按钮"></wd-button>
+      <demo-group :title="$t('nei-rong-xing-tai')">
+        <demo-group-item :title="$t('text-shu-xing')">
+          <wd-button :text="$t('mo-ren-an-niu')"></wd-button>
           <wd-button type="success" :text="$t('cheng-gong-an-niu-0')"></wd-button>
         </demo-group-item>
-        <demo-group-item title="纯图标按钮">
+        <demo-group-item :title="$t('chun-tu-biao-an-niu')">
           <view class="demo-row">
             <wd-button v-for="item in typeItems" :key="`icon-base-${item.type}`" icon="delete" :type="item.type"></wd-button>
           </view>
@@ -92,7 +92,7 @@
             <wd-button v-for="item in typeItems" :key="`icon-round-${item.type}`" icon="delete" :type="item.type" variant="plain" round></wd-button>
           </view>
         </demo-group-item>
-        <demo-group-item title="图文按钮">
+        <demo-group-item :title="$t('tu-wen-an-niu')">
           <wd-button icon="download">{{ $t('xia-zai') }}</wd-button>
           <wd-button icon="settings">{{ $t('she-zhi') }}</wd-button>
           <wd-button classPrefix="fish" icon="kehuishouwu">{{ $t('ke-hui-shou') }}</wd-button>
@@ -103,13 +103,13 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="布局能力">
-        <demo-group-item title="块级按钮">
+      <demo-group :title="$t('bu-ju-neng-li')">
+        <demo-group-item :title="$t('kuai-ji-an-niu')">
           <wd-button v-for="item in typeItems" :key="`block-${item.type}`" :type="item.type" block size="large" custom-class="button-block">
             {{ $t(item.textKey) }}
           </wd-button>
         </demo-group-item>
-        <demo-group-item title="块级圆角组合">
+        <demo-group-item :title="$t('kuai-ji-yuan-jiao-zu-he')">
           <wd-button block size="large" round disabled custom-class="button-block">{{ $t('zhu-yao-an-niu') }}</wd-button>
           <wd-button block size="large" round custom-class="button-block">{{ $t('zhu-yao-an-niu') }}</wd-button>
           <wd-button block size="large" round loading custom-class="button-block">{{ $t('zhu-yao-an-niu') }}</wd-button>
@@ -121,6 +121,11 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
+import { type ButtonVariant, type ButtonType, type ButtonSize } from '@/uni_modules/wot-ui/components/wd-button/types'
+import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 const typeItems = [
   { type: 'primary', textKey: 'zhu-yao-an-niu' },
   { type: 'success', textKey: 'cheng-gong-an-niu-0' },
@@ -129,21 +134,26 @@ const typeItems = [
   { type: 'danger', textKey: 'wei-xian-an-niu' }
 ] as const
 
-const sizeItems = [
-  { size: 'mini', text: '迷你按钮' },
-  { size: 'small', text: '小型按钮' },
-  { size: 'medium', text: '普通按钮' },
-  { size: 'large', text: '大型按钮' }
-] as const
+const sizeItems = computed<Array<{ size: ButtonSize; text: string }>>(() => [
+  { size: 'mini', text: t('mi-ni-an-niu') },
+  { size: 'small', text: t('xiao-xing-an-niu') },
+  { size: 'medium', text: t('pu-tong-an-niu') },
+  { size: 'large', text: t('da-xing-an-niu') }
+])
 
-const variantItems = [
-  { title: '镂空', variant: 'plain' },
-  { title: '虚线', variant: 'dashed' },
-  { title: '柔和', variant: 'soft' },
-  { title: '文字', variant: 'text' }
-] as const
+const variantItems = computed<Array<{ title: string; variant: ButtonVariant }>>(() => [
+  { title: t('lou-kong'), variant: 'plain' },
+  { title: t('xu-xian'), variant: 'dashed' },
+  { title: t('rou-he'), variant: 'soft' },
+  { title: t('wen-zi-10'), variant: 'text' }
+])
 
-const plainLoadingItems = [{ type: 'success' }, { type: 'warning' }, { type: 'danger' }, { type: 'info' }] as const
+const plainLoadingItems = computed<Array<{ type: ButtonType }>>(() => [
+  { type: 'success' },
+  { type: 'warning' },
+  { type: 'danger' },
+  { type: 'info' }
+])
 </script>
 <style lang="scss">
 .page-button {

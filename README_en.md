@@ -127,4 +127,5 @@ After donating, your nickname and message will be displayed on the [donor list](
 
 This project is licensed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). Feel free to enjoy and participate in open source.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=wot-ui/wot-ui&type=Date)](https://star-history.com/#wot-ui/wot-ui&Date)
+[![Star History Chart](https://api.star-history.com/chart?repos=wot-ui/wot-ui&type=date&legend=top-left)](https://www.star-history.com/?type=date&repos=wot-ui%2Fwot-ui)
+

@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-slider">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-yong-fa-0')">
           <wd-slider v-model="value1" />
         </demo-group-item>
@@ -10,17 +10,17 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jin-yong-zhuang-tai')">
           <wd-slider v-model="value13" disabled />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
-        <demo-group-item title="显示极值">
+      <demo-group :title="$t('zu-jian-yang-shi')">
+        <demo-group-item :title="$t('xian-shi-ji-zhi')">
           <wd-slider v-model="value3" show-extreme-value />
         </demo-group-item>
-        <demo-group-item title="管道样式">
+        <demo-group-item :title="$t('guan-dao-yang-shi')">
           <wd-slider v-model="value6" theme="capsule" />
         </demo-group-item>
         <demo-group-item :title="$t('zhi-ding-bu-chang')">
@@ -29,16 +29,16 @@
         <demo-group-item :title="$t('zhi-ding-xuan-ze-fan-wei')">
           <wd-slider v-model="value10" :min="-10" :max="10" show-extreme-value />
         </demo-group-item>
-        <demo-group-item title="刻度标记">
+        <demo-group-item :title="$t('ke-du-biao-ji')">
           <wd-slider v-model="value11" :marks="marks1" :step="25" />
         </demo-group-item>
-        <demo-group-item title="刻度标记（管道）">
+        <demo-group-item :title="$t('ke-du-biao-ji-guan-dao')">
           <wd-slider v-model="value12" :marks="marks1" :step="25" theme="capsule" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="布局能力">
-        <demo-group-item title="垂直方向">
+      <demo-group :title="$t('bu-ju-neng-li')">
+        <demo-group-item :title="$t('chui-zhi-fang-xiang')">
           <view class="vertical-demo">
             <wd-slider v-model="value14" vertical />
             <wd-slider v-model="value16" vertical show-extreme-value />
@@ -46,7 +46,7 @@
             <wd-slider v-model="value19" vertical :marks="marks1" :step="25" />
           </view>
         </demo-group-item>
-        <demo-group-item title="垂直 + 管道">
+        <demo-group-item :title="$t('chui-zhi-guan-dao')">
           <view class="vertical-demo">
             <wd-slider v-model="value18" vertical theme="capsule" />
             <wd-slider v-model="value20b" vertical theme="capsule" range show-extreme-value />

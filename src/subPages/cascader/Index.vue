@@ -1,11 +1,11 @@
 <template>
   <page-wraper>
     <view class="page-cascader">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <wd-cell-group border>
           <wd-cell :title="$t('ji-chu-yong-fa')" is-link :value="showValue1" @click="show1 = true" />
           <wd-cell :title="$t('chu-shi-xuan-xiang')" is-link :value="showValue2" @click="show2 = true" />
-          <wd-cell title="自定义字段" is-link :value="showValue9" @click="show9 = true" />
+          <wd-cell :title="$t('zi-ding-yi-zi-duan')" is-link :value="showValue9" @click="show9 = true" />
         </wd-cell-group>
         <wd-cascader v-model="value1" v-model:visible="show1" :options="areaData" @confirm="handleConfirm1" />
         <wd-cascader v-model="value2" v-model:visible="show2" :options="areaData" @confirm="handleConfirm2" />
@@ -20,7 +20,7 @@
         />
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <wd-cell-group border>
           <wd-cell :title="$t('jin-yong-xuan-xiang')" is-link :value="showValue3" @click="show3 = true" />
           <wd-cell :title="$t('xuan-xiang-ti-shi-xin-xi')" is-link :value="showValue4" @click="show4 = true" />
@@ -31,7 +31,7 @@
         <wd-cascader v-model="value7" v-model:visible="show7" :options="areaData" :before-confirm="beforeConfirm" @confirm="handleConfirm7" />
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <wd-cell-group border>
           <wd-cell :title="$t('zhan-shi-ge-shi-hua')" is-link :value="showValue5" @click="show5 = true" />
           <wd-cell :title="$t('biaoTi-0')" is-link :value="showValue6" @click="show6 = true" />
@@ -40,11 +40,11 @@
         <wd-cascader v-model="value6" v-model:visible="show6" :title="$t('xuan-ze-di-zhi')" :options="areaData" @confirm="handleConfirm6" />
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <wd-cell-group border>
-          <wd-cell title="异步加载" is-link :value="showValue10" @click="show10 = true" />
-          <wd-cell title="异步加载（无初始值）" is-link :value="showValue11" @click="show11 = true" />
-          <wd-cell title="任意级可选" is-link :value="showValue12" @click="show12 = true" />
+          <wd-cell :title="$t('yi-bu-jia-zai')" is-link :value="showValue10" @click="show10 = true" />
+          <wd-cell :title="$t('yi-bu-jia-zai-wu-chu-shi-zhi')" is-link :value="showValue11" @click="show11 = true" />
+          <wd-cell :title="$t('ren-yi-ji-ke-xuan')" is-link :value="showValue12" @click="show12 = true" />
         </wd-cell-group>
         <wd-cascader v-model="value10" v-model:visible="show10" :lazy-load="lazyLoad10" @confirm="handleConfirm10" />
         <wd-cascader v-model="value11" v-model:visible="show11" :lazy-load="lazyLoad11" @confirm="handleConfirm11" />
@@ -55,7 +55,7 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useToast } from '@/uni_modules/wot-ui'
 import { useCascaderAreaData } from '@vant/area-data'
 import { useI18n } from 'vue-i18n'
@@ -69,7 +69,7 @@ const showValue1 = ref<string>('')
 const show1 = ref<boolean>(false)
 
 const value2 = ref<string>('150121')
-const showValue2 = ref<string>('内蒙古自治区/呼和浩特市/土默特左旗')
+const showValue2 = ref<string>(t('nei-meng-gu-zi-zhi-qu-hu-he-hao-te-shi-tu-mo-te-zuo-qi'))
 const show2 = ref<boolean>(false)
 
 const value3 = ref<string>('')
@@ -81,7 +81,7 @@ const showValue4 = ref<string>('')
 const show4 = ref<boolean>(false)
 
 const value5 = ref<string>('130204')
-const showValue5 = ref<string>('唐山市-古冶区')
+const showValue5 = ref<string>(t('tang-shan-shi-gu-ye-qu'))
 const show5 = ref<boolean>(false)
 
 const value6 = ref<string>('')
@@ -93,23 +93,23 @@ const showValue7 = ref<string>('')
 const show7 = ref<boolean>(false)
 
 const value9 = ref<number>(1)
-const showValue9 = ref<string>('选项一/选项一-一')
+const showValue9 = ref<string>(t('xuan-xiang-yi-xuan-xiang-yi-yi'))
 const show9 = ref<boolean>(false)
-const areaData9 = ref<any[]>([
+const areaData9 = computed<CascaderOption[]>(() => [
   {
     id: 1,
-    name: '选项一',
+    name: t('xuan-xiang-yi'),
     items: [
-      { id: 11, name: '选项一-一' },
-      { id: 12, name: '选项一-二' }
+      { id: 11, name: t('xuan-xiang-yi-yi') },
+      { id: 12, name: t('xuan-xiang-yi-er') }
     ]
   },
   {
     id: 2,
-    name: '选项二',
+    name: t('xuan-xiang-er'),
     items: [
-      { id: 21, name: '选项二-一' },
-      { id: 22, name: '选项二-二' }
+      { id: 21, name: t('xuan-xiang-er-yi') },
+      { id: 22, name: t('xuan-xiang-er-er') }
     ]
   }
 ])
@@ -126,7 +126,7 @@ const addDisabled = (data: CascaderOption[], disabledCodes: string[]): CascaderO
     children: item.children ? addDisabled(item.children, disabledCodes) : undefined
   }))
 }
-const areaData3 = ref(addDisabled(areaData, ['140000']))
+const areaData3 = computed<CascaderOption[]>(() => addDisabled(areaData, ['140000']))
 
 // 带提示信息的列数据
 const addTip = (data: CascaderOption[], tipMap: Record<string, string>): CascaderOption[] => {
@@ -134,7 +134,7 @@ const addTip = (data: CascaderOption[], tipMap: Record<string, string>): Cascade
     value: item.value,
     text: item.text,
     disabled: item.value === '140000',
-    tip: tipMap[item.value] || '',
+    tip: item.value ? tipMap[item.value] || '' : '',
     children: item.children ? addTip(item.children, tipMap) : undefined
   }))
 }
@@ -187,57 +187,61 @@ const handleConfirm9 = ({ selectedOptions }: { selectedOptions: CascaderOption[]
 
 // ── 异步加载示例 ────────────────────────────────────────────────
 // 模拟三级地区数据，实际场景中由接口返回
-const asyncProvinces: CascaderOption[] = [
-  { value: '110000', text: '北京市', isLeaf: false },
-  { value: '130000', text: '河北省', isLeaf: false },
-  { value: '440000', text: '广东省', isLeaf: false }
-]
+const asyncProvinces = computed<CascaderOption[]>(() => [
+  { value: '110000', text: t('bei-jing-shi'), isLeaf: false },
+  { value: '130000', text: t('he-bei-sheng'), isLeaf: false },
+  { value: '440000', text: t('guang-dong-sheng'), isLeaf: false }
+])
 
-const asyncCities: Record<string, CascaderOption[]> = {
-  '110000': [{ value: '110100', text: '北京市辖区', isLeaf: false }],
-  '130000': [
-    { value: '130100', text: '石家庄市', isLeaf: false },
-    { value: '130200', text: '唐山市', isLeaf: false }
-  ],
-  '440000': [
-    { value: '440100', text: '广州市', isLeaf: false },
-    { value: '440300', text: '深圳市', isLeaf: false }
-  ]
-}
+const asyncCities = computed<Record<string, CascaderOption[]>>(() => {
+  return {
+    '110000': [{ value: '110100', text: t('bei-jing-shi-xia-qu'), isLeaf: false }],
+    '130000': [
+      { value: '130100', text: t('shi-jia-zhuang-shi'), isLeaf: false },
+      { value: '130200', text: t('tang-shan-shi'), isLeaf: false }
+    ],
+    '440000': [
+      { value: '440100', text: t('guang-zhou-shi'), isLeaf: false },
+      { value: '440300', text: t('shen-zhen-shi'), isLeaf: false }
+    ]
+  }
+})
 
-const asyncDistricts: Record<string, CascaderOption[]> = {
-  '110100': [
-    { value: '110101', text: '东城区', isLeaf: true },
-    { value: '110102', text: '西城区', isLeaf: true }
-  ],
-  '130100': [
-    { value: '130102', text: '长安区', isLeaf: true },
-    { value: '130104', text: '桥西区', isLeaf: true }
-  ],
-  '130200': [
-    { value: '130202', text: '路南区', isLeaf: true },
-    { value: '130204', text: '古冶区', isLeaf: true }
-  ],
-  '440100': [
-    { value: '440103', text: '荔湾区', isLeaf: true },
-    { value: '440104', text: '越秀区', isLeaf: true }
-  ],
-  '440300': [
-    { value: '440303', text: '罗湖区', isLeaf: true },
-    { value: '440304', text: '福田区', isLeaf: true }
-  ]
-}
+const asyncDistricts = computed<Record<string, CascaderOption[]>>(() => {
+  return {
+    '110100': [
+      { value: '110101', text: t('dong-cheng-qu'), isLeaf: true },
+      { value: '110102', text: t('xi-cheng-qu'), isLeaf: true }
+    ],
+    '130100': [
+      { value: '130102', text: t('chang-an-qu'), isLeaf: true },
+      { value: '130104', text: t('qiao-xi-qu'), isLeaf: true }
+    ],
+    '130200': [
+      { value: '130202', text: t('lu-nan-qu'), isLeaf: true },
+      { value: '130204', text: t('gu-ye-qu'), isLeaf: true }
+    ],
+    '440100': [
+      { value: '440103', text: t('li-wan-qu'), isLeaf: true },
+      { value: '440104', text: t('yue-xiu-qu'), isLeaf: true }
+    ],
+    '440300': [
+      { value: '440303', text: t('luo-hu-qu'), isLeaf: true },
+      { value: '440304', text: t('fu-tian-qu'), isLeaf: true }
+    ]
+  }
+})
 
 /** 模拟异步请求，延迟 300ms 返回子节点数据 */
 function fetchChildren(parentValue: string | null): Promise<CascaderOption[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       if (parentValue === null) {
-        resolve(asyncProvinces)
-      } else if (asyncCities[parentValue]) {
-        resolve(asyncCities[parentValue])
-      } else if (asyncDistricts[parentValue]) {
-        resolve(asyncDistricts[parentValue])
+        resolve(asyncProvinces.value)
+      } else if (asyncCities.value[parentValue]) {
+        resolve(asyncCities.value[parentValue])
+      } else if (asyncDistricts.value[parentValue]) {
+        resolve(asyncDistricts.value[parentValue])
       } else {
         resolve([])
       }
@@ -246,7 +250,7 @@ function fetchChildren(parentValue: string | null): Promise<CascaderOption[]> {
 }
 
 const value10 = ref<(string | number)[]>(['130000', '130200', '130204'])
-const showValue10 = ref<string>('河北省/唐山市/古冶区')
+const showValue10 = ref<string>(t('he-bei-sheng-tang-shan-shi-gu-ye-qu'))
 const show10 = ref<boolean>(false)
 
 const lazyLoad10: CascaderLazyLoad = (option, _tabIndex, resolve) => {
@@ -259,65 +263,71 @@ const handleConfirm10 = ({ selectedOptions }: { selectedOptions: CascaderOption[
 
 // 无初始值的异步加载示例 - 行业分类数据
 /** 行业一级分类 */
-const industryCategories: CascaderOption[] = [
-  { value: 'it', text: 'IT 互联网', isLeaf: false },
-  { value: 'finance', text: '金融', isLeaf: false },
-  { value: 'healthcare', text: '医疗健康', isLeaf: false }
-]
+const industryCategories = computed<CascaderOption[]>(() => {
+  return [
+    { value: 'it', text: t('it-hu-lian-wang'), isLeaf: false },
+    { value: 'finance', text: t('jin-rong'), isLeaf: false },
+    { value: 'healthcare', text: t('yi-liao-jian-kang'), isLeaf: false }
+  ]
+})
 
 /** 行业二级分类 */
-const industrySubcategories: Record<string, CascaderOption[]> = {
-  it: [
-    { value: 'it-dev', text: '软件开发', isLeaf: false },
-    { value: 'it-ops', text: '运维', isLeaf: false }
-  ],
-  finance: [
-    { value: 'finance-bank', text: '银行', isLeaf: false },
-    { value: 'finance-insurance', text: '保险', isLeaf: false }
-  ],
-  healthcare: [
-    { value: 'health-hospital', text: '医院', isLeaf: false },
-    { value: 'health-pharma', text: '制药', isLeaf: false }
-  ]
-}
+const industrySubcategories = computed<Record<string, CascaderOption[]>>(() => {
+  return {
+    it: [
+      { value: 'it-dev', text: t('ruan-jian-kai-fa'), isLeaf: false },
+      { value: 'it-ops', text: t('yun-wei'), isLeaf: false }
+    ],
+    finance: [
+      { value: 'finance-bank', text: t('yin-hang'), isLeaf: false },
+      { value: 'finance-insurance', text: t('bao-xian'), isLeaf: false }
+    ],
+    healthcare: [
+      { value: 'health-hospital', text: t('yi-yuan'), isLeaf: false },
+      { value: 'health-pharma', text: t('zhi-yao'), isLeaf: false }
+    ]
+  }
+})
 
 /** 行业三级岗位 */
-const industryPositions: Record<string, CascaderOption[]> = {
-  'it-dev': [
-    { value: 'it-dev-fe', text: '前端开发', isLeaf: true },
-    { value: 'it-dev-be', text: '后端开发', isLeaf: true }
-  ],
-  'it-ops': [
-    { value: 'it-ops-devops', text: 'DevOps', isLeaf: true },
-    { value: 'it-ops-admin', text: '系统管理员', isLeaf: true }
-  ],
-  'finance-bank': [
-    { value: 'finance-bank-teller', text: '柜员', isLeaf: true },
-    { value: 'finance-bank-manager', text: '经理', isLeaf: true }
-  ],
-  'finance-insurance': [
-    { value: 'finance-insurance-agent', text: '代理人', isLeaf: true },
-    { value: 'finance-insurance-adjuster', text: '理赔员', isLeaf: true }
-  ],
-  'health-hospital': [
-    { value: 'health-hospital-doctor', text: '医生', isLeaf: true },
-    { value: 'health-hospital-nurse', text: '护士', isLeaf: true }
-  ],
-  'health-pharma': [
-    { value: 'health-pharma-researcher', text: '研究员', isLeaf: true },
-    { value: 'health-pharma-production', text: '生产员', isLeaf: true }
-  ]
-}
+const industryPositions = computed<Record<string, CascaderOption[]>>(() => {
+  return {
+    'it-dev': [
+      { value: 'it-dev-fe', text: t('qian-duan-kai-fa'), isLeaf: true },
+      { value: 'it-dev-be', text: t('hou-duan-kai-fa'), isLeaf: true }
+    ],
+    'it-ops': [
+      { value: 'it-ops-devops', text: 'DevOps', isLeaf: true },
+      { value: 'it-ops-admin', text: t('xi-tong-guan-li-yuan'), isLeaf: true }
+    ],
+    'finance-bank': [
+      { value: 'finance-bank-teller', text: t('gui-yuan'), isLeaf: true },
+      { value: 'finance-bank-manager', text: t('jing-li'), isLeaf: true }
+    ],
+    'finance-insurance': [
+      { value: 'finance-insurance-agent', text: t('dai-li-ren'), isLeaf: true },
+      { value: 'finance-insurance-adjuster', text: t('li-pei-yuan'), isLeaf: true }
+    ],
+    'health-hospital': [
+      { value: 'health-hospital-doctor', text: t('yi-sheng'), isLeaf: true },
+      { value: 'health-hospital-nurse', text: t('hu-shi'), isLeaf: true }
+    ],
+    'health-pharma': [
+      { value: 'health-pharma-researcher', text: t('yan-jiu-yuan'), isLeaf: true },
+      { value: 'health-pharma-production', text: t('sheng-chan-yuan'), isLeaf: true }
+    ]
+  }
+})
 
 function fetchIndustryChildren(parentValue: string | null): Promise<CascaderOption[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       if (parentValue === null) {
-        resolve(industryCategories)
-      } else if (industrySubcategories[parentValue]) {
-        resolve(industrySubcategories[parentValue])
-      } else if (industryPositions[parentValue]) {
-        resolve(industryPositions[parentValue])
+        resolve(industryCategories.value)
+      } else if (industrySubcategories.value[parentValue]) {
+        resolve(industrySubcategories.value[parentValue])
+      } else if (industryPositions.value[parentValue]) {
+        resolve(industryPositions.value[parentValue])
       } else {
         resolve([])
       }

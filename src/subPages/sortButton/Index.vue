@@ -1,13 +1,13 @@
 <template>
   <page-wraper>
     <view class="page-sort-button">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-yong-fa-0')">
           <wd-sort-button v-model="value1" :title="$t('jia-ge')" @change="handleChange1" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('she-zhi-allowreset-yun-xu-zhong-zhi-an-niu')">
           <wd-sort-button v-model="value2" :title="$t('jia-ge-0')" allow-reset @change="handleChange2" />
         </demo-group-item>
@@ -16,8 +16,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
-        <demo-group-item title="显示下划线">
+      <demo-group :title="$t('zu-jian-yang-shi')">
+        <demo-group-item :title="$t('xian-shi-xia-hua-xian')">
           <wd-sort-button v-model="value4" :title="$t('jia-ge-2')" line @change="handleChange4" />
         </demo-group-item>
       </demo-group>

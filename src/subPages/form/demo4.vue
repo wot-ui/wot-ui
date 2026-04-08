@@ -1,19 +1,19 @@
 <template>
   <page-wraper>
     <wd-form ref="form" :model="model" :schema="activeSchema" :error-type="errorType" :title-width="100" border>
-      <wd-cell-group custom-class="group" title="配置切换">
-        <wd-form-item title="校验引擎" value-align="left">
+      <wd-cell-group custom-class="group" :title="$t('pei-zhi-qie-huan')">
+        <wd-form-item :title="$t('xiao-yan-yin-qing')" value-align="left">
           <wd-switch size="20" v-model="useZodSchema" active-text="Zod" inactive-text="自定义" />
         </wd-form-item>
-        <wd-form-item title="提示方式" value-align="left">
+        <wd-form-item :title="$t('ti-shi-fang-shi')" value-align="left">
           <wd-radio-group v-model="errorType" direction="horizontal">
-            <wd-radio :value="'toast'">toast</wd-radio>
-            <wd-radio :value="'message'">message</wd-radio>
-            <wd-radio :value="'none'">none</wd-radio>
+            <wd-radio value="toast">toast</wd-radio>
+            <wd-radio value="message">message</wd-radio>
+            <wd-radio value="none">none</wd-radio>
           </wd-radio-group>
         </wd-form-item>
       </wd-cell-group>
-      <wd-cell-group custom-class="group" title="表单内容">
+      <wd-cell-group custom-class="group" :title="$t('biao-dan-nei-rong')">
         <wd-form-item :title="$t('wai-bi-ba-bu')" prop="value1">
           <wd-input clearable v-model="model.value1" :placeholder="$t('qing-shu-ru-wai-bi-ba-bu')" />
         </wd-form-item>

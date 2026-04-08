@@ -1,34 +1,18 @@
 <template>
   <page-wraper show-dark-mode enable-preset-theme>
-    <wd-select-picker
-      v-model="model.platform"
-      v-model:visible="showPlatformPicker"
-      :columns="platformList"
-      :placeholder="$t('qing-xuan-ze-tui-guang-ping-tai')"
-    />
-    <wd-picker
-      v-model="model.promotion"
-      v-model:visible="showPromotionPicker"
-      :columns="promotionlist"
-      :placeholder="$t('qing-xuan-ze-you-hui-fang-shi')"
-    />
-    <wd-datetime-picker v-model="model.time" v-model:visible="showTimePicker" :placeholder="$t('qing-xuan-ze-shi-jian')" />
-    <wd-calendar v-model="model.date" v-model:visible="showDatePicker" :placeholder="$t('qing-xuan-ze-ri-qi')" />
-    <wd-cascader
-      v-model="model.address"
-      v-model:visible="showAddressPicker"
-      :placeholder="$t('qing-xuan-ze-di-zhi')"
-      :options="area"
-      @confirm="handleAddressConfirm"
-    />
+    <wd-select-picker v-model="model.platform" v-model:visible="showPlatformPicker" :columns="platformList" />
+    <wd-picker v-model="model.promotion" v-model:visible="showPromotionPicker" :columns="promotionlist" />
+    <wd-datetime-picker v-model="model.time" v-model:visible="showTimePicker" />
+    <wd-calendar v-model="model.date" v-model:visible="showDatePicker" />
+    <wd-cascader v-model="model.address" v-model:visible="showAddressPicker" :options="area" @confirm="handleAddressConfirm" />
     <wd-toast />
     <wd-form ref="form" :model="model" :schema="activeSchema" :title-width="100" :layout="formItemLayout" border asterisk-position="end">
-      <wd-cell-group custom-class="group" title="布局切换示例">
-        <wd-form-item title="表单项布局" value-align="left">
+      <wd-cell-group custom-class="group" :title="$t('bu-ju-qie-huan-shi-li')">
+        <wd-form-item :title="$t('biao-dan-xiang-bu-ju')" value-align="left">
           <wd-switch size="20" v-model="isVerticalLayout" />
           <text class="layout-tip">{{ isVerticalLayout ? '上下布局' : '左右布局' }}</text>
         </wd-form-item>
-        <wd-form-item title="校验引擎" value-align="left">
+        <wd-form-item :title="$t('xiao-yan-yin-qing')" value-align="left">
           <wd-switch size="20" v-model="useZodSchema" active-text="Zod" inactive-text="自定义" />
         </wd-form-item>
       </wd-cell-group>
@@ -138,28 +122,28 @@
           <wd-upload :file-list="model.fileList" action="https://69bd04402bc2a25b22ad0a49.mockapi.io/upload" @change="handleFileChange"></wd-upload>
         </wd-form-item>
       </wd-cell-group>
-      <wd-cell-group custom-class="group" title="组合示例">
-        <wd-form-item title="投放优先级" prop="priority">
+      <wd-cell-group custom-class="group" :title="$t('zu-he-shi-li')">
+        <wd-form-item :title="$t('tou-fang-you-xian-ji')" prop="priority">
           <wd-radio-group v-model="model.priority" direction="horizontal">
-            <wd-radio :value="1">高</wd-radio>
-            <wd-radio :value="2">中</wd-radio>
-            <wd-radio :value="3">低</wd-radio>
+            <wd-radio :value="1">{{ $t('gao') }}</wd-radio>
+            <wd-radio :value="2">{{ $t('zhong') }}</wd-radio>
+            <wd-radio :value="3">{{ $t('di') }}</wd-radio>
           </wd-radio-group>
         </wd-form-item>
-        <wd-form-item title="投放标签" prop="tags">
+        <wd-form-item :title="$t('tou-fang-biao-qian')" prop="tags">
           <wd-checkbox-group v-model="model.tags" direction="horizontal">
-            <wd-checkbox :name="1">新品</wd-checkbox>
-            <wd-checkbox :name="2">爆款</wd-checkbox>
-            <wd-checkbox :name="3">清仓</wd-checkbox>
+            <wd-checkbox :name="1">{{ $t('xin-pin') }}</wd-checkbox>
+            <wd-checkbox :name="2">{{ $t('bao-kuan') }}</wd-checkbox>
+            <wd-checkbox :name="3">{{ $t('qing-cang') }}</wd-checkbox>
           </wd-checkbox-group>
         </wd-form-item>
-        <wd-form-item title="活动评分" prop="rate">
+        <wd-form-item :title="$t('huo-dong-ping-fen')" prop="rate">
           <wd-rate v-model="model.rate" allow-half clearable />
         </wd-form-item>
-        <wd-form-item title="预算强度" prop="budget">
+        <wd-form-item :title="$t('yu-suan-qiang-du')" prop="budget">
           <wd-slider ref="sliderRef" v-model="model.budget" show-extreme-value />
         </wd-form-item>
-        <wd-form-item title="滑块验证" prop="verified">
+        <wd-form-item :title="$t('hua-kuai-yan-zheng')" prop="verified">
           <wd-slide-verify ref="slideVerifyRef" @success="handleVerifySuccess" @fail="handleVerifyFail" />
         </wd-form-item>
       </wd-cell-group>
@@ -322,19 +306,19 @@ const customSchema: FormSchema = {
       pushIssue('discount', t('qing-shu-ru-you-hui-jin-e-0'))
     }
     if (formModel.priority === '' || formModel.priority === undefined || formModel.priority === null) {
-      pushIssue('priority', '请选择投放优先级')
+      pushIssue('priority', t('qing-xuan-ze-tou-fang-you-xian-ji'))
     }
     if (!isArray(formModel.tags) || !formModel.tags.length) {
-      pushIssue('tags', '请至少选择一个投放标签')
+      pushIssue('tags', t('qing-zhi-shao-xuan-ze-yi-ge-tou-fang-biao-qian'))
     }
     if (formModel.rate === '' || formModel.rate === undefined || formModel.rate === null) {
-      pushIssue('rate', '请完成活动评分')
+      pushIssue('rate', t('qing-wan-cheng-huo-dong-ping-fen'))
     }
     if (formModel.budget === '' || formModel.budget === undefined || formModel.budget === null) {
-      pushIssue('budget', '请设置预算强度')
+      pushIssue('budget', t('qing-she-zhi-yu-suan-qiang-du'))
     }
     if (!formModel.verified) {
-      pushIssue('verified', '请完成滑块验证')
+      pushIssue('verified', t('qing-wan-cheng-hua-kuai-yan-zheng'))
     }
     return issues
   },
@@ -361,10 +345,10 @@ const zodSchema: FormSchema = zodAdapter(
     phone: z.string().min(1, t('qing-shu-ru-ma-ka-ba-ka')),
     fileList: z.array(z.any()).min(1, t('qing-xuan-ze-huo-dong-tu-pian')),
     priority: z.number(),
-    tags: z.array(z.number()).min(1, '请至少选择一个投放标签'),
+    tags: z.array(z.number()).min(1, t('qing-zhi-shao-xuan-ze-yi-ge-tou-fang-biao-qian-0')),
     rate: z.number(),
     budget: z.number(),
-    verified: z.boolean().refine((value) => value, '请完成滑块验证')
+    verified: z.boolean().refine((value) => value, t('qing-wan-cheng-hua-kuai-yan-zheng-0'))
   }),
   {
     isRequired(path: string) {

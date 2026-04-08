@@ -2,7 +2,7 @@
   <page-wraper>
     <wd-dialog></wd-dialog>
     <view class="page-switch">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-switch v-model="checked1" @change="handleChange1" />
         </demo-group-item>
@@ -12,31 +12,31 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
-        <demo-group-item title="加载状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
+        <demo-group-item :title="$t('jia-zai-zhuang-tai')">
           <wd-switch v-model="checked9" loading active-text="上班" inactive-text="下班" />
           <wd-switch v-model="checked10" loading active-text="上班" inactive-text="下班" custom-class="ml-3" />
         </demo-group-item>
-        <demo-group-item title="禁用状态">
+        <demo-group-item :title="$t('jin-yong-zhuang-tai')">
           <wd-switch v-model="checked5" disabled />
           <wd-switch v-model="checked6" disabled custom-class="ml-3" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-yan-se-activecolor-inactivecolor')">
           <wd-switch v-model="checked3" active-color="#13ce66" inactive-color="#f00" @change="handleChange3" />
         </demo-group-item>
-        <demo-group-item title="文字描述">
+        <demo-group-item :title="$t('wen-zi-miao-shu')">
           <wd-switch v-model="checked8" active-text="上班" inactive-text="下班" />
         </demo-group-item>
-        <demo-group-item title="自定义显示图标">
+        <demo-group-item :title="$t('zi-ding-yi-xian-shi-tu-biao')">
           <wd-switch v-model="checked11" active-icon="check" inactive-icon="close" />
         </demo-group-item>
-        <demo-group-item title="自定义动作图标">
+        <demo-group-item :title="$t('zi-ding-yi-dong-zuo-tu-biao')">
           <wd-switch v-model="checked12" active-action-icon="check" inactive-action-icon="close" />
         </demo-group-item>
-        <demo-group-item title="形状">
+        <demo-group-item :title="$t('xing-zhuang')">
           <wd-switch v-model="checked9" shape="round" active-text="全圆" inactive-text="全圆" />
           <wd-switch v-model="checked10" shape="square" active-text="直角" inactive-text="直角" custom-class="ml-3" />
         </demo-group-item>
@@ -48,9 +48,9 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
-        <demo-group-item title="搭配表单使用" no-padding>
-          <wd-form-item title="搭配表单使用" center>
+      <demo-group :title="$t('te-shu-yang-shi')">
+        <demo-group-item :title="$t('da-pei-biao-dan-shi-yong')" no-padding>
+          <wd-form-item :title="$t('da-pei-biao-dan-shi-yong-0')" center>
             <wd-switch v-model="checked13" size="20" />
           </wd-form-item>
         </demo-group-item>
@@ -70,7 +70,7 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 
 const checked1 = ref<boolean>(true)
-const checked2 = ref<'上班' | '下班'>('上班')
+const checked2 = ref<string>(t('shang-ban'))
 const checked3 = ref<boolean>(true)
 const checked4 = ref<boolean>(true)
 const checked5 = ref<boolean>(true)

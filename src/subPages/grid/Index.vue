@@ -1,9 +1,8 @@
 <template>
   <view>
     <page-wraper>
-      <wd-toast />
       <view class="page-grid">
-        <demo-group title="组件类型">
+        <demo-group :title="$t('zu-jian-lei-xing')">
           <demo-group-item :title="$t('jiBenYongFa')" transparent no-padding>
             <wd-grid clickable>
               <wd-grid-item icon="image" :text="$t('wen-zi')" />
@@ -28,7 +27,7 @@
           </demo-group-item>
         </demo-group>
 
-        <demo-group title="组件变体">
+        <demo-group :title="$t('zu-jian-bian-ti')">
           <demo-group-item :title="$t('zi-ding-yi-lie-shu')" transparent no-padding>
             <wd-grid :column="3">
               <wd-grid-item icon="image" :text="$t('wen-zi-3')" />
@@ -54,7 +53,7 @@
           </demo-group-item>
         </demo-group>
 
-        <demo-group title="组件样式">
+        <demo-group :title="$t('zu-jian-yang-shi')">
           <demo-group-item :title="$t('zi-ding-yi-bei-jing-yan-se')" transparent no-padding>
             <wd-grid class="custom-bg-grid">
               <wd-grid-item icon="image" :text="$t('wen-zi-9')" />
@@ -96,26 +95,26 @@
           </demo-group-item>
         </demo-group>
 
-        <demo-group title="布局能力">
-          <demo-group-item title="横向布局" transparent no-padding>
+        <demo-group :title="$t('bu-ju-neng-li')">
+          <demo-group-item :title="$t('heng-xiang-bu-ju')" transparent no-padding>
             <wd-grid direction="horizontal" :column="2">
-              <wd-grid-item icon="image" text="图标居左" />
-              <wd-grid-item icon="settings" text="设置选项" />
-              <wd-grid-item icon="tag" text="卡券中心" />
-              <wd-grid-item icon="list" text="订单列表" />
+              <wd-grid-item icon="image" :text="$t('tu-biao-ju-zuo')" />
+              <wd-grid-item icon="settings" :text="$t('she-zhi-xuan-xiang')" />
+              <wd-grid-item icon="tag" :text="$t('ka-quan-zhong-xin')" />
+              <wd-grid-item icon="list" :text="$t('ding-dan-lie-biao')" />
             </wd-grid>
           </demo-group-item>
-          <demo-group-item title="横向布局 + 图标调换" transparent no-padding>
+          <demo-group-item :title="$t('heng-xiang-bu-ju-tu-biao-tiao-huan')" transparent no-padding>
             <wd-grid direction="horizontal" reverse :column="2" border>
-              <wd-grid-item icon="image" text="图标居右" />
-              <wd-grid-item icon="settings" text="设置选项" />
-              <wd-grid-item icon="tag" text="卡券中心" />
-              <wd-grid-item icon="list" text="订单列表" />
+              <wd-grid-item icon="image" :text="$t('tu-biao-ju-you')" />
+              <wd-grid-item icon="settings" :text="$t('she-zhi-xuan-xiang-0')" />
+              <wd-grid-item icon="tag" :text="$t('ka-quan-zhong-xin-0')" />
+              <wd-grid-item icon="list" :text="$t('ding-dan-lie-biao-0')" />
             </wd-grid>
           </demo-group-item>
         </demo-group>
 
-        <demo-group title="特殊样式">
+        <demo-group :title="$t('te-shu-yang-shi')">
           <demo-group-item :title="$t('tu-biao-cha-cao')" transparent no-padding>
             <wd-grid>
               <wd-grid-item :text="$t('wen-zi-19')" icon-size="36px">

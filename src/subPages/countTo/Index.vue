@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-count-to">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-count-to :endVal="endVal" suffix="年" color="#16baaa" />
           <wd-count-to prefix="￥" :decimals="2" :endVal="186.321" suffix="%" color="#1e9fff" />
@@ -10,7 +10,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('she-zhi-zhu-ti')">
           <wd-count-to type="primary" prefix="￥" :startVal="0" :endVal="888888" suffix="%" />
           <wd-count-to type="error" prefix="￥" :startVal="0" :endVal="888888" suffix="%" />
@@ -20,7 +20,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('shou-dong-kong-zhi')">
           <wd-count-to ref="countTo" :auto-start="false" prefix="￥" :startVal="1000" :decimals="3" :endVal="9999.32" suffix="%" color="#1e9fff" />
 

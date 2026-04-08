@@ -1,6 +1,6 @@
 <template>
   <page-wraper>
-    <demo-group title="组件类型">
+    <demo-group :title="$t('zu-jian-lei-xing')">
       <demo-group-item :title="$t('jiBenYongFa')">
         <wd-table :data="dataList" :height="400" @sort-method="handleSort" @row-click="handleRowClick">
           <wd-table-column prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-column>
@@ -34,7 +34,7 @@
             <template #value="{ row }">
               <view class="custom-class">
                 <text>{{ row.grade }}</text>
-                <text>同比{{ row.compare }}</text>
+                <text>{{ $t('tong-bi-rowcompare', row.compare) }}</text>
               </view>
             </template>
           </wd-table-column>
@@ -60,7 +60,7 @@
             <template #value="{ row }">
               <view class="custom-class">
                 <text>{{ row.grade }}</text>
-                <text>同比{{ row.compare }}</text>
+                <text>{{ $t('tong-bi-rowcompare-0', row.compare) }}</text>
               </view>
             </template>
           </wd-table-column>
@@ -87,17 +87,17 @@
           <wd-table-column prop="major" :label="$t('zhuan-ye')"></wd-table-column>
         </wd-table>
       </demo-group-item>
-      <demo-group-item title="虚拟滚动">
+      <demo-group-item :title="$t('xu-ni-gun-dong')">
         <wd-table :data="virtualData" :height="400" virtual :row-height="50">
-          <wd-table-column prop="index" label="序号" width="80px" align="center"></wd-table-column>
-          <wd-table-column prop="name" label="姓名" width="120px" align="center"></wd-table-column>
-          <wd-table-column prop="score" label="分数" width="100px" align="center"></wd-table-column>
-          <wd-table-column prop="remark" label="备注" width="200px"></wd-table-column>
+          <wd-table-column prop="index" :label="$t('xu-hao')" width="80px" align="center"></wd-table-column>
+          <wd-table-column prop="name" :label="$t('xing-ming')" width="120px" align="center"></wd-table-column>
+          <wd-table-column prop="score" :label="$t('fen-shu')" width="100px" align="center"></wd-table-column>
+          <wd-table-column prop="remark" :label="$t('bei-zhu')" width="200px"></wd-table-column>
         </wd-table>
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件状态">
+    <demo-group :title="$t('zu-jian-zhuang-tai')">
       <demo-group-item :title="$t('wu-bian-kuang')">
         <wd-table :data="dataList" :height="400" :border="false" @sort-method="handleSort" @row-click="handleRowClick">
           <wd-table-column prop="name" :label="$t('xing-ming')" align="center" width="50%"></wd-table-column>
@@ -118,7 +118,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="特殊样式">
+    <demo-group :title="$t('te-shu-yang-shi')">
       <demo-group-item :title="$t('bu-gu-ding-biao-tou-jie-he-fen-ye-qi')">
         <wd-table :data="paginationData" :fixed-header="false">
           <wd-table-column prop="name" :label="$t('xing-ming')" fixed align="center"></wd-table-column>
@@ -322,9 +322,9 @@ const paginationData = computed(() => {
 /** 虚拟滚动 demo 数据（1000 行） */
 const virtualData = Array.from({ length: 10000 }, (_, i) => ({
   index: i + 1,
-  name: `蜀兵${i + 1}号`,
+  name: t('shu-bingi-1-hao', i + 1),
   score: Math.floor(Math.random() * 100),
-  remark: `这是蜀兵${i + 1}号的备注信息`
+  remark: t('zhe-shi-shu-bingi-1-hao-de-bei-zhu-xin-xi', i + 1)
 }))
 
 const spanData = computed(() => dataList.value.slice(0, 5))

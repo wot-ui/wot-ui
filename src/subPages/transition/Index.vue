@@ -1,7 +1,7 @@
 <template>
   <page-wraper :demo-config="{ transparent: true }">
     <view class="page-transition">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('fade-dong-hua')">
           <wd-button @click="runTransition('fade')">fade</wd-button>
           <wd-button @click="runTransition('fade-up')">fade-up</wd-button>
@@ -21,7 +21,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-dong-hua')">
           <wd-button @click="runCustomTransition">custom</wd-button>
         </demo-group-item>

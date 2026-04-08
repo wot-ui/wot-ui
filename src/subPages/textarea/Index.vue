@@ -1,13 +1,13 @@
 <template>
   <page-wraper>
     <view class="page-textarea">
-      <demo-group title="组件类型" transparent>
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
         <demo-group-item :title="$t('ji-ben-shi-yong')" no-padding>
           <wd-textarea v-model="value1" :placeholder="$t('qing-tian-xie-ping-jia')" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态" transparent>
+      <demo-group :title="$t('zu-jian-zhuang-tai')" transparent>
         <demo-group-item :title="$t('zhi-du')" no-padding>
           <wd-textarea v-model="value8" readonly clearable />
         </demo-group-item>
@@ -16,7 +16,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体" transparent>
+      <demo-group :title="$t('zu-jian-bian-ti')" transparent>
         <demo-group-item :title="$t('qing-kong-an-niu-he-zi-shu-xian-zhi')" no-padding>
           <wd-textarea v-model="value2" :maxlength="120" clearable show-word-limit />
         </demo-group-item>
@@ -31,35 +31,35 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
-        <demo-group-item title="紧凑布局">
+      <demo-group :title="$t('zu-jian-yang-shi')">
+        <demo-group-item :title="$t('jin-cou-bu-ju')">
           <wd-textarea v-model="value7" compact :placeholder="$t('qing-tian-xie-ping-jia')" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式" transparent>
-        <demo-group-item title="结合表单使用" no-padding>
+      <demo-group :title="$t('te-shu-yang-shi')" transparent>
+        <demo-group-item :title="$t('jie-he-biao-dan-shi-yong')" no-padding>
           <wd-form :model="formData" border title-width="98px">
-            <wd-form-item title="基本用法" prop="basic">
-              <wd-textarea v-model="formData.basic" placeholder="请输入" compact />
+            <wd-form-item :title="$t('ji-chu-yong-fa')" prop="basic">
+              <wd-textarea v-model="formData.basic" :placeholder="$t('qing-shu-ru-5')" compact />
             </wd-form-item>
-            <wd-form-item title="禁用" prop="disabled">
-              <wd-textarea v-model="formData.disabled" disabled placeholder="请输入" compact />
+            <wd-form-item :title="$t('jinYong')" prop="disabled">
+              <wd-textarea v-model="formData.disabled" disabled :placeholder="$t('qing-shu-ru-5')" compact />
             </wd-form-item>
-            <wd-form-item title="清空按钮" prop="clearable">
-              <wd-textarea v-model="formData.clearable" clearable placeholder="请输入" compact />
+            <wd-form-item :title="$t('qing-kong-an-niu')" prop="clearable">
+              <wd-textarea v-model="formData.clearable" clearable :placeholder="$t('qing-shu-ru-5')" compact />
             </wd-form-item>
-            <wd-form-item title="高度自适应" prop="autoHeight">
-              <wd-textarea v-model="formData.autoHeight" auto-height clearable placeholder="请输入" compact />
+            <wd-form-item :title="$t('gao-du-zi-shi-ying-0')" prop="autoHeight">
+              <wd-textarea v-model="formData.autoHeight" auto-height clearable :placeholder="$t('qing-shu-ru-5')" compact />
             </wd-form-item>
-            <wd-form-item title="字数限制" prop="limit">
-              <wd-textarea v-model="formData.limit" :maxlength="240" show-word-limit clearable compact placeholder="请输入" />
+            <wd-form-item :title="$t('zi-shu-xian-zhi-0')" prop="limit">
+              <wd-textarea v-model="formData.limit" :maxlength="240" show-word-limit clearable compact :placeholder="$t('qing-shu-ru-5')" />
             </wd-form-item>
-            <wd-form-item title="必填" prop="required" required>
-              <wd-textarea v-model="formData.required" placeholder="请输入" compact />
+            <wd-form-item :title="$t('bi-tian')" prop="required" required>
+              <wd-textarea v-model="formData.required" :placeholder="$t('qing-shu-ru-5')" compact />
             </wd-form-item>
-            <wd-form-item title="只读" prop="readonly">
-              <wd-textarea v-model="formData.readonly" readonly :maxlength="240" show-word-limit placeholder="请输入" compact />
+            <wd-form-item :title="$t('zhi-du')" prop="readonly">
+              <wd-textarea v-model="formData.readonly" readonly :maxlength="240" show-word-limit :placeholder="$t('qing-shu-ru-5')" compact />
             </wd-form-item>
           </wd-form>
         </demo-group-item>

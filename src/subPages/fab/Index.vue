@@ -1,7 +1,7 @@
 <template>
   <view class="page-fab" @click="closeOutside">
     <page-wraper>
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('xuan-fu-an-niu-zhu-ti-se')">
           <wd-radio-group v-model="type" type="dot" direction="horizontal">
             <wd-radio value="primary" custom-class="custom-radio">{{ $t('zhu-yao-an-niu') }}</wd-radio>
@@ -13,7 +13,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('xuan-fu-an-niu-wei-zhi')">
           <wd-radio-group v-model="position" type="dot" direction="horizontal">
             <wd-radio value="left-top" custom-class="custom-radio">{{ $t('zuo-shang') }}</wd-radio>
@@ -37,7 +37,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jinYong')">
           <view @click.stop="">
             <wd-switch v-model="disabled" size="22px" />
@@ -57,13 +57,13 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-chu-fa-qi')">
           <wd-radio-group v-model="customType" type="dot" direction="horizontal" @click.stop="">
-            <wd-radio value="default" custom-class="custom-radio">默认样式</wd-radio>
-            <wd-radio value="withText" custom-class="custom-radio">带文字按钮</wd-radio>
-            <wd-radio value="plain" custom-class="custom-radio">plain 变体</wd-radio>
-            <wd-radio value="text" custom-class="custom-radio">text 变体</wd-radio>
+            <wd-radio value="default" custom-class="custom-radio">{{ $t('mo-ren-yang-shi') }}</wd-radio>
+            <wd-radio value="withText" custom-class="custom-radio">{{ $t('dai-wen-zi-an-niu') }}</wd-radio>
+            <wd-radio value="plain" custom-class="custom-radio">{{ $t('plain-bian-ti') }}</wd-radio>
+            <wd-radio value="text" custom-class="custom-radio">{{ $t('text-bian-ti') }}</wd-radio>
           </wd-radio-group>
         </demo-group-item>
       </demo-group>

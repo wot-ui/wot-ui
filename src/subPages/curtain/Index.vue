@@ -1,13 +1,13 @@
 <template>
   <page-wraper>
     <view class="page-curtain">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-button @click="handleClick(1)">{{ $t('guan-bi-an-niu-zai-nei-bu') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('xiu-gai-an-niu-wei-zhi')">
           <wd-button @click="handleClick(2)">{{ $t('zuo-shang') }}</wd-button>
           <wd-button @click="handleClick(3)">{{ $t('ding-bu') }}</wd-button>
@@ -18,13 +18,13 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('dian-ji-zhe-zhao-guan-bi')">
           <wd-button @click="handleClick(8)">{{ $t('dian-ji-zhe-zhao-guan-bi-0') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-guan-bi-an-niu')">
           <wd-button @click="handleClick(9)">{{ $t('zi-ding-yi-guan-bi-an-niu-0') }}</wd-button>
         </demo-group-item>

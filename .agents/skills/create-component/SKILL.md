@@ -1,11 +1,20 @@
 ---
 name: create-component
-description: 在 wot-ui 项目中创建新组件的标准流程
+description: 在 wot-ui 项目中创建新组件骨架与必要注册点。用户要求从零创建组件源码、补齐 types.vue.scss 结构或注册全局组件类型时调用；不负责 Demo 页、测试和文档迁移。
 ---
 
 # 创建新组件技能
 
-本技能用于在 wot-ui 项目中创建新的 UI 组件。
+本技能用于在 wot-ui 项目中创建新的 UI 组件骨架。
+
+默认遵循 `wot-ui-component-baseline` 中的共享约束，命名与注释细则可配合 `vue-comment` 使用。
+
+## 职责边界
+
+- 本 Skill 负责组件源码目录、基础文件、必要注册点。
+- 本 Skill 不负责 Demo 页编写，相关工作交给 `create-demo-page`。
+- 本 Skill 不负责测试创建，相关工作交给 `create-test`。
+- 本 Skill 不负责 Markdown 文档迁移或大规模文档编写，相关工作交给 `migrate-component-doc`。
 
 ## 组件目录结构
 
@@ -257,8 +266,6 @@ useLockScroll(() => showPopup.value)
 // #endif
 ```
 
----
-
 ## 条件编译
 
 uni-app 支持跨平台条件编译：
@@ -280,8 +287,6 @@ uni-app 支持跨平台条件编译：
 // #endif
 ```
 
----
-
 ### 5. 注册全局类型声明 (`global.d.ts`)
 
 在 `src/uni_modules/wot-ui/global.d.ts` 中添加组件类型声明：
@@ -297,67 +302,12 @@ declare module 'vue' {
 
 > **命名规则**：组件名使用帕斯卡命名法（PascalCase），如 `WdVideoPreview`、`WdIndexBar`
 
----
+## 交付要求
 
-### 6. 创建中文文档 (`docs/component/{组件名}.md`)
-
-文档遵循以下结构：
-
-```markdown
-# {组件名} {中文名}
-
-组件简介描述。
-
-## 基本用法
-
-基本使用说明。
-
-\`\`\`html
-<wd-{组件名}>示例内容</wd-{组件名}>
-\`\`\`
-
-## 其他功能
-
-<!-- 按功能分节介绍 -->
-
-## Attributes
-
-| 参数 | 说明 | 类型 | 可选值 | 默认值 | 最低版本 |
-|------|------|------|--------|--------|----------|
-| type | 类型 | string | primary / success | primary | - |
-
-## Events
-
-| 事件名称 | 说明 | 参数 | 最低版本 |
-|----------|------|------|----------|
-| click | 点击事件 | `event` | - |
-
-## Slots
-
-| 名称 | 说明 | 最低版本 |
-|------|------|----------|
-| default | 默认插槽 | - |
-
-## 外部样式类
-
-| 类名 | 说明 | 最低版本 |
-|------|------|----------|
-| custom-class | 根节点样式 | - |
-```
-
----
-
-### 7. 创建英文文档 (`docs/en-US/component/{组件名}.md`)
-
-英文文档结构与中文一致，表格标题列使用英文：
-
-| 中文表头 | 英文表头 |
-|----------|----------|
-| 参数 | Parameter |
-| 说明 | Description |
-| 类型 | Type |
-| 可选值 | Accepted Values |
-| 默认值 | Default |
+- 至少创建 `types.ts`、`wd-<component>.vue`、`index.scss`。
+- 如组件需全局识别，补充 `global.d.ts`。
+- 保持最小可运行骨架，不把 Demo、测试、文档强行塞入同一任务。
+- 完成后至少校验当前新增或修改文件无明显语法错误。
 | 最低版本 | Min Version |
 
 ---

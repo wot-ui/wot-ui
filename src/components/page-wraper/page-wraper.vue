@@ -2,7 +2,7 @@
   <wd-config-provider :custom-class="customClass" :custom-style="customStyle" :theme="configProviderTheme">
     <view class="page-wraper" @click="closeOutside">
       <wd-cell
-        title="调整主题"
+        :title="$t('tiao-zheng-zhu-ti')"
         title-width="240px"
         is-link
         :value="currentThemeLabel"

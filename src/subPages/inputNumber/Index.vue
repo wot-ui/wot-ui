@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-input-number">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-ben-shi-yong')">
           <view class="demo-grid">
             <wd-input-number v-model="themeDefault" @change="handleChange" />
@@ -12,7 +12,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jinYong')">
           <view class="demo-grid">
             <wd-input-number v-model="disabled" disabled />
@@ -24,13 +24,13 @@
         <demo-group-item :title="$t('jin-yong-shu-ru-kuang')">
           <wd-input-number v-model="disableInput" disable-input @change="handleChange" />
         </demo-group-item>
-        <demo-group-item title="禁用减号按钮">
+        <demo-group-item :title="$t('jin-yong-jian-hao-an-niu')">
           <view class="demo-grid">
             <wd-input-number v-model="disableMinusDefault" disable-minus @change="handleChange" />
             <wd-input-number v-model="disableMinusPrimary" disable-minus theme="primary" @change="handleChange" />
           </view>
         </demo-group-item>
-        <demo-group-item title="禁用加号按钮">
+        <demo-group-item :title="$t('jin-yong-jia-hao-an-niu')">
           <view class="demo-grid">
             <wd-input-number v-model="disablePlusDefault" disable-plus @change="handleChange" />
             <wd-input-number v-model="disablePlusPrimary" disable-plus theme="primary" @change="handleChange" />
@@ -38,8 +38,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
-        <demo-group-item title="圆角样式">
+      <demo-group :title="$t('zu-jian-bian-ti')">
+        <demo-group-item :title="$t('yuan-jiao-yang-shi')">
           <view class="demo-grid">
             <wd-input-number v-model="roundDefault" round @change="handleChange" />
             <wd-input-number v-model="roundPrimary" round theme="primary" @change="handleChange" />
@@ -49,7 +49,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('she-zhi-bu-chang')">
           <wd-input-number v-model="step" :step="2" @change="handleChange" />
         </demo-group-item>
@@ -62,16 +62,16 @@
         <demo-group-item :title="$t('shu-ru-yan-ge-wei-bu-shu-de-bei-shu')">
           <wd-input-number v-model="stepStrict" step-strictly :step="2" @change="handleChange" />
         </demo-group-item>
-        <demo-group-item title="严格步进+边界限制">
+        <demo-group-item :title="$t('yan-ge-bu-jin-bian-jie-xian-zhi')">
           <view class="demo-section">
-            <view class="demo-label">值：{{ strictBounds }}（步进值 2，最小值 3，最大值 15）</view>
+            <view class="demo-label">{{ $t('zhi-strictbounds-bu-jin-zhi-2-zui-xiao-zhi-3-zui-da-zhi-15', strictBounds) }}</view>
             <wd-input-number v-model="strictBounds" step-strictly :step="2" :min="3" :max="15" @change="handleChange" />
             <view class="demo-tip">
-              输入 1 → 4（≥3 的最小 2 的倍数）
+              {{ $t('shu-ru-1-43-de-zui-xiao-2-de-bei-shu') }}
               <br />
-              输入 5 → 4（最接近的 2 的倍数）
+              {{ $t('shu-ru-5-4-zui-jie-jin-de-2-de-bei-shu') }}
               <br />
-              输入 17 → 14（≤15 的最大 2 的倍数）
+              {{ $t('shu-ru-17-1415-de-zui-da-2-de-bei-shu') }}
             </view>
           </view>
         </demo-group-item>
@@ -80,7 +80,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊用法">
+      <demo-group :title="$t('te-shu-yong-fa')">
         <demo-group-item :title="$t('wu-shu-ru-kuang')">
           <view class="demo-row">
             <view>{{ $t('shu-liang-value5') }}{{ withoutInput }}</view>
@@ -90,31 +90,33 @@
         <demo-group-item :title="$t('yun-xu-kong-zhi-bing-she-zhi-placeholder')">
           <wd-input-number v-model="allowNull" allow-null :placeholder="$t('bu-xian')" input-width="70px" @change="handleChange" />
         </demo-group-item>
-        <demo-group-item title="非允许空值但可临时删除">
+        <demo-group-item :title="$t('fei-yun-xu-kong-zhi-dan-ke-lin-shi-shan-chu')">
           <view class="demo-section">
-            <view class="demo-label">值：{{ tempEmpty }}（失焦时会自动修正为最小值）</view>
+            <view class="demo-label">{{ $t('zhi-tempempty-shi-jiao-shi-hui-zi-dong-xiu-zheng-wei-zui-xiao-zhi', tempEmpty) }}</view>
             <wd-input-number v-model="tempEmpty" :min="1" @change="handleChange" />
-            <view class="demo-tip">尝试删除输入框中的所有内容，然后点击其他地方失焦</view>
+            <view class="demo-tip">{{ $t('chang-shi-shan-chu-shu-ru-kuang-zhong-de-suo-you-nei-rong-ran-hou-dian-ji-qi-ta-di-fang-shi-jiao') }}</view>
           </view>
         </demo-group-item>
-        <demo-group-item title="键盘弹起不上推页面">
+        <demo-group-item :title="$t('jian-pan-dan-qi-bu-shang-tui-ye-mian')">
           <wd-input-number v-model="adjustPosition" :adjust-position="false" @change="handleChange" />
         </demo-group-item>
-        <demo-group-item title="非立即更新模式">
+        <demo-group-item :title="$t('fei-li-ji-geng-xin-mo-shi')">
           <view class="demo-section">
-            <view class="demo-label">立即更新模式（默认）- 值：{{ immediate }}</view>
+            <view class="demo-label">{{ $t('li-ji-geng-xin-mo-shi-mo-ren-zhi-immediate', immediate) }}</view>
             <wd-input-number v-model="immediate" :immediate-change="true" @change="handleChange" />
-            <view class="demo-label">非立即更新模式 - 值：{{ notImmediate }}</view>
+            <view class="demo-label">{{ $t('fei-li-ji-geng-xin-mo-shi-zhi-notimmediate', notImmediate) }}</view>
             <wd-input-number v-model="notImmediate" :immediate-change="false" @change="handleChange" />
           </view>
         </demo-group-item>
-        <demo-group-item title="初始化时自动修正">
+        <demo-group-item :title="$t('chu-shi-hua-shi-zi-dong-xiu-zheng')">
           <view class="demo-section">
-            <view class="demo-label">自动修正初始值 - 值：{{ updateOnInit }}</view>
+            <view class="demo-label">{{ $t('zi-dong-xiu-zheng-chu-shi-zhi-zhi-updateoninit', updateOnInit) }}</view>
             <wd-input-number v-model="updateOnInit" :update-on-init="true" :min="3" :max="15" :step="2" step-strictly @change="handleChange" />
-            <view class="demo-label">不修正初始值 - 值：{{ noUpdateOnInit }}</view>
+            <view class="demo-label">{{ $t('bu-xiu-zheng-chu-shi-zhi-zhi-noupdateoninit', noUpdateOnInit) }}</view>
             <wd-input-number v-model="noUpdateOnInit" :update-on-init="false" :min="3" :max="15" :step="2" step-strictly @change="handleChange" />
-            <view class="demo-tip">上方组件会在初始化时自动将值 1 修正为 4（≥3 的最小 2 的倍数）</view>
+            <view class="demo-tip">
+              {{ $t('shang-fang-zu-jian-hui-zai-chu-shi-hua-shi-zi-dong-jiang-zhi-1-xiu-zheng-wei-43-de-zui-xiao-2-de-bei-shu') }}
+            </view>
           </view>
         </demo-group-item>
         <demo-group-item :title="$t('yi-bu-bian-geng')">

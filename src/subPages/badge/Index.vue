@@ -1,6 +1,6 @@
 <template>
   <page-wraper>
-    <demo-group title="组件类型">
+    <demo-group :title="$t('zu-jian-lei-xing')">
       <demo-group-item :title="$t('zhanShiXiaoXiShuLiang')">
         <wd-badge custom-class="badge" :value="12">
           <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>
@@ -23,7 +23,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件状态">
+    <demo-group :title="$t('zu-jian-zhuang-tai')">
       <demo-group-item :title="$t('dianZhuangLeiXing')">
         <wd-badge custom-class="badge" is-dot>{{ $t('shuJuChaXun') }}</wd-badge>
         <wd-badge custom-class="badge" is-dot>
@@ -43,18 +43,18 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件变体">
-      <demo-group-item title="徽标形状">
+    <demo-group :title="$t('zu-jian-bian-ti')">
+      <demo-group-item :title="$t('hui-biao-xing-zhuang')">
         <wd-badge custom-class="badge" :value="12" shape="square">
-          <wd-button :round="false" type="info" size="small">方形</wd-button>
+          <wd-button :round="false" type="info" size="small">{{ $t('fang-xing') }}</wd-button>
         </wd-badge>
         <wd-badge custom-class="badge" :value="12" shape="bubble">
-          <wd-button :round="false" type="info" size="small">气泡</wd-button>
+          <wd-button :round="false" type="info" size="small">{{ $t('qi-pao') }}</wd-button>
         </wd-badge>
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件样式">
+    <demo-group :title="$t('zu-jian-yang-shi')">
       <demo-group-item :title="$t('keDingYiXiaoXiZuiDaZhi')">
         <wd-badge custom-class="badge" :value="200" :max="99">
           <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>
@@ -65,21 +65,21 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="特殊样式">
-      <demo-group-item title="描边徽标">
+    <demo-group :title="$t('te-shu-yang-shi')">
+      <demo-group-item :title="$t('miao-bian-hui-biao')">
         <wd-badge custom-class="badge" :value="12" border>
-          <wd-button :round="false" type="primary" size="small">描边</wd-button>
+          <wd-button :round="false" type="primary" size="small">{{ $t('miao-bian') }}</wd-button>
         </wd-badge>
         <wd-badge custom-class="badge" :value="1" border type="primary">
-          <wd-button :round="false" type="danger" size="small">描边</wd-button>
+          <wd-button :round="false" type="danger" size="small">{{ $t('miao-bian-0') }}</wd-button>
         </wd-badge>
         <wd-badge custom-class="badge" :value="999" border type="warning">
-          <wd-button :round="false" type="success" size="small">描边</wd-button>
+          <wd-button :round="false" type="success" size="small">{{ $t('miao-bian-1') }}</wd-button>
         </wd-badge>
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="内容形态">
+    <demo-group :title="$t('nei-rong-xing-tai')">
       <demo-group-item :title="$t('ziDingYiNeiRong')">
         <wd-badge custom-class="badge" value="new">
           <wd-button :round="false" type="info" size="small">{{ $t('pingLun') }}</wd-button>

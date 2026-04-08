@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-datetime-picker">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')" no-padding>
           <wd-cell-group border>
             <wd-cell
@@ -9,7 +9,7 @@
               value-align="left"
               :title="$t('ri-qi-xuan-ze')"
               is-link
-              placeholder="请选择"
+              :placeholder="$t('qing-xuan-ze')"
               :value="value1"
               @click="show1 = true"
             />
@@ -20,7 +20,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item title="before-confirm" no-padding>
           <wd-cell-group border>
             <wd-cell title="before-confirm" is-link :value="formatDate(value8, 'datetime')" @click="show8 = true" />
@@ -29,8 +29,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
-        <demo-group-item title="日期类型" no-padding>
+      <demo-group :title="$t('zu-jian-bian-ti')">
+        <demo-group-item :title="$t('ri-qi-lei-xing')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('ri-qi-xuan-ze-dai-miao')" is-link :value="formatDate(value18, 'datetime', true)" @click="show18 = true" />
             <wd-cell :title="$t('nian-yue-ri')" is-link :value="formatDate(value2, 'date')" @click="show2 = true" />
@@ -62,8 +62,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
-        <demo-group-item title="展示格式与内部格式" no-padding>
+      <demo-group :title="$t('zu-jian-yang-shi')">
+        <demo-group-item :title="$t('zhan-shi-ge-shi-yu-nei-bu-ge-shi')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('zhan-shi-ge-shi')" is-link :value="customDisplayFormat(value5)" @click="show5 = true" />
             <wd-cell :title="$t('nei-bu-ge-shi')" is-link :value="formatDate(value6, 'datetime')" @click="show6 = true" />
@@ -152,7 +152,7 @@ const filter: DatetimePickerViewFilter = ({ type, values }) => {
 const toast = useToast()
 const beforeConfirm = (value: number | string | (number | string)[]) => {
   return new Promise<boolean>((resolve) => {
-    toast.loading('处理中...')
+    toast.loading(t('chu-li-zhong'))
     setTimeout(() => {
       if ((value as number) > Date.now()) {
         toast.close()

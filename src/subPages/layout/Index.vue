@@ -1,8 +1,8 @@
 <template>
   <page-wraper>
     <view class="page-layout">
-      <demo-group title="布局能力">
-        <demo-group-item title="基础用法">
+      <demo-group :title="$t('bu-ju-neng-li')">
+        <demo-group-item :title="$t('ji-chu-yong-fa-0')">
           <wd-row>
             <wd-col :span="24"><view class="bg-dark1">span: 24</view></wd-col>
           </wd-row>
@@ -23,7 +23,7 @@
           </wd-row>
         </demo-group-item>
 
-        <demo-group-item title="分栏偏移">
+        <demo-group-item :title="$t('fen-lan-pian-yi')">
           <wd-row>
             <wd-col :span="4"><view class="bg-dark">span: 4</view></wd-col>
             <wd-col :span="8" :offset="4"><view class="bg-light">span: 8 offset: 4</view></wd-col>
@@ -34,7 +34,7 @@
           </wd-row>
         </demo-group-item>
 
-        <demo-group-item title="分栏间隔">
+        <demo-group-item :title="$t('fen-lan-jian-ge')">
           <wd-row :gutter="20">
             <wd-col :span="8"><view class="bg-dark">span: 8</view></wd-col>
             <wd-col :span="8"><view class="bg-light">span: 8</view></wd-col>
@@ -42,7 +42,7 @@
           </wd-row>
         </demo-group-item>
 
-        <demo-group-item title="Justify 对齐">
+        <demo-group-item :title="$t('justify-dui-qi')">
           <wd-row justify="center">
             <wd-col :span="6"><view class="bg-dark">center</view></wd-col>
             <wd-col :span="6"><view class="bg-light">center</view></wd-col>
@@ -65,7 +65,7 @@
           </wd-row>
         </demo-group-item>
 
-        <demo-group-item title="Align 对齐">
+        <demo-group-item :title="$t('align-dui-qi')">
           <wd-row align="middle" class="row-align-demo">
             <wd-col :span="8"><view class="bg-dark" style="height: 60px; line-height: 60px">middle</view></wd-col>
             <wd-col :span="8"><view class="bg-light" style="height: 30px; line-height: 30px">middle</view></wd-col>

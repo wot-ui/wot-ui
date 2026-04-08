@@ -2,7 +2,7 @@
   <page-wraper :demo-config="{ transparent: true }">
     <wd-toast />
     <view class="page-cell">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')" no-padding>
           <wd-cell-group>
             <wd-cell :title="$t('biao-ti-wen-zi')" :value="$t('nei-rong')" />
@@ -24,7 +24,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('dian-ji-shi-jian')" no-padding>
           <wd-cell-group>
             <wd-cell :title="$t('biao-ti-wen-zi-11')" :value="$t('nei-rong')" clickable @click="showToast" />
@@ -32,13 +32,13 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item title="Placeholder" no-padding>
           <wd-cell-group>
-            <wd-cell title="用户名" placeholder="请输入用户名" />
-            <wd-cell title="手机号" value="188****8888" placeholder="请输入手机号" />
-            <wd-cell title="左对齐" placeholder="请输入内容" value-align="left" />
-            <wd-cell title="居中对齐" placeholder="请输入内容" value-align="center" />
+            <wd-cell :title="$t('yong-hu-ming')" :placeholder="$t('qing-shu-ru-yong-hu-ming')" />
+            <wd-cell :title="$t('shou-ji-hao')" value="188****8888" :placeholder="$t('qing-shu-ru-shou-ji-hao')" />
+            <wd-cell :title="$t('zuo-dui-qi')" :placeholder="$t('qing-shu-ru-nei-rong')" value-align="left" />
+            <wd-cell :title="$t('ju-zhong-dui-qi')" :placeholder="$t('qing-shu-ru-nei-rong')" value-align="center" />
           </wd-cell-group>
         </demo-group-item>
 
@@ -49,17 +49,17 @@
           </wd-cell-group>
         </demo-group-item>
 
-        <demo-group-item title="箭头方向" no-padding>
+        <demo-group-item :title="$t('jian-tou-fang-xiang')" no-padding>
           <wd-cell-group>
-            <wd-cell title="向上箭头" is-link arrow-direction="up" />
-            <wd-cell title="向下箭头" is-link arrow-direction="down" />
-            <wd-cell title="向左箭头" is-link arrow-direction="left" />
-            <wd-cell title="默认箭头(向右)" is-link />
+            <wd-cell :title="$t('xiang-shang-jian-tou')" is-link arrow-direction="up" />
+            <wd-cell :title="$t('xiang-xia-jian-tou')" is-link arrow-direction="down" />
+            <wd-cell :title="$t('xiang-zuo-jian-tou')" is-link arrow-direction="left" />
+            <wd-cell :title="$t('mo-ren-jian-tou-xiang-you')" is-link />
           </wd-cell-group>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('card-style')" no-padding>
           <wd-cell-group insert>
             <wd-cell :title="$t('biao-ti-wen-zi')" :value="$t('nei-rong')" />
@@ -94,7 +94,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('zhan-shi-bian-kuang-xian')" no-padding>
           <wd-cell-group :title="$t('jiao-yi-guan-li-0')" border>
             <wd-cell :title="$t('biao-ti-wen-zi-8')" :value="$t('nei-rong')" />

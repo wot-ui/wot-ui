@@ -1,13 +1,13 @@
 <template>
   <page-wraper>
     <view class="page-count-down">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-count-down :time="time" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('zi-ding-yi-ge-shi')">
           <wd-count-down :time="time" format="DD 天 HH 时 mm 分 ss 秒" />
         </demo-group-item>
@@ -17,7 +17,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('ziDingYiYangShi')">
           <wd-count-down :time="time">
             <template #default="{ current }">
@@ -31,7 +31,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('shou-dong-kong-zhi')">
           <wd-count-down ref="countDown" :time="3000" millisecond :auto-start="false" format="ss:SSS" @finish="onFinish"></wd-count-down>
           <wd-grid clickable border>

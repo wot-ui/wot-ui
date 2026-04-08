@@ -3,8 +3,8 @@
 
   <page-wraper>
     <view class="page-keyboard">
-      <demo-group title="组件类型" transparent>
-        <demo-group-item title="键盘类型" no-padding>
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
+        <demo-group-item :title="$t('jian-pan-lei-xing')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('mo-ren-jian-pan')" is-link @click="showKeyBoard(1)" />
             <wd-cell :title="$t('dai-you-ce-lan-de-jian-pan')" is-link @click="showKeyBoard(2)" />
@@ -15,8 +15,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体" transparent>
-        <demo-group-item title="标题与额外按键" no-padding>
+      <demo-group :title="$t('zu-jian-bian-ti')" transparent>
+        <demo-group-item :title="$t('biao-ti-yuewai-an-jian')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('dai-biao-ti-de-jian-pan')" is-link @click="showKeyBoard(4)" />
             <wd-cell :title="$t('slot-zi-ding-yi-biao-ti')" is-link @click="showKeyBoard(9)" />
@@ -26,8 +26,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊用法" transparent>
-        <demo-group-item title="绑定与弹层" no-padding>
+      <demo-group :title="$t('te-shu-yong-fa')" transparent>
+        <demo-group-item :title="$t('bang-ding-yu-dan-ceng')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('shuang-xiang-bang-ding')" clickable :value="value1" @click="showKeyBoard(7)" />
             <wd-cell :title="$t('zhan-shi-meng-ceng')" clickable @click="showKeyBoard(8)" />

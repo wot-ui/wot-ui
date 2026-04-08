@@ -3,14 +3,14 @@
     <wd-navbar fixed placeholder :title="$t('navbar-dao-hang-tiao')" left-arrow safeAreaInsetTop @click-left="handleClickLeft"></wd-navbar>
 
     <view class="page-navbar">
-      <demo-group title="组件类型" transparent>
-        <demo-group-item no-padding title="基础用法">
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
+        <demo-group-item no-padding :title="$t('ji-chu-yong-fa-0')">
           <wd-navbar :title="$t('biaoTi-0')"></wd-navbar>
         </demo-group-item>
-        <demo-group-item no-padding title="返回上级" transparent>
+        <demo-group-item no-padding :title="$t('fan-hui-shang-ji')" transparent>
           <wd-navbar :title="$t('biaoTi-0')" :left-text="$t('fan-hui')" left-arrow @click-left="handleClickLeft"></wd-navbar>
         </demo-group-item>
-        <demo-group-item no-padding title="右侧按钮" transparent>
+        <demo-group-item no-padding :title="$t('you-ce-an-niu')" transparent>
           <wd-navbar
             :title="$t('biaoTi-0')"
             :left-text="$t('fan-hui')"
@@ -22,8 +22,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态" transparent>
-        <demo-group-item no-padding title="禁用按钮" transparent>
+      <demo-group :title="$t('zu-jian-zhuang-tai')" transparent>
+        <demo-group-item no-padding :title="$t('jin-yong-an-niu')" transparent>
           <wd-navbar
             :title="$t('biaoTi-0')"
             :left-text="$t('fan-hui')"
@@ -35,8 +35,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态" transparent>
-        <demo-group-item no-padding title="使用插槽" transparent>
+      <demo-group :title="$t('nei-rong-xing-tai')" transparent>
+        <demo-group-item no-padding :title="$t('shi-yong-cha-cao')" transparent>
           <wd-navbar :title="$t('biaoTi-0')" @click-left="handleClickLeft">
             <template #left>
               <wd-icon name="left" size="24px" class="wd-navbar__arrow" />
@@ -46,14 +46,14 @@
             </template>
           </wd-navbar>
         </demo-group-item>
-        <demo-group-item no-padding title="胶囊样式" transparent>
+        <demo-group-item no-padding :title="$t('jiao-nang-yang-shi')" transparent>
           <wd-navbar :title="$t('biaoTi-0')" :left-text="$t('fan-hui')" :right-text="$t('she-zhi')" left-arrow>
             <template #capsule>
               <wd-navbar-capsule @back="handleBack" @back-home="handleBackHome"></wd-navbar-capsule>
             </template>
           </wd-navbar>
         </demo-group-item>
-        <demo-group-item no-padding title="带搜索栏" transparent>
+        <demo-group-item no-padding :title="$t('dai-sou-suo-lan')" transparent>
           <wd-navbar :left-text="$t('fan-hui')" :right-text="$t('she-zhi')" left-arrow>
             <template #title>
               <view class="search-box">

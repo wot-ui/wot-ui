@@ -1,13 +1,13 @@
 <template>
   <page-wraper>
     <view class="page-skeleton">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item v-for="item in themeList" :key="item.value" :title="item.title">
           <wd-skeleton :theme="item.value" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('gong-ge-gu-jia-ping')">
           <wd-skeleton :row-col="grid" />
         </demo-group-item>
@@ -27,7 +27,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('jian-bian-jia-zai-dong-hua')">
           <wd-skeleton animation="gradient" theme="paragraph" />
         </demo-group-item>

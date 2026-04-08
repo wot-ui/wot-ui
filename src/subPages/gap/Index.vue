@@ -1,13 +1,13 @@
 <template>
   <page-wraper>
     <view class="page-gap">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-ben-shi-yong')">
           <wd-gap bg-color="red"></wd-gap>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('zi-ding-yi-bei-jing-yan-se')">
           <wd-gap bg-color="#4D80F0"></wd-gap>
         </demo-group-item>
@@ -16,13 +16,13 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('ziDingYiYangShi')">
           <wd-gap custom-class="custom-gap"></wd-gap>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item custom-class="custom-safe-area-bottom" :title="$t('di-bu-an-quan-qu')">
           <wd-gap bg-color="#FFFFFF" safe-area-bottom height="120rpx"></wd-gap>
         </demo-group-item>

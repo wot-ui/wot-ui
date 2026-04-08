@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-signature">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-yong-fa-0')">
           <wd-signature :export-scale="2" background-color="#ffffff" @confirm="confirm" @clear="clear" />
         </demo-group-item>
@@ -10,7 +10,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('bi-feng-mo-shi-ji-chu')">
           <wd-signature pressure :height="300" />
         </demo-group-item>
@@ -24,7 +24,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-an-niu')">
           <wd-signature :disabled="disabled" enable-history :step="3">
             <template #footer="{ clear, confirm, currentStep, restore, revoke, historyList }">
@@ -43,7 +43,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('dan-chuang-zhong-shi-yong')">
           <wd-button type="primary" @click="showPopup = true">{{ $t('da-kai-qian-ming-ban') }}</wd-button>
 

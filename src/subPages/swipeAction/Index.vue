@@ -1,10 +1,10 @@
 <template>
   <page-wraper>
     <view class="swipe-action-demo" @click="closeOutside">
-      <demo-group transparent title="组件类型">
+      <demo-group transparent :title="$t('zu-jian-lei-xing')">
         <demo-group-item no-padding :title="$t('jiBenYongFa')">
           <wd-swipe-action>
-            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
+            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="$t('nei-rong')" />
             <template #right>
               <view class="swipe-action-demo__action">
                 <view class="swipe-action-demo__button swipe-action-demo__button--danger" @click="handleAction('操作1')">{{ $t('cao-zuo-1') }}</view>
@@ -23,7 +23,7 @@
                 <view class="swipe-action-demo__button swipe-action-demo__button--primary">{{ $t('cao-zuo-3-0') }}</view>
               </view>
             </template>
-            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
+            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="$t('nei-rong')" />
             <template #right>
               <view class="swipe-action-demo__action">
                 <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-4') }}</view>
@@ -35,10 +35,10 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group transparent title="组件状态">
+      <demo-group transparent :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item no-padding :title="$t('jin-yong-hua-dong-an-niu')">
           <wd-swipe-action disabled>
-            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
+            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="$t('nei-rong')" />
             <template #right>
               <view class="swipe-action-demo__action">
                 <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-1-3') }}</view>
@@ -50,7 +50,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group transparent title="特殊样式">
+      <demo-group transparent :title="$t('te-shu-yang-shi')">
         <demo-group-item no-padding :title="$t('qie-huan-an-niu')">
           <wd-swipe-action v-model="value">
             <template #left>
@@ -60,7 +60,7 @@
                 <view class="swipe-action-demo__button swipe-action-demo__button--primary">{{ $t('cao-zuo-3-1') }}</view>
               </view>
             </template>
-            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
+            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="$t('nei-rong')" />
             <template #right>
               <view class="swipe-action-demo__action">
                 <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-4-0') }}</view>
@@ -81,20 +81,20 @@
             </view>
           </view>
         </demo-group-item>
-        <demo-group-item no-padding title="关闭前拦截">
+        <demo-group-item no-padding :title="$t('guan-bi-qian-lan-jie')">
           <wd-swipe-action :before-close="beforeClose">
-            <wd-cell title="标题文字" value="阻止点击内容区关闭" />
+            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="$t('zu-zhi-dian-ji-nei-rong-qu-guan-bi')" />
             <template #right>
               <view class="swipe-action-demo__action">
-                <view class="swipe-action-demo__button swipe-action-demo__button--danger">删除</view>
-                <view class="swipe-action-demo__button swipe-action-demo__button--warning">标记</view>
+                <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('shan-chu') }}</view>
+                <view class="swipe-action-demo__button swipe-action-demo__button--warning">{{ $t('biao-ji') }}</view>
               </view>
             </template>
           </wd-swipe-action>
         </demo-group-item>
         <demo-group-item no-padding :title="$t('dian-ji-shi-jian')">
           <wd-swipe-action @click="handleClick">
-            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="内容" />
+            <wd-cell :title="$t('biao-ti-wen-zi-10')" value="$t('nei-rong')" />
             <template #right>
               <view class="swipe-action-demo__action">
                 <view class="swipe-action-demo__button swipe-action-demo__button--danger">{{ $t('cao-zuo-1-2') }}</view>
@@ -124,10 +124,10 @@ const beforeClose: SwipeActionBeforeClose = (reason, position) => {
     const shouldClose = !(reason === 'click' && position === 'inside')
 
     if (!shouldClose) {
-      toast.show('已拦截点击内容区导致的关闭')
+      toast.show(t('yi-lan-jie-dian-ji-nei-rong-qu-dao-zhi-de-guan-bi'))
       resolve(false)
     } else {
-      toast.loading('处理中...')
+      toast.loading(t('chu-li-zhong'))
       setTimeout(() => {
         toast.close()
         if (reason === 'click') {

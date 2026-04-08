@@ -2,7 +2,7 @@
   <page-wraper>
     <wd-toast />
 
-    <demo-group title="组件类型">
+    <demo-group :title="$t('zu-jian-lei-xing')">
       <demo-group-item :title="$t('jiBenYongFa')">
         <view class="button-group">
           <wd-button @click="showToast">toast</wd-button>
@@ -19,7 +19,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件状态">
+    <demo-group :title="$t('zu-jian-zhuang-tai')">
       <demo-group-item :title="$t('loading')">
         <view class="button-group">
           <wd-button @click="showLoadingToast">circular ({{ $t('mo-ren') }})</wd-button>
@@ -36,7 +36,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件样式">
+    <demo-group :title="$t('zu-jian-yang-shi')">
       <demo-group-item :title="$t('shi-yong-tu-biao')">
         <view class="button-group">
           <wd-button @click="showInnerIconToast">{{ $t('nei-bu-tu-biao') }}</wd-button>
@@ -107,7 +107,7 @@ function showBottomToast() {
   })
 }
 function showLoadingToast() {
-  toast.loading('3s后自动关闭')
+  toast.loading(t('3s-hou-zi-dong-guan-bi'))
   setTimeout(() => {
     toast.close()
   }, 3000)
@@ -115,7 +115,7 @@ function showLoadingToast() {
 
 function showSpinnerLoading() {
   toast.loading({
-    msg: '3s后自动关闭',
+    msg: t('3s-hou-zi-dong-guan-bi-0'),
     loadingType: 'spinner',
     loadingColor: '#fff'
   })
@@ -126,7 +126,7 @@ function showSpinnerLoading() {
 
 function showDotsLoading() {
   toast.loading({
-    msg: '3s后自动关闭',
+    msg: t('3s-hou-zi-dong-guan-bi-1'),
     loadingType: 'dots',
     loadingColor: '#fff'
   })

@@ -1,6 +1,6 @@
 <template>
   <page-wraper>
-    <demo-group title="组件类型">
+    <demo-group :title="$t('zu-jian-lei-xing')">
       <demo-group-item no-padding :title="$t('dan-ge-ri-qi-xuan-ze')">
         <view style="margin: 0 15px 10px">
           <view style="margin-bottom: 10px; font-size: 13px">{{ $t('qie-huan-lei-xing') }}</view>
@@ -38,14 +38,14 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件状态">
-      <demo-group-item no-padding title="范围选择允许选中同一日期">
+    <demo-group :title="$t('zu-jian-zhuang-tai')">
+      <demo-group-item no-padding :title="$t('fan-wei-xuan-ze-yun-xu-xuan-zhong-tong-yi-ri-qi')">
         <wd-calendar-view type="daterange" allow-same-day v-model="value3" :switch-mode="switchMode"></wd-calendar-view>
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件变体">
-      <demo-group-item title="切换模式">
+    <demo-group :title="$t('zu-jian-bian-ti')">
+      <demo-group-item :title="$t('qie-huan-mo-shi')">
         <wd-radio-group v-model="switchMode" type="button">
           <wd-radio value="none">none</wd-radio>
           <wd-radio value="month">month</wd-radio>
@@ -54,7 +54,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件样式">
+    <demo-group :title="$t('zu-jian-yang-shi')">
       <demo-group-item no-padding :title="$t('zi-ding-yi-ri-qi')">
         <wd-calendar-view type="daterange" allow-same-day v-model="value6" :formatter="formatter" :switch-mode="switchMode"></wd-calendar-view>
       </demo-group-item>
@@ -64,7 +64,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="特殊样式">
+    <demo-group :title="$t('te-shu-yang-shi')">
       <demo-group-item no-padding :title="$t('xian-zhi-zui-da-xuan-ze-fan-wei')">
         <wd-calendar-view type="daterange" :max-range="3" v-model="value7" :switch-mode="switchMode"></wd-calendar-view>
       </demo-group-item>

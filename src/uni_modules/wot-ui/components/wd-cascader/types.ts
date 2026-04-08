@@ -7,9 +7,9 @@ import { type TabsLineTheme } from '../wd-tabs/types'
  */
 export type CascaderOption = {
   /** 选项值 */
-  value: string | number
+  value?: string | number
   /** 选项文本 */
-  text: string
+  text?: string
   /** 子选项 */
   children?: CascaderOption[]
   /** 是否禁用 */

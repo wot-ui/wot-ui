@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-resize">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-yong-fa-0')">
           <wd-resize @resize="handleResize">
             <view class="resize-target" :style="{ width, height }"></view>

@@ -8,7 +8,9 @@
           <text class="page__title-sparator">@</text>
           <text class="page__title-version">{{ packageConfig.version }}</text>
         </view>
-        <view class="page__desc">AI 友好的设计系统，提供 80+ 高质量组件，支持暗黑模式、国际化和自定义主题。</view>
+        <view class="page__desc">
+          {{ $t('ai-you-hao-de-she-ji-xi-tong-ti-gong-80-gao-zhi-liang-zu-jian-zhi-chi-an-hei-mo-shi-guo-ji-hua-he-zi-ding-yi-zhu-ti') }}
+        </view>
       </view>
       <view class="page__body">
         <wd-collapse v-model="active">

@@ -3,7 +3,7 @@
     <view class="page-circle">
       <wd-dialog selector="circle"></wd-dialog>
 
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-yong-fa')">
           <wd-circle custom-class="custom-circle" v-model="current" :text="current + '%'" />
           <wd-circle color="#F57F00" custom-class="custom-circle" v-model="current" :text="current + '%'" />
@@ -11,7 +11,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('yang-shi-ding-zhi')">
           <wd-circle custom-class="custom-circle" v-model="current" :stroke-width="6" :text="$t('kuan-du-ding-zhi')" />
           <wd-circle custom-class="custom-circle" v-model="current" layer-color="#eee" color="#ee0a24" :text="$t('yan-se-ding-zhi')" />
@@ -21,7 +21,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态">
+      <demo-group :title="$t('nei-rong-xing-tai')">
         <demo-group-item :title="$t('shi-yong-slot')">
           <wd-circle custom-class="custom-circle" v-model="current" :stroke-width="6">
             <view style="color: red">{{ current }}%</view>
@@ -29,12 +29,12 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
-        <demo-group-item title="进度控制">
+      <demo-group :title="$t('te-shu-yang-shi')">
+        <demo-group-item :title="$t('jin-du-kong-zhi')">
           <wd-button custom-style="margin-right:24rpx" type="primary" size="small" @click="doAdd">{{ $t('zeng-jia') }}</wd-button>
           <wd-button type="danger" size="small" @click="doDecre">{{ $t('jian-shao') }}</wd-button>
         </demo-group-item>
-        <demo-group-item title="alert 验证层级">
+        <demo-group-item :title="$t('alert-yan-zheng-ceng-ji')">
           <wd-button @click="alert">alert</wd-button>
         </demo-group-item>
       </demo-group>

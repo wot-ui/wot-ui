@@ -1,11 +1,13 @@
 ---
 name: check-doc-component-consistency
-description: 校对组件文档与源码实现是否一致。用户要求核对 props、events、slots、methods 或排查文档不准确时调用。
+description: 只做组件文档与源码实现的一致性核对或最小修正。用户要求核对 props、events、slots、methods、默认值、命名是否准确，但未要求迁移文档结构、重排 Demo 或升级到新规范时调用。
 ---
 
 # 文档与实现一致性校对技能
 
 用于系统校对组件文档与组件源码实现是否一致，输出差异清单并给出最小改动修正方案。
+
+默认遵循 `wot-ui-component-baseline` 中的共享约束。
 
 ## 何时使用
 
@@ -13,6 +15,14 @@ description: 校对组件文档与源码实现是否一致。用户要求核对 
 - 用户反馈“文档参数/事件与实际行为不符”。
 - 用户要求“只做核对，不做大规模迁移重构”。
 - 在发版前做组件 API 文档一致性巡检。
+
+## 何时不要使用
+
+- 用户明确要求“迁移到新文档规范”。
+- 用户要求重排 Demo 章节结构或调整 Attributes/Options 表结构。
+- 用户要新建或重构 Demo 页。
+
+以上场景应优先使用 `migrate-component-doc` 或 `create-demo-page`。
 
 ## 校对范围
 

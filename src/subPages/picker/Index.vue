@@ -1,10 +1,10 @@
 <template>
   <page-wraper>
-    <demo-group transparent title="基础用法">
+    <demo-group transparent :title="$t('ji-chu-yong-fa-0')">
       <!-- 基础用法 (单列) -->
       <demo-group-item no-padding :title="$t('dan-lie-xuan-xiang')">
         <wd-cell-group border>
-          <wd-cell :title="$t('dan-lie-xuan-xiang')" placeholder="请选择" :value="value0[0]" is-link @click="show0 = true" />
+          <wd-cell :title="$t('dan-lie-xuan-xiang')" :placeholder="$t('qing-xuan-ze')" :value="value0[0]" is-link @click="show0 = true" />
         </wd-cell-group>
         <wd-picker v-model="value0" v-model:visible="show0" :columns="columns0" />
       </demo-group-item>
@@ -26,7 +26,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group transparent title="内容形态">
+    <demo-group transparent :title="$t('nei-rong-xing-tai')">
       <!-- 标题 -->
       <demo-group-item no-padding :title="$t('wen-an-biao-ti')">
         <wd-cell-group border>
@@ -36,7 +36,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group transparent title="组件样式">
+    <demo-group transparent :title="$t('zu-jian-yang-shi')">
       <!-- 大小 -->
       <demo-group-item no-padding :title="$t('da-xiao')">
         <wd-cell-group border>
@@ -54,7 +54,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group transparent title="特殊交互">
+    <demo-group transparent :title="$t('te-shu-jiao-hu')">
       <!-- 格式化展示 -->
       <demo-group-item no-padding :title="$t('fen-ge-fu')">
         <wd-cell-group border>
@@ -64,7 +64,7 @@
       </demo-group-item>
 
       <!-- 确定前校验 -->
-      <demo-group-item no-padding title="确定前校验">
+      <demo-group-item no-padding :title="$t('que-ding-qian-xiao-yan')">
         <wd-cell-group border>
           <wd-cell title="before-confirm" :value="value7[0]" is-link @click="show7 = true" />
         </wd-cell-group>
@@ -217,7 +217,7 @@ const displayFormat = (items: PickerOption | PickerOption[]) => {
 }
 
 const beforeConfirm: PickerBeforeConfirm = (value) => {
-  toast.loading('处理中...')
+  toast.loading(t('chu-li-zhong'))
   return new Promise<boolean>((resolve) => {
     setTimeout(() => {
       if ([t('xuanXiang_2-0'), t('xuanXiang_3-0')].indexOf((value as string[])[0]) > -1) {

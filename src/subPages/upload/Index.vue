@@ -7,7 +7,7 @@
     <wd-toast></wd-toast>
 
     <view class="page-upload">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-upload accept="image" v-model:file-list="fileList" image-mode="aspectFill" :action="action" :success-status="[200, 201]"></wd-upload>
         </demo-group-item>
@@ -45,7 +45,7 @@
         <!-- #endif -->
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('shang-chuan-zhuang-tai-gou-zi')">
           <wd-upload
             :file-list="fileList7"
@@ -76,7 +76,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('zui-da-shang-chuan-shu-xian-zhi')">
           <wd-upload :file-list="fileList3" :limit="3" :action="action" :success-status="[200, 201]" @change="handleChange3"></wd-upload>
         </demo-group-item>
@@ -109,7 +109,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-huan-qi-shang-chuan-yang-shi-bing-xian-zhi-shang-chuan-5-zhang')">
           <wd-upload :file-list="fileList9" :action="action" :success-status="[200, 201]" @change="handleChange9" :limit="5">
             <wd-button>{{ $t('zi-ding-yi-huan-qi-yang-shi') }}</wd-button>
@@ -124,7 +124,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('lan-jie-yu-lan-tu-pian-cao-zuo')">
           <wd-upload
             :file-list="fileList4"
@@ -342,13 +342,13 @@ const buildFormData = ({ file, formData }: any) => {
 }
 
 function handleSuccess(event: any) {
-  uploadStatusText.value = `上传成功：${event.file.name || event.file.url}`
+  uploadStatusText.value = t('shang-chuan-cheng-gong-eventfilename-eventfileurl', event.file.name || event.file.url)
 }
 function handleFail(event: any) {
-  uploadStatusText.value = `上传失败：${event.file.name || event.file.url}`
+  uploadStatusText.value = t('shang-chuan-shi-bai-eventfilename-eventfileurl', event.file.name || event.file.url)
 }
 function handleProgess(event: any) {
-  uploadStatusText.value = `上传中：${event.response.progress}%`
+  uploadStatusText.value = t('shang-chuan-zhong-eventresponseprogress', event.response.progress)
 }
 
 function handleChange({ fileList: list }: any) {

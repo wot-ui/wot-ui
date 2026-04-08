@@ -5,7 +5,7 @@
       <div class="message-content">{{ $t('guan-kan-cheng-gong-jiu-yi-jing-cheng-gong-wei-wo-zhu-li') }}</div>
       <view class="button-group">
         <wd-button type="success" block @click="back">{{ $t('fan-hui-shi-yong') }}</wd-button>
-        <wd-button type="error" block @click="showAd">{{ $t('guan-kan-shi-pin') }}</wd-button>
+        <wd-button type="danger" block @click="showAd">{{ $t('guan-kan-shi-pin') }}</wd-button>
       </view>
     </div>
   </page-wraper>

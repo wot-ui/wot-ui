@@ -4,7 +4,7 @@
       <wd-dialog></wd-dialog>
     </view>
     <view class="page-drop-menu">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')" no-padding>
           <wd-drop-menu>
             <wd-drop-menu-item v-model="value1" :options="option1" @change="handleChange1" />
@@ -13,7 +13,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jinYong')" no-padding>
           <wd-drop-menu direction="up">
             <wd-drop-menu-item v-model="value8" disabled :options="option1" @change="handleChange8" />
@@ -22,7 +22,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('yi-bu-da-kai-guan-bi')" no-padding>
           <wd-drop-menu>
             <wd-drop-menu-item v-model="value10" :options="option1" @change="handleChange1" :before-toggle="handleBeforeToggle" />
@@ -30,7 +30,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-cai-dan-xuan-xiang')">
           <view class="custom-menu">
             <wd-drop-menu custom-style="flex: 1; min-width: 0">
@@ -48,7 +48,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('xiang-shang-dan-chu')" no-padding>
           <wd-drop-menu direction="up">
             <wd-drop-menu-item v-model="value6" :options="option1" @change="handleChange6" />

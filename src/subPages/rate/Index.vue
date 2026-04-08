@@ -1,13 +1,13 @@
 <template>
   <page-wraper>
     <view class="page-rate">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-rate v-model="basicValue" @change="handleChange" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('zhi-du-zhuang-tai-readonly')">
           <wd-rate v-model="readonlyValue" readonly />
         </demo-group-item>
@@ -16,7 +16,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('xiu-gai-xuan-zhong-yan-se')">
           <view class="demo-row">
             <wd-rate
@@ -48,7 +48,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('yun-xu-ban-xuan')">
           <wd-rate v-model="halfValue" allow-half />
         </demo-group-item>

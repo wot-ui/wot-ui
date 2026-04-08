@@ -2,7 +2,7 @@
   <page-wraper>
     <wd-toast />
     <view class="page-action-sheet">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-button block @click="showBasic = true">{{ $t('danChuCaiDan') }}</wd-button>
           <wd-action-sheet v-model="showBasic" :actions="basicActions" @close="showBasic = false" />
@@ -31,14 +31,14 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('xuanXiangZhuangTai')">
           <wd-button block @click="showStatus = true">{{ $t('danChuCaiDan') }}</wd-button>
           <wd-action-sheet v-model="showStatus" :actions="statusActions" @close="showStatus = false" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('quXiaoAnNiu')">
           <wd-button block @click="showCancel = true">{{ $t('danChuCaiDan') }}</wd-button>
           <wd-action-sheet v-model="showCancel" :actions="basicActions" :cancel-text="$t('qu-xiao')" @close="showCancel = false" />
@@ -85,29 +85,29 @@ const statusActions = computed<Action[]>(() => [
 ])
 
 const singleGridPanels = ref<Panels>([
-  { icon: 'user', title: '微信好友' },
-  { icon: 'share-internal', title: '朋友圈' },
-  { icon: 'message', title: 'QQ 好友' },
-  { icon: 'star-fill', title: '收藏' },
-  { icon: 'share-internal', title: '更多分享' },
-  { icon: 'user-add', title: '邀请好友' }
+  { icon: 'user', title: t('weiXinHaoYou') },
+  { icon: 'share-internal', title: t('peng-you-quan') },
+  { icon: 'message', title: t('qq-hao-you') },
+  { icon: 'star-fill', title: t('shou-cang') },
+  { icon: 'share-internal', title: t('geng-duo-fen-xiang') },
+  { icon: 'user-add', title: t('yao-qing-hao-you') }
 ])
 
 const multiGridPanels = ref<Panels>([
   [
-    { icon: 'user', title: '微信好友' },
-    { icon: 'share-internal', title: '朋友圈' },
-    { icon: 'message', title: 'QQ 好友' },
-    { icon: 'star-fill', title: '收藏' },
-    { icon: 'user-add', title: '邀请' },
-    { icon: 'share-external', title: '外部分享' },
-    { icon: 'qrcode', title: '生成二维码' },
-    { icon: 'save', title: '保存图片' }
+    { icon: 'user', title: t('weiXinHaoYou') },
+    { icon: 'share-internal', title: t('peng-you-quan-0') },
+    { icon: 'message', title: t('qq-hao-you-0') },
+    { icon: 'star-fill', title: t('shou-cang-0') },
+    { icon: 'user-add', title: t('yao-qing') },
+    { icon: 'share-external', title: t('wai-bu-fen-xiang') },
+    { icon: 'qrcode', title: t('sheng-cheng-er-wei-ma') },
+    { icon: 'save', title: t('bao-cun-tu-pian') }
   ],
   [
-    { icon: 'file-image', title: '图片' },
-    { icon: 'download', title: '下载' },
-    { icon: 'copy', title: '复制链接' }
+    { icon: 'file-image', title: t('tu-pian') },
+    { icon: 'download', title: t('xia-zai') },
+    { icon: 'copy', title: t('fu-zhi-lian-jie') }
   ]
 ])
 

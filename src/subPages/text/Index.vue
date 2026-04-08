@@ -1,6 +1,6 @@
 <template>
   <page-wraper>
-    <demo-group title="组件类型">
+    <demo-group :title="$t('zu-jian-lei-xing')">
       <demo-group-item :title="$t('jiBenYongFa')">
         <wd-text :text="text"></wd-text>
       </demo-group-item>
@@ -13,7 +13,7 @@
           <wd-text :text="$t('mo-ren')"></wd-text>
         </view>
       </demo-group-item>
-      <demo-group-item title="模式">
+      <demo-group-item :title="$t('mo-shi')">
         <view>
           <view><wd-text text="18888888888" mode="phone"></wd-text></view>
           <view><wd-text :text="$t('wang-san')" mode="name"></wd-text></view>
@@ -25,7 +25,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件样式">
+    <demo-group :title="$t('zu-jian-yang-shi')">
       <demo-group-item :title="$t('zi-ding-yi-zi-ti-yan-se')">
         <wd-text :text="text" color="#36B8C2"></wd-text>
       </demo-group-item>
@@ -46,7 +46,7 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="特殊样式">
+    <demo-group :title="$t('te-shu-yang-shi')">
       <demo-group-item :title="$t('tuo-min')">
         <view class="text-row text-row--center">
           <wd-text :text="$t('zhang-chang-san')" mode="name" :format="true"></wd-text>

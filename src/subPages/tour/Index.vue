@@ -3,76 +3,76 @@
     <view class="tour-container">
       <view class="tour-step" id="step1">
         <view class="tour-item">
-          <text class="tour-title">第一步</text>
-          <text class="tour-content">这是引导的第一步，介绍基本功能</text>
+          <text class="tour-title">{{ $t('di-yi-bu') }}</text>
+          <text class="tour-content">{{ $t('zhe-shi-yin-dao-de-di-yi-bu-jie-shao-ji-ben-gong-neng') }}</text>
         </view>
       </view>
 
       <view class="tour-step" id="step2">
         <view class="tour-item">
-          <text class="tour-title">第二步</text>
-          <text class="tour-content">这是引导的第二步，展示更多功能</text>
+          <text class="tour-title">{{ $t('di-er-bu') }}</text>
+          <text class="tour-content">{{ $t('zhe-shi-yin-dao-de-di-er-bu-zhan-shi-geng-duo-gong-neng') }}</text>
         </view>
       </view>
 
       <view class="tour-step" id="step3">
         <view class="tour-item">
-          <text class="tour-title">第三步</text>
-          <text class="tour-content">这是引导的第三步，深入功能介绍</text>
+          <text class="tour-title">{{ $t('di-san-bu') }}</text>
+          <text class="tour-content">{{ $t('zhe-shi-yin-dao-de-di-san-bu-shen-ru-gong-neng-jie-shao') }}</text>
         </view>
       </view>
 
       <view class="tour-step" id="step4">
         <view class="tour-item">
-          <text class="tour-title">第四步</text>
-          <text class="tour-content">这是引导的最后一步，总结功能</text>
+          <text class="tour-title">{{ $t('di-si-bu') }}</text>
+          <text class="tour-content">{{ $t('zhe-shi-yin-dao-de-zui-hou-yi-bu-zong-jie-gong-neng') }}</text>
         </view>
       </view>
     </view>
 
-    <demo-group title="组件类型">
-      <demo-group-item title="基本用法">
+    <demo-group :title="$t('zu-jian-lei-xing')">
+      <demo-group-item :title="$t('ji-chu-yong-fa')">
         <view class="button-group">
-          <wd-button type="primary" @click="startBasicTour">开始引导</wd-button>
+          <wd-button type="primary" @click="startBasicTour">{{ $t('kai-shi-yin-dao') }}</wd-button>
         </view>
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件状态">
-      <demo-group-item title="点击蒙版继续">
+    <demo-group :title="$t('zu-jian-zhuang-tai')">
+      <demo-group-item :title="$t('dian-ji-meng-ban-ji-xu')">
         <view class="button-group">
-          <wd-button type="primary" @click="startMaskNextTour">点击蒙版继续</wd-button>
+          <wd-button type="primary" @click="startMaskNextTour">{{ $t('dian-ji-meng-ban-ji-xu-0') }}</wd-button>
         </view>
       </demo-group-item>
-      <demo-group-item title="关闭蒙版">
+      <demo-group-item :title="$t('guan-bi-meng-ban')">
         <view class="button-group">
-          <wd-button type="primary" @click="startNoMaskTour">关闭蒙版</wd-button>
-        </view>
-      </demo-group-item>
-    </demo-group>
-
-    <demo-group title="组件样式">
-      <demo-group-item title="自定义蒙版">
-        <view class="button-group">
-          <wd-button type="primary" @click="startCustomMaskTour">自定义蒙版</wd-button>
-        </view>
-      </demo-group-item>
-      <demo-group-item title="自定义高亮区域">
-        <view class="button-group">
-          <wd-button type="primary" @click="startCustomHighlightTour">自定义高亮</wd-button>
-        </view>
-      </demo-group-item>
-      <demo-group-item title="自定义内容和按钮">
-        <view class="button-group">
-          <wd-button type="primary" @click="startCustomContentTour">自定义内容</wd-button>
+          <wd-button type="primary" @click="startNoMaskTour">{{ $t('guan-bi-meng-ban-0') }}</wd-button>
         </view>
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="特殊样式">
-      <demo-group-item title="控制当前步骤">
+    <demo-group :title="$t('zu-jian-yang-shi')">
+      <demo-group-item :title="$t('zi-ding-yi-meng-ban')">
         <view class="button-group">
-          <wd-button type="primary" @click="startControlTour">跳转到第三步开始引导</wd-button>
+          <wd-button type="primary" @click="startCustomMaskTour">{{ $t('zi-ding-yi-meng-ban-0') }}</wd-button>
+        </view>
+      </demo-group-item>
+      <demo-group-item :title="$t('zi-ding-yi-gao-liang-qu-yu')">
+        <view class="button-group">
+          <wd-button type="primary" @click="startCustomHighlightTour">{{ $t('zi-ding-yi-gao-liang') }}</wd-button>
+        </view>
+      </demo-group-item>
+      <demo-group-item :title="$t('zi-ding-yi-nei-rong-he-an-niu')">
+        <view class="button-group">
+          <wd-button type="primary" @click="startCustomContentTour">{{ $t('ziDingYiNeiRong') }}</wd-button>
+        </view>
+      </demo-group-item>
+    </demo-group>
+
+    <demo-group :title="$t('te-shu-yang-shi')">
+      <demo-group-item :title="$t('kong-zhi-dang-qian-bu-zhou')">
+        <view class="button-group">
+          <wd-button type="primary" @click="startControlTour">{{ $t('tiao-zhuan-dao-di-san-bu-kai-shi-yin-dao') }}</wd-button>
         </view>
       </demo-group-item>
     </demo-group>
@@ -148,16 +148,16 @@
       <template #content>
         <view class="custom-content">
           <wd-icon name="help-circle-filled" size="22px"></wd-icon>
-          <text class="custom-text">自定义引导内容区域</text>
+          <text class="custom-text">{{ $t('zi-ding-yi-yin-dao-nei-rong-qu-yu') }}</text>
         </view>
       </template>
 
       <template #next>
-        <view class="custom-button custom-next">下一步</view>
+        <view class="custom-button custom-next">{{ $t('xia-yi-bu') }}</view>
       </template>
 
       <template #finish>
-        <view class="custom-button custom-finish">完成</view>
+        <view class="custom-button custom-finish">{{ $t('wan-cheng') }}</view>
       </template>
     </wd-tour>
 
@@ -177,8 +177,9 @@
 <script lang="ts" setup>
 import { objToStyle } from '@/uni_modules/wot-ui/common/util'
 import { type TourChangeDetail } from '@/uni_modules/wot-ui/components/wd-tour/types'
-import { ref, watch, nextTick } from 'vue'
-
+import { ref, nextTick } from 'vue'
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const showBasicTour = ref(false)
 const showClickMaskTour = ref(false)
 const showCustomMaskTour = ref(false)
@@ -186,105 +187,105 @@ const showNoMaskTour = ref(false)
 const showCustomHighlightTour = ref(false)
 const showCustomContentTour = ref(false)
 const showControlTour = ref(false)
-const nextText = ref('继续')
-const prevText = ref('返回')
-const skipText = ref('跳过')
-const finishText = ref('知道了')
+const nextText = ref(t('ji-xu'))
+const prevText = ref(t('fan-hui'))
+const skipText = ref(t('tiao-guo'))
+const finishText = ref(t('zhi-dao-le'))
 const current = ref(0)
 const controlCurrent = ref(0)
 // 步骤数据
 const basicSteps = [
   {
     element: '#step1',
-    content: '欢迎使用引导组件，这是第一步的说明'
+    content: t('huan-ying-shi-yong-yin-dao-zu-jian-zhe-shi-di-yi-bu-de-shuo-ming')
   },
   {
     element: '#step2',
-    content: '这是第二步，展示了另一个功能点'
+    content: t('zhe-shi-di-er-bu-zhan-shi-le-ling-yi-ge-gong-neng-dian')
   },
   {
     element: '#step3',
-    content: '这里可以是<H1 style="line-height:1">富文本</H1>'
+    content: t('zhe-li-ke-yi-shi-h1-stylelineheight1-fu-wen-ben-h1')
   },
   {
     element: '#step4',
-    content: '这是最后一步，完成引导流程'
+    content: t('zhe-shi-zui-hou-yi-bu-wan-cheng-yin-dao-liu-cheng')
   }
 ]
 
 const customMaskSteps = [
   {
     element: '#step1',
-    content: '这是<strong>自定义蒙版</strong>示例，使用了<strong>红色半透明</strong>蒙版'
+    content: t('zhe-shi-strong-zi-ding-yi-meng-ban-strong-shi-li-shi-yong-le-strong-hong-se-ban-tou-ming-strong-meng-ban')
   },
   {
     element: '#step2',
-    content: '蒙版颜色设置为<code>rgba(255, 0, 0, 0.6)</code>'
+    content: t('meng-ban-yan-se-she-zhi-wei-codergba255-0-0-06code')
   },
   {
     element: '#step3',
-    content: '同时调整了<em>高亮区域的圆角</em>、<u>内边距</u>和<code>偏移量</code>'
+    content: t('tong-shi-tiao-zheng-le-em-gao-liang-qu-yu-de-yuan-jiao-emu-nei-bian-juuhe-code-pian-yi-liang-code')
   },
   {
     element: '#step4',
-    content: '完成了自定义蒙版样式的展示'
+    content: t('wan-cheng-le-zi-ding-yi-meng-ban-yang-shi-de-zhan-shi')
   }
 ]
 
 const noMaskSteps = [
   {
     element: '#step1',
-    content: '这是<strong>无蒙版</strong>引导模式'
+    content: t('zhe-shi-strong-wu-meng-ban-strong-yin-dao-mo-shi')
   },
   {
     element: '#step2',
-    content: '只高亮目标元素，<em>不显示</em>半透明遮罩'
+    content: t('zhi-gao-liang-mu-biao-yuan-su-em-bu-xian-shi-em-ban-tou-ming-zhe-zhao')
   },
   {
     element: '#step3',
-    content: '适用于需要保持页面可见性的场景'
+    content: t('shi-yong-yu-xu-yao-bao-chi-ye-mian-ke-jian-xing-de-chang-jing')
   },
   {
     element: '#step4',
-    content: '引导完成，<u>不干扰</u>用户查看页面其他内容'
+    content: t('yin-dao-wan-chengubu-gan-raouyong-hu-cha-kan-ye-mian-qi-ta-nei-rong')
   }
 ]
 
 const customHighlightSteps = [
   {
     element: '#step1',
-    content: '这是<strong>自定义高亮区域</strong>示例'
+    content: t('zhe-shi-strong-zi-ding-yi-gao-liang-qu-yu-strong-shi-li')
   },
   {
     element: '#step2',
-    content: '使用了<em>红色虚线边框</em>和<code>半透明背景</code>'
+    content: t('shi-yong-le-em-hong-se-xu-xian-bian-kuang-em-he-code-ban-tou-ming-bei-jing-code')
   },
   {
     element: '#step3',
-    content: '通过插槽实现完全自定义的高亮样式'
+    content: t('tong-guo-cha-cao-shi-xian-wan-quan-zi-ding-yi-de-gao-liang-yang-shi')
   },
   {
     element: '#step4',
-    content: '完成了自定义高亮区域的展示'
+    content: t('wan-cheng-le-zi-ding-yi-gao-liang-qu-yu-de-zhan-shi')
   }
 ]
 
 const customContentSteps = [
   {
     element: '#step1',
-    content: '这是<H1>自定义样式</H1>的引导，可以修改<em>蒙版颜色</em>、<u>圆角大小</u>等属性'
+    content: t('zhe-shi-h1-zi-ding-yi-yang-shi-h1-de-yin-dao-ke-yi-xiu-gai-em-meng-ban-yan-se-emu-yuan-jiao-da-xiaoudeng-shu-xing')
   },
   {
     element: '#step2',
-    content: '可以自定义按钮文字，如"继续"、"返回"等'
+    content: t('ke-yi-zi-ding-yi-an-niu-wen-zi-ru-ji-xu-fan-hui-deng')
   },
   {
     element: '#step3',
-    content: '通过属性配置实现个性化引导体验'
+    content: t('tong-guo-shu-xing-pei-zhi-shi-xian-ge-xing-hua-yin-dao-ti-yan')
   },
   {
     element: '#step4',
-    content: '这是最后一步，完成引导流程'
+    content: t('zhe-shi-zui-hou-yi-bu-wan-cheng-yin-dao-liu-cheng-0')
   }
 ]
 // 自定义高亮样式
@@ -370,35 +371,6 @@ function handleChange({ current }: TourChangeDetail) {
 </script>
 
 <style lang="scss" scoped>
-.wot-theme-dark {
-  :deep() {
-    .page-wraper {
-      background: $-dark-background2 !important;
-    }
-  }
-  .tour-item {
-    background: $-dark-background2 !important;
-    border: 1px solid $-dark-border-color !important;
-    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05) !important;
-  }
-
-  .tour-title {
-    color: $-dark-color !important;
-  }
-
-  .tour-content {
-    color: $-dark-color3 !important;
-  }
-
-  .custom-text {
-    color: $-dark-color !important;
-  }
-
-  :deep(.wd-icon) {
-    color: $-dark-color !important;
-  }
-}
-
 .tour-container {
   padding-top: 20px;
 

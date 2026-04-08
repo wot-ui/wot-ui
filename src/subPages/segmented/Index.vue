@@ -2,15 +2,15 @@
   <view>
     <page-wraper>
       <view class="page-segmented">
-        <demo-group title="组件类型">
-          <demo-group-item no-padding title="基础用法">
+        <demo-group :title="$t('zu-jian-lei-xing')">
+          <demo-group-item no-padding :title="$t('ji-chu-yong-fa-0')">
             <view class="section">
               <wd-segmented :options="list" v-model:value="currentBasic"></wd-segmented>
             </view>
           </demo-group-item>
         </demo-group>
 
-        <demo-group title="组件状态">
+        <demo-group :title="$t('zu-jian-zhuang-tai')">
           <demo-group-item no-padding :title="$t('jin-yong-fen-duan-qi')">
             <view class="section">
               <wd-segmented :options="list" v-model:value="currentDisabled" disabled></wd-segmented>
@@ -18,15 +18,15 @@
           </demo-group-item>
         </demo-group>
 
-        <demo-group title="组件变体">
-          <demo-group-item no-padding title="轮廓主题">
+        <demo-group :title="$t('zu-jian-bian-ti')">
+          <demo-group-item no-padding :title="$t('lun-kuo-zhu-ti')">
             <view class="section">
               <wd-segmented :options="list" v-model:value="currentOutline" theme="outline"></wd-segmented>
             </view>
           </demo-group-item>
         </demo-group>
 
-        <demo-group title="组件样式">
+        <demo-group :title="$t('zu-jian-yang-shi')">
           <demo-group-item no-padding :title="$t('zi-ding-yi-xuan-ran-fen-duan-qi-biao-qian')">
             <view class="section">
               <wd-segmented :options="list1" v-model:value="currentCustom" :vibrate-short="true" @change="handleChange">
@@ -41,7 +41,7 @@
           </demo-group-item>
         </demo-group>
 
-        <demo-group title="特殊样式">
+        <demo-group :title="$t('te-shu-yang-shi')">
           <demo-group-item no-padding :title="$t('dai-zhen-dong-xiao-guo-de-fen-duan-qi')">
             <view class="section">
               <wd-segmented :options="list" v-model:value="currentVibrate" :vibrate-short="true"></wd-segmented>

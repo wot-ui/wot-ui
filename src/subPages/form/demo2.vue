@@ -1,65 +1,89 @@
 <template>
   <page-wraper>
-    <demo-block title="校验时机综合示例" transparent>
+    <demo-block :title="$t('xiao-yan-shi-ji-zong-he-shi-li')" transparent>
       <wd-form ref="form" :model="model" :schema="activeSchema" validate-trigger="change" :reset-on-change="false" :title-width="120">
-        <wd-cell-group custom-class="group" title="配置">
-          <wd-form-item title="校验引擎" value-align="left">
+        <wd-cell-group custom-class="group" :title="$t('pei-zhi')">
+          <wd-form-item :title="$t('xiao-yan-yin-qing')" value-align="left">
             <wd-switch v-model="useZodSchema" size="20" active-text="Zod" inactive-text="自定义" />
           </wd-form-item>
-          <wd-form-item title="触发说明" value-align="left">
-            <text class="tip-text">表单级 change，字段覆盖：blur/change/submit</text>
+          <wd-form-item :title="$t('chu-fa-shuo-ming')" value-align="left">
+            <text class="tip-text">{{ $t('biao-dan-ji-change-zi-duan-fu-gai-blurchangesubmit') }}</text>
           </wd-form-item>
         </wd-cell-group>
 
-        <wd-cell-group custom-class="group" title="输入类字段">
-          <wd-form-item title="金额（change）" prop="amount">
+        <wd-cell-group custom-class="group" :title="$t('shu-ru-lei-zi-duan')">
+          <wd-form-item :title="$t('jinechange')" prop="amount">
             <wd-input-number v-model="model.amount" :min="0" :update-on-init="false" :max="9999" />
           </wd-form-item>
-          <wd-form-item title="备注（change）" prop="remark">
-            <wd-textarea v-model="model.remark" placeholder="请输入至少 4 个字" auto-height :maxlength="50" show-word-limit />
+          <wd-form-item :title="$t('bei-zhu-change')" prop="remark">
+            <wd-textarea v-model="model.remark" :placeholder="$t('qing-shu-ru-zhi-shao-4-ge-zi')" auto-height :maxlength="50" show-word-limit />
           </wd-form-item>
-          <wd-form-item title="账号（blur）" prop="account" validate-trigger="blur">
-            <wd-input v-model="model.account" clearable placeholder="失焦后触发校验" />
+          <wd-form-item :title="$t('zhang-hao-blur')" prop="account" validate-trigger="blur">
+            <wd-input v-model="model.account" clearable :placeholder="$t('shi-jiao-hou-chu-fa-xiao-yan')" />
           </wd-form-item>
-          <wd-form-item title="邀请码（change）" prop="inviteCode" validate-trigger="change">
-            <wd-input v-model="model.inviteCode" clearable placeholder="值变化后触发校验" />
+          <wd-form-item :title="$t('yao-qing-ma-change')" prop="inviteCode" validate-trigger="change">
+            <wd-input v-model="model.inviteCode" clearable :placeholder="$t('zhi-bian-hua-hou-chu-fa-xiao-yan')" />
           </wd-form-item>
-          <wd-form-item title="城市（submit）" prop="city" validate-trigger="submit">
-            <wd-input v-model="model.city" clearable placeholder="仅提交时触发校验" />
+          <wd-form-item :title="$t('cheng-shi-submit')" prop="city" validate-trigger="submit">
+            <wd-input v-model="model.city" clearable :placeholder="$t('jin-ti-jiao-shi-chu-fa-xiao-yan')" />
           </wd-form-item>
         </wd-cell-group>
 
-        <wd-cell-group custom-class="group" title="Picker 字段（change）">
+        <wd-cell-group custom-class="group" :title="$t('picker-zi-duan-change')">
           <wd-form-item
-            title="推广平台"
+            :title="$t('tui-guang-ping-tai')"
             prop="platform"
             is-link
             :value="platformText"
-            placeholder="请选择推广平台"
+            :placeholder="$t('qing-xuan-ze-tui-guang-ping-tai')"
             @click="showPlatformPicker = true"
           />
           <wd-form-item
-            title="优惠方式"
+            :title="$t('you-hui-fang-shi')"
             prop="promotion"
             is-link
             :value="promotionText"
-            placeholder="请选择优惠方式"
+            :placeholder="$t('qing-xuan-ze-you-hui-fang-shi')"
             @click="showPromotionPicker = true"
           />
-          <wd-form-item title="时间" prop="time" is-link :value="timeText" placeholder="请选择时间" @click="showTimePicker = true" />
-          <wd-form-item title="日期" prop="date" is-link :value="dateText" placeholder="请选择日期" @click="showDatePicker = true" />
+          <wd-form-item
+            :title="$t('shi-jian')"
+            prop="time"
+            is-link
+            :value="timeText"
+            :placeholder="$t('qing-xuan-ze-shi-jian-0')"
+            @click="showTimePicker = true"
+          />
+          <wd-form-item
+            :title="$t('ri-qi')"
+            prop="date"
+            is-link
+            :value="dateText"
+            :placeholder="$t('qing-xuan-ze-ri-qi-0')"
+            @click="showDatePicker = true"
+          />
         </wd-cell-group>
 
         <view class="footer">
-          <wd-button type="primary" @click="handleSubmit" block>提交并校验</wd-button>
+          <wd-button type="primary" @click="handleSubmit" block>{{ $t('ti-jiao-bing-xiao-yan') }}</wd-button>
         </view>
       </wd-form>
     </demo-block>
 
-    <wd-select-picker v-model="model.platform" v-model:visible="showPlatformPicker" :columns="platformList" placeholder="请选择推广平台" />
-    <wd-picker v-model="model.promotion" v-model:visible="showPromotionPicker" :columns="promotionList" placeholder="请选择优惠方式" />
-    <wd-datetime-picker v-model="model.time" v-model:visible="showTimePicker" placeholder="请选择时间" />
-    <wd-calendar v-model="model.date" v-model:visible="showDatePicker" placeholder="请选择日期" />
+    <wd-select-picker
+      v-model="model.platform"
+      v-model:visible="showPlatformPicker"
+      :columns="platformList"
+      :placeholder="$t('qing-xuan-ze-tui-guang-ping-tai')"
+    />
+    <wd-picker
+      v-model="model.promotion"
+      v-model:visible="showPromotionPicker"
+      :columns="promotionList"
+      :placeholder="$t('qing-xuan-ze-you-hui-fang-shi')"
+    />
+    <wd-datetime-picker v-model="model.time" v-model:visible="showTimePicker" :placeholder="$t('qing-xuan-ze-shi-jian-0')" />
+    <wd-calendar v-model="model.date" v-model:visible="showDatePicker" :placeholder="$t('qing-xuan-ze-ri-qi-0')" />
   </page-wraper>
 </template>
 
@@ -68,7 +92,10 @@ import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
 import type { FormInstance, FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
 import dayjs from 'dayjs'
 import { computed, reactive, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { z } from 'zod'
+
+const { t } = useI18n()
 
 const { success: showSuccess } = useToast()
 
@@ -107,31 +134,31 @@ const customSchema: FormSchema = {
   validate(formModel) {
     const issues = []
     if (formModel.amount === '' || Number(formModel.amount) <= 0) {
-      issues.push({ path: ['amount'], message: '请输入大于 0 的金额' })
+      issues.push({ path: ['amount'], message: t('qing-shu-ru-da-yu-0-de-jin-e') })
     }
     if (!formModel.remark || String(formModel.remark).trim().length < 4) {
-      issues.push({ path: ['remark'], message: '备注至少输入 4 个字' })
+      issues.push({ path: ['remark'], message: t('bei-zhu-zhi-shao-shu-ru-4-ge-zi') })
     }
     if (!formModel.account || formModel.account.length < 3) {
-      issues.push({ path: ['account'], message: '账号至少 3 位' })
+      issues.push({ path: ['account'], message: t('zhang-hao-zhi-shao-3-wei') })
     }
     if (!formModel.inviteCode) {
-      issues.push({ path: ['inviteCode'], message: '请输入邀请码' })
+      issues.push({ path: ['inviteCode'], message: t('qing-shu-ru-yao-qing-ma') })
     }
     if (!formModel.city) {
-      issues.push({ path: ['city'], message: '请输入城市' })
+      issues.push({ path: ['city'], message: t('qing-shu-ru-cheng-shi') })
     }
     if (!Array.isArray(formModel.platform) || !formModel.platform.length) {
-      issues.push({ path: ['platform'], message: '请选择推广平台' })
+      issues.push({ path: ['platform'], message: t('qing-xuan-ze-tui-guang-ping-tai') })
     }
     if (!Array.isArray(formModel.promotion) || !formModel.promotion.length) {
-      issues.push({ path: ['promotion'], message: '请选择优惠方式' })
+      issues.push({ path: ['promotion'], message: t('qing-xuan-ze-you-hui-fang-shi') })
     }
     if (!formModel.time) {
-      issues.push({ path: ['time'], message: '请选择时间' })
+      issues.push({ path: ['time'], message: t('qing-xuan-ze-shi-jian-0') })
     }
     if (!formModel.date) {
-      issues.push({ path: ['date'], message: '请选择日期' })
+      issues.push({ path: ['date'], message: t('qing-xuan-ze-ri-qi-0') })
     }
     return issues
   },
@@ -142,15 +169,15 @@ const customSchema: FormSchema = {
 
 const zodSchema: FormSchema = zodAdapter(
   z.object({
-    amount: z.union([z.string(), z.number()]).refine((value) => value !== '' && Number(value) > 0, '请输入大于 0 的金额'),
-    remark: z.string().refine((value) => value.trim().length >= 4, '备注至少输入 4 个字'),
-    account: z.string().min(3, '账号至少 3 位'),
-    inviteCode: z.string().min(1, '请输入邀请码'),
-    city: z.string().min(1, '请输入城市'),
-    platform: z.array(z.string()).min(1, '请选择推广平台'),
-    promotion: z.array(z.string()).min(1, '请选择优惠方式'),
-    time: z.union([z.string(), z.number()]).refine((value) => !!value, '请选择时间'),
-    date: z.union([z.number(), z.null()]).refine((value) => !!value, '请选择日期')
+    amount: z.union([z.string(), z.number()]).refine((value) => value !== '' && Number(value) > 0, t('qing-shu-ru-da-yu-0-de-jin-e-0')),
+    remark: z.string().refine((value) => value.trim().length >= 4, t('bei-zhu-zhi-shao-shu-ru-4-ge-zi-0')),
+    account: z.string().min(3, t('zhang-hao-zhi-shao-3-wei-0')),
+    inviteCode: z.string().min(1, t('qing-shu-ru-yao-qing-ma-0')),
+    city: z.string().min(1, t('qing-shu-ru-cheng-shi-0')),
+    platform: z.array(z.string()).min(1, t('qing-xuan-ze-tui-guang-ping-tai')),
+    promotion: z.array(z.string()).min(1, t('qing-xuan-ze-you-hui-fang-shi')),
+    time: z.union([z.string(), z.number()]).refine((value) => !!value, t('qing-xuan-ze-shi-jian-0')),
+    date: z.union([z.number(), z.null()]).refine((value) => !!value, t('qing-xuan-ze-ri-qi-0'))
   }),
   {
     isRequired(path: string) {
@@ -164,14 +191,14 @@ const activeSchema = computed<FormSchema>(() => {
 })
 
 const platformList = ref([
-  { value: '1', label: '京东' },
-  { value: '2', label: '微信' },
-  { value: '3', label: '抖音' }
+  { value: '1', label: t('jing-dong') },
+  { value: '2', label: t('wei-xin') },
+  { value: '3', label: t('dou-yin') }
 ])
 
 const promotionList = ref([
-  { value: '1', label: '满减' },
-  { value: '2', label: '无门槛' }
+  { value: '1', label: t('man-jian') },
+  { value: '2', label: t('wu-men-jian') }
 ])
 
 const platformText = computed(() => {
@@ -217,7 +244,7 @@ watch(
 function handleSubmit() {
   form.value?.validate().then(({ valid }) => {
     if (valid) {
-      showSuccess('校验通过')
+      showSuccess(t('xiao-yan-tong-guo'))
     }
   })
 }

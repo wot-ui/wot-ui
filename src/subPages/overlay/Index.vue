@@ -2,13 +2,13 @@
   <page-meta :page-style="`overflow:${show ? 'hidden' : 'visible'};`"></page-meta>
   <view class="page-overlay">
     <page-wraper>
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-button type="primary" @click="show = true">{{ $t('xian-shi-zhe-zhao-ceng') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('qian-ru-nei-rong-0')">
           <wd-button type="primary" @click="show1 = true">{{ $t('qian-ru-nei-rong-0') }}</wd-button>
         </demo-group-item>
@@ -21,7 +21,9 @@
       <view class="wrapper">
         <view class="content" @click.stop="">
           <view class="lock-scroll-row">
-            <view class="lock-scroll-text">是否锁定背景滚动，锁定时蒙层里的内容也将无法滚动</view>
+            <view class="lock-scroll-text">
+              {{ $t('shi-fou-suo-ding-bei-jing-gun-dong-suo-ding-shi-meng-ceng-li-de-nei-rong-ye-jiang-wu-fa-gun-dong') }}
+            </view>
             <wd-switch v-model="lockScroll" size="22px" />
           </view>
           <view class="scroll">

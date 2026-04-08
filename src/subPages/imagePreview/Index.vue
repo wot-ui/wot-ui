@@ -1,52 +1,52 @@
 <template>
   <page-wraper>
     <view class="page-image-preview">
-      <demo-group title="组件类型">
-        <demo-group-item title="基本用法">
-          <wd-button @click="handleBasicPreview">预览图片</wd-button>
+      <demo-group :title="$t('zu-jian-lei-xing')">
+        <demo-group-item :title="$t('ji-chu-yong-fa')">
+          <wd-button @click="handleBasicPreview">{{ $t('yu-lan-tu-pian') }}</wd-button>
         </demo-group-item>
 
-        <demo-group-item title="传入图片数组">
-          <wd-button @click="handleArrayPreview">直接传入数组</wd-button>
-        </demo-group-item>
-      </demo-group>
-
-      <demo-group title="组件变体">
-        <demo-group-item title="指定起始位置">
-          <wd-button @click="handleStartPosition">从第二张开始</wd-button>
+        <demo-group-item :title="$t('chuan-ru-tu-pian-shu-zu')">
+          <wd-button @click="handleArrayPreview">{{ $t('zhi-jie-chuan-ru-shu-zu') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件配置">
-        <demo-group-item title="隐藏页码">
-          <wd-button @click="handleHideIndex">不显示页码</wd-button>
-        </demo-group-item>
-
-        <demo-group-item title="隐藏关闭按钮">
-          <wd-button @click="handleHideClose">不显示关闭按钮</wd-button>
-        </demo-group-item>
-
-        <demo-group-item title="关闭按钮位置">
-          <wd-button @click="handleClosePosition('top-left')">左上角</wd-button>
-          <wd-button @click="handleClosePosition('top-right')">右上角</wd-button>
-        </demo-group-item>
-
-        <demo-group-item title="禁用点击关闭">
-          <wd-button @click="handleDisableCloseOnClick">点击不关闭</wd-button>
-        </demo-group-item>
-
-        <demo-group-item title="禁用循环">
-          <wd-button @click="handleDisableLoop">禁用循环播放</wd-button>
+      <demo-group :title="$t('zu-jian-bian-ti')">
+        <demo-group-item :title="$t('zhi-ding-qi-shi-wei-zhi')">
+          <wd-button @click="handleStartPosition">{{ $t('cong-di-er-zhang-kai-shi') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊用法">
-        <demo-group-item title="监听事件">
-          <wd-button @click="handleWithEvents">带事件回调</wd-button>
+      <demo-group :title="$t('zu-jian-pei-zhi')">
+        <demo-group-item :title="$t('yin-cang-ye-ma')">
+          <wd-button @click="handleHideIndex">{{ $t('bu-xian-shi-ye-ma') }}</wd-button>
         </demo-group-item>
 
-        <demo-group-item title="使用插槽">
-          <wd-button @click="handleSlotPreview">自定义插槽</wd-button>
+        <demo-group-item :title="$t('yin-cang-guan-bi-an-niu')">
+          <wd-button @click="handleHideClose">{{ $t('bu-xian-shi-guan-bi-an-niu') }}</wd-button>
+        </demo-group-item>
+
+        <demo-group-item :title="$t('guan-bi-an-niu-wei-zhi')">
+          <wd-button @click="handleClosePosition('top-left')">{{ $t('zuo-shang-jiao') }}</wd-button>
+          <wd-button @click="handleClosePosition('top-right')">{{ $t('you-shang-jiao') }}</wd-button>
+        </demo-group-item>
+
+        <demo-group-item :title="$t('jin-yong-dian-ji-guan-bi')">
+          <wd-button @click="handleDisableCloseOnClick">{{ $t('dian-ji-bu-guan-bi') }}</wd-button>
+        </demo-group-item>
+
+        <demo-group-item :title="$t('jin-yong-xun-huan')">
+          <wd-button @click="handleDisableLoop">{{ $t('jin-yong-xun-huan-bo-fang') }}</wd-button>
+        </demo-group-item>
+      </demo-group>
+
+      <demo-group :title="$t('te-shu-yong-fa')">
+        <demo-group-item :title="$t('jian-ting-shi-jian')">
+          <wd-button @click="handleWithEvents">{{ $t('dai-shi-jian-hui-tiao') }}</wd-button>
+        </demo-group-item>
+
+        <demo-group-item :title="$t('shi-yong-cha-cao')">
+          <wd-button @click="handleSlotPreview">{{ $t('zi-ding-yi-cha-cao') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
@@ -72,7 +72,10 @@
 
 <script lang="ts" setup>
 import { useImagePreview } from '@/uni_modules/wot-ui'
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const { previewImage } = useImagePreview()
 const { previewImage: previewSlotImage } = useImagePreview('slot-preview')
 
@@ -86,7 +89,9 @@ const images = [
 ]
 
 // 图片描述
-const imageDescriptions = ['小熊猫', '水豚', '大熊猫', '月亮', '萌宠']
+const imageDescriptions = computed(() => {
+  return [t('xiao-xiong-mao-0'), t('shui-tun'), t('da-xiong-mao-0'), t('yue-liang'), t('meng-chong')]
+})
 
 // 基本用法
 function handleBasicPreview() {

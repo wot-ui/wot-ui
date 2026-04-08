@@ -5,7 +5,7 @@
     <wd-privacy-popup></wd-privacy-popup>
     <!-- #endif -->
     <view class="img-cropper-demo">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')" style="text-align: center">
           <wd-img-cropper
             v-model="croppers[CROPPER_MAIN].show"
@@ -38,7 +38,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件配置">
+      <demo-group :title="$t('zu-jian-pei-zhi')">
         <demo-group-item :title="$t('zi-ding-yi-cai-jian-bi-li')" style="text-align: center">
           <view class="img-cropper-demo__grid">
             <view v-for="(ratio, index) in ['3:2', '16:9', '16:10']" :key="index" class="img-cropper-demo__grid-item">
@@ -71,7 +71,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊用法">
+      <demo-group :title="$t('te-shu-yong-fa')">
         <demo-group-item :title="$t('cai-jian-hou-shang-chuan')" style="text-align: center">
           <wd-img-cropper
             v-model="croppers[CROPPER_UPLOAD].show"

@@ -1,13 +1,13 @@
 ---
 name: generate-theme
-description: 为 wot-ui 生成单文件主题 SCSS，并在 App.vue 中按 antd 方式挂载语义变量。
+description: 为 wot-ui 生成单文件主题 SCSS，并在 App.vue 中挂载语义变量。
 metadata:
   applyTo: "src/themes/styles/*.scss"
 ---
 
 # 主题文件生成技能
 
-本技能用于为 wot-ui 生成单个主题文件。目标产物对齐现有的 antd 主题风格：在 src/themes/styles 下新增一个 SCSS 文件，主题文件内同时包含 mixin 和挂载选择器，App.vue 只负责 `@use` 引入。
+本技能用于为 wot-ui 生成单个主题文件。目标产物对齐现有的主题风格：在 src/themes/styles 下新增一个 SCSS 文件，主题文件内同时包含 mixin 和挂载选择器，App.vue 只负责 `@use` 引入。
 
 > [!IMPORTANT]
 > **产物约束**：只生成一个主题文件，不生成 dark 主题文件，也不要改造为 light/dark 双文件结构。

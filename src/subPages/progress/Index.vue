@@ -1,18 +1,18 @@
 <template>
   <page-wraper>
     <view class="page-progress">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-progress :percentage="basePercentage" />
         </demo-group-item>
-        <demo-group-item title="内置百分比">
+        <demo-group-item :title="$t('nei-zhi-bai-fen-bi')">
           <view v-for="item in innerItems" :key="item.key" class="demo-row">
             <wd-progress :percent-position="item.percentPosition" :percentage="item.percentage" :status="item.status" />
           </view>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jin-du-tiao-zhuang-tai')">
           <view v-for="item in statusItems" :key="item.status" class="demo-row">
             <wd-progress :percentage="basePercentage" :status="item.status" hide-text />
@@ -20,7 +20,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('bu-xian-shi-jin-du-wen-zi')">
           <wd-progress :percentage="basePercentage" hide-text />
         </demo-group-item>
@@ -39,8 +39,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
-        <demo-group-item title="动态控制">
+      <demo-group :title="$t('te-shu-yang-shi')">
+        <demo-group-item :title="$t('dong-tai-kong-zhi')">
           <wd-progress :percentage="interactivePercentage" />
           <view class="action-container">
             <wd-button custom-style="margin-right: 10px;" type="danger" size="small" @click="reduce">-10</wd-button>

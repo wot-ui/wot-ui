@@ -1,41 +1,41 @@
 <template>
   <page-wraper>
     <view class="page-picker-view">
-      <demo-group title="组件类型">
-        <demo-group-item title="基本用法" no-padding>
-          <view class="page-picker-view__result">当前值：{{ value1.join(' / ') }}</view>
+      <demo-group :title="$t('zu-jian-lei-xing')">
+        <demo-group-item :title="$t('ji-chu-yong-fa')" no-padding>
+          <view class="page-picker-view__result">{{ $t('dang-qian-zhi-value1join', value1.join(' / ')) }}</view>
           <wd-picker-view v-model="value1" :columns="columns1" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jin-yong-xuan-xiang')" no-padding>
-          <view class="page-picker-view__result">当前值：{{ value2.join(' / ') }}</view>
+          <view class="page-picker-view__result">{{ $t('dang-qian-zhi-value2join', value2.join(' / ')) }}</view>
           <wd-picker-view v-model="value2" :columns="columns2" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
-        <demo-group-item title="立即触发" no-padding>
-          <view class="page-picker-view__result">当前值：{{ value3.join(' / ') }}</view>
-          <view class="page-picker-view__result">变更信息：{{ changeMessage }}</view>
+      <demo-group :title="$t('zu-jian-bian-ti')">
+        <demo-group-item :title="$t('li-ji-chu-fa')" no-padding>
+          <view class="page-picker-view__result">{{ $t('dang-qian-zhi-value3join', value3.join(' / ')) }}</view>
+          <view class="page-picker-view__result">{{ $t('bian-geng-xin-xi-changemessage', changeMessage) }}</view>
           <wd-picker-view v-model="value3" :columns="columns2" immediate-change @change="handleImmediateChange" />
         </demo-group-item>
 
         <demo-group-item :title="$t('duo-lie')" no-padding>
-          <view class="page-picker-view__result">当前值：{{ value4.join(' / ') }}</view>
+          <view class="page-picker-view__result">{{ $t('dang-qian-zhi-value4join', value4.join(' / ')) }}</view>
           <wd-picker-view v-model="value4" :columns="columns4" />
         </demo-group-item>
 
         <demo-group-item :title="$t('duo-ji-lian-dong')" no-padding>
-          <view class="page-picker-view__result">当前值：{{ value5.join(' / ') }}</view>
+          <view class="page-picker-view__result">{{ $t('dang-qian-zhi-value5join', value5.join(' / ')) }}</view>
           <wd-picker-view v-model="value5" :columns="cascadeColumns" cascade />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊用法">
-        <demo-group-item title="自定义字段" no-padding>
-          <view class="page-picker-view__result">当前值：{{ value6.join(' / ') }}</view>
+      <demo-group :title="$t('te-shu-yong-fa')">
+        <demo-group-item :title="$t('zi-ding-yi-zi-duan')" no-padding>
+          <view class="page-picker-view__result">{{ $t('dang-qian-zhi-value6join', value6.join(' / ')) }}</view>
           <wd-picker-view v-model="value6" :columns="columns6" value-key="id" label-key="text" />
         </demo-group-item>
       </demo-group>
@@ -43,13 +43,13 @@
   </page-wraper>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 
 const value1 = ref<string[]>([t('xuanXiang_1-0')])
-const columns1 = ref([
+const columns1 = computed(() => [
   { label: t('xuanXiang_1-0'), value: t('xuanXiang_1-0') },
   { label: t('xuanXiang_2-0'), value: t('xuanXiang_2-0') },
   { label: t('xuanXiang_3-0'), value: t('xuanXiang_3-0') },
@@ -61,9 +61,9 @@ const columns1 = ref([
 
 const value2 = ref<string[]>([t('xuanXiang_1-0')])
 const value3 = ref<string[]>([t('xuanXiang_1-0')])
-const changeMessage = ref('未触发')
+const changeMessage = ref(t('wei-chu-fa'))
 
-const columns2 = ref([
+const columns2 = computed(() => [
   { label: t('xuanXiang_1-0'), value: t('xuanXiang_1-0') },
   { label: t('xuanXiang_2-0'), value: t('xuanXiang_2-0') },
   { label: t('xuanXiang_3-0'), value: t('xuanXiang_3-0'), disabled: true },
@@ -73,8 +73,8 @@ const columns2 = ref([
   { label: t('xuan-xiang-7'), value: t('xuan-xiang-7') }
 ])
 
-const value4 = ref([t('zhong-nan-da-xue-0'), t('ruan-jian-gong-cheng-0')])
-const columns4 = ref([
+const value4 = computed(() => [t('zhong-nan-da-xue-0'), t('ruan-jian-gong-cheng-0')])
+const columns4 = computed(() => [
   [
     { value: t('zhong-shan-da-xue-0'), label: t('zhong-shan-da-xue-0') },
     { value: t('zhong-nan-da-xue-0'), label: t('zhong-nan-da-xue-0') },
@@ -90,7 +90,7 @@ const columns4 = ref([
 ])
 
 const value5 = ref(['110000', '110100', '110102'])
-const cascadeColumns = ref([
+const cascadeColumns = computed(() => [
   {
     label: t('bei-jing'),
     value: '110000',
@@ -156,14 +156,14 @@ const cascadeColumns = ref([
 ])
 
 const value6 = ref<(string | number)[]>([1])
-const columns6 = ref([
-  { id: 1, text: '选项一' },
-  { id: 2, text: '选项二' },
-  { id: 3, text: '选项三' }
+const columns6 = computed(() => [
+  { id: 1, text: t('xuan-xiang-yi') },
+  { id: 2, text: t('xuan-xiang-er') },
+  { id: 3, text: t('xuan-xiang-san') }
 ])
 
 function handleImmediateChange({ selectedLabels, columnIndex }: any) {
-  changeMessage.value = `${selectedLabels.join(' / ')}（第 ${columnIndex} 列）`
+  changeMessage.value = t('selectedlabelsjoin-di-columnindex-lie', selectedLabels.join(' / '), columnIndex)
 }
 </script>
 <style lang="scss" scoped>

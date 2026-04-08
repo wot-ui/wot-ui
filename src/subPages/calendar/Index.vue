@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-calendar">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <wd-cell-group border>
           <wd-cell :title="$t('dan-ge-ri-qi-xuan-ze')" :value="formatValue(value1, 'date')" is-link @click="show1 = true" />
         </wd-cell-group>
@@ -48,7 +48,7 @@
         <wd-calendar type="monthrange" v-model="value9" v-model:visible="show9" :switch-mode="switchMode" />
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <wd-cell-group border>
           <wd-cell :title="$t('kuai-jie-cao-zuo')" :value="formatValue(value16, 'date')" is-link @click="show16 = true" />
         </wd-cell-group>
@@ -60,8 +60,8 @@
         <wd-calendar v-model="value14" v-model:visible="show14" :before-confirm="beforeConfirm" :switch-mode="switchMode" />
       </demo-group>
 
-      <demo-group title="组件变体">
-        <demo-group-item title="切换模式">
+      <demo-group :title="$t('zu-jian-bian-ti')">
+        <demo-group-item :title="$t('qie-huan-mo-shi')">
           <wd-radio-group v-model="switchMode" type="button">
             <wd-radio value="none">none</wd-radio>
             <wd-radio value="month">month</wd-radio>
@@ -75,7 +75,7 @@
         <wd-calendar :first-day-of-week="1" show-type-switch v-model="value10" v-model:visible="show10" :switch-mode="switchMode" />
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <wd-cell-group border>
           <wd-cell :title="$t('ri-qi-ge-shi-hua')" :value="formatValue(value11, 'daterange')" is-link @click="show11 = true" />
         </wd-cell-group>
@@ -93,7 +93,7 @@
         />
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <wd-cell-group border>
           <wd-cell :title="$t('kuai-jie-xuan-xiang')" :value="formatValue(value12, 'daterange')" is-link @click="show12 = true" />
         </wd-cell-group>
@@ -152,13 +152,8 @@ const value11 = ref<number[]>([Date.now() - 24 * 60 * 60 * 1000 * 3, Date.now()]
 const value12 = ref<number[]>([])
 const value13 = ref<number[]>([Date.now() - 24 * 60 * 60 * 1000 * 3, Date.now()])
 const value14 = ref<number | null>(null)
-const value15 = ref<number | null>(null)
 const value16 = ref<number>(Date.now())
-const value17 = ref<number>(Date.now())
-const value18 = ref<number>(Date.now())
 const value19 = ref<number>(Date.now())
-const valueClear1 = ref<number | null>(Date.now())
-const valueClear2 = ref<number[]>([Date.now() - 24 * 60 * 60 * 1000 * 3, Date.now()])
 
 const show1 = ref<boolean>(false)
 const show2 = ref<boolean>(false)
@@ -174,15 +169,9 @@ const show11 = ref<boolean>(false)
 const show12 = ref<boolean>(false)
 const show13 = ref<boolean>(false)
 const show14 = ref<boolean>(false)
-const show15 = ref<boolean>(false)
 const show16 = ref<boolean>(false)
-const show17 = ref<boolean>(false)
-const show18 = ref<boolean>(false)
 const show19 = ref<boolean>(false)
-const showClear1 = ref<boolean>(false)
-const showClear2 = ref<boolean>(false)
 
-const formatValueStr = ref<string>('')
 const formatter: CalendarFormatter = (day: CalendarDayItem) => {
   const date = new Date(day.date)
   const now = new Date()
@@ -289,26 +278,6 @@ function handleConfirm2({ value }: any) {
 function handleConfirm3({ value }: any) {
   console.log(value)
 }
-function handleConfirm4({ value }: any) {
-  console.log(new Date(value).toString())
-  formatValueStr.value = new Date(value).toString()
-}
-
-function handleConfirm5({ value }: any) {
-  toast.success(t('yi-xuan-ze') + dayjs(value).format(t('yyyy-nian-mm-yue-dd-ri')))
-}
-
-function handleConfirm6({ value }: any) {
-  console.log(value)
-}
-
-function handleConfirmClear1({ value }: any) {
-  console.log('calendar 1 confirmed:', value)
-}
-
-function handleConfirmClear2({ value }: any) {
-  console.log('calendar 2 confirmed:', value)
-}
 
 function formatValue(value: any, type: string) {
   if (!value) return ''
@@ -329,7 +298,7 @@ function formatValue(value: any, type: string) {
       const date = new Date(value)
       const year = date.getFullYear()
       const week = getWeekNumber(value)
-      return `${year} 第${padZero(week)}周`
+      return t('year-di-padzeroweek-zhou', year, padZero(week))
     }
     case 'month':
       return dayjs(value).format('YYYY-MM')
@@ -341,7 +310,7 @@ function formatValue(value: any, type: string) {
       const date2 = new Date(value[1])
       const year2 = date2.getFullYear()
       const week2 = getWeekNumber(value[1])
-      return `${year1} 第${padZero(week1)}周 - ${year2} 第${padZero(week2)}周`
+      return t('year1-di-padzeroweek1-zhou-year2-di-padzeroweek2-zhou', year1, padZero(week1), year2, padZero(week2))
     }
     case 'monthrange':
       if (!Array.isArray(value)) return ''

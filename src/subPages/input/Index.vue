@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-input">
-      <demo-group title="组件类型" transparent>
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
         <demo-group-item :title="$t('ji-ben-shi-yong')" no-padding>
           <wd-input v-model="value" type="text" :placeholder="$t('qing-shu-ru-wai-bi-ba-bu')" @input="handleEvent" @blur="handleEvent" />
         </demo-group-item>
@@ -10,7 +10,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态" transparent>
+      <demo-group :title="$t('zu-jian-zhuang-tai')" transparent>
         <demo-group-item :title="$t('jin-yong-zhuang-tai')" no-padding>
           <wd-input v-model="value1" type="text" disabled @input="handleEvent" />
         </demo-group-item>
@@ -22,7 +22,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体" transparent>
+      <demo-group :title="$t('zu-jian-bian-ti')" transparent>
         <demo-group-item :title="$t('qing-kong-an-niu')" no-padding>
           <wd-input v-model="value4" type="text" clearable @input="handleEvent" @clear="handleEvent" />
         </demo-group-item>
@@ -37,7 +37,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态" transparent>
+      <demo-group :title="$t('nei-rong-xing-tai')" transparent>
         <demo-group-item :title="$t('she-zhi-qian-hou-icon')" no-padding>
           <wd-input
             v-model="value6"
@@ -50,7 +50,7 @@
             @clicksuffixicon="handleEvent"
           />
         </demo-group-item>
-        <demo-group-item title="后缀插槽" no-padding>
+        <demo-group-item :title="$t('hou-zhui-cha-cao')" no-padding>
           <wd-input v-model="slotValue" type="text" :placeholder="$t('qing-shu-ru-wai-bi-ba-bu')" clearable @input="handleEvent">
             <template #suffix>
               <wd-button size="small" custom-class="button">{{ $t('huo-qu-yan-zheng-ma') }}</wd-button>
@@ -59,11 +59,11 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式" transparent>
+      <demo-group :title="$t('zu-jian-yang-shi')" transparent>
         <demo-group-item :title="$t('zi-shu-xian-zhi-0')" no-padding>
           <wd-input v-model="value7" type="text" :maxlength="20" show-word-limit @input="handleEvent" />
         </demo-group-item>
-        <demo-group-item title="紧凑布局">
+        <demo-group-item :title="$t('jin-cou-bu-ju')">
           <view class="compact-row">
             <wd-input
               v-model="value8"
@@ -77,32 +77,40 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊用法" transparent>
-        <demo-group-item title="结合表单使用" transparent no-padding>
+      <demo-group :title="$t('te-shu-yong-fa')" transparent>
+        <demo-group-item :title="$t('jie-he-biao-dan-shi-yong')" transparent no-padding>
           <wd-form :model="formData" border title-width="98px">
-            <wd-form-item title="基本用法" prop="basic">
-              <wd-input v-model="formData.basic" type="text" placeholder="请输入" compact @input="handleEvent" />
+            <wd-form-item :title="$t('ji-chu-yong-fa')" prop="basic">
+              <wd-input v-model="formData.basic" type="text" :placeholder="$t('qing-shu-ru-5')" compact @input="handleEvent" />
             </wd-form-item>
-            <wd-form-item title="禁用" prop="disabled">
-              <wd-input v-model="formData.disabled" type="text" disabled placeholder="外比巴卜" compact @input="handleEvent" />
+            <wd-form-item :title="$t('jinYong')" prop="disabled">
+              <wd-input v-model="formData.disabled" type="text" disabled :placeholder="$t('wai-bi-ba-bu-0')" compact @input="handleEvent" />
             </wd-form-item>
-            <wd-form-item title="清除/密码" prop="password">
-              <wd-input v-model="formData.password" type="text" placeholder="请输入" clearable show-password compact @input="handleEvent" />
+            <wd-form-item :title="$t('qing-chu-mi-ma-0')" prop="password">
+              <wd-input
+                v-model="formData.password"
+                type="text"
+                :placeholder="$t('qing-shu-ru-6')"
+                clearable
+                show-password
+                compact
+                @input="handleEvent"
+              />
             </wd-form-item>
-            <wd-form-item title="错误状态" prop="error">
-              <wd-input v-model="formData.error" type="text" placeholder="请输入外比巴卜" error compact @input="handleEvent" />
+            <wd-form-item :title="$t('cuo-wu-zhuang-tai-0')" prop="error">
+              <wd-input v-model="formData.error" type="text" :placeholder="$t('qing-shu-ru-wai-bi-ba-bu-0')" error compact @input="handleEvent" />
             </wd-form-item>
-            <wd-form-item title="必填" prop="required" required>
-              <wd-input v-model="formData.required" type="text" placeholder="请输入外比巴卜" compact @input="handleEvent" />
+            <wd-form-item :title="$t('bi-tian')" prop="required" required>
+              <wd-input v-model="formData.required" type="text" :placeholder="$t('qing-shu-ru-wai-bi-ba-bu-1')" compact @input="handleEvent" />
             </wd-form-item>
-            <wd-form-item title="字数限制" prop="limit">
-              <wd-input v-model="formData.limit" type="text" placeholder="请输入" :maxlength="20" show-word-limit clearable compact />
+            <wd-form-item :title="$t('zi-shu-xian-zhi-0')" prop="limit">
+              <wd-input v-model="formData.limit" type="text" :placeholder="$t('qing-shu-ru-7')" :maxlength="20" show-word-limit clearable compact />
             </wd-form-item>
-            <wd-form-item title="图标" prop="icon" prefix-icon="sound">
-              <wd-input v-model="formData.icon" type="text" placeholder="请输入" compact suffix-icon="send" @input="handleEvent" />
+            <wd-form-item :title="$t('tu-biao')" prop="icon" prefix-icon="sound">
+              <wd-input v-model="formData.icon" type="text" :placeholder="$t('qing-shu-ru-8')" compact suffix-icon="send" @input="handleEvent" />
             </wd-form-item>
-            <wd-form-item title="自定义插槽" prop="slot" center>
-              <wd-input v-model="formData.slot" type="text" placeholder="请输入" clearable compact @input="handleEvent">
+            <wd-form-item :title="$t('zi-ding-yi-cha-cao')" prop="slot" center>
+              <wd-input v-model="formData.slot" type="text" :placeholder="$t('qing-shu-ru-9')" clearable compact @input="handleEvent">
                 <template #suffix>
                   <wd-button size="small" custom-class="button">{{ $t('huo-qu-yan-zheng-ma') }}</wd-button>
                 </template>

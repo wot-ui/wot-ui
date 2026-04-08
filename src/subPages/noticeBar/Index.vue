@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-notice-bar">
-      <demo-group title="组件类型" transparent>
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
         <demo-group-item :title="$t('jiBenYongFa')" no-padding>
           <wd-notice-bar
             :text="$t('zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi')"
@@ -10,7 +10,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体" transparent>
+      <demo-group :title="$t('zu-jian-bian-ti')" transparent>
         <demo-group-item :title="$t('lei-xing-xiu-gai')" no-padding>
           <wd-notice-bar
             type="danger"
@@ -41,7 +41,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态" transparent>
+      <demo-group :title="$t('nei-rong-xing-tai')" transparent>
         <demo-group-item :title="$t('jin-zhi-gun-dong')" no-padding>
           <wd-notice-bar :scrollable="false" :text="$t('yu-mai-gui-hua-tong-zai-jiu-zhong-bu-si-shao-nian-you')" prefix="stop" />
         </demo-group-item>
@@ -69,7 +69,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式" transparent>
+      <demo-group :title="$t('zu-jian-yang-shi')" transparent>
         <demo-group-item :title="$t('zi-ding-yi-yan-se-0')" no-padding>
           <wd-notice-bar
             :text="$t('zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-zhe-shi-yi-tiao-xiao-xi-ti-shi-xin-xi-1')"
@@ -80,7 +80,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊用法" transparent>
+      <demo-group :title="$t('te-shu-yong-fa')" transparent>
         <demo-group-item :title="$t('duo-wen-ben-lun-bo')" no-padding>
           <wd-notice-bar @click="handleClick" :text="textArray" prefix="thunderbolt" @next="onNext" />
         </demo-group-item>

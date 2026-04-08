@@ -1,8 +1,8 @@
 <template>
   <page-wraper>
     <view class="page-loading">
-      <demo-group title="组件类型">
-        <demo-group-item title="类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
+        <demo-group-item :title="$t('lei-xing')">
           <view class="demo-row">
             <wd-loading custom-class="loading" />
             <wd-loading custom-class="loading" type="spinner" />
@@ -11,15 +11,15 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
-        <demo-group-item title="颜色">
+      <demo-group :title="$t('zu-jian-yang-shi')">
+        <demo-group-item :title="$t('yanSe')">
           <view class="demo-row">
             <wd-loading custom-class="loading" color="#fa34aa" />
             <wd-loading custom-class="loading" type="spinner" color="#fa34aa" />
             <wd-loading custom-class="loading" type="dots" color="#fa34aa" />
           </view>
         </demo-group-item>
-        <demo-group-item title="大小">
+        <demo-group-item :title="$t('da-xiao')">
           <view class="demo-row">
             <wd-loading custom-class="loading" :size="20" />
             <wd-loading custom-class="loading" type="spinner" :size="20" />
@@ -38,19 +38,19 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态">
-        <demo-group-item title="显示文字">
+      <demo-group :title="$t('nei-rong-xing-tai')">
+        <demo-group-item :title="$t('xian-shi-wen-zi')">
           <view class="demo-row">
-            <wd-loading custom-class="loading" text="加载中..."></wd-loading>
-            <wd-loading custom-class="loading">加载中...</wd-loading>
-            <wd-loading custom-class="loading" type="spinner">加载中...</wd-loading>
+            <wd-loading custom-class="loading" :text="$t('jia-zai-zhong')"></wd-loading>
+            <wd-loading custom-class="loading">{{ $t('jia-zai-zhong') }}</wd-loading>
+            <wd-loading custom-class="loading" type="spinner">{{ $t('jia-zai-zhong') }}</wd-loading>
           </view>
         </demo-group-item>
-        <demo-group-item title="水平方向">
+        <demo-group-item :title="$t('shui-ping-fang-xiang')">
           <view class="demo-row">
-            <wd-loading custom-class="loading" direction="horizontal" text="加载中..."></wd-loading>
-            <wd-loading custom-class="loading" direction="horizontal">加载中...</wd-loading>
-            <wd-loading custom-class="loading" direction="horizontal" type="spinner">加载中...</wd-loading>
+            <wd-loading custom-class="loading" direction="horizontal" :text="$t('jia-zai-zhong')"></wd-loading>
+            <wd-loading custom-class="loading" direction="horizontal">{{ $t('jia-zai-zhong') }}</wd-loading>
+            <wd-loading custom-class="loading" direction="horizontal" type="spinner">{{ $t('jia-zai-zhong') }}</wd-loading>
           </view>
         </demo-group-item>
       </demo-group>

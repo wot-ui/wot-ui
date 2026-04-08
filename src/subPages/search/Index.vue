@@ -2,13 +2,13 @@
   <view @click="closeOutside">
     <page-wraper>
       <view class="page-search">
-        <demo-group transparent title="组件类型">
-          <demo-group-item no-padding title="基础用法">
+        <demo-group transparent :title="$t('zu-jian-lei-xing')">
+          <demo-group-item no-padding :title="$t('ji-chu-yong-fa-0')">
             <wd-search v-model="valueBasic" @search="search" @change="change" @cancel="cancel" @clear="clear" />
           </demo-group-item>
         </demo-group>
 
-        <demo-group transparent title="组件状态">
+        <demo-group transparent :title="$t('zu-jian-zhuang-tai')">
           <demo-group-item no-padding :title="$t('zi-dong-ju-jiao')">
             <wd-search v-model="valueFocus" focus />
           </demo-group-item>
@@ -20,15 +20,15 @@
           </demo-group-item>
         </demo-group>
 
-        <demo-group transparent title="组件变体">
-          <demo-group-item no-padding title="样式变体">
+        <demo-group transparent :title="$t('zu-jian-bian-ti')">
+          <demo-group-item no-padding :title="$t('yang-shi-bian-ti')">
             <wd-search variant="plain" v-model="valuePlain" />
             <wd-search variant="filled" v-model="valueFilled" custom-class="page-search__mt" />
             <wd-search variant="light" v-model="valueLight" custom-class="page-search__mt" />
           </demo-group-item>
         </demo-group>
 
-        <demo-group transparent title="组件样式">
+        <demo-group transparent :title="$t('zu-jian-yang-shi')">
           <demo-group-item no-padding :title="$t('sou-suo-zhan-wei-fu-ju-zuo')">
             <wd-search placeholder-left />
           </demo-group-item>
@@ -40,7 +40,7 @@
           </demo-group-item>
         </demo-group>
 
-        <demo-group transparent title="特殊样式">
+        <demo-group transparent :title="$t('te-shu-yang-shi')">
           <demo-group-item no-padding :title="$t('zi-ding-yi-zuo-ce-cha-cao')">
             <wd-search v-model="valuePrefix">
               <template #prefix>
@@ -53,14 +53,14 @@
               </template>
             </wd-search>
           </demo-group-item>
-          <demo-group-item no-padding title="自定义输入框右侧图标">
+          <demo-group-item no-padding :title="$t('zi-ding-yi-shu-ru-kuang-you-ce-tu-biao')">
             <wd-search v-model="valueInputSuffix">
               <template #input-suffix>
                 <wd-icon custom-class="page-search__scan-icon" name="scan" size="20px"></wd-icon>
               </template>
             </wd-search>
           </demo-group-item>
-          <demo-group-item no-padding title="自定义右侧插槽">
+          <demo-group-item no-padding :title="$t('zi-ding-yi-you-ce-cha-cao')">
             <wd-search variant="plain" v-model="valueSuffix">
               <template #input-suffix>
                 <wd-icon custom-class="page-search__scan-icon" name="scan" size="20px"></wd-icon>
@@ -68,14 +68,14 @@
               <template #suffix>
                 <wd-popover v-model="showPopover" mode="menu" :content="menu2" placement="bottom">
                   <view class="page-search__suffix">
-                    <text>筛选条件</text>
+                    <text>{{ $t('shai-xuan-tiao-jian') }}</text>
                     <wd-icon class="page-search__suffix-icon" :name="showPopover ? 'caret-up' : 'caret-down'" size="16px"></wd-icon>
                   </view>
                 </wd-popover>
               </template>
             </wd-search>
           </demo-group-item>
-          <demo-group-item no-padding title="多种插槽组合">
+          <demo-group-item no-padding :title="$t('duo-zhong-cha-cao-zu-he')">
             <wd-search variant="plain" v-model="valueMultiPlain">
               <template #input-suffix>
                 <wd-icon custom-class="page-search__scan-icon" name="scan" size="20px"></wd-icon>
@@ -156,7 +156,7 @@ const menu = computed(() => {
   ]
 })
 
-const menu2 = ref([{ content: '气泡文本' }, { content: '气泡文本' }, { content: '气泡文本' }])
+const menu2 = ref([{ content: t('qi-pao-wen-ben') }, { content: t('qi-pao-wen-ben-0') }, { content: t('qi-pao-wen-ben-1') }])
 
 function handleDisabledClick() {
   uni.showToast({ title: t('jin-yong-dian-ji') })

@@ -1,19 +1,19 @@
 <template>
   <page-wraper>
     <view class="page-slide-verify">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-yong-fa')">
           <wd-slide-verify @success="handleSuccess" @fail="handleFail" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jin-yong-zhuang-tai')">
           <wd-slide-verify disabled />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-wen-an')">
           <wd-slide-verify :text="$t('qing-tuo-dong-hua-kuai')" :success-text="$t('yan-zheng-cheng-gong')" />
         </demo-group-item>
@@ -25,7 +25,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-rong-cuo-fan-wei')">
           <wd-slide-verify :tolerance="20" />
         </demo-group-item>
@@ -36,7 +36,7 @@
         <demo-group-item :title="$t('cha-cao-yong-fa')">
           <wd-slide-verify>
             <template #text>
-              <text>Slide right to complete verification</text>
+              <text>{{ $t('hua-dong-yan-zheng') }}</text>
             </template>
             <template #success-text>
               <text>{{ $t('yan-zheng-tong-guo') }}</text>

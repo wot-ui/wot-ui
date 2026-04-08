@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-sticky page-sticky__stage">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <view class="demo-container">
             <wd-sticky custom-style="margin-left: 20px">
@@ -22,7 +22,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('xi-ding-ju-li')">
           <view class="demo-container">
             <wd-sticky :offset-top="50" custom-style="margin-left: 120px">
@@ -43,7 +43,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('dong-tai-cha-ru')">
           <view class="demo-container">
             <wd-button type="info" plain @click="insert">{{ $t('dian-ji-cha-ru') }}</wd-button>

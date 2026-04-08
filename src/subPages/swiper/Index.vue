@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-swiper">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item no-padding :title="$t('dian-zhuang-zhi-shi-qi')">
           <wd-swiper :list="swiperList" autoplay v-model:current="current" :indicator="{ type: 'dots' }"></wd-swiper>
         </demo-group-item>
@@ -19,7 +19,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item no-padding :title="$t('shou-dong-qie-huan')">
           <wd-swiper :list="swiperList" :autoplay="false" v-model:current="current3" :indicator="{ showControls: true }" :loop="false"></wd-swiper>
         </demo-group-item>
@@ -38,7 +38,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item no-padding :title="$t('ka-pian-yang-shi')">
           <view class="card-swiper">
             <wd-swiper
@@ -81,7 +81,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <!-- #ifdef MP-WEIXIN || H5 || MP-DINGTALK -->
         <demo-group-item no-padding :title="$t('shi-pin-lun-bo')">
           <wd-swiper :list="videoList" autoplay :indicator="{ type: 'fraction' }" indicator-position="top-right"></wd-swiper>

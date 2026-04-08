@@ -1,18 +1,18 @@
 <template>
   <page-wraper>
     <view class="page-img">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-ben-shi-yong')">
           <wd-img :width="100" :height="100" :src="imgURL" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jia-zai-zhong-0')">
           <view class="demo-grid demo-grid--two">
             <view class="demo-col">
               <wd-img width="100%" height="27vw" src="https://www.123.wot.com/a.jpg" />
-              <view class="demo-text">默认提示</view>
+              <view class="demo-text">{{ $t('mo-ren-ti-shi') }}</view>
             </view>
             <view class="demo-col">
               <wd-img width="100%" height="27vw" src="https://www.123.wot.com/a.jpg">
@@ -20,7 +20,7 @@
                   <wd-loading />
                 </template>
               </wd-img>
-              <view class="demo-text">自定义提示</view>
+              <view class="demo-text">{{ $t('zi-ding-yi-ti-shi') }}</view>
             </view>
           </view>
         </demo-group-item>
@@ -29,21 +29,21 @@
           <view class="demo-grid demo-grid--two">
             <view class="demo-col">
               <wd-img width="100%" height="27vw" src="https://www.123.wot.com/a.jpg" />
-              <view class="demo-text">默认提示</view>
+              <view class="demo-text">{{ $t('mo-ren-ti-shi-0') }}</view>
             </view>
             <view class="demo-col">
               <wd-img width="100%" height="27vw" src="https://www.123.wot.com/a.jpg">
                 <template #error>
-                  <view class="error-wrap">加载失败</view>
+                  <view class="error-wrap">{{ $t('jia-zai-shi-bai') }}</view>
                 </template>
               </wd-img>
-              <view class="demo-text">自定义提示</view>
+              <view class="demo-text">{{ $t('zi-ding-yi-ti-shi-0') }}</view>
             </view>
           </view>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('tian-chong')">
           <view class="demo-grid">
             <view class="demo-col" v-for="mode in modes" :key="mode">
@@ -72,16 +72,16 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊用法">
+      <demo-group :title="$t('te-shu-yong-fa')">
         <demo-group-item :title="$t('ke-yu-lan')">
           <view class="demo-grid demo-grid--two">
             <view class="demo-col">
               <wd-img width="100%" mode="widthFix" :src="imgURL" :enable-preview="true" />
-              <view class="demo-text">默认预览图</view>
+              <view class="demo-text">{{ $t('mo-ren-yu-lan-tu') }}</view>
             </view>
             <view class="demo-col">
               <wd-img width="100%" mode="widthFix" :src="imgURL" :preview-src="previewURL" :enable-preview="true" />
-              <view class="demo-text">指定预览图</view>
+              <view class="demo-text">{{ $t('zhi-ding-yu-lan-tu') }}</view>
             </view>
           </view>
         </demo-group-item>

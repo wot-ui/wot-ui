@@ -1,14 +1,14 @@
 <template>
   <page-wraper>
     <view class="page-notify">
-      <demo-group title="组件状态" transparent>
-        <demo-group-item no-padding title="基础用法" transparent>
+      <demo-group :title="$t('zu-jian-zhuang-tai')" transparent>
+        <demo-group-item no-padding :title="$t('ji-chu-yong-fa-0')" transparent>
           <wd-cell-group>
             <wd-cell :title="$t('ji-chu-yong-fa-0')" is-link @click="showBasicNotify" />
           </wd-cell-group>
         </demo-group-item>
 
-        <demo-group-item no-padding title="自定义配置" transparent>
+        <demo-group-item no-padding :title="$t('zi-ding-yi-pei-zhi')" transparent>
           <wd-cell-group>
             <wd-cell :title="$t('zi-ding-yi-yan-se-0')" is-link @click="showCustomColor" />
             <wd-cell :title="$t('zi-ding-yi-wei-zhi')" is-link @click="showCustomPosition" />
@@ -18,8 +18,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件类型" transparent>
-        <demo-group-item no-padding title="通知类型" transparent>
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
+        <demo-group-item no-padding :title="$t('tong-zhi-lei-xing')" transparent>
           <wd-cell-group>
             <wd-cell :title="$t('zhu-yao-tong-zhi')" is-link @click="showType('primary')" />
             <wd-cell :title="$t('cheng-gong-tong-zhi')" is-link @click="showType('success')" />
@@ -29,8 +29,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式" transparent>
-        <demo-group-item no-padding title="悬浮通知" transparent>
+      <demo-group :title="$t('zu-jian-yang-shi')" transparent>
+        <demo-group-item no-padding :title="$t('xuan-fu-tong-zhi')" transparent>
           <wd-cell-group>
             <wd-cell :title="$t('zhu-yao-tong-zhi')" is-link @click="showFloatingType('primary')" />
             <wd-cell :title="$t('cheng-gong-tong-zhi')" is-link @click="showFloatingType('success')" />
@@ -40,8 +40,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态" transparent>
-        <demo-group-item no-padding title="使用 Notify 组件" transparent>
+      <demo-group :title="$t('nei-rong-xing-tai')" transparent>
+        <demo-group-item no-padding :title="$t('shi-yong-notify-zu-jian-0')" transparent>
           <wd-cell-group>
             <wd-cell :title="$t('shi-yong-notify-zu-jian-0')" is-link @click="showNotifyComponent" />
           </wd-cell-group>

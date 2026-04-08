@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-divider">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-divider></wd-divider>
         </demo-group-item>
@@ -10,7 +10,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('nei-rong-wei-zhi')">
           <wd-divider>{{ $t('zhong-jian') }}</wd-divider>
           <wd-divider content-position="left">{{ $t('zuo-ce') }}</wd-divider>
@@ -21,7 +21,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-xuan-ran-nei-rong')">
           <wd-divider>
             <wd-icon name="down" size="20" />
@@ -32,7 +32,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('chui-zhi-fen-ge-xian')">
           <view class="content">
             {{ $t('wen-ben') }}

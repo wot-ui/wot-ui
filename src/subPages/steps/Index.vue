@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-steps">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <wd-steps :active="0">
             <wd-step></wd-step>
@@ -28,7 +28,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('xiu-gai-zhuang-tai')">
           <wd-steps :active="1" align-center>
             <wd-step :title="$t('bang-ding-shou-ji')" />
@@ -38,7 +38,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('shui-ping-ju-zhong')">
           <wd-steps :active="0" align-center>
             <wd-step></wd-step>
@@ -48,7 +48,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="布局能力">
+      <demo-group :title="$t('bu-ju-neng-li')">
         <demo-group-item :title="$t('shu-xiang-bu-zhou-tiao')">
           <wd-steps :active="1" vertical>
             <wd-step :description="$t('zhu-ce-1-ge-zhang-hao')" />
@@ -58,22 +58,22 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
-        <demo-group-item title="点状步骤条">
+      <demo-group :title="$t('te-shu-yang-shi')">
+        <demo-group-item :title="$t('dian-zhuang-bu-zhou-tiao')">
           <wd-steps :active="1" align-center dot>
             <wd-step :title="$t('bu-zhou-1')" :description="$t('zhu-ce-1-ge-zhang-hao')" />
             <wd-step :title="$t('bu-zhou-2')" :description="$t('deng-lu-zhang-hao-bin-ding-shou-ji')" />
             <wd-step :title="$t('bu-zhou-3')" :description="$t('wan-shan-ge-ren-xin-xi')" />
           </wd-steps>
         </demo-group-item>
-        <demo-group-item title="可控制的点状步骤条">
+        <demo-group-item :title="$t('ke-kong-zhi-de-dian-zhuang-bu-zhou-tiao')">
           <wd-steps :active="dotActive" align-center dot>
-            <wd-step title="步骤1" description="注册一个账号" />
-            <wd-step title="步骤2" description="登录账号并绑定手机" />
-            <wd-step title="步骤3" description="完善个人信息" />
+            <wd-step :title="$t('bu-zhou-1')" description="注册一个账号" />
+            <wd-step :title="$t('bu-zhou-2')" description="登录账号并绑定手机" />
+            <wd-step :title="$t('bu-zhou-3-0')" description="完善个人信息" />
           </wd-steps>
           <view class="steps-action">
-            <wd-button size="small" @click="nextDotStep">下一步</wd-button>
+            <wd-button size="small" @click="nextDotStep">{{ $t('xia-yi-bu') }}</wd-button>
           </view>
         </demo-group-item>
         <demo-group-item :title="$t('dian-zhuang-bu-zhou-he-chui-zhi-fang-xiang')">
@@ -83,14 +83,14 @@
             <wd-step :description="$t('wan-shan-ge-ren-xin-xi')" />
           </wd-steps>
         </demo-group-item>
-        <demo-group-item title="可控制的竖向点状步骤条">
+        <demo-group-item :title="$t('ke-kong-zhi-de-shu-xiang-dian-zhuang-bu-zhou-tiao')">
           <wd-steps :active="verticalDotActive" vertical dot>
-            <wd-step title="步骤1" description="注册一个账号" />
-            <wd-step title="步骤2" description="登录账号并绑定手机" />
-            <wd-step title="步骤3" description="完善个人信息" />
+            <wd-step :title="$t('bu-zhou-1')" description="注册一个账号" />
+            <wd-step :title="$t('bu-zhou-2')" description="登录账号并绑定手机" />
+            <wd-step :title="$t('bu-zhou-3-0')" description="完善个人信息" />
           </wd-steps>
           <view class="steps-action">
-            <wd-button size="small" @click="nextVerticalDotStep">下一步</wd-button>
+            <wd-button size="small" @click="nextVerticalDotStep">{{ $t('xia-yi-bu') }}</wd-button>
           </view>
         </demo-group-item>
       </demo-group>

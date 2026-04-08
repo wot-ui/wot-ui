@@ -1,14 +1,14 @@
 <template>
   <page-wraper>
     <view class="page-pagination">
-      <demo-group title="组件类型" transparent>
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
         <demo-group-item :title="$t('jiBenYongFa')" no-padding>
           <wd-pagination v-model="page1" :total="total1" @change="handleChange1" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体" transparent>
-        <demo-group-item title="按钮风格" no-padding>
+      <demo-group :title="$t('zu-jian-bian-ti')" transparent>
+        <demo-group-item :title="$t('an-niu-feng-ge')" no-padding>
           <view class="page-pagination__stack">
             <wd-pagination v-model="page4" :total="total4" button-variant="plain" @change="handleChange4" />
             <wd-pagination v-model="page5" :total="total5" button-variant="dashed" @change="handleChange5" />
@@ -23,14 +23,14 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态" transparent>
-        <demo-group-item title="自定义插槽" no-padding>
+      <demo-group :title="$t('nei-rong-xing-tai')" transparent>
+        <demo-group-item :title="$t('zi-ding-yi-cha-cao')" no-padding>
           <wd-pagination v-model="page7" :total="total7" show-message @change="handleChange7">
             <template #prev="{ modelValue }">
-              <wd-button :disabled="modelValue <= 1" @click="page7 -= 1" size="small" type="danger">上一页</wd-button>
+              <wd-button :disabled="modelValue <= 1" @click="page7 -= 1" size="small" type="danger">{{ $t('shang-yi-ye') }}</wd-button>
             </template>
             <template #next="{ modelValue, totalPageNum }">
-              <wd-button :disabled="modelValue >= totalPageNum" @click="page7 += 1" size="small" type="danger">下一页</wd-button>
+              <wd-button :disabled="modelValue >= totalPageNum" @click="page7 += 1" size="small" type="danger">{{ $t('xia-yi-ye') }}</wd-button>
             </template>
             <template #size="{ modelValue, totalPageNum }">
               <view class="custom-pagination__content">
@@ -40,7 +40,7 @@
               </view>
             </template>
             <template #message="{ total }">
-              <view class="custom-pagination__message">当前第{{ page7 }}页，共{{ total }}条数据</view>
+              <view class="custom-pagination__message">{{ $t('dang-qian-di-page7-ye-gong-total-tiao-shu-ju', page7, total) }}</view>
             </template>
           </wd-pagination>
         </demo-group-item>

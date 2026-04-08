@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-sidebar">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-yong-fa-0')">
           <view class="sidebar-row">
             <wd-sidebar v-model="active1">
@@ -13,8 +13,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
-        <demo-group-item title="徽标与禁用">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
+        <demo-group-item :title="$t('hui-biao-yu-jin-yong')">
           <view class="sidebar-grid">
             <wd-sidebar v-model="active2">
               <wd-sidebar-item :value="0" :label="$t('biao-qian-ming-cheng')" is-dot />
@@ -30,7 +30,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('mao-dian-yong-fa-shi-li')">
           <view class="demo-button">
             <wd-button :round="false" block size="large" @click="handleClick1">{{ $t('mao-dian-yong-fa') }}</wd-button>

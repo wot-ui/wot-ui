@@ -11,27 +11,37 @@
         </template>
       </wd-dialog>
 
-      <demo-group title="组件类型">
-        <demo-group-item title="基础用法">
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="basicAlert">Alert 弹窗</wd-button>
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="basicConfirm">Confirm 弹窗</wd-button>
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="basicPrompt">Prompt 输入框</wd-button>
-          <wd-button type="primary" plain block @click="withTitleAndContent">标题 + 内容</wd-button>
+      <demo-group :title="$t('zu-jian-lei-xing')">
+        <demo-group-item :title="$t('ji-chu-yong-fa-0')">
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="basicAlert">{{ $t('alert-dan-chuang') }}</wd-button>
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="basicConfirm">{{ $t('confirm-dan-chuang') }}</wd-button>
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="basicPrompt">{{ $t('prompt-shu-ru-kuang') }}</wd-button>
+          <wd-button type="primary" plain block @click="withTitleAndContent">{{ $t('biao-ti-nei-rong') }}</wd-button>
         </demo-group-item>
-        <demo-group-item title="弹窗类型">
-          <wd-button type="success" plain block custom-style="margin-bottom: 12px" @click="alertType">Alert 类型</wd-button>
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="confirmType">Confirm 类型</wd-button>
-          <wd-button type="warning" plain block @click="promptType">Prompt 类型</wd-button>
+        <demo-group-item :title="$t('dan-chuang-lei-xing')">
+          <wd-button type="success" plain block custom-style="margin-bottom: 12px" @click="alertType">{{ $t('alert-lei-xing') }}</wd-button>
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="confirmType">{{ $t('confirm-lei-xing') }}</wd-button>
+          <wd-button type="warning" plain block @click="promptType">{{ $t('prompt-lei-xing') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
-        <demo-group-item title="输入配置（Prompt）">
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptWithPlaceholder">带占位符</wd-button>
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptWithDefaultValue">带默认值</wd-button>
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptTextarea">多行文本输入</wd-button>
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptWithMaxlength">限制输入长度</wd-button>
-          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptRegexValidation">正则校验</wd-button>
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
+        <demo-group-item :title="$t('shu-ru-pei-zhi-prompt')">
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptWithPlaceholder">
+            {{ $t('dai-zhan-wei-fu') }}
+          </wd-button>
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptWithDefaultValue">
+            {{ $t('dai-mo-ren-zhi') }}
+          </wd-button>
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptTextarea">
+            {{ $t('duo-hang-wen-ben-shu-ru') }}
+          </wd-button>
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptWithMaxlength">
+            {{ $t('xian-zhi-shu-ru-chang-du') }}
+          </wd-button>
+          <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptRegexValidation">
+            {{ $t('zheng-ze-xiao-yan') }}
+          </wd-button>
           <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptFunctionValidation">函数校验</wd-button>
           <wd-button type="primary" plain block custom-style="margin-bottom: 12px" @click="promptNumberInput">数字输入</wd-button>
           <wd-button type="primary" plain block @click="promptPasswordInput">密码输入</wd-button>

@@ -2,7 +2,7 @@
   <page-wraper>
     <wd-toast />
     <view @click="closeOutside" class="page-popover">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('jiBenYongFa')">
           <view class="page-popover__center">
             <wd-popover id="pop1" :content="$t('zhe-shi-yi-duan-nei-rong')" :placement="placement" v-model="show1">
@@ -19,7 +19,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('wei-zhi')">
           <wd-radio-group v-model="placement" direction="horizontal" type="dot">
             <wd-radio v-for="item in placementItems" :key="item" :value="item" custom-class="page-popover__radio">{{ item }}</wd-radio>
@@ -27,7 +27,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('qian-tao-xin-xi')">
           <view class="page-popover__center">
             <wd-popover v-model="show2" :placement="placement">
@@ -47,17 +47,17 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
-        <demo-group-item title="动态内容与位置更新">
+      <demo-group :title="$t('te-shu-yang-shi')">
+        <demo-group-item :title="$t('dong-tai-nei-rong-yu-wei-zhi-geng-xin')">
           <view class="page-popover__center">
             <wd-popover v-model="show4" ref="popoverRef" :placement="placement">
               <template #content>
                 <view class="page-popover__content" :style="{ width: dynamicWidth + 'px' }">
-                  <view class="page-popover__status">当前宽度: {{ dynamicWidth }}px</view>
-                  <wd-button custom-class="page-popover__btn" size="small" @click="changeSize">改变大小并更新</wd-button>
+                  <view class="page-popover__status">{{ $t('dang-qian-kuan-du-dynamicwidth-px', dynamicWidth) }}</view>
+                  <wd-button custom-class="page-popover__btn" size="small" @click="changeSize">{{ $t('gai-bian-da-xiao-bing-geng-xin') }}</wd-button>
                 </view>
               </template>
-              <wd-button>动态内容</wd-button>
+              <wd-button>{{ $t('dong-tai-nei-rong') }}</wd-button>
             </wd-popover>
           </view>
         </demo-group-item>

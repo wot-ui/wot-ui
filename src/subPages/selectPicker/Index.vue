@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view class="page-select-picker">
-      <demo-group title="组件类型" transparent>
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
         <demo-group-item :title="$t('xuan-ze-di-zhi')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('xuan-ze-di-zhi')" :value="getDisplayValue(value1)" is-link @click="show1 = true" />
@@ -16,7 +16,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态" transparent>
+      <demo-group :title="$t('zu-jian-zhuang-tai')" transparent>
         <demo-group-item :title="$t('jin-yong-xuan-xiang')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('jin-yong-xuan-xiang')" :value="getDisplayValue(value5)" is-link @click="show5 = true" />
@@ -31,7 +31,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式" transparent>
+      <demo-group :title="$t('zu-jian-yang-shi')" transparent>
         <demo-group-item :title="$t('biaoTi-0')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('biaoTi-0')" :value="getDisplayValue(value10)" is-link @click="show10 = true" />
@@ -52,7 +52,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式" transparent>
+      <demo-group :title="$t('te-shu-yang-shi')" transparent>
         <demo-group-item :title="$t('xuan-ze-qi-change')" no-padding>
           <wd-cell-group border>
             <wd-cell :title="$t('xuan-ze-qi-change')" :value="getDisplayValue(value7)" is-link @click="show7 = true" />

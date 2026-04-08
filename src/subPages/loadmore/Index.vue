@@ -1,12 +1,3 @@
-<!--
- * @Author: weisheng
- * @Date: 2026-03-13 17:20:03
- * @LastEditTime: 2026-04-06 21:52:02
- * @LastEditors: weisheng
- * @Description: 
- * @FilePath: /wot-ui/src/subPages/loadmore/Index.vue
- * 记得注释
--->
 <template>
   <page-wraper>
     <view class="container">

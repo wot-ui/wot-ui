@@ -3,13 +3,13 @@
     <view class="page-datetime-picker-view">
       <wd-toast />
 
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ri-qi-xuan-ze-0')">
           <wd-datetime-picker-view v-model="value1" @change="onChange1" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('ri-qi-xuan-ze-dai-miao')">
           <wd-datetime-picker-view v-model="value8" use-second />
         </demo-group-item>
@@ -35,8 +35,8 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
-        <demo-group-item title="内部格式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
+        <demo-group-item :title="$t('nei-bu-ge-shi')">
           <wd-datetime-picker-view v-model="value5" :formatter="formatter" @change="onChange5" />
         </demo-group-item>
 

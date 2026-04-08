@@ -1,24 +1,28 @@
 <template>
   <page-wraper :demo-config="{ transparent: true }" show-dark-mode>
     <view class="page-root-portal">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-yong-fa')">
           <wd-button type="primary" @click="showBasic = true">{{ $t('xian-shi-ji-ben-tan-chuang') }}</wd-button>
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
-        <demo-group-item title="与弹层组件配合使用" no-padding>
-          <wd-cell title="选择商品分类" :value="selectedLabel" is-link @click="showPicker = true" />
+      <demo-group :title="$t('te-shu-yang-shi')">
+        <demo-group-item :title="$t('yu-dan-ceng-zu-jian-pei-he-shi-yong')" no-padding>
+          <wd-cell :title="$t('xuan-ze-shang-pin-fen-lei')" :value="selectedLabel" is-link @click="showPicker = true" />
           <wd-select-picker v-model="selectedValues" v-model:visible="showPicker" :columns="columns1" root-portal @confirm="handlePickerConfirm" />
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="使用注意">
-        <demo-group-item title="适用场景">
+      <demo-group :title="$t('shi-yong-zhu-yi')">
+        <demo-group-item :title="$t('shi-yong-chang-jing')">
           <view class="page-root-portal__tips">
-            <text class="page-root-portal__tip">适用于弹窗、弹出层等 fixed 定位容易失效的场景。</text>
-            <text class="page-root-portal__tip">建议只在需要脱离父层级或避免被 transform、overflow 影响时开启。</text>
+            <text class="page-root-portal__tip">
+              {{ $t('shi-yong-yu-dan-chuang-dan-chu-ceng-deng-fixed-ding-wei-rong-yi-shi-xiao-de-chang-jing') }}
+            </text>
+            <text class="page-root-portal__tip">
+              {{ $t('jian-yi-zhi-zai-xu-yao-tuo-li-fu-ceng-ji-huo-bi-mian-bei-transformoverflow-ying-xiang-shi-kai-qi') }}
+            </text>
           </view>
         </demo-group-item>
       </demo-group>

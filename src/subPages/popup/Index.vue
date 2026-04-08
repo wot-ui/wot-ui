@@ -2,7 +2,7 @@
   <page-meta :page-style="`overflow:${popupState.lockScroll ? 'hidden' : 'visible'};`"></page-meta>
   <page-wraper>
     <view class="page-popup">
-      <demo-group transparent title="组件类型">
+      <demo-group transparent :title="$t('zu-jian-lei-xing')">
         <demo-group-item no-padding :title="$t('ji-chu-yong-fa-0')">
           <wd-cell-group>
             <wd-cell :title="$t('dan-chu-ceng')" is-link @click="openPopup('basic')" />
@@ -15,7 +15,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group transparent title="组件状态">
+      <demo-group transparent :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item no-padding :title="$t('guan-bi-an-niu')">
           <wd-cell-group border>
             <wd-cell :title="$t('guan-bi-an-niu-0')" is-link @click="openPopup('closable')" />
@@ -33,7 +33,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group transparent title="组件样式">
+      <demo-group transparent :title="$t('zu-jian-yang-shi')">
         <demo-group-item no-padding :title="$t('kai-qi-di-bu-an-quan-qu')">
           <wd-cell-group border>
             <wd-cell :title="$t('kai-qi-di-bu-an-quan-qu-0')" is-link @click="openPopup('safeArea')" />
@@ -41,15 +41,15 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group transparent title="特殊样式">
+      <demo-group transparent :title="$t('te-shu-yang-shi')">
         <demo-group-item no-padding :title="$t('suo-ding-gun-dong')">
           <wd-cell-group border>
             <wd-cell :title="$t('suo-ding-gun-dong-0')" is-link @click="openPopup('lockScroll')" />
           </wd-cell-group>
         </demo-group-item>
-        <demo-group-item no-padding title="嵌套弹窗与 root-portal">
+        <demo-group-item no-padding :title="$t('qian-tao-dan-chuang-yu-rootportal')">
           <wd-cell-group border>
-            <wd-cell title="嵌套弹窗测试" is-link @click="openPopup('nested')" />
+            <wd-cell :title="$t('qian-tao-dan-chuang-ce-shi')" is-link @click="openPopup('nested')" />
           </wd-cell-group>
         </demo-group-item>
       </demo-group>
@@ -96,19 +96,21 @@
 
       <wd-popup v-model="popupState.nested" position="center" custom-style="padding: 20px; border-radius: 16px;" @close="closeNestedPopup">
         <view class="nested-popup-content">
-          <text class="nested-title">父弹窗（普通模式）</text>
-          <text class="nested-desc">点击下方按钮，分别打开普通子弹窗和启用 root-portal 的子弹窗。</text>
+          <text class="nested-title">{{ $t('fu-dan-chuang-pu-tong-mo-shi') }}</text>
+          <text class="nested-desc">
+            {{ $t('dian-ji-xia-fang-an-niu-fen-bie-da-kai-pu-tong-zi-dan-chuang-he-qi-yong-rootportal-de-zi-dan-chuang') }}
+          </text>
           <view class="nested-buttons">
-            <wd-button type="primary" size="small" @click="openChildPopup(false)">打开普通子弹窗</wd-button>
-            <wd-button type="success" size="small" @click="openChildPopup(true)">打开传送子弹窗</wd-button>
+            <wd-button type="primary" size="small" @click="openChildPopup(false)">{{ $t('da-kai-pu-tong-zi-dan-chuang') }}</wd-button>
+            <wd-button type="success" size="small" @click="openChildPopup(true)">{{ $t('da-kai-chuan-song-zi-dan-chuang') }}</wd-button>
           </view>
         </view>
 
         <wd-popup v-model="popupState.child" position="center" custom-style="padding: 20px; border-radius: 16px;" @close="closePopup('child')">
           <view class="nested-popup-content">
-            <text class="nested-title">子弹窗（普通模式）</text>
-            <text class="nested-desc">这个子弹窗和父弹窗处于同一层级。</text>
-            <wd-button type="primary" size="small" @click="closePopup('child')">关闭</wd-button>
+            <text class="nested-title">{{ $t('zi-dan-chuang-pu-tong-mo-shi') }}</text>
+            <text class="nested-desc">{{ $t('zhe-ge-zi-dan-chuang-he-fu-dan-chuang-chu-yu-tong-yi-ceng-ji') }}</text>
+            <wd-button type="primary" size="small" @click="closePopup('child')">{{ $t('guan-bi') }}</wd-button>
           </view>
         </wd-popup>
 
@@ -120,9 +122,9 @@
           @close="closePopup('childPortal')"
         >
           <view class="nested-popup-content">
-            <text class="nested-title">子弹窗（传送模式）</text>
-            <text class="nested-desc">开启 root-portal 后，子弹窗会脱离父层级渲染。</text>
-            <wd-button type="success" size="small" @click="closePopup('childPortal')">关闭</wd-button>
+            <text class="nested-title">{{ $t('zi-dan-chuang-chuan-song-mo-shi') }}</text>
+            <text class="nested-desc">{{ $t('kai-qi-rootportal-hou-zi-dan-chuang-hui-tuo-li-fu-ceng-ji-xuan-ran') }}</text>
+            <wd-button type="success" size="small" @click="closePopup('childPortal')">{{ $t('guan-bi') }}</wd-button>
           </view>
         </wd-popup>
       </wd-popup>

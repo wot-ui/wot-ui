@@ -1,11 +1,11 @@
 <template>
   <page-wraper>
     <view class="page-backtop">
-      <demo-group title="组件变体">
-        <demo-group-item title="形状与文字">
+      <demo-group :title="$t('zu-jian-bian-ti')">
+        <demo-group-item :title="$t('xing-zhuang-yu-wen-zi')">
           <view class="option-list">
             <wd-checkbox shape="square" size="large" v-model="isSquare">{{ $t('xianShiFangXing') }}</wd-checkbox>
-            <wd-checkbox shape="square" size="large" v-model="isText">显示文字</wd-checkbox>
+            <wd-checkbox shape="square" size="large" v-model="isText">{{ $t('xian-shi-wen-zi') }}</wd-checkbox>
           </view>
         </demo-group-item>
         <demo-group-item :title="$t('ziDingYiTuBiao')">
@@ -15,7 +15,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('ziDingYiJuLi')">
           <view class="option-list">
             <wd-checkbox shape="square" size="large" v-model="isTop">{{ $t('ziDingYiJuLi') }}</wd-checkbox>

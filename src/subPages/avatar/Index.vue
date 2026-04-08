@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
-    <demo-group title="组件类型">
-      <demo-group-item title="基础用法">
+    <demo-group :title="$t('zu-jian-lei-xing')">
+      <demo-group-item :title="$t('ji-chu-yong-fa-0')">
         <view class="demo-avatar-row">
           <wd-avatar :src="avatarURL" />
           <wd-avatar text="U" />
@@ -9,7 +9,7 @@
         </view>
       </demo-group-item>
 
-      <demo-group-item title="头像组基础用法">
+      <demo-group-item :title="$t('tou-xiang-zu-ji-chu-yong-fa')">
         <wd-avatar-group>
           <wd-avatar :src="avatarURL" />
           <wd-avatar icon="star-fill" />
@@ -19,33 +19,33 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件状态">
-      <demo-group-item title="可点击">
+    <demo-group :title="$t('zu-jian-zhuang-tai')">
+      <demo-group-item :title="$t('ke-dian-ji')">
         <view class="demo-avatar-row">
           <wd-avatar size="large" :src="avatarURL" @click="handleClick" />
-          <wd-avatar size="large" text="点我" bg-color="#1E90FF" @click="handleClick" />
+          <wd-avatar size="large" :text="$t('dian-wo')" bg-color="#1E90FF" @click="handleClick" />
         </view>
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="组件样式">
-      <demo-group-item title="头像形状">
+    <demo-group :title="$t('zu-jian-yang-shi')">
+      <demo-group-item :title="$t('tou-xiang-xing-zhuang')">
         <view class="demo-avatar-row">
           <wd-avatar :src="avatarURL" shape="square" />
           <wd-avatar :src="avatarURL" shape="round" />
         </view>
       </demo-group-item>
 
-      <demo-group-item title="头像尺寸">
+      <demo-group-item :title="$t('tou-xiang-chi-cun')">
         <view class="demo-avatar-row">
           <wd-avatar v-for="size in sizes" :key="size" :src="avatarURL" :size="size" />
           <wd-avatar :src="avatarURL" :size="80" />
           <wd-avatar :src="avatarURL" :size="60" />
-          <wd-avatar :src="avatarURL" :size="`40px`" />
+          <wd-avatar :src="avatarURL" size="40px" />
         </view>
       </demo-group-item>
 
-      <demo-group-item title="自定义颜色">
+      <demo-group-item :title="$t('zi-ding-yi-yan-se-0')">
         <view class="demo-avatar-row">
           <wd-avatar
             v-for="(item, index) in customColors"
@@ -60,8 +60,8 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="特殊样式">
-      <demo-group-item title="带徽记的头像">
+    <demo-group :title="$t('te-shu-yang-shi')">
+      <demo-group-item :title="$t('dai-hui-ji-de-tou-xiang')">
         <view class="demo-avatar-row">
           <wd-badge modelValue="10" type="primary">
             <wd-avatar :src="avatarURL" shape="square" />
@@ -79,8 +79,8 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="内容形态">
-      <demo-group-item title="自定义内容">
+    <demo-group :title="$t('nei-rong-xing-tai')">
+      <demo-group-item :title="$t('ziDingYiNeiRong')">
         <view class="demo-avatar-row">
           <wd-avatar>
             <view class="custom-content">VIP</view>
@@ -92,8 +92,8 @@
       </demo-group-item>
     </demo-group>
 
-    <demo-group title="布局能力">
-      <demo-group-item title="头像组最大数量">
+    <demo-group :title="$t('bu-ju-neng-li')">
+      <demo-group-item :title="$t('tou-xiang-zu-zui-da-shu-liang')">
         <wd-avatar-group :max-count="3">
           <wd-avatar :src="avatarURL" />
           <wd-avatar icon="star-fill" />
@@ -103,7 +103,7 @@
         </wd-avatar-group>
       </demo-group-item>
 
-      <demo-group-item title="头像组叠层方向">
+      <demo-group-item :title="$t('tou-xiang-zu-die-ceng-fang-xiang')">
         <view class="demo-avatar-column">
           <wd-avatar-group cascading="left-up" :max-count="4">
             <wd-avatar :src="avatarURL" />
@@ -122,7 +122,7 @@
         </view>
       </demo-group-item>
 
-      <demo-group-item title="头像组垂直堆叠">
+      <demo-group-item :title="$t('tou-xiang-zu-chui-zhi-dui-die')">
         <view class="demo-avatar-row">
           <wd-avatar-group vertical :max-count="4">
             <wd-avatar :src="avatarURL" />
@@ -145,7 +145,9 @@
 </template>
 
 <script lang="ts" setup>
-import { useToast } from '../../uni_modules/wot-ui/components/wd-toast'
+import { useI18n } from 'vue-i18n'
+import { useToast } from '../../uni_modules/wot-ui'
+const { t } = useI18n()
 
 const toast = useToast()
 
@@ -159,7 +161,7 @@ const customColors = [
 ]
 
 const handleClick = () => {
-  toast.show('点击头像')
+  toast.show(t('dian-ji-tou-xiang'))
 }
 </script>
 

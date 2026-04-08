@@ -1,7 +1,7 @@
 <template>
   <page-wraper :demo-config="{ transparent: true }">
     <view class="page-form">
-      <demo-group title="组件类型">
+      <demo-group :title="$t('zu-jian-lei-xing')">
         <demo-group-item :title="$t('ji-chu-biao-dan')" transparent no-padding>
           <wd-form ref="form1" :model="model1" :schema="schema1" :title-width="100">
             <wd-form-item :title="$t('wai-bi-ba-bu')" prop="value1">
@@ -30,16 +30,16 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件配置">
+      <demo-group :title="$t('zu-jian-pei-zhi')">
         <demo-group-item :title="$t('xiao-yan-ti-shi-fang-shi')" transparent>
           <view class="demo-button">
             <wd-button @click="handleClick4" :round="false" block size="large">{{ $t('xiao-yan-ti-shi-fang-shi') }}</wd-button>
           </view>
         </demo-group-item>
 
-        <demo-group-item title="校验触发时机" transparent>
+        <demo-group-item :title="$t('xiao-yan-chu-fa-shi-ji')" transparent>
           <view class="demo-button">
-            <wd-button @click="handleClick2" :round="false" block size="large">校验触发时机</wd-button>
+            <wd-button @click="handleClick2" :round="false" block size="large">{{ $t('xiao-yan-chu-fa-shi-ji-0') }}</wd-button>
           </view>
         </demo-group-item>
       </demo-group>
@@ -73,7 +73,7 @@ const schema1 = zodAdapter(
     })
     .superRefine((data, ctx) => {
       if (data.value1 === data.value2) return
-      const message = '两个输入框的内容必须一致'
+      const message = t('liang-ge-shu-ru-kuang-de-nei-rong-bi-xu-yi-zhi')
       ctx.addIssue({
         code: 'custom',
         message,

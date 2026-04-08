@@ -1,7 +1,7 @@
 <template>
   <page-wraper>
     <view style="overflow: hidden" class="page-tooltip" @click="closeOutside">
-      <demo-group title="组件类型" transparent>
+      <demo-group :title="$t('zu-jian-lei-xing')" transparent>
         <demo-group-item :title="$t('jiBenYongFa')">
           <view class="top">
             <wd-tooltip placement="bottom-start" content="bottom-start 提示文字" @change="handleChange1">
@@ -53,7 +53,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态" transparent>
+      <demo-group :title="$t('zu-jian-zhuang-tai')" transparent>
         <demo-group-item :title="$t('xian-shi-guan-bi-an-niu')">
           <view class="demo-left">
             <wd-tooltip content="显示关闭按钮" placement="right" show-close @change="handleChange13">
@@ -80,7 +80,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="内容形态" transparent>
+      <demo-group :title="$t('nei-rong-xing-tai')" transparent>
         <demo-group-item :title="$t('duo-hang-wen-ben')">
           <view class="demo-left lines-demo">
             <wd-tooltip placement="right" use-content-slot @change="handleChange14">
@@ -97,17 +97,17 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式" transparent>
-        <demo-group-item title="动态内容与位置更新">
+      <demo-group :title="$t('te-shu-yang-shi')" transparent>
+        <demo-group-item :title="$t('dong-tai-nei-rong-yu-wei-zhi-geng-xin')">
           <view class="demo-left lines-demo">
             <wd-tooltip placement="right" use-content-slot ref="tooltipRef">
               <template #content>
                 <view class="lines-content" :style="{ width: dynamicTooltipWidth + 'px' }">
-                  <view class="dynamic-width-label">当前宽度: {{ dynamicTooltipWidth }}px</view>
-                  <wd-button custom-class="custom-btn" size="small" @click="changeTooltipSize">改变大小</wd-button>
+                  <view class="dynamic-width-label">{{ $t('dang-qian-kuan-du-dynamictooltipwidth-px', dynamicTooltipWidth) }}</view>
+                  <wd-button custom-class="custom-btn" size="small" @click="changeTooltipSize">{{ $t('gai-bian-da-xiao') }}</wd-button>
                 </view>
               </template>
-              <wd-button :round="false">动态内容</wd-button>
+              <wd-button :round="false">{{ $t('dong-tai-nei-rong') }}</wd-button>
             </wd-tooltip>
           </view>
         </demo-group-item>

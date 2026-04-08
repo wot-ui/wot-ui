@@ -1,8 +1,8 @@
 <template>
   <page-wraper>
     <view class="page-collapse">
-      <demo-group title="组件类型">
-        <demo-group-item title="手动切换">
+      <demo-group :title="$t('zu-jian-lei-xing')">
+        <demo-group-item :title="$t('shou-dong-qie-huan')">
           <wd-button custom-class="custom-button" type="info" @click="collapse?.toggleAll()">{{ $t('quan-bu-qie-huan') }}</wd-button>
           <wd-button custom-class="custom-button" type="success" @click="collapse?.toggleAll(true)">{{ $t('quan-bu-zhan-kai') }}</wd-button>
           <wd-button custom-class="custom-button" type="primary" @click="collapse?.toggleAll(false)">{{ $t('quan-bu-shou-qi') }}</wd-button>
@@ -29,7 +29,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件状态">
+      <demo-group :title="$t('zu-jian-zhuang-tai')">
         <demo-group-item :title="$t('jinYong')" no-padding>
           <wd-collapse v-model="value3" @change="handleChange3">
             <wd-collapse-item :title="$t('biao-qian-1-0')" name="item1">
@@ -47,7 +47,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件变体">
+      <demo-group :title="$t('zu-jian-bian-ti')">
         <demo-group-item :title="$t('shou-feng-qin')" no-padding>
           <wd-collapse v-model="value2" :accordion="accordion" @change="handleChange2">
             <wd-collapse-item :title="$t('biao-qian-1')" name="item1">{{ $t('zhe-shi-yi-tiao-jian-dan-de-shi-li-wen-zi') }}</wd-collapse-item>
@@ -73,7 +73,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="组件样式">
+      <demo-group :title="$t('zu-jian-yang-shi')">
         <demo-group-item :title="$t('zi-ding-yi-title')" no-padding>
           <wd-collapse v-model="value7">
             <wd-collapse-item name="item1">
@@ -122,7 +122,7 @@
         </demo-group-item>
       </demo-group>
 
-      <demo-group title="特殊样式">
+      <demo-group :title="$t('te-shu-yang-shi')">
         <demo-group-item :title="$t('qian-tao')" no-padding>
           <wd-collapse v-model="collapseRoot" @change="handleChange1">
             <wd-collapse-item
