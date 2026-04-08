@@ -46,7 +46,7 @@ In `uni-app plugin market`, choose to import using `HBuildX`, or manually create
 - - - wot-ui 
 ```
 
-Download link: <a href="https://ext.dcloud.net.cn/plugin?id=13889"><span>wot-ui</span></a>
+Download link: <a href="https://ext.dcloud.net.cn/plugin?id=27534"><span>wot-ui</span></a>
 
 ## Sass
 

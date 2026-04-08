@@ -46,7 +46,7 @@ pnpm add @wot-ui/ui
 - - - wot-ui 
 ```
 
-下载地址：<a href="https://ext.dcloud.net.cn/plugin?id=13889"><span>wot-ui</span></a>
+下载地址：<a href="https://ext.dcloud.net.cn/plugin?id=27534"><span>wot-ui</span></a>
 
 ## Sass
 
