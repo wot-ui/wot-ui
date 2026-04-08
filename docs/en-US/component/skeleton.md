@@ -1,32 +1,55 @@
 # Skeleton
 
+Skeleton screens are used for placeholder display during content loading, supporting multiple theme types, custom rows and columns, animation effects, and slot content.
+
+## Component Types
+
+### Basic Usage
+
+Set different skeleton themes through `theme`, commonly used for text, avatar, image, paragraph and other scenarios.
+
+::: code-group
+```html
+<wd-skeleton theme="avatar" />
+<wd-skeleton theme="image" />
+<wd-skeleton theme="text" />
+<wd-skeleton theme="paragraph" />
+```
+:::
+
+## Component Styles
+
 ### Grid Skeleton Screen
 
 Construct a grid skeleton screen by combining multi-row and multi-column placeholder structures through `row-col`.
 
-### Theme Types
-<wd-skeleton
-  :row-col="[
-    [
-      { width: '48px', height: '48px' },
-      { width: '48px', height: '48px' },
-      { width: '48px', height: '48px' },
-      { width: '48px', height: '48px' },
-      { width: '48px', height: '48px' }
-    ],
-    [
-      { width: '48px', height: '16px' },
-      { width: '48px', height: '16px' },
-      { width: '48px', height: '16px' },
-      { width: '48px', height: '16px' },
-      { width: '48px', height: '16px' }
-    ]
-  ]"
-/>
-Set different skeleton themes through `theme`, commonly used for text, avatar, image, paragraph and other scenarios.
+
+::: code-group
+```html
+<wd-skeleton :row-col="grid" />
+```
+```ts
+const grid = [
+  [
+    { width: '48px', height: '48px' },
+    { width: '48px', height: '48px' },
+    { width: '48px', height: '48px' },
+    { width: '48px', height: '48px' },
+    { width: '48px', height: '48px' }
+  ],
+  [
+    { width: '48px', height: '16px' },
+    { width: '48px', height: '16px' },
+    { width: '48px', height: '16px' },
+    { width: '48px', height: '16px' },
+    { width: '48px', height: '16px' }
+  ]
+] as SkeletonRowCol[]
+```
+:::
 
 ### Cell Skeleton Screen
-<wd-skeleton theme="text" />
+
 Can combine avatar, rectangle block and text lines to simulate common cell list layouts.
 
 ```html
@@ -34,7 +57,6 @@ Can combine avatar, rectangle block and text lines to simulate common cell list 
   <wd-skeleton :row-col="[{ size: '48px', type: 'circle' }]" />
   <wd-skeleton :custom-style="{ width: '100%', marginLeft: '12px' }" :row-col="[{ width: '50%' }, { width: '100%' }]" />
 </view>
-
 <view style="display: flex; margin-top: 20px">
   <wd-skeleton :row-col="[{ size: '48px', type: 'rect' }]" />
   <wd-skeleton :custom-style="{ width: '100%', marginLeft: '12px' }" :row-col="[{ width: '50%' }, { width: '100%' }]" />
@@ -47,18 +69,19 @@ Can combine `row-col` to customize image card and text-image mixed layout placeh
 
 ```html
 <wd-skeleton :row-col="[{ height: '171px' }, 1, { width: '107px' }, [{ width: '93px' }, { width: '32px', marginLeft: '41px' }]]" />
+<wd-skeleton :custom-style="{ marginTop: '20px' }" :row-col="[{ height: '171px' }, 1, { width: '107px' }, [{ width: '93px' }, { width: '32px', marginLeft: '41px' }]]" />
 ```
-<wd-skeleton theme="image" />
-<wd-skeleton theme="paragraph" />
-```
-### Gradient Loading Animation
-## Component Styles
-Set `animation="gradient"` to enable gradient loading animation.
-### Custom Rows and Columns
 
-Customize the placeholder structure of each row through `row-col`, which can combine width, height, rounded corners, type and other configurations.
+## Special Styles
+
+### Gradient Loading Animation
+
+Set `animation="gradient"` to enable gradient loading animation.
+
 ```html
-<wd-skeleton :row-col="[{ width: '100%' }, { width: '80%' }, { width: '60%' }]" />
+<wd-skeleton animation="gradient" theme="paragraph" />
+```
+
 ### Flashing Loading Animation
 
 Set `animation="flashed"` to enable flashing loading animation.
@@ -74,34 +97,24 @@ Set `animation="flashed"` to enable flashing loading animation.
 
 Write actual content through the default slot. When `loading` is `true`, the skeleton screen is displayed; after switching to `false`, the slot content is displayed.
 
-### Animation Effects
-
-Set `animation` to enable animation effects, optional values are `gradient`, `flashed`.
-    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
-    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
-    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
-    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
-    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
-
-### Custom Content
-
-Set `loading` to `false`, then the default slot content is displayed.
-
+::: code-group
 ```html
 <wd-skeleton :row-col="grid" :loading="showContent">
   <wd-grid>
-    <wd-grid-item icon-size="32px" icon="picture" text="Text" />
-    <wd-grid-item icon-size="32px" icon="picture" text="Text" />
-    <wd-grid-item icon-size="32px" icon="picture" text="Text" />
-    <wd-grid-item icon-size="32px" icon="picture" text="Text" />
-    <wd-grid-item icon-size="32px" icon="picture" text="Text" />
+    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
+    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
+    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
+    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
+    <wd-grid-item icon-size="32px" icon="camera" text="Text" />
   </wd-grid>
 </wd-skeleton>
 ```
-
 ```ts
 const showContent = ref(true)
 ```
+:::
+
+---
 
 ## Attributes
 
@@ -119,3 +132,26 @@ const showContent = ref(true)
 | Name | Description |
 | --- | --- |
 | default | Actual content displayed after `loading` ends |
+
+## Type Definitions
+
+### SkeletonTheme
+
+Optional values: `'text' \| 'avatar' \| 'paragraph' \| 'image'`
+
+### SkeletonAnimation
+
+Optional values: `'gradient' \| 'flashed'`
+
+### SkeletonRowCol Configuration Example
+
+```ts
+// Three rows, displayed as one column, one column, two columns of placeholders
+[1, 1, 2]
+
+// Three rows, third row with custom width
+[1, 1, { width: '100px' }]
+
+// The third row contains two columns, set width and right margin respectively
+[1, 1, [{ width: '50%' }, { width: '50%', marginRight: '10px' }]]
+```
