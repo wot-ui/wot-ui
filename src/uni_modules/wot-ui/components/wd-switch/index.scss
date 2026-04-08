@@ -69,7 +69,7 @@ $switch-disabled: var(--wot-switch-disabled, $opacity-disabled) !default;
   }
 
   @include when(loading) {
-    opacity: $opacity-oveylay;
+    opacity: $opacity-overlay;
   }
 
   @include e(inner) {

@@ -302,7 +302,7 @@ grep -n 'class="' <target-file>
 6. **边框宽度** → 匹配 stroke 变量
   - `0.5px` → `$stroke-light`
   - `1px` → `$stroke-main`
-  - `2px` → `$stroke-blod`
+  - `2px` → `$stroke-bold`
 
 7. **固定尺寸** → 对于非间距类的固定大小可使用 `$n-*`
 
