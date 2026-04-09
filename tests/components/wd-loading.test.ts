@@ -50,6 +50,22 @@ describe('WdLoading', () => {
     expect(wrapper.find('.wd-loading__spinner-dot').exists()).toBe(true)
   })
 
+  // 测试 wave 类型的 loading
+  test('wave类型加载', async () => {
+    const wrapper = mount(WdLoading, {
+      props: {
+        type: 'wave',
+        customStyle: ''
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.find('.wd-loading__spinner').exists()).toBe(true)
+    expect(wrapper.find('.wd-loading__spinner--wave').exists()).toBe(true)
+    expect(wrapper.findAll('.wd-loading__spinner-wave-bar')).toHaveLength(4)
+  })
+
   // 测试 spinner 类型的 loading
   test('spinner类型加载', async () => {
     const wrapper = mount(WdLoading, {
@@ -186,6 +202,26 @@ describe('WdLoading', () => {
     await nextTick()
 
     expect(wrapper.find('.wd-loading__spinner--spinner').exists()).toBe(true)
+  })
+
+  // 测试 wave 与 spinner 之间切换
+  test('wave与spinner类型切换', async () => {
+    const wrapper = mount(WdLoading, {
+      props: {
+        type: 'wave',
+        customStyle: ''
+      }
+    })
+
+    await nextTick()
+    expect(wrapper.find('.wd-loading__spinner--wave').exists()).toBe(true)
+    expect(wrapper.findAll('.wd-loading__spinner-wave-bar')).toHaveLength(4)
+
+    await wrapper.setProps({ type: 'spinner' })
+    await nextTick()
+
+    expect(wrapper.find('.wd-loading__spinner--spinner').exists()).toBe(true)
+    expect(wrapper.findAll('.wd-loading__spinner-dot')).toHaveLength(12)
   })
 
   // 测试大小变化

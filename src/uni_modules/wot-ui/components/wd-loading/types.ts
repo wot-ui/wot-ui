@@ -10,7 +10,7 @@
 import type { ExtractPropTypes } from 'vue'
 import { baseProps, makeStringProp, numericProp } from '../../common/props'
 
-export type LoadingType = 'circular' | 'spinner' | 'dots' // 提示信息加载状态类型
+export type LoadingType = 'circular' | 'spinner' | 'dots' | 'wave' // 提示信息加载状态类型
 
 export type LoadingDirection = 'horizontal' | 'vertical' // 加载指示器方向，可选值：'horizontal' | 'vertical'，默认值：'vertical'
 
@@ -24,7 +24,7 @@ export const loadingProps = {
   /**
    * 加载指示器类型
    * 类型: LoadingType
-   * 可选值: 'circular' | 'spinner' | 'dots'
+   * 可选值: 'circular' | 'spinner' | 'dots' | 'wave'
    * 默认值: 'circular'
    */
   type: makeStringProp<LoadingType>('circular'),
