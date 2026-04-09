@@ -16,7 +16,9 @@
       </template>
       <template v-else-if="type === 'wave'">
         <view class="wd-loading__spinner-wraper">
-          <view class="wd-loading__spinner-wave-bar" v-for="i in 4" :key="i"></view>
+          <view class="wd-loading__spinner-wave-bar" v-for="i in 4" :key="i">
+            <view class="wd-loading__spinner-wave-bar-inner"></view>
+          </view>
         </view>
       </template>
     </view>

@@ -31,8 +31,6 @@ $loading-spinner-dot-radius: var(--wot-loading-spinner-dot-radius, $radius-radiu
 $loading-spinner-dots-dot-size: var(--wot-loading-spinner-dots-dot-size, 20%) !default;
 // 点状加载器单点圆角
 $loading-spinner-dots-dot-radius: var(--wot-loading-spinner-dots-dot-radius, $radius-radius-full) !default;
-// 波形加载器容器宽度
-$loading-wave-width: var(--wot-loading-wave-width, 68.75%) !default;
 // 波形加载器间距
 $loading-wave-gap: var(--wot-loading-wave-gap, 6.25%) !default;
 // 波形加载器单柱宽度
@@ -158,15 +156,19 @@ $loading-text-line-height: var(--wot-loading-text-line-height, $typography-body-
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: $loading-wave-gap;
-        width: $loading-wave-width;
         margin: 0 auto;
       }
 
       @include me(spinner-wave-bar) {
+        display: flex;
+        align-items: center;
         animation-duration: $loading-wave-animation-duration;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
+
+        &:nth-of-type(n + 2) {
+          margin-left: $loading-wave-gap;
+        }
       }
     }
   }
@@ -200,26 +202,41 @@ $loading-text-line-height: var(--wot-loading-text-line-height, $typography-body-
     flex: none;
     width: $loading-wave-bar-width;
     height: $loading-wave-bar-height;
-    border-radius: $loading-wave-bar-radius;
-    background-color: currentColor;
-    transform-origin: center;
-    will-change: transform;
 
     &:nth-of-type(1) {
-      animation-name: wd-wave-bar-1;
+      .wd-loading__spinner-wave-bar-inner {
+        animation-name: wd-wave-bar-1;
+      }
     }
 
     &:nth-of-type(2) {
-      animation-name: wd-wave-bar-2;
+      .wd-loading__spinner-wave-bar-inner {
+        animation-name: wd-wave-bar-2;
+      }
     }
 
     &:nth-of-type(3) {
-      animation-name: wd-wave-bar-3;
+      .wd-loading__spinner-wave-bar-inner {
+        animation-name: wd-wave-bar-3;
+      }
     }
 
     &:nth-of-type(4) {
-      animation-name: wd-wave-bar-4;
+      .wd-loading__spinner-wave-bar-inner {
+        animation-name: wd-wave-bar-4;
+      }
     }
+  }
+
+  @include e(spinner-wave-bar-inner) {
+    width: 100%;
+    height: 100%;
+    border-radius: $loading-wave-bar-radius;
+    background-color: currentColor;
+    animation-duration: $loading-wave-animation-duration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: height;
   }
 
   @include e(text) {
@@ -263,38 +280,38 @@ $loading-text-line-height: var(--wot-loading-text-line-height, $typography-body-
 
 @keyframes wd-wave-bar-1 {
   0%,100% {
-    transform: scaleY(0.2);
+    height: 20%;
   }
 
   25.779376%,
   87.889688% {
-    transform: scaleY(0.4);
+    height: 40%;
   }
 
   37.889688%,
   75.779376% {
-    transform: scaleY(0.7);
+    height: 70%;
   }
 
   50% {
-    transform: scaleY(1);
+    height: 100%;
   }
 }
 
 @keyframes wd-wave-bar-2 {
   0%,100% {
-    transform: scaleY(0.4);
+    height: 40%;
   }
 
   25.779376%,
   87.889688%,
   50% {
-    transform: scaleY(0.7);
+    height: 70%;
   }
 
   37.889688%,
   75.779376% {
-    transform: scaleY(1);
+    height: 100%;
   }
 }
 
@@ -302,35 +319,35 @@ $loading-text-line-height: var(--wot-loading-text-line-height, $typography-body-
   0%,100%,
   37.889688%,
   75.779376% {
-    transform: scaleY(0.7);
+    height: 70%;
   }
 
   25.779376%, 
   87.889688% {
-    transform: scaleY(1);
+    height: 100%;
   }
 
   50% {
-    transform: scaleY(0.4);
+    height: 40%;
   }
 }
 
 @keyframes wd-wave-bar-4 {
   0%,100%{
-    transform: scaleY(1);
+    height: 100%;
   }
 
   25.779376%,
   87.889688% {
-    transform: scaleY(0.7);
+    height: 70%;
   }
 
   37.889688%,
   75.779376% {
-    transform: scaleY(0.4);
+    height: 40%;
   }
 
   50% {
-    transform: scaleY(0.2);
+    height: 20%;
   }
 }
