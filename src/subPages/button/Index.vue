@@ -144,6 +144,7 @@ const sizeItems = computed<Array<{ size: ButtonSize; text: string }>>(() => [
 const variantItems = computed<Array<{ title: string; variant: ButtonVariant }>>(() => [
   { title: t('lou-kong'), variant: 'plain' },
   { title: t('xu-xian'), variant: 'dashed' },
+  { title: t('rou-he'), variant: 'soft' },
   { title: t('wen-zi-10'), variant: 'text' }
 ])
 

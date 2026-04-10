@@ -18,6 +18,10 @@ $button-primary-plain-bg-active: var(--wot-button-primary-plain-bg-active, $prim
 $button-primary-plain-border: var(--wot-button-primary-plain-border, $primary-6) !default;
 // 主类型 plain 边框激活色
 $button-primary-plain-border-active: var(--wot-button-primary-plain-border-active, $primary-7) !default;
+// 主类型 soft 背景色
+$button-primary-soft-bg: var(--wot-button-primary-soft-bg, $primary-1) !default;
+// 主类型 soft 背景激活色
+$button-primary-soft-bg-active: var(--wot-button-primary-soft-bg-active, $primary-2) !default;
 // 成功类型背景色
 $button-success-bg: var(--wot-button-success-bg, $success-main) !default;
 // 成功类型背景激活色
@@ -34,6 +38,10 @@ $button-success-plain-bg-active: var(--wot-button-success-plain-bg-active, $succ
 $button-success-plain-border: var(--wot-button-success-plain-border, $success-main) !default;
 // 成功类型 plain 边框激活色
 $button-success-plain-border-active: var(--wot-button-success-plain-border-active, $success-clicked) !default;
+// 成功类型 soft 背景色
+$button-success-soft-bg: var(--wot-button-success-soft-bg, $success-surface) !default;
+// 成功类型 soft 背景激活色
+$button-success-soft-bg-active: var(--wot-button-success-soft-bg-active, $success-particular) !default;
 // 危险类型背景色
 $button-danger-bg: var(--wot-button-danger-bg, $danger-main) !default;
 // 危险类型背景激活色
@@ -50,6 +58,10 @@ $button-danger-plain-bg-active: var(--wot-button-danger-plain-bg-active, $danger
 $button-danger-plain-border: var(--wot-button-danger-plain-border, $danger-main) !default;
 // 危险类型 plain 边框激活色
 $button-danger-plain-border-active: var(--wot-button-danger-plain-border-active, $danger-clicked) !default;
+// 危险类型 soft 背景色
+$button-danger-soft-bg: var(--wot-button-danger-soft-bg, $danger-surface) !default;
+// 危险类型 soft 背景激活色
+$button-danger-soft-bg-active: var(--wot-button-danger-soft-bg-active, $danger-particular) !default;
 // 警告类型背景色
 $button-warning-bg: var(--wot-button-warning-bg, $warning-main) !default;
 // 警告类型背景激活色
@@ -66,6 +78,10 @@ $button-warning-plain-bg-active: var(--wot-button-warning-plain-bg-active, $warn
 $button-warning-plain-border: var(--wot-button-warning-plain-border, $warning-main) !default;
 // 警告类型 plain 边框激活色
 $button-warning-plain-border-active: var(--wot-button-warning-plain-border-active, $warning-clicked) !default;
+// 警告类型 soft 背景色
+$button-warning-soft-bg: var(--wot-button-warning-soft-bg, $warning-surface) !default;
+// 警告类型 soft 背景激活色
+$button-warning-soft-bg-active: var(--wot-button-warning-soft-bg-active, $warning-particular) !default;
 // 信息类型背景色
 $button-info-bg: var(--wot-button-info-bg, $filled-content) !default;
 // 信息类型背景激活色
@@ -82,6 +98,10 @@ $button-info-plain-bg-active: var(--wot-button-info-plain-bg-active, $filled-bot
 $button-info-plain-border: var(--wot-button-info-plain-border, $border-main) !default;
 // 信息类型 plain 边框激活色
 $button-info-plain-border-active: var(--wot-button-info-plain-border-active, $border-strong) !default;
+// 信息类型 soft 背景色
+$button-info-soft-bg: var(--wot-button-info-soft-bg, $filled-bottom) !default;
+// 信息类型 soft 背景激活色
+$button-info-soft-bg-active: var(--wot-button-info-soft-bg-active, $filled-content) !default;
 // 实心按钮默认文本色
 $button-main-color: var(--wot-button-main-color, $text-white) !default;
 // mini 尺寸图标字号
@@ -154,7 +174,9 @@ $button-radius-full: var(--wot-button-radius-full, $radius-radius-full) !default
 $button-disabled: var(--wot-button-disabled, $opacity-disabled) !default;
 
 // 按钮类型配置映射
-$button-types: ("primary": ("bg": $button-primary-bg,
+$button-types: (
+  "primary": (
+    "bg": $button-primary-bg,
     "bg-active": $button-primary-bg-active,
     "text": $button-main-color,
     "plain-bg": $button-primary-plain-bg,
@@ -162,8 +184,12 @@ $button-types: ("primary": ("bg": $button-primary-bg,
     "plain-text": $button-primary-color,
     "plain-text-active": $button-primary-color-active,
     "plain-border": $button-primary-plain-border,
-    "plain-border-active": $button-primary-plain-border-active),
-  "success": ("bg": $button-success-bg,
+    "plain-border-active": $button-primary-plain-border-active,
+    "soft-bg": $button-primary-soft-bg,
+    "soft-bg-active": $button-primary-soft-bg-active,
+  ),
+  "success": (
+    "bg": $button-success-bg,
     "bg-active": $button-success-bg-active,
     "text": $button-main-color,
     "plain-bg": $button-success-plain-bg,
@@ -171,8 +197,12 @@ $button-types: ("primary": ("bg": $button-primary-bg,
     "plain-text": $button-success-color,
     "plain-text-active": $button-success-color-active,
     "plain-border": $button-success-plain-border,
-    "plain-border-active": $button-success-plain-border-active),
-  "info": ("bg": $button-info-bg,
+    "plain-border-active": $button-success-plain-border-active,
+    "soft-bg": $button-success-soft-bg,
+    "soft-bg-active": $button-success-soft-bg-active,
+  ),
+  "info": (
+    "bg": $button-info-bg,
     "bg-active": $button-info-bg-active,
     "text": $button-info-color,
     "plain-bg": $button-info-plain-bg,
@@ -180,8 +210,12 @@ $button-types: ("primary": ("bg": $button-primary-bg,
     "plain-text": $button-info-color,
     "plain-text-active": $button-info-color-active,
     "plain-border": $button-info-plain-border,
-    "plain-border-active": $button-info-plain-border-active),
-  "warning": ("bg": $button-warning-bg,
+    "plain-border-active": $button-info-plain-border-active,
+    "soft-bg": $button-info-soft-bg,
+    "soft-bg-active": $button-info-soft-bg-active,
+  ),
+  "warning": (
+    "bg": $button-warning-bg,
     "bg-active": $button-warning-bg-active,
     "text": $button-main-color,
     "plain-bg": $button-warning-plain-bg,
@@ -189,8 +223,12 @@ $button-types: ("primary": ("bg": $button-primary-bg,
     "plain-text": $button-warning-color,
     "plain-text-active": $button-warning-color-active,
     "plain-border": $button-warning-plain-border,
-    "plain-border-active": $button-warning-plain-border-active),
-  "danger": ("bg": $button-danger-bg,
+    "plain-border-active": $button-warning-plain-border-active,
+    "soft-bg": $button-warning-soft-bg,
+    "soft-bg-active": $button-warning-soft-bg-active,
+  ),
+  "danger": (
+    "bg": $button-danger-bg,
     "bg-active": $button-danger-bg-active,
     "text": $button-main-color,
     "plain-bg": $button-danger-plain-bg,
@@ -198,43 +236,59 @@ $button-types: ("primary": ("bg": $button-primary-bg,
     "plain-text": $button-danger-color,
     "plain-text-active": $button-danger-color-active,
     "plain-border": $button-danger-plain-border,
-    "plain-border-active": $button-danger-plain-border-active));
+    "plain-border-active": $button-danger-plain-border-active,
+    "soft-bg": $button-danger-soft-bg,
+    "soft-bg-active": $button-danger-soft-bg-active,
+  )
+);
 
 // 按钮尺寸配置映射
-$button-sizes: ("mini": ("padding-y": $button-up-down-padding-mini,
+$button-sizes: (
+  "mini": (
+    "padding-y": $button-up-down-padding-mini,
     "padding-x": $button-left-right-padding-mini,
     "font-size": $button-font-size-mini,
     "line-height": $button-line-height-mini,
     "icon-font-size": $button-size-icon-mini,
     "spacing": $button-spacing-mini,
-    "icon-padding": $button-only-icon-padding-mini),
-  "small": ("padding-y": $button-up-down-padding-small,
+    "icon-padding": $button-only-icon-padding-mini
+  ),
+  "small": (
+    "padding-y": $button-up-down-padding-small,
     "padding-x": $button-left-right-padding-small,
     "font-size": $button-font-size-small,
     "line-height": $button-line-height-small,
     "icon-font-size": $button-size-icon-small,
     "spacing": $button-spacing-small,
-    "icon-padding": $button-only-icon-padding-small),
-  "medium": ("padding-y": $button-up-down-padding-medium,
+    "icon-padding": $button-only-icon-padding-small
+  ),
+  "medium": (
+    "padding-y": $button-up-down-padding-medium,
     "padding-x": $button-left-right-padding-medium,
     "font-size": $button-font-size-medium,
     "line-height": $button-line-height-medium,
     "icon-font-size": $button-size-icon-medium,
     "spacing": $button-spacing-medium,
-    "icon-padding": $button-only-icon-padding-medium),
-  "large": ("padding-y": $button-up-down-padding-large,
+    "icon-padding": $button-only-icon-padding-medium
+  ),
+  "large": (
+    "padding-y": $button-up-down-padding-large,
     "padding-x": $button-left-right-padding-large,
     "font-size": $button-font-size-large,
     "line-height": $button-line-height-large,
     "icon-font-size": $button-size-icon-large,
     "spacing": $button-spacing-large,
-    "icon-padding": $button-only-icon-padding-large));
+    "icon-padding": $button-only-icon-padding-large
+  )
+);
 
 // 按钮视觉变体配置映射
-$button-variants: ("text": ("hide-border": true),
+$button-variants: (
   "plain": ("show-border": true),
-  "dashed": ("show-border": true,
-    "border-style": dashed));
+  "dashed": ("show-border": true, "border-style": dashed),
+  "soft": ("hide-border": true, "soft-bg": true),
+  "text": ("hide-border": true)
+);
 
 @include b(button) {
   position: relative;
@@ -314,6 +368,10 @@ $button-variants: ("text": ("hide-border": true),
             background: transparent;
           }
 
+          @else if map.get($variant-conf, "soft-bg") {
+            background: map.get($type-conf, "soft-bg");
+          }
+
           @else {
             background: map.get($type-conf, "plain-bg");
           }
@@ -333,6 +391,10 @@ $button-variants: ("text": ("hide-border": true),
           &.wd-button--active {
             @if map.get($variant-conf, "transparent-bg") {
               background: transparent;
+            }
+
+            @else if map.get($variant-conf, "soft-bg") {
+              background: map.get($type-conf, "soft-bg-active");
             }
 
             @else {
@@ -402,7 +464,7 @@ $button-variants: ("text": ("hide-border": true),
         font-size: map.get($conf, "icon-font-size");
         line-height: 1;
 
-        +.wd-button__text {
+        + .wd-button__text {
           margin-left: map.get($conf, "spacing");
         }
       }
