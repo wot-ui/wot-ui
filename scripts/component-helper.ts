@@ -37,7 +37,20 @@ function extractOptionsFromDescription(description?: string): string | undefined
 
   if (!optionMatches.length) return undefined
 
-  return optionMatches.join('/')
+  return normalizeOptionValues(optionMatches.join('/'))
+}
+
+function normalizeOptionValues(optionsValue?: string): string | undefined {
+  if (!optionsValue) return undefined
+
+  const values = optionsValue
+    .split('/')
+    .map((value) => value.trim())
+    .filter(Boolean)
+
+  if (!values.length) return undefined
+
+  return Array.from(new Set(values)).join('/')
 }
 
 function backfillPropsOptionsFromDescription(options: Options, data: NormalizeData) {
@@ -51,7 +64,12 @@ function backfillPropsOptionsFromDescription(options: Options, data: NormalizeDa
     if (!table.title || !propsRegExp.test(table.title) || !table.content?.length) continue
 
     for (const row of table.content) {
-      if (row[propsOptions]) continue
+      const normalizedOptions = normalizeOptionValues(typeof row[propsOptions] === 'string' ? row[propsOptions] : undefined)
+
+      if (normalizedOptions) {
+        row[propsOptions] = normalizedOptions
+        continue
+      }
 
       const description = row[propsDescription]
       const extractedOptions = extractOptionsFromDescription(typeof description === 'string' ? description : undefined)

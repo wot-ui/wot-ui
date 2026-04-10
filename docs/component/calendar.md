@@ -232,7 +232,7 @@
 | root-portal | 是否脱离页面渲染 | boolean | false |
 | panel-height | 可滚动面板高度 | number | 316 |
 | show-panel-title | 是否展示滚动面板标题 | boolean | true |
-| switch-mode | 切换模式：`none` 平铺展示所有月份/年份且不展示切换按钮；`month` 支持按月切换并展示上个月/下个月按钮；`year-month` 支持按年与按月切换并展示上一年/下一年、上个月/下个月按钮。大跨度日期场景建议使用 `month` 或 `year-month` 以降低渲染压力 | string | none |
+| switch-mode | 切换模式，可选值为`none`、`month`、`year-month`，`none` 平铺展示所有月份/年份且不展示切换按钮；`month` 支持按月切换并展示上个月/下个月按钮；`year-month` 支持按年与按月切换并展示上一年/下一年、上个月/下个月按钮。大跨度日期场景建议使用 `month` 或 `year-month` 以降低渲染压力 | string | none |
 | duration | 弹层动画时长 | number | 200 |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |

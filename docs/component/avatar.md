@@ -218,8 +218,8 @@ const handleClick = () => {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | max-count | 最大显示数量，超出后显示折叠头像 | number | - |
-| cascading | 叠层方向，支持 `left-up / right-up` | string | left-up |
-| shape | 统一设置组内头像形状，支持 `round / square` | string | round |
+| cascading | 叠层方向，可选值为 `left-up`、`right-up` | string | left-up |
+| shape | 统一设置组内头像形状，可选值为 `round`、`square` | string | round |
 | size | 统一设置组内头像尺寸，支持预设尺寸或自定义数值/单位字符串 | string \| number | normal |
 | collapse-avatar | 超出最大数量时折叠头像显示文本 | string | `''` |
 | vertical | 是否垂直展示 | boolean | false |

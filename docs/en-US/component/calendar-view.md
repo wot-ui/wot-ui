@@ -122,7 +122,7 @@ Set `hide-second` and `time-filter` to filter hour/minute/second options.
 | time-visible-item-count | Time visible item count | number | 3 |
 | hide-second | Whether to hide second selection (datetime / datetimerange) | boolean | false |
 | immediate-change | Whether to trigger time selection change event when finger is released | boolean | false |
-| switch-mode | Switch mode: `none` displays all months/years flatly without switch buttons; `month` supports month switching with previous/next month buttons; `year-month` supports year and month switching with previous/next year, previous/next month buttons. For large date spans, it is recommended to use `month` or `year-month` to reduce rendering pressure | string | none |
+| switch-mode | Switch mode, optional values are `none`, `month`, `year-month`. `none` displays all months/years flatly without switch buttons; `month` supports month switching with previous/next month buttons; `year-month` supports year and month switching with previous/next year, previous/next month buttons. For large date spans, it is recommended to use `month` or `year-month` to reduce rendering pressure | string | none |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 

@@ -163,7 +163,7 @@ Set the `block` property.
 | app-parameter | Open APP parameter (valid when `open-type=launchApp`) | string | - |
 | show-message-card | Show conversation message card (valid when `open-type=contact`) | boolean | false |
 | button-id | Button unique identifier | string | - |
-| scope | Alipay authorization scope, optional values are `phoneNumber`, `userInfo` (valid when `open-type=getAuthorize`) | string | - |
+| scope | Alipay authorization scope, optional values are `phoneNumber`, `userInfo` (valid when open-type=getAuthorize) | string | - |
 | loading-color | Loading icon color | string | - |
 | custom-class | Root node custom class name | string | - |
 | custom-style | Root node custom style | string | - |

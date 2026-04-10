@@ -163,7 +163,7 @@
 | app-parameter | 打开 APP 传参（`open-type=launchApp` 时有效） | string | - |
 | show-message-card | 显示会话消息卡片（`open-type=contact` 时有效） | boolean | false |
 | button-id | 按钮唯一标识 | string | - |
-| scope | 支付宝授权范围，可选值为 `phoneNumber`、`userInfo`（`open-type=getAuthorize` 时有效） | string | - |
+| scope | 支付宝授权范围，可选值为 `phoneNumber`、`userInfo`（open-type=getAuthorize 时有效） | string | - |
 | loading-color | 加载图标颜色 | string | - |
 | custom-class | 根节点自定义类名 | string | - |
 | custom-style | 根节点自定义样式 | string | - |

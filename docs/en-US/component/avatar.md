@@ -218,8 +218,8 @@ Use `vertical` property to enable vertical direction stack display.
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | max-count | Maximum display count, shows collapsed avatar when exceeded | number | - |
-| cascading | Cascading direction, supports `left-up / right-up` | string | left-up |
-| shape | Uniformly set avatar shape within group, supports `round / square` | string | round |
+| cascading | Cascading direction, optional values are `left-up`, `right-up` | string | left-up |
+| shape | Uniformly set avatar shape within group, optional values are `round`, `square` | string | round |
 | size | Uniformly set avatar size within group, supports preset sizes or custom number/unit string | string \| number | normal |
 | collapse-avatar | Collapsed avatar display text when exceeding max count | string | `''` |
 | vertical | Whether to display vertically | boolean | false |
