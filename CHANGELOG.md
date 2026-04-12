@@ -1,6 +1,21 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.6](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2026-04-12)
+
+
+### ✨ Features | 新功能
+
+* ✨ WIP ([9582280](https://github.com/wot-ui/wot-ui/commit/9582280662b6a336f52707d4cabb436f15d4a2cb))
+* ✨ WIP ([9d8a173](https://github.com/wot-ui/wot-ui/commit/9d8a1734fb7f7387e044d806392b70936da314a7))
+* ✨ WIP ([cb70bfd](https://github.com/wot-ui/wot-ui/commit/cb70bfd76fb549e6137968d0584c28e7a7014d71))
+* ✨ WIP ([aef0140](https://github.com/wot-ui/wot-ui/commit/aef0140e0c72faa7c36238b1309642d1316c21fd))
+* ✨ WIP ([e9c7159](https://github.com/wot-ui/wot-ui/commit/e9c71596af0e18f7545d242cc0925872f1848cfb))
+* ✨ WIP ([cec770b](https://github.com/wot-ui/wot-ui/commit/cec770b08893e7df7be7767b8817e9a6fe2685ee))
+* ✨ WIP ([3c2b401](https://github.com/wot-ui/wot-ui/commit/3c2b4018abcd8833d39c485fe8ea5354d0fe7061))
+* ✨ WIP ([343fc11](https://github.com/wot-ui/wot-ui/commit/343fc11f71ba800b8049d9ce05976022499fbb35))
+* **button:** ✨ 新增 soft 类型变体 ([#1](https://github.com/wot-ui/wot-ui/issues/1)) ([a9c15df](https://github.com/wot-ui/wot-ui/commit/a9c15df53b9f92528ad61bbbd725c1c6781c33d0))
+
 ## [2.0.0-alpha.5](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2026-04-08)
 
 
