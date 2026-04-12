@@ -31,7 +31,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.inputs.branch || 'master' }}
+        ref: ${{ github.event.inputs.branch || 'main' }}
     - shell: bash
       env:
         PRIVATE_KEY: ${{ secrets.MP_PRIVATE_KEY }}
