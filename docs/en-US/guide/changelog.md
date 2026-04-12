@@ -1,6 +1,8 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.7](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2026-04-12)
+
 ## [2.0.0-alpha.6](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2026-04-12)
 
 
