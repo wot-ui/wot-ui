@@ -96,3 +96,4 @@ jobs:
           echo "- ✅ wot-ui" >> "$GITHUB_STEP_SUMMARY"
           echo "### Build Results" >> "$GITHUB_STEP_SUMMARY"
           echo "✅ Build and publish completed" >> "$GITHUB_STEP_SUMMARY"
+
