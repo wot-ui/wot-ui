@@ -212,7 +212,7 @@ export type baseThemeVars = {
   opacityDimmer?: string
   opacityDisabled?: string
   opacityMain?: string
-  opacityOveylay?: string
+  opacityOverlay?: string
   opacwhite1_02?: string
   opacwhite10_85?: string
   opacwhite2_04?: string
@@ -314,7 +314,7 @@ export type baseThemeVars = {
   spacingUltraSpacious?: string
   spacingUltraTight?: string
   spacingZero?: string
-  strokeBlod?: string
+  strokeBold?: string
   strokeLight?: string
   strokeMain?: string
   strokeZero?: string
@@ -520,6 +520,8 @@ export type buttonThemeVars = {
   buttonDangerPlainBgActive?: string // 危险类型 plain 背景激活色
   buttonDangerPlainBorder?: string // 危险类型 plain 边框色
   buttonDangerPlainBorderActive?: string // 危险类型 plain 边框激活色
+  buttonDangerSoftBg?: string // 危险类型 soft 背景色
+  buttonDangerSoftBgActive?: string // 危险类型 soft 背景激活色
   buttonDisabled?: string // 禁用态透明度
   buttonFontSizeLarge?: string // large 尺寸文字字号
   buttonFontSizeMedium?: string // medium 尺寸文字字号
@@ -533,6 +535,8 @@ export type buttonThemeVars = {
   buttonInfoPlainBgActive?: string // 信息类型 plain 背景激活色
   buttonInfoPlainBorder?: string // 信息类型 plain 边框色
   buttonInfoPlainBorderActive?: string // 信息类型 plain 边框激活色
+  buttonInfoSoftBg?: string // 信息类型 soft 背景色
+  buttonInfoSoftBgActive?: string // 信息类型 soft 背景激活色
   buttonLeftRightPaddingLarge?: string // large 尺寸左右内边距
   buttonLeftRightPaddingMedium?: string // medium 尺寸左右内边距
   buttonLeftRightPaddingMini?: string // mini 尺寸左右内边距
@@ -556,6 +560,8 @@ export type buttonThemeVars = {
   buttonPrimaryPlainBgActive?: string // 主类型 plain 背景激活色
   buttonPrimaryPlainBorder?: string // 主类型 plain 边框色
   buttonPrimaryPlainBorderActive?: string // 主类型 plain 边框激活色
+  buttonPrimarySoftBg?: string // 主类型 soft 背景色
+  buttonPrimarySoftBgActive?: string // 主类型 soft 背景激活色
   buttonRadiusFull?: string // 圆形圆角
   buttonRadiusMain?: string // 默认圆角
   buttonSizeIconLarge?: string // large 尺寸图标字号
@@ -575,6 +581,8 @@ export type buttonThemeVars = {
   buttonSuccessPlainBgActive?: string // 成功类型 plain 背景激活色
   buttonSuccessPlainBorder?: string // 成功类型 plain 边框色
   buttonSuccessPlainBorderActive?: string // 成功类型 plain 边框激活色
+  buttonSuccessSoftBg?: string // 成功类型 soft 背景色
+  buttonSuccessSoftBgActive?: string // 成功类型 soft 背景激活色
   buttonUpDownPaddingLarge?: string // large 尺寸上下内边距
   buttonUpDownPaddingMedium?: string // medium 尺寸上下内边距
   buttonUpDownPaddingMini?: string // mini 尺寸上下内边距
@@ -587,6 +595,8 @@ export type buttonThemeVars = {
   buttonWarningPlainBgActive?: string // 警告类型 plain 背景激活色
   buttonWarningPlainBorder?: string // 警告类型 plain 边框色
   buttonWarningPlainBorderActive?: string // 警告类型 plain 边框激活色
+  buttonWarningSoftBg?: string // 警告类型 soft 背景色
+  buttonWarningSoftBgActive?: string // 警告类型 soft 背景激活色
 }
 
 export type calendarThemeVars = {
@@ -1164,6 +1174,11 @@ export type loadingThemeVars = {
   loadingTextFontSize?: string // 文本字号
   loadingTextLineHeight?: string // 文本行高
   loadingTextSpacing?: string // 文本与加载器间距
+  loadingWaveAnimationDuration?: string // 波形加载器动画时长
+  loadingWaveBarHeight?: string // 波形加载器单柱高度
+  loadingWaveBarRadius?: string // 波形加载器单柱圆角
+  loadingWaveBarWidth?: string // 波形加载器单柱宽度
+  loadingWaveGap?: string // 波形加载器间距
 }
 
 export type loadmoreThemeVars = {
