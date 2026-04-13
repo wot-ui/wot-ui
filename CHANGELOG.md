@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.8](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2026-04-13)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  新增 open-wot 指南并更新 skills 文档 ([a27c52a](https://github.com/wot-ui/wot-ui/commit/a27c52ad2ea8e3cff1c72927ea6f9d1632823dc0))
+
 ## [2.0.0-alpha.7](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.6...v2.0.0-alpha.7) (2026-04-12)
 
 ## [2.0.0-alpha.6](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.5...v2.0.0-alpha.6) (2026-04-12)
