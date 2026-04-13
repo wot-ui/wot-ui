@@ -4,29 +4,27 @@ version: New
 
 # Skills
 
-Skills are "superpower templates" for AI, a complete, reusable solution that can solve specific problems. Wot UI also provides some directly reusable Skills for you to quickly gain capabilities more closely aligned with the component library in AI tools.
+Skills are “superpower templates” for AI: a complete, reusable set of instructions designed for specific tasks. This chapter introduces Skills built for AI Agents (such as Trae, Cursor, Cline, etc.). By providing structured prompts, context constraints, and best practices, these Skills help AI handle `wot-ui` and `@wot-ui/cli` tasks more accurately and efficiently.
 
-## Available Resources
+## Built-in Skills
 
-- [skills.sh](https://skills.sh/?q=wot-ui) - Open Agent Skills ecosystem, collecting a large number of skills, including Wot UI related skills.
-- [wot-starter](https://starter.wot-ui.cn/guide/skills.html) - Wot UI's quick start template, built-in Wot UI related skills.
+This repository provides the following Skills, which can be loaded by an AI agent as needed:
 
-## Using in AI Tools
+| Skill | Description | Use Cases | Entry |
+| --- | --- | --- | --- |
+| `wot-ui-v2` | Core skill for daily development with the wot-ui v2 component library. | Component selection, API lookups, generating Vue 3 + uni-app page code, troubleshooting common pitfalls (e.g. Toast/Dialog mounting). | [skills/wot-ui-v2/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-v2/SKILL.md) |
+| `wot-ui-cli` | Skill dedicated to answering, using, and debugging the `@wot-ui/cli` tool itself. | CLI command usage (list, info, doc, etc.), configuring MCP Server, local debugging of CLI source, running offline metadata extraction. | [skills/wot-ui-cli/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-cli/SKILL.md) |
+| `create-wot-ui-theme` | Specialized skill for generating a single-file wot-ui theme SCSS. | Creating a brand theme for wot-ui while following the constraint: “single file includes mixins and mount selector; App.vue only uses `@use` to import”. | [skills/create-wot-ui-theme/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/create-wot-ui-theme/SKILL.md) |
 
-It is recommended to use scripts to install Skills. You can choose installation items according to actual needs:
+## Installation
 
 ```sh
-npx skills add https://github.com/wot-ui/wot-starter --skill wot-ui
+pnpx skills add wot-ui/open-wot
+# or
+npx skills add wot-ui/open-wot
 ```
-
-## Applicable Scenarios
-
-- Create or extend Wot UI components
-- Generate Demo pages and documentation
-- Supplement component tests
-- Migrate design system variables or themes
 
 ## Further Reading
 
-- [llms.txt](/guide/llms-txt)
-- [Agent Skills, Rules, Prompt, MCP, Clarifying Them in One Article](https://juejin.cn/post/7599268297201958950)
+- [llms.txt](./llms-txt)
+- [Agent Skills, Rules, Prompts, MCP: A Clear Guide](https://juejin.cn/post/7599268297201958950)

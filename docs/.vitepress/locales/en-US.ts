@@ -62,6 +62,10 @@ const guideGroups = [
         link: '/en-US/guide/llms-txt',
       },
       {
+        text: 'open-wot',
+        link: '/en-US/guide/open-wot',
+      },
+      {
         text: 'Skills',
         link: '/en-US/guide/skills',
       }

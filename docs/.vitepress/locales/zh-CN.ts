@@ -62,6 +62,10 @@ const guideGroups = [
         link: '/guide/llms-txt',
       },
       {
+        text: 'open-wot',
+        link: '/guide/open-wot',
+      },
+      {
         text: 'Skills',
         link: '/guide/skills',
       }

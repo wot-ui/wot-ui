@@ -4,7 +4,9 @@
 
 export const versionData = {
   "/en-US/guide/llms-txt": "New",
+  "/en-US/guide/open-wot": "New",
   "/en-US/guide/skills": "New",
   "/guide/llms-txt": "New",
+  "/guide/open-wot": "New",
   "/guide/skills": "New"
 }

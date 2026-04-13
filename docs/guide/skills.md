@@ -4,27 +4,27 @@ version: New
 
 # Skills
 
-Skills 是 AI 的“超能力模板”，是一套完整的、可复用的、能解决特定问题的方案。Wot UI 也提供了一些可直接复用的 Skills，方便你在 AI 工具里快速获得更贴合组件库的能力。
+Skills 是 AI 的“超能力模板”，是一套完整的、可复用的、能解决特定问题的方案，本章节将会为你介绍专为 AI Agent（如 Trae, Cursor, Cline 等）设计的技能指令（Skills）。这些技能通过提供系统化的 Prompt 指令、上下文约束和最佳实践，帮助 AI 更加准确、高效地处理 `wot-ui` 和 `@wot-ui/cli` 相关的开发任务。
 
-## 可用资源
+## 🎯 内置技能
 
-- [skills.sh](https://skills.sh/?q=wot-ui) - 开放 Agent Skills 生态系统，收录了大量 skills，其中包含 Wot UI 相关技能。
-- [wot-starter](https://starter.wot-ui.cn/guide/skills.html) - Wot UI 提供的快速上手模板，内置了 Wot UI 相关技能。
+当前仓库提供以下 AI 技能，可供 AI 智能体根据任务需求加载：
 
-## 在 AI 工具中使用
+| Skill | 描述 | 适用场景 | 入口 |
+| --- | --- | --- | --- |
+| `wot-ui-v2` | 处理 wot-ui v2 组件库日常开发的核心技能。 | 组件选型、API 查询、生成 Vue3 + uni-app 页面代码、排查常见组件坑位（如 Toast, Dialog 挂载等）。 | [skills/wot-ui-v2/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-v2/SKILL.md) |
+| `wot-ui-cli` | 专门用于回答、使用和调试 `@wot-ui/cli` 工具本身的技能。 | 查询 CLI 命令用法（list, info, doc 等）、配置 MCP Server、本地调试 CLI 源码、执行离线数据提取。 | [skills/wot-ui-cli/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-cli/SKILL.md) |
+| `create-wot-ui-theme` | 生成 wot-ui 单文件主题 SCSS 的专项技能。 | 需要为 wot-ui 定制品牌主题，且要求遵循“单文件包含 mixin 和挂载选择器、App.vue 仅作 `@use` 引入”的约束时使用。 | [skills/create-wot-ui-theme/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/create-wot-ui-theme/SKILL.md) |
+
+## 安装
 
 推荐使用脚本安装 Skills，可以根据实际需求选择安装项：
 
 ```sh
-npx skills add https://github.com/wot-ui/wot-starter --skill wot-ui
+pnpx skills add wot-ui/open-wot
+# or
+npx skills add wot-ui/open-wot
 ```
-
-## 适用场景
-
-- 创建或扩展 Wot UI 组件
-- 生成 Demo 页面和文档
-- 补充组件测试
-- 迁移设计系统变量或主题
 
 ## 延伸阅读
 
