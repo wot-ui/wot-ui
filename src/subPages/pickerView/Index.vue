@@ -171,6 +171,6 @@ function handleImmediateChange({ selectedLabels, columnIndex }: any) {
   padding: $padding-loose $padding-extra-loose 0;
   color: $text-secondary;
   font-size: $typography-body-size-main;
-  line-height: $typography-body-line--height-size-large;
+  line-height: $typography-body-line-height-size-large;
 }
 </style>

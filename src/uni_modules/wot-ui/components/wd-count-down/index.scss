@@ -6,7 +6,7 @@ $count-down-text-color: var(--wot-count-down-text-color, $text-main) !default;
 // 倒计时文本字号
 $count-down-font-size: var(--wot-count-down-font-size, $typography-body-size-main) !default;
 // 倒计时文本行高
-$count-down-line-height: var(--wot-count-down-line-height, $typography-body-line--height-size-main) !default;
+$count-down-line-height: var(--wot-count-down-line-height, $typography-body-line-height-size-main) !default;
 
 
 @include b(count-down) {

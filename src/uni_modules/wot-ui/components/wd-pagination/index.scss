@@ -12,7 +12,7 @@ $pagination-message-color: var(--wot-pagination-message-color, $text-secondary) 
 // 辅助文案字号
 $pagination-message-font-size: var(--wot-pagination-message-font-size, $typography-body-size-main) !default;
 // 辅助文案行高
-$pagination-message-line-height: var(--wot-pagination-message-line-height, $typography-body-line--height-size-main) !default;
+$pagination-message-line-height: var(--wot-pagination-message-line-height, $typography-body-line-height-size-main) !default;
 // 辅助文案顶部间距
 $pagination-message-margin-top: var(--wot-pagination-message-margin-top, $spacing-super-tight) !default;
 // 翻页按钮最小宽度
@@ -20,7 +20,7 @@ $pagination-nav-width: var(--wot-pagination-nav-width, $n-64) !default;
 // 页码字号
 $pagination-size-font-size: var(--wot-pagination-size-font-size, $typography-title-size-main) !default;
 // 页码行高
-$pagination-size-line-height: var(--wot-pagination-size-line-height, $typography-title-line--height-size-main) !default;
+$pagination-size-line-height: var(--wot-pagination-size-line-height, $typography-title-line-height-size-main) !default;
 // 页码颜色
 $pagination-size-color: var(--wot-pagination-size-color, $text-main) !default;
 // 当前页码颜色

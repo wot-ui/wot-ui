@@ -183,7 +183,7 @@ const handleClick = () => {
   &__custom-content {
     font-size: $typography-label-size-main;
     font-weight: $font-weight-medium;
-    line-height: $typography-label-line--height-size-main;
+    line-height: $typography-label-line-height-size-main;
     color: $text-main;
   }
 }

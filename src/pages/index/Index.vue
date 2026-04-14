@@ -98,13 +98,13 @@ onShareTimeline(() => {
     &-name {
       font-size: $typography-title-size-large;
       font-weight: $font-weight-medium;
-      line-height: $typography-title-line--height-size-large;
+      line-height: $typography-title-line-height-size-large;
     }
     &-version,
     &-separator {
       font-size: $typography-body-size-main;
       font-weight: $font-weight-medium;
-      line-height: $typography-body-line--height-size-main;
+      line-height: $typography-body-line-height-size-main;
     }
 
     &-separator {
@@ -116,7 +116,7 @@ onShareTimeline(() => {
     color: $text-secondary;
     font-size: $typography-body-size-main;
     font-weight: $font-weight-medium;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
   }
 
   &__body {
@@ -161,7 +161,7 @@ onShareTimeline(() => {
     color: $text-main;
     font-size: $typography-body-size-extra-large;
     font-weight: $typography-body-font-weight-strong;
-    line-height: $typography-body-line--height-size-large;
+    line-height: $typography-body-line-height-size-large;
 
     :deep() {
       .page-home__body-item-header-icon {

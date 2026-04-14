@@ -4,7 +4,7 @@
 // 组件整体内边距
 $search-padding: var(--wot-search-padding, $padding-tight $padding-loose) !default;
 // 输入框圆角
-$search-input-radius: var(--wot-search-input-radius, $radius-radius-full) !default;
+$search-input-radius: var(--wot-search-input-radius, $radius-full) !default;
 // 输入框高度
 $search-input-height: var(--wot-search-input-height, $n-36) !default;
 // 输入框内边距
@@ -38,7 +38,7 @@ $search-input-font-size: var(--wot-search-input-font-size, $typography-body-size
 // 输入框文字颜色
 $search-input-color: var(--wot-search-input-color, $text-main) !default;
 // 输入框文字行高
-$search-input-line-height: var(--wot-search-input-line-height, $typography-body-line--height-size-main) !default;
+$search-input-line-height: var(--wot-search-input-line-height, $typography-body-line-height-size-main) !default;
 // 搜索图标颜色
 $search-icon-color: var(--wot-search-icon-color, $icon-secondary) !default;
 // 搜索图标大小
@@ -54,11 +54,11 @@ $search-placeholder-color: var(--wot-search-placeholder-color, $text-placeholder
 // 占位符字号
 $search-placeholder-font-size: var(--wot-search-placeholder-font-size, $typography-body-size-main) !default;
 // 占位符行高
-$search-placeholder-line-height: var(--wot-search-placeholder-line-height, $typography-body-line--height-size-main) !default;
+$search-placeholder-line-height: var(--wot-search-placeholder-line-height, $typography-body-line-height-size-main) !default;
 // 取消按钮字号
 $search-cancel-font-size: var(--wot-search-cancel-font-size, $typography-body-size-main) !default;
 // 取消按钮行高
-$search-cancel-line-height: var(--wot-search-cancel-line-height, $typography-body-line--height-size-main) !default;
+$search-cancel-line-height: var(--wot-search-cancel-line-height, $typography-body-line-height-size-main) !default;
 // 取消按钮颜色
 $search-cancel-color: var(--wot-search-cancel-color, $primary-6) !default;
 

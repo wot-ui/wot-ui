@@ -12,7 +12,7 @@ $drop-item-tip-color-active: var(--wot-drop-item-tip-color-active, $primary-5) !
 // 提示文字字号
 $drop-item-tip-font-size: var(--wot-drop-item-tip-font-size, $typography-body-size-main) !default;
 // 提示文字行高
-$drop-item-tip-line-height: var(--wot-drop-item-tip-line-height, $typography-body-line--height-size-main) !default;
+$drop-item-tip-line-height: var(--wot-drop-item-tip-line-height, $typography-body-line-height-size-main) !default;
 // 提示文字间距
 $drop-item-tip-spacing: var(--wot-drop-item-tip-spacing, $spacing-tight) !default;
 // 勾选图标尺寸
@@ -24,7 +24,7 @@ $drop-item-modal-bg: var(--wot-drop-item-modal-bg, $opac-7_55) !default;
 // 选项文字字号
 $drop-item-text-font-size: var(--wot-drop-item-text-font-size, $typography-body-size-extra-large) !default;
 // 选项文字行高
-$drop-item-text-line-height: var(--wot-drop-item-text-line-height, $typography-body-line--height-size-extra-large) !default;
+$drop-item-text-line-height: var(--wot-drop-item-text-line-height, $typography-body-line-height-size-extra-large) !default;
 // 选项文字颜色
 $drop-item-text-color: var(--wot-drop-item-text-color, $text-main) !default;
 // 弹层顶部边线样式

@@ -6,7 +6,7 @@ $form-item-error-message-color: var(--wot-form-item-error-message-color, $danger
 // 错误提示文字字号
 $form-item-error-message-font-size: var(--wot-form-item-error-message-font-size, $typography-label-size-main) !default;
 // 错误提示文字行高
-$form-item-error-message-line-height: var(--wot-form-item-error-message-line-height, $typography-label-line--height-size-small) !default;
+$form-item-error-message-line-height: var(--wot-form-item-error-message-line-height, $typography-label-line-height-size-small) !default;
 // 错误提示顶部外边距
 $form-item-error-message-margin-top: var(--wot-form-item-error-message-margin-top, $spacing-super-tight) !default;
 // 占位符文字颜色

@@ -7,15 +7,15 @@ $checkbox-icon-size: var(--wot-checkbox-icon-size, $n-22) !default; // 图标尺
 $checkbox-unchecked-color: var(--wot-checkbox-unchecked-color, $coolgrey-3) !default; // 未选中图标颜色
 $checkbox-label-font-size: var(--wot-checkbox-label-font-size, $typography-body-size-main) !default; // 文字字号
 $checkbox-label-color: var(--wot-checkbox-label-color, $text-main) !default; // 文字颜色
-$checkbox-label-line-height: var(--wot-checkbox-label-line-height, $typography-body-line--height-size-main) !default; // 文字行高
+$checkbox-label-line-height: var(--wot-checkbox-label-line-height, $typography-body-line-height-size-main) !default; // 文字行高
 $checkbox-opacity-disabled: var(--wot-checkbox-opacity-disabled, $opacity-disabled) !default; // 禁用态透明度
 $checkbox-horizontal-margin: var(--wot-checkbox-horizontal-margin, $spacing-zero $spacing-extra-loose $spacing-zero $spacing-zero) !default; // 水平模式多个单选框距离
 $checkbox-button-margin: var(--wot-checkbox-button-margin, $spacing-zero $spacing-extra-loose $spacing-extra-loose $spacing-zero) !default; // 按钮模式多个单选框距离
 $checkbox-button-border-width: var(--wot-checkbox-button-border-width, $stroke-main) !default; // 边框宽度
-$checkbox-button-shape-border-radius: var(--wot-checkbox-button-shape-border-radius, $radius-radius-full) !default; // 按钮模式图标圆角大小
+$checkbox-button-shape-border-radius: var(--wot-checkbox-button-shape-border-radius, $radius-full) !default; // 按钮模式图标圆角大小
 $checkbox-button-shape-size: var(--wot-checkbox-button-shape-size, $n-26) !default; // 按钮模式图标容器大小
 $checkbox-button-font-size: var(--wot-checkbox-button-font-size, $typography-body-size-main) !default; // 按钮模式字号
-$checkbox-button-line-height: var(--wot-checkbox-button-line-height, $typography-body-line--height-size-main) !default; // 按钮模式行高
+$checkbox-button-line-height: var(--wot-checkbox-button-line-height, $typography-body-line-height-size-main) !default; // 按钮模式行高
 $checkbox-button-bg: var(--wot-checkbox-button-bg, $filled-bottom) !default; // 按钮模式背景颜色
 $checkbox-button-bg-checked: var(--wot-checkbox-button-bg-checked, $filled-oppo) !default; // 按钮模式选中状态背景颜色
 $checkbox-button-icon-size: var(--wot-checkbox-icon-size, $n-10) !default; // 按钮模式图标尺寸

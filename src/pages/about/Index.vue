@@ -168,7 +168,7 @@ const watchAd = () => {
     text-align: left;
     font-size: $typography-title-size-extra-large;
     font-weight: $font-weight-semibold;
-    line-height: $typography-title-line--height-size-extra-large;
+    line-height: $typography-title-line-height-size-extra-large;
     color: $text-main;
   }
 
@@ -176,7 +176,7 @@ const watchAd = () => {
     margin-top: $spacing-super-loose;
     text-align: left;
     font-size: $typography-body-size-main;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
     color: $text-secondary;
   }
 
@@ -195,7 +195,7 @@ const watchAd = () => {
     margin-bottom: $spacing-main;
     font-size: $typography-title-size-main;
     font-weight: $font-weight-bold;
-    line-height: $typography-title-line--height-size-main;
+    line-height: $typography-title-line-height-size-main;
     color: $text-main;
   }
 
@@ -223,7 +223,7 @@ const watchAd = () => {
     height: $n-60;
     margin: 0 auto;
     border: $stroke-light solid $primary-6;
-    border-radius: $radius-radius-full;
+    border-radius: $radius-full;
   }
 
   &__team-name {

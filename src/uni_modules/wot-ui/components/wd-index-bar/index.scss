@@ -3,11 +3,11 @@
 
 $index-bar-sidebar-right: var(--wot-index-bar-sidebar-right, $spacing-super-tight) !default;
 $index-bar-index-font-size: var(--wot-index-bar-index-font-size, $typography-label-size-main) !default;
-$index-bar-index-width: var(--wot-index-bar-index-width, $typography-label-line--height-size-main) !default;
-$index-bar-index-height: var(--wot-index-bar-index-height, $typography-label-line--height-size-main) !default;
+$index-bar-index-width: var(--wot-index-bar-index-width, $typography-label-line-height-size-main) !default;
+$index-bar-index-height: var(--wot-index-bar-index-height, $typography-label-line-height-size-main) !default;
 $index-bar-index-font-weight: var(--wot-index-bar-index-font-weight, $font-weight-medium) !default;
 $index-bar-index-color: var(--wot-index-bar-index-color, $text-auxiliary) !default;
-$index-bar-index-border-radius: var(--wot-index-bar-index-border-radius, $radius-radius-full) !default;
+$index-bar-index-border-radius: var(--wot-index-bar-index-border-radius, $radius-full) !default;
 $index-bar-index-color-active: var(--wot-index-bar-index-color-active, $text-white) !default;
 $index-bar-index-bg-active: var(--wot-index-bar-index-bg-active, $primary-6) !default;
 $index-bar-current-index-size: var(--wot-index-bar-current-index-size, $n-56) !default;

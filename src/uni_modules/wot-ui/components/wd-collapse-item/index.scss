@@ -8,7 +8,7 @@ $collapse-item-title-color: var(--wot-collapse-item-title-color, $text-main) !de
 // 折叠项标题文字字号
 $collapse-item-title-font-size: var(--wot-collapse-item-title-font-size, $typography-body-size-extra-large) !default;
 // 折叠项标题文字行高
-$collapse-item-title-line-height: var(--wot-collapse-item-title-line-height, $typography-body-line--height-size-extra-large) !default;
+$collapse-item-title-line-height: var(--wot-collapse-item-title-line-height, $typography-body-line-height-size-extra-large) !default;
 // 折叠项箭头尺寸
 $collapse-item-arrow-size: var(--wot-collapse-item-arrow-size, $n-16) !default;
 // 折叠项箭头颜色
@@ -18,7 +18,7 @@ $collapse-item-body-color: var(--wot-collapse-item-body-color, $text-auxiliary) 
 // 折叠项内容文字字号
 $collapse-item-body-font-size: var(--wot-collapse-item-body-font-size, $typography-label-size-large) !default;
 // 折叠项内容文字行高
-$collapse-item-body-line-height: var(--wot-collapse-item-body-line-height, $typography-label-line--height-size-large) !default;
+$collapse-item-body-line-height: var(--wot-collapse-item-body-line-height, $typography-label-line-height-size-large) !default;
 // 折叠项内容区域内边距
 $collapse-item-body-padding: var(--wot-collapse-item-body-padding, $padding-loose $padding-extra-loose) !default;
 

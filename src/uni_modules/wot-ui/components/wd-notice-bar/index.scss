@@ -8,7 +8,7 @@ $notice-bar-font-size: var(--wot-notice-bar-font-size, $typography-body-size-mai
 // 公告栏圆角
 $notice-bar-radius: var(--wot-notice-bar-radius, $radius-zero) !default;
 // 公告栏文字行高
-$notice-bar-line-height: var(--wot-notice-bar-line-height, $typography-body-line--height-size-main) !default;
+$notice-bar-line-height: var(--wot-notice-bar-line-height, $typography-body-line-height-size-main) !default;
 // 警告态背景色
 $notice-bar-warning-bg: var(--wot-notice-bar-warning-bg, $warning-surface) !default;
 // 警告态文字颜色

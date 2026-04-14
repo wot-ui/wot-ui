@@ -24,7 +24,7 @@ $card-title-font-size: var(--wot-card-title-font-size, $typography-title-size-ma
 // 标题字重
 $card-title-font-weight: var(--wot-card-title-font-weight, $font-weight-medium) !default;
 // 标题行高
-$card-title-line-height: var(--wot-card-title-line-height, $typography-body-line--height-size-main) !default;
+$card-title-line-height: var(--wot-card-title-line-height, $typography-body-line-height-size-main) !default;
 // 标题内间距
 $card-title-padding: var(--wot-card-title-padding, $padding-loose $padding-extra-loose) !default;
 // 内容文字颜色
@@ -32,7 +32,7 @@ $card-content-color: var(--wot-card-content-color, $text-secondary) !default;
 // 内容字号
 $card-content-font-size: var(--wot-card-content-font-size, $typography-body-size-main) !default;
 // 内容行高
-$card-content-line-height: var(--wot-card-content-line-height, $typography-body-line--height-size-main) !default;
+$card-content-line-height: var(--wot-card-content-line-height, $typography-body-line-height-size-main) !default;
 // 内容内边距
 $card-content-padding: var(--wot-card-content-padding, $padding-main $padding-loose) !default;
 // 内容区域边框颜色

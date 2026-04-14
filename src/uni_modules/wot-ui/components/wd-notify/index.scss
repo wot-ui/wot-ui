@@ -9,7 +9,7 @@ $notify-padding: var(--wot-notify-padding, $padding-tight $padding-loose) !defau
 // 通知文字字号
 $notify-font-size: var(--wot-notify-font-size, $typography-body-size-large) !default;
 // 通知文字行高
-$notify-line-height: var(--wot-notify-line-height, $typography-body-line--height-size-large) !default;
+$notify-line-height: var(--wot-notify-line-height, $typography-body-line-height-size-large) !default;
 // 主色态背景色
 $notify-primary-bg: var(--wot-notify-primary-bg, $primary-1) !default;
 // 主色态文字颜色

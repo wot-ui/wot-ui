@@ -17,7 +17,7 @@ $step-vertical-header-dot-top: var(--wot-step-vertical-header-dot-top, $n-6) !de
 // 圆形指示器的宽高尺寸
 $step-indicator-size: var(--wot-step-indicator-size, $n-18) !default;
 // 圆形指示器的圆角大小
-$step-circle-border-radius: var(--wot-step-circle-border-radius, $radius-radius-full) !default;
+$step-circle-border-radius: var(--wot-step-circle-border-radius, $radius-full) !default;
 // 等待 (wait) 状态下圆形指示器的背景色
 $step-circle-bg: var(--wot-step-circle-bg, $filled-strong) !default;
 // 进行中 (process) 状态下圆形指示器的背景色
@@ -31,7 +31,7 @@ $step-error-bg: var(--wot-step-error-bg, $danger-main) !default;
 // 圆形指示器内部文本的字号
 $step-circle-text-font-size: var(--wot-step-circle-text-font-size, $typography-label-size-main) !default;
 // 圆形指示器内部文本的行高
-$step-circle-text-line-height: var(--wot-step-circle-text-line-height, $typography-label-line--height-size-main) !default;
+$step-circle-text-line-height: var(--wot-step-circle-text-line-height, $typography-label-line-height-size-main) !default;
 // 圆形指示器内部文本的字重
 $step-circle-text-font-weight: var(--wot-step-circle-text-font-weight, $font-weight-medium) !default;
 // 等待状态或默认状态下圆形指示器内文本颜色
@@ -85,7 +85,7 @@ $step-dot-error-bg: var(--wot-step-dot-error-bg, $danger-main) !default;
 // 标题文本字号大小
 $step-title-font-size: var(--wot-step-title-font-size, $typography-body-size-main) !default;
 // 标题文本行高
-$step-title-line-height: var(--wot-step-title-line-height, $typography-body-line--height-size-main) !default;
+$step-title-line-height: var(--wot-step-title-line-height, $typography-body-line-height-size-main) !default;
 // 标题文本字重
 $step-title-font-weight: var(--wot-step-title-font-weight, $font-weight-regular) !default;
 // 等待与完成状态下标题的颜色
@@ -99,7 +99,7 @@ $step-title-error-color: var(--wot-step-title-error-color, $danger-main) !defaul
 // 描述文本字号大小
 $step-description-font-size: var(--wot-step-description-font-size, $typography-label-size-main) !default;
 // 描述文本行高
-$step-description-line-height: var(--wot-step-description-line-height, $typography-label-line--height-size-main) !default;
+$step-description-line-height: var(--wot-step-description-line-height, $typography-label-line-height-size-main) !default;
 // 描述文本字重
 $step-description-font-weight: var(--wot-step-description-font-weight, $font-weight-regular) !default;
 // 描述文本颜色

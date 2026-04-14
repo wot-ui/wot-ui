@@ -8,11 +8,11 @@ $keyboard-key-padding: var(--wot-keyboard-key-padding, $padding-tight) !default;
 // 按键字号
 $keyboard-key-font-size: var(--wot-keyboard-key-font-size, $typography-title-size-extra-large) !default;
 // 按键行高
-$keyboard-key-line-height: var(--wot-keyboard-key-line-height, $typography-title-line--height-size-extra-large) !default;
+$keyboard-key-line-height: var(--wot-keyboard-key-line-height, $typography-title-line-height-size-extra-large) !default;
 // 车牌按键字号
 $keyboard-key-car-font-size: var(--wot-keyboard-key-car-font-size, $typography-title-size-main) !default;
 // 车牌按键行高
-$keyboard-key-car-line-height: var(--wot-keyboard-key-car-line-height, $typography-title-line--height-size-main) !default;
+$keyboard-key-car-line-height: var(--wot-keyboard-key-car-line-height, $typography-title-line-height-size-main) !default;
 // 按键字重
 $keyboard-key-font-weight: var(--wot-keyboard-key-font-weight, $font-weight-medium) !default;
 // 按键背景色
@@ -24,7 +24,7 @@ $keyboard-key-bg-active: var(--wot-keyboard-key-bg-active, $filled-strong) !defa
 // 删除键字号
 $keyboard-key-delete-font-size: var(--wot-keyboard-key-delete-font-size, $typography-title-size-main) !default;
 // 删除键行高
-$keyboard-key-delete-line-height: var(--wot-keyboard-key-delete-line-height, $typography-title-line--height-size-main) !default;
+$keyboard-key-delete-line-height: var(--wot-keyboard-key-delete-line-height, $typography-title-line-height-size-main) !default;
 // 删除键字重
 $keyboard-key-delete-font-weight: var(--wot-keyboard-key-delete-font-weight, $font-weight-medium) !default;
 // 主按钮文字颜色

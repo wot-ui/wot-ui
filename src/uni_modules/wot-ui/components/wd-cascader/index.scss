@@ -12,7 +12,7 @@ $cascader-list-item-opacity-disabled: var(--wot-cascader-list-item-opacity-disab
 // 选项文字字号
 $cascader-list-item-font-size: var(--wot-cascader-list-item-font-size, $typography-body-size-extra-large) !default;
 // 选项文字行高
-$cascader-list-item-line-height: var(--wot-cascader-list-item-line-height, $typography-body-line--height-size-extra-large) !default;
+$cascader-list-item-line-height: var(--wot-cascader-list-item-line-height, $typography-body-line-height-size-extra-large) !default;
 // 选项内边距
 $cascader-list-item-padding: var(--wot-cascader-list-item-padding, $padding-extra-loose $padding-loose) !default;
 // 选项选中态文字颜色
@@ -24,7 +24,7 @@ $cascader-list-tip-color: var(--wot-cascader-list-tip-color, $text-secondary) !d
 // 选项提示文字字号
 $cascader-list-tip-font-size: var(--wot-cascader-list-tip-font-size, $typography-label-size-main) !default;
 // 选项提示文字行高
-$cascader-list-tip-line-height: var(--wot-cascader-list-tip-line-height, $typography-label-line--height-size-main) !default;
+$cascader-list-tip-line-height: var(--wot-cascader-list-tip-line-height, $typography-label-line-height-size-main) !default;
 // 选项提示顶部外边距
 $cascader-list-tip-margin-top: var(--wot-cascader-list-tip-margin-top, $spacing-ultra-tight) !default;
 // 选中图标尺寸
@@ -40,7 +40,7 @@ $cascader-confirm-opacity-disabled: var(--wot-cascader-confirm-opacity-disabled,
 // checkStrictly模式确认按钮字号
 $cascader-confirm-font-size: var(--wot-cascader-confirm-font-size, $typography-body-size-large) !default;
 // checkStrictly模式确认按钮行高
-$cascader-confirm-line-height: var(--wot-cascader-confirm-line-height, $typography-body-line--height-size-large) !default;
+$cascader-confirm-line-height: var(--wot-cascader-confirm-line-height, $typography-body-line-height-size-large) !default;
 // checkStrictly模式确认按钮字重
 $cascader-confirm-font-weight: var(--wot-cascader-confirm-font-weight, $font-weight-regular) !default;
 // loading 状态下选项区透明度

@@ -12,7 +12,7 @@ $backtop-height: var(--wot-backtop-height, $n-48) !default;
 // 方形模式圆角
 $backtop-radius: var(--wot-backtop-radius, $radius-main) !default;
 // 圆形模式圆角
-$backtop-radius-circle: var(--wot-backtop-radius-circle, $radius-radius-full) !default;
+$backtop-radius-circle: var(--wot-backtop-radius-circle, $radius-full) !default;
 // 按钮图标颜色
 $backtop-color: var(--wot-backtop-color, $icon-main) !default;
 // 按钮图标尺寸
@@ -22,7 +22,7 @@ $backtop-text-font-size: var(--wot-backtop-text-font-size, $typography-label-siz
 // 文本颜色
 $backtop-text-color: var(--wot-backtop-text-color, $text-main) !default;
 // 文本行高
-$backtop-text-line-height: var(--wot-backtop-text-line-height, $typography-label-line--height-size-main) !default;
+$backtop-text-line-height: var(--wot-backtop-text-line-height, $typography-label-line-height-size-main) !default;
 // 组件层级
 $backtop-z-index: var(--wot-backtop-z-index, 100) !default;
 

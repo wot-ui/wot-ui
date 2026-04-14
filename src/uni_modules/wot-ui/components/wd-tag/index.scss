@@ -9,7 +9,7 @@ $tag-font-size: var(--wot-tag-font-size, $typography-label-size-main) !default;
 // 默认圆角
 $tag-radius: var(--wot-tag-radius, $radius-small) !default;
 // 圆角标签圆角
-$tag-round-radius: var(--wot-tag-round-radius, $radius-radius-full) !default;
+$tag-round-radius: var(--wot-tag-round-radius, $radius-full) !default;
 // 标记标签圆角
 $tag-mark-radius: var(--wot-tag-mark-radius, $radius-large $radius-main) !default;
 // 图标间距
@@ -79,7 +79,7 @@ $tag-purple-color: var(--wot-tag-purple-color, $purple-6) !default;
 // 小尺寸字号
 $tag-small-font-size: var(--wot-tag-small-font-size, $typography-label-size-small) !default;
 // 小尺寸行高
-$tag-small-line-height: var(--wot-tag-small-line-height, $typography-label-line--height-size-small) !default;
+$tag-small-line-height: var(--wot-tag-small-line-height, $typography-label-line-height-size-small) !default;
 // 小尺寸内边距
 $tag-small-padding: var(--wot-tag-small-padding, $padding-zero $padding-super-tight) !default;
 // 小尺寸圆角态内边距
@@ -89,7 +89,7 @@ $tag-small-icon-size: var(--wot-tag-small-icon-size, $n-10) !default;
 // 中尺寸字号
 $tag-medium-font-size: var(--wot-tag-medium-font-size, $typography-label-size-main) !default;
 // 中尺寸行高
-$tag-medium-line-height: var(--wot-tag-medium-line-height, $typography-label-line--height-size-main) !default;
+$tag-medium-line-height: var(--wot-tag-medium-line-height, $typography-label-line-height-size-main) !default;
 // 中尺寸内边距
 $tag-medium-padding: var(--wot-tag-medium-padding, $n-1 $padding-super-tight) !default;
 // 中尺寸圆角态内边距
@@ -99,7 +99,7 @@ $tag-medium-icon-size: var(--wot-tag-medium-icon-size, $n-10) !default;
 // 默认尺寸字号
 $tag-default-font-size: var(--wot-tag-default-font-size, $typography-label-size-main) !default;
 // 默认尺寸行高
-$tag-default-line-height: var(--wot-tag-default-line-height, $typography-label-line--height-size-main) !default;
+$tag-default-line-height: var(--wot-tag-default-line-height, $typography-label-line-height-size-main) !default;
 // 默认尺寸内边距
 $tag-default-padding: var(--wot-tag-default-padding, $n-3 $padding-extra-tight) !default;
 // 默认尺寸圆角态内边距
@@ -109,7 +109,7 @@ $tag-default-icon-size: var(--wot-tag-default-icon-size, $n-12) !default;
 // 大尺寸字号
 $tag-large-font-size: var(--wot-tag-large-font-size, $typography-label-size-large) !default;
 // 大尺寸行高
-$tag-large-line-height: var(--wot-tag-large-line-height, $typography-label-line--height-size-large) !default;
+$tag-large-line-height: var(--wot-tag-large-line-height, $typography-label-line-height-size-large) !default;
 // 大尺寸内边距
 $tag-large-padding: var(--wot-tag-large-padding, $n-3 $padding-extra-tight) !default;
 // 大尺寸圆角态内边距
@@ -119,7 +119,7 @@ $tag-large-icon-size: var(--wot-tag-large-icon-size, $n-12) !default;
 // 超大尺寸字号
 $tag-extra-large-font-size: var(--wot-tag-extra-large-font-size, $typography-body-size-main) !default;
 // 超大尺寸行高
-$tag-extra-large-line-height: var(--wot-tag-extra-large-line-height, $typography-body-line--height-size-main) !default;
+$tag-extra-large-line-height: var(--wot-tag-extra-large-line-height, $typography-body-line-height-size-main) !default;
 // 超大尺寸内边距
 $tag-extra-large-padding: var(--wot-tag-extra-large-padding, $n-3 $padding-extra-tight) !default;
 // 超大尺寸圆角态内边距

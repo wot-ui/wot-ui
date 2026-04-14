@@ -120,7 +120,7 @@ function handlePickerConfirm({ value }: { value: string[] }) {
   display: block;
   color: $text-auxiliary;
   font-size: $typography-body-size-main;
-  line-height: $typography-body-line--height-size-large;
+  line-height: $typography-body-line-height-size-large;
 }
 
 .page-root-portal__modal {
@@ -158,6 +158,6 @@ function handlePickerConfirm({ value }: { value: string[] }) {
   margin-bottom: $spacing-super-loose;
   font-size: $typography-body-size-main;
   color: $text-auxiliary;
-  line-height: $typography-body-line--height-size-main;
+  line-height: $typography-body-line-height-size-main;
 }
 </style>

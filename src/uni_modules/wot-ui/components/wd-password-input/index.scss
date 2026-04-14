@@ -8,7 +8,7 @@ $password-input-margin: var(--wot-password-input-margin, $n-16) !default;
 // 输入字号
 $password-input-font-size: var(--wot-password-input-font-size, $typography-title-size-large) !default;
 // 输入行高
-$password-input-line-height: var(--wot-password-input-line-height, $typography-title-line--height-size-large) !default;
+$password-input-line-height: var(--wot-password-input-line-height, $typography-title-line-height-size-large) !default;
 // 输入格圆角
 $password-input-radius: var(--wot-password-input-radius, $n-6) !default;
 // 输入格背景色
@@ -28,7 +28,7 @@ $password-input-dot-size: var(--wot-password-input-dot-size, $n-10) !default;
 // 密码点颜色
 $password-input-dot-color: var(--wot-password-input-dot-color, $text-main) !default;
 // 密码点圆角
-$password-input-dot-radius: var(--wot-password-input-dot-radius, $radius-radius-full) !default;
+$password-input-dot-radius: var(--wot-password-input-dot-radius, $radius-full) !default;
 // 输入文本颜色
 $password-input-text-color: var(--wot-password-input-text-color, $text-main) !default;
 // 光标颜色

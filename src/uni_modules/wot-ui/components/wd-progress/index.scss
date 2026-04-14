@@ -32,11 +32,11 @@ $progress-inner-padding: var(--wot-progress-inner-padding, $padding-zero $paddin
 // 文案字号
 $progress-label-font-size: var(--wot-progress-label-font-size, $typography-label-size-large) !default;
 // 文案行高
-$progress-label-line-height: var(--wot-progress-label-line-height, $typography-label-line--height-size-large) !default;
+$progress-label-line-height: var(--wot-progress-label-line-height, $typography-label-line-height-size-large) !default;
 // 图标字号
 $progress-icon-size: var(--wot-progress-icon-size, $n-18) !default;
 // 进度条圆角
-$progress-radius: var(--wot-progress-radius, $radius-radius-full) !default;
+$progress-radius: var(--wot-progress-radius, $radius-full) !default;
 
 @include b(progress) {
   width: 100%;

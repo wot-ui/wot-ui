@@ -10,7 +10,7 @@ $textarea-inner-min-height: var(--wot-textarea-inner-min-height, $n-20) !default
 // 文本域字号
 $textarea-inner-font-size: var(--wot-textarea-inner-font-size, $typography-body-size-main) !default;
 // 文本域行高
-$textarea-inner-line-height: var(--wot-textarea-inner-line-height, $typography-body-line--height-size-main) !default;
+$textarea-inner-line-height: var(--wot-textarea-inner-line-height, $typography-body-line-height-size-main) !default;
 // 文本域文字颜色
 $textarea-inner-color: var(--wot-textarea-inner-color, $text-main) !default;
 // 占位符颜色
@@ -28,7 +28,7 @@ $textarea-count-color: var(--wot-textarea-count-color, $text-auxiliary) !default
 // 字数统计字号
 $textarea-count-font-size: var(--wot-textarea-count-font-size, $typography-body-size-main) !default;
 // 字数统计行高
-$textarea-count-line-height: var(--wot-textarea-count-line-height, $typography-body-line--height-size-main) !default;
+$textarea-count-line-height: var(--wot-textarea-count-line-height, $typography-body-line-height-size-main) !default;
 // 错误颜色
 $textarea-error-color: var(--wot-textarea-error-color, $danger-main) !default;
 

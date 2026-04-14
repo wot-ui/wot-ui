@@ -10,7 +10,7 @@ $action-sheet-action-bg: var(--wot-action-sheet-action-bg, $filled-oppo) !defaul
 // 操作项字体大小
 $action-sheet-action-font-size: var(--wot-action-sheet-action-font-size, $typography-title-size-main) !default;
 // 操作项行高
-$action-sheet-action-line-height: var(--wot-action-sheet-action-line-height, $typography-title-line--height-size-main) !default;
+$action-sheet-action-line-height: var(--wot-action-sheet-action-line-height, $typography-title-line-height-size-main) !default;
 // 操作项文字颜色
 $action-sheet-action-color: var(--wot-action-sheet-action-color, $text-main) !default;
 // 操作项内边距
@@ -22,7 +22,7 @@ $action-sheet-cancel-bg: var(--wot-action-sheet-cancel-bg, $filled-oppo) !defaul
 // 取消按钮字体大小
 $action-sheet-cancel-font-size: var(--wot-action-sheet-cancel-font-size, $typography-title-size-main) !default;
 // 取消按钮行高
-$action-sheet-cancel-line-height: var(--wot-action-sheet-cancel-line-height, $typography-title-line--height-size-main) !default;
+$action-sheet-cancel-line-height: var(--wot-action-sheet-cancel-line-height, $typography-title-line-height-size-main) !default;
 // 取消按钮文字颜色
 $action-sheet-cancel-color: var(--wot-action-sheet-cancel-color, $text-main) !default;
 // 取消按钮内边距
@@ -32,7 +32,7 @@ $action-sheet-gap-height: var(--wot-action-sheet-gap-height, $spacing-tight) !de
 // 描述文本字体大小
 $action-sheet-description-font-size: var(--wot-action-sheet-description-font-size, $typography-body-size-main) !default;
 // 描述文本行高
-$action-sheet-description-line-height: var(--wot-action-sheet-description-line-height, $typography-body-line--height-size-main) !default;
+$action-sheet-description-line-height: var(--wot-action-sheet-description-line-height, $typography-body-line-height-size-main) !default;
 // 描述文本颜色
 $action-sheet-description-color: var(--wot-action-sheet-description-color, $text-auxiliary) !default;
 // 描述文本顶部外边距
@@ -56,7 +56,7 @@ $action-sheet-panel-img-radius: var(--wot-action-sheet-panel-img-radius, $radius
 // 面板标题字体大小
 $action-sheet-panel-title-font-size: var(--wot-action-sheet-panel-title-font-size, $typography-label-size-main) !default;
 // 面板标题行高
-$action-sheet-panel-title-line-height: var(--wot-action-sheet-panel-title-line-height, $typography-label-line--height-size-main) !default;
+$action-sheet-panel-title-line-height: var(--wot-action-sheet-panel-title-line-height, $typography-label-line-height-size-main) !default;
 // 面板标题颜色
 $action-sheet-panel-title-color: var(--wot-action-sheet-panel-title-color, $text-auxiliary) !default;
 // 标题背景色
@@ -68,7 +68,7 @@ $action-sheet-title-height: var(--wot-action-sheet-title-height, $n-56) !default
 // 标题字体大小
 $action-sheet-title-font-size: var(--wot-action-sheet-title-font-size, $typography-title-size-main) !default;
 // 标题行高
-$action-sheet-title-line-height: var(--wot-action-sheet-title-line-height, $typography-title-line--height-size-main) !default;
+$action-sheet-title-line-height: var(--wot-action-sheet-title-line-height, $typography-title-line-height-size-main) !default;
 // 标题字重
 $action-sheet-title-font-weight: var(--wot-action-sheet-title-font-weight, $font-weight-medium) !default;
 // 关闭图标右侧偏移

@@ -14,7 +14,7 @@ $tabs-nav-font-weight-active: var(--wot-tabs-nav-font-weight-active, $font-weigh
 // 导航项字号
 $tabs-nav-item-font-size: var(--wot-tabs-nav-item-font-size, $typography-body-size-extra-large) !default;
 // 导航项行高
-$tabs-nav-item-line-height: var(--wot-tabs-nav-item-line-height, $typography-body-line--height-size-extra-large) !default;
+$tabs-nav-item-line-height: var(--wot-tabs-nav-item-line-height, $typography-body-line-height-size-extra-large) !default;
 // 导航项内边距
 $tabs-nav-item-padding: var(--wot-tabs-nav-item-padding, $padding-main $padding-extra-loose) !default;
 // 导航禁用文字颜色
@@ -46,7 +46,7 @@ $tabs-map-color: var(--wot-tabs-map-color, $text-main) !default;
 // 地图模式头部字号
 $tabs-map-header-font-size: var(--wot-tabs-map-header-font-size, $typography-body-size-extra-large) !default;
 // 地图模式头部行高
-$tabs-map-header-line-height: var(--wot-tabs-map-header-line-height, $typography-body-line--height-size-extra-large) !default;
+$tabs-map-header-line-height: var(--wot-tabs-map-header-line-height, $typography-body-line-height-size-extra-large) !default;
 // 地图模式头部内边距
 $tabs-map-header-padding: var(--wot-tabs-map-header-padding, $padding-main $padding-extra-loose) !default;
 // 地图模式导航按钮间距
@@ -62,7 +62,7 @@ $tabs-map-nav-btn-radius: var(--wot-tabs-map-nav-btn-radius, $radius-main) !defa
 // 地图模式导航按钮字号
 $tabs-map-nav-btn-font-size: var(--wot-tabs-map-nav-btn-font-size, $typography-body-size-ultra-large) !default;
 // 地图模式导航按钮行高
-$tabs-map-nav-btn-line-height: var(--wot-tabs-map-nav-btn-line-height, $typography-body-line--height-size-ultra-large) !default;
+$tabs-map-nav-btn-line-height: var(--wot-tabs-map-nav-btn-line-height, $typography-body-line-height-size-ultra-large) !default;
 // 地图模式导航按钮内边距
 $tabs-map-nav-btn-padding: var(--wot-tabs-map-nav-btn-padding, $padding-tight $padding-extra-loose) !default;
 // 地图模式内容内边距
@@ -170,7 +170,7 @@ $tabs-map-body-bg: var(--wot-tabs-map-body-bg, $filled-oppo) !default;
       bottom: 0;
       width: $n-6;
       height: $n-6;
-      border-radius: $radius-radius-full;
+      border-radius: $radius-full;
     }
   }
 

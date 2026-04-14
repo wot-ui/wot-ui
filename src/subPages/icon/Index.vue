@@ -495,7 +495,7 @@ $icon-list-gap: var(--wot-icon-list-gap, $spacing-tight) !default;
 .icon-page__category-title {
   padding: $padding-loose $padding-extra-loose;
   font-size: $typography-label-size-main;
-  line-height: $typography-label-line--height-size-main;
+  line-height: $typography-label-line-height-size-main;
   font-weight: $font-weight-medium;
   color: $icon-category-title-color;
   background-color: $filled-bottom;
@@ -553,7 +553,7 @@ $icon-list-gap: var(--wot-icon-list-gap, $spacing-tight) !default;
   word-break: break-word;
   transition: color 0.2s ease;
   max-width: $n-88;
-  line-height: $typography-label-line--height-size-small;
+  line-height: $typography-label-line-height-size-small;
 }
 
 .icon-page__empty {

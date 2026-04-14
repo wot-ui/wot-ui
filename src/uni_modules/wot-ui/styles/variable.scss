@@ -274,11 +274,11 @@ $typography-label-size-main: var(--wot-typography-label-size-main, $n-12) !defau
 $typography-label-size-large: var(--wot-typography-label-size-large, $n-14) !default;
 $typography-label-font-weight-main: var(--wot-typography-label-font-weight-main, $font-weight-regular) !default;
 $typography-label-font-weight-strong: var(--wot-typography-label-font-weight-strong, $font-weight-medium) !default;
-$typography-label-line--height-size-extra-small: var(--wot-typography-label-line--height-size-extra-small, $n-16) !default;
-$typography-label-line--height-size-large: var(--wot-typography-label-line--height-size-large, $n-18) !default;
-$typography-label-line--height-size-main: var(--wot-typography-label-line--height-size-main, $n-18) !default;
-$typography-label-line--height-size-small: var(--wot-typography-label-line--height-size-small, $n-16) !default;
-$typography-label-line--height-size-super-small: var(--wot-typography-label-line--height-size-super-small, $n-14) !default;
+$typography-label-line-height-size-extra-small: var(--wot-typography-label-line-height-size-extra-small, $n-16) !default;
+$typography-label-line-height-size-large: var(--wot-typography-label-line-height-size-large, $n-18) !default;
+$typography-label-line-height-size-main: var(--wot-typography-label-line-height-size-main, $n-18) !default;
+$typography-label-line-height-size-small: var(--wot-typography-label-line-height-size-small, $n-16) !default;
+$typography-label-line-height-size-super-small: var(--wot-typography-label-line-height-size-super-small, $n-14) !default;
 $typography-label-size-extra-small: var(--wot-typography-label-size-extra-small, $n-10) !default;
 $typography-label-size-super-small: var(--wot-typography-label-size-super-small, $n-9) !default;
 
@@ -289,11 +289,11 @@ $typography-body-size-large: var(--wot-typography-body-size-large, $n-15) !defau
 $typography-body-font-weight-main: var(--wot-typography-body-font-weight-main, $font-weight-regular) !default;
 $typography-body-font-weight-strong: var(--wot-typography-body-font-weight-strong, $font-weight-medium) !default;
 $typography-body-font-weight-extra-strong: var(--wot-typography-body-font-weight-extra-strong, $font-weight-semibold) !default;
-$typography-body-line--height-size-extra-large: var(--wot-typography-body-line--height-size-extra-large, $n-24) !default;
-$typography-body-line--height-size-large: var(--wot-typography-body-line--height-size-large, $n-22) !default;
-$typography-body-line--height-size-main: var(--wot-typography-body-line--height-size-main, $n-20) !default;
-$typography-body-line--height-size-super-large: var(--wot-typography-body-line--height-size-super-large, $n-24) !default;
-$typography-body-line--height-size-ultra-large: var(--wot-typography-body-line--height-size-ultra-large, $n-26) !default;
+$typography-body-line-height-size-extra-large: var(--wot-typography-body-line-height-size-extra-large, $n-24) !default;
+$typography-body-line-height-size-large: var(--wot-typography-body-line-height-size-large, $n-22) !default;
+$typography-body-line-height-size-main: var(--wot-typography-body-line-height-size-main, $n-20) !default;
+$typography-body-line-height-size-super-large: var(--wot-typography-body-line-height-size-super-large, $n-24) !default;
+$typography-body-line-height-size-ultra-large: var(--wot-typography-body-line-height-size-ultra-large, $n-26) !default;
 $typography-body-size-extra-large: var(--wot-typography-body-size-extra-large, $n-16) !default;
 $typography-body-size-super-large: var(--wot-typography-body-size-super-large, $n-17) !default;
 $typography-body-size-ultra-large: var(--wot-typography-body-size-ultra-large, $n-18) !default;
@@ -306,9 +306,9 @@ $typography-title-size-extra-large: var(--wot-typography-title-size-extra-large,
 $typography-title-font-weight-light: var(--wot-typography-title-font-weight-light, $font-weight-regular) !default;
 $typography-title-font-weight-main: var(--wot-typography-title-font-weight-main, $font-weight-medium) !default;
 $typography-title-font-weight-strong: var(--wot-typography-title-font-weight-strong, $font-weight-semibold) !default;
-$typography-title-line--height-size-main: var(--wot-typography-title-line--height-size-main, $n-26) !default;
-$typography-title-line--height-size-large: var(--wot-typography-title-line--height-size-large, $n-28) !default;
-$typography-title-line--height-size-extra-large: var(--wot-typography-title-line--height-size-extra-large, $n-34) !default;
+$typography-title-line-height-size-main: var(--wot-typography-title-line-height-size-main, $n-26) !default;
+$typography-title-line-height-size-large: var(--wot-typography-title-line-height-size-large, $n-28) !default;
+$typography-title-line-height-size-extra-large: var(--wot-typography-title-line-height-size-extra-large, $n-34) !default;
 
 /* 圆角系列 */
 $radius-zero: var(--wot-radius-zero, $n-0) !default;
@@ -318,7 +318,7 @@ $radius-large: var(--wot-radius-large, $n-8) !default;
 $radius-extra-large: var(--wot-radius-extra-large, $n-12) !default;
 $radius-super-large: var(--wot-radius-super-large, $n-16) !default;
 $radius-ultra-large: var(--wot-radius-ultra-large, $n-20) !default;
-$radius-radius-full: var(--wot-radius-radius-full, $n-full) !default;
+$radius-full: var(--wot-radius-full, $n-full) !default;
 
 /* 内边距系列 */
 $padding-zero: var(--wot-padding-zero, $n-0) !default;

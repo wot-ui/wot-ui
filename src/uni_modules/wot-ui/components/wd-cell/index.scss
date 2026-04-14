@@ -34,35 +34,35 @@ $cell-icon-size: var(--wot-cell-icon-size, $n-20) !default;
 // 标题字号
 $cell-title-font-size: var(--wot-cell-title-font-size, $typography-body-size-main) !default;
 // 标题行高
-$cell-title-line-height: var(--wot-cell-title-line-height, $typography-body-line--height-size-main) !default;
+$cell-title-line-height: var(--wot-cell-title-line-height, $typography-body-line-height-size-main) !default;
 // 标签字号
 $cell-label-font-size: var(--wot-cell-label-font-size, $typography-body-size-main) !default;
 // 标签行高
-$cell-label-line-height: var(--wot-cell-label-line-height, $typography-body-line--height-size-main) !default;
+$cell-label-line-height: var(--wot-cell-label-line-height, $typography-body-line-height-size-main) !default;
 // 值字号
 $cell-value-font-size: var(--wot-cell-value-font-size, $typography-body-size-main) !default;
 // 值行高
-$cell-value-line-height: var(--wot-cell-value-line-height, $typography-body-line--height-size-main) !default;
+$cell-value-line-height: var(--wot-cell-value-line-height, $typography-body-line-height-size-main) !default;
 // 大尺寸值字号
 $cell-value-font-size-large: var(--wot-cell-value-font-size-large, $typography-body-size-extra-large) !default;
 // 大尺寸值行高
-$cell-value-line-height-large: var(--wot-cell-value-line-height-large, $typography-body-line--height-size-extra-large) !default;
+$cell-value-line-height-large: var(--wot-cell-value-line-height-large, $typography-body-line-height-size-extra-large) !default;
 // 大尺寸标题字号
 $cell-title-font-size-large: var(--wot-cell-title-font-size-large, $typography-body-size-extra-large) !default;
 // 大尺寸标题行高
-$cell-title-line-height-large: var(--wot-cell-title-line-height-large, $typography-body-line--height-size-extra-large) !default;
+$cell-title-line-height-large: var(--wot-cell-title-line-height-large, $typography-body-line-height-size-extra-large) !default;
 // 大尺寸标签字号
 $cell-label-font-size-large: var(--wot-cell-label-font-size-large, $typography-body-size-extra-large) !default;
 // 大尺寸标签行高
-$cell-label-line-height-large: var(--wot-cell-label-line-height-large, $typography-body-line--height-size-extra-large) !default;
+$cell-label-line-height-large: var(--wot-cell-label-line-height-large, $typography-body-line-height-size-extra-large) !default;
 // 必填标记字号
 $cell-required-font-size: var(--wot-cell-required-font-size, $typography-body-size-main) !default;
 // 必填标记行高
-$cell-required-line-height: var(--wot-cell-required-line-height, $typography-body-line--height-size-main) !default;
+$cell-required-line-height: var(--wot-cell-required-line-height, $typography-body-line-height-size-main) !default;
 // 占位符字号
 $cell-placeholder-font-size: var(--wot-cell-placeholder-font-size, $typography-body-size-main) !default;
 // 占位符行高
-$cell-placeholder-line-height: var(--wot-cell-placeholder-line-height, $typography-body-line--height-size-main) !default;
+$cell-placeholder-line-height: var(--wot-cell-placeholder-line-height, $typography-body-line-height-size-main) !default;
 // 单元格内边距
 $cell-padding: var(--wot-cell-padding, $padding-loose) !default;
 // 大尺寸单元格内边距

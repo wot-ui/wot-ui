@@ -223,7 +223,7 @@ const beforeChange: InputNumberBeforeChange = (value) => {
     font-size: $typography-label-size-main;
     color: $text-auxiliary;
     margin-top: $n-12;
-    line-height: $typography-label-line--height-size-main;
+    line-height: $typography-label-line-height-size-main;
     padding: $spacing-tight;
     background: $filled-content;
     border-radius: $radius-main;

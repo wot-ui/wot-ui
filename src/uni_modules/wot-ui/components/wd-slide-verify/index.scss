@@ -18,7 +18,7 @@ $slide-verify-text-color: var(--wot-slide-verify-text-color, $text-main) !defaul
 // 提示文字字号
 $slide-verify-text-font-size: var(--wot-slide-verify-text-font-size, $typography-label-size-main) !default;
 // 提示文字行高
-$slide-verify-text-line-height: var(--wot-slide-verify-text-line-height, $typography-label-line--height-size-main) !default;
+$slide-verify-text-line-height: var(--wot-slide-verify-text-line-height, $typography-label-line-height-size-main) !default;
 // 成功态文字颜色
 $slide-verify-success-text-color: var(--wot-slide-verify-success-text-color, $text-white) !default;
 // 滑块背景色

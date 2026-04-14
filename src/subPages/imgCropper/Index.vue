@@ -310,7 +310,7 @@ function getHeight(ratio: string): string {
     &--circular {
       width: 200px;
       height: 200px;
-      border-radius: $radius-radius-full;
+      border-radius: $radius-full;
     }
 
     // 矩形占位符
@@ -331,14 +331,14 @@ function getHeight(ratio: string): string {
   &__image-label {
     font-size: $typography-label-size-main;
     color: $text-auxiliary;
-    line-height: $typography-label-line--height-size-super-small;
+    line-height: $typography-label-line-height-size-super-small;
     margin-top: $spacing-tight;
   }
 
   // 个人资料页面的图片样式
   &__profile-image {
     border: $stroke-main solid $border-light;
-    border-radius: $radius-radius-full;
+    border-radius: $radius-full;
     transition: border-color 200ms ease;
   }
 

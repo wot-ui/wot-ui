@@ -18,7 +18,7 @@ $dialog-title-color: var(--wot-dialog-title-color, $text-main) !default;
 // 标题文字字号
 $dialog-title-font-size: var(--wot-dialog-title-font-size, $typography-body-size-extra-large) !default;
 // 标题文字行高
-$dialog-title-line-height: var(--wot-dialog-title-line-height, $typography-body-line--height-size-extra-large) !default;
+$dialog-title-line-height: var(--wot-dialog-title-line-height, $typography-body-line-height-size-extra-large) !default;
 // 标题文字字重
 $dialog-title-font-weight: var(--wot-dialog-title-font-weight, $font-weight-medium) !default;
 // 标题底部外边距
@@ -28,7 +28,7 @@ $dialog-content-color: var(--wot-dialog-content-color, $text-secondary) !default
 // 内容文字字号
 $dialog-content-font-size: var(--wot-dialog-content-font-size, $typography-body-size-main) !default;
 // 内容文字行高
-$dialog-content-line-height: var(--wot-dialog-content-line-height, $typography-body-line--height-size-main) !default;
+$dialog-content-line-height: var(--wot-dialog-content-line-height, $typography-body-line-height-size-main) !default;
 // 内容区内边距
 $dialog-content-padding: var(--wot-dialog-content-padding, $spacing-loose) !default;
 // 内容区最大高度
@@ -40,7 +40,7 @@ $dialog-content-input-error-color: var(--wot-dialog-content-input-error-color, $
 // 输入错误文字字号
 $dialog-content-input-font-size: var(--wot-dialog-content-input-font-size, $typography-label-size-main) !default;
 // 输入错误文字行高
-$dialog-content-input-line-height: var(--wot-dialog-content-input-line-height, $typography-label-line--height-size-main) !default;
+$dialog-content-input-line-height: var(--wot-dialog-content-input-line-height, $typography-label-line-height-size-main) !default;
 // 输入提示顶部内边距
 $dialog-content-input-padding-top: var(--wot-dialog-content-input-padding-top, $spacing-tight) !default;
 // 滚动条颜色

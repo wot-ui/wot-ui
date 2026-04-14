@@ -43,12 +43,12 @@ $switch-inner-font-size: var(--wot-switch-inner-font-size, $typography-body-size
 // 方角模式圆角
 $switch-radius: var(--wot-switch-radius, $radius-main) !default;
 // 圆角模式圆角
-$switch-radius-full: var(--wot-switch-radius-full, $radius-radius-full) !default;
+$switch-radius-full: var(--wot-switch-radius-full, $radius-full) !default;
 
 // 方角模式操作块圆角
 $switch-radius-action: var(--wot-switch-radius-action, $radius-small) !default;
 // 圆角模式操作块圆角
-$switch-radius-action-full: var(--wot-switch-radius-action-full, $radius-radius-full) !default;
+$switch-radius-action-full: var(--wot-switch-radius-action-full, $radius-full) !default;
 
 // 图标与文案间距
 $switch-spacing: var(--wot-switch-spacing, $spacing-super-tight) !default;

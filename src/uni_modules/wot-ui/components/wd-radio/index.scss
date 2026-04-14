@@ -14,7 +14,7 @@ $radio-label-font-size: var(--wot-radio-label-font-size, $typography-body-size-m
 // 文案颜色
 $radio-label-color: var(--wot-radio-label-color, $text-main) !default;
 // 文案行高
-$radio-label-line-height: var(--wot-radio-label-line-height, $typography-body-line--height-size-main) !default;
+$radio-label-line-height: var(--wot-radio-label-line-height, $typography-body-line-height-size-main) !default;
 // 禁用态透明度
 $radio-disabled: var(--wot-radio-disabled, $opacity-disabled) !default;
 // 水平模式间距
@@ -24,13 +24,13 @@ $radio-button-margin: var(--wot-radio-button-margin, $spacing-zero $spacing-extr
 // 按钮模式边框宽度
 $radio-button-border-width: var(--wot-radio-button-border-width, $n-1) !default;
 // 按钮模式标记圆角
-$radio-button-shape-border-radius: var(--wot-radio-button-shape-border-radius, $radius-radius-full) !default;
+$radio-button-shape-border-radius: var(--wot-radio-button-shape-border-radius, $radius-full) !default;
 // 按钮模式标记尺寸
 $radio-button-shape-size: var(--wot-radio-button-shape-size, $n-26) !default;
 // 按钮模式字号
 $radio-button-font-size: var(--wot-radio-button-font-size, $typography-body-size-main) !default;
 // 按钮模式行高
-$radio-button-line-height: var(--wot-radio-button-line-height, $typography-body-line--height-size-main) !default;
+$radio-button-line-height: var(--wot-radio-button-line-height, $typography-body-line-height-size-main) !default;
 // 按钮模式背景色
 $radio-button-bg: var(--wot-radio-button-bg, $filled-bottom) !default;
 // 按钮模式选中背景色

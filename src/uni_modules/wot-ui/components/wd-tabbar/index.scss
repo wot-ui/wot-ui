@@ -10,7 +10,7 @@ $tabbar-z-index: var(--wot-tabbar-z-index, 10) !default;
 // round 变体水平外边距
 $tabbar-round-margin-horizontal: var(--wot-tabbar-round-margin-horizontal, $spacing-extra-loose) !default;
 // round 变体圆角
-$tabbar-round-radius: var(--wot-tabbar-round-radius, $radius-radius-full) !default;
+$tabbar-round-radius: var(--wot-tabbar-round-radius, $radius-full) !default;
 // round 变体阴影
 $tabbar-round-shadow: var(
   --wot-tabbar-round-shadow,

@@ -10,7 +10,7 @@ $loadmore-color: var(--wot-loadmore-color, $text-secondary) !default;
 // 默认文字字号
 $loadmore-font-size: var(--wot-loadmore-font-size, $typography-body-size-main) !default;
 // 默认文字行高
-$loadmore-line-height: var(--wot-loadmore-line-height, $typography-body-line--height-size-main) !default;
+$loadmore-line-height: var(--wot-loadmore-line-height, $typography-body-line-height-size-main) !default;
 // 加载图标尺寸
 $loadmore-loading-size: var(--wot-loadmore-loading-size, $n-28) !default;
 // 加载图标与文字间距
@@ -20,7 +20,7 @@ $loadmore-refresh-color: var(--wot-loadmore-refresh-color, $primary-6) !default;
 // 刷新图标字号
 $loadmore-refresh-font-size: var(--wot-loadmore-refresh-font-size, $typography-body-size-extra-large) !default;
 // 刷新图标行高
-$loadmore-refresh-line-height: var(--wot-loadmore-refresh-line-height, $typography-body-line--height-size-extra-large) !default;
+$loadmore-refresh-line-height: var(--wot-loadmore-refresh-line-height, $typography-body-line-height-size-extra-large) !default;
 // 重试文案与图标间距
 $loadmore-retry-spacing: var(--wot-loadmore-retry-spacing, 0 $spacing-extra-tight) !default;
 

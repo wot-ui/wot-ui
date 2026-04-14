@@ -154,7 +154,7 @@ BEM 配合 SCSS `&` 嵌套，避免重复书写 Block 名称：
 | 内边距    | `--wot-padding-zero` ~ `--wot-padding-ultra-spacious`                                                         | 内边距                 |
 | 圆角      | `--wot-radius-zero` / `small` / `main` / `large` / `extra-large` / `super-large` / `ultra-large` / `radius-full` | 圆角                   |
 | 字号      | `--wot-typography-label-size-*` / `--wot-typography-body-size-*` / `--wot-typography-title-size-*`             | 字号分 label/body/title 三级 |
-| 行高      | `--wot-typography-label-line--height-size-*` / `--wot-typography-body-line--height-size-*` / `--wot-typography-title-line--height-size-*` | 行高对应字号级别       |
+| 行高      | `--wot-typography-label-line-height-size-*` / `--wot-typography-body-line-height-size-*` / `--wot-typography-title-line-height-size-*` | 行高对应字号级别       |
 | 字重      | `--wot-font-weight-regular` / `medium` / `semibold` / `bold` / ...                                            | 字重                   |
 | 边框宽度  | `--wot-stroke-zero` / `light` / `main` / `blod`                                                               | 边框线宽              |
 | 基础尺寸  | `--wot-n-0` ~ `--wot-n-375` / `--wot-n-full`                                                                  | 基础数字（px）        |
@@ -297,7 +297,7 @@ grep -n 'class="' <target-file>
   - `12px` → `$radius-extra-large`
   - `16px` → `$radius-super-large`
   - `20px` → `$radius-ultra-large`
-  - `9999px` / `50%`（胶囊） → `$radius-radius-full`
+  - `9999px` / `50%`（胶囊） → `$radius-full`
 
 6. **边框宽度** → 匹配 stroke 变量
   - `0.5px` → `$stroke-light`
@@ -362,7 +362,7 @@ grep -n 'class="' <target-file>
 5. **不改动 `<script>` 中的逻辑**。
 6. 对于 rpx 单位的值，同样使用对照表换算后映射。常见的 rpx 值除以 2 即为 px 值：`20rpx` = `10px` → `$spacing-main`；如果是在字符串内联样式中，则写成 `var(--wot-spacing-main)`。
 7. 对于确实没有合适语义变量对应的值（如 `height: 250vh`、`width: 100vw`、极特殊的像素值），**保留原值**不做替换。
-8. 对于 `line-height: 1.4` / `line-height: 1.5` 等无单位的行高倍数，如果当前元素使用的 `font-size` 有对应的语义字号（如 `$typography-body-size-main`），则应将其 `line-height` 一并替换为同级别的行高变量（如 `$typography-body-line--height-size-main`）。如果没有对应的 `font-size`，则保留原值不做替换。
+8. 对于 `line-height: 1.4` / `line-height: 1.5` 等无单位的行高倍数，如果当前元素使用的 `font-size` 有对应的语义字号（如 `$typography-body-size-main`），则应将其 `line-height` 一并替换为同级别的行高变量（如 `$typography-body-line-height-size-main`）。如果没有对应的 `font-size`，则保留原值不做替换。
 
 ### 第七步：验证
 

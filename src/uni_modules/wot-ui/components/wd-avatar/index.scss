@@ -22,19 +22,19 @@ $avatar-font-size-medium: var(--wot-avatar-font-size-medium, $typography-title-s
 // 小尺寸文字字号
 $avatar-font-size-small: var(--wot-avatar-font-size-small, $typography-title-size-main) !default;
 // 默认文字行高
-$avatar-line-height: var(--wot-avatar-line-height, $typography-title-line--height-size-large) !default;
+$avatar-line-height: var(--wot-avatar-line-height, $typography-title-line-height-size-large) !default;
 // 大尺寸文字行高
-$avatar-line-height-large: var(--wot-avatar-line-height-large, $typography-title-line--height-size-extra-large) !default;
+$avatar-line-height-large: var(--wot-avatar-line-height-large, $typography-title-line-height-size-extra-large) !default;
 // 中尺寸文字行高
-$avatar-line-height-medium: var(--wot-avatar-line-height-medium, $typography-title-line--height-size-large) !default;
+$avatar-line-height-medium: var(--wot-avatar-line-height-medium, $typography-title-line-height-size-large) !default;
 // 小尺寸文字行高
-$avatar-line-height-small: var(--wot-avatar-line-height-small, $typography-title-line--height-size-main) !default;
+$avatar-line-height-small: var(--wot-avatar-line-height-small, $typography-title-line-height-size-main) !default;
 // 头像背景颜色
 $avatar-bg: var(--wot-avatar-bg, $filled-strong) !default;
 // 默认圆角
 $avatar-border-radius: var(--wot-avatar-border-radius, $radius-main) !default;
 // 全圆角
-$avatar-border-radius-full: var(--wot-avatar-border-radius-full, $radius-radius-full) !default;
+$avatar-border-radius-full: var(--wot-avatar-border-radius-full, $radius-full) !default;
 // 头像重叠距离
 $avatar-overlap: var(--wot-avatar-overlap) !default;
 // 图标颜色

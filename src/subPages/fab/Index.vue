@@ -170,7 +170,7 @@ function handleCustomClick() {
     width: $n-32 !important;
     height: $n-32 !important;
     margin: $spacing-extra-tight;
-    border-radius: $radius-radius-full !important;
+    border-radius: $radius-full !important;
   }
 
   :deep(.page-fab__radio) {

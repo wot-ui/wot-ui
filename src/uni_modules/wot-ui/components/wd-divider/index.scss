@@ -12,7 +12,7 @@ $divider-margin: var(--wot-divider-margin, $spacing-extra-loose $spacing-zero) !
 // 分割线厚度
 $divider-line-height: var(--wot-divider-line-height, $n-3) !default;
 // 内容文字行高
-$divider-size-line-height: var(--wot-divider-size-line-height, $typography-body-line--height-size-main) !default;
+$divider-size-line-height: var(--wot-divider-size-line-height, $typography-body-line-height-size-main) !default;
 // 纵向分割线高度
 $divider-size-vertical-height: var(--wot-divider-size-vertical-height, $spacing-extra-loose) !default;
 // 纵向分割线宽度

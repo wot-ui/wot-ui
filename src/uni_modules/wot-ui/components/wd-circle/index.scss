@@ -6,7 +6,7 @@ $circle-text-color: var(--wot-circle-text-color, currentColor) !default;
 // 圆环文字字号
 $circle-text-font-size: var(--wot-circle-text-size, $typography-title-size-large) !default;
 // 圆环文字行高
-$circle-text-line-height: var(--wot-circle-text-line-height, $typography-title-line--height-size-large) !default;
+$circle-text-line-height: var(--wot-circle-text-line-height, $typography-title-line-height-size-large) !default;
 
 
 @include b(circle) {

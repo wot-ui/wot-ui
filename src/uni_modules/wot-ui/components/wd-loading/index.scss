@@ -18,7 +18,7 @@ $loading-size-height: var(--wot-loading-size-height, 1em) !default;
 // 圆形加载器描边宽度
 $loading-spinner-circle-stroke-width: var(--wot-loading-spinner-circle-stroke-width, 15%) !default;
 // 圆形加载器圆角
-$loading-spinner-circle-radius: var(--wot-loading-spinner-circle-radius, $radius-radius-full) !default;
+$loading-spinner-circle-radius: var(--wot-loading-spinner-circle-radius, $radius-full) !default;
 // 旋转动画时长
 $loading-spinner-animation-duration: var(--wot-loading-spinner-animation-duration, 0.8s) !default;
 // 条状点宽度
@@ -26,11 +26,11 @@ $loading-spinner-dot-width: var(--wot-loading-spinner-dot-width, 10%) !default;
 // 条状点高度
 $loading-spinner-dot-height: var(--wot-loading-spinner-dot-height, 25%) !default;
 // 条状点圆角
-$loading-spinner-dot-radius: var(--wot-loading-spinner-dot-radius, $radius-radius-full) !default;
+$loading-spinner-dot-radius: var(--wot-loading-spinner-dot-radius, $radius-full) !default;
 // 点状加载器单点尺寸
 $loading-spinner-dots-dot-size: var(--wot-loading-spinner-dots-dot-size, 20%) !default;
 // 点状加载器单点圆角
-$loading-spinner-dots-dot-radius: var(--wot-loading-spinner-dots-dot-radius, $radius-radius-full) !default;
+$loading-spinner-dots-dot-radius: var(--wot-loading-spinner-dots-dot-radius, $radius-full) !default;
 // 波形加载器间距
 $loading-wave-gap: var(--wot-loading-wave-gap, 6.25%) !default;
 // 波形加载器单柱宽度
@@ -38,7 +38,7 @@ $loading-wave-bar-width: var(--wot-loading-wave-bar-width, 12.5%) !default;
 // 波形加载器单柱高度
 $loading-wave-bar-height: var(--wot-loading-wave-bar-height, 83.333333%) !default;
 // 波形加载器单柱圆角
-$loading-wave-bar-radius: var(--wot-loading-wave-bar-radius, $radius-radius-full) !default;
+$loading-wave-bar-radius: var(--wot-loading-wave-bar-radius, $radius-full) !default;
 // 波形加载器动画时长
 $loading-wave-animation-duration: var(--wot-loading-wave-animation-duration, 834ms) !default;
 // 加载器内边距
@@ -48,7 +48,7 @@ $loading-text-spacing: var(--wot-loading-text-spacing, $spacing-extra-tight) !de
 // 文本字号
 $loading-text-font-size: var(--wot-loading-text-font-size, $typography-body-size-main) !default;
 // 文本行高
-$loading-text-line-height: var(--wot-loading-text-line-height, $typography-body-line--height-size-main) !default;
+$loading-text-line-height: var(--wot-loading-text-line-height, $typography-body-line-height-size-main) !default;
 
 
 @mixin generate($n, $i: 1) {

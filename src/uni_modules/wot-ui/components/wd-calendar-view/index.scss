@@ -1,7 +1,7 @@
 @use '../../styles/variable.scss' as *;
 
 $calendar-view-panel-title-font-size: var(--wot-calendar-view-panel-title-font-size, $typography-body-size-main) !default; // 面板标题字号
-$calendar-view-panel-title-line-height: var(--wot-calendar-view-panel-title-line-height, $typography-body-line--height-size-main) !default; // 面板标题行高
+$calendar-view-panel-title-line-height: var(--wot-calendar-view-panel-title-line-height, $typography-body-line-height-size-main) !default; // 面板标题行高
 $calendar-view-panel-title-color: var(--wot-calendar-view-panel-title-color, $text-main) !default; // 面板标题文字颜色
 $calendar-view-panel-title-padding: var(--wot-calendar-view-panel-title-padding, $padding-extra-tight $padding-loose) !default; // 面板标题内边距
 $calendar-view-panel-title-font-weight: var(--wot-calendar-view-panel-title-font-weight, $font-weight-medium) !default; // 面板标题字重
@@ -9,7 +9,7 @@ $calendar-view-panel-title-margin: var(--wot-calendar-view-panel-title-margin, $
 $calendar-view-weeks-padding: var(--wot-calendar-view-weeks-padding, $padding-tight $spacing-loose) !default; // 星期栏内边距
 $calendar-view-week-color: var(--wot-calendar-view-week-color, $text-secondary) !default; // 星期文字颜色
 $calendar-view-week-font-size: var(--wot-calendar-view-week-font-size, $typography-body-size-main) !default; // 星期文字字号
-$calendar-view-week-line-height: var(--wot-calendar-view-week-line-height, $typography-body-line--height-size-main) !default; // 星期文字行高
+$calendar-view-week-line-height: var(--wot-calendar-view-week-line-height, $typography-body-line-height-size-main) !default; // 星期文字行高
 $calendar-view-day-font-size: var(--wot-calendar-view-day-font-size, $typography-body-size-extra-large) !default; // 日期单元字号
 $calendar-view-day-color: var(--wot-calendar-view-day-color, $text-main) !default; // 日期单元文字颜色
 $calendar-view-day-font-weight: var(--wot-calendar-view-day-font-weight, $font-weight-medium) !default; // 日期单元字重
@@ -24,7 +24,7 @@ $calendar-view-range-bg: var(--wot-calendar-view-range-bg, $primary-2) !default;
 $calendar-view-range-color: var(--wot-calendar-view-range-color, $text-main) !default; // 区间态文字颜色
 $calendar-view-border-radius-active: var(--wot-calendar-view-border-radius-active, $radius-main) !default; // 激活态圆角
 $calendar-view-info-font-size: var(--wot-calendar-view-info-font-size, $typography-label-size-extra-small) !default; // 顶部/底部辅助信息字号
-$calendar-view-info-line-height: var(--wot-calendar-view-info-line-height, $typography-label-line--height-size-extra-small) !default; // 顶部/底部辅助信息行高
+$calendar-view-info-line-height: var(--wot-calendar-view-info-line-height, $typography-label-line-height-size-extra-small) !default; // 顶部/底部辅助信息行高
 $calendar-view-info-position: var(--wot-calendar-view-info-position, $spacing-extra-tight) !default; // 顶部/底部辅助信息偏移位置
 $calendar-view-item-margin-bottom: var(--wot-calendar-view-item-margin-bottom, $spacing-super-tight) !default; // 日期/月份单元底部间距
 $calendar-view-item-padding: var(--wot-calendar-view-item-padding, $padding-zero $spacing-loose) !default; // 日期/月份容器内边距

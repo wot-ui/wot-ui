@@ -224,7 +224,7 @@ function openChildPopup(useRootPortal: boolean) {
     color: $text-auxiliary;
     font-size: $typography-body-size-main;
     text-align: center;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
   }
 
   &__buttons {

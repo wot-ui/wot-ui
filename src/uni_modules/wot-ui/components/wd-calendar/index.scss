@@ -10,7 +10,7 @@ $calendar-range-padding: var(--wot-calendar-range-padding, $padding-zero $paddin
 $calendar-range-font-size: var(--wot-calendar-range-font-size, $typography-body-size-main) !default; // 范围标签字号
 $calendar-range-item-font-size: var(--wot-calendar-range-item-font-size, $typography-body-size-extra-large) !default; // 范围标签项字号
 $calendar-range-item-font-weight: var(--wot-calendar-range-item-font-weight, $font-weight-medium) !default; // 范围标签项字重
-$calendar-range-item-line-height: var(--wot-calendar-range-item-line-height, $typography-body-line--height-size-extra-large) !default; // 范围标签项行高
+$calendar-range-item-line-height: var(--wot-calendar-range-item-line-height, $typography-body-line-height-size-extra-large) !default; // 范围标签项行高
 $calendar-range-item-padding: var(--wot-calendar-range-item-padding, $spacing-loose $spacing-zero) !default; // 范围标签项内边距
 $calendar-range-item-color: var(--wot-calendar-range-item-color, $primary-6) !default; // 范围标签项颜色
 $calendar-range-item-color-placeholder: var(--wot-calendar-range-item-color-placeholder, $text-placeholder) !default; // 占位符颜色

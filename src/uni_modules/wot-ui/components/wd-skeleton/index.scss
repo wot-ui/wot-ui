@@ -16,7 +16,7 @@ $skeleton-text-border-radius: var(--wot-skeleton-text-border-radius, $radius-sma
 // 矩形占位圆角
 $skeleton-rect-border-radius: var(--wot-skeleton-rect-border-radius, $radius-main) !default;
 // 圆形占位圆角
-$skeleton-circle-border-radius: var(--wot-skeleton-circle-border-radius, $radius-radius-full) !default;
+$skeleton-circle-border-radius: var(--wot-skeleton-circle-border-radius, $radius-full) !default;
 // 渐变动画高亮色
 $skeleton-animation-gradient: var(--wot-skeleton-animation-gradient, $filled-bottom) !default;
 // 闪烁动画高亮色

@@ -15,14 +15,14 @@ $swiper-nav-dot-margin: var(--wot-swiper-nav-dot-margin, $spacing-super-tight) !
 // dots-bar 激活宽度
 $swiper-nav-dots-bar-width-active: var(--wot-swiper-nav-dots-bar-width-active, $n-15) !default;
 // dot 圆角
-$swiper-nav-dot-border-radius: var(--wot-swiper-nav-dot-border-radius, $radius-radius-full) !default;
+$swiper-nav-dot-border-radius: var(--wot-swiper-nav-dot-border-radius, $radius-full) !default;
 // fraction
 // 分数模式文字颜色
 $swiper-nav-fraction-color: var(--wot-swiper-nav-fraction-color, $icon-white) !default;
 // 分数模式背景色
 $swiper-nav-fraction-bg: var(--wot-swiper-nav-fraction-bg, $opacfilled-main-cover) !default;
 // 分数模式行高
-$swiper-nav-fraction-line-height: var(--wot-swiper-nav-fraction-line-height, $typography-label-line--height-size-large) !default;
+$swiper-nav-fraction-line-height: var(--wot-swiper-nav-fraction-line-height, $typography-label-line-height-size-large) !default;
 // 分数模式字号
 $swiper-nav-fraction-font-size: var(--wot-swiper-nav-fraction-font-size, $typography-label-size-large) !default;
 // 分数模式内边距
@@ -41,7 +41,7 @@ $swiper-nav-btn-icon-size: var(--wot-swiper-nav-btn-icon-size, $n-16) !default;
 // 按钮水平间距
 $swiper-nav-btn-spacing: var(--wot-swiper-nav-btn-spacing, $spacing-loose) !default;
 // 按钮圆角
-$swiper-nav-btn-border-radius: var(--wot-swiper-nav-btn-border-radius, $radius-radius-full) !default;
+$swiper-nav-btn-border-radius: var(--wot-swiper-nav-btn-border-radius, $radius-full) !default;
 
 @include b(swiper-nav) {
 

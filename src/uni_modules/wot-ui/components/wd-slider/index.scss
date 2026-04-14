@@ -7,7 +7,7 @@
 $slider-bar-height: var(--wot-slider-bar-height, $n-2) !default;
 $slider-bar-height-capsule: var(--wot-slider-bar-height-capsule, $n-24) !default;
 $slider-bar-bg: var(--wot-slider-bar-bg, $filled-strong) !default;
-$slider-bar-radius: var(--wot-slider-bar-radius, $radius-radius-full) !default;
+$slider-bar-radius: var(--wot-slider-bar-radius, $radius-full) !default;
 $slider-bar-height-vertical: var(--wot-slider-bar-height-vertical, $n-248) !default;
 
 /* 进度条 (Range) */
@@ -26,7 +26,7 @@ $slider-dot-popover-color: var(--wot-slider-dot-popover-color, $text-white) !def
 $slider-dot-popover-radius: var(--wot-slider-dot-popover-radius, $radius-main) !default;
 $slider-dot-popover-padding: var(--wot-slider-dot-popover-padding, $padding-extra-tight $padding-loose) !default;
 $slider-dot-popover-font-size: var(--wot-slider-dot-popover-font-size, $typography-body-size-main) !default;
-$slider-dot-popover-line-height: var(--wot-slider-dot-popover-line-height, $typography-body-line--height-size-main) !default;
+$slider-dot-popover-line-height: var(--wot-slider-dot-popover-line-height, $typography-body-line-height-size-main) !default;
 $slider-dot-popover-gap: var(--wot-slider-dot-popover-gap, $n-3) !default;
 $slider-dot-popover-arrow-width: var(--wot-slider-dot-popover-arrow-width, $n-12) !default;
 $slider-dot-popover-arrow-height: var(--wot-slider-dot-popover-arrow-height, $n-6) !default;
@@ -37,14 +37,14 @@ $slider-dot-popover-easing-enter: var(--wot-slider-dot-popover-easing-enter, cub
 
 /* 刻度 (Scale) */
 $slider-scale-size: var(--wot-slider-scale-size, $n-6) !default;
-$slider-scale-border-radius: var(--wot-slider-scale-border-radius, $radius-radius-full) !default;
+$slider-scale-border-radius: var(--wot-slider-scale-border-radius, $radius-full) !default;
 $slider-scale-bg: var(--wot-slider-scale-bg, $filled-strong) !default;
 $slider-scale-bg-active: var(--wot-slider-scale-bg-active, $primary-6) !default;
 $slider-scale-capsule-bg: var(--wot-slider-scale-capsule-bg, $filled-strong) !default;
 $slider-scale-capsule-width: var(--wot-slider-scale-capsule-width, $n-2) !default;
 $slider-scale-capsule-border-radius: var(--wot-slider-scale-capsule-border-radius, $radius-zero) !default;
 $slider-scale-desc-font-size: var(--wot-slider-scale-desc-font-size, $typography-body-size-main) !default;
-$slider-scale-desc-line-height: var(--wot-slider-scale-desc-line-height, $typography-body-line--height-size-main) !default;
+$slider-scale-desc-line-height: var(--wot-slider-scale-desc-line-height, $typography-body-line-height-size-main) !default;
 $slider-scale-desc-color: var(--wot-slider-scale-desc-color, $text-main) !default;
 $slider-scale-desc-spacing: var(--wot-slider-scale-desc-spacing, $spacing-tight) !default;
 $slider-marks-desc-spacing: var(--wot-slider-marks-desc-spacing, calc($slider-dot-size / 2 + $spacing-tight)) !default;

@@ -24,9 +24,9 @@ $badge-info-color: var(--wot-badge-info-color, $text-secondary) !default;
 // 徽标文本字号
 $badge-font-size: var(--wot-badge-font-size, $typography-label-size-extra-small) !default;
 // 徽标文本行高
-$badge-line-height: var(--wot-badge-line-height, $typography-label-line--height-size-extra-small) !default;
+$badge-line-height: var(--wot-badge-line-height, $typography-label-line-height-size-extra-small) !default;
 // 默认圆角
-$badge-border-radius: var(--wot-badge-border-radius, $radius-radius-full) !default;
+$badge-border-radius: var(--wot-badge-border-radius, $radius-full) !default;
 // 方形圆角
 $badge-square-border-radius: var(--wot-badge-square-border-radius, $radius-main) !default;
 // 气泡圆角

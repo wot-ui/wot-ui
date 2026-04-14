@@ -39,7 +39,7 @@
         <wd-text :text="text" :lines="2" size="var(--wot-typography-body-size-extra-large)"></wd-text>
       </demo-group-item>
       <demo-group-item title="lineHeight">
-        <wd-text :text="text" :lines="2" lineHeight="var(--wot-typography-body-line--height-size-extra-large)"></wd-text>
+        <wd-text :text="text" :lines="2" lineHeight="var(--wot-typography-body-line-height-size-extra-large)"></wd-text>
       </demo-group-item>
       <demo-group-item :title="$t('wen-zi-zhuang-shi')">
         <wd-text :text="text" type="warning" decoration="underline" />

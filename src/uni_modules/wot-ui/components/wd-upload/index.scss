@@ -17,7 +17,7 @@ $upload-evoke-color: var(--wot-upload-evoke-color, $text-auxiliary) !default;
 // 唤起项文字大小
 $upload-evoke-font-size: var(--wot-upload-evoke-font-size, $typography-body-size-main) !default;
 // 唤起项文字行高
-$upload-evoke-line-height: var(--wot-upload-evoke-line-height, $typography-body-line--height-size-main) !default;
+$upload-evoke-line-height: var(--wot-upload-evoke-line-height, $typography-body-line-height-size-main) !default;
 // 唤起项禁用文字颜色
 $upload-evoke-color-disabled: var(--wot-upload-evoke-color-disabled, $text-disabled) !default;
 // 唤起项图标颜色
@@ -37,13 +37,13 @@ $upload-close-icon-color: var(--wot-upload-close-icon-color, $icon-white) !defau
 // 进度文字字号
 $upload-progress-font-size: var(--wot-upload-progress-font-size, $typography-body-size-main) !default;
 // 进度文字行高
-$upload-progress-line-height: var(--wot-upload-progress-line-height, $typography-body-line--height-size-main) !default;
+$upload-progress-line-height: var(--wot-upload-progress-line-height, $typography-body-line-height-size-main) !default;
 // 进度文字颜色
 $upload-progress-color: var(--wot-upload-progress-color, $text-white) !default;
 // 文件名文字字号
 $upload-file-font-size: var(--wot-upload-file-font-size, $typography-label-size-main) !default;
 // 文件名文字行高
-$upload-file-line-height: var(--wot-upload-file-line-height, $typography-label-line--height-size-main) !default;
+$upload-file-line-height: var(--wot-upload-file-line-height, $typography-label-line-height-size-main) !default;
 // 文件名文字颜色
 $upload-file-color: var(--wot-upload-file-color, $text-secondary) !default;
 // 文件/视频名称内边距

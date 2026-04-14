@@ -4,11 +4,11 @@
 // 数字主体文本字号
 $count-to-text-font-size: var(--wot-count-to-text-font-size, $typography-body-size-ultra-large) !default;
 // 数字主体文本行高
-$count-to-text-line-height: var(--wot-count-to-text-line-height, $typography-body-line--height-size-ultra-large) !default;
+$count-to-text-line-height: var(--wot-count-to-text-line-height, $typography-body-line-height-size-ultra-large) !default;
 // 分隔文本字号
 $count-to-separator-text-font-size: var(--wot-count-to-separator-text-font-size, $typography-label-size-main) !default;
 // 分隔文本行高
-$count-to-separator-text-line-height: var(--wot-count-to-separator-text-line-height, $typography-label-line--height-size-main) !default;
+$count-to-separator-text-line-height: var(--wot-count-to-separator-text-line-height, $typography-label-line-height-size-main) !default;
 
 @include b(count-to) {
   vertical-align: bottom;

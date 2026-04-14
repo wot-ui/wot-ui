@@ -14,7 +14,7 @@ $table-border-width: var(--wot-table-border-width, $stroke-main) !default;
 // 单元格字号
 $table-cell-font-size: var(--wot-table-cell-font-size, $typography-body-size-main) !default;
 // 单元格行高
-$table-cell-line-height: var(--wot-table-cell-line-height, $typography-body-line--height-size-main) !default;
+$table-cell-line-height: var(--wot-table-cell-line-height, $typography-body-line-height-size-main) !default;
 // 单元格内边距
 $table-cell-padding: var(--wot-table-cell-padding, $padding-loose $padding-extra-loose) !default;
 // 固定列阴影渐变背景

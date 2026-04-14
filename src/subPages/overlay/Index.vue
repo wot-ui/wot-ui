@@ -73,7 +73,7 @@ const lockScroll = ref<boolean>(true)
   &__lock-scroll-text {
     color: $text-secondary;
     font-size: $typography-body-size-main;
-    line-height: $typography-body-line--height-size-large;
+    line-height: $typography-body-line-height-size-large;
   }
 
   &__block {

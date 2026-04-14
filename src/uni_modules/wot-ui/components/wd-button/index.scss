@@ -125,13 +125,13 @@ $button-font-size-medium: var(--wot-button-font-size-medium, $typography-body-si
 // large 尺寸文字字号
 $button-font-size-large: var(--wot-button-font-size-large, $typography-body-size-extra-large) !default;
 // mini 尺寸文字行高
-$button-line-height-mini: var(--wot-button-line-height-mini, $typography-body-line--height-size-main) !default;
+$button-line-height-mini: var(--wot-button-line-height-mini, $typography-body-line-height-size-main) !default;
 // small 尺寸文字行高
-$button-line-height-small: var(--wot-button-line-height-small, $typography-body-line--height-size-main) !default;
+$button-line-height-small: var(--wot-button-line-height-small, $typography-body-line-height-size-main) !default;
 // medium 尺寸文字行高
-$button-line-height-medium: var(--wot-button-line-height-medium, $typography-body-line--height-size-extra-large) !default;
+$button-line-height-medium: var(--wot-button-line-height-medium, $typography-body-line-height-size-extra-large) !default;
 // large 尺寸文字行高
-$button-line-height-large: var(--wot-button-line-height-large, $typography-body-line--height-size-extra-large) !default;
+$button-line-height-large: var(--wot-button-line-height-large, $typography-body-line-height-size-extra-large) !default;
 // mini 尺寸左右内边距
 $button-left-right-padding-mini: var(--wot-button-left-right-padding-mini, $padding-loose) !default;
 // small 尺寸左右内边距
@@ -169,7 +169,7 @@ $button-spacing-block: var(--wot-button-spacing-block, $spacing-tight) !default;
 // 默认圆角
 $button-radius-main: var(--wot-button-radius-main, $radius-main) !default;
 // 圆形圆角
-$button-radius-full: var(--wot-button-radius-full, $radius-radius-full) !default;
+$button-radius-full: var(--wot-button-radius-full, $radius-full) !default;
 // 禁用态透明度
 $button-disabled: var(--wot-button-disabled, $opacity-disabled) !default;
 

@@ -26,7 +26,7 @@ $tooltip-close-icon-padding: var(--wot-tooltip-close-icon-padding, $padding-supe
 // 层级
 $tooltip-z-index: var(--wot-tooltip-z-index, 500) !default;
 // 行高
-$tooltip-line-height: var(--wot-tooltip-line-height, $typography-body-line--height-size-main) !default;
+$tooltip-line-height: var(--wot-tooltip-line-height, $typography-body-line-height-size-main) !default;
 
 @include b(tooltip) {
   position: relative;

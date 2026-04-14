@@ -77,7 +77,7 @@ const rootStyle = computed(() => {
     font-size: $typography-body-size-extra-large;
     font-weight: $font-weight-medium;
     color: $text-main;
-    line-height: $typography-body-line--height-size-large;
+    line-height: $typography-body-line-height-size-large;
     padding: $padding-loose;
   }
 

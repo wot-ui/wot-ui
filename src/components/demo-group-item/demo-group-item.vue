@@ -39,7 +39,7 @@ const props = withDefaults(defineProps<Props>(), {
     font-size: $typography-body-size-main;
     font-weight: $font-weight-medium;
     color: $text-main;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
   }
 
   &__container {

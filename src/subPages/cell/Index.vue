@@ -241,7 +241,7 @@ function showToast() {
     padding: 0 $padding-super-tight;
     border: $stroke-main solid $warning-main;
     font-size: $typography-label-size-extra-small;
-    line-height: $typography-label-line--height-size-extra-small;
+    line-height: $typography-label-line-height-size-extra-small;
     color: $warning-main;
   }
 }

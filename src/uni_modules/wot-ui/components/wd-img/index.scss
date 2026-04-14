@@ -2,7 +2,7 @@
 @use '../../styles/variable.scss' as *;
 
 // 圆形模式圆角
-$img-border-radius: var(--wot-img-border-radius, $radius-radius-full) !default;
+$img-border-radius: var(--wot-img-border-radius, $radius-full) !default;
 // 加载态文字颜色
 $img-loading-color: var(--wot-img-loading-color, $text-placeholder) !default;
 // 加载态背景色

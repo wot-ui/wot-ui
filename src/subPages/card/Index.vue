@@ -226,7 +226,7 @@ import blackMao from '../img/black_mao.png'
   &__content-text {
     font-size: $typography-body-size-main;
     color: $text-secondary;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
     text-align: justify;
   }
 
@@ -289,7 +289,7 @@ import blackMao from '../img/black_mao.png'
   &__desc {
     font-size: $typography-body-size-main;
     color: $text-secondary;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
     margin-bottom: $spacing-ultra-tight;
   }
 
@@ -336,7 +336,7 @@ import blackMao from '../img/black_mao.png'
     font-size: $typography-body-size-main;
     font-weight: $font-weight-medium;
     color: $text-main;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
   }
 
   &__meta-row {
@@ -418,7 +418,7 @@ import blackMao from '../img/black_mao.png'
   &__text {
     font-size: $typography-body-size-main;
     color: $text-secondary;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
     margin-bottom: $spacing-tight;
   }
 
@@ -464,7 +464,7 @@ import blackMao from '../img/black_mao.png'
   &__desc {
     font-size: $typography-body-size-main;
     color: $text-secondary;
-    line-height: $typography-body-line--height-size-main;
+    line-height: $typography-body-line-height-size-main;
   }
 }
 </style>

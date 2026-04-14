@@ -142,7 +142,7 @@ function handlePopupShow() {
   &__avatar {
     width: $n-32;
     height: $n-32;
-    border-radius: $radius-radius-full;
+    border-radius: $radius-full;
   }
 
   &__title {
