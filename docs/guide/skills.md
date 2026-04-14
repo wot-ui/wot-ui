@@ -14,6 +14,7 @@ Skills 是 AI 的“超能力模板”，是一套完整的、可复用的、能
 | --- | --- | --- | --- |
 | `wot-ui-v2` | 处理 wot-ui v2 组件库日常开发的核心技能。 | 组件选型、API 查询、生成 Vue3 + uni-app 页面代码、排查常见组件坑位（如 Toast, Dialog 挂载等）。 | [skills/wot-ui-v2/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-v2/SKILL.md) |
 | `wot-ui-cli` | 专门用于回答、使用和调试 `@wot-ui/cli` 工具本身的技能。 | 查询 CLI 命令用法（list, info, doc 等）、配置 MCP Server、本地调试 CLI 源码、执行离线数据提取。 | [skills/wot-ui-cli/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-cli/SKILL.md) |
+| `wot-ui-unocss-preset-guide` | 指导安装、配置并使用 `@wot-ui/unocss-preset`。 | 预设接入、`unocss.config.ts` 配置（如 `presetWot`）、`prefix/preflight/baseTokens` 使用示例、类名不生效/自动补全不出现等问题排查。 | [skills/wot-ui-unocss-preset-guide/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-unocss-preset-guide/SKILL.md) |
 | `create-wot-ui-theme` | 生成 wot-ui 单文件主题 SCSS 的专项技能。 | 需要为 wot-ui 定制品牌主题，且要求遵循“单文件包含 mixin 和挂载选择器、App.vue 仅作 `@use` 引入”的约束时使用。 | [skills/create-wot-ui-theme/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/create-wot-ui-theme/SKILL.md) |
 
 ## 安装
