@@ -7,7 +7,7 @@
  * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-icon/types.ts
  * 记得注释
  */
-import { baseProps, makeBooleanProp, makeRequiredProp, makeStringProp, numericProp } from '../../common/props'
+import { baseProps, makeStringProp, numericProp } from '../../common/props'
 import type { ExtractPropTypes } from 'vue'
 
 export const iconProps = {
@@ -16,7 +16,7 @@ export const iconProps = {
    * 图标名称，支持使用图片链接
    * 类型: string
    */
-  name: makeRequiredProp(String),
+  name: makeStringProp(''),
   /**
    * 图标颜色
    * 类型: string
@@ -34,11 +34,14 @@ export const iconProps = {
    */
   classPrefix: makeStringProp('wd-icon'),
   /**
-   * 是否为 CSS 类名图标（如 UnoCSS 图标），为 true 时 name 直接作为 CSS class 使用
-   * 类型: boolean
+   * CSS 图标，为 true 时 name 直接作为 CSS class 而不会拼接 class-prefix 前缀，也可以直接传图标类名
+   * 类型: boolean | string
    * 默认值: false
    */
-  cssIcon: makeBooleanProp(false)
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  }
 }
 
 export type IconProps = ExtractPropTypes<typeof iconProps>

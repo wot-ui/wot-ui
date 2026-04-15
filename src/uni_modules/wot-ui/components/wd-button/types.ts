@@ -106,10 +106,19 @@ export const buttonProps = {
    */
   icon: String,
   /**
-   * 类名前缀，用于使用自定义图标，用法参考Icon组件
+   * 类名前缀，用于使用自定义图标，用法参考 Icon 组件
    * 默认值: 'wd-icon'
    */
   classPrefix: makeStringProp('wd-icon'),
+  /**
+   * CSS 图标，用法参考 Icon 组件
+   * 类型: boolean | string
+   * 默认值: false
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
   /**
    * 加载中按钮
    * 默认值: false

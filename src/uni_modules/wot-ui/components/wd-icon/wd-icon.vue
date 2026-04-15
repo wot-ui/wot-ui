@@ -1,5 +1,5 @@
 <template>
-  <view @click="handleClick" :class="rootClass" :style="rootStyle">
+  <view :class="rootClass" :style="rootStyle" @click="handleClick">
     <image v-if="isImage" class="wd-icon__image" :src="name"></image>
   </view>
 </template>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, type CSSProperties } from 'vue'
+import { computed, normalizeClass, type CSSProperties } from 'vue'
 import { addUnit, isDef, objToStyle } from '../../common/util'
 import { iconProps } from './types'
 
@@ -31,12 +31,26 @@ const isImage = computed(() => {
 })
 
 const rootClass = computed(() => {
-  if (props.cssIcon) {
-    // CSS 图标模式：name 直接作为 class，不使用 iconfont
-    return `wd-icon wd-icon--css ${props.name} ${props.customClass}`
+  const clazz: Record<string, boolean> = {
+    'wd-icon': true
   }
-  const prefix = props.classPrefix
-  return `wd-icon ${prefix} ${props.customClass} ${isImage.value ? 'wd-icon--image' : prefix + '-' + props.name}`
+
+  if (props.cssIcon) {
+    clazz['wd-icon--css'] = true
+
+    if (typeof props.cssIcon === 'string') {
+      clazz[props.cssIcon] = true
+    } else {
+      clazz[props.name] = true
+    }
+  } else if (isImage.value) {
+    clazz['wd-icon--image'] = true
+  } else {
+    clazz[props.classPrefix] = true
+    clazz[`${props.classPrefix}-${props.name}`] = true
+  }
+
+  return normalizeClass([clazz, props.customClass])
 })
 
 const rootStyle = computed(() => {

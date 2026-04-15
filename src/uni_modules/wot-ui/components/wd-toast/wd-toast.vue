@@ -19,11 +19,12 @@
         :name="toastIcon[iconName]"
       ></wd-icon>
       <wd-icon
-        v-else-if="iconClass"
+        v-else-if="iconClass || cssIcon"
         :custom-class="`wd-toast__icon ${direction === 'vertical' ? 'is-vertical' : ''}`"
         :size="iconSize"
         :class-prefix="classPrefix"
         :name="iconClass"
+        :css-icon="cssIcon"
       ></wd-icon>
       <!--文本-->
       <view v-if="msg" :class="`wd-toast__msg ${direction === 'vertical' ? 'is-vertical' : ''}`">{{ msg }}</view>
@@ -68,6 +69,7 @@ const loadingSize = ref<string>() // loading大小
 const cover = ref<boolean>(false) // 是否存在遮罩层
 const classPrefix = ref<string>('wd-icon') // 图标前缀
 const iconClass = ref<string>('') // 图标类名
+const cssIcon = ref<boolean | string>(false) // CSS 图标
 const direction = ref<ToastDirection>('horizontal') // toast布局方向
 
 let opened: (() => void) | null = null
@@ -108,7 +110,7 @@ const transitionStyle = computed(() => {
 
 const rootClass = computed(() => {
   return `wd-toast ${props.customClass} wd-toast--${position.value} ${
-    (iconName.value !== 'loading' || msg.value) && (iconName.value || iconClass.value) ? 'wd-toast--with-icon' : ''
+    (iconName.value !== 'loading' || msg.value) && (iconName.value || iconClass.value || cssIcon.value) ? 'wd-toast--with-icon' : ''
   } ${iconName.value === 'loading' && !msg.value ? 'wd-toast--loading' : ''} ${direction.value === 'vertical' ? 'is-vertical' : ''}`
 })
 
@@ -139,6 +141,7 @@ function reset(option: ToastOptions) {
 function mergeOptionsWithProps(option: ToastOptions, props: ToastProps) {
   iconName.value = isDef(option.iconName!) ? option.iconName! : props.iconName
   iconClass.value = isDef(option.iconClass!) ? option.iconClass! : props.iconClass
+  cssIcon.value = isDef(option.cssIcon!) ? option.cssIcon! : props.cssIcon
   msg.value = isDef(option.msg!) ? option.msg! : props.msg
   position.value = isDef(option.position!) ? option.position! : props.position
   zIndex.value = isDef(option.zIndex!) ? option.zIndex! : props.zIndex

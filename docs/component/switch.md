@@ -133,6 +133,11 @@ const beforeChange = (value) => {
 | active-action-icon | 激活状态操作按钮图标 | `string` | - |
 | active-icon | 激活状态图标，设置后会忽略 `active-text` | `string` | - |
 | inactive-icon | 非激活状态图标，设置后会忽略 `inactive-text` | `string` | - |
+| class-prefix | 类名前缀，用于使用自定义图标，用法参考 Icon 组件 | `string` | `'wd-icon'` |
+| inactive-action-css-icon | 非激活状态操作按钮 CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
+| active-action-css-icon | 激活状态操作按钮 CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
+| active-css-icon | 激活状态 CSS 图标，设置后将忽略 `active-text`，用法参考 Icon 组件 | `boolean \| string` | `false` |
+| inactive-css-icon | 非激活状态 CSS 图标，设置后将忽略 `inactive-text`，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | active-text | 激活状态文本 | `string` | `''` |
 | inactive-text | 非激活状态文本 | `string` | `''` |
 | active-value | 激活值 | `boolean \| string \| number` | `true` |
@@ -144,7 +149,6 @@ const beforeChange = (value) => {
 | loading | 是否显示加载中 | `boolean` | `false` |
 | loading-props | 加载配置项 | `Partial<LoadingProps>` | - |
 | before-change | 修改前钩子 | `SwitchBeforeChange` | - |
-| class-prefix | 图标类名前缀 | `string` | `'wd-icon'` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 
