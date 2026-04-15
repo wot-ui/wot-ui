@@ -170,6 +170,7 @@ toast.success({
 | cover | 是否显示透明遮罩层 | `boolean` | `false` |
 | iconClass | 自定义图标类名 | `string` | `''` |
 | classPrefix | 自定义图标类名前缀 | `string` | `wd-icon` |
+| cssIcon | CSS 图标 | `boolean \| string` | `false` |
 | opened | 完全展示后的回调 | <code>() =&gt; void</code> | - |
 | closed | 完全关闭后的回调 | <code>() =&gt; void</code> | - |
 

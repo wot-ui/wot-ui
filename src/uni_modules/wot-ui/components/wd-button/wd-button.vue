@@ -107,7 +107,7 @@ const openTypeValue = computed(() => {
  * 是否仅展示图标
  */
 const isIcon = computed(() => {
-  return !slots.default && !props.text && props.icon
+  return !slots.default && !props.text && !!(props.icon || props.cssIcon)
 })
 
 /**
