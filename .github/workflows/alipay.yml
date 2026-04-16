@@ -58,7 +58,9 @@ jobs:
 
         echo "ALIPAY_APPID=$ALI_APPID" >> "$GITHUB_ENV"
         echo "ALIPAY_TOOL_ID=$ALI_TOOL_ID" >> "$GITHUB_ENV"
-        echo "ALIPAY_PRIVATE_KEY=$ALI_PRIVATE_KEY" >> "$GITHUB_ENV"
+        echo "ALIPAY_PRIVATE_KEY<<EOF" >> "$GITHUB_ENV"
+        printf '%s\n' "$ALI_PRIVATE_KEY" >> "$GITHUB_ENV"
+        echo "EOF" >> "$GITHUB_ENV"
 
         if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
           echo "WOTCI_VERSION=$INPUT_VERSION" >> "$GITHUB_ENV"
