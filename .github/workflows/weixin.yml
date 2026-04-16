@@ -32,49 +32,69 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ github.event.inputs.branch || 'main' }}
-    - name: Prepare wotci env
-      shell: bash
+    - shell: bash
       env:
-        MP_PRIVATE_KEY: ${{ secrets.MP_PRIVATE_KEY }}
-        MP_APPID: ${{ secrets.MP_APPID }}
-        INPUT_VERSION: ${{ github.event.inputs.version }}
-        INPUT_DESC: ${{ github.event.inputs.description || '自动发布版本' }}
+        PRIVATE_KEY: ${{ secrets.MP_PRIVATE_KEY }}
+        APPID: ${{ secrets.MP_APPID }}
+        VERSION: ${{ github.event.inputs.version || '' }}
+        DESCRIPTION: ${{ github.event.inputs.description || '自动发布版本' }}
       run: |
-        if [[ -z "$MP_PRIVATE_KEY" ]]; then
-          echo "Please set 'MP_PRIVATE_KEY' in actions secrets"
+        if [[ -z $PRIVATE_KEY ]]; then
+          echo "##########"
+          echo ""
+          echo "Please set 'MP_PRIVATE_KEY' key in actions secrets"
+          echo ""
+          echo "##########"
           exit 1
-        fi
-
-        if [[ -z "$MP_APPID" ]]; then
-          echo "Please set 'MP_APPID' in actions secrets"
-          exit 1
-        fi
-
-        echo "$MP_PRIVATE_KEY" > private.key
-        echo "WEIXIN_APPID=$MP_APPID" >> "$GITHUB_ENV"
-        echo "WEIXIN_PRIVATE_KEY_PATH=private.key" >> "$GITHUB_ENV"
-
-        if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-          echo "WOTCI_VERSION=$INPUT_VERSION" >> "$GITHUB_ENV"
-          echo "WOTCI_DESC<<EOF" >> "$GITHUB_ENV"
-          echo "${INPUT_DESC:-手动发布版本}" >> "$GITHUB_ENV"
-          echo "EOF" >> "$GITHUB_ENV"
         else
-          echo "WOTCI_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
-          echo "WOTCI_DESC<<EOF" >> "$GITHUB_ENV"
-          echo "自动发布 ${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
-          echo "EOF" >> "$GITHUB_ENV"
+          echo "$PRIVATE_KEY" > private.key
+
+          # 如果是手动触发，使用输入的版本号和描述
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "$VERSION" ]]; then
+            echo '{
+              "weixin": {
+                "appid": "'$APPID'",
+                "privateKeyPath": "private.key",
+                "projectPath": "dist/build/mp-weixin",
+                "setting": {
+                  "minifyJS": true,
+                  "minifyWXML": true,
+                  "minifyWXSS": true,
+                  "minify": true
+                }
+              },
+              "version": "'$VERSION'",
+              "desc": "'$DESCRIPTION'"
+            }' > .minicirc
+          else
+            echo '{
+              "weixin": {
+                "appid": "'$APPID'",
+                "privateKeyPath": "private.key",
+                "projectPath": "dist/build/mp-weixin",
+                "setting": {
+                  "minifyJS": true,
+                  "minifyWXML": true,
+                  "minifyWXSS": true,
+                  "minify": true
+                }
+              },
+              "version": "",
+              "desc": ""
+            }' > .minicirc
+          fi
         fi
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 24
+        node-version: 20
 
     - uses: pnpm/action-setup@v4
       name: Install pnpm
 
     - name: upload
       run: |
+        npm i uni-mini-ci less@4.5.1 -g
         pnpm install
         pnpm upload:mp-weixin
