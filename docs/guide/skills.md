@@ -4,11 +4,11 @@ version: New
 
 # Skills
 
-Skills 是 AI 的“超能力模板”，是一套完整的、可复用的、能解决特定问题的方案，本章节将会为你介绍专为 AI Agent（如 Trae, Cursor, Cline 等）设计的技能指令（Skills）。这些技能通过提供系统化的 Prompt 指令、上下文约束和最佳实践，帮助 AI 更加准确、高效地处理 `wot-ui` 和 `@wot-ui/cli` 相关的开发任务。
+[Skills](https://agentskills.io/what-are-skills) 是 AI 的“超能力模板”，是一套完整的、可复用的、能解决特定问题的方案，我们专为 AI Agent（如 Trae, Cursor, Cline 等）设计了 Wot UI 相关的 Skills，以帮助 AI 更加准确、高效地处理 `wot-ui` 相关的开发任务。
 
 ## 🎯 内置技能
 
-当前仓库提供以下 AI 技能，可供 AI 智能体根据任务需求加载：
+我们提供以下 AI 技能，可供 AI 智能体根据任务需求加载：
 
 | Skill | 描述 | 适用场景 | 入口 |
 | --- | --- | --- | --- |

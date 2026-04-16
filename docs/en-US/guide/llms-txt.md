@@ -2,15 +2,13 @@
 version: New
 ---
 
-# llms.txt
-
-Wot UI is an AI-friendly component library. This page introduces how to make VSCode, Cursor, TRAE, Antigravity and other AI tools better understand Wot UI documentation through llms.txt.
+# LLMs.txt
 
 [llms.txt](https://llmstxt.org/) is a text file designed specifically for large language models, similar to robots.txt but with different goals. robots.txt tells search engine crawlers which pages can be crawled, while llms.txt provides structured information about website content for AI tools, helping them better understand and index component library documentation, examples, and best practices.
 
 ## Available Resources
 
-We provide 2 llms.txt routes to help AI tools access documentation:
+We also provide 2 `llms.txt` routes to help AI tools access the documentation:
 
 - [llms.txt](https://wot-ui.cn/llms.txt) - Contains structured overview of all components and their documentation links
 - [llms-full.txt](https://wot-ui.cn/llms-full.txt) - Provides complete documentation including implementation details and examples
@@ -41,5 +39,5 @@ If you don't use llms.txt, you can also directly read component library document
 
 ## Further Reading
 
-- [Skills](/guide/skills)
+- [Skills](./skills)
 - [llms.txt: Let AI Better Understand Your Documentation](https://juejin.cn/post/7500981295105015847)

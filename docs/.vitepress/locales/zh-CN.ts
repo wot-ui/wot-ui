@@ -41,9 +41,13 @@ const guideGroups = [
         link: '/guide/locale',
       },
       {
-        text: '脚手架',
-        link: '/guide/cli',
+        text:'UnoCSS Preset',
+        link:'/guide/unocss-preset'
       },
+      // {
+      //   text: '脚手架',
+      //   link: '/guide/cli',
+      // },
       {
         text: '模板',
         link: '/guide/templates',
@@ -58,11 +62,11 @@ const guideGroups = [
     text: 'AI',
     items: [
       {
-        text: 'llms.txt',
+        text: 'LLMs.txt',
         link: '/guide/llms-txt',
       },
       {
-        text: 'open-wot',
+        text: 'Cli',
         link: '/guide/open-wot',
       },
       {
@@ -93,10 +97,20 @@ const ecosystemNavItems = [
   {
     text: '官方生态',
     items: [
-      { text: '官方模板 wot-starter', link: 'https://starter.wot-ui.cn/' },
-      { text: '摸鱼插件', link: 'https://my-uni.wot-ui.cn/' },
-      { text: 'VS Code 代码提示插件', link: 'https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense' },
+      { text: 'wot-starter', link: 'https://starter.wot-ui.cn/' },
+      { text: '@wot-ui/router', link: 'https://my-uni.wot-ui.cn/' },
+      { text: '@wot-ui/cli', link: 'https://github.com/wot-ui/open-wot' },
+      { text: '@wot-ui/unocss-preset', link: 'https://github.com/wot-ui/unocss-preset' },
+      { text: 'VS Code 插件', link: 'https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense' },
+      { text: '小程序 CI 工具', link: 'https://github.com/Moonofweisheng/uni-mini-ci' },
       { text: 'wot-starter-retail', link: 'https://github.com/wot-ui/wot-starter-retail' },
+    ]
+  },
+  {
+    text: '开发资源',
+    items: [
+      { text: 'Uni Helper', link: 'https://uni-helper.js.org/' },
+      { text: 'uni-ku', link: 'https://github.com/uni-ku' },
     ]
   },
   {
@@ -104,14 +118,6 @@ const ecosystemNavItems = [
     items: [
       { text: 'vitesse-uni-app', link: 'https://vitesse-docs.netlify.app/' },
       { text: 'unibest', link: 'https://unibest.tech/' },
-    ]
-  },
-  {
-    text: '开发资源',
-    items: [
-      { text: '多平台小程序 CI 工具', link: 'https://github.com/Moonofweisheng/uni-mini-ci' },
-      { text: 'Uni Helper', link: 'https://uni-helper.js.org/' },
-      { text: 'uni-ku', link: 'https://github.com/uni-ku' },
     ]
   }
 ]

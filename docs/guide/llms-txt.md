@@ -2,15 +2,13 @@
 version: New
 ---
 
-# llms.txt
-
-Wot UI 是一个 AI 友好型的组件库，本页介绍如何通过 llms.txt 让 VSCode、Cursor、TRAE、Antigravity 等 AI 工具更好地理解 Wot UI 文档。
+# LLMs.txt
 
 [llms.txt](https://llmstxt.org/) 是一个专为大型语言模型设计的文本文件，类似 robots.txt，但目标不同。robots.txt 告诉搜索引擎爬虫哪些页面可以爬取，而 llms.txt 为 AI 工具提供网站内容的结构化信息，帮助它们更好地理解和索引组件库文档、示例和最佳实践。
 
 ## 可用资源
 
-我们提供 2 个 llms.txt 路由来帮助 AI 工具访问文档：
+我们也提供 2 个 `llms.txt` 路由来帮助 AI 工具访问文档：
 
 - [llms.txt](https://wot-ui.cn/llms.txt) - 包含所有组件及其文档链接的结构化概览
 - [llms-full.txt](https://wot-ui.cn/llms-full.txt) - 提供包含实现细节和示例的完整文档

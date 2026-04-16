@@ -4,11 +4,11 @@ version: New
 
 # Skills
 
-Skills are “superpower templates” for AI: a complete, reusable set of instructions designed for specific tasks. This chapter introduces Skills built for AI Agents (such as Trae, Cursor, Cline, etc.). By providing structured prompts, context constraints, and best practices, these Skills help AI handle `wot-ui` and `@wot-ui/cli` tasks more accurately and efficiently.
+[Skills](https://agentskills.io/what-are-skills) are “superpower templates” for AI: a complete, reusable set of instructions designed for specific tasks. This chapter introduces Wot UI-related Skills built for AI Agents (such as Trae, Cursor, Cline, etc.), helping them handle `wot-ui` development tasks more accurately and efficiently.
 
 ## 🎯 Built-in Skills
 
-This repository provides the following Skills, which can be loaded by an AI agent as needed:
+We provide the following AI Skills, which can be loaded by an AI agent as needed:
 
 | Skill | Description | Use Cases | Entry |
 | --- | --- | --- | --- |
@@ -29,5 +29,5 @@ npx skills add wot-ui/open-wot
 
 ## Further Reading
 
-- [llms.txt](./llms-txt)
+- [LLMs.txt](./llms-txt)
 - [Agent Skills, Rules, Prompts, MCP: A Clear Guide](https://juejin.cn/post/7599268297201958950)

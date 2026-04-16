@@ -1,9 +1,9 @@
 ---
 version: New
 ---
-# open-wot
+# Cli
 
-[open-wot](https://github.com/wot-ui/open-wot) 是 Wot UI 的 AI 工具链仓库，当前对外发布的核心包为 `@wot-ui/cli`。它提供命令行工具、MCP Server、离线组件知识库与数据提取脚本，用于把 wot-ui v2 的组件知识接入编辑器、AI Agent 和本地工程分析流程。
+我们在 [Open Wot](https://github.com/wot-ui/open-wot)  中维护了Wot UI 的 AI 工具链仓库，其中对外发布的核心包为 [@wot-ui/cli](https://www.npmjs.com/package/@wot-ui/cli)。它提供命令行工具、MCP Server、离线组件知识库与数据提取脚本，用于把 wot-ui v2 的组件知识接入编辑器、AI Agent 和本地工程分析流程。
 
 ## 亮点
 

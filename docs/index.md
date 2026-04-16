@@ -26,34 +26,32 @@ hero:
       link: /reward/reward
 
 features:
-  - icon: 🎯
-    title: 多平台覆盖
-    details: 支持 微信小程序、支付宝小程序、钉钉小程序、H5、APP 等平台。
   - icon: 🚀
     title: 80+ 组件
     details: 超过 80 个高质量组件，覆盖移动端主流场景。
+  - icon: 🎯
+    title: 多平台覆盖
+    details: 支持 微信小程序、支付宝小程序、钉钉小程序、H5、APP 等平台。
+  - icon: 🤖
+    title: AI 友好
+    details: 提供 AI 友好的设计系统与 AI 工具链。
   - icon: 💖
     title: 快速上手
-    details: 提供基于 vitesse-uni-app 深度整合 wot-ui 的快速启动模板 wot-starter。
+    details: wot-starter 快速启动模板。
     link: "https://starter.wot-ui.cn/"
-    linkText: "查看 Wot Starter"
   - icon: 💪
     title: TypeScript 支持
     details: 使用 Typescript 构建，提供良好的组件类型系统。
   - icon: 🌍
     title: 支持国际化
     details: 支持国际化，内置 15 种语言包。
-  - icon: 🤖
-    title: AI 友好
-    details: 提供 AI 友好的设计系统，持续更新 AI 编程实践。
   - icon: 🍭
-    title: 支持暗黑模式和主题定制
-    details: 可以定制css变量以及组件的样式自定义。
+    title: 暗黑模式和主题定制
+    details: 可以自由自在的定制主题。
   - icon: 🍿
     title: 实践分享
-    details: 公众号『不如摸鱼去』不定期分享 wot-ui 与 AI 编程相关的最佳实践。
+    details: 公众号『不如摸鱼去』分享 wot-ui 与 AI 编程相关的最佳实践。
     link: "./guide/join-group.html#微信公众号"
-    linkText: "查看公众号"
 
 footer: false
 ---
