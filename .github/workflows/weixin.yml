@@ -32,7 +32,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ github.event.inputs.branch || 'main' }}
-    - name: Prepare minici env
+    - name: Prepare wotci env
       shell: bash
       env:
         MP_PRIVATE_KEY: ${{ secrets.MP_PRIVATE_KEY }}
@@ -55,13 +55,13 @@ jobs:
         echo "WEIXIN_PRIVATE_KEY_PATH=private.key" >> "$GITHUB_ENV"
 
         if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-          echo "MINICI_VERSION=$INPUT_VERSION" >> "$GITHUB_ENV"
-          echo "MINICI_DESC<<EOF" >> "$GITHUB_ENV"
+          echo "WOTCI_VERSION=$INPUT_VERSION" >> "$GITHUB_ENV"
+          echo "WOTCI_DESC<<EOF" >> "$GITHUB_ENV"
           echo "${INPUT_DESC:-手动发布版本}" >> "$GITHUB_ENV"
           echo "EOF" >> "$GITHUB_ENV"
         else
-          echo "MINICI_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
-          echo "MINICI_DESC<<EOF" >> "$GITHUB_ENV"
+          echo "WOTCI_VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_ENV"
+          echo "WOTCI_DESC<<EOF" >> "$GITHUB_ENV"
           echo "自动发布 ${GITHUB_REF_NAME}" >> "$GITHUB_ENV"
           echo "EOF" >> "$GITHUB_ENV"
         fi

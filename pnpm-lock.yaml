@@ -145,8 +145,8 @@ importers:
         specifier: ^12.0.0
         version: 12.0.0(typescript@5.5.4)
       '@wot-ui/ci':
-        specifier: ^0.1.4
-        version: 0.1.4(eslint@8.57.1)(proxy-agent@5.0.0)
+        specifier: ^0.1.7
+        version: 0.1.7(eslint@8.57.1)(proxy-agent@5.0.0)
       axios:
         specifier: ^1.7.9
         version: 1.7.9
@@ -4356,8 +4356,8 @@ packages:
   '@vueuse/shared@9.13.0':
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
 
-  '@wot-ui/ci@0.1.4':
-    resolution: {integrity: sha512-OrcZseoZxr8b+ji7inJ/GUUT7CE3NWmrzaQtEUWA48CnCti9OZN5EoXqnAg4X2PwK/Q6DSs10Kzi9w7b9cAzLQ==}
+  '@wot-ui/ci@0.1.7':
+    resolution: {integrity: sha512-2fTnTsxKNwGYhQhrPPxUK06KVqXr16bzjN5NJdpifg4QxmMjlEJAiLgIlCfxNrgifaMj8x6vpIJ3EmBI4miEng==}
     hasBin: true
 
   '@xmldom/xmldom@0.8.12':
@@ -17011,7 +17011,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@wot-ui/ci@0.1.4(eslint@8.57.1)(proxy-agent@5.0.0)':
+  '@wot-ui/ci@0.1.7(eslint@8.57.1)(proxy-agent@5.0.0)':
     dependencies:
       consola: 3.4.2
       dingtalk-miniapp-opensdk: 1.0.8(proxy-agent@5.0.0)
