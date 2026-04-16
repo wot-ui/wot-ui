@@ -144,7 +144,8 @@ toast.success({
 | z-index | Default z-index level | `number` | `100` |
 | cover | Whether to show transparent mask layer | `boolean` | `false` |
 | icon-class | Default icon class name | `string` | `''` |
-| class-prefix | Icon class name prefix | `string` | `wd-icon` |
+| class-prefix | Class prefix for custom icons (see Icon component) | string | wd-icon |
+| css-icon | CSS icon (see Icon component) | `boolean \| string` | false |
 | opened | Callback after fully displayed | `() => void` | - |
 | closed | Callback after fully closed | `() => void` | - |
 | custom-class | Root node custom class name | `string` | `''` |
@@ -169,6 +170,7 @@ toast.success({
 | cover | Whether to show transparent mask layer | `boolean` | `false` |
 | iconClass | Custom icon class name | `string` | `''` |
 | classPrefix | Custom icon class name prefix | `string` | `wd-icon` |
+| cssIcon | CSS icon | `boolean \| string` | `false` |
 | opened | Callback after fully displayed | `() => void` | - |
 | closed | Callback after fully closed | `() => void` | - |
 

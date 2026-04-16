@@ -133,6 +133,11 @@ const beforeChange = (value) => {
 | active-action-icon | Active state action button icon | `string` | - |
 | active-icon | Active state icon, ignores `active-text` when set | `string` | - |
 | inactive-icon | Inactive state icon, ignores `inactive-text` when set | `string` | - |
+| class-prefix | Class name prefix for using custom icons (see Icon component) | `string` | `'wd-icon'` |
+| inactive-action-css-icon | CSS icon for the inactive state action button (see Icon component) | `boolean \| string` | `false` |
+| active-action-css-icon | CSS icon for the active state action button (see Icon component) | `boolean \| string` | `false` |
+| active-css-icon | CSS icon for the active state. When set, `active-text` will be ignored (see Icon component) | `boolean \| string` | `false` |
+| inactive-css-icon | CSS icon for the inactive state. When set, `inactive-text` will be ignored (see Icon component) | `boolean \| string` | `false` |
 | active-text | Active state text | `string` | `''` |
 | inactive-text | Inactive state text | `string` | `''` |
 | active-value | Active value | `boolean \| string \| number` | `true` |
@@ -144,7 +149,6 @@ const beforeChange = (value) => {
 | loading | Whether to show loading | `boolean` | `false` |
 | loading-props | Loading configuration | `Partial<LoadingProps>` | - |
 | before-change | Hook before modification | `SwitchBeforeChange` | - |
-| class-prefix | Icon class name prefix | `string` | `'wd-icon'` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 
