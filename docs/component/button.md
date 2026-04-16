@@ -126,11 +126,11 @@
 
 ### 图文按钮
 
-结合 `icon` 与内容展示图文按钮；结合 `classPrefix` 可使用自定义图标，参见 [Icon 自定义图标](/component/icon#自定义图标)。
+结合 `icon` 与内容展示图文按钮；结合 `class-prefix` 可使用自定义图标，参见 [Icon 自定义图标](/component/icon#自定义图标)。
 
 ```html
 <wd-button icon="download">下载</wd-button>
-<wd-button classPrefix="fish" icon="kehuishouwu">可回收</wd-button>
+<wd-button class-prefix="fish" icon="kehuishouwu">可回收</wd-button>
 ```
 
 ## 布局能力

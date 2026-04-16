@@ -126,11 +126,11 @@ Set the `icon` property to display an icon button.
 
 ### Icon and Text Button
 
-Combine `icon` with content to display an icon and text button; combine with `classPrefix` to use custom icons, see [Icon Custom Icon](/component/icon#custom-icon).
+Combine `icon` with content to display an icon and text button; combine with `class-prefix` to use custom icons, see [Icon Custom Icon](/component/icon#custom-icon).
 
 ```html
 <wd-button icon="download">Download</wd-button>
-<wd-button classPrefix="fish" icon="kehuishouwu">Recyclable</wd-button>
+<wd-button class-prefix="fish" icon="kehuishouwu">Recyclable</wd-button>
 ```
 
 ## Layout Capability
