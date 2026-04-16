@@ -14,7 +14,12 @@ export default defineConfig(({ env, packageJson }) => ({
         projectPath: env.WEIXIN_PROJECT_PATH || 'dist/build/mp-weixin',
         robot: env.WEIXIN_ROBOT ? Number(env.WEIXIN_ROBOT) : 1,
         setting: {
-          useProjectConfig: true
+          es6: true,
+          es7: true,
+          minify: true,
+          minifyJS: true,
+          minifyWXML: true,
+          minifyWXSS: true
         }
       }
     : undefined,
