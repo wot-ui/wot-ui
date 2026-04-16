@@ -144,7 +144,8 @@ toast.success({
 | z-index | 默认层级 | `number` | `100` |
 | cover | 是否显示透明遮罩层 | `boolean` | `false` |
 | icon-class | 默认图标类名 | `string` | `''` |
-| class-prefix | 图标类名前缀 | `string` | `wd-icon` |
+| class-prefix | 类名前缀，用于使用自定义图标，用法参考 Icon 组件 | `string` | `wd-icon` |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | opened | 完全展示后的回调 | <code>() =&gt; void</code> | - |
 | closed | 完全关闭后的回调 | <code>() =&gt; void</code> | - |
 | custom-class | 根节点自定义类名 | `string` | `''` |
@@ -169,6 +170,7 @@ toast.success({
 | cover | 是否显示透明遮罩层 | `boolean` | `false` |
 | iconClass | 自定义图标类名 | `string` | `''` |
 | classPrefix | 自定义图标类名前缀 | `string` | `wd-icon` |
+| cssIcon | CSS 图标 | `boolean \| string` | `false` |
 | opened | 完全展示后的回调 | <code>() =&gt; void</code> | - |
 | closed | 完全关闭后的回调 | <code>() =&gt; void</code> | - |
 

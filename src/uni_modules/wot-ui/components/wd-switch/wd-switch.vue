@@ -1,12 +1,24 @@
 <template>
   <view :class="rootClass" :style="rootStyle" @click="switchValue">
     <view class="wd-switch__inner" :style="innerStyle">
-      <wd-icon custom-class="wd-switch__inner-icon" :name="innerIcon" v-if="innerIcon" :class-prefix="classPrefix"></wd-icon>
+      <wd-icon
+        v-if="innerIcon || innerCssIcon"
+        custom-class="wd-switch__inner-icon"
+        :name="innerIcon"
+        :class-prefix="classPrefix"
+        :css-icon="innerCssIcon"
+      ></wd-icon>
       <text v-else class="wd-switch__inner-text">{{ isActive ? activeText : inactiveText }}</text>
     </view>
     <view class="wd-switch__action">
-      <wd-loading v-bind="customLoadingProps" v-if="loading"></wd-loading>
-      <wd-icon custom-class="wd-switch__action-icon" :name="actionIcon" v-else-if="actionIcon" :class-prefix="classPrefix"></wd-icon>
+      <wd-loading v-if="loading" v-bind="customLoadingProps"></wd-loading>
+      <wd-icon
+        v-else-if="actionIcon || actionCssIcon"
+        custom-class="wd-switch__action-icon"
+        :name="actionIcon"
+        :class-prefix="classPrefix"
+        :css-icon="actionCssIcon"
+      ></wd-icon>
     </view>
   </view>
 </template>
@@ -62,8 +74,16 @@ const innerIcon = computed(() => {
   return isActive.value ? props.activeIcon : props.inactiveIcon
 })
 
+const innerCssIcon = computed(() => {
+  return isActive.value ? props.activeCssIcon : props.inactiveCssIcon
+})
+
 const actionIcon = computed(() => {
   return isActive.value ? props.activeActionIcon : props.inactiveActionIcon
+})
+
+const actionCssIcon = computed(() => {
+  return isActive.value ? props.activeActionCssIcon : props.inactiveActionCssIcon
 })
 
 const customLoadingProps = computed<Partial<LoadingProps>>(() => {

@@ -50,6 +50,14 @@ Set `variant="dashed"`.
 <wd-button variant="dashed">Primary Button</wd-button>
 ```
 
+### Soft
+
+Set `variant="soft"`.
+
+```html
+<wd-button variant="soft">Primary Button</wd-button>
+```
+
 ### Text
 
 Set `variant="text"`.
@@ -118,11 +126,11 @@ Set the `icon` property to display an icon button.
 
 ### Icon and Text Button
 
-Combine `icon` with content to display an icon and text button; combine with `classPrefix` to use custom icons, see [Icon Custom Icon](/component/icon#custom-icon).
+Combine `icon` with content to display an icon and text button; combine with `class-prefix` to use custom icons, see [Icon Custom Icon](/component/icon#custom-icon).
 
 ```html
 <wd-button icon="download">Download</wd-button>
-<wd-button classPrefix="fish" icon="kehuishouwu">Recyclable</wd-button>
+<wd-button class-prefix="fish" icon="kehuishouwu">Recyclable</wd-button>
 ```
 
 ## Layout Capability
@@ -140,7 +148,7 @@ Set the `block` property.
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | type | Button type, optional values are `primary`, `success`, `info`, `warning`, `danger` | string | primary |
-| variant | Button variant, optional values are `base`, `plain`, `dashed`, `text` | string | base |
+| variant | Button variant, optional values are `base`, `plain`, `dashed`, `soft`, `text` | string | base |
 | size | Button size, optional values are `mini`, `small`, `medium`, `large` | string | medium |
 | round | Round button | boolean | false |
 | disabled | Disabled button | boolean | false |
@@ -149,7 +157,8 @@ Set the `block` property.
 | loading | Loading button | boolean | false |
 | text | Button text | string | - |
 | icon | Icon class name | string | - |
-| classPrefix | Icon class prefix | string | wd-icon |
+| class-prefix | Class prefix for custom icons (see Icon component) | string | wd-icon |
+| css-icon | CSS icon (see Icon component) | `boolean \| string` | false |
 | loading-props | Loading configuration | `Partial<LoadingProps>` | - |
 | open-type | Open capability type, see `ButtonOpenType` below | string | - |
 | hover-stop-propagation | Stop ancestor node click state | boolean | false |

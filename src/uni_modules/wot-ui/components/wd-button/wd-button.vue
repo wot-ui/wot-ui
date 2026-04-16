@@ -42,7 +42,7 @@
   >
     <view class="wd-button__content">
       <wd-loading v-if="loading" v-bind="customLoadingProps"></wd-loading>
-      <wd-icon v-else-if="icon" custom-class="wd-button__icon" :name="icon" :classPrefix="classPrefix"></wd-icon>
+      <wd-icon v-else-if="icon || cssIcon" custom-class="wd-button__icon" :name="icon" :class-prefix="classPrefix" :css-icon="cssIcon"></wd-icon>
       <view class="wd-button__text" v-if="$slots.default || text">
         <slot>{{ text }}</slot>
       </view>
@@ -107,7 +107,7 @@ const openTypeValue = computed(() => {
  * 是否仅展示图标
  */
 const isIcon = computed(() => {
-  return !slots.default && !props.text && props.icon
+  return !slots.default && !props.text && !!(props.icon || props.cssIcon)
 })
 
 /**

@@ -45,6 +45,10 @@ export type ToastOptions = {
    */
   classPrefix?: string
   /**
+   * CSS 图标
+   */
+  cssIcon?: boolean | string
+  /**
    * 完全展示后的回调函数
    */
   opened?: () => void
@@ -167,13 +171,19 @@ export const toastProps = {
     default: ''
   },
   /**
-   * 类名前缀
+   * 类名前缀，用于使用自定义图标，用法参考 Icon 组件
    * @type {string}
    * @default 'wd-icon'
    */
-  classPrefix: {
-    type: String,
-    default: 'wd-icon'
+  classPrefix: makeStringProp('wd-icon'),
+  /**
+   * CSS 图标，用法参考 Icon 组件
+   * @type {boolean | string}
+   * @default false
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
   },
   /**
    * 完全展示后的回调函数

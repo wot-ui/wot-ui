@@ -36,6 +36,38 @@ export const switchProps = {
    */
   inactiveIcon: String,
   /**
+   * 类名前缀，用于使用自定义图标，用法参考 Icon 组件
+   */
+  classPrefix: makeStringProp('wd-icon'),
+  /**
+   * 非激活状态操作按钮 CSS 图标，用法参考 Icon 组件
+   */
+  inactiveActionCssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
+   * 激活状态操作按钮 CSS 图标，用法参考 Icon 组件
+   */
+  activeActionCssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
+   * 激活状态 CSS 图标，设置后将忽略 `activeText`，用法参考 Icon 组件
+   */
+  activeCssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
+   * 非激活状态 CSS 图标，设置后将忽略 `inactiveText`，用法参考 Icon 组件
+   */
+  inactiveCssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 激活状态文本
    */
   activeText: makeStringProp(''),
@@ -84,10 +116,6 @@ export const switchProps = {
   /**
    * 在改变前执行的函数
    */
-  beforeChange: Function as PropType<SwitchBeforeChange>,
-  /**
-   * 自定义类名
-   */
-  classPrefix: makeStringProp('wd-icon')
+  beforeChange: Function as PropType<SwitchBeforeChange>
 }
 export type SwitchProps = ExtractPropTypes<typeof switchProps>

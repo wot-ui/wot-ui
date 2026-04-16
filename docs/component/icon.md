@@ -78,6 +78,9 @@
 ```html
 <wd-icon css-icon name="i-ep-apple" />
 <wd-icon css-icon name="i-carbon-sun" />
+
+<!-- 也可以直接传图标类名给 css-icon 而无需再传 name -->
+<wd-icon css-icon="i-carbon-sun" />
 ```
 
 ## Attributes
@@ -88,7 +91,7 @@
 | color	| 图标的颜色 | `string` | `inherit` |
 | size | 图标的字体大小 | `string \| number` | `inherit` |
 | class-prefix | 类名前缀，用于使用自定义图标 | `string` | `wd-icon` |
-| css-icon | 是否为 CSS 类名图标（如 UnoCSS 图标），为 true 时 name 直接作为 CSS class 使用 | `boolean` | `false` |
+| css-icon | CSS 图标，为 `true` 时 `name` 直接作为 CSS class 而不会拼接 `class-prefix` 前缀，也可以直接传图标类名 | `boolean \| string` | `false` |
 | custom-style | 根节点样式 | `string` | - |
 | custom-class | 根节点样式 | `string` | - |
 

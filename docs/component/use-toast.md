@@ -97,6 +97,7 @@ toast.close()
 | iconSize     | 左侧图标尺寸                            | number   | -                         | -          |
 | iconClass    | 自定义图标类名                          | string   | -                         | ''         |
 | classPrefix  | 类名前缀                                | string   | -                         | 'wd-icon'  |
+| cssIcon      | CSS 图标                                | boolean \| string   | -                  | false  |
 | position     | 提示信息框的位置                        | string   | top / middle / bottom     | middle-top |
 | zIndex       | toast 层级                              | number   | -                         | 100        |
 | loadingType  | 加载中图标类型                          | string   | ring                      | outline    |

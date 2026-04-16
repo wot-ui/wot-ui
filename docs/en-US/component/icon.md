@@ -78,6 +78,9 @@ If your project uses [UnoCSS](https://unocss.dev/) or other CSS engines, you can
 ```html
 <wd-icon css-icon name="i-ep-apple" />
 <wd-icon css-icon name="i-carbon-sun" />
+
+<!-- You can also pass the class name directly to css-icon without using name -->
+<wd-icon css-icon="i-carbon-sun" />
 ```
 
 ## Attributes
@@ -88,7 +91,7 @@ If your project uses [UnoCSS](https://unocss.dev/) or other CSS engines, you can
 | color	| Icon color | `string` | `inherit` |
 | size | Icon font size | `string \| number` | `inherit` |
 | class-prefix | Class name prefix, used for custom icons | `string` | `wd-icon` |
-| css-icon | Whether it is a CSS class icon (such as UnoCSS icon). When true, name is directly used as CSS class | `boolean` | `false` |
+| css-icon | CSS icon. When `true`, `name` is used directly as the CSS class without prefix. You can also pass the class name directly | `boolean \| string` | `false` |
 | custom-style | Root node style | `string` | - |
 | custom-class | Root node style | `string` | - |
 

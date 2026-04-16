@@ -88,20 +88,21 @@ toast.close()
 
 ### Options
 
-| Parameter         | Description                                    | Type     | Optional Values                    | Default Value     |
-|--------------|----------------------------------------|----------|---------------------------|------------|
-| msg          | Message content                                | string   | -                         | ''         |
-| duration     | Duration in ms, 0 means no auto-close  | number   | -                         | 2000       |
-| direction    | Layout direction                                | string   | vertical / horizontal     | horizontal |
-| iconName     | Icon type                                | string   | success / error / warning | ''         |
-| iconSize     | Left icon size                            | number   | -                         | -          |
-| iconClass    | Custom icon class name                          | string   | -                         | ''         |
-| classPrefix  | Class name prefix                                | string   | -                         | 'wd-icon'  |
-| position     | Position of prompt message box                        | string   | top / middle / bottom     | middle-top |
-| zIndex       | toast z-index                              | number   | -                         | 100        |
-| loadingType  | Loading icon type                          | string   | ring                      | outline    |
-| loadingColor | Loading icon color                          | string   | -                         | #4D80F0    |
-| selector     | Specify unique identifier                            | string   | -                         | ''         |
-| cover        | Whether there is a transparent cover                     | boolean  | -                         | false      |
-| opened       | Callback function after fully displayed                     | Function | -                         | -          |
-| closed       | Callback function after fully closed                     | Function | -                         | -          |
+| Parameter    | Description                             | Type                | Optional Values           | Default Value |
+|--------------|-----------------------------------------|---------------------|---------------------------|---------------|
+| msg          | Message content                         | string              | -                         | ''            |
+| duration     | Duration in ms, 0 means no auto-close   | number              | -                         | 2000          |
+| direction    | Layout direction                        | string              | vertical / horizontal     | horizontal    |
+| iconName     | Icon type                               | string              | success / error / warning | ''            |
+| iconSize     | Left icon size                          | number              | -                         | -             |
+| iconClass    | Custom icon class name                  | string              | -                         | ''            |
+| classPrefix  | Class name prefix                       | string              | -                         | 'wd-icon'     |
+| cssIcon      | CSS icon                                | `boolean \| string` | -                         | false         |
+| position     | Position of prompt message box          | string              | top / middle / bottom     | middle-top    |
+| zIndex       | toast z-index                           | number              | -                         | 100           |
+| loadingType  | Loading icon type                       | string              | ring                      | outline       |
+| loadingColor | Loading icon color                      | string              | -                         | #4D80F0       |
+| selector     | Specify unique identifier               | string              | -                         | ''            |
+| cover        | Whether there is a transparent cover    | boolean             | -                         | false         |
+| opened       | Callback function after fully displayed | Function            | -                         | -             |
+| closed       | Callback function after fully closed    | Function            | -                         | -             |

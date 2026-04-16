@@ -126,11 +126,11 @@
 
 ### 图文按钮
 
-结合 `icon` 与内容展示图文按钮；结合 `classPrefix` 可使用自定义图标，参见 [Icon 自定义图标](/component/icon#自定义图标)。
+结合 `icon` 与内容展示图文按钮；结合 `class-prefix` 可使用自定义图标，参见 [Icon 自定义图标](/component/icon#自定义图标)。
 
 ```html
 <wd-button icon="download">下载</wd-button>
-<wd-button classPrefix="fish" icon="kehuishouwu">可回收</wd-button>
+<wd-button class-prefix="fish" icon="kehuishouwu">可回收</wd-button>
 ```
 
 ## 布局能力
@@ -157,7 +157,8 @@
 | loading | 加载中按钮 | boolean | false |
 | text | 按钮文本 | string | - |
 | icon | 图标类名 | string | - |
-| class-prefix | 图标类名前缀 | string | wd-icon |
+| class-prefix | 类名前缀，用于使用自定义图标，用法参考 Icon 组件 | string | wd-icon |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | false |
 | loading-props | 加载配置项 | `Partial<LoadingProps>` | - |
 | open-type | 开放能力类型，详见下方 `ButtonOpenType` | string | - |
 | hover-stop-propagation | 阻止祖先节点点击态 | boolean | false |
