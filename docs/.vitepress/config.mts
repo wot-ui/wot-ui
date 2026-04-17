@@ -13,7 +13,7 @@ export default defineConfig({
     plugins: [
       llmstxt({
         ignoreFiles: ['reward/*', 'index.md', 'README.md', 'en-US/*.md', 'en-US/**/*.md', 'ads/*', 'guide/cases.md', 'guide/changelog.md', 'guide/join-group.md', 'guide/typography.md'],
-        domain: 'https://wot-ui.cn',
+        domain: 'https://v2.wot-ui.cn',
       }) as any,
       MarkdownScssVariablesTransform(),
       MarkdownTransform(),
@@ -121,7 +121,7 @@ export default defineConfig({
 
     footer: {
       message: `Released under the MIT License.`,
-      copyright: 'Copyright © 2023-present weisheng',
+      copyright: 'Copyright © 2023-present Wot UI Team',
     },
   },
 

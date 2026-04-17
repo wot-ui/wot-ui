@@ -6,7 +6,7 @@ import './styles/custom.css'
 import Layout from './Layout.vue'
 import SvgImage from './components/SvgImage.vue'
 import ExternalLink from './components/ExternalLink.vue'
-import ElementPlus, { ElMessageBox } from 'element-plus'
+import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 

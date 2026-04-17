@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
-
 import Banner from './components/Banner.vue'
 import SpecialSponsor from './components/SpecialSponsor.vue'
 import HomeFriendly from './components/HomeFriendly.vue'
-// import HomeCases from './components/HomeCases.vue'
 import HomeTeam from './components/HomeTeam.vue'
 import CustomFooter from './components/CustomFooter.vue'
 import NavBarTitleAfter from './components/NavBarTitleAfter.vue'
