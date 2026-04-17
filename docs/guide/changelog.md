@@ -1,6 +1,20 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.9](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.8...v2.0.0-alpha.9) (2026-04-17)
+
+
+### ✨ Features | 新功能
+
+* **icon:** ✨ `css-icon` 支持直接传图标类名 ([#2](https://github.com/wot-ui/wot-ui/issues/2)) ([2ccb940](https://github.com/wot-ui/wot-ui/commit/2ccb9408d6788d6c72277d3dffb2554f1fef9d69))
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  更新文档导航并添加 UnoCSS Preset 指南 ([f786d39](https://github.com/wot-ui/wot-ui/commit/f786d3932d5c836883923185b657244afa258d66))
+* ✏️  更新文档配置并移除未使用的导入 ([bc19dac](https://github.com/wot-ui/wot-ui/commit/bc19dac9a5e213f40d5fea2e1e761d78e65172c0))
+* ✏️  新增 wot-ui-unocss-preset-guide 技能文档 ([655678d](https://github.com/wot-ui/wot-ui/commit/655678d2b6b63530fe9ed6f074d0349c3774411c))
+
 ## [2.0.0-alpha.8](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.7...v2.0.0-alpha.8) (2026-04-13)
 
 

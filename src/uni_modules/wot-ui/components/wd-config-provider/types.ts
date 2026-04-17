@@ -282,9 +282,9 @@ export type baseThemeVars = {
   purple9?: string
   purpleOpac?: string
   radiusExtraLarge?: string
+  radiusFull?: string
   radiusLarge?: string
   radiusMain?: string
-  radiusRadiusFull?: string
   radiusSmall?: string
   radiusSuperLarge?: string
   radiusUltraLarge?: string
