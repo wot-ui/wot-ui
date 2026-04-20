@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.11](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.10...v2.0.0-alpha.11) (2026-04-20)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  补充 @wot-ui/vitepress-theme 的 README ([04221a7](https://github.com/wot-ui/wot-ui/commit/04221a7d7191a4bfb77ec796423a75b490241d5f))
+
 ## [2.0.0-alpha.10](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.9...v2.0.0-alpha.10) (2026-04-20)
 
 
