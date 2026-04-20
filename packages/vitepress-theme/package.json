@@ -33,6 +33,9 @@
     "vite-plugin-compression": "^0.5.1",
     "vitepress-plugin-llms": "^1.12.0"
   },
+  "devDependencies": {
+    "esbuild": "^0.20.2"
+  },
   "peerDependencies": {
     "vite": "^5.2.8",
     "vitepress": "2.0.0-alpha.17",

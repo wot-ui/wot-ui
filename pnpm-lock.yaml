@@ -298,6 +298,10 @@ importers:
       vue:
         specifier: ^3.5.0
         version: 3.5.31(typescript@5.5.4)
+    devDependencies:
+      esbuild:
+        specifier: ^0.20.2
+        version: 0.20.2
 
 packages:
 
