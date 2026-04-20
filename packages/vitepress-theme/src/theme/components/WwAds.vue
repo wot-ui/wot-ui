@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { onMounted, ref, inject } from 'vue'
 import AsideSponsors from './AsideSponsors.vue'
-import { wotThemeOptionsKey } from '../options.js'
+import { wotThemeOptionsKey } from '../options'
 
 const showTemp = ref(false)
 const options = inject(wotThemeOptionsKey)

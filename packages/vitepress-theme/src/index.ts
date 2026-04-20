@@ -1,13 +1,13 @@
 import type { EnhanceAppContext, Theme } from 'vitepress'
-import DefaultTheme, { VPBadge } from 'vitepress/theme'
+import DefaultTheme from 'vitepress/theme'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import Layout from './theme/Layout.vue'
 import ExternalLink from './theme/components/ExternalLink.vue'
 import SvgImage from './theme/components/SvgImage.vue'
-import { wotThemeOptionsKey } from './theme/options.js'
-import type { WotResolvedThemeOptions, WotVitePressThemeOptions } from './types.js'
+import { wotThemeOptionsKey } from './theme/options'
+import type { WotResolvedThemeOptions, WotVitePressThemeOptions } from './types'
 import './theme/styles/vars.css'
 import './theme/styles/custom.css'
 
@@ -47,7 +47,6 @@ function enhanceAppWithOptions(ctx: EnhanceAppContext, options: WotResolvedTheme
 
   app.component('SvgImage', SvgImage)
   app.component('ExternalLink', ExternalLink)
-  app.component('Badge', VPBadge)
   app.use(ElementPlus as any)
   app.provide(wotThemeOptionsKey, options)
 

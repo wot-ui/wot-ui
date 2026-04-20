@@ -6,7 +6,7 @@ import VPDocFooter from 'vitepress/dist/client/theme-default/components/VPDocFoo
 import { useData } from 'vitepress'
 import { useLayout } from 'vitepress/theme'
 import VPIframe from './VPIframe.vue'
-import { wotThemeOptionsKey } from '../options.js'
+import { wotThemeOptionsKey } from '../options'
 
 const { theme }: any = useData()
 

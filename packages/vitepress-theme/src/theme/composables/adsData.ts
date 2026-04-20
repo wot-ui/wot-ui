@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2025-09-23 13:02:59
- * @LastEditTime: 2026-04-20 14:12:32
+ * @LastEditTime: 2026-04-20 19:44:29
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: /wot-ui/packages/vitepress-theme/src/theme/composables/adsData.ts
@@ -9,7 +9,7 @@
  */
 import { ref, onMounted, inject } from 'vue'
 import axios from 'axios'
-import { wotThemeOptionsKey } from '../options.js'
+import { wotThemeOptionsKey } from '../options'
 
 export type AdData = {
   image: string

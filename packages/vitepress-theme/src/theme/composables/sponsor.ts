@@ -1,6 +1,6 @@
 import { ref, onMounted, inject } from 'vue'
 import axios from 'axios'
-import { wotThemeOptionsKey } from '../options.js'
+import { wotThemeOptionsKey } from '../options'
 
 const data = ref()
 

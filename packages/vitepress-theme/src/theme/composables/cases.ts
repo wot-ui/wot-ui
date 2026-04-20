@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2025-11-04 17:17:20
- * @LastEditTime: 2026-04-20 18:38:27
+ * @LastEditTime: 2026-04-20 19:44:00
  * @LastEditors: weisheng
  * @Description:
  * @FilePath: /wot-ui/packages/vitepress-theme/src/theme/composables/cases.ts
@@ -9,7 +9,7 @@
  */
 import { ref, onMounted, inject } from 'vue'
 import axios from 'axios'
-import { wotThemeOptionsKey } from '../options.js'
+import { wotThemeOptionsKey } from '../options'
 
 export type CaseData = {
   name: string
