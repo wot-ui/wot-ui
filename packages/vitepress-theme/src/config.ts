@@ -69,8 +69,20 @@ function createInternalAliases() {
   ]
 }
 
+function mergeStringList(existing: string[] | undefined, defaults: string[]) {
+  const merged = new Set(defaults)
+
+  existing?.forEach((item) => {
+    if (typeof item === 'string') {
+      merged.add(item)
+    }
+  })
+
+  return Array.from(merged)
+}
+
 function mergeNoExternal(existing: any) {
-  const merged = new Set<string>(['element-plus'])
+  const merged = new Set<string>(['element-plus', 'dayjs'])
   const noExternal = existing?.noExternal
 
   if (Array.isArray(noExternal)) {
@@ -85,6 +97,17 @@ function mergeNoExternal(existing: any) {
     ...existing,
     noExternal: Array.from(merged)
   } as any
+}
+
+function mergeOptimizeDeps(existing: any) {
+  return {
+    ...existing,
+    include: mergeStringList(existing?.include, ['element-plus', 'dayjs', '@element-plus/icons-vue'])
+  }
+}
+
+function mergeDedupe(existing: string[] | undefined) {
+  return mergeStringList(existing, ['vue', 'vitepress', 'element-plus', 'dayjs'])
 }
 
 export function createWotVitePressConfig(options: WotVitePressConfigOptions) {
@@ -122,9 +145,11 @@ export function createWotVitePressConfig(options: WotVitePressConfigOptions) {
     vite: {
       ...userVite,
       plugins: [...internalPlugins, ...normalizePlugins(userVite.plugins)],
+      optimizeDeps: mergeOptimizeDeps(userVite.optimizeDeps),
       ssr: mergeNoExternal(userVite.ssr),
       resolve: {
         ...userVite.resolve,
+        dedupe: mergeDedupe(userVite.resolve?.dedupe),
         alias: [...createInternalAliases(), ...normalizeAlias(userVite.resolve?.alias)]
       }
     }
