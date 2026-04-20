@@ -1,5 +1,4 @@
 import { ref, onMounted, inject } from 'vue'
-import axios from 'axios'
 import { wotThemeOptionsKey } from '../options'
 
 export type TeamMember = {
@@ -50,10 +49,18 @@ export function useTeam() {
     const fetchData = async () => {
       for (const url of urls) {
         try {
-          const response = await axios.get(url + '?t=' + Date.now(), {
-            timeout: 5000
+          const controller = new AbortController()
+          const timeoutId = setTimeout(() => controller.abort(), 5000)
+
+          const response = await fetch(url + '?t=' + Date.now(), {
+            signal: controller.signal
           })
-          const members: TeamMemberPayload[] = response.data && response.data.members ? response.data.members : []
+          clearTimeout(timeoutId)
+
+          if (!response.ok) continue
+
+          const result = await response.json()
+          const members: TeamMemberPayload[] = result && result.members ? result.members : []
           return normalizeMembers(members)
         } catch (error) {
           console.warn(`Failed to fetch team from ${url}`)
