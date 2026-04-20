@@ -147,7 +147,7 @@ pnpm --filter @wot-ui/vitepress-theme build
 
 ## 发版与发布规范
 
-`@wot-ui/vitepress-theme` 作为 Wot Design Uni 项目的官方周边共享包，它的版本号与主仓库 `wot-ui` 强绑定。
+`@wot-ui/vitepress-theme` 作为 wot-ui 项目的官方周边共享包，它的版本号与主仓库 `wot-ui` 强绑定。
 
 1. **版本同步**：当你在根目录执行 `pnpm release-tag` 时，发版脚本会自动将最新的版本号同步写入 `packages/vitepress-theme/package.json`。
 2. **自动化构建发布**：我们已经在主仓库的 `.github/workflows/release.yml` 中集成了此主题包的自动构建与 npm 发布流。只要带有 `v*` 的 Tag 被推送到主分支，GitHub Action 会在发布 `wot-ui` 的同时，自动进入 `packages/vitepress-theme` 执行 `npm publish` 将最新版本的主题包发布至 npm 官方镜像。
