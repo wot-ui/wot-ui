@@ -1,76 +1,44 @@
-import { defineConfig } from 'vitepress';
-import viteCompression from 'vite-plugin-compression'
 import { fileURLToPath, URL } from 'node:url'
-import { MarkdownTransform } from './plugins/markdown-transform'
-import { MarkdownVersionBadgeTransform } from './plugins/markdown-version-badge-transform'
-import { MarkdownScssVariablesTransform } from './plugins/markdown-scss-variables-transform'
-import { VersionBadgePlugin } from './plugins/version-badge'
-import llmstxt from 'vitepress-plugin-llms'
+import { createWotVitePressConfig } from '@wot-ui/vitepress-theme/config'
 import enUS from './locales/en-US'
 import zhCN from './locales/zh-CN'
-export default defineConfig({
-  vite: {
-    plugins: [
-      llmstxt({
-        ignoreFiles: ['reward/*', 'index.md', 'README.md', 'en-US/*.md', 'en-US/**/*.md', 'ads/*', 'guide/cases.md', 'guide/changelog.md', 'guide/join-group.md', 'guide/typography.md'],
-        domain: 'https://v2.wot-ui.cn',
-      }) as any,
-      MarkdownScssVariablesTransform(),
-      MarkdownTransform(),
-      MarkdownVersionBadgeTransform(),
-      VersionBadgePlugin(),
-      viteCompression({
-        verbose: true,
-        disable: false,
-        threshold: 10240,
-        algorithm: 'gzip',
-        ext: '.gz',
-      }),
-    ],
-    ssr: { noExternal: ['element-plus'] },
-    resolve: {
-      alias: [
-        {
-          find: /^.*\/VPSidebar\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./theme/components/VPSidebar.vue', import.meta.url)
-          )
-        },
-        {
-          find: /^.*\/VPContent\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./theme/components/VPContent.vue', import.meta.url)
-          )
-        },
-        {
-          find: /^.*\/VPDoc\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./theme/components/VPDoc.vue', import.meta.url)
-          )
-        },
-        {
-          find: /^.*\/VPLocalNav\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./theme/components/VPLocalNav.vue', import.meta.url)
-          )
-        },
-        {
-          find: /^.*\/VPNavBar\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./theme/components/VPNavBar.vue', import.meta.url)
-          )
-        },
-        {
-          find: /^.*\/VPSidebarItem\.vue$/,
-          replacement: fileURLToPath(
-            new URL('./theme/components/VPSidebarItem.vue', import.meta.url)
-          )
-        }
-      ]
-    }
-  },
+export default createWotVitePressConfig({
   title: `Wot UI`,
   description: '一个轻量、美观、AI友好的 uni-app 组件库',
+  markdown: {
+    componentLinks: {
+      repoUrl: 'https://github.com/wot-ui/wot-ui/tree/master',
+      demoSourceRoot: 'src/subPages',
+      componentSourceRoot: 'src/uni_modules/wot-ui/components',
+    },
+    scssVars: {
+      componentScssRoot: fileURLToPath(new URL('../../src/uni_modules/wot-ui/components', import.meta.url)),
+      componentMap: {
+        table: ['wd-table', 'wd-table-column'],
+        radio: ['wd-radio', 'wd-radio-group'],
+        checkbox: ['wd-checkbox', 'wd-checkbox-group'],
+        collapse: ['wd-collapse', 'wd-collapse-item'],
+        'swipe-action': ['wd-swipe-action', 'wd-swipe-action-item'],
+        grid: ['wd-grid', 'wd-grid-item'],
+        tabs: ['wd-tabs', 'wd-tab'],
+        steps: ['wd-steps', 'wd-step'],
+        sidebar: ['wd-sidebar', 'wd-sidebar-item'],
+        'index-bar': ['wd-index-bar', 'wd-index-anchor'],
+        form: ['wd-form', 'wd-form-item']
+      }
+    },
+    versionBadge: true,
+    virtualVersionData: {
+      docsRoot: fileURLToPath(new URL('../', import.meta.url)),
+    }
+  },
+  features: {
+    llms: {
+      ignoreFiles: ['reward/*', 'index.md', 'README.md', 'en-US/*.md', 'en-US/**/*.md', 'ads/*', 'guide/cases.md', 'guide/changelog.md', 'guide/join-group.md', 'guide/typography.md'],
+      domain: 'https://v2.wot-ui.cn',
+    },
+    compression: {},
+  },
   locales: {
     root: {
       label: '简体中文',

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { getDocsComponentNavItems, getDocsComponentSidebar } from '../../../src/config/component-catalog'
+import packageJson from '../../../package.json'
 
 const componentNavItems = getDocsComponentNavItems('zh-CN')
 const componentSidebar = getDocsComponentSidebar('zh-CN')
@@ -66,7 +67,7 @@ const guideGroups = [
         link: '/guide/llms-txt',
       },
       {
-        text: 'Cli',
+        text: 'CLI',
         link: '/guide/open-wot',
       },
       {
@@ -164,7 +165,7 @@ export default defineConfig({
         items: supportNavItems
       },
       {
-        text: 'v2',
+        text: packageJson.version,
         items: versionNavItems
       },
     ],

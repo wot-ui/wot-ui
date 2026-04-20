@@ -31,6 +31,6 @@ After donating, you can send an email to 1780903673@qq.com or notify us through 
 :beers::beers::beers: Thank you again to all donors for your support. We also welcome your suggestions and feedback. :beers::beers::beers:
 
 <script setup>
-import { useSponsor } from '../../.vitepress/theme/composables/sponsor'
+import { useSponsor } from '@wot-ui/vitepress-theme'
 const { data } = useSponsor()
 </script>

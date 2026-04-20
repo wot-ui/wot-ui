@@ -30,6 +30,6 @@
 :beers::beers::beers: 再次感谢各位捐赠者的支持，也欢迎大家提出自己的意见和建议。:beers::beers::beers:
 
 <script setup>
-import { useSponsor } from '../.vitepress/theme/composables/sponsor'
+import { useSponsor } from '@wot-ui/vitepress-theme'
 const { data } = useSponsor()
 </script>

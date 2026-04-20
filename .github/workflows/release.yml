@@ -50,6 +50,9 @@ jobs:
       - name: Build lib package
         run: pnpm build:lib
 
+      - name: Build vitepress theme package
+        run: pnpm --filter @wot-ui/vitepress-theme build
+
       - name: Check npm version
         run: npm -v
 
@@ -75,9 +78,14 @@ jobs:
             echo "NPM_PROVENANCE_ENABLED=true" >> "$GITHUB_ENV"
           fi
 
-      - name: Publish package
+      - name: Publish wot-ui package
         run: |
           cd lib
+          npm publish $NPM_PUBLISH_ARGS
+
+      - name: Publish vitepress-theme package
+        run: |
+          cd packages/vitepress-theme
           npm publish $NPM_PUBLISH_ARGS
 
       - name: Generate GitHub changelog
@@ -94,6 +102,7 @@ jobs:
           echo "### npm provenance: $NPM_PROVENANCE_ENABLED" >> "$GITHUB_STEP_SUMMARY"
           echo "### Published Packages" >> "$GITHUB_STEP_SUMMARY"
           echo "- ✅ wot-ui" >> "$GITHUB_STEP_SUMMARY"
+          echo "- ✅ @wot-ui/vitepress-theme" >> "$GITHUB_STEP_SUMMARY"
           echo "### Build Results" >> "$GITHUB_STEP_SUMMARY"
           echo "✅ Build and publish completed" >> "$GITHUB_STEP_SUMMARY"
 

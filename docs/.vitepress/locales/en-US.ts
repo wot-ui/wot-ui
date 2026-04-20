@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { getDocsComponentNavItems, getDocsComponentSidebar } from '../../../src/config/component-catalog'
+import packageJson from '../../../package.json'
 
 const componentNavItems = getDocsComponentNavItems('en-US')
 const componentSidebar = getDocsComponentSidebar('en-US')
@@ -160,7 +161,7 @@ export default defineConfig({
         items: supportNavItems
       },
       {
-        text: 'v2',
+        text: packageJson.version,
         items: versionNavItems
       },
     ],

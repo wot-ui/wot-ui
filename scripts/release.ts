@@ -141,6 +141,13 @@ inquirer
     const tarfetPackageJson = require('../src/uni_modules/wot-ui/package.json')
     tarfetPackageJson.version = newVersion
     writeFileSync(path.resolve(src, 'package.json'), JSON.stringify(tarfetPackageJson))
+
+    // 同步更新 @wot-ui/vitepress-theme 的版本号
+    const themePackageJsonPath = path.resolve(__dirname, '../packages/vitepress-theme/package.json')
+    const themePackageJson = require(themePackageJsonPath)
+    themePackageJson.version = newVersion
+    writeFileSync(themePackageJsonPath, JSON.stringify(themePackageJson, null, 2) + '\n')
+
     // 生成制品
     runCommand('pnpm build:theme-vars')
     runCommand('pnpm lint')

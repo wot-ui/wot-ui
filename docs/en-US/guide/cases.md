@@ -73,6 +73,6 @@ Wot UI has been used by many companies and teams in production environments. Her
 </style>
 
 <script setup>
-import { useCaseData } from '../../.vitepress/theme/composables/cases'
+import { useCaseData } from '@wot-ui/vitepress-theme'
 const { data:cases } = useCaseData()
 </script>

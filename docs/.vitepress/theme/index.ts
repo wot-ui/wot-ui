@@ -1,48 +1,29 @@
-import type { Theme, EnhanceAppContext } from 'vitepress'
-import DefaultTheme, { VPBadge } from 'vitepress/theme'
-import './styles/vars.css'
-import './styles/custom.css'
+import { createWotVitePressTheme } from '@wot-ui/vitepress-theme'
 
-import Layout from './Layout.vue'
-import SvgImage from './components/SvgImage.vue'
-import ExternalLink from './components/ExternalLink.vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-import 'element-plus/theme-chalk/dark/css-vars.css'
-
-// 声明百度统计全局变量
-declare global {
-  interface Window {
-    _hmt: any[]
-  }
-}
-
-export default {
-  extends: DefaultTheme,
-  Layout,
-  enhanceApp({ app, router }: EnhanceAppContext) {
-    app.component('SvgImage', SvgImage)
-    app.component('ExternalLink',ExternalLink)
-    app.component('Badge',VPBadge)
-    app.use(ElementPlus as any)
-    
-    if (typeof window !== 'undefined') {
-      
-      // 百度统计路由监听
-      // 确保百度统计已加载
-      const trackPageView = (path: string) => {
-        if (window._hmt) {
-          window._hmt.push(['_trackPageview', path])
-        }
-      }
-      
-      // 监听路由变化
-      router.onAfterRouteChange = (to: string) => {
-        // 延迟执行，确保页面已完全加载
-        setTimeout(() => {
-          trackPageView(to)
-        }, 100)
-      }
-    }
+export default createWotVitePressTheme({
+  analytics: {
+    trackBaiduRoute: true
   },
-} satisfies Theme
+  demoIframe: {
+    assetBase: '/wxqrcode'
+  },
+  banner: {
+    urls: ['https://sponsor.wot-ui.cn/banner.json', 'https://wot-sponsors.pages.dev/banner.json']
+  },
+  sponsors: {
+    urls: ['https://sponsor.wot-ui.cn/wot-design-uni.json', 'https://wot-sponsors.pages.dev/wot-design-uni.json']
+  },
+  ads: {
+    wwadsId: '372',
+    urls: ['https://sponsor.wot-ui.cn/ads.json', 'https://wot-sponsors.pages.dev/ads.json']
+  },
+  team: {
+    urls: ['https://sponsor.wot-ui.cn', 'https://wot-sponsors.pages.dev']
+  },
+  friendly: {
+    urls: ['https://sponsor.wot-ui.cn/friendly.json', 'https://wot-sponsors.pages.dev/friendly.json']
+  },
+  cases: {
+    urls: ['https://sponsor.wot-ui.cn', 'https://wot-sponsors.pages.dev']
+  }
+})

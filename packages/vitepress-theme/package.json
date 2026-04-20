@@ -1,0 +1,41 @@
+{
+  "name": "@wot-ui/vitepress-theme",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "import": "./dist/config.js",
+      "require": "./dist/config.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "node ./build.mjs",
+    "type-check": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "element-plus": "^2.11.2",
+    "vite-plugin-compression": "^0.5.1",
+    "vitepress-plugin-llms": "^1.12.0"
+  },
+  "peerDependencies": {
+    "vite": "^5.2.8",
+    "vitepress": "2.0.0-alpha.17",
+    "vue": "^3.5.0"
+  }
+}
