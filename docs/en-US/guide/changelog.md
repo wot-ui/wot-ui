@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.10](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.9...v2.0.0-alpha.10) (2026-04-20)
+
+
+### ✨ Features | 新功能
+
+* ✨ vitepress-theme 提取文档主题为独立包并重构依赖 ([70dd118](https://github.com/wot-ui/wot-ui/commit/70dd118616498953944f7bb8a4dfce3d91ce9c9e))
+
 ## [2.0.0-alpha.9](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.8...v2.0.0-alpha.9) (2026-04-17)
 
 
