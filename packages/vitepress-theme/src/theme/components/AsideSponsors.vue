@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useAdSponsor } from '../composables/adSponsor'
+import { useSpecialSponsor } from '../composables/specialSponsor'
 
-const { data } = useAdSponsor()
+const { data } = useSpecialSponsor()
 
 // 分离超级赞助和金牌赞助
 const superSponsors = computed(() => {

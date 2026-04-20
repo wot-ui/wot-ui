@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useAdSponsor } from '../composables/adSponsor'
+import { useSpecialSponsor } from '../composables/specialSponsor'
 
 interface Props {
   title?: string
@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
   title: '铂金赞助商'
 })
 
-const { data } = useAdSponsor()
+const { data } = useSpecialSponsor()
 
 // 获取第一个铂金赞助商
 const platinumSponsor = computed(() => {

@@ -13,10 +13,16 @@ import './theme/styles/custom.css'
 
 declare global {
   interface Window {
+    /**
+     * 百度统计全局队列。
+     */
     _hmt: any[]
   }
 }
 
+/**
+ * 将用户传入的主题配置归一化为运行时可直接消费的结构。
+ */
 function resolveThemeOptions(options: WotVitePressThemeOptions = {}): WotResolvedThemeOptions {
   return {
     analytics: {
@@ -28,10 +34,14 @@ function resolveThemeOptions(options: WotVitePressThemeOptions = {}): WotResolve
     team: options.team ?? false,
     friendly: options.friendly ?? false,
     cases: options.cases ?? false,
-    demoIframe: options.demoIframe ?? false
+    demoIframe: options.demoIframe ?? false,
+    specialSponsor: options.specialSponsor ?? false
   }
 }
 
+/**
+ * 为 VitePress 应用注入主题组件、插件和运行时配置。
+ */
 function enhanceAppWithOptions(ctx: EnhanceAppContext, options: WotResolvedThemeOptions) {
   const { app, router } = ctx
 
@@ -58,6 +68,9 @@ function enhanceAppWithOptions(ctx: EnhanceAppContext, options: WotResolvedTheme
   }
 }
 
+/**
+ * 创建 Wot VitePress 主题实例。
+ */
 export function createWotVitePressTheme(options: WotVitePressThemeOptions = {}): Theme {
   const resolvedOptions = resolveThemeOptions(options)
 

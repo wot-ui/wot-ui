@@ -1,3 +1,12 @@
+/*
+ * @Author: weisheng
+ * @Date: 2025-11-04 17:17:20
+ * @LastEditTime: 2026-04-20 18:38:27
+ * @LastEditors: weisheng
+ * @Description:
+ * @FilePath: /wot-ui/packages/vitepress-theme/src/theme/composables/cases.ts
+ * 记得注释
+ */
 import { ref, onMounted, inject } from 'vue'
 import axios from 'axios'
 import { wotThemeOptionsKey } from '../options.js'
@@ -26,15 +35,26 @@ export function useCaseData() {
     const fetchData = async () => {
       for (const url of urls) {
         try {
-          const path = '/cases.json'
-          const response = await axios.get(url + path + '?t=' + Date.now(), {
+          const response = await axios.get(url + '?t=' + Date.now(), {
             timeout: 5000 // 设置5秒超时
           })
           const data: CaseData[] = response.data && response.data.data ? response.data.data : []
+          const getFullImageUrl = (image: string, baseUrl: string): string => {
+            if (!image) return ''
+            if (image.startsWith('http://') || image.startsWith('https://')) {
+              return image
+            }
+            try {
+              const { origin } = new URL(baseUrl)
+              return origin + image
+            } catch {
+              return baseUrl + image
+            }
+          }
           return data.map((item) => {
             return {
               name: item.name,
-              image: item.image ? url + item.image : '',
+              image: getFullImageUrl(item.image, url),
               description: item.description
             }
           }) // 成功获取数据后直接返回

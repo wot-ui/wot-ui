@@ -50,7 +50,7 @@ export function useTeam() {
     const fetchData = async () => {
       for (const url of urls) {
         try {
-          const response = await axios.get(url + '/team.json?t=' + Date.now(), {
+          const response = await axios.get(url + '?t=' + Date.now(), {
             timeout: 5000
           })
           const members: TeamMemberPayload[] = response.data && response.data.members ? response.data.members : []

@@ -79,9 +79,11 @@ const emit = defineEmits<{
 
 const route = useRoute()
 const vitepressData = useData()
+const { frontmatter } = vitepressData
 const themeOptions = inject(wotThemeOptionsKey)
 const demoIframeOptions = themeOptions?.demoIframe
 const assetBase = demoIframeOptions && demoIframeOptions.assetBase ? demoIframeOptions.assetBase : '/wxqrcode'
+const qrcodeEnabled = demoIframeOptions && demoIframeOptions.enabled !== false
 
 const href = computed(() => {
   const path = route.path
@@ -89,10 +91,21 @@ const href = computed(() => {
 
   if (!paths.length) return baseUrl.value
 
-  return baseUrl.value + `subPages/${kebabToCamel(paths[paths.length - 1])}/Index`
+  const pageName = paths[paths.length - 1]
+  const iframeFormatter = frontmatter.value.iframeFormatter
+
+  if (typeof iframeFormatter === 'function') {
+    return baseUrl.value + iframeFormatter(pageName)
+  } else if (typeof iframeFormatter === 'string') {
+    return baseUrl.value + iframeFormatter.replace('{name}', pageName).replace('{camelName}', kebabToCamel(pageName))
+  }
+
+  return baseUrl.value + `subPages/${kebabToCamel(pageName)}/Index`
 })
 
 const qrcode = computed(() => {
+  if (!qrcodeEnabled) return ''
+
   const path = route.path
   const paths = path ? path.split('.')[0].split('/') : []
   if (!paths.length) return ''

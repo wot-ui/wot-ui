@@ -1,14 +1,15 @@
 /*
  * @Author: weisheng
- * @Date: 2025-09-23 13:02:59
- * @LastEditTime: 2026-04-20 10:30:32
+ * @Date: 2026-04-17 14:06:42
+ * @LastEditTime: 2026-04-20 18:27:24
  * @LastEditors: weisheng
  * @Description:
- * @FilePath: /wot-ui/packages/vitepress-theme/src/theme/composables/adSponsor.ts
+ * @FilePath: /wot-ui/packages/vitepress-theme/src/theme/composables/specialSponsor.ts
  * 记得注释
  */
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, inject } from 'vue'
 import axios from 'axios'
+import { wotThemeOptionsKey } from '../options'
 
 export type GridSize = 'xmini' | 'mini' | 'small' | 'medium' | 'big'
 
@@ -25,10 +26,18 @@ export interface Sponsors {
 
 const data = ref<Sponsors[]>([])
 
-export function useAdSponsor() {
+export function useSpecialSponsor() {
+  const options = inject(wotThemeOptionsKey)
+
   onMounted(async () => {
+    const sponsorOptions = options?.specialSponsor
     // 定义数据源URL列表，按优先级排序
-    const urls = ['https://sponsor.wot-ui.cn/sponsor.json', 'https://wot-sponsors.pages.dev/sponsor.json']
+    if (!sponsorOptions || data.value.length) {
+      return
+    }
+
+    // 定义数据源URL列表，按优先级排序
+    const urls = sponsorOptions.urls || []
 
     // 尝试从多个数据源获取数据
     const fetchData = async () => {
