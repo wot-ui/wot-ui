@@ -1,7 +1,7 @@
 /*
  * @Author: weisheng
  * @Date: 2026-04-20 16:40:00
- * @LastEditTime: 2026-04-20 18:28:25
+ * @LastEditTime: 2026-04-21 15:16:19
  * @LastEditors: weisheng
  * @Description: 
  * @FilePath: /wot-ui/docs/.vitepress/theme/index.ts
@@ -17,7 +17,7 @@ export default createWotVitePressTheme({
     assetBase: '/wxqrcode'
   },
   banner: {
-    urls: ['https://sponsor.wot-ui.cn/banner.json', 'https://wot-sponsors.pages.dev/banner.json']
+    urls: ['https://sponsor.wot-ui.cn/wot-v2-banner.json', 'https://wot-sponsors.pages.dev/wot-v2-banner.json']
   },
   sponsors: {
     urls: ['https://sponsor.wot-ui.cn/wot-design-uni.json', 'https://wot-sponsors.pages.dev/wot-design-uni.json']

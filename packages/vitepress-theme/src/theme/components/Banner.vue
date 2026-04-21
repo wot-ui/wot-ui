@@ -122,7 +122,10 @@ html.banner-show {
   font-size: 18px;
   font-weight: 600;
   color: var(--vp-c-white);
-  background: var(--vp-c-bg-alt);
+  background: #0f0f13;
+  background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   display: none;
   justify-content: center;
   align-items: center;
@@ -189,11 +192,13 @@ button:active {
   height: 28px;
   fill: var(--vp-c-white);
   transform: rotate(45deg);
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 0 transparent);
 }
 
 button:hover .close {
   transform: rotate(45deg) scale(1.1);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
 }
 
 .vt-banner-text {
