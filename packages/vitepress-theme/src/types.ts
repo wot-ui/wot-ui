@@ -232,6 +232,10 @@ export interface WotVitePressConfigOptions {
    */
   title: string
   /**
+   * 站点默认语言。
+   */
+  lang: string
+  /**
    * 站点描述。
    */
   description: string

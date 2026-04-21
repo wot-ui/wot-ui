@@ -142,6 +142,7 @@ export function createWotVitePressConfig(options: WotVitePressConfigOptions) {
     head: options.head,
     locales: options.locales,
     themeConfig: options.themeConfig,
+    lang: options.lang,
     vite: {
       ...userVite,
       plugins: [...internalPlugins, ...normalizePlugins(userVite.plugins)],
