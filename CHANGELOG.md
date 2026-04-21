@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.21](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.20...v2.0.0-alpha.21) (2026-04-21)
+
+
+### ✨ Features | 新功能
+
+* **vitepress-theme:** 添加特别赞助位配置，支持显示开关和跳转地址 ([62c7f63](https://github.com/wot-ui/wot-ui/commit/62c7f63fc8727a6affcf4d5d4985f419cb44aa66))
+
 ## [2.0.0-alpha.20](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.19...v2.0.0-alpha.20) (2026-04-21)
 
 
