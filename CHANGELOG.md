@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.19](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.18...v2.0.0-alpha.19) (2026-04-21)
+
+
+### ✨ Features | 新功能
+
+* **vitepress-theme:** 添加默认语言配置支持 ([bd3d93b](https://github.com/wot-ui/wot-ui/commit/bd3d93b56d00172708125016b7b73af3cb97e9ba))
+
 ## [2.0.0-alpha.18](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.17...v2.0.0-alpha.18) (2026-04-20)
 
 ## [2.0.0-alpha.17](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.16...v2.0.0-alpha.17) (2026-04-20)
