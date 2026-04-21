@@ -16,10 +16,24 @@ const themeOptions = inject(wotThemeOptionsKey)
 const demoIframeOptions = themeOptions?.demoIframe
 
 const pageName = computed(() => route.path.replace(/[./]+/g, '_').replace(/_html$/, ''))
-const isComponent = computed(
-  () =>
-    (route.path.startsWith('/component') || route.path.startsWith('/en-US/component')) && !route.path.includes('/use-') && demoIframeOptions !== false
-)
+const isComponent = computed(() => {
+  if (demoIframeOptions === false) return false
+
+  const { routePatterns, excludePatterns } = demoIframeOptions || {}
+
+  // 检查是否在排除列表中
+  if (excludePatterns && excludePatterns.some((pattern) => route.path.includes(pattern))) {
+    return false
+  }
+
+  // 如果有自定义路由模式，使用自定义模式
+  if (routePatterns && routePatterns.length) {
+    return routePatterns.some((pattern) => route.path.includes(pattern))
+  }
+
+  // 默认逻辑（保持向后兼容）
+  return (route.path.startsWith('/component') || route.path.startsWith('/en-US/component')) && !route.path.includes('/use-')
+})
 const expanded = ref(true)
 </script>
 

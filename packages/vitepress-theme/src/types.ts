@@ -87,6 +87,14 @@ export interface WotThemeDemoIframeOptions {
    * 是否启用二维码。
    */
   enabled?: boolean
+  /**
+   * 自定义需要显示 iframe 的路由模式。
+   */
+  routePatterns?: string[]
+  /**
+   * 自定义需要排除的路由模式。
+   */
+  excludePatterns?: string[]
 }
 
 /**
@@ -234,7 +242,7 @@ export interface WotVitePressConfigOptions {
   /**
    * 站点默认语言。
    */
-  lang: string
+  lang?: string
   /**
    * 站点描述。
    */
