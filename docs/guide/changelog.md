@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+## [2.0.0-alpha.20](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.19...v2.0.0-alpha.20) (2026-04-21)
+
+
+### ✨ Features | 新功能
+
+* **vitepress-theme:** 增强 demo iframe 选项，支持自定义路由模式和排除模式 ([2136b32](https://github.com/wot-ui/wot-ui/commit/2136b320d61d84a3465e7c61f42f97c5ad6632c3))
+
 ## [2.0.0-alpha.19](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.18...v2.0.0-alpha.19) (2026-04-21)
 
 
