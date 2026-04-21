@@ -25,11 +25,6 @@ Please check the [Quick Start](/guide/quick-use.html) documentation.
   <img style="width: 150px; height: 150px;" :src="H5Qrcode" />
   <div style="text-align: center;">Scan with Browser</div>
 </div>
-
-<div style="display: inline-block;">
-  <img style="width: 150px; height: 150px;" :src="AndroidQrcode" />
-  <div style="text-align: center;">Scan with Browser</div>
-</div>
 </div>
 
 ## ✨ Features
@@ -51,17 +46,21 @@ After donation, your nickname, message, etc. will be displayed in the [Donor Lis
 
 ## Ecosystem
 
-| Project                                                                                                        | Description                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app)                                            | Summary of excellent development resources for cross-platform unified development framework uni-app            |
-| [create-uni](https://github.com/uni-helper/create-uni)                                                      | Quickly create uni-app projects                                |
-| [wot-starter](https://github.com/wot-ui/wot-starter)                  | Wot-ui quick starter project based on [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app)     |
-| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail)                                  | Uni-app retail industry template based on wot-ui          |
-| [wot-ui-intellisense](https://github.com/wot-ui/wot-ui-intellisense)                                        | Wot-ui vscode code hint plugin                           |
-| [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | A uni-app mini program CI (continuous integration) plugin after build |
-| [my-uni](https://github.com/wot-ui/my-uni)                                        | Slacking uni plugin library collection  |
-| [unibest](https://github.com/unibest-tech/unibest)                                                              | Uni-app template based on wot-ui                  |
-| [uni-ku-root](https://github.com/uni-ku/root)                                                               | A root component plugin that simulates the original capabilities of App.vue                |
+| Category | Project | Description |
+| --- | --- | --- |
+| Official Ecosystem | [wot-starter](https://starter.wot-ui.cn/) | Official Wot UI quick-start project |
+| Official Ecosystem | [@wot-ui/router](https://my-uni.wot-ui.cn/) | Official Wot UI routing and project utilities |
+| Official Ecosystem | [@wot-ui/cli](https://github.com/wot-ui/open-wot) | Official Wot UI AI toolchain and CLI |
+| Official Ecosystem | [@wot-ui/unocss-preset](https://github.com/wot-ui/unocss-preset) | Official Wot UI UnoCSS preset |
+| Official Ecosystem | [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense) | Official VS Code IntelliSense extension for Wot UI |
+| Official Ecosystem | [Mini Program CI Tool](https://github.com/Moonofweisheng/uni-mini-ci) | Officially recommended CI tool for mini program builds |
+| Official Ecosystem | [wot-starter-retail](https://github.com/wot-ui/wot-starter-retail) | Official retail template solution for Wot UI |
+| Development Resources | [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app) | A curated collection of excellent uni-app resources for multi-platform development |
+| Development Resources | [create-uni](https://github.com/uni-helper/create-uni) | Quickly create uni-app projects |
+| Development Resources | [uni-ku](https://github.com/uni-ku) | A collection of uni-app ecosystem extensions and tools |
+| Development Resources | [uni-echarts](https://uni-echarts.xiaohe.ink/) | Charting solution for uni-app projects |
+| Template Solutions | [vitesse-uni-app](https://vitesse-docs.netlify.app/) | A modern uni-app starter template |
+| Template Solutions | [unibest](https://unibest.tech/) | A feature-rich uni-app development template |
 
 ## Acknowledgments
 
@@ -76,6 +75,4 @@ This project is based on the [MIT](https://en.wikipedia.org/wiki/MIT_License) li
 <script setup>
 import WxQrcode from '/wx.jpg'
 import AlipayQrcode from '/alipay.png'
-import H5Qrcode from '/h5.png'
-import AndroidQrcode from '/android.png'
 </script>

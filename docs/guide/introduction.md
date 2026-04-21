@@ -26,10 +26,6 @@
   <div style="text-align: center;">浏览器扫码</div>
 </div>
 
-<div style="display: inline-block;">
-  <img style="width: 150px; height: 150px;" :src="AndroidQrcode" />
-  <div style="text-align: center;">浏览器扫码</div>
-</div>
 </div>
 
 ## ✨ 特性
@@ -51,17 +47,21 @@
 
 ## 生态
 
-| 项目                                                                                                        | 描述                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app)                                            | 多端统一开发框架 uni-app 优秀开发资源汇总            |
-| [create-uni](https://github.com/uni-helper/create-uni)                                                      | 快速创建 uni-app 项目                                |
-| [wot-starter](https://github.com/wot-ui/wot-starter)                  | 基于 [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) 的 wot-ui 快速起手项目     |
-| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail)                                  | 基于 wot-ui 的 uni-app 零售行业模板          |
-| [wot-ui-intellisense](https://github.com/wot-ui/wot-ui-intellisense)                                        | wot-ui vscode 代码提示插件                           |
-| [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | 一个 uni-app 小程序端构建后支持 CI（持续集成）的插件 |
-| [my-uni](https://github.com/wot-ui/my-uni)                                        | 摸鱼 uni 插件库合集  |
-| [unibest](https://github.com/unibest-tech/unibest)                                                              | 基于 wot-ui 的 uni-app 模板                  |
-| [uni-ku-root](https://github.com/uni-ku/root)                                                               | 一个模拟 App.vue 原有能力的根组件插件                |
+| 分类 | 项目 | 描述 |
+| --- | --- | --- |
+| 官方生态 | [wot-starter](https://starter.wot-ui.cn/) | Wot UI 官方快速起手项目 |
+| 官方生态 | [@wot-ui/router](https://my-uni.wot-ui.cn/) | Wot UI 官方路由与工程能力扩展 |
+| 官方生态 | [@wot-ui/cli](https://github.com/wot-ui/open-wot) | Wot UI 官方 AI 工具链与 CLI |
+| 官方生态 | [@wot-ui/unocss-preset](https://github.com/wot-ui/unocss-preset) | Wot UI 官方 UnoCSS 预设 |
+| 官方生态 | [VS Code 插件](https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense) | Wot UI 官方 VS Code 代码提示插件 |
+| 官方生态 | [小程序 CI 工具](https://github.com/Moonofweisheng/uni-mini-ci) | Wot UI 官方推荐的小程序 CI 工具 |
+| 官方生态 | [wot-starter-retail](https://github.com/wot-ui/wot-starter-retail) | Wot UI 官方零售行业模板方案 |
+| 开发资源 | [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app) | 多端统一开发框架 uni-app 优秀开发资源汇总 |
+| 开发资源 | [create-uni](https://github.com/uni-helper/create-uni) | 快速创建 uni-app 项目 |
+| 开发资源 | [uni-ku](https://github.com/uni-ku) | uni-app 生态扩展与工具集合 |
+| 开发资源 | [uni-echarts](https://uni-echarts.xiaohe.ink/) | uni-app 图表组件与接入方案 |
+| 模板方案 | [vitesse-uni-app](https://vitesse-docs.netlify.app/) | 现代化 uni-app 基础模板 |
+| 模板方案 | [unibest](https://unibest.tech/) | 功能完善的 uni-app 开发模板 |
 
 ## 鸣谢
 
@@ -77,5 +77,4 @@
 import WxQrcode from '/wx.jpg'
 import AlipayQrcode from '/alipay.png'
 import H5Qrcode from '/h5.png'
-import AndroidQrcode from '/android.png'
 </script>

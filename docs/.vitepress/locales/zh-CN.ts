@@ -112,6 +112,7 @@ const ecosystemNavItems = [
     items: [
       { text: 'Uni Helper', link: 'https://uni-helper.js.org/' },
       { text: 'uni-ku', link: 'https://github.com/uni-ku' },
+      { text: 'uni-echarts', link: 'https://uni-echarts.xiaohe.ink/' },
     ]
   },
   {

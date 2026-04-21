@@ -12,5 +12,3 @@
 ### ✨ Features | 新功能
 
 * ✨ wot-ui v2 发布 ([2e96ba1](https://github.com/wot-ui/wot-ui/commit/2e96ba168360672521df51aa120ce03a1cf31ca0))
-
-# 更新日志 

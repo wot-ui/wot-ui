@@ -57,7 +57,6 @@ Scan the QR code to view the demo. Note: due to WeChat review restrictions, the 
 <img src="https://v2.wot-ui.cn/wx.jpg" width="200" height="200"/>
 <img src="https://v2.wot-ui.cn/alipay.png" width="200" height="200" />
 <img src="https://v2.wot-ui.cn/h5.png" width="200" height="200" />
-<img src="https://v2.wot-ui.cn/android.png" width="200" height="200" />
 </p>
 
 ## Quick Start
@@ -72,17 +71,21 @@ We welcome contributions of excellent demos and cases. Feel free to submit your 
 
 ## Ecosystem
 
-| Project                                                                                                        | Description                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [wot-starter](https://github.com/wot-ui/wot-starter)                  | A wot-ui quick-start project based on [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app)     |
-| [wot-ui-intellisense](https://github.com/wot-ui/wot-ui-intellisense)                  | VS Code IntelliSense extension for wot-ui     |
-| [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app)                                            | A curated collection of excellent uni-app resources for multi-platform development            |
-| [create-uni](https://github.com/uni-helper/create-uni)                                                      | Quickly create a uni-app project                                |
-| [wot-starter-retail](https://github.com/Moonofweisheng/wot-starter-retail)                                  | A retail-oriented uni-app template based on wot-ui          |
-| [uni-mini-ci](https://github.com/Moonofweisheng/uni-mini-ci)                                                | A plugin that adds CI support for uni-app mini program builds |
-| [my-uni](https://github.com/wot-ui/my-uni)                                        | A collection of utility uni plugins  |
-| [unibest](https://github.com/unibest-tech/unibest)                                                              | A uni-app template based on wot-ui                  |
-| [uni-ku-root](https://github.com/uni-ku/root)                                                               | A root component plugin that simulates the original capabilities of App.vue                  |
+| Category | Project | Description |
+| --- | --- | --- |
+| Official Ecosystem | [wot-starter](https://starter.wot-ui.cn/) | Official Wot UI quick-start project |
+| Official Ecosystem | [@wot-ui/router](https://my-uni.wot-ui.cn/) | Official Wot UI routing and project utilities |
+| Official Ecosystem | [@wot-ui/cli](https://github.com/wot-ui/open-wot) | Official Wot UI AI toolchain and CLI |
+| Official Ecosystem | [@wot-ui/unocss-preset](https://github.com/wot-ui/unocss-preset) | Official Wot UI UnoCSS preset |
+| Official Ecosystem | [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense) | Official VS Code IntelliSense extension for Wot UI |
+| Official Ecosystem | [Mini Program CI Tool](https://github.com/Moonofweisheng/uni-mini-ci) | Officially recommended CI tool for mini program builds |
+| Official Ecosystem | [wot-starter-retail](https://github.com/wot-ui/wot-starter-retail) | Official retail template solution for Wot UI |
+| Development Resources | [awesome-uni-app](https://github.com/uni-helper/awesome-uni-app) | A curated collection of excellent uni-app resources for multi-platform development |
+| Development Resources | [create-uni](https://github.com/uni-helper/create-uni) | Quickly create a uni-app project |
+| Development Resources | [uni-ku](https://github.com/uni-ku) | A collection of uni-app ecosystem extensions and tools |
+| Development Resources | [uni-echarts](https://uni-echarts.xiaohe.ink/) | Charting solution for uni-app projects |
+| Template Solutions | [vitesse-uni-app](https://vitesse-docs.netlify.app/) | A modern uni-app starter template |
+| Template Solutions | [unibest](https://unibest.tech/) | A feature-rich uni-app development template |
 
 ## Contributing
 
