@@ -6,7 +6,7 @@ titleTemplate: 一个AI友好的uni-app组件库，提供 80+ 高质量组件，
 
 hero:
   name: Wot UI
-  text: "高颜值、AI友好的\nuni-app组件库"
+  text: "轻量、美观、AI友好的\nuni-app组件库"
   tagline: AI友好的设计系统，提供 80+ 高质量组件，支持暗黑模式、国际化和自定义主题。
   image:
     src: /logo.svg

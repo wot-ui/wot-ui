@@ -32,6 +32,20 @@ export interface WotThemeSponsorOptions {
 }
 
 /**
+ * 特别赞助位配置。
+ */
+export interface WotThemeSpecialSponsorOptions extends WotThemeSponsorOptions {
+  /**
+   * 是否显示文档右侧赞助位，默认为 true。
+   */
+  enabled?: boolean
+  /**
+   * 开通赞助位跳转地址。
+   */
+  sponsorLink?: string
+}
+
+/**
  * 广告位配置。
  */
 export interface WotThemeAdsOptions {
@@ -116,7 +130,7 @@ export interface WotVitePressThemeOptions {
   /**
    * 特别赞助位配置，传入 false 表示关闭。
    */
-  specialSponsor?: false | WotThemeSponsorOptions
+  specialSponsor?: false | WotThemeSpecialSponsorOptions
   /**
    * 广告位配置，传入 false 表示关闭。
    */
@@ -317,7 +331,7 @@ export interface WotResolvedThemeOptions {
   /**
    * 归一化后的特别赞助位配置。
    */
-  specialSponsor: false | WotThemeSponsorOptions
+  specialSponsor: false | WotThemeSpecialSponsorOptions
 }
 
 /**

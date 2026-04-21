@@ -96,6 +96,11 @@ export default createWotVitePressTheme({
   },
   cases: {
     urls: ['https://api.example.com/cases.json']
+  },
+  specialSponsor: {
+    urls: ['https://api.example.com/sponsor.json'],
+    enabled: true,
+    sponsorLink: '/reward/sponsor'
   }
 })
 ```
@@ -135,6 +140,7 @@ const { data: sponsors } = useSponsor()
 - `analytics.trackBaiduRoute`: 开启后，在路由变化时调用 `_hmt.push(['_trackPageview'])`。
 - `demoIframe`: 配置右侧手机模拟器相关选项。
 - `banner` / `sponsors` / `ads` / `team` / `friendly` / `cases`: 提供给对应功能模块的请求地址数组（支持多线路重试）。
+- `specialSponsor`: 特别赞助位配置，支持赞助数据源 `urls`、右侧赞助位显示开关 `enabled`，以及开通赞助位跳转地址 `sponsorLink`。
 
 ## 构建要求
 

@@ -1,8 +1,23 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 import { useSpecialSponsor } from '../composables/specialSponsor'
+import { wotThemeOptionsKey } from '../options'
 
 const { data } = useSpecialSponsor()
+const options = inject(wotThemeOptionsKey)
+const defaultSponsorLink = '/reward/sponsor'
+
+const specialSponsorOptions = computed(() => {
+  return options?.specialSponsor === false ? null : options?.specialSponsor
+})
+
+const showAsideSponsors = computed(() => {
+  return specialSponsorOptions.value?.enabled !== false
+})
+
+const sponsorLink = computed(() => {
+  return specialSponsorOptions.value?.sponsorLink || defaultSponsorLink
+})
 
 // 分离超级赞助和金牌赞助
 const superSponsors = computed(() => {
@@ -20,8 +35,8 @@ const isGoldSponsorsOdd = computed(() => {
 </script>
 
 <template>
-  <div class="VPDocAsideSponsors">
-    <a class="sponsors-aside-text" href="/reward/sponsor">赞助位</a>
+  <div v-if="showAsideSponsors" class="VPDocAsideSponsors">
+    <a class="sponsors-aside-text" :href="sponsorLink">赞助位</a>
     <div class="VPSponsors vp-sponsor aside">
       <!-- 超级赞助：一行一个 -->
       <section class="vp-sponsor-section" v-if="superSponsors?.items.length">
@@ -52,7 +67,7 @@ const isGoldSponsorsOdd = computed(() => {
           </div>
           <!-- 当金牌赞助为奇数时，默认赞助位填补到金牌赞助位置 -->
           <div class="vp-sponsor-grid-item" v-if="isGoldSponsorsOdd">
-            <a class="vp-sponsor-grid-link" href="/reward/sponsor" rel="sponsored noopener">
+            <a class="vp-sponsor-grid-link" :href="sponsorLink" rel="sponsored noopener">
               <article class="vp-sponsor-grid-box">
                 <span class="vp-sponsor-grid-text">成为赞助商</span>
               </article>
@@ -65,7 +80,7 @@ const isGoldSponsorsOdd = computed(() => {
       <section class="vp-sponsor-section" v-if="!isGoldSponsorsOdd || !goldSponsors?.items.length">
         <div class="VPSponsorsGrid vp-sponsor-grid xmini" data-vp-grid="1">
           <div class="vp-sponsor-grid-item">
-            <a class="vp-sponsor-grid-link" href="/reward/sponsor" rel="sponsored noopener">
+            <a class="vp-sponsor-grid-link" :href="sponsorLink" rel="sponsored noopener">
               <article class="vp-sponsor-grid-box">
                 <span class="vp-sponsor-grid-text">成为赞助商</span>
               </article>
