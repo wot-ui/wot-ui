@@ -6,6 +6,10 @@
 
 结合 `wd-form` 组件，可以实现对内部组件的规则校验。如果需要让表单项之间有清晰的边框线分隔，你可以直接在 `wd-form` 上开启 `border` 属性。
 
+:::tip 温馨提示
+`wd-form-item` 与 `input` 和 `textarea` 结合使用时，会自动开启 `input` 和 `textarea` 的 `compact` 属性
+:::
+
 ## 校验引擎说明
 
 表单组件默认采用接口式校验方案，你可以根据 `FormSchema` 的结构自己编写校验逻辑，详见后文的[自定义校验引擎](#自定义校验引擎)。
@@ -299,28 +303,19 @@ function handleSubmit() {
 ::: code-group
 
 ```html [vue]
-<wd-form ref="form" :model="model">
+<wd-form ref="form" :model="model" :schema="schema">
   <wd-cell-group border>
-    <wd-input
-      label="用户名"
-      label-width="100px"
-      prop="name"
-      clearable
-      v-model="model.name"
-      placeholder="请输入用户名"
-      :rules="[{ required: true, message: '请填写用户名' }]"
-    />
-    <wd-input
+    <wd-form-item title="用户名" prop="name">
+      <wd-input clearable v-model="model.name" placeholder="请输入用户名" />
+    </wd-form-item>
+    <wd-form-item
       v-for="(item, index) in model.phoneNumbers"
       :key="item.key"
-      :label="'玛卡巴卡单号' + index"
+      :title="'玛卡巴卡单号' + index"
       :prop="'phoneNumbers.' + index + '.value'"
-      label-width="100px"
-      clearable
-      v-model="item.value"
-      placeholder="玛卡巴卡单号"
-      :rules="[{ required: true, message: '请填写玛卡巴卡单号' + index }]"
-    />
+    >
+      <wd-input clearable v-model="item.value" placeholder="请输入玛卡巴卡单号" />
+    </wd-form-item>
 
     <wd-cell title-width="0px">
       <view class="footer">
@@ -336,8 +331,9 @@ function handleSubmit() {
 
 ```typescript [typescript]
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-ui'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
 import { reactive, ref } from 'vue'
+import { z } from 'zod'
 
 interface PhoneItem {
   key: number
@@ -356,6 +352,17 @@ const model = reactive<{
     }
   ]
 })
+
+const schema = zodAdapter(
+  z.object({
+    name: z.string().min(1, '请填写用户名'),
+    phoneNumbers: z.array(
+      z.object({
+        value: z.string().min(1, '请填写玛卡巴卡单号')
+      })
+    )
+  })
+)
 
 const { success: showSuccess } = useToast()
 const form = ref()

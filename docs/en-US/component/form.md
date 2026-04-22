@@ -299,28 +299,19 @@ Dynamic addition and removal of form items.
 ::: code-group
 
 ```html [vue]
-<wd-form ref="form" :model="model">
+<wd-form ref="form" :model="model" :schema="schema">
   <wd-cell-group border>
-    <wd-input
-      label="Username"
-      label-width="100px"
-      prop="name"
-      clearable
-      v-model="model.name"
-      placeholder="Please enter username"
-      :rules="[{ required: true, message: 'Please enter username' }]"
-    />
-    <wd-input
+    <wd-form-item title="Username" prop="name">
+      <wd-input clearable v-model="model.name" placeholder="Please enter username" />
+    </wd-form-item>
+    <wd-form-item
       v-for="(item, index) in model.phoneNumbers"
       :key="item.key"
-      :label="'Makabaka Order' + index"
+      :title="'Makabaka Order ' + index"
       :prop="'phoneNumbers.' + index + '.value'"
-      label-width="100px"
-      clearable
-      v-model="item.value"
-      placeholder="Makabaka order number"
-      :rules="[{ required: true, message: 'Please enter Makabaka order number' + index }]"
-    />
+    >
+      <wd-input clearable v-model="item.value" placeholder="Please enter Makabaka order number" />
+    </wd-form-item>
 
     <wd-cell title-width="0px">
       <view class="footer">
@@ -336,8 +327,9 @@ Dynamic addition and removal of form items.
 
 ```typescript [typescript]
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-ui'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
 import { reactive, ref } from 'vue'
+import { z } from 'zod'
 
 interface PhoneItem {
   key: number
@@ -356,6 +348,17 @@ const model = reactive<{
     }
   ]
 })
+
+const schema = zodAdapter(
+  z.object({
+    name: z.string().min(1, 'Please enter username'),
+    phoneNumbers: z.array(
+      z.object({
+        value: z.string().min(1, 'Please enter Makabaka order number')
+      })
+    )
+  })
+)
 
 const { success: showSuccess } = useToast()
 const form = ref()
