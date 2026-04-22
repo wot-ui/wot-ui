@@ -1,6 +1,23 @@
 # 更新日志 
 
 
+### [2.0.1](https://github.com/wot-ui/wot-ui/compare/v2.0.0...v2.0.1) (2026-04-22)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  完善 form 组件文档示例 ([53df04a](https://github.com/wot-ui/wot-ui/commit/53df04a63076506b9de3896fcf04f5178f99c893))
+* ✏️  修正 v1 链接至正确的子域名 ([558cd94](https://github.com/wot-ui/wot-ui/commit/558cd9414829b694a6c605087d57805cccef769e))
+* ✏️  update miniprogram qrcode ([091fc30](https://github.com/wot-ui/wot-ui/commit/091fc308a2981ba9c4b7bdb295889544ef908c1f))
+* ✏️ 更新表单组件示例 ([b439d8a](https://github.com/wot-ui/wot-ui/commit/b439d8af0a7560ba54a7fbc77700f71b9b859267))
+* ✏️ 更新脚手架命令，使用 wot-starter-v2 模板 ([d7d846a](https://github.com/wot-ui/wot-ui/commit/d7d846a81a869fbb70d570eb2df33dc69b5e441b))
+* ✏️ 更新文档和生态系统链接，移除无用内容 ([60a0cc8](https://github.com/wot-ui/wot-ui/commit/60a0cc81c293c096bcf727db5e867cdb269006e7))
+
+
+### ✨ Features | 新功能
+
+* ✨ 调整 button 组件高度由 padding 撑开转为固定高度 ([#4](https://github.com/wot-ui/wot-ui/issues/4)) ([b26b134](https://github.com/wot-ui/wot-ui/commit/b26b134471d78bb4ff09ba34f86852193ebc902d))
+
 ## [2.0.0](https://github.com/wot-ui/wot-ui/compare/v2.0.0-alpha.21...v2.0.0) (2026-04-21)
 
 
