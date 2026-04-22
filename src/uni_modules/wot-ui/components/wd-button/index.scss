@@ -124,14 +124,6 @@ $button-font-size-small: var(--wot-button-font-size-small, $typography-body-size
 $button-font-size-medium: var(--wot-button-font-size-medium, $typography-body-size-extra-large) !default;
 // large 尺寸文字字号
 $button-font-size-large: var(--wot-button-font-size-large, $typography-body-size-extra-large) !default;
-// mini 尺寸文字行高
-$button-line-height-mini: var(--wot-button-line-height-mini, $typography-body-line-height-size-main) !default;
-// small 尺寸文字行高
-$button-line-height-small: var(--wot-button-line-height-small, $typography-body-line-height-size-main) !default;
-// medium 尺寸文字行高
-$button-line-height-medium: var(--wot-button-line-height-medium, $typography-body-line-height-size-extra-large) !default;
-// large 尺寸文字行高
-$button-line-height-large: var(--wot-button-line-height-large, $typography-body-line-height-size-extra-large) !default;
 // mini 尺寸内边距
 $button-padding-mini: var(--wot-button-padding-mini, $padding-zero $padding-loose) !default;
 // small 尺寸内边距
