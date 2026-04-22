@@ -130,7 +130,7 @@ const supportNavItems = [
 ]
 
 const versionNavItems = [
-  { text: 'v1', link: 'https://wot-ui.cn' },
+  { text: 'v1', link: 'https://v1.wot-ui.cn' },
   { text: '更新日志', link: '/guide/changelog.html' },
 ]
 
