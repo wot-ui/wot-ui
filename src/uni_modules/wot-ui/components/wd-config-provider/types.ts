@@ -527,6 +527,10 @@ export type buttonThemeVars = {
   buttonFontSizeMedium?: string // medium 尺寸文字字号
   buttonFontSizeMini?: string // mini 尺寸文字字号
   buttonFontSizeSmall?: string // small 尺寸文字字号
+  buttonHeightLarge?: string // large 尺寸高度
+  buttonHeightMedium?: string // medium 尺寸高度
+  buttonHeightMini?: string // mini 尺寸高度
+  buttonHeightSmall?: string // small 尺寸高度
   buttonInfoBg?: string // 信息类型背景色
   buttonInfoBgActive?: string // 信息类型背景激活色
   buttonInfoColor?: string // 信息类型文本色
@@ -537,14 +541,6 @@ export type buttonThemeVars = {
   buttonInfoPlainBorderActive?: string // 信息类型 plain 边框激活色
   buttonInfoSoftBg?: string // 信息类型 soft 背景色
   buttonInfoSoftBgActive?: string // 信息类型 soft 背景激活色
-  buttonLeftRightPaddingLarge?: string // large 尺寸左右内边距
-  buttonLeftRightPaddingMedium?: string // medium 尺寸左右内边距
-  buttonLeftRightPaddingMini?: string // mini 尺寸左右内边距
-  buttonLeftRightPaddingSmall?: string // small 尺寸左右内边距
-  buttonLineHeightLarge?: string // large 尺寸文字行高
-  buttonLineHeightMedium?: string // medium 尺寸文字行高
-  buttonLineHeightMini?: string // mini 尺寸文字行高
-  buttonLineHeightSmall?: string // small 尺寸文字行高
   buttonLoadingSize?: string // 加载图标尺寸
   buttonLoadingSpacing?: string // 加载图标与文字间距
   buttonMainColor?: string // 实心按钮默认文本色
@@ -552,6 +548,10 @@ export type buttonThemeVars = {
   buttonOnlyIconPaddingMedium?: string // medium 尺寸仅图标按钮内边距
   buttonOnlyIconPaddingMini?: string // mini 尺寸仅图标按钮内边距
   buttonOnlyIconPaddingSmall?: string // small 尺寸仅图标按钮内边距
+  buttonPaddingLarge?: string // large 尺寸内边距
+  buttonPaddingMedium?: string // medium 尺寸内边距
+  buttonPaddingMini?: string // mini 尺寸内边距
+  buttonPaddingSmall?: string // small 尺寸内边距
   buttonPrimaryBg?: string // 主类型背景色
   buttonPrimaryBgActive?: string // 主类型背景激活色
   buttonPrimaryColor?: string // 主类型文本色
@@ -583,10 +583,6 @@ export type buttonThemeVars = {
   buttonSuccessPlainBorderActive?: string // 成功类型 plain 边框激活色
   buttonSuccessSoftBg?: string // 成功类型 soft 背景色
   buttonSuccessSoftBgActive?: string // 成功类型 soft 背景激活色
-  buttonUpDownPaddingLarge?: string // large 尺寸上下内边距
-  buttonUpDownPaddingMedium?: string // medium 尺寸上下内边距
-  buttonUpDownPaddingMini?: string // mini 尺寸上下内边距
-  buttonUpDownPaddingSmall?: string // small 尺寸上下内边距
   buttonWarningBg?: string // 警告类型背景色
   buttonWarningBgActive?: string // 警告类型背景激活色
   buttonWarningColor?: string // 警告类型文本色
