@@ -655,27 +655,14 @@ The `validate` method can accept a `prop` parameter to specify the field to vali
 ::: code-group
 
 ```html [vue]
-<wd-form ref="form" :model="model" errorType="toast">
+<wd-form ref="form" :model="model" :schema="schema" error-type="toast" :title-width="100">
   <wd-cell-group border>
-    <wd-input
-      label="Username"
-      label-width="100px"
-      prop="value1"
-      clearable
-      v-model="model.value1"
-      placeholder="Please enter username"
-      :rules="[{ required: true, message: 'Please enter username' }]"
-    />
-    <wd-input
-      label="Password"
-      label-width="100px"
-      prop="value2"
-      show-password
-      clearable
-      v-model="model.value2"
-      placeholder="Please enter password"
-      :rules="[{ required: true, message: 'Please enter password' }]"
-    />
+    <wd-form-item title="Username" prop="value1">
+      <wd-input clearable v-model="model.value1" placeholder="Please enter username" />
+    </wd-form-item>
+    <wd-form-item title="Password" prop="value2">
+      <wd-input show-password clearable v-model="model.value2" placeholder="Please enter password" />
+    </wd-form-item>
   </wd-cell-group>
   <view class="footer">
     <wd-button type="primary" size="large" @click="handleSubmit" block>Submit</wd-button>
@@ -686,9 +673,10 @@ The `validate` method can accept a `prop` parameter to specify the field to vali
 
 ```typescript [typescript]
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-ui'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
 import type { FormInstance } from '@/uni_modules/wot-ui/components/wd-form/types'
 import { reactive, ref } from 'vue'
+import { z } from 'zod'
 
 const { success: showSuccess } = useToast()
 const model = reactive<{
@@ -698,6 +686,13 @@ const model = reactive<{
   value1: '',
   value2: ''
 })
+
+const schema = zodAdapter(
+  z.object({
+    value1: z.string().min(1, 'Please enter username'),
+    value2: z.string().min(6, 'Password must be at least 6 characters')
+  })
+)
 
 const form = ref<FormInstance>()
 
@@ -717,14 +712,25 @@ function handleSubmit() {
 }
 
 function handleValidate() {
-  form.value?.validate(['value1', 'value2'])
+  form
+    .value!.validate(['value1', 'value2'])
+    .then(({ valid, errors }) => {
+      if (valid) {
+        showSuccess({
+          msg: 'Validation passed'
+        })
+      }
+    })
+    .catch((error) => {
+      console.log(error, 'error')
+    })
 }
 </script>
 ```
 
 ```css [css]
 .footer {
-  padding: 16px;
+  padding: 12px;
 }
 ```
 

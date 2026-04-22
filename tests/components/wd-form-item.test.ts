@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import { describe, test, expect } from 'vitest'
-import { nextTick } from 'vue'
+import { describe, test, expect, vi } from 'vitest'
+import { nextTick, ref } from 'vue'
 import WdFormItem from '@/uni_modules/wot-ui/components/wd-form-item/wd-form-item.vue'
 import WdForm from '@/uni_modules/wot-ui/components/wd-form/wd-form.vue'
 import WdCell from '@/uni_modules/wot-ui/components/wd-cell/wd-cell.vue'
@@ -159,5 +159,190 @@ describe('WdFormItem', () => {
     })
     const cell = wrapper.findComponent({ name: 'wd-cell' })
     expect(cell.props('isLink')).toBe(true)
+  })
+
+  test('validate-trigger 为 change 时，字段变化会触发校验', async () => {
+    const schema = {
+      validate(model: Record<string, string>) {
+        return model.name ? [] : [{ path: ['name'], message: '姓名不能为空' }]
+      }
+    }
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form ref="form" :model="formData" :schema="schema" validate-trigger="change">
+            <wd-form-item prop="name" title="姓名">
+              <text>{{ formData.name }}</text>
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return { formData: { name: '' }, schema }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    ;(wrapper.vm as any).formData.name = '张三'
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.find('.wd-form-item__error-message').exists()).toBe(false)
+  })
+
+  test('validate-trigger 为 blur 时，字段变化不触发 change 校验', async () => {
+    const schema = {
+      validate() {
+        return [{ path: ['name'], message: '姓名不能为空' }]
+      }
+    }
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" :schema="schema" validate-trigger="blur">
+            <wd-form-item prop="name" title="姓名">
+              <text>{{ formData.name }}</text>
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return { formData: { name: '' }, schema }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    ;(wrapper.vm as any).formData.name = '李四'
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.find('.wd-form-item__error-message').exists()).toBe(false)
+  })
+
+  test('form-item 可用 validate-trigger 覆盖 form 的触发时机', async () => {
+    const schema = {
+      validate() {
+        return [{ path: ['name'], message: '姓名不能为空' }]
+      }
+    }
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" :schema="schema" validate-trigger="blur">
+            <wd-form-item prop="name" title="姓名" validate-trigger="change">
+              <text>{{ formData.name }}</text>
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return { formData: { name: '' }, schema }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    ;(wrapper.vm as any).formData.name = '王五'
+    await nextTick()
+    await nextTick()
+
+    expect(wrapper.find('.wd-form-item__error-message').exists()).toBe(true)
+  })
+
+  test('form-item 传入布局相关 props 时优先使用自身配置', () => {
+    const wrapper = mount(WdFormItem, {
+      props: {
+        titleWidth: '120',
+        layout: 'vertical',
+        valueAlign: 'right',
+        asteriskPosition: 'end'
+      },
+      global: { components: globalComponents }
+    })
+    const cell = wrapper.findComponent({ name: 'wd-cell' })
+    expect(cell.props('titleWidth')).toBe('120')
+    expect(cell.props('layout')).toBe('vertical')
+    expect(cell.props('valueAlign')).toBe('right')
+    expect(cell.props('asteriskPosition')).toBe('end')
+  })
+
+  test('未传布局 props 时使用默认值', () => {
+    const wrapper = mount(WdFormItem, {
+      global: { components: globalComponents }
+    })
+    const cell = wrapper.findComponent({ name: 'wd-cell' })
+    expect(cell.props('titleWidth')).toBe('98px')
+    expect(cell.props('layout')).toBe('horizontal')
+    expect(cell.props('valueAlign')).toBe('left')
+    expect(cell.props('asteriskPosition')).toBe('start')
+  })
+
+  test('form-item 传入 border 时优先使用自身配置', () => {
+    const wrapper = mount(WdFormItem, {
+      props: { border: true },
+      global: { components: globalComponents }
+    })
+    const cell = wrapper.findComponent({ name: 'wd-cell' })
+    expect(cell.props('border')).toBe(true)
+  })
+
+  test('未传 required 时可由 schema.isRequired 推导', async () => {
+    const host = {
+      components: { WdFormItem },
+      setup() {
+        const formData = ref({ name: '' })
+        const schema = {
+          validate: () => [],
+          isRequired: (path: string) => path === 'name'
+        }
+        return { formData, schema }
+      },
+      template: `
+        <wd-form :model="formData" :schema="schema">
+          <wd-form-item prop="name" title="姓名" />
+        </wd-form>
+      `
+    }
+
+    const wrapper = mount(host, { global: { components: globalComponents } })
+    await nextTick()
+    const cell = wrapper.findComponent({ name: 'wd-cell' })
+    expect(cell.props('required')).toBe(true)
+  })
+
+  test('border 在 index > 0 且 form.border=true 时返回 true', async () => {
+    vi.resetModules()
+
+    vi.doMock('@/uni_modules/wot-ui/composables/useParent', () => {
+      return {
+        useParent: () => ({
+          parent: ref({ props: { border: true } }),
+          index: ref(1)
+        })
+      }
+    })
+
+    vi.doMock('@/uni_modules/wot-ui/composables/useChildren', () => {
+      return {
+        useChildren: () => ({
+          linkChildren: () => {}
+        })
+      }
+    })
+
+    const { default: MockedWdFormItem } = await import('@/uni_modules/wot-ui/components/wd-form-item/wd-form-item.vue')
+
+    const wrapper = mount(MockedWdFormItem, {
+      global: {
+        components: {
+          WdCell
+        }
+      }
+    })
+
+    const cell = wrapper.findComponent({ name: 'wd-cell' })
+    expect(cell.props('border')).toBe(true)
+
+    vi.doUnmock('@/uni_modules/wot-ui/composables/useParent')
+    vi.doUnmock('@/uni_modules/wot-ui/composables/useChildren')
   })
 })

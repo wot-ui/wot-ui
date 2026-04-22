@@ -655,27 +655,14 @@ function handleSubmit() {
 ::: code-group
 
 ```html [vue]
-<wd-form ref="form" :model="model" errorType="toast">
+<wd-form ref="form" :model="model" :schema="schema" error-type="toast" :title-width="100">
   <wd-cell-group border>
-    <wd-input
-      label="用户名"
-      label-width="100px"
-      prop="value1"
-      clearable
-      v-model="model.value1"
-      placeholder="请输入用户名"
-      :rules="[{ required: true, message: '请填写用户名' }]"
-    />
-    <wd-input
-      label="密码"
-      label-width="100px"
-      prop="value2"
-      show-password
-      clearable
-      v-model="model.value2"
-      placeholder="请输入密码"
-      :rules="[{ required: true, message: '请填写密码' }]"
-    />
+    <wd-form-item title="用户名" prop="value1">
+      <wd-input clearable v-model="model.value1" placeholder="请输入用户名" />
+    </wd-form-item>
+    <wd-form-item title="密码" prop="value2">
+      <wd-input show-password clearable v-model="model.value2" placeholder="请输入密码" />
+    </wd-form-item>
   </wd-cell-group>
   <view class="footer">
     <wd-button type="primary" size="large" @click="handleSubmit" block>提交</wd-button>
@@ -686,9 +673,10 @@ function handleSubmit() {
 
 ```typescript [typescript]
 <script lang="ts" setup>
-import { useToast } from '@/uni_modules/wot-ui'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
 import type { FormInstance } from '@/uni_modules/wot-ui/components/wd-form/types'
 import { reactive, ref } from 'vue'
+import { z } from 'zod'
 
 const { success: showSuccess } = useToast()
 const model = reactive<{
@@ -698,6 +686,13 @@ const model = reactive<{
   value1: '',
   value2: ''
 })
+
+const schema = zodAdapter(
+  z.object({
+    value1: z.string().min(1, '请填写用户名'),
+    value2: z.string().min(6, '密码至少为6位')
+  })
+)
 
 const form = ref<FormInstance>()
 

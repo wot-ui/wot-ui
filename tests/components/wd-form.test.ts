@@ -34,9 +34,13 @@ describe('WdForm schema validate', () => {
     const wrapper = mount(
       {
         template: `
-          <wd-form ref="form" :model="formData" :schema="schema">
-            <wd-input prop="name" label="姓名" v-model="formData.name" />
-            <wd-input prop="age" label="年龄" v-model="formData.age" />
+          <wd-form ref="form" :model="formData" :schema="schema" :reset-on-change="false">
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" />
+            </wd-form-item>
+            <wd-form-item prop="age" title="年龄">
+              <wd-input v-model="formData.age" />
+            </wd-form-item>
           </wd-form>
         `,
         data() {
@@ -65,8 +69,12 @@ describe('WdForm schema validate', () => {
       {
         template: `
           <wd-form ref="form" :model="formData" :schema="schema">
-            <wd-input prop="name" label="姓名" v-model="formData.name" />
-            <wd-input prop="age" label="年龄" v-model="formData.age" />
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" />
+            </wd-form-item>
+            <wd-form-item prop="age" title="年龄">
+              <wd-input v-model="formData.age" />
+            </wd-form-item>
           </wd-form>
         `,
         data() {
@@ -95,7 +103,9 @@ describe('WdForm schema validate', () => {
       {
         template: `
           <wd-form ref="form" :model="formData" :schema="schema">
-            <wd-input prop="name" v-model="formData.name" />
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" />
+            </wd-form-item>
           </wd-form>
         `,
         data() {
@@ -108,11 +118,13 @@ describe('WdForm schema validate', () => {
       { global: { components: globalComponents } }
     )
     const form = wrapper.findComponent({ ref: 'form' })
-    const result = await form.vm.validate()
-    expect(result.valid).toBe(false)
+    await form.vm.validate()
+    await nextTick()
+    expect(wrapper.find('.wd-form-item__error-message').exists()).toBe(true)
+
     form.vm.reset()
-    const resultAfterReset = await form.vm.validate('name')
-    expect(resultAfterReset.valid).toBe(false)
+    await nextTick()
+    expect(wrapper.find('.wd-form-item__error-message').exists()).toBe(false)
   })
 
   test('支持无 zod 的自定义 schema', async () => {
@@ -132,7 +144,9 @@ describe('WdForm schema validate', () => {
       {
         template: `
           <wd-form ref="form" :model="formData" :schema="schema">
-            <wd-input prop="name" v-model="formData.name" />
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" />
+            </wd-form-item>
           </wd-form>
         `,
         data() {
@@ -160,7 +174,9 @@ describe('WdForm schema validate', () => {
       {
         template: `
           <wd-form ref="form" :model="formData" :schema="schema" error-type="none">
-            <wd-input prop="name" v-model="formData.name" />
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" />
+            </wd-form-item>
           </wd-form>
         `,
         data() {
@@ -175,6 +191,82 @@ describe('WdForm schema validate', () => {
     const form = wrapper.findComponent({ ref: 'form' })
     await form.vm.validate()
     await nextTick()
-    expect(wrapper.find('.wd-input__error-message').exists()).toBe(false)
+    expect(wrapper.find('.wd-form-item__error-message').exists()).toBe(false)
+  })
+
+  test('errorType 为 toast 时走 toast 提示分支', async () => {
+    const schema = zodAdapter(
+      z.object({
+        name: z.string().min(1, '请输入姓名')
+      })
+    )
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form ref="form" :model="formData" :schema="schema" error-type="toast">
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" />
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return {
+            formData: { name: '' },
+            schema
+          }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+    const form = wrapper.findComponent({ ref: 'form' })
+    const result = await form.vm.validate()
+    expect(result.valid).toBe(false)
+    expect(result.errors.length).toBe(1)
+    expect(wrapper.findComponent({ name: 'wd-toast' }).exists()).toBe(true)
+  })
+
+  test('指定字段通过后只清理对应字段错误', async () => {
+    const schema: FormSchema = {
+      validate() {
+        return []
+      }
+    }
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form ref="form" :model="formData" :schema="schema">
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" />
+            </wd-form-item>
+            <wd-form-item prop="age" title="年龄">
+              <wd-input v-model="formData.age" />
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return {
+            formData: { name: '', age: '' },
+            schema
+          }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    const form = wrapper.findComponent({ ref: 'form' })
+    ;(form.vm as any).errorMessages.name = '请输入姓名'
+    ;(form.vm as any).errorMessages.age = '请输入年龄'
+
+    const partialResult = await form.vm.validate('name')
+    await nextTick()
+    expect(partialResult.valid).toBe(true)
+    expect((form.vm as any).errorMessages.name).toBe('')
+    expect((form.vm as any).errorMessages.age).toBe('请输入年龄')
+
+    const allResult = await form.vm.validate()
+    await nextTick()
+    expect(allResult.valid).toBe(true)
+    expect((form.vm as any).errorMessages.name).toBe('')
+    expect((form.vm as any).errorMessages.age).toBe('')
   })
 })
