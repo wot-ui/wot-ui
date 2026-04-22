@@ -293,7 +293,6 @@ $button-variants: (
   margin-left: initial;
   margin-right: initial;
   border-radius: $button-radius-main;
-  flex-shrink: 0;
 
   &::after {
     position: absolute;
