@@ -124,30 +124,22 @@ $button-font-size-small: var(--wot-button-font-size-small, $typography-body-size
 $button-font-size-medium: var(--wot-button-font-size-medium, $typography-body-size-extra-large) !default;
 // large 尺寸文字字号
 $button-font-size-large: var(--wot-button-font-size-large, $typography-body-size-extra-large) !default;
-// mini 尺寸文字行高
-$button-line-height-mini: var(--wot-button-line-height-mini, $typography-body-line-height-size-main) !default;
-// small 尺寸文字行高
-$button-line-height-small: var(--wot-button-line-height-small, $typography-body-line-height-size-main) !default;
-// medium 尺寸文字行高
-$button-line-height-medium: var(--wot-button-line-height-medium, $typography-body-line-height-size-extra-large) !default;
-// large 尺寸文字行高
-$button-line-height-large: var(--wot-button-line-height-large, $typography-body-line-height-size-extra-large) !default;
-// mini 尺寸左右内边距
-$button-left-right-padding-mini: var(--wot-button-left-right-padding-mini, $padding-loose) !default;
-// small 尺寸左右内边距
-$button-left-right-padding-small: var(--wot-button-left-right-padding-small, $padding-loose) !default;
-// medium 尺寸左右内边距
-$button-left-right-padding-medium: var(--wot-button-left-right-padding-medium, $padding-extra-loose) !default;
-// large 尺寸左右内边距
-$button-left-right-padding-large: var(--wot-button-left-right-padding-large, $padding-super-loose) !default;
-// mini 尺寸上下内边距
-$button-up-down-padding-mini: var(--wot-button-up-down-padding-mini, $padding-super-tight) !default;
-// small 尺寸上下内边距
-$button-up-down-padding-small: var(--wot-button-up-down-padding-small, $padding-extra-tight) !default;
-// medium 尺寸上下内边距
-$button-up-down-padding-medium: var(--wot-button-up-down-padding-medium, $padding-tight) !default;
-// large 尺寸上下内边距
-$button-up-down-padding-large: var(--wot-button-up-down-padding-large, $padding-main) !default;
+// mini 尺寸内边距
+$button-padding-mini: var(--wot-button-padding-mini, $padding-zero $padding-loose) !default;
+// small 尺寸内边距
+$button-padding-small: var(--wot-button-padding-small, $padding-zero $padding-loose) !default;
+// medium 尺寸内边距
+$button-padding-medium: var(--wot-button-padding-medium, $padding-zero $padding-extra-loose) !default;
+// large 尺寸内边距
+$button-padding-large: var(--wot-button-padding-large, $padding-zero $padding-super-loose) !default;
+// mini 尺寸高度
+$button-height-mini: var(--wot-button-height-mini, $n-28) !default;
+// small 尺寸高度
+$button-height-small: var(--wot-button-height-small, $n-32) !default;
+// medium 尺寸高度
+$button-height-medium: var(--wot-button-height-medium, $n-40) !default;
+// large 尺寸高度
+$button-height-large: var(--wot-button-height-large, $n-44) !default;
 // mini 尺寸仅图标按钮内边距
 $button-only-icon-padding-mini: var(--wot-button-only-icon-padding-mini, $padding-super-tight) !default;
 // small 尺寸仅图标按钮内边距
@@ -155,7 +147,7 @@ $button-only-icon-padding-small: var(--wot-button-only-icon-padding-small, $padd
 // medium 尺寸仅图标按钮内边距
 $button-only-icon-padding-medium: var(--wot-button-only-icon-padding-medium, $padding-tight) !default;
 // large 尺寸仅图标按钮内边距
-$button-only-icon-padding-large: var(--wot-button-only-icon-padding-large, $padding-loose) !default;
+$button-only-icon-padding-large: var(--wot-button-only-icon-padding-large, $padding-main) !default;
 // mini 尺寸图标与文字间距
 $button-spacing-mini: var(--wot-button-spacing-mini, $spacing-super-tight) !default;
 // small 尺寸图标与文字间距
@@ -245,37 +237,33 @@ $button-types: (
 // 按钮尺寸配置映射
 $button-sizes: (
   "mini": (
-    "padding-y": $button-up-down-padding-mini,
-    "padding-x": $button-left-right-padding-mini,
+    "height": $button-height-mini,
+    "padding": $button-padding-mini,
     "font-size": $button-font-size-mini,
-    "line-height": $button-line-height-mini,
     "icon-font-size": $button-size-icon-mini,
     "spacing": $button-spacing-mini,
     "icon-padding": $button-only-icon-padding-mini
   ),
   "small": (
-    "padding-y": $button-up-down-padding-small,
-    "padding-x": $button-left-right-padding-small,
+    "height": $button-height-small,
+    "padding": $button-padding-small,
     "font-size": $button-font-size-small,
-    "line-height": $button-line-height-small,
     "icon-font-size": $button-size-icon-small,
     "spacing": $button-spacing-small,
     "icon-padding": $button-only-icon-padding-small
   ),
   "medium": (
-    "padding-y": $button-up-down-padding-medium,
-    "padding-x": $button-left-right-padding-medium,
+    "height": $button-height-medium,
+    "padding": $button-padding-medium,
     "font-size": $button-font-size-medium,
-    "line-height": $button-line-height-medium,
     "icon-font-size": $button-size-icon-medium,
     "spacing": $button-spacing-medium,
     "icon-padding": $button-only-icon-padding-medium
   ),
   "large": (
-    "padding-y": $button-up-down-padding-large,
-    "padding-x": $button-left-right-padding-large,
+    "height": $button-height-large,
+    "padding": $button-padding-large,
     "font-size": $button-font-size-large,
-    "line-height": $button-line-height-large,
     "icon-font-size": $button-size-icon-large,
     "spacing": $button-spacing-large,
     "icon-padding": $button-only-icon-padding-large
@@ -305,6 +293,7 @@ $button-variants: (
   margin-left: initial;
   margin-right: initial;
   border-radius: $button-radius-main;
+  flex-shrink: 0;
 
   &::after {
     position: absolute;
@@ -455,14 +444,14 @@ $button-variants: (
   @each $size,
   $conf in $button-sizes {
     @include when($size) {
-      padding: map.get($conf, "padding-y") map.get($conf, "padding-x");
+      height: map.get($conf, "height");
+      padding: map.get($conf, "padding");
       font-size: map.get($conf, "font-size");
-      line-height: map.get($conf, "line-height");
+      line-height: map.get($conf, "height");
       font-weight: normal;
 
       :deep(.wd-button__icon) {
         font-size: map.get($conf, "icon-font-size");
-        line-height: 1;
 
         + .wd-button__text {
           margin-left: map.get($conf, "spacing");
@@ -470,6 +459,7 @@ $button-variants: (
       }
 
       @include when(icon) {
+        min-width: map.get($conf, "height");
         padding: map.get($conf, "icon-padding");
       }
     }

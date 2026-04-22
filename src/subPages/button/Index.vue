@@ -91,6 +91,9 @@
           <view class="page-button__row">
             <wd-button v-for="item in typeItems" :key="`icon-round-${item.type}`" icon="delete" :type="item.type" variant="plain" round></wd-button>
           </view>
+          <view class="page-button__row">
+            <wd-button v-for="item in typeItems" :key="`icon-round-${item.type}`" icon="delete" :type="item.type" :size="item.size" round></wd-button>
+          </view>
         </demo-group-item>
         <demo-group-item :title="$t('tu-wen-an-niu')">
           <wd-button icon="download">{{ $t('xia-zai') }}</wd-button>
@@ -127,11 +130,11 @@ import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
 const typeItems = [
-  { type: 'primary', textKey: 'zhu-yao-an-niu' },
-  { type: 'success', textKey: 'cheng-gong-an-niu-0' },
-  { type: 'info', textKey: 'xin-xi-an-niu' },
-  { type: 'warning', textKey: 'jing-gao-an-niu-0' },
-  { type: 'danger', textKey: 'wei-xian-an-niu' }
+  { type: 'primary', textKey: 'zhu-yao-an-niu', size: 'large' },
+  { type: 'success', textKey: 'cheng-gong-an-niu-0', size: 'medium' },
+  { type: 'info', textKey: 'xin-xi-an-niu', size: 'small' },
+  { type: 'warning', textKey: 'jing-gao-an-niu-0', size: 'mini' },
+  { type: 'danger', textKey: 'wei-xian-an-niu', size: 'small' }
 ] as const
 
 const sizeItems = computed<Array<{ size: ButtonSize; text: string }>>(() => [
