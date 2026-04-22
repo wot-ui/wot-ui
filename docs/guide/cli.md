@@ -7,7 +7,7 @@
 我们推荐使用 [create-uni](https://github.com/uni-helper/create-uni) 创建项目，它支持一键创建集成 Wot UI 的基础项目。使用以下命令：
 
 ```bash
-pnpm create uni <你的项目名称> --ts -m pinia -u wot -e
+pnpm create uni <你的项目名称> --ts -m pinia -u wot2 -e
 ```
 
 将会完成以下工作：

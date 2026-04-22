@@ -7,7 +7,7 @@ Through this chapter, you can learn how to use the [create-uni](https://github.c
 We recommend using [create-uni](https://github.com/uni-helper/create-uni) to create projects. It supports one-click creation of basic projects integrated with Wot UI. Use the following command:
 
 ```bash
-pnpm create uni <your-project-name> --ts -m pinia -u wot -e
+pnpm create uni <your-project-name> --ts -m pinia -u wot2 -e
 ```
 
 Will complete the following work:

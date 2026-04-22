@@ -9,7 +9,7 @@ There are many excellent templates that choose Wot UI as the basic component lib
 You can also combine with [CLI](/guide/cli) `create-uni` to directly create this template:
 
 ```bash
-pnpm create uni <project-name> -t wot-starter
+pnpm create uni <project-name> -t wot-starter-v2
 ```
 
 Open the project folder in VS Code:

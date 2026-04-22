@@ -212,7 +212,7 @@ We provide a quick start project [wot-starter](https://github.com/wot-ui/wot-sta
 You can also use [create-uni](https://github.com/uni-helper/create-uni) to quickly create a starter project through the following command:
 
 ```bash
-pnpm create uni@latest -t wot-starter <your-project-name>
+pnpm create uni@latest -t wot-starter-v2 <your-project-name>
 ```
 
 For more scaffolding and templates, please see [Scaffolding and Templates](./templates.html).

@@ -9,7 +9,7 @@
 你也可以结合 [脚手架](/guide/cli) 中的 `create-uni` 直接创建该模板：
 
 ```bash
-pnpm create uni <project-name> -t wot-starter
+pnpm create uni <project-name> -t wot-starter-v2
 ```
 
 在 VS Code 中打开项目文件夹：
