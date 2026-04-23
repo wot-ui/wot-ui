@@ -79,6 +79,8 @@ $cell-margin-horizontal: var(--wot-cell-margin-horizontal, $spacing-loose) !defa
 $cell-arrow-margin-left: var(--wot-cell-arrow-margin-left, $spacing-tight) !default;
 // 标签顶部间距
 $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !default;
+// 分割线左右边距
+$cell-border-margin-horizontal: var(--wot-cell-border-margin-horizontal, $spacing-loose) !default;
 
 @include b(cell) {
   position: relative;
@@ -90,7 +92,7 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
   width: 100%;
 
   @include when(border) {
-    @include halfPixelBorder('top',$cell-padding,$cell-border-color);
+    @include halfPixelBorder('top', $cell-border-margin-horizontal, $cell-border-color);
   }
 
   @include e(wrapper) {
@@ -165,7 +167,7 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
     color: $cell-icon-color;
   }
 
-  @include e(body){
+  @include e(body) {
     display: flex;
     min-width: 0;
   }
@@ -178,11 +180,11 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
     color: $cell-value-color;
     vertical-align: middle;
     word-break: break-all;
-    
+
     @include m(left) {
       text-align: left;
     }
-    
+
     @include m(right) {
       text-align: right;
     }
@@ -190,7 +192,7 @@ $cell-label-margin-top: var(--wot-cell-label-margin-top, $spacing-super-tight) !
     @include m(center) {
       text-align: center;
     }
-    
+
     @include m(ellipsis) {
       @include lineEllipsis;
       min-width: 0;
