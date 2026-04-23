@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+### [2.0.3](https://github.com/wot-ui/wot-ui/compare/v2.0.2...v2.0.3) (2026-04-23)
+
+
+### ✨ Features | 新功能
+
+* ✨ checkbox 支持独立使用 ([#7](https://github.com/wot-ui/wot-ui/issues/7)) ([4b04820](https://github.com/wot-ui/wot-ui/commit/4b04820853f19459a88f69ce6e19d9a756b0cf8e))
+
 ### [2.0.2](https://github.com/wot-ui/wot-ui/compare/v2.0.1...v2.0.2) (2026-04-22)
 
 
