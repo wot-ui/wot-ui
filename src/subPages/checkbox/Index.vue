@@ -19,6 +19,10 @@
             </wd-checkbox>
           </wd-checkbox-group>
         </demo-group-item>
+
+        <demo-group-item :title="$t('dan-du-shi-yong')">
+          <wd-checkbox v-model="standaloneCheck">{{ $t('duo-xuan-1') }}</wd-checkbox>
+        </demo-group-item>
       </demo-group>
 
       <demo-group :title="$t('zu-jian-zhuang-tai')">
@@ -86,6 +90,10 @@
             <wd-checkbox :name="3">{{ $t('duo-xuan-3-1') }}</wd-checkbox>
             <wd-checkbox :name="4">{{ $t('duo-xuan-4-1') }}</wd-checkbox>
           </wd-checkbox-group>
+        </demo-group-item>
+
+        <demo-group-item :title="$t('zi-ding-yi-xuan-zhong-fei-xuan-zhong-zhi')">
+          <wd-checkbox v-model="standaloneTrueValue" true-value="yes" false-value="no">{{ $t('duo-xuan-1') }}</wd-checkbox>
         </demo-group-item>
       </demo-group>
 
@@ -192,6 +200,8 @@ import { ref } from 'vue'
 import type { CheckboxGroupInstance } from '@/uni_modules/wot-ui/components/wd-checkbox-group/types'
 
 const value1 = ref<number[]>([1])
+const standaloneCheck = ref<boolean>(false)
+const standaloneTrueValue = ref<string>('no')
 const value2 = ref<number[]>([1])
 const value4 = ref<number[]>([1])
 const value5 = ref<number[]>([1])

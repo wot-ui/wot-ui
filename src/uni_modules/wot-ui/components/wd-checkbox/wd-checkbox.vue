@@ -120,7 +120,7 @@ const readonlyValue = computed(() => {
   if (isDef(props.readonly)) {
     return props.readonly
   } else {
-    return getPropByPath(checkboxGroup.value, 'props.readonly')
+    return getPropByPath(checkboxGroup.value, 'props.readonly') || false
   }
 })
 
@@ -128,7 +128,7 @@ const directionValue = computed(() => {
   if (isDef(props.direction)) {
     return props.direction
   } else {
-    return getPropByPath(checkboxGroup.value, 'props.direction') as CheckboxDirection
+    return (getPropByPath(checkboxGroup.value, 'props.direction') as CheckboxDirection) || 'vertical'
   }
 })
 
@@ -136,7 +136,7 @@ const placementValue = computed<CheckboxPlacement>(() => {
   if (isDef(props.placement)) {
     return props.placement
   } else {
-    return getPropByPath(checkboxGroup.value, 'props.placement')
+    return getPropByPath(checkboxGroup.value, 'props.placement') || 'left'
   }
 })
 

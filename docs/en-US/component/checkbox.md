@@ -12,6 +12,28 @@ Use `v-model` to bind the selected state.
 <wd-checkbox v-model="value" shape="square">Checkbox</wd-checkbox>
 ```
 
+### Standalone Usage
+
+`wd-checkbox` can be used independently without `wd-checkbox-group`. Bind the checked state with `v-model` (default `true-value` is `true`, `false-value` is `false`). You can also customize the checked/unchecked values with `true-value` / `false-value`.
+
+```html
+<wd-checkbox v-model="checked">Agree</wd-checkbox>
+```
+
+```ts
+const checked = ref(false)
+```
+
+**Custom true/false value**
+
+```html
+<wd-checkbox v-model="agree" true-value="yes" false-value="no">Agree</wd-checkbox>
+```
+
+```ts
+const agree = ref('no')
+```
+
 ### Checkbox Group
 
 Use `wd-checkbox-group` to manage multiple checkboxes.

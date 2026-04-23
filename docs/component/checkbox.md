@@ -15,6 +15,28 @@
 </wd-checkbox-group>
 ```
 
+### 单独使用
+
+`wd-checkbox` 可以不依赖 `wd-checkbox-group` 单独使用，通过 `v-model` 绑定选中状态（默认 `true-value` 为 `true`，`false-value` 为 `false`），也可通过 `true-value` / `false-value` 自定义选中与非选中时的值。
+
+```html
+<wd-checkbox v-model="checked">同意协议</wd-checkbox>
+```
+
+```ts
+const checked = ref(false)
+```
+
+**自定义选中/非选中值**
+
+```html
+<wd-checkbox v-model="agree" true-value="yes" false-value="no">同意协议</wd-checkbox>
+```
+
+```ts
+const agree = ref('no')
+```
+
 ## 组件状态
 
 ### 禁用状态
