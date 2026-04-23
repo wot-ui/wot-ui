@@ -1,5 +1,5 @@
-@use '../../styles/variable.scss'as *;
-@use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/variable.scss' as *;
+@use '../../styles/mixin/mixin.scss' as *;
 
 // 单元格背景色
 $cell-bg: var(--wot-cell-bg, $filled-oppo) !default;
