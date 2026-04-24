@@ -729,6 +729,7 @@ export type cellThemeVars = {
   cellBg?: string // 单元格背景色
   cellBgActive?: string // 单元格激活态背景色
   cellBorderColor?: string // 边框颜色
+  cellBorderMarginHorizontal?: string // 分割线左右边距
   cellClearColor?: string // 清除图标颜色
   cellIconColor?: string // 图标颜色
   cellIconSize?: string // 图标尺寸
