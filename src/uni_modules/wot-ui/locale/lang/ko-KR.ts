@@ -64,12 +64,6 @@ export default {
     error: '로딩 오류',
     retry: '재시도'
   },
-  messageBox: {
-    inputPlaceholder: '정보를 입력해주세요',
-    confirm: '확인',
-    cancel: '취소',
-    inputNoValidate: '유효한 정보를 입력해주세요'
-  },
   dialog: {
     inputPlaceholder: '정보를 입력해주세요',
     confirm: '확인',

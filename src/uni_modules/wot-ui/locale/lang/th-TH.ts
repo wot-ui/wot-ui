@@ -68,12 +68,6 @@ export default {
     confirm: 'ยืนยัน',
     cancel: 'ยกเลิก'
   },
-  messageBox: {
-    inputPlaceholder: 'กรุณาใส่ข้อมูล',
-    confirm: 'ยืนยัน',
-    cancel: 'ยกเลิก',
-    inputNoValidate: 'กรุณาตรวจสอบว่าคุณได้ใส่ข้อมูลที่ถูกต้อง'
-  },
   dialog: {
     inputPlaceholder: 'กรุณาใส่ข้อมูล',
     confirm: 'ยืนยัน',

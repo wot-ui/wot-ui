@@ -68,12 +68,6 @@ export default {
     error: 'يۈكلەش مەغلۇپ بولدى',
     retry: 'قايتا سىناڭ'
   },
-  messageBox: {
-    inputPlaceholder: 'كىرگۈزۈڭ',
-    confirm: 'جەزملەش',
-    cancel: 'بىكار قىلىش',
-    inputNoValidate: 'كىرگۈزۈلگەن سانلىق مەلۇمات ئىناۋەتسىز'
-  },
   dialog: {
     inputPlaceholder: 'كىرگۈزۈڭ',
     confirm: 'جەزملەش',

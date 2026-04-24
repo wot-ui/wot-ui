@@ -84,7 +84,7 @@ import type { DropMenuItemBeforeToggle } from '@/uni_modules/wot-ui/components/w
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
-const messageBox = useDialog()
+const dialog = useDialog()
 
 const dropMenu = ref()
 const slider = ref<SliderInstance>()
@@ -151,7 +151,7 @@ function confirm() {
 
 const handleBeforeToggle: DropMenuItemBeforeToggle = ({ status }) => {
   return new Promise<boolean>((resolve) => {
-    messageBox
+    dialog
       .confirm({
         title: `${status ? t('yi-bu-da-kai') : t('yi-bu-guan-bi')}`,
         msg: `${status ? t('que-ding-yao-da-kai-xia-la-cai-dan-ma') : t('que-ding-yao-guan-bi-xia-la-cai-dan-ma')}`

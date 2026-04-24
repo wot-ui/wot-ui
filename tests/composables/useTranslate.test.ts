@@ -86,7 +86,7 @@ describe('useTranslate', () => {
   })
 
   it('should handle form related translations', () => {
-    const { translate } = useTranslate('messageBox')
+    const { translate } = useTranslate('dialog')
     expect(translate('confirm')).toBe('确定')
     expect(translate('cancel')).toBe('取消')
     expect(translate('inputPlaceholder')).toBe('请输入')

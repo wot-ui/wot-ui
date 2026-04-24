@@ -64,12 +64,6 @@ export default {
     error: 'Falha ao carregar',
     retry: 'Clique para tentar novamente'
   },
-  messageBox: {
-    inputPlaceholder: 'Por favor insira',
-    confirm: 'Confirmar',
-    cancel: 'Cancelar',
-    inputNoValidate: 'Dados inseridos inválidos'
-  },
   dialog: {
     inputPlaceholder: 'Por favor insira',
     confirm: 'Confirmar',
