@@ -68,12 +68,6 @@ export default {
     confirm: 'OK',
     cancel: 'Stornieren'
   },
-  messageBox: {
-    inputPlaceholder: 'Bitte geben Sie Informationen ein',
-    confirm: 'OK',
-    cancel: 'Stornieren',
-    inputNoValidate: 'Bitte geben Sie gültige Informationen ein'
-  },
   dialog: {
     inputPlaceholder: 'Bitte geben Sie Informationen ein',
     confirm: 'OK',

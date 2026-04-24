@@ -112,15 +112,15 @@ Here we still use the `divider` component as an example:
 
 We provide `css variables` for each component. You can refer to the usage introduction of [config-provider](../component/config-provider) component to customize the theme.
 
-## Toast and MessageBox components have no effect when called?
+## Toast and Dialog components have no effect when called?
 
-First, check if the usage is correct. The `uni-app` platform does not support global mounting of components, so `Message`, `Toast` and other components still need to be explicitly used in SFC, for example:
+First, check if the usage is correct. The `uni-app` platform does not support global mounting of components, so `Dialog`, `Toast` and other components still need to be explicitly used in SFC, for example:
 
 ```html
 <wd-toast></wd-toast>
 ```
 
-The function calls of `Message`, `Toast` are based on `provide/inject` implementation, so your call must be in `setup`.
+The function calls of `Dialog`, `Toast` are based on `provide/inject` implementation, so your call must be in `setup`.
 
 ## When compiling to Alipay Mini Program, the mask of Popup component cannot be displayed?
 

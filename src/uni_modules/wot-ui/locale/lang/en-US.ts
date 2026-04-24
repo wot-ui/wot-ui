@@ -68,12 +68,6 @@ export default {
     confirm: 'OK',
     cancel: 'Cancel'
   },
-  messageBox: {
-    inputPlaceholder: 'Please input information',
-    confirm: 'OK',
-    cancel: 'Cancel',
-    inputNoValidate: 'Please ensure you input correct information'
-  },
   dialog: {
     inputPlaceholder: 'Please input information',
     confirm: 'OK',

@@ -64,12 +64,6 @@ export default {
     error: '読み込みエラー',
     retry: '再試行'
   },
-  messageBox: {
-    inputPlaceholder: '入力してください',
-    confirm: '確認',
-    cancel: 'キャンセル',
-    inputNoValidate: '無効なデータが入力されました'
-  },
   dialog: {
     inputPlaceholder: '入力してください',
     confirm: '確認',

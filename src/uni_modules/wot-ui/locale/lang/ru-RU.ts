@@ -64,12 +64,6 @@ export default {
     error: 'Ошибка загрузки',
     retry: 'Повторить'
   },
-  messageBox: {
-    inputPlaceholder: 'Введите, пожалуйста',
-    confirm: 'Ок',
-    cancel: 'Отмена',
-    inputNoValidate: 'Неверные данные'
-  },
   dialog: {
     inputPlaceholder: 'Введите, пожалуйста',
     confirm: 'Ок',

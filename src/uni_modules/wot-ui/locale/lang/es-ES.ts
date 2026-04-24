@@ -64,12 +64,6 @@ export default {
     error: 'Error al Cargar',
     retry: 'Reintentar'
   },
-  messageBox: {
-    inputPlaceholder: 'Por favor ingrese información',
-    confirm: 'Confirmar',
-    cancel: 'Cancelar',
-    inputNoValidate: 'Por favor ingrese información válida'
-  },
   dialog: {
     inputPlaceholder: 'Por favor ingrese información',
     confirm: 'Confirmar',

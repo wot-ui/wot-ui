@@ -68,12 +68,6 @@ export default {
     error: '加载失败',
     retry: '点击重试'
   },
-  messageBox: {
-    inputPlaceholder: '请输入',
-    confirm: '确定',
-    cancel: '取消',
-    inputNoValidate: '输入的数据不合法'
-  },
   dialog: {
     inputPlaceholder: '请输入',
     confirm: '确定',

@@ -111,15 +111,15 @@ export default {
 
 我们为每个组件提供了`css 变量`，可以参考[config-provider](../component/config-provider)组件的使用介绍来定制主题。
 
-## Toast 和 MessageBox 组件调用无效果？
+## Toast 和 Dialog 组件调用无效果？
 
-首先要检查一下用法是否正确，`uni-app`平台不支持全局挂载组件，所以`Message`、`Toast`等组件仍需在 SFC 中显式使用，例如:
+首先要检查一下用法是否正确，`uni-app`平台不支持全局挂载组件，所以`Dialog`、`Toast`等组件仍需在 SFC 中显式使用，例如:
 
 ```html
 <wd-toast></wd-toast>
 ```
 
-`Message`、`Toast`的函数式调用是基于`provide/inject`实现的，所以你的调用要确保在`setup`中。
+`Dialog`、`Toast`的函数式调用是基于`provide/inject`实现的，所以你的调用要确保在`setup`中。
 
 ## 编译到支付宝小程序 Popup 组件的遮罩无法显示？
 

@@ -249,12 +249,12 @@ const fileList21 = ref<UploadFile[]>([])
 const upload14 = ref<UploadInstance>()
 const uploadStatusText = ref<string>('')
 
-const messageBox = useDialog()
+const dialog = useDialog()
 const toast = useToast()
 
 const beforeChoose = () => {
   return new Promise<boolean>((resolve) => {
-    messageBox
+    dialog
       .confirm({
         msg: t('shi-fou-xuan-ze'),
         title: t('ti-shi-0')
@@ -271,7 +271,7 @@ const beforeChoose = () => {
 
 const beforePreview = () => {
   return new Promise<boolean>((resolve) => {
-    messageBox
+    dialog
       .confirm({
         msg: t('shi-fou-yu-lan-tu-pian'),
         title: t('ti-shi-0')
@@ -287,7 +287,7 @@ const beforePreview = () => {
 }
 const beforeUpload = () => {
   return new Promise<boolean>((resolve) => {
-    messageBox
+    dialog
       .confirm({
         msg: t('shi-fou-shang-chuan'),
         title: t('ti-shi-0')
@@ -303,7 +303,7 @@ const beforeUpload = () => {
 }
 const beforeRemove = () => {
   return new Promise<boolean>((resolve) => {
-    messageBox
+    dialog
       .confirm({
         msg: t('shi-fou-shan-chu-0'),
         title: t('ti-shi-0')

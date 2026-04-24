@@ -64,12 +64,6 @@ export default {
     error: 'Échec du chargement',
     retry: 'Réessayer'
   },
-  messageBox: {
-    inputPlaceholder: 'Veuillez entrer des informations',
-    confirm: 'Confirmer',
-    cancel: 'Annuler',
-    inputNoValidate: 'Veuillez entrer des informations valides'
-  },
   dialog: {
     inputPlaceholder: 'Veuillez entrer des informations',
     confirm: 'Confirmer',

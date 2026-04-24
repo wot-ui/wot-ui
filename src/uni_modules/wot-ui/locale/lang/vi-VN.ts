@@ -47,7 +47,6 @@ export default {
     cancel: 'Hủy bỏ'
   },
   loadmore: { loading: 'Đang tải...', finished: 'Đã tải xong', error: 'Tải thất bại', retry: 'Nhấp để thử lại' },
-  messageBox: { inputPlaceholder: 'Vui lòng nhập', confirm: 'Xác nhận', cancel: 'Hủy bỏ', inputNoValidate: 'Dữ liệu không hợp lệ' },
   dialog: { inputPlaceholder: 'Vui lòng nhập', confirm: 'Xác nhận', cancel: 'Hủy bỏ', inputNoValidate: 'Dữ liệu không hợp lệ' },
   numberKeyboard: { confirm: 'Hoàn thành' },
   pagination: {

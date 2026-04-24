@@ -69,12 +69,6 @@ export default {
     error: 'Yükleme başarısız',
     retry: 'Tekrar deneyin'
   },
-  messageBox: {
-    inputPlaceholder: 'Lütfen girin',
-    confirm: 'Tamam',
-    cancel: 'İptal',
-    inputNoValidate: 'Girilen veriler geçerli değil'
-  },
   dialog: {
     inputPlaceholder: 'Lütfen girin',
     confirm: 'Tamam',
