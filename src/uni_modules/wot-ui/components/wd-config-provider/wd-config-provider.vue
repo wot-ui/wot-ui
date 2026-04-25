@@ -35,7 +35,7 @@ const themeClass = computed(() => {
   return `wot-theme-${props.theme} ${props.customClass}`
 })
 
-const theme = computed(() => props.theme)
+const themeValue = computed(() => props.theme)
 
 const themeStyle = computed(() => {
   if (hooksProvider !== None) {
@@ -51,7 +51,7 @@ const rootStyle = computed(() => {
 })
 
 linkChildren({
-  theme,
+  theme: themeValue,
   themeStyle
 })
 </script>
