@@ -20,7 +20,6 @@ export type ConfigProviderProps = ExtractPropTypes<typeof configProviderProps>
 
 export type ConfigProviderProvide = {
   themeStyle: ComputedRef<string>
-  theme: ComputedRef<string>
 }
 
 export const CONFIG_PROVIDER_KEY: InjectionKey<ConfigProviderProvide> = Symbol('wd-config-provider')
