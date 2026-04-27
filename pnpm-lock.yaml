@@ -118,11 +118,11 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3
       '@vant/area-data':
-        specifier: ^1.4.1
-        version: 1.4.1
+        specifier: ^2.1.0
+        version: 2.1.0
       '@vant/touch-emulator':
-        specifier: ^1.4.0
-        version: 1.4.0
+        specifier: ^1.5.0
+        version: 1.5.0
       '@vitalets/google-translate-api':
         specifier: ^9.2.1
         version: 9.2.1
@@ -139,8 +139,8 @@ importers:
         specifier: ^2.4.6
         version: 2.4.6
       '@vue/tsconfig':
-        specifier: ^0.1.3
-        version: 0.1.3(@types/node@18.15.3)
+        specifier: ^0.7.0
+        version: 0.7.0(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))
       '@vueuse/core':
         specifier: ^12.0.0
         version: 12.0.0(typescript@5.5.4)
@@ -3151,11 +3151,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@vant/area-data@1.4.1':
-    resolution: {integrity: sha512-D8zI/rfxREhnIKGoYzsEJZ73fte4JARhFeFftLIH7ynu1sPrCBEgPkLEbwPyvw3VC4JdSIuzaK5uOhu+BcoPXw==}
+  '@vant/area-data@2.1.0':
+    resolution: {integrity: sha512-wx9PrUX7wSUJiFcz8UrcvZfTjV6sTc+7SHcbjGQQzEcv5y+EwOo5uV4ZKdfrR5Hzcw4MA08LQdvXPSEb4nWbug==}
 
-  '@vant/touch-emulator@1.4.0':
-    resolution: {integrity: sha512-Zt+zISV0+wpOew2S1siOJ3G22y+hapHAKmXM+FhpvWzsRc4qahaYXatCAITuuXt0EcDp7WvEeTO4F7p9AtX/pw==}
+  '@vant/touch-emulator@1.5.0':
+    resolution: {integrity: sha512-/L2W/pehJLHGftSIiG31E0P8nibeA+SBcNptdyRymukM9zQ4Pn5Ku7Cndx5oXsY5SE9uyHaJ4M9oj+q2AROHhQ==}
 
   '@vitalets/google-translate-api@9.2.1':
     resolution: {integrity: sha512-zlwQWSjXUZhbZQ6qwtIQ7GdYXFQmJ4wYqzcrYJUxtvzQQwUP+uKUb/SRJaBOQuBntjBjzcdcJoLFrpCKUbIkOg==}
@@ -3373,12 +3373,15 @@ packages:
   '@vue/test-utils@2.4.6':
     resolution: {integrity: sha512-FMxEjOpYNYiFe0GkaHsnJPXFHxQ6m4t8vI/ElPGpMWxZKpmRvQ33OIrvRXemy6yha03RxhOlQuy+gZMC3CQSow==}
 
-  '@vue/tsconfig@0.1.3':
-    resolution: {integrity: sha512-kQVsh8yyWPvHpb8gIc9l/HIDiiVUy1amynLNpCy8p+FoCiZXCo6fQos5/097MmnNZc9AtseDsCrfkhqCrJ8Olg==}
+  '@vue/tsconfig@0.7.0':
+    resolution: {integrity: sha512-ku2uNz5MaZ9IerPPUyOHzyjhXoX2kVJaVf7hL315DC17vS6IiZRmmCPfggNbU16QTvM80+uYYy3eYJB59WCtvg==}
     peerDependencies:
-      '@types/node': '*'
+      typescript: 5.x
+      vue: ^3.4.0
     peerDependenciesMeta:
-      '@types/node':
+      typescript:
+        optional: true
+      vue:
         optional: true
 
   '@vueuse/core@12.0.0':
@@ -11900,9 +11903,9 @@ snapshots:
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
 
-  '@vant/area-data@1.4.1': {}
+  '@vant/area-data@2.1.0': {}
 
-  '@vant/touch-emulator@1.4.0': {}
+  '@vant/touch-emulator@1.5.0': {}
 
   '@vitalets/google-translate-api@9.2.1':
     dependencies:
@@ -12276,9 +12279,10 @@ snapshots:
       js-beautify: 1.15.4
       vue-component-type-helpers: 2.2.8
 
-  '@vue/tsconfig@0.1.3(@types/node@18.15.3)':
+  '@vue/tsconfig@0.7.0(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))':
     optionalDependencies:
-      '@types/node': 18.15.3
+      typescript: 5.5.4
+      vue: 3.4.38(typescript@5.5.4)
 
   '@vueuse/core@12.0.0(typescript@5.5.4)':
     dependencies:
