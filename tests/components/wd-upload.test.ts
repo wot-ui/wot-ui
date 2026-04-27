@@ -529,7 +529,7 @@ describe('WdUpload', () => {
 
   test('图片预览失败时触发 onPreviewFail', async () => {
     const onPreviewFail = vi.fn()
-    const previewImageSpy = vi.spyOn(uni, 'previewImage').mockImplementation((options: any) => {
+    const previewImageSpy = vi.spyOn<any, any>(uni, 'previewImage').mockImplementation((options: any) => {
       options?.fail?.()
     })
 
@@ -547,7 +547,7 @@ describe('WdUpload', () => {
   })
 
   test('图片预览失败时无 onPreviewFail 会走默认 toast', async () => {
-    const previewImageSpy = vi.spyOn(uni, 'previewImage').mockImplementation((options: any) => {
+    const previewImageSpy = vi.spyOn<any, any>(uni, 'previewImage').mockImplementation((options: any) => {
       options?.fail?.()
     })
     const showToastSpy = vi.spyOn(uni, 'showToast')
