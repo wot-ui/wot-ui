@@ -89,8 +89,10 @@ $dialog-action-text-button-padding: var(--wot-dialog-action-text-button-padding,
 $dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) !default;
 
 
-:deep(.wd-dialog) {
-  background: transparent;
+:deep() {
+  .wd-popup.wd-dialog {
+    background: transparent;
+  }
 }
 
 @include b(dialog) {
@@ -108,14 +110,14 @@ $dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) 
     width: 100%;
     height: auto;
     border-radius: $dialog-img-border-radius;
-    
+
     &+.wd-dialog__title {
-      margin-top: $dialog-body-element-spacing-large; 
+      margin-top: $dialog-body-element-spacing-large;
     }
 
     &+.wd-dialog__content {
-      margin-top: $dialog-body-element-spacing-large; 
-      
+      margin-top: $dialog-body-element-spacing-large;
+
       .wd-dialog__body.is-prompt & {
         margin-top: $dialog-body-element-spacing;
       }
