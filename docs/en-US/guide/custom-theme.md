@@ -94,10 +94,14 @@ Currently, we provide examples of multiple themes in [src/theme/presets.scss](ht
 }
 ```
 
-```scss [App.vue]
+```scss [App.vue - npm]
 /* App.vue */
-<!-- Import theme variables in entry file -->
-@use './uni_modules/wot-ui/styles/theme/index.scss' as *;
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
+@use './theme/brand-a.scss' as *;
+```
+```scss [App.vue - uni_modules]
+/* App.vue */
+@use '@/uni_modules/wot-ui/styles/theme/index.scss' as *;
 @use './theme/brand-a.scss' as *;
 ```
 ```html [config-provider]

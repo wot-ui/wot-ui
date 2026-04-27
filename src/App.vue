@@ -36,7 +36,7 @@ onHide(() => {
 </script>
 <style lang="scss">
 @use '@/iconfont/index.css';
-@use './uni_modules/wot-ui/styles/theme/index.scss' as *;
+@use '@/uni_modules/wot-ui/styles/theme/index.scss' as *;
 @use './theme/presets.scss' as *;
 
 ::-webkit-scrollbar {

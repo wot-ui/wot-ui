@@ -7,14 +7,33 @@
 ### 深色模式
 
 将 `theme` 设置为 `dark` 后，可以让当前 `ConfigProvider` 包裹范围内的 `Wot` 组件切换为深色风格。
+
+::: warning 注意
+使用深色模式前，需要在入口文件（如 `App.vue`）中引入主题变量文件：
+
+- npm 安装：`@use '@wot-ui/ui/styles/theme/index.scss' as *;`
+- uni_modules 安装：`@use '@/uni_modules/wot-ui/styles/theme/index.scss' as *;`
+:::
+
 ::: tip 提示
 `ConfigProvider` 只影响 `Wot` 组件自身的主题表现，不会自动修改页面全局文本色或背景色。你可以结合全局样式自行处理页面背景和文本颜色。
 :::
-```vue
+
+::: code-group
+```vue [vue]
 <wd-config-provider theme="dark">
   <wd-button type="primary">深色模式按钮</wd-button>
 </wd-config-provider>
 ```
+```scss [App.vue - npm]
+/* App.vue */
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
+```
+```scss [App.vue - uni_modules]
+/* App.vue */
+@use '@/uni_modules/wot-ui/styles/theme/index.scss' as *;
+```
+:::
 
 
 
@@ -39,6 +58,15 @@ const theme = ref<'light' | 'dark'>('light')
 setTimeout(() => {
   theme.value = 'dark'
 }, 1000)
+```
+
+```scss [App.vue - npm]
+/* App.vue */
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
+```
+```scss [App.vue - uni_modules]
+/* App.vue */
+@use '@/uni_modules/wot-ui/styles/theme/index.scss' as *;
 ```
 
 :::
