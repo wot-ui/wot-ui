@@ -1,6 +1,13 @@
 # 更新日志 
 
 
+### [2.0.5](https://github.com/wot-ui/wot-ui/compare/v2.0.4...v2.0.5) (2026-04-27)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  更新深色模式和主题变量引入说明，增加代码示例 ([#19](https://github.com/wot-ui/wot-ui/issues/19)) ([abb7a1b](https://github.com/wot-ui/wot-ui/commit/abb7a1bfdbaab7e2b16b6cde5fd529d043461996))
+
 ### [2.0.4](https://github.com/wot-ui/wot-ui/compare/v2.0.3...v2.0.4) (2026-04-24)
 
 ### [2.0.3](https://github.com/wot-ui/wot-ui/compare/v2.0.2...v2.0.3) (2026-04-23)
