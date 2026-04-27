@@ -7,14 +7,33 @@ Used to provide theme mode and theme variable configuration for `Wot` components
 ### Dark Mode
 
 Set `theme` to `dark` to switch `Wot` components within the current `ConfigProvider` wrapped range to dark style.
+
+::: warning Note
+Before using dark mode, you need to import the theme variable file in the entry file (e.g. `App.vue`):
+
+- npm install: `@use '@wot-ui/ui/styles/theme/index.scss' as *;`
+- uni_modules install: `@use '@/uni_modules/wot-ui/styles/theme/index.scss' as *;`
+:::
+
 ::: tip Tip
 `ConfigProvider` only affects the theme performance of `Wot` components themselves, and will not automatically modify page global text color or background color. You can combine global styles to handle page background and text color yourself.
 :::
-```vue
+
+::: code-group
+```vue [vue]
 <wd-config-provider theme="dark">
   <wd-button type="primary">Dark Mode Button</wd-button>
 </wd-config-provider>
 ```
+```scss [App.vue - npm]
+/* App.vue */
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
+```
+```scss [App.vue - uni_modules]
+/* App.vue */
+@use '@/uni_modules/wot-ui/styles/theme/index.scss' as *;
+```
+:::
 
 ## Switch Theme
 
@@ -36,6 +55,15 @@ const theme = ref<'light' | 'dark'>('light')
 setTimeout(() => {
   theme.value = 'dark'
 }, 1000)
+```
+
+```scss [App.vue - npm]
+/* App.vue */
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
+```
+```scss [App.vue - uni_modules]
+/* App.vue */
+@use '@/uni_modules/wot-ui/styles/theme/index.scss' as *;
 ```
 
 :::
