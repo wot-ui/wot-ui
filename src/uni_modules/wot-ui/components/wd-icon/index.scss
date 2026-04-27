@@ -1,6 +1,6 @@
 @use '../../styles/variable.scss' as *;
 @use '../../styles/mixin/mixin' as *;
-@use '../../styles/iconfont/iconfont.scss' as *;
+@use './iconfont.scss' as *;
 
 // 图标字号
 $icon-font-size: var(--wot-icon-font-size, $typography-body-size-main) !default;
