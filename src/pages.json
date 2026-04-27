@@ -1386,6 +1386,21 @@
             "navigationBarTitleText": "%imagepreview-title%"
             // #endif
           }
+        },
+        {
+          "path": "qrCode/Index",
+          "name": "qrCode",
+          "style": {
+            "mp-alipay": {
+              "allowsBounceVertical": "NO"
+            },
+            // #ifdef MP
+            "navigationBarTitleText": "QRCode 二维码",
+            // #endif
+            // #ifndef MP
+            "navigationBarTitleText": "%qrcode-title%"
+            // #endif
+          }
         }
       ]
     }

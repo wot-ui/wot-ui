@@ -767,6 +767,14 @@ const categories: CatalogCategory[] = [
         }
       },
       {
+        id: 'qrCode',
+        titleKey: 'qrcode-er-wei-ma',
+        docs: {
+          'zh-CN': { slug: 'qr-code', text: 'QRCode 二维码' },
+          'en-US': { slug: 'qr-code', text: 'QRCode' }
+        }
+      },
+      {
         id: 'curtain',
         titleKey: 'curtain-mu-lian',
         docs: {

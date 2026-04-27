@@ -93,6 +93,7 @@ declare module 'vue' {
     WdText: typeof import('./components/wd-text/wd-text.vue')['default']
     WdCountTo: typeof import('./components/wd-count-to/wd-count-to.vue')['default']
     WdFloatingPanel: typeof import('./components/wd-floating-panel/wd-floating-panel.vue')['default']
+    WdQrCode: typeof import('./components/wd-qr-code/wd-qr-code.vue')['default']
     WdSignature: typeof import('./components/wd-signature/wd-signature.vue')['default']
     WdRootPortal: typeof import('./components/wd-root-portal/wd-root-portal.vue')['default']
     WdTour: typeof import('./components/wd-tour/wd-tour.vue')['default']
