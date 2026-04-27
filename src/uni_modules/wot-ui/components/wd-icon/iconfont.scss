@@ -1,25 +1,21 @@
 @font-face {
   font-family: "wd-icons";
   /* Project id 5024693 */
-  src: url('//at.alicdn.com/t/c/font_5024693_esasb18zrbp.eot?t=1773909649753');
+  src: url('https://at.alicdn.com/t/c/font_5024693_esasb18zrbp.eot?t=1773909649753');
   /* IE9 */
-  src: url('//at.alicdn.com/t/c/font_5024693_esasb18zrbp.eot?t=1773909649753#iefix') format('embedded-opentype'),
+  src: url('https://at.alicdn.com/t/c/font_5024693_esasb18zrbp.eot?t=1773909649753#iefix') format('embedded-opentype'),
     /* IE6-IE8 */
-    url('//at.alicdn.com/t/c/font_5024693_esasb18zrbp.woff?t=1773909649753') format('woff'),
-    url('//at.alicdn.com/t/c/font_5024693_esasb18zrbp.ttf?t=1773909649753') format('truetype'),
-    url('//at.alicdn.com/t/c/font_5024693_esasb18zrbp.svg?t=1773909649753#wd-icons') format('svg');
+    url('https://at.alicdn.com/t/c/font_5024693_esasb18zrbp.woff?t=1773909649753') format('woff'),
+    url('https://at.alicdn.com/t/c/font_5024693_esasb18zrbp.ttf?t=1773909649753') format('truetype'),
+    url('https://at.alicdn.com/t/c/font_5024693_esasb18zrbp.svg?t=1773909649753#wd-icons') format('svg');
 }
 
 /*  #ifdef  APP-PLUS || H5  */
-/* 
 @font-face {
   font-family: 'wd-icons';
   src:
-    url('./wd-icons.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-} 
-*/
+    url('./iconfont.ttf') format('truetype');
+}
 /*  #endif  */
 
 .wd-icon-expand:before {
