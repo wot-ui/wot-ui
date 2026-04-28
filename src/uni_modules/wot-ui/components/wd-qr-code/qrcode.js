@@ -1078,7 +1078,8 @@ function getTypeNumber(text, correctLevel) {
 }
 
 function createQRCodeData(text, options = {}) {
-  const { typeNumber = getTypeNumber(text, QRErrorCorrectLevel.H), errorCorrectLevel = QRErrorCorrectLevel.H } = options
+  const { errorCorrectLevel = QRErrorCorrectLevel.H } = options
+  const { typeNumber = getTypeNumber(text, errorCorrectLevel) } = options
   const qr = new QRCodeModel(typeNumber, errorCorrectLevel)
   qr.addData(text)
   qr.make()
@@ -1086,7 +1087,8 @@ function createQRCodeData(text, options = {}) {
 }
 
 function generateQRCode(text, options = {}) {
-  const { typeNumber = getTypeNumber(text, QRErrorCorrectLevel.H), errorCorrectLevel = QRErrorCorrectLevel.H } = options
+  const { errorCorrectLevel = QRErrorCorrectLevel.H } = options
+  const { typeNumber = getTypeNumber(text, errorCorrectLevel) } = options
   const qr = new QRCodeModel(typeNumber, errorCorrectLevel)
   qr.addData(text)
   qr.make()
