@@ -47,6 +47,7 @@ const canvasNode = ref<any>(null)
 const canvasCtx = ref<UniApp.CanvasContext | null>(null)
 const pixelRatio = ref(1)
 const isCanvasReady = ref(false)
+let drawTask: Promise<void> = Promise.resolve()
 
 watch(
   [
@@ -73,7 +74,7 @@ watch(
   ],
   () => {
     if (isCanvasReady.value) {
-      draw()
+      requestDraw()
     }
   },
   { deep: true }
@@ -106,39 +107,31 @@ function initCanvas() {
 
       const dpr = uni.getWindowInfo ? uni.getWindowInfo().pixelRatio : uni.getSystemInfoSync().pixelRatio
       pixelRatio.value = dpr
-      canvas.width = props.size * dpr
-      canvas.height = props.size * dpr
-      ctx.scale(dpr, dpr)
 
       canvasNode.value = canvas
       canvasCtx.value = canvas2dAdapter(ctx as CanvasRenderingContext2D)
       isCanvasReady.value = true
-      draw()
+      requestDraw()
     })
     .exec()
   // #endif
 
   // #ifndef MP-WEIXIN
   isCanvasReady.value = true
-  draw()
+  requestDraw()
   // #endif
 }
 
+function requestDraw() {
+  drawTask = draw()
+}
+
 async function draw() {
-  if (!props.text) return
   if (!isCanvasReady.value) return
 
-  let modules: boolean[][]
-  try {
-    const errorCorrectLevel = QRErrorCorrectLevel[props.correctLevel as keyof typeof QRErrorCorrectLevel] || QRErrorCorrectLevel.H
-    modules = generateQRCode(props.text, { errorCorrectLevel }).modules
-  } catch (error) {
-    emit('error', error)
-    return
-  }
-
-  const tileW = (props.size - props.margin * 2) / modules.length
-  const tileH = (props.size - props.margin * 2) / modules.length
+  // #ifdef MP-WEIXIN
+  syncWechatCanvas()
+  // #endif
 
   let ctx = canvasCtx.value
   // #ifndef MP-WEIXIN
@@ -157,6 +150,25 @@ async function draw() {
     ctx.clearRect(0, 0, props.size, props.size)
     ctx.fillStyle = props.colorLight
     ctx.fillRect(0, 0, props.size, props.size)
+
+    if (!props.text) {
+      // #ifndef MP-WEIXIN
+      await flushCanvas(ctx)
+      // #endif
+      return
+    }
+
+    let modules: boolean[][]
+    try {
+      const errorCorrectLevel = QRErrorCorrectLevel[props.correctLevel as keyof typeof QRErrorCorrectLevel] || QRErrorCorrectLevel.H
+      modules = generateQRCode(props.text, { errorCorrectLevel }).modules
+    } catch (error) {
+      emit('error', error)
+      return
+    }
+
+    const tileW = (props.size - props.margin * 2) / modules.length
+    const tileH = (props.size - props.margin * 2) / modules.length
 
     if (props.backgroundImage) {
       try {
@@ -227,12 +239,66 @@ async function draw() {
     }
 
     // #ifndef MP-WEIXIN
-    ctx.draw(true)
+    await flushCanvas(ctx)
     // #endif
   } catch (error) {
     emit('error', error)
   }
 }
+
+// #ifndef MP-WEIXIN
+function flushCanvas(ctx: UniApp.CanvasContext) {
+  return new Promise<void>((resolve) => {
+    let settled = false
+    const done = () => {
+      if (settled) return
+      settled = true
+      resolve()
+    }
+
+    try {
+      ctx.draw(true, done)
+    } catch (error) {
+      void error
+      ctx.draw(true)
+    }
+
+    // H5 上部分实现不会触发 draw 回调，兜底在下一帧后继续流程。
+    setTimeout(done, 16)
+  })
+}
+// #endif
+
+// #ifdef MP-WEIXIN
+function syncWechatCanvas() {
+  const canvas = toRaw(canvasNode.value)
+  const ctx = canvasCtx.value as unknown as CanvasRenderingContext2D | null
+  if (!canvas || !ctx) return
+
+  const dpr = uni.getWindowInfo ? uni.getWindowInfo().pixelRatio : uni.getSystemInfoSync().pixelRatio
+  const width = props.size * dpr
+  const height = props.size * dpr
+  pixelRatio.value = dpr
+
+  if (canvas.width !== width) {
+    canvas.width = width
+  }
+  if (canvas.height !== height) {
+    canvas.height = height
+  }
+
+  if (typeof ctx.setTransform === 'function') {
+    ctx.setTransform(1, 0, 0, 1, 0, 0)
+  } else if (typeof ctx.resetTransform === 'function') {
+    ctx.resetTransform()
+  } else {
+    canvas.width = width
+    canvas.height = height
+  }
+
+  ctx.scale(dpr, dpr)
+}
+// #endif
 
 function createGradient(ctx: UniApp.CanvasContext) {
   if (props.gradientDirection === 'horizontal') {
@@ -455,7 +521,9 @@ function drawLogoContent(ctx: UniApp.CanvasContext, image: any, x: number, y: nu
   ctx.restore()
 }
 
-function exportImage(): Promise<string> {
+async function exportImage(): Promise<string> {
+  await drawTask
+
   return new Promise((resolve, reject) => {
     const options: UniApp.CanvasToTempFilePathOptions = {
       canvasId: canvasId.value,

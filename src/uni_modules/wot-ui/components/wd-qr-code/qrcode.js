@@ -106,19 +106,24 @@ class QR8bitByte {
 
   _encodeUTF8() {
     for (let i = 0, l = this.data.length; i < l; i++) {
-      const code = this.data.charCodeAt(i)
+      const code = this.data.codePointAt(i)
       const byteArray = []
 
-      if (code > 0x10000) {
+      if (code === undefined) {
+        continue
+      }
+
+      if (code >= 0x10000) {
         byteArray[0] = 0xf0 | ((code & 0x1c0000) >>> 18)
         byteArray[1] = 0x80 | ((code & 0x3f000) >>> 12)
         byteArray[2] = 0x80 | ((code & 0xfc0) >>> 6)
         byteArray[3] = 0x80 | (code & 0x3f)
-      } else if (code > 0x800) {
+        i++
+      } else if (code >= 0x800) {
         byteArray[0] = 0xe0 | ((code & 0xf000) >>> 12)
         byteArray[1] = 0x80 | ((code & 0xfc0) >>> 6)
         byteArray[2] = 0x80 | (code & 0x3f)
-      } else if (code > 0x80) {
+      } else if (code >= 0x80) {
         byteArray[0] = 0xc0 | ((code & 0x7c0) >>> 6)
         byteArray[1] = 0x80 | (code & 0x3f)
       } else {
@@ -129,7 +134,9 @@ class QR8bitByte {
     }
 
     if (this.parsedData.length !== this.data.length) {
-      this.parsedData.unshift(191, 187, 239)
+      this.parsedData.unshift(191)
+      this.parsedData.unshift(187)
+      this.parsedData.unshift(239)
     }
   }
 
@@ -1038,7 +1045,7 @@ function getTypeNumber(text, correctLevel) {
   const length = getUTF8Length(text)
   let type = 1
 
-  for (let i = 0, len = QRCodeLimitLength.length; i <= len; i++) {
+  for (let i = 0, len = QRCodeLimitLength.length; i < len; i++) {
     let limit = 0
 
     switch (correctLevel) {

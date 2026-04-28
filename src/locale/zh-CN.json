@@ -1655,6 +1655,8 @@
   "qrcode-jian-bian": "渐变颜色",
   "qrcode-bei-jing-tu-pian": "背景图片",
   "qrcode-dao-chu": "导出图片",
+  "dao-chu-cheng-gong": "导出成功",
+  "dao-chu-shi-bai": "导出失败",
   "qrcode-yuan-dian": "圆点",
   "qrcode-yuan-jiao": "圆角",
   "qrcode-ye-hua": "液态",

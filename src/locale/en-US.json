@@ -1655,6 +1655,8 @@
   "qrcode-jian-bian": "Gradient Colors",
   "qrcode-bei-jing-tu-pian": "Background Image",
   "qrcode-dao-chu": "Export Image",
+  "dao-chu-cheng-gong": "Export successful",
+  "dao-chu-shi-bai": "Export failed",
   "qrcode-yuan-dian": "Dots",
   "qrcode-yuan-jiao": "Rounded",
   "qrcode-ye-hua": "Liquid",
