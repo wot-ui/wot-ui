@@ -351,8 +351,8 @@ const openOpenTypeDialog = () => {
 | confirmButtonProps | 确认按钮高级配置，支持传字符串、对象或 `null` | `DialogBoxButtonOption` | `{}` |
 | cancelButtonProps | 取消按钮高级配置，支持传字符串、对象或 `null` | `DialogBoxButtonOption` | 由 `showCancelButton` 推导 |
 | actions | 自定义操作按钮数组，配置后优先级高于确认/取消按钮 | `DialogAction[]` | - |
-| closeOnClickModal | 是否支持点击遮罩关闭（返回 action 为 `modal`） | `boolean` | `false` |
-| showClose | 是否显示右上角关闭按钮 | `boolean` | `false` |
+| closeOnClickModal | 是否支持点击遮罩关闭，触发 `fail` 回调，返回 `action` 为 `'modal'` | `boolean` | `false` |
+| showClose | 是否显示右上角关闭按钮，点击后触发 `fail` 回调，返回 `action` 为 `'close'` | `boolean` | `false` |
 | beforeConfirm | 确认前拦截函数，返回 `boolean` 或 `Promise<boolean>` | `DialogBeforeConfirm` | - |
 
 ## Attributes

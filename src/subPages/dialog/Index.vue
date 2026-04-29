@@ -613,11 +613,16 @@ function promptPasswordInput() {
 // ==================== 7. 交互功能 ====================
 
 function withCloseButton() {
-  dialog.confirm({
-    title: '系统公告',
-    msg: '系统将于今晚22:00进行维护升级',
-    showClose: true
-  })
+  dialog
+    .confirm({
+      title: '系统公告',
+      msg: '系统将于今晚22:00进行维护升级',
+      showClose: true,
+      closeOnClickModal: false
+    })
+    .catch((res) => {
+      toast.info(`关闭方式：${res.action}`)
+    })
 }
 
 function closeOnClickModal() {

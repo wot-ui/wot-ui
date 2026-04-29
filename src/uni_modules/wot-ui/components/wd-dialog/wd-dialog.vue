@@ -11,7 +11,7 @@
     :root-portal="rootPortal"
   >
     <view :class="rootClass">
-      <wd-icon v-if="dialogState.showClose" custom-class="wd-dialog__close" name="close" @click="toggleModal('modal')"></wd-icon>
+      <wd-icon v-if="dialogState.showClose" custom-class="wd-dialog__close" name="close" @click="toggleModal('close')"></wd-icon>
       <slot name="header" />
       <view :class="bodyClass">
         <slot name="image">
@@ -53,7 +53,7 @@
           </slot>
         </view>
       </view>
-      <slot name="actions" :confirm="() => toggleModal('confirm')" :cancel="() => toggleModal('cancel')" :close="() => toggleModal('modal')">
+      <slot name="actions" :confirm="() => toggleModal('confirm')" :cancel="() => toggleModal('cancel')" :close="() => toggleModal('close')">
         <view
           :class="`wd-dialog__actions ${dialogState.actionLayout === 'vertical' ? 'wd-dialog__actions--vertical' : ''} ${
             dialogState.actionLayout === 'vertical' || showCancelButton || (dialogState.actions && dialogState.actions.length > 1)
@@ -403,7 +403,7 @@ watch(
  * 点击操作
  * @param action
  */
-function toggleModal(action: 'confirm' | 'cancel' | 'modal') {
+function toggleModal(action: 'confirm' | 'cancel' | 'modal' | 'close') {
   if (action === 'modal' && !dialogState.closeOnClickModal) {
     return
   }
@@ -433,9 +433,14 @@ function toggleModal(action: 'confirm' | 'cancel' | 'modal') {
         action: action
       })
       break
-    default:
+    case 'modal':
       handleCancel({
         action: 'modal'
+      })
+      break
+    default:
+      handleCancel({
+        action: 'close'
       })
       break
   }
