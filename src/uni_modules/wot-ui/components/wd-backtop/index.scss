@@ -27,7 +27,6 @@ $backtop-text-line-height: var(--wot-backtop-text-line-height, $typography-label
 $backtop-z-index: var(--wot-backtop-z-index, 100) !default;
 
 @include b(backtop) {
-  @include pixelBorderSurround($backtop-border-color);
   position: fixed;
   background: $backtop-bg;
   width: $backtop-width;
@@ -38,7 +37,19 @@ $backtop-z-index: var(--wot-backtop-z-index, 100) !default;
   color: $backtop-color;
   z-index: $backtop-z-index;
 
-
+  &::after {
+    position: absolute;
+    display: block;
+    content: ' ';
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border: $stroke-main solid $backtop-border-color;
+    box-sizing: border-box;
+    border-radius: inherit;
+  }
 
   @include e(content) {
     display: flex;

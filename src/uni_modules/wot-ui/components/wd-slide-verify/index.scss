@@ -86,7 +86,6 @@ $slide-verify-success-icon-size: var(--wot-slide-verify-success-icon-size, $n-20
   }
 
   @include e(button) {
-    @include pixelBorderSurround($slide-verify-button-border-color);
     position: absolute;
     right: 0;
     top: 0;
@@ -100,6 +99,20 @@ $slide-verify-success-icon-size: var(--wot-slide-verify-success-icon-size, $n-20
     color: $slide-verify-button-color;
     border-radius: $slide-verify-radius;
     cursor: grab;
+
+    &::after {
+      position: absolute;
+      display: block;
+      content: ' ';
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      border: $stroke-main solid $slide-verify-button-border-color;
+      box-sizing: border-box;
+      border-radius: inherit;
+    }
   }
 
   // 按钮图标
