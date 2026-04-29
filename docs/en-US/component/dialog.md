@@ -351,8 +351,8 @@ const openOpenTypeDialog = () => {
 | confirmButtonProps | Confirm button advanced configuration, supports passing string, object or `null` | `DialogBoxButtonOption` | `{}` |
 | cancelButtonProps | Cancel button advanced configuration, supports passing string, object or `null` | `DialogBoxButtonOption` | Derived from `showCancelButton` |
 | actions | Custom action button array, takes priority over confirm/cancel buttons after configuration | `DialogAction[]` | - |
-| closeOnClickModal | Whether to support clicking mask to close (returns action as `modal`) | `boolean` | `false` |
-| showClose | Whether to show top right close button | `boolean` | `false` |
+| closeOnClickModal | Whether clicking the mask closes the dialog, triggers `fail` callback with `action` as `'modal'` | `boolean` | `false` |
+| showClose | Whether to show the top-right close button, triggers `fail` callback with `action` as `'close'` | `boolean` | `false` |
 | beforeConfirm | Pre-confirm interception function, returns `boolean` or `Promise<boolean>` | `DialogBeforeConfirm` | - |
 
 ## Attributes

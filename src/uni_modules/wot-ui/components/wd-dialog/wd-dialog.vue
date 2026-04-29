@@ -11,7 +11,7 @@
     :root-portal="rootPortal"
   >
     <view :class="rootClass">
-      <wd-icon v-if="dialogState.showClose" custom-class="wd-dialog__close" name="close" @click="toggleModal('modal')"></wd-icon>
+      <wd-icon v-if="dialogState.showClose" custom-class="wd-dialog__close" name="close" @click="toggleModal('close')"></wd-icon>
       <slot name="header" />
       <view :class="bodyClass">
         <slot name="image">
@@ -53,7 +53,7 @@
           </slot>
         </view>
       </view>
-      <slot name="actions" :confirm="() => toggleModal('confirm')" :cancel="() => toggleModal('cancel')" :close="() => toggleModal('modal')">
+      <slot name="actions" :confirm="() => toggleModal('confirm')" :cancel="() => toggleModal('cancel')" :close="() => toggleModal('close')">
         <view
           :class="`wd-dialog__actions ${dialogState.actionLayout === 'vertical' ? 'wd-dialog__actions--vertical' : ''} ${
             dialogState.actionLayout === 'vertical' || showCancelButton || (dialogState.actions && dialogState.actions.length > 1)
@@ -66,7 +66,7 @@
               v-for="(btn, index) in customActions"
               :key="index"
               v-bind="getActionButtonProps(btn)"
-              @click="handleAction(btn, index)"
+              @click="handleAction(btn)"
               @getuserinfo="(e: any) => handleOpenTypeEvent(btn, 'onGetuserinfo', e)"
               @contact="(e: any) => handleOpenTypeEvent(btn, 'onContact', e)"
               @getphonenumber="(e: any) => handleOpenTypeEvent(btn, 'onGetphonenumber', e)"
@@ -268,7 +268,7 @@ const textareaPropsWithoutModelValue = computed(() => {
 /**
  * 自定义 actions 按钮列表（当 theme 为 text 时强制 variant 为 text）
  */
-const customActions = computed(() => {
+const customActions = computed<DialogAction[]>(() => {
   if (!dialogState.actions || !dialogState.actions.length) return []
   return dialogState.actions.map((action) => {
     if (dialogState.theme === 'text') {
@@ -403,7 +403,7 @@ watch(
  * 点击操作
  * @param action
  */
-function toggleModal(action: 'confirm' | 'cancel' | 'modal') {
+function toggleModal(action: 'confirm' | 'cancel' | 'modal' | 'close') {
   if (action === 'modal' && !dialogState.closeOnClickModal) {
     return
   }
@@ -433,9 +433,10 @@ function toggleModal(action: 'confirm' | 'cancel' | 'modal') {
         action: action
       })
       break
-    default:
+    case 'modal':
+    case 'close':
       handleCancel({
-        action: 'modal'
+        action: action
       })
       break
   }
@@ -446,20 +447,15 @@ function toggleModal(action: 'confirm' | 'cancel' | 'modal') {
  * @param action 按钮配置
  * @param index 索引
  */
-function handleAction(action: any, index: number) {
+function handleAction(action: DialogAction) {
   if (action.disabled || action.loading) return
 
-  // 如果提供了点击回调
   if (isFunction(action.click)) {
     action.click()
   }
 
-  // 默认关闭弹窗，除非显式指定不关闭（暂未支持 preventClose 属性，默认关闭）
-  // 也可以扩展：如果 click 返回 false，则不关闭
   handleConfirm({
-    action: 'confirm', // 或者新增 'action' 类型？但 Types 里 action 是必须的且枚举。
-    // 为了兼容，这里仍返回 confirm 或者是 context？
-    // 稍微 hack 一下，actions 场景下通常用户自己在 click 里处理了业务，这里主要是利用 confirm 回调来关闭
+    action: 'confirm',
     value: inputVal.value
   })
 }
