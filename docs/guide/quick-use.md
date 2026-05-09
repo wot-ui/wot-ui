@@ -67,7 +67,7 @@ pnpm add sass@^1.98.0 -D
 ```
 :::
 
-如果遇到运行时抛出以下警告：
+如果遇到编译或开发时抛出以下警告：
 
 ```sh
 Deprecation Warning [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
