@@ -30,6 +30,10 @@
       <slot name="title"></slot>
     </template>
 
+    <template #label v-if="$slots.label">
+      <slot name="label"></slot>
+    </template>
+
     <slot>
       <text v-if="showPlaceholder" class="wd-form-item__placeholder">{{ placeholder }}</text>
       <text v-else-if="isDef(value)">{{ value }}</text>
