@@ -258,7 +258,7 @@ $n-full: var(--wot-n-full, 9999px) !default;
 
 /* 字重系列 */
 $font-weight-ultra-light: var(--wot-font-weight-ultra-light, 100) !default;
-$font-weight-thin: var(--wot-font-weight-thin, 200);
+$font-weight-thin: var(--wot-font-weight-thin, 200) !default;
 $font-weight-light: var(--wot-font-weight-light, 300) !default;
 $font-weight-regular: var(--wot-font-weight-regular, 400) !default;
 $font-weight-medium: var(--wot-font-weight-medium, 600) !default;

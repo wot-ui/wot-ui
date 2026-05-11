@@ -28,22 +28,46 @@ const parseScssVariableFields = (scssContent: string, captureComment: boolean) =
   const lines = scssContent.split('\n')
   const fields: ThemeVarField[] = []
   let pendingComment = ''
+  let statement = ''
+  let statementComment = ''
+
+  const parseStatement = (value: string, comment: string) => {
+    const variableMatch = value.match(/^\s*\$([A-Za-z0-9_-]+)\s*:\s*[\s\S]*?!default;\s*(?:\/\/\s*(.+))?\s*$/)
+    if (!variableMatch) return
+
+    const variableName = variableMatch[1]
+    const inlineComment = variableMatch[2] ? normalizeComment(variableMatch[2]) : ''
+    const fieldName = toCamelCase(variableName)
+    const fieldComment = captureComment ? inlineComment || comment : ''
+    fields.push({ fieldName, comment: fieldComment })
+  }
 
   lines.forEach((line) => {
+    if (statement) {
+      statement += `\n${line}`
+      if (line.includes(';')) {
+        parseStatement(statement, statementComment)
+        statement = ''
+        statementComment = ''
+      }
+      return
+    }
+
     const inlineCommentMatch = line.match(/^\s*\/\/\s*(.+)\s*$/)
     if (captureComment && inlineCommentMatch) {
       pendingComment = normalizeComment(inlineCommentMatch[1])
       return
     }
 
-    const variableMatch = line.match(/^\s*\$([A-Za-z0-9_-]+)\s*:\s*.*?!default;\s*(?:\/\/\s*(.+))?\s*$/)
-    if (variableMatch) {
-      const variableName = variableMatch[1]
-      const inlineComment = variableMatch[2] ? normalizeComment(variableMatch[2]) : ''
-      const fieldName = toCamelCase(variableName)
-      const comment = captureComment ? inlineComment || pendingComment : ''
-      fields.push({ fieldName, comment })
+    if (/^\s*\$[A-Za-z0-9_-]+\s*:/.test(line)) {
+      statement = line
+      statementComment = pendingComment
       pendingComment = ''
+      if (line.includes(';')) {
+        parseStatement(statement, statementComment)
+        statement = ''
+        statementComment = ''
+      }
       return
     }
 

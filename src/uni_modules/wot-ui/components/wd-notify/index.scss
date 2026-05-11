@@ -41,8 +41,7 @@ $notify-floating-margin-horizontal: var(--wot-notify-floating-margin-horizontal,
 // floating 变体上下间距
 $notify-floating-margin-vertical: var(--wot-notify-floating-margin-vertical, $spacing-loose) !default;
 // floating 变体阴影
-$notify-floating-shadow: var(--wot-notify-floating-shadow,
-  0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
+$notify-floating-shadow: var(--wot-notify-floating-shadow, 0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
 
 // 通知类型配置映射
 $notify-types: ("primary": ("bg": $notify-primary-bg,
