@@ -22,6 +22,16 @@ describe('WdTag', () => {
     expect(wrapper.text()).toBe('标签')
   })
 
+  test('默认插槽内容使用 view 容器承载', () => {
+    const wrapper = mount(WdTag, {
+      slots: {
+        default: '标签'
+      }
+    })
+
+    expect(wrapper.find('.wd-tag__text').element.tagName).toBe('VIEW')
+  })
+
   // 测试不同类型
   test('不同类型渲染', () => {
     const types: TagType[] = ['default', 'primary', 'success', 'warning', 'danger']

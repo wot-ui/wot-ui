@@ -22,9 +22,9 @@
       <slot name="icon" v-if="$slots.icon || icon">
         <wd-icon :name="icon" custom-class="wd-tag__icon" />
       </slot>
-      <text class="wd-tag__text" :style="textStyle" v-if="$slots.default">
+      <view class="wd-tag__text" :style="textStyle" v-if="$slots.default">
         <slot />
-      </text>
+      </view>
       <view class="wd-tag__close" v-if="closable" @click.stop="handleClose">
         <wd-icon name="close" custom-class="wd-tag__close-icon"></wd-icon>
       </view>
