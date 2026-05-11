@@ -24,6 +24,16 @@ describe('WdFormItem', () => {
     expect(wrapper.text()).toContain('姓名')
   })
 
+  test('label prop 渲染描述信息', () => {
+    const wrapper = mount(WdFormItem, {
+      props: { title: '姓名', label: '请输入真实姓名' },
+      global: { components: globalComponents }
+    })
+
+    expect(wrapper.find('.wd-cell__label').exists()).toBe(true)
+    expect(wrapper.find('.wd-cell__label').text()).toBe('请输入真实姓名')
+  })
+
   test('value prop 渲染值，不显示 placeholder', () => {
     const wrapper = mount(WdFormItem, {
       props: { value: '张三', placeholder: '请输入姓名' },
