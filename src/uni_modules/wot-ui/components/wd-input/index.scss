@@ -1,5 +1,6 @@
 @use '../../styles/mixin/mixin.scss'as *;
 @use '../../styles/variable.scss'as *;
+
 // 输入框内边距
 $input-padding: var(--wot-input-padding, $padding-loose $padding-loose) !default;
 // 输入框背景色

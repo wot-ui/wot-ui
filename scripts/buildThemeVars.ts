@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import fs from 'fs'
 import path from 'path'
 
@@ -24,6 +25,49 @@ const toCamelCase = (value: string) => {
 
 const normalizeComment = (value: string) => value.replace(/\s+/g, ' ').trim()
 
+const hasStatementTerminator = (line: string) => {
+  let quote = ''
+  let escaped = false
+  let content = ''
+
+  for (let index = 0; index < line.length; index++) {
+    const char = line[index]
+    const nextChar = line[index + 1]
+
+    if (escaped) {
+      escaped = false
+      content += char
+      continue
+    }
+
+    if (char === '\\') {
+      escaped = true
+      content += char
+      continue
+    }
+
+    if (quote) {
+      if (char === quote) quote = ''
+      content += char
+      continue
+    }
+
+    if (char === '"' || char === "'") {
+      quote = char
+      content += char
+      continue
+    }
+
+    if (char === '/' && nextChar === '/') {
+      break
+    }
+
+    content += char
+  }
+
+  return content.trimEnd().endsWith(';')
+}
+
 const parseScssVariableFields = (scssContent: string, captureComment: boolean) => {
   const lines = scssContent.split('\n')
   const fields: ThemeVarField[] = []
@@ -45,7 +89,7 @@ const parseScssVariableFields = (scssContent: string, captureComment: boolean) =
   lines.forEach((line) => {
     if (statement) {
       statement += `\n${line}`
-      if (line.includes(';')) {
+      if (hasStatementTerminator(line)) {
         parseStatement(statement, statementComment)
         statement = ''
         statementComment = ''
@@ -63,7 +107,7 @@ const parseScssVariableFields = (scssContent: string, captureComment: boolean) =
       statement = line
       statementComment = pendingComment
       pendingComment = ''
-      if (line.includes(';')) {
+      if (hasStatementTerminator(line)) {
         parseStatement(statement, statementComment)
         statement = ''
         statementComment = ''
