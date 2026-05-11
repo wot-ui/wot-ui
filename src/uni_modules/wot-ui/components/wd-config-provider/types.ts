@@ -105,6 +105,7 @@ export type baseThemeVars = {
   fontWeightMedium?: string
   fontWeightRegular?: string
   fontWeightSemibold?: string
+  fontWeightThin?: string
   fontWeightUltraLight?: string
   grape1?: string
   grape10?: string
@@ -1138,6 +1139,24 @@ export type inputNumberThemeVars = {
   inputNumberInputWidth?: string // 输入框宽度
 }
 
+export type inputThemeVars = {
+  inputBg?: string // 输入框背景色
+  inputCountColor?: string // 输入框字数统计颜色
+  inputCountFontSize?: string // 输入框字数统计字号
+  inputCountLineHeight?: string // 输入框字数统计行高
+  inputCountMargin?: string // 输入框字数统计间距
+  inputDisabledColor?: string // 输入框禁用颜色
+  inputErrorColor?: string // 输入框错误颜色
+  inputIconColor?: string // 输入框图标颜色
+  inputIconFontSize?: string // 输入框图标字号
+  inputIconMargin?: string // 输入框图标间距
+  inputInnerColor?: string // 输入框文字颜色
+  inputInnerFontSize?: string // 输入框内字号
+  inputInnerHeight?: string // 输入框内高度
+  inputInnerPlaceholderColor?: string // 输入框占位符颜色
+  inputPadding?: string // 输入框内边距
+}
+
 export type keyboardThemeVars = {
   keyboardBg?: string // 键盘背景色
   keyboardCloseColor?: string // 关闭按钮文字颜色
@@ -1245,6 +1264,7 @@ export type notifyThemeVars = {
   notifyFloatingMarginHorizontal?: string // floating 变体左右间距
   notifyFloatingMarginVertical?: string // floating 变体上下间距
   notifyFloatingRadius?: string // floating 变体圆角
+  notifyFloatingShadow?: string // floating 变体阴影
   notifyFontSize?: string // 通知文字字号
   notifyIconSize?: string // 图标尺寸
   notifyIconSpacing?: string // 图标间距
@@ -1749,6 +1769,7 @@ export type tabbarThemeVars = {
   tabbarHeight?: string // 高度
   tabbarRoundMarginHorizontal?: string // round 变体水平外边距
   tabbarRoundRadius?: string // round 变体圆角
+  tabbarRoundShadow?: string // round 变体阴影
   tabbarZIndex?: string // 固定定位层级
 }
 
@@ -2027,6 +2048,7 @@ export type ConfigProviderThemeVars = baseThemeVars &
   indexAnchorThemeVars &
   indexBarThemeVars &
   inputNumberThemeVars &
+  inputThemeVars &
   keyboardThemeVars &
   loadingThemeVars &
   loadmoreThemeVars &

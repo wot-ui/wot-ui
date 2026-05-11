@@ -1,35 +1,36 @@
 @use '../../styles/mixin/mixin.scss'as *;
 @use '../../styles/variable.scss'as *;
+
 // 输入框内边距
-$input-padding: var(--wot-input-padding, $padding-loose $padding-loose);
+$input-padding: var(--wot-input-padding, $padding-loose $padding-loose) !default;
 // 输入框背景色
-$input-bg: var(--wot-input-bg, $filled-oppo);
+$input-bg: var(--wot-input-bg, $filled-oppo) !default;
 // 输入框内高度
-$input-inner-height: var(--wot-input-inner-height, $n-20);
+$input-inner-height: var(--wot-input-inner-height, $n-20) !default;
 // 输入框内字号
-$input-inner-font-size: var(--wot-input-inner-font-size, $typography-body-size-main);
+$input-inner-font-size: var(--wot-input-inner-font-size, $typography-body-size-main) !default;
 // 输入框文字颜色
-$input-inner-color: var(--wot-input-inner-color, $text-main);
+$input-inner-color: var(--wot-input-inner-color, $text-main) !default;
 // 输入框占位符颜色
-$input-inner-placeholder-color: var(--wot-input-inner-placeholder-color, $text-placeholder);
+$input-inner-placeholder-color: var(--wot-input-inner-placeholder-color, $text-placeholder) !default;
 // 输入框禁用颜色
-$input-disabled-color: var(--wot-input-disabled-color, $text-disabled);
+$input-disabled-color: var(--wot-input-disabled-color, $text-disabled) !default;
 // 输入框图标颜色
-$input-icon-color: var(--wot-input-icon-color, $icon-secondary);
+$input-icon-color: var(--wot-input-icon-color, $icon-secondary) !default;
 // 输入框图标字号
-$input-icon-font-size: var(--wot-input-icon-font-size, $n-18);
+$input-icon-font-size: var(--wot-input-icon-font-size, $n-18) !default;
 // 输入框图标间距
-$input-icon-margin: var(--wot-input-icon-margin, $spacing-tight);
+$input-icon-margin: var(--wot-input-icon-margin, $spacing-tight) !default;
 // 输入框字数统计间距
-$input-count-margin: var(--wot-input-count-margin, $spacing-extra-loose);
+$input-count-margin: var(--wot-input-count-margin, $spacing-extra-loose) !default;
 // 输入框字数统计颜色
-$input-count-color: var(--wot-input-count-color, $text-auxiliary);
+$input-count-color: var(--wot-input-count-color, $text-auxiliary) !default;
 // 输入框字数统计字号
-$input-count-font-size: var(--wot-input-count-font-size, $typography-body-size-main);
+$input-count-font-size: var(--wot-input-count-font-size, $typography-body-size-main) !default;
 // 输入框字数统计行高
-$input-count-line-height: var(--wot-input-count-line-height, $typography-body-line-height-size-main);
+$input-count-line-height: var(--wot-input-count-line-height, $typography-body-line-height-size-main) !default;
 // 输入框错误颜色
-$input-error-color: var(--wot-input-error-color, $danger-main);
+$input-error-color: var(--wot-input-error-color, $danger-main) !default;
 
 @include b(input) {
   position: relative;
