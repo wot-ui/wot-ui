@@ -304,8 +304,24 @@ function initSlider() {
  */
 function getPointerPosition(event: any): number {
   return props.vertical
-    ? Number(event.detail?.y ?? event.clientY ?? event.touches?.[0]?.clientY ?? 0)
-    : Number(event.detail?.x ?? event.clientX ?? event.touches?.[0]?.clientX ?? 0)
+    ? Number(
+        isDef(event.detail?.y)
+          ? event.detail?.y
+          : isDef(event.clientY)
+          ? event.clientY
+          : isDef(event.touches?.[0]?.clientY)
+          ? event.touches?.[0]?.clientY
+          : 0
+      )
+    : Number(
+        isDef(event.detail?.x)
+          ? event.detail?.x
+          : isDef(event.clientX)
+          ? event.clientX
+          : isDef(event.touches?.[0]?.clientX)
+          ? event.touches?.[0]?.clientX
+          : 0
+      )
 }
 
 /**
@@ -413,7 +429,7 @@ function dotDisplayValue(index: number): number {
     return modelValue.value as number
   }
   const values = currentValue.value
-  return values[index] ?? values[0]
+  return isDef(values[index]) ? values[index] : values[0]
 }
 
 /**

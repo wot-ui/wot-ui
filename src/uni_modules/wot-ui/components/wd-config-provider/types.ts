@@ -19,6 +19,7 @@ export const configProviderProps = {
 export type ConfigProviderProps = ExtractPropTypes<typeof configProviderProps>
 
 export type ConfigProviderProvide = {
+  theme: ComputedRef<string>
   themeStyle: ComputedRef<string>
 }
 

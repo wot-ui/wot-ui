@@ -136,7 +136,7 @@ const rootStyle = computed(() => {
     } else if (cascading === 'right-up') {
       // 右侧在上，越前面越大
       const maxCount = avatarGroup.value.props.maxCount
-      let count = avatarGroup.value.children?.length ?? 0
+      let count = avatarGroup.value.children ? avatarGroup.value.children.length : 0
 
       if (isDef(maxCount)) {
         const parsedCount = typeof maxCount === 'number' ? maxCount : parseInt(maxCount, 10)
