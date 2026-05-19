@@ -61,8 +61,8 @@ const rootStyle = computed(() => {
   if (props.size) {
     const sizeValue = addUnit(props.size)
     style['font-size'] = sizeValue
-    // CSS 图标模式下，同步设置 width/height
-    if (props.cssIcon) {
+    // CSS 图标和图片模式下，同步设置 width/height
+    if (props.cssIcon || isImage.value) {
       style['width'] = sizeValue
       style['height'] = sizeValue
     }
