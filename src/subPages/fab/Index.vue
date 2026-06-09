@@ -7,7 +7,7 @@
             <wd-radio value="primary" custom-class="page-fab__radio">{{ $t('zhu-yao-an-niu') }}</wd-radio>
             <wd-radio value="success" custom-class="page-fab__radio">{{ $t('cheng-gong-an-niu-0') }}</wd-radio>
             <wd-radio value="warning" custom-class="page-fab__radio">{{ $t('jing-gao-an-niu-0') }}</wd-radio>
-            <wd-radio value="error" custom-class="page-fab__radio">{{ $t('wei-xian-an-niu') }}</wd-radio>
+            <wd-radio value="danger" custom-class="page-fab__radio">{{ $t('wei-xian-an-niu') }}</wd-radio>
             <wd-radio value="info" custom-class="page-fab__radio">{{ $t('xin-xi-an-niu') }}</wd-radio>
           </wd-radio-group>
         </demo-group-item>
