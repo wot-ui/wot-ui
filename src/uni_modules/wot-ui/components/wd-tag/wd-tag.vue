@@ -50,11 +50,26 @@ import { objToStyle } from '../../common/util'
 import { computed, ref } from 'vue'
 import { useTranslate } from '../../composables/useTranslate'
 import { tagProps } from './types'
+import { useGlobalConfig } from '../../composables/useGlobalConfig'
 
 const props = defineProps(tagProps)
 const emit = defineEmits(['click', 'close', 'confirm'])
 
 const { translate } = useTranslate('tag')
+const globalConfig = useGlobalConfig()
+
+const effectiveSize = computed(() => {
+  return props.size || globalConfig.value.tag?.size || 'default'
+})
+
+const effectiveVariant = computed(() => {
+  return props.variant || globalConfig.value.tag?.variant || 'dark'
+})
+
+const effectiveRound = computed(() => {
+  if (props.round) return true
+  return globalConfig.value.tag?.round ?? false
+})
 
 const dynamicValue = ref<string>('')
 const dynamicInput = ref<boolean>(false)
@@ -63,12 +78,12 @@ const dynamicInput = ref<boolean>(false)
  * 根节点类名
  */
 const rootClass = computed<string>(() => {
-  const { type, variant, size, round, mark, customClass } = props
+  const { type, mark, customClass } = props
   const classList: string[] = []
   type && classList.push(`is-${type}`)
-  variant && classList.push(`is-${variant}`)
-  size && classList.push(`is-${size}`)
-  round && classList.push('is-round')
+  effectiveVariant.value && classList.push(`is-${effectiveVariant.value}`)
+  effectiveSize.value && classList.push(`is-${effectiveSize.value}`)
+  effectiveRound.value && classList.push('is-round')
   mark && classList.push('is-mark')
   return `wd-tag ${customClass} ${classList.join(' ')}`
 })
@@ -78,7 +93,7 @@ const rootClass = computed<string>(() => {
  */
 const rootStyle = computed<string>(() => {
   const rootStyle: Record<string, any> = {}
-  if (props.variant !== 'plain' && props.variant !== 'dashed' && props.variant !== 'text' && props.bgColor) {
+  if (effectiveVariant.value !== 'plain' && effectiveVariant.value !== 'dashed' && effectiveVariant.value !== 'text' && props.bgColor) {
     rootStyle['background'] = props.bgColor
   }
   if (props.bgColor) {

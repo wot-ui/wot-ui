@@ -18,14 +18,14 @@ const themeVars = reactive({
   buttonPrimaryBg: '#07c160'
 })
 
-useConfigProvider({ themeVars })
+useConfigProvider({ themeVars, button: { size: 'small', variant: 'plain' } })
 
 // Or use ref
 const themeVarsRef = ref({
   primary6: '#2c68ff'
 })
 
-useConfigProvider({ themeVars: themeVarsRef })
+useConfigProvider({ themeVars: themeVarsRef, button: { size: 'large', type: 'success', round: true }, tag: { size: 'medium', variant: 'light', round: true } })
 ```
 
 ## API
@@ -35,3 +35,6 @@ useConfigProvider({ themeVars: themeVarsRef })
 | Parameter | Description | Type | Default Value | Minimum Version |
 |-----|------|------|--------|---------|
 | themeVars | Theme variable object, supports reactive updates | `ConfigProviderThemeVars` \| `Ref<ConfigProviderThemeVars>` | - | 1.14.0 |
+| theme | Theme style, options: `light`, `dark` | `string` \| `Ref<string>` | `'light'` | 1.14.0 |
+| button | Button global config, supports `size` / `variant` / `type` / `round` | `{ size?: string; variant?: string; type?: string; round?: boolean }` \| `Ref<ButtonConfig>` | `{}` | - |
+| tag | Tag global config, supports `size` / `variant` / `round` | `{ size?: string; variant?: string; round?: boolean }` \| `Ref<TagConfig>` | `{}` | - |

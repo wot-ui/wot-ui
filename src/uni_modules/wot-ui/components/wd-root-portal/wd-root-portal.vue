@@ -53,7 +53,7 @@ const configProviderStyle = computed(() => {
 })
 
 const themeClass = computed(() => {
-  const theme = hooksProvider !== None ? hooksProvider.theme?.value : configProvider.value?.theme?.value
+  const theme = hooksProvider !== None ? hooksProvider.globalConfig?.value.theme : configProvider.value?.globalConfig?.value.theme
   return theme ? `wot-theme-${theme}` : 'wot-theme-light'
 })
 </script>

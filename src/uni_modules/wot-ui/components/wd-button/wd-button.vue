@@ -5,12 +5,12 @@
     :style="customStyle"
     :class="[
       'wd-button',
-      'is-' + type,
-      'is-' + size,
+      'is-' + effectiveType,
+      'is-' + effectiveSize,
       isIcon ? 'is-icon' : '',
-      round ? 'is-round' : '',
+      effectiveRound ? 'is-round' : '',
       hairline ? 'is-hairline' : '',
-      variant !== 'base' ? 'is-' + variant : '',
+      effectiveVariant !== 'base' ? 'is-' + effectiveVariant : '',
       disabled ? 'is-disabled' : '',
       block ? 'is-block' : '',
       loading ? 'is-loading' : '',
@@ -69,10 +69,29 @@ import { computed, useSlots } from 'vue'
 import { buttonProps } from './types'
 import { isDef, omitBy, isUndefined } from '../../common/util'
 import { type LoadingProps } from '../wd-loading/types'
+import { useGlobalConfig } from '../../composables/useGlobalConfig'
 
 const slots = useSlots()
 
 const props = defineProps(buttonProps)
+const globalConfig = useGlobalConfig()
+
+const effectiveSize = computed(() => {
+  return props.size || globalConfig.value.button?.size || 'medium'
+})
+
+const effectiveVariant = computed(() => {
+  return props.variant || globalConfig.value.button?.variant || 'base'
+})
+
+const effectiveType = computed(() => {
+  return props.type || globalConfig.value.button?.type || 'primary'
+})
+
+const effectiveRound = computed(() => {
+  if (props.round) return true
+  return globalConfig.value.button?.round ?? false
+})
 const emit = defineEmits<{
   (e: 'click', event: any): void
   (e: 'getuserinfo', event: any): void

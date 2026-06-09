@@ -98,9 +98,9 @@ export const buttonProps = {
    * 按钮尺寸
    * 类型: ButtonSize
    * 可选值: 'mini' | 'small' | 'medium' | 'large'
-   * 默认值: 'medium'
+   * 不传则继承全局配置
    */
-  size: makeStringProp<ButtonSize>('medium'),
+  size: String as PropType<ButtonSize>,
   /**
    * 图标类名
    */

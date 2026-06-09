@@ -1,6 +1,13 @@
-import { computed, provide, unref, type Ref } from 'vue'
+import { computed, provide, unref, type MaybeRef } from 'vue'
 import { type ConfigProviderThemeVars } from '../components/wd-config-provider/types'
 import { objToStyle } from '../common/util'
+import {
+  mergeConfig,
+  type GlobalConfig,
+  type ConfigProviderInput,
+  type ButtonConfig,
+  type TagConfig
+} from '../components/wd-config-provider/global-config'
 
 export const USE_CONFIG_PROVIDER_KEY = '__CONFIG_PROVIDER__'
 
@@ -22,24 +29,32 @@ export const mapThemeVarsToCSSVars = (themeVars: Record<string, string>) => {
   return cssVars
 }
 
-export function useConfigProvider({
-  themeVars,
-  theme
-}: {
-  themeVars?: ConfigProviderThemeVars | Ref<ConfigProviderThemeVars>
-  theme?: string | Ref<string>
-}) {
+export interface UseConfigProviderOptions {
+  themeVars?: MaybeRef<ConfigProviderThemeVars>
+  theme?: MaybeRef<string>
+  button?: MaybeRef<ButtonConfig>
+  tag?: MaybeRef<TagConfig>
+}
+
+export function useConfigProvider(options: UseConfigProviderOptions = {}) {
+  const { themeVars, theme, button, tag } = options
+
   const themeStyle = computed(() => {
     const styleObj = mapThemeVarsToCSSVars(unref(themeVars) || {})
     return styleObj ? `${objToStyle(styleObj)}` : ''
   })
 
-  const themeValue = computed(() => {
-    return unref(theme) || 'light'
+  const globalConfig = computed<GlobalConfig>(() => {
+    return mergeConfig(null, {
+      theme: unref(theme) || 'light',
+      themeVars: unref(themeVars) || {},
+      button: unref(button) || {},
+      tag: unref(tag) || {}
+    } as ConfigProviderInput)
   })
 
   provide(USE_CONFIG_PROVIDER_KEY, {
     themeStyle,
-    theme: themeValue
+    globalConfig
   })
 }

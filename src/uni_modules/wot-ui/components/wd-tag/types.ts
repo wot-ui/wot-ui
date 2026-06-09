@@ -1,4 +1,4 @@
-import type { ExtractPropTypes } from 'vue'
+import type { ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeStringProp } from '../../common/props'
 
 /**
@@ -26,9 +26,9 @@ export const tagProps = {
    * 标签尺寸
    * 类型: TagSize
    * 可选值: 'small' | 'medium' | 'large' | 'extra-large' | 'default'
-   * 默认值: 'default'
+   * 不传则继承全局配置
    */
-  size: makeStringProp<TagSize>('default'),
+  size: String as PropType<TagSize>,
   /**
    * 标签类型
    * 类型: TagType
