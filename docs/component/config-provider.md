@@ -320,7 +320,7 @@ useConfigProvider({ themeVars })
 
 ### 配置优先级
 
-```
+```text
 组件 prop > 组件专属配置（如 button.size） > 组件内置默认值
 ```
 

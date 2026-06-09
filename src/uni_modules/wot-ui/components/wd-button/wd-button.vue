@@ -89,8 +89,10 @@ const effectiveType = computed(() => {
 })
 
 const effectiveRound = computed(() => {
-  if (props.round) return true
-  return globalConfig.value.button?.round ?? false
+  if (isUndefined(props.round)) {
+    return isUndefined(globalConfig.value.button?.round) ? false : globalConfig.value.button?.round
+  }
+  return props.round
 })
 const emit = defineEmits<{
   (e: 'click', event: any): void

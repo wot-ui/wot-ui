@@ -46,7 +46,7 @@ export default {
 </script>
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { objToStyle } from '../../common/util'
+import { objToStyle, isUndefined } from '../../common/util'
 import { computed, ref } from 'vue'
 import { useTranslate } from '../../composables/useTranslate'
 import { tagProps } from './types'
@@ -67,8 +67,10 @@ const effectiveVariant = computed(() => {
 })
 
 const effectiveRound = computed(() => {
-  if (props.round) return true
-  return globalConfig.value.tag?.round ?? false
+  if (isUndefined(props.round)) {
+    return isUndefined(globalConfig.value.tag?.round) ? false : globalConfig.value.tag?.round
+  }
+  return props.round
 })
 
 const dynamicValue = ref<string>('')

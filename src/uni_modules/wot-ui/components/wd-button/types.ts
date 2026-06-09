@@ -69,9 +69,12 @@ export const buttonProps = {
   ...baseProps,
   /**
    * 圆角按钮
-   * 默认值: false
+   * 不传则继承全局配置
    */
-  round: makeBooleanProp(false),
+  round: {
+    type: Boolean,
+    default: void 0
+  },
   /**
    * 禁用按钮
    * 默认值: false
@@ -91,9 +94,9 @@ export const buttonProps = {
    * 按钮类型
    * 类型: ButtonType
    * 可选值: 'primary' | 'success' | 'info' | 'warning' | 'danger'
-   * 默认值: 'primary'
+   * 不传则继承全局配置
    */
-  type: makeStringProp<ButtonType>('primary'),
+  type: String as PropType<ButtonType>,
   /**
    * 按钮尺寸
    * 类型: ButtonSize
@@ -202,9 +205,9 @@ export const buttonProps = {
    * 按钮变体
    * 类型: ButtonVariant
    * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'text'
-   * 默认值: 'base'
+   * 不传则继承全局配置
    */
-  variant: makeStringProp<ButtonVariant>('base')
+  variant: String as PropType<ButtonVariant>
 }
 
 /**

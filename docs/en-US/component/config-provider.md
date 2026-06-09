@@ -265,7 +265,7 @@ const themeVars = reactive({
   buttonPrimaryColor: '#ffffff'
 })
 
-useConfigProvider({ themeVars, size: 'small' })
+useConfigProvider({ themeVars, button: { size: 'small' } })
 </script>
 ```
 
@@ -315,7 +315,7 @@ Imperative APIs such as `useToast()` / `useDialog()` are invoked as plain functi
 
 ### Configuration Priority
 
-```
+```text
 component prop > per-component config (e.g. button.size) > component built-in default
 ```
 

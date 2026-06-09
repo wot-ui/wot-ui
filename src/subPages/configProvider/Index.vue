@@ -57,7 +57,7 @@
               <wd-tag type="success">success</wd-tag>
             </view>
           </wd-cell>
-          <wd-cell title="root-portal" title-width="140rpx" center>
+          <wd-cell :title="$t('rootportal-chuan-tou-ce-shi')" title-width="140rpx" center>
             <view class="page-config-provider__preview-items">
               <wd-button type="primary" @click="showRootPortalPopup = true">{{ $t('da-kai-popup') }}</wd-button>
             </view>

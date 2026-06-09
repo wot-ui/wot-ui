@@ -69,9 +69,12 @@ export const tagProps = {
   /**
    * 圆角类型
    * 类型: boolean
-   * 默认值: false
+   * 不传则继承全局配置
    */
-  round: makeBooleanProp(false),
+  round: {
+    type: Boolean,
+    default: void 0
+  },
   /**
    * 标记类型
    * 类型: boolean
@@ -82,9 +85,9 @@ export const tagProps = {
    * 标签变体
    * 类型: TagVariant
    * 可选值: 'light' | 'dark' | 'plain' | 'dashed' | 'text'
-   * 默认值: 'dark'
+   * 不传则继承全局配置
    */
-  variant: makeStringProp<TagVariant>('dark')
+  variant: String as PropType<TagVariant>
 }
 
 export type TagProps = ExtractPropTypes<typeof tagProps>
