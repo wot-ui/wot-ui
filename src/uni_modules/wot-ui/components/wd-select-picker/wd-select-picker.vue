@@ -109,6 +109,7 @@ import wdRadio from '../wd-radio/wd-radio.vue'
 import wdRadioGroup from '../wd-radio-group/wd-radio-group.vue'
 import wdButton from '../wd-button/wd-button.vue'
 import wdLoading from '../wd-loading/wd-loading.vue'
+import wdSearch from '../wd-search/wd-search.vue'
 
 import { getCurrentInstance, onBeforeMount, ref, watch, nextTick, computed } from 'vue'
 import { getRect, isArray, isDef, isFunction, pause } from '../../common/util'

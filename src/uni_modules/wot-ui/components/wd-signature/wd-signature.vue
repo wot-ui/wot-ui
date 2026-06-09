@@ -72,6 +72,7 @@ export default {
 }
 </script>
 <script lang="ts" setup>
+import wdButton from '../wd-button/wd-button.vue'
 import { computed, getCurrentInstance, onBeforeMount, onMounted, reactive, ref, watch, type CSSProperties } from 'vue'
 import { addUnit, getRect, getSystemInfo, isDef, objToStyle, uuid } from '../../common/util'
 import { signatureProps, type SignatureExpose, type SignatureResult, type Point, type Line } from './types'

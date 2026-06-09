@@ -53,6 +53,7 @@ import { getRect, getSystemInfo, uuid } from '../../common/util'
 import { useChildren } from '../../composables/useChildren'
 import { DROP_MENU_KEY, dropMenuProps } from './types'
 import wdOverlay from '../wd-overlay/wd-overlay.vue'
+import wdIcon from '../wd-icon/wd-icon.vue'
 
 const props = defineProps(dropMenuProps)
 const queue = inject<Queue | null>(queueKey, null)

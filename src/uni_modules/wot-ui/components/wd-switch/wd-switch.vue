@@ -36,6 +36,8 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import wdIcon from '../wd-icon/wd-icon.vue'
+import wdLoading from '../wd-loading/wd-loading.vue'
 import { computed, type CSSProperties, onBeforeMount } from 'vue'
 import { callInterceptor } from '../../common/interceptor'
 import { addUnit, isDef, isUndefined, objToStyle, omitBy } from '../../common/util'

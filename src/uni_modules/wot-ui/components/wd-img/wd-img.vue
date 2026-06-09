@@ -36,6 +36,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import wdIcon from '../wd-icon/wd-icon.vue'
 import { computed, ref } from 'vue'
 import { addUnit, isDef, objToStyle } from '../../common/util'
 import { imgProps } from './types'

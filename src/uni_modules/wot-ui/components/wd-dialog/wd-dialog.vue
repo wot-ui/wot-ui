@@ -136,6 +136,7 @@ export default {
 <script lang="ts" setup>
 import wdPopup from '../wd-popup/wd-popup.vue'
 import wdButton from '../wd-button/wd-button.vue'
+import wdIcon from '../wd-icon/wd-icon.vue'
 import wdInput from '../wd-input/wd-input.vue'
 import wdTextarea from '../wd-textarea/wd-textarea.vue'
 import { computed, inject, reactive, ref, watch } from 'vue'

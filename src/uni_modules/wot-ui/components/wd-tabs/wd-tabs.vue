@@ -140,6 +140,7 @@ export default {
 </script>
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
+import wdBadge from '../wd-badge/wd-badge.vue'
 import wdSticky from '../wd-sticky/wd-sticky.vue'
 import wdStickyBox from '../wd-sticky-box/wd-sticky-box.vue'
 import { computed, getCurrentInstance, onMounted, watch, nextTick, reactive, type CSSProperties, type ComponentInstance } from 'vue'

@@ -65,6 +65,7 @@ export default {
 
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
+import wdLoading from '../wd-loading/wd-loading.vue'
 import { computed, useSlots } from 'vue'
 import { buttonProps } from './types'
 import { isDef, omitBy, isUndefined } from '../../common/util'

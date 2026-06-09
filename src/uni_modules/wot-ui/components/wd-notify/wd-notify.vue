@@ -49,6 +49,7 @@ export default {
 
 <script lang="ts" setup>
 import wdPopup from '../wd-popup/wd-popup.vue'
+import wdIcon from '../wd-icon/wd-icon.vue'
 import { inject, computed, watch, ref, type CSSProperties } from 'vue'
 import { notifyProps, type NotifyProps } from './types'
 import { getNotifyOptionKey } from '.'
