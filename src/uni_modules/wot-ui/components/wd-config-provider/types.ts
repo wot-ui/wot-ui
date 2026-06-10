@@ -3,6 +3,7 @@ import { makeStringProp, baseProps } from '../../common/props'
 import type { ButtonConfig, GlobalConfig, TagConfig } from './global-config'
 import type { ConfigProviderThemeVars } from './theme-vars'
 
+// 兼容历史从 wd-config-provider/types 深度导入 ConfigProviderThemeVars 的用法
 export type { ConfigProviderThemeVars }
 
 export const configProviderProps = {
