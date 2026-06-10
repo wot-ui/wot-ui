@@ -1,5 +1,5 @@
 import { computed, provide, unref, type MaybeRef } from 'vue'
-import { type ConfigProviderThemeVars } from '../components/wd-config-provider/types'
+import { type ConfigProviderThemeVars } from '../components/wd-config-provider/theme-vars'
 import { objToStyle } from '../common/util'
 import {
   mergeConfig,

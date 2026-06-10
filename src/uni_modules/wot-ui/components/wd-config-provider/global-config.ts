@@ -1,7 +1,7 @@
 import { isUndefined, omitBy } from '../../common/util'
 import type { ButtonSize, ButtonType, ButtonVariant } from '../wd-button/types'
 import type { TagSize, TagVariant } from '../wd-tag/types'
-import type { ConfigProviderThemeVars } from './types'
+import type { ConfigProviderThemeVars } from './theme-vars'
 
 export interface ButtonConfig {
   size?: ButtonSize
