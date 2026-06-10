@@ -3,6 +3,8 @@ import { makeStringProp, baseProps } from '../../common/props'
 import type { ButtonConfig, GlobalConfig, TagConfig } from './global-config'
 import type { ConfigProviderThemeVars } from './theme-vars'
 
+export type { ConfigProviderThemeVars }
+
 export const configProviderProps = {
   ...baseProps,
   /**
