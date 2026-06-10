@@ -297,7 +297,7 @@ describe('WdFormItem', () => {
     expect(cell.props('asteriskPosition')).toBe('start')
   })
 
-  test('form 的 value-align 会应用到 form-item 内容区域', () => {
+  test('form 的 value-align 会应用到 form-item 内容区域', async () => {
     const wrapper = mount(
       {
         template: `
@@ -311,6 +311,8 @@ describe('WdFormItem', () => {
       },
       { global: { components: globalComponents } }
     )
+
+    await nextTick()
 
     expect(wrapper.find('.wd-cell__value').classes()).toContain('wd-cell__value--right')
   })
