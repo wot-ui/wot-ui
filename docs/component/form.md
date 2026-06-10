@@ -1311,8 +1311,17 @@ function handleIconClick() {
 | label | 描述信息 | `string` | - |
 | clickable | 是否开启点击反馈 | `boolean` | `false` |
 | is-link | 是否展示右侧箭头并开启点击反馈 | `boolean` | `false` |
+| size | 单元格大小，可选值为 `large`，优先使用自身配置，未设置时继承 Form | `string` | - |
+| border | 是否展示边框线，优先使用自身配置，未设置时继承 Form | `boolean` | - |
+| title-width | 左侧标题宽度，优先使用自身配置，未设置时继承 Form | `string \| number` | `98px` |
+| center | 是否使内容垂直居中，优先使用自身配置，未设置时继承 Form | `boolean` | - |
 | required | 是否必填 | `boolean` | - |
 | validate-trigger | 校验触发时机，可选值为 `change`、`blur`、`submit` | `string \| string[]` | - |
+| layout | 单元格布局方式，可选值为 `horizontal`、`vertical`，优先使用自身配置，未设置时继承 Form | `string` | `horizontal` |
+| value-align | 右侧内容对齐方式，可选值为 `left`、`right`、`center`，优先使用自身配置，未设置时继承 Form | `string` | `left` |
+| ellipsis | 是否超出隐藏显示省略号，优先使用自身配置，未设置时继承 Form | `boolean` | - |
+| asterisk-position | 必填星号位置，可选值为 `start`、`end`，优先使用自身配置，未设置时继承 Form | `string` | `start` |
+| hide-asterisk | 是否隐藏必填星号，优先使用自身配置，未设置时继承 Form | `boolean` | - |
 
 ### FormSchema 数据结构
 

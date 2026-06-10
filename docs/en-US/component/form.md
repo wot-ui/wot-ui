@@ -781,8 +781,17 @@ All properties of this component, in addition to supporting specific form item c
 | label | Description information | `string` | - |
 | clickable | Whether to enable click feedback | `boolean` | `false` |
 | is-link | Whether to show right arrow and enable click feedback | `boolean` | `false` |
+| size | Cell size, optional value is `large`; uses its own configuration first, and inherits from Form when not set | `string` | - |
+| border | Whether to show border lines; uses its own configuration first, and inherits from Form when not set | `boolean` | - |
+| title-width | Left title width; uses its own configuration first, and inherits from Form when not set | `string \| number` | `98px` |
+| center | Whether to vertically center content; uses its own configuration first, and inherits from Form when not set | `boolean` | - |
 | required | Whether required | `boolean` | - |
 | validate-trigger | Validation trigger timing, optional values are `change`, `blur`, `submit` | `string \| string[]` | - |
+| layout | Cell layout method, optional values are `horizontal`, `vertical`; uses its own configuration first, and inherits from Form when not set | `string` | `horizontal` |
+| value-align | Right content alignment method, optional values are `left`, `right`, `center`; uses its own configuration first, and inherits from Form when not set | `string` | `left` |
+| ellipsis | Whether to hide overflow and show ellipsis; uses its own configuration first, and inherits from Form when not set | `boolean` | - |
+| asterisk-position | Required asterisk position, optional values are `start`, `end`; uses its own configuration first, and inherits from Form when not set | `string` | `start` |
+| hide-asterisk | Whether to hide required asterisk; uses its own configuration first, and inherits from Form when not set | `boolean` | - |
 
 ### FormSchema Data Structure
 

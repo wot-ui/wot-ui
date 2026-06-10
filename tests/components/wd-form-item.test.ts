@@ -297,6 +297,44 @@ describe('WdFormItem', () => {
     expect(cell.props('asteriskPosition')).toBe('start')
   })
 
+  test('form 的 value-align 会应用到 form-item 内容区域', async () => {
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" value-align="right">
+            <wd-form-item title="姓名" value="张三" />
+          </wd-form>
+        `,
+        data() {
+          return { formData: {} }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    await nextTick()
+
+    expect(wrapper.find('.wd-cell__value').classes()).toContain('wd-cell__value--right')
+  })
+
+  test('form-item 的 value-align 优先级高于 form', () => {
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" value-align="left">
+            <wd-form-item title="姓名" value="张三" value-align="center" />
+          </wd-form>
+        `,
+        data() {
+          return { formData: {} }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    expect(wrapper.find('.wd-cell__value').classes()).toContain('wd-cell__value--center')
+  })
+
   test('form-item 传入 border 时优先使用自身配置', () => {
     const wrapper = mount(WdFormItem, {
       props: { border: true },
