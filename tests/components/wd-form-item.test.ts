@@ -301,7 +301,7 @@ describe('WdFormItem', () => {
     const wrapper = mount(
       {
         template: `
-          <wd-form :model="formData" value-align="left">
+          <wd-form :model="formData" value-align="right">
             <wd-form-item title="姓名" value="张三" />
           </wd-form>
         `,
@@ -312,7 +312,7 @@ describe('WdFormItem', () => {
       { global: { components: globalComponents } }
     )
 
-    expect(wrapper.find('.wd-cell__value').classes()).toContain('wd-cell__value--left')
+    expect(wrapper.find('.wd-cell__value').classes()).toContain('wd-cell__value--right')
   })
 
   test('form-item 的 value-align 优先级高于 form', () => {
