@@ -115,9 +115,7 @@ const parseScssVariableFields = (scssContent: string, captureComment: boolean) =
       return
     }
 
-    if (!line.trim()) {
-      pendingComment = ''
-    }
+    pendingComment = ''
   })
 
   return fields
