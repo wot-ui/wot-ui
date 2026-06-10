@@ -115,9 +115,7 @@ const parseScssVariableFields = (scssContent: string, captureComment: boolean) =
       return
     }
 
-    if (!line.trim()) {
-      pendingComment = ''
-    }
+    pendingComment = ''
   })
 
   return fields
@@ -135,7 +133,7 @@ const getComponentScssFiles = () => {
 
 const buildBaseThemeVars = () => {
   const content = fs.readFileSync(globalScssPath, 'utf8')
-  const fields = parseScssVariableFields(content, false)
+  const fields = parseScssVariableFields(content, true)
   const fieldMap = new Map<string, ThemeVarField>()
   fields.forEach((field) => {
     if (!fieldMap.has(field.fieldName)) {

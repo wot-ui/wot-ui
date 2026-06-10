@@ -4,64 +4,64 @@
 /* ================================ 组件SCSS变量 ================================ */
 
 /* 轨道 (Track) */
-$slider-bar-height: var(--wot-slider-bar-height, $n-2) !default;
-$slider-bar-height-capsule: var(--wot-slider-bar-height-capsule, $n-24) !default;
-$slider-bar-bg: var(--wot-slider-bar-bg, $filled-strong) !default;
-$slider-bar-radius: var(--wot-slider-bar-radius, $radius-full) !default;
-$slider-bar-height-vertical: var(--wot-slider-bar-height-vertical, $n-248) !default;
+$slider-bar-height: var(--wot-slider-bar-height, $n-2) !default; // 轨道高度
+$slider-bar-height-capsule: var(--wot-slider-bar-height-capsule, $n-24) !default; // 胶囊轨道高度
+$slider-bar-bg: var(--wot-slider-bar-bg, $filled-strong) !default; // 轨道背景色
+$slider-bar-radius: var(--wot-slider-bar-radius, $radius-full) !default; // 轨道圆角
+$slider-bar-height-vertical: var(--wot-slider-bar-height-vertical, $n-248) !default; // 垂直轨道高度
 
 /* 进度条 (Range) */
-$slider-line-bg: var(--wot-slider-line-bg, $primary-6) !default;
-$slider-line-height: var(--wot-slider-line-height, $n-2) !default;
-$slider-line-height-capsule: var(--wot-slider-line-height-capsule, $n-18) !default;
+$slider-line-bg: var(--wot-slider-line-bg, $primary-6) !default; // 进度条背景色
+$slider-line-height: var(--wot-slider-line-height, $n-2) !default; // 进度条高度
+$slider-line-height-capsule: var(--wot-slider-line-height-capsule, $n-18) !default; // 胶囊进度条高度
 
 /* 滑块 (Thumb) */
-$slider-dot-size: var(--wot-slider-dot-size, $n-24) !default;
-$slider-dot-bg: var(--wot-slider-dot-bg, $filled-oppo) !default;
-$slider-dot-shadow: var(--wot-slider-dot-shadow, 0 2px 8px 0 rgba(0, 0, 0, 0.1)) !default;
+$slider-dot-size: var(--wot-slider-dot-size, $n-24) !default; // 滑块尺寸
+$slider-dot-bg: var(--wot-slider-dot-bg, $filled-oppo) !default; // 滑块背景色
+$slider-dot-shadow: var(--wot-slider-dot-shadow, 0 2px 8px 0 rgba(0, 0, 0, 0.1)) !default; // 滑块阴影
 
 /* 气泡提示 (Popover) */
-$slider-dot-popover-bg: var(--wot-slider-dot-popover-bg, $opacfilled-tooltip-toast-cover) !default;
-$slider-dot-popover-color: var(--wot-slider-dot-popover-color, $text-white) !default;
-$slider-dot-popover-radius: var(--wot-slider-dot-popover-radius, $radius-main) !default;
-$slider-dot-popover-padding: var(--wot-slider-dot-popover-padding, $padding-extra-tight $padding-loose) !default;
-$slider-dot-popover-font-size: var(--wot-slider-dot-popover-font-size, $typography-body-size-main) !default;
-$slider-dot-popover-line-height: var(--wot-slider-dot-popover-line-height, $typography-body-line-height-size-main) !default;
-$slider-dot-popover-gap: var(--wot-slider-dot-popover-gap, $n-3) !default;
-$slider-dot-popover-arrow-width: var(--wot-slider-dot-popover-arrow-width, $n-12) !default;
-$slider-dot-popover-arrow-height: var(--wot-slider-dot-popover-arrow-height, $n-6) !default;
-$slider-dot-popover-duration-exit: var(--wot-slider-dot-popover-duration-exit, 100ms) !default;
-$slider-dot-popover-easing-exit: var(--wot-slider-dot-popover-easing-exit, cubic-bezier(0.4, 0, 1, 1)) !default;
-$slider-dot-popover-duration-enter: var(--wot-slider-dot-popover-duration-enter, 200ms) !default;
-$slider-dot-popover-easing-enter: var(--wot-slider-dot-popover-easing-enter, cubic-bezier(0.34, 1.56, 0.64, 1)) !default;
+$slider-dot-popover-bg: var(--wot-slider-dot-popover-bg, $opacfilled-tooltip-toast-cover) !default; // 气泡提示背景色
+$slider-dot-popover-color: var(--wot-slider-dot-popover-color, $text-white) !default; // 气泡提示文字颜色
+$slider-dot-popover-radius: var(--wot-slider-dot-popover-radius, $radius-main) !default; // 气泡提示圆角
+$slider-dot-popover-padding: var(--wot-slider-dot-popover-padding, $padding-extra-tight $padding-loose) !default; // 气泡提示内边距
+$slider-dot-popover-font-size: var(--wot-slider-dot-popover-font-size, $typography-body-size-main) !default; // 气泡提示文字字号
+$slider-dot-popover-line-height: var(--wot-slider-dot-popover-line-height, $typography-body-line-height-size-main) !default; // 气泡提示行高
+$slider-dot-popover-gap: var(--wot-slider-dot-popover-gap, $n-3) !default; // 气泡提示与滑块间距
+$slider-dot-popover-arrow-width: var(--wot-slider-dot-popover-arrow-width, $n-12) !default; // 气泡提示箭头宽度
+$slider-dot-popover-arrow-height: var(--wot-slider-dot-popover-arrow-height, $n-6) !default; // 气泡提示箭头高度
+$slider-dot-popover-duration-exit: var(--wot-slider-dot-popover-duration-exit, 100ms) !default; // 气泡提示离场动画时长
+$slider-dot-popover-easing-exit: var(--wot-slider-dot-popover-easing-exit, cubic-bezier(0.4, 0, 1, 1)) !default; // 气泡提示离场动画缓动
+$slider-dot-popover-duration-enter: var(--wot-slider-dot-popover-duration-enter, 200ms) !default; // 气泡提示入场动画时长
+$slider-dot-popover-easing-enter: var(--wot-slider-dot-popover-easing-enter, cubic-bezier(0.34, 1.56, 0.64, 1)) !default; // 气泡提示入场动画缓动
 
 /* 刻度 (Scale) */
-$slider-scale-size: var(--wot-slider-scale-size, $n-6) !default;
-$slider-scale-border-radius: var(--wot-slider-scale-border-radius, $radius-full) !default;
-$slider-scale-bg: var(--wot-slider-scale-bg, $filled-strong) !default;
-$slider-scale-bg-active: var(--wot-slider-scale-bg-active, $primary-6) !default;
-$slider-scale-capsule-bg: var(--wot-slider-scale-capsule-bg, $filled-strong) !default;
-$slider-scale-capsule-width: var(--wot-slider-scale-capsule-width, $n-2) !default;
-$slider-scale-capsule-border-radius: var(--wot-slider-scale-capsule-border-radius, $radius-zero) !default;
-$slider-scale-desc-font-size: var(--wot-slider-scale-desc-font-size, $typography-body-size-main) !default;
-$slider-scale-desc-line-height: var(--wot-slider-scale-desc-line-height, $typography-body-line-height-size-main) !default;
-$slider-scale-desc-color: var(--wot-slider-scale-desc-color, $text-main) !default;
-$slider-scale-desc-spacing: var(--wot-slider-scale-desc-spacing, $spacing-tight) !default;
-$slider-marks-desc-spacing: var(--wot-slider-marks-desc-spacing, calc($slider-dot-size / 2 + $spacing-tight)) !default;
-$slider-marks-desc-capsule-spacing: var(--wot-slider-marks-desc-capsule-spacing, calc($slider-dot-size + $spacing-super-tight)) !default;
-$slider-marks-extra-padding: var(--wot-slider-marks-extra-padding, $padding-super-loose) !default;
-$slider-marks-extra-capsule-padding: var(--wot-slider-marks-extra-capsule-padding, $padding-ultra-loose) !default;
+$slider-scale-size: var(--wot-slider-scale-size, $n-6) !default; // 刻度尺寸
+$slider-scale-border-radius: var(--wot-slider-scale-border-radius, $radius-full) !default; // 刻度圆角
+$slider-scale-bg: var(--wot-slider-scale-bg, $filled-strong) !default; // 刻度背景色
+$slider-scale-bg-active: var(--wot-slider-scale-bg-active, $primary-6) !default; // 激活刻度背景色
+$slider-scale-capsule-bg: var(--wot-slider-scale-capsule-bg, $filled-strong) !default; // 胶囊刻度背景色
+$slider-scale-capsule-width: var(--wot-slider-scale-capsule-width, $n-2) !default; // 胶囊刻度宽度
+$slider-scale-capsule-border-radius: var(--wot-slider-scale-capsule-border-radius, $radius-zero) !default; // 胶囊刻度圆角
+$slider-scale-desc-font-size: var(--wot-slider-scale-desc-font-size, $typography-body-size-main) !default; // 刻度描述文字字号
+$slider-scale-desc-line-height: var(--wot-slider-scale-desc-line-height, $typography-body-line-height-size-main) !default; // 刻度描述行高
+$slider-scale-desc-color: var(--wot-slider-scale-desc-color, $text-main) !default; // 刻度描述文字颜色
+$slider-scale-desc-spacing: var(--wot-slider-scale-desc-spacing, $spacing-tight) !default; // 刻度描述间距
+$slider-marks-desc-spacing: var(--wot-slider-marks-desc-spacing, calc($slider-dot-size / 2 + $spacing-tight)) !default; // 标记描述间距
+$slider-marks-desc-capsule-spacing: var(--wot-slider-marks-desc-capsule-spacing, calc($slider-dot-size + $spacing-super-tight)) !default; // 胶囊标记描述间距
+$slider-marks-extra-padding: var(--wot-slider-marks-extra-padding, $padding-super-loose) !default; // 标记额外内边距
+$slider-marks-extra-capsule-padding: var(--wot-slider-marks-extra-capsule-padding, $padding-ultra-loose) !default; // 胶囊标记额外内边距
 
 /* 布局 (Layout) */
-$slider-capsule-track-inset: var(--wot-slider-capsule-track-inset, $n-3) !default;
-$slider-extreme-spacing: var(--wot-slider-extreme-spacing, $spacing-loose) !default;
+$slider-capsule-track-inset: var(--wot-slider-capsule-track-inset, $n-3) !default; // 胶囊轨道内缩距离
+$slider-extreme-spacing: var(--wot-slider-extreme-spacing, $spacing-loose) !default; // 极值文字与轨道间距
 
 /* 极值文字 (Extreme Value) */
-$slider-value-font-size: var(--wot-slider-value-font-size, $typography-body-size-main) !default;
-$slider-value-color: var(--wot-slider-value-color, $text-secondary) !default;
+$slider-value-font-size: var(--wot-slider-value-font-size, $typography-body-size-main) !default; // 极值文字字号
+$slider-value-color: var(--wot-slider-value-color, $text-secondary) !default; // 极值文字颜色
 
 /* 状态 (States) */
-$slider-opacity-disabled: var(--wot-slider-opacity-disabled, $opacity-disabled) !default;
+$slider-opacity-disabled: var(--wot-slider-opacity-disabled, $opacity-disabled) !default; // 禁用态透明度
 
 @include b(slider) {
   display: flex;

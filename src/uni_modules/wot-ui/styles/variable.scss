@@ -1,472 +1,472 @@
 /* 基础颜色 */
-$base-black: var(--wot-base-black, #000000FF) !default;
-$base-transparent: var(--wot-base-transparent, transparent) !default;
-$base-white: var(--wot-base-white, #FFFFFFFF) !default;
+$base-black: var(--wot-base-black, #000000FF) !default; // 基础黑色
+$base-transparent: var(--wot-base-transparent, transparent) !default; // 基础透明色
+$base-white: var(--wot-base-white, #FFFFFFFF) !default; // 基础白色
 
 /* 蓝色系列 */
-$blue-1: var(--wot-blue-1, #F5F8FFFF) !default;
-$blue-2: var(--wot-blue-2, #E5EDFFFF) !default;
-$blue-3: var(--wot-blue-3, #B8CFFFFF) !default;
-$blue-4: var(--wot-blue-4, #7CA4FFFF) !default;
-$blue-5: var(--wot-blue-5, #4480FFFF) !default;
-$blue-6: var(--wot-blue-6, #1C64FDFF) !default;
-$blue-7: var(--wot-blue-7, #164ED1FF) !default;
-$blue-8: var(--wot-blue-8, #1341ADFF) !default;
-$blue-9: var(--wot-blue-9, #0F3285FF) !default;
-$blue-10: var(--wot-blue-10, #0A235CFF) !default;
-$blue-opac: var(--wot-blue-opac, #1C64FD14) !default;
+$blue-1: var(--wot-blue-1, #F5F8FFFF) !default; // 蓝色色阶 1
+$blue-2: var(--wot-blue-2, #E5EDFFFF) !default; // 蓝色色阶 2
+$blue-3: var(--wot-blue-3, #B8CFFFFF) !default; // 蓝色色阶 3
+$blue-4: var(--wot-blue-4, #7CA4FFFF) !default; // 蓝色色阶 4
+$blue-5: var(--wot-blue-5, #4480FFFF) !default; // 蓝色色阶 5
+$blue-6: var(--wot-blue-6, #1C64FDFF) !default; // 蓝色色阶 6
+$blue-7: var(--wot-blue-7, #164ED1FF) !default; // 蓝色色阶 7
+$blue-8: var(--wot-blue-8, #1341ADFF) !default; // 蓝色色阶 8
+$blue-9: var(--wot-blue-9, #0F3285FF) !default; // 蓝色色阶 9
+$blue-10: var(--wot-blue-10, #0A235CFF) !default; // 蓝色色阶 10
+$blue-opac: var(--wot-blue-opac, #1C64FD14) !default; // 蓝色透明色
 
 /* 亮蓝系列 */
-$lightblue-1: var(--wot-lightblue-1, #E8FBFFFF) !default;
-$lightblue-2: var(--wot-lightblue-2, #BFF2FFFF) !default;
-$lightblue-3: var(--wot-lightblue-3, #96E7FFFF) !default;
-$lightblue-4: var(--wot-lightblue-4, #6ED8FFFF) !default;
-$lightblue-5: var(--wot-lightblue-5, #45C7FFFF) !default;
-$lightblue-6: var(--wot-lightblue-6, #1CB2FDFF) !default;
-$lightblue-7: var(--wot-lightblue-7, #0D8CD6FF) !default;
-$lightblue-8: var(--wot-lightblue-8, #026AB0FF) !default;
-$lightblue-9: var(--wot-lightblue-9, #004E8AFF) !default;
-$lightblue-10: var(--wot-lightblue-10, #003563FF) !default;
-$lightblue-opac: var(--wot-lightblue-opac, #1CB2FD14) !default;
+$lightblue-1: var(--wot-lightblue-1, #E8FBFFFF) !default; // 亮蓝色色阶 1
+$lightblue-2: var(--wot-lightblue-2, #BFF2FFFF) !default; // 亮蓝色色阶 2
+$lightblue-3: var(--wot-lightblue-3, #96E7FFFF) !default; // 亮蓝色色阶 3
+$lightblue-4: var(--wot-lightblue-4, #6ED8FFFF) !default; // 亮蓝色色阶 4
+$lightblue-5: var(--wot-lightblue-5, #45C7FFFF) !default; // 亮蓝色色阶 5
+$lightblue-6: var(--wot-lightblue-6, #1CB2FDFF) !default; // 亮蓝色色阶 6
+$lightblue-7: var(--wot-lightblue-7, #0D8CD6FF) !default; // 亮蓝色色阶 7
+$lightblue-8: var(--wot-lightblue-8, #026AB0FF) !default; // 亮蓝色色阶 8
+$lightblue-9: var(--wot-lightblue-9, #004E8AFF) !default; // 亮蓝色色阶 9
+$lightblue-10: var(--wot-lightblue-10, #003563FF) !default; // 亮蓝色色阶 10
+$lightblue-opac: var(--wot-lightblue-opac, #1CB2FD14) !default; // 亮蓝色透明色
 
 /* 粉色系列 */
-$pink-1: var(--wot-pink-1, #FFF0F6FF) !default;
-$pink-2: var(--wot-pink-2, #FFDEEBFF) !default;
-$pink-3: var(--wot-pink-3, #FCC2D7FF) !default;
-$pink-4: var(--wot-pink-4, #FAA2C1FF) !default;
-$pink-5: var(--wot-pink-5, #F783ACFF) !default;
-$pink-6: var(--wot-pink-6, #FF357CFF) !default;
-$pink-7: var(--wot-pink-7, #FF0A60FF) !default;
-$pink-8: var(--wot-pink-8, #E0004FFF) !default;
-$pink-9: var(--wot-pink-9, #B80040FF) !default;
-$pink-10: var(--wot-pink-10, #8F0032FF) !default;
-$pink-opac: var(--wot-pink-opac, #FF357C14) !default;
+$pink-1: var(--wot-pink-1, #FFF0F6FF) !default; // 粉色色阶 1
+$pink-2: var(--wot-pink-2, #FFDEEBFF) !default; // 粉色色阶 2
+$pink-3: var(--wot-pink-3, #FCC2D7FF) !default; // 粉色色阶 3
+$pink-4: var(--wot-pink-4, #FAA2C1FF) !default; // 粉色色阶 4
+$pink-5: var(--wot-pink-5, #F783ACFF) !default; // 粉色色阶 5
+$pink-6: var(--wot-pink-6, #FF357CFF) !default; // 粉色色阶 6
+$pink-7: var(--wot-pink-7, #FF0A60FF) !default; // 粉色色阶 7
+$pink-8: var(--wot-pink-8, #E0004FFF) !default; // 粉色色阶 8
+$pink-9: var(--wot-pink-9, #B80040FF) !default; // 粉色色阶 9
+$pink-10: var(--wot-pink-10, #8F0032FF) !default; // 粉色色阶 10
+$pink-opac: var(--wot-pink-opac, #FF357C14) !default; // 粉色透明色
 
 /* 红色系列 */
-$red-1: var(--wot-red-1, #FFF5F5FF) !default;
-$red-2: var(--wot-red-2, #FFE3E3FF) !default;
-$red-3: var(--wot-red-3, #FFC9C9FF) !default;
-$red-4: var(--wot-red-4, #FFA8A8FF) !default;
-$red-5: var(--wot-red-5, #FB7C7CFF) !default;
-$red-6: var(--wot-red-6, #F14646FF) !default;
-$red-7: var(--wot-red-7, #DC2C2CFF) !default;
-$red-8: var(--wot-red-8, #BC2626FF) !default;
-$red-9: var(--wot-red-9, #A01515FF) !default;
-$red-10: var(--wot-red-10, #790909FF) !default;
-$red-opac: var(--wot-red-opac, #F1464614) !default;
+$red-1: var(--wot-red-1, #FFF5F5FF) !default; // 红色色阶 1
+$red-2: var(--wot-red-2, #FFE3E3FF) !default; // 红色色阶 2
+$red-3: var(--wot-red-3, #FFC9C9FF) !default; // 红色色阶 3
+$red-4: var(--wot-red-4, #FFA8A8FF) !default; // 红色色阶 4
+$red-5: var(--wot-red-5, #FB7C7CFF) !default; // 红色色阶 5
+$red-6: var(--wot-red-6, #F14646FF) !default; // 红色色阶 6
+$red-7: var(--wot-red-7, #DC2C2CFF) !default; // 红色色阶 7
+$red-8: var(--wot-red-8, #BC2626FF) !default; // 红色色阶 8
+$red-9: var(--wot-red-9, #A01515FF) !default; // 红色色阶 9
+$red-10: var(--wot-red-10, #790909FF) !default; // 红色色阶 10
+$red-opac: var(--wot-red-opac, #F1464614) !default; // 红色透明色
 
 /* 橘红色系列 */
-$volcano-1: var(--wot-volcano-1, #FFF2E8FF) !default;
-$volcano-2: var(--wot-volcano-2, #FFDABFFF) !default;
-$volcano-3: var(--wot-volcano-3, #FFBF96FF) !default;
-$volcano-4: var(--wot-volcano-4, #FFA16EFF) !default;
-$volcano-5: var(--wot-volcano-5, #FF8045FF) !default;
-$volcano-6: var(--wot-volcano-6, #FD5C1CFF) !default;
-$volcano-7: var(--wot-volcano-7, #D63F0DFF) !default;
-$volcano-8: var(--wot-volcano-8, #B02802FF) !default;
-$volcano-9: var(--wot-volcano-9, #8A1900FF) !default;
-$volcano-10: var(--wot-volcano-10, #630F00FF) !default;
-$volcano-opac: var(--wot-volcano-opac, #FD5C1C14) !default;
+$volcano-1: var(--wot-volcano-1, #FFF2E8FF) !default; // 橘红色色阶 1
+$volcano-2: var(--wot-volcano-2, #FFDABFFF) !default; // 橘红色色阶 2
+$volcano-3: var(--wot-volcano-3, #FFBF96FF) !default; // 橘红色色阶 3
+$volcano-4: var(--wot-volcano-4, #FFA16EFF) !default; // 橘红色色阶 4
+$volcano-5: var(--wot-volcano-5, #FF8045FF) !default; // 橘红色色阶 5
+$volcano-6: var(--wot-volcano-6, #FD5C1CFF) !default; // 橘红色色阶 6
+$volcano-7: var(--wot-volcano-7, #D63F0DFF) !default; // 橘红色色阶 7
+$volcano-8: var(--wot-volcano-8, #B02802FF) !default; // 橘红色色阶 8
+$volcano-9: var(--wot-volcano-9, #8A1900FF) !default; // 橘红色色阶 9
+$volcano-10: var(--wot-volcano-10, #630F00FF) !default; // 橘红色色阶 10
+$volcano-opac: var(--wot-volcano-opac, #FD5C1C14) !default; // 橘红色透明色
 
 /* 橙色系列 */
-$orange-1: var(--wot-orange-1, #FFF6EBFF) !default;
-$orange-2: var(--wot-orange-2, #FFE8CCFF) !default;
-$orange-3: var(--wot-orange-3, #FFD8A8FF) !default;
-$orange-4: var(--wot-orange-4, #FFC078FF) !default;
-$orange-5: var(--wot-orange-5, #FFA94DFF) !default;
-$orange-6: var(--wot-orange-6, #F57F00FF) !default;
-$orange-7: var(--wot-orange-7, #D05706FF) !default;
-$orange-8: var(--wot-orange-8, #A94605FF) !default;
-$orange-9: var(--wot-orange-9, #813604FF) !default;
-$orange-10: var(--wot-orange-10, #592503FF) !default;
-$orange-opac: var(--wot-orange-opac, #F57F0014) !default;
+$orange-1: var(--wot-orange-1, #FFF6EBFF) !default; // 橙色色阶 1
+$orange-2: var(--wot-orange-2, #FFE8CCFF) !default; // 橙色色阶 2
+$orange-3: var(--wot-orange-3, #FFD8A8FF) !default; // 橙色色阶 3
+$orange-4: var(--wot-orange-4, #FFC078FF) !default; // 橙色色阶 4
+$orange-5: var(--wot-orange-5, #FFA94DFF) !default; // 橙色色阶 5
+$orange-6: var(--wot-orange-6, #F57F00FF) !default; // 橙色色阶 6
+$orange-7: var(--wot-orange-7, #D05706FF) !default; // 橙色色阶 7
+$orange-8: var(--wot-orange-8, #A94605FF) !default; // 橙色色阶 8
+$orange-9: var(--wot-orange-9, #813604FF) !default; // 橙色色阶 9
+$orange-10: var(--wot-orange-10, #592503FF) !default; // 橙色色阶 10
+$orange-opac: var(--wot-orange-opac, #F57F0014) !default; // 橙色透明色
 
 /* 黄色系列 */
-$yellow-1: var(--wot-yellow-1, #FFFAF1FF) !default;
-$yellow-2: var(--wot-yellow-2, #FDE5B4FF) !default;
-$yellow-3: var(--wot-yellow-3, #FDD78CFF) !default;
-$yellow-4: var(--wot-yellow-4, #FCC964FF) !default;
-$yellow-5: var(--wot-yellow-5, #FBBB3CFF) !default;
-$yellow-6: var(--wot-yellow-6, #FAAD14FF) !default;
-$yellow-7: var(--wot-yellow-7, #E19705FF) !default;
-$yellow-8: var(--wot-yellow-8, #B97C04FF) !default;
-$yellow-9: var(--wot-yellow-9, #916103FF) !default;
-$yellow-10: var(--wot-yellow-10, #694702FF) !default;
-$yellow-opac: var(--wot-yellow-opac, #FAAD1414) !default;
+$yellow-1: var(--wot-yellow-1, #FFFAF1FF) !default; // 黄色色阶 1
+$yellow-2: var(--wot-yellow-2, #FDE5B4FF) !default; // 黄色色阶 2
+$yellow-3: var(--wot-yellow-3, #FDD78CFF) !default; // 黄色色阶 3
+$yellow-4: var(--wot-yellow-4, #FCC964FF) !default; // 黄色色阶 4
+$yellow-5: var(--wot-yellow-5, #FBBB3CFF) !default; // 黄色色阶 5
+$yellow-6: var(--wot-yellow-6, #FAAD14FF) !default; // 黄色色阶 6
+$yellow-7: var(--wot-yellow-7, #E19705FF) !default; // 黄色色阶 7
+$yellow-8: var(--wot-yellow-8, #B97C04FF) !default; // 黄色色阶 8
+$yellow-9: var(--wot-yellow-9, #916103FF) !default; // 黄色色阶 9
+$yellow-10: var(--wot-yellow-10, #694702FF) !default; // 黄色色阶 10
+$yellow-opac: var(--wot-yellow-opac, #FAAD1414) !default; // 黄色透明色
 
 /* 绿色系列 */
-$green-1: var(--wot-green-1, #F3FBF9FF) !default;
-$green-2: var(--wot-green-2, #E7F8F3FF) !default;
-$green-3: var(--wot-green-3, #B8EADBFF) !default;
-$green-4: var(--wot-green-4, #88DBC3FF) !default;
-$green-5: var(--wot-green-5, #59CDAAFF) !default;
-$green-6: var(--wot-green-6, #12B886FF) !default;
-$green-7: var(--wot-green-7, #0F956CFF) !default;
-$green-8: var(--wot-green-8, #0B6F51FF) !default;
-$green-9: var(--wot-green-9, #074A36FF) !default;
-$green-10: var(--wot-green-10, #04251BFF) !default;
-$green-opac: var(--wot-green-opac, #12B88614) !default;
+$green-1: var(--wot-green-1, #F3FBF9FF) !default; // 绿色色阶 1
+$green-2: var(--wot-green-2, #E7F8F3FF) !default; // 绿色色阶 2
+$green-3: var(--wot-green-3, #B8EADBFF) !default; // 绿色色阶 3
+$green-4: var(--wot-green-4, #88DBC3FF) !default; // 绿色色阶 4
+$green-5: var(--wot-green-5, #59CDAAFF) !default; // 绿色色阶 5
+$green-6: var(--wot-green-6, #12B886FF) !default; // 绿色色阶 6
+$green-7: var(--wot-green-7, #0F956CFF) !default; // 绿色色阶 7
+$green-8: var(--wot-green-8, #0B6F51FF) !default; // 绿色色阶 8
+$green-9: var(--wot-green-9, #074A36FF) !default; // 绿色色阶 9
+$green-10: var(--wot-green-10, #04251BFF) !default; // 绿色色阶 10
+$green-opac: var(--wot-green-opac, #12B88614) !default; // 绿色透明色
 
 /* 青色系列 */
-$cyan-1: var(--wot-cyan-1, #F4FBFDFF) !default;
-$cyan-2: var(--wot-cyan-2, #E9F8FAFF) !default;
-$cyan-3: var(--wot-cyan-3, #BDEAF1FF) !default;
-$cyan-4: var(--wot-cyan-4, #90DBE7FF) !default;
-$cyan-5: var(--wot-cyan-5, #64CDDDFF) !default;
-$cyan-6: var(--wot-cyan-6, #22B8CFFF) !default;
-$cyan-7: var(--wot-cyan-7, #1C98ABFF) !default;
-$cyan-8: var(--wot-cyan-8, #167988FF) !default;
-$cyan-9: var(--wot-cyan-9, #115A65FF) !default;
-$cyan-10: var(--wot-cyan-10, #0B3A42FF) !default;
-$cyan-opac: var(--wot-cyan-opac, #22B8CF14) !default;
+$cyan-1: var(--wot-cyan-1, #F4FBFDFF) !default; // 青色色阶 1
+$cyan-2: var(--wot-cyan-2, #E9F8FAFF) !default; // 青色色阶 2
+$cyan-3: var(--wot-cyan-3, #BDEAF1FF) !default; // 青色色阶 3
+$cyan-4: var(--wot-cyan-4, #90DBE7FF) !default; // 青色色阶 4
+$cyan-5: var(--wot-cyan-5, #64CDDDFF) !default; // 青色色阶 5
+$cyan-6: var(--wot-cyan-6, #22B8CFFF) !default; // 青色色阶 6
+$cyan-7: var(--wot-cyan-7, #1C98ABFF) !default; // 青色色阶 7
+$cyan-8: var(--wot-cyan-8, #167988FF) !default; // 青色色阶 8
+$cyan-9: var(--wot-cyan-9, #115A65FF) !default; // 青色色阶 9
+$cyan-10: var(--wot-cyan-10, #0B3A42FF) !default; // 青色色阶 10
+$cyan-opac: var(--wot-cyan-opac, #22B8CF14) !default; // 青色透明色
 
 /* 紫色系列 */
-$purple-1: var(--wot-purple-1, #F9F8FFFF) !default;
-$purple-2: var(--wot-purple-2, #E5DBFFFF) !default;
-$purple-3: var(--wot-purple-3, #D0BFFFFF) !default;
-$purple-4: var(--wot-purple-4, #B197FCFF) !default;
-$purple-5: var(--wot-purple-5, #9775FAFF) !default;
-$purple-6: var(--wot-purple-6, #8059F3FF) !default;
-$purple-7: var(--wot-purple-7, #5B29EFFF) !default;
-$purple-8: var(--wot-purple-8, #4511DFFF) !default;
-$purple-9: var(--wot-purple-9, #390EB9FF) !default;
-$purple-10: var(--wot-purple-10, #2D0B93FF) !default;
-$purple-opac: var(--wot-purple-opac, #8059F314) !default;
+$purple-1: var(--wot-purple-1, #F9F8FFFF) !default; // 紫色色阶 1
+$purple-2: var(--wot-purple-2, #E5DBFFFF) !default; // 紫色色阶 2
+$purple-3: var(--wot-purple-3, #D0BFFFFF) !default; // 紫色色阶 3
+$purple-4: var(--wot-purple-4, #B197FCFF) !default; // 紫色色阶 4
+$purple-5: var(--wot-purple-5, #9775FAFF) !default; // 紫色色阶 5
+$purple-6: var(--wot-purple-6, #8059F3FF) !default; // 紫色色阶 6
+$purple-7: var(--wot-purple-7, #5B29EFFF) !default; // 紫色色阶 7
+$purple-8: var(--wot-purple-8, #4511DFFF) !default; // 紫色色阶 8
+$purple-9: var(--wot-purple-9, #390EB9FF) !default; // 紫色色阶 9
+$purple-10: var(--wot-purple-10, #2D0B93FF) !default; // 紫色色阶 10
+$purple-opac: var(--wot-purple-opac, #8059F314) !default; // 紫色透明色
 
 /* 靛色系列 */
-$grape-1: var(--wot-grape-1, #FBF6FDFF) !default;
-$grape-2: var(--wot-grape-2, #F3D9FAFF) !default;
-$grape-3: var(--wot-grape-3, #EEBEFAFF) !default;
-$grape-4: var(--wot-grape-4, #E599F7FF) !default;
-$grape-5: var(--wot-grape-5, #DA77F2FF) !default;
-$grape-6: var(--wot-grape-6, #AE3EC9FF) !default;
-$grape-7: var(--wot-grape-7, #9731AFFF) !default;
-$grape-8: var(--wot-grape-8, #7B288FFF) !default;
-$grape-9: var(--wot-grape-9, #601F70FF) !default;
-$grape-10: var(--wot-grape-10, #451650FF) !default;
-$grape-opac: var(--wot-grape-opac, #AE3EC914) !default;
+$grape-1: var(--wot-grape-1, #FBF6FDFF) !default; // 靛色色阶 1
+$grape-2: var(--wot-grape-2, #F3D9FAFF) !default; // 靛色色阶 2
+$grape-3: var(--wot-grape-3, #EEBEFAFF) !default; // 靛色色阶 3
+$grape-4: var(--wot-grape-4, #E599F7FF) !default; // 靛色色阶 4
+$grape-5: var(--wot-grape-5, #DA77F2FF) !default; // 靛色色阶 5
+$grape-6: var(--wot-grape-6, #AE3EC9FF) !default; // 靛色色阶 6
+$grape-7: var(--wot-grape-7, #9731AFFF) !default; // 靛色色阶 7
+$grape-8: var(--wot-grape-8, #7B288FFF) !default; // 靛色色阶 8
+$grape-9: var(--wot-grape-9, #601F70FF) !default; // 靛色色阶 9
+$grape-10: var(--wot-grape-10, #451650FF) !default; // 靛色色阶 10
+$grape-opac: var(--wot-grape-opac, #AE3EC914) !default; // 靛色透明色
 
 /* 冷灰系列 */
-$coolgrey-1: var(--wot-coolgrey-1, #F7F8FAFF) !default;
-$coolgrey-10: var(--wot-coolgrey-10, #1D1F29FF) !default;
-$coolgrey-2: var(--wot-coolgrey-2, #F2F3F5FF) !default;
-$coolgrey-3: var(--wot-coolgrey-3, #E5E6EBFF) !default;
-$coolgrey-4: var(--wot-coolgrey-4, #C9CBD4FF) !default;
-$coolgrey-5: var(--wot-coolgrey-5, #A9ACB8FF) !default;
-$coolgrey-6: var(--wot-coolgrey-6, #868A9CFF) !default;
-$coolgrey-7: var(--wot-coolgrey-7, #6B7085FF) !default;
-$coolgrey-8: var(--wot-coolgrey-8, #4E5369FF) !default;
-$coolgrey-9: var(--wot-coolgrey-9, #272B3BFF) !default;
+$coolgrey-1: var(--wot-coolgrey-1, #F7F8FAFF) !default; // 冷灰色色阶 1
+$coolgrey-10: var(--wot-coolgrey-10, #1D1F29FF) !default; // 冷灰色色阶 10
+$coolgrey-2: var(--wot-coolgrey-2, #F2F3F5FF) !default; // 冷灰色色阶 2
+$coolgrey-3: var(--wot-coolgrey-3, #E5E6EBFF) !default; // 冷灰色色阶 3
+$coolgrey-4: var(--wot-coolgrey-4, #C9CBD4FF) !default; // 冷灰色色阶 4
+$coolgrey-5: var(--wot-coolgrey-5, #A9ACB8FF) !default; // 冷灰色色阶 5
+$coolgrey-6: var(--wot-coolgrey-6, #868A9CFF) !default; // 冷灰色色阶 6
+$coolgrey-7: var(--wot-coolgrey-7, #6B7085FF) !default; // 冷灰色色阶 7
+$coolgrey-8: var(--wot-coolgrey-8, #4E5369FF) !default; // 冷灰色色阶 8
+$coolgrey-9: var(--wot-coolgrey-9, #272B3BFF) !default; // 冷灰色色阶 9
 
 /* 中性灰系列 */
-$neutralgrey-1: var(--wot-neutralgrey-1, #FAFAFAFF) !default;
-$neutralgrey-10: var(--wot-neutralgrey-10, #292929FF) !default;
-$neutralgrey-2: var(--wot-neutralgrey-2, #F5F5F5FF) !default;
-$neutralgrey-3: var(--wot-neutralgrey-3, #EBEBEBFF) !default;
-$neutralgrey-4: var(--wot-neutralgrey-4, #D4D4D4FF) !default;
-$neutralgrey-5: var(--wot-neutralgrey-5, #B8B8B8FF) !default;
-$neutralgrey-6: var(--wot-neutralgrey-6, #9C9C9CFF) !default;
-$neutralgrey-7: var(--wot-neutralgrey-7, #858585FF) !default;
-$neutralgrey-8: var(--wot-neutralgrey-8, #696969FF) !default;
-$neutralgrey-9: var(--wot-neutralgrey-9, #3D3D3DFF) !default;
+$neutralgrey-1: var(--wot-neutralgrey-1, #FAFAFAFF) !default; // 中性灰色色阶 1
+$neutralgrey-10: var(--wot-neutralgrey-10, #292929FF) !default; // 中性灰色色阶 10
+$neutralgrey-2: var(--wot-neutralgrey-2, #F5F5F5FF) !default; // 中性灰色色阶 2
+$neutralgrey-3: var(--wot-neutralgrey-3, #EBEBEBFF) !default; // 中性灰色色阶 3
+$neutralgrey-4: var(--wot-neutralgrey-4, #D4D4D4FF) !default; // 中性灰色色阶 4
+$neutralgrey-5: var(--wot-neutralgrey-5, #B8B8B8FF) !default; // 中性灰色色阶 5
+$neutralgrey-6: var(--wot-neutralgrey-6, #9C9C9CFF) !default; // 中性灰色色阶 6
+$neutralgrey-7: var(--wot-neutralgrey-7, #858585FF) !default; // 中性灰色色阶 7
+$neutralgrey-8: var(--wot-neutralgrey-8, #696969FF) !default; // 中性灰色色阶 8
+$neutralgrey-9: var(--wot-neutralgrey-9, #3D3D3DFF) !default; // 中性灰色色阶 9
 
 /* 暖灰系列 */
-$warmgrey-1: var(--wot-warmgrey-1, #FAF8F7FF) !default;
-$warmgrey-10: var(--wot-warmgrey-10, #292321FF) !default;
-$warmgrey-2: var(--wot-warmgrey-2, #F5F3F2FF) !default;
-$warmgrey-3: var(--wot-warmgrey-3, #EBE7E5FF) !default;
-$warmgrey-4: var(--wot-warmgrey-4, #D4CECCFF) !default;
-$warmgrey-5: var(--wot-warmgrey-5, #B8B0ADFF) !default;
-$warmgrey-6: var(--wot-warmgrey-6, #9C918CFF) !default;
-$warmgrey-7: var(--wot-warmgrey-7, #857A75FF) !default;
-$warmgrey-8: var(--wot-warmgrey-8, #695E5AFF) !default;
-$warmgrey-9: var(--wot-warmgrey-9, #3B332FFF) !default;
+$warmgrey-1: var(--wot-warmgrey-1, #FAF8F7FF) !default; // 暖灰色色阶 1
+$warmgrey-10: var(--wot-warmgrey-10, #292321FF) !default; // 暖灰色色阶 10
+$warmgrey-2: var(--wot-warmgrey-2, #F5F3F2FF) !default; // 暖灰色色阶 2
+$warmgrey-3: var(--wot-warmgrey-3, #EBE7E5FF) !default; // 暖灰色色阶 3
+$warmgrey-4: var(--wot-warmgrey-4, #D4CECCFF) !default; // 暖灰色色阶 4
+$warmgrey-5: var(--wot-warmgrey-5, #B8B0ADFF) !default; // 暖灰色色阶 5
+$warmgrey-6: var(--wot-warmgrey-6, #9C918CFF) !default; // 暖灰色色阶 6
+$warmgrey-7: var(--wot-warmgrey-7, #857A75FF) !default; // 暖灰色色阶 7
+$warmgrey-8: var(--wot-warmgrey-8, #695E5AFF) !default; // 暖灰色色阶 8
+$warmgrey-9: var(--wot-warmgrey-9, #3B332FFF) !default; // 暖灰色色阶 9
 
 /* 遮罩系列 */
-$opac-1_02: var(--wot-opac-1_02, #00000005) !default;
-$opac-2_04: var(--wot-opac-2_04, #0000000A) !default;
-$opac-3_08: var(--wot-opac-3_08, #00000014) !default;
-$opac-4_15: var(--wot-opac-4_15, #00000026) !default;
-$opac-5_20: var(--wot-opac-5_20, #00000033) !default;
-$opac-6_30: var(--wot-opac-6_30, #0000004D) !default;
-$opac-7_45: var(--wot-opac-7_45, #00000073) !default;
-$opac-7_55: var(--wot-opac-7_55, #0000008C) !default;
-$opac-8_65: var(--wot-opac-8_65, #000000A6) !default;
-$opac-9_75: var(--wot-opac-9_75, #000000BF) !default;
-$opac-10_85: var(--wot-opac-10_85, #000000D9) !default;
+$opac-1_02: var(--wot-opac-1_02, #00000005) !default; // 黑色遮罩 02%
+$opac-2_04: var(--wot-opac-2_04, #0000000A) !default; // 黑色遮罩 04%
+$opac-3_08: var(--wot-opac-3_08, #00000014) !default; // 黑色遮罩 08%
+$opac-4_15: var(--wot-opac-4_15, #00000026) !default; // 黑色遮罩 15%
+$opac-5_20: var(--wot-opac-5_20, #00000033) !default; // 黑色遮罩 20%
+$opac-6_30: var(--wot-opac-6_30, #0000004D) !default; // 黑色遮罩 30%
+$opac-7_45: var(--wot-opac-7_45, #00000073) !default; // 黑色遮罩 45%
+$opac-7_55: var(--wot-opac-7_55, #0000008C) !default; // 黑色遮罩 55%
+$opac-8_65: var(--wot-opac-8_65, #000000A6) !default; // 黑色遮罩 65%
+$opac-9_75: var(--wot-opac-9_75, #000000BF) !default; // 黑色遮罩 75%
+$opac-10_85: var(--wot-opac-10_85, #000000D9) !default; // 黑色遮罩 85%
 
 /* 白遮罩系列 */
-$opacwhite-1_02: var(--wot-opacwhite-1_02, #FFFFFF05) !default;
-$opacwhite-2_04: var(--wot-opacwhite-2_04, #FFFFFF0A) !default;
-$opacwhite-3_08: var(--wot-opacwhite-3_08, #FFFFFF14) !default;
-$opacwhite-4_15: var(--wot-opacwhite-4_15, #FFFFFF26) !default;
-$opacwhite-5_20: var(--wot-opacwhite-5_20, #FFFFFF33) !default;
-$opacwhite-6_30: var(--wot-opacwhite-6_30, #FFFFFF4D) !default;
-$opacwhite-7_45: var(--wot-opacwhite-7_45, #FFFFFF73) !default;
-$opacwhite-7_55: var(--wot-opacwhite-7_55, #FFFFFF8C) !default;
-$opacwhite-8_65: var(--wot-opacwhite-8_65, #FFFFFFA6) !default;
-$opacwhite-9_75: var(--wot-opacwhite-9_75, #FFFFFFBF) !default;
-$opacwhite-10_85: var(--wot-opacwhite-10_85, #FFFFFFD9) !default;
+$opacwhite-1_02: var(--wot-opacwhite-1_02, #FFFFFF05) !default; // 白色遮罩 02%
+$opacwhite-2_04: var(--wot-opacwhite-2_04, #FFFFFF0A) !default; // 白色遮罩 04%
+$opacwhite-3_08: var(--wot-opacwhite-3_08, #FFFFFF14) !default; // 白色遮罩 08%
+$opacwhite-4_15: var(--wot-opacwhite-4_15, #FFFFFF26) !default; // 白色遮罩 15%
+$opacwhite-5_20: var(--wot-opacwhite-5_20, #FFFFFF33) !default; // 白色遮罩 20%
+$opacwhite-6_30: var(--wot-opacwhite-6_30, #FFFFFF4D) !default; // 白色遮罩 30%
+$opacwhite-7_45: var(--wot-opacwhite-7_45, #FFFFFF73) !default; // 白色遮罩 45%
+$opacwhite-7_55: var(--wot-opacwhite-7_55, #FFFFFF8C) !default; // 白色遮罩 55%
+$opacwhite-8_65: var(--wot-opacwhite-8_65, #FFFFFFA6) !default; // 白色遮罩 65%
+$opacwhite-9_75: var(--wot-opacwhite-9_75, #FFFFFFBF) !default; // 白色遮罩 75%
+$opacwhite-10_85: var(--wot-opacwhite-10_85, #FFFFFFD9) !default; // 白色遮罩 85%
 
 /* 透明度系列 */
-$opacity-disabled: var(--wot-opacity-disabled, 0.4) !default;
-$opacity-dimmer: var(--wot-opacity-dimmer, 0.6) !default;
-$opacity-overlay: var(--wot-opacity-overlay, 0.75) !default;
-$opacity-backdrop: var(--wot-opacity-backdrop, 0.3) !default;
-$opacity-main: var(--wot-opacity-main, 1) !default;
+$opacity-disabled: var(--wot-opacity-disabled, 0.4) !default; // 禁用态透明度
+$opacity-dimmer: var(--wot-opacity-dimmer, 0.6) !default; // dimmer透明度
+$opacity-overlay: var(--wot-opacity-overlay, 0.75) !default; // overlay透明度
+$opacity-backdrop: var(--wot-opacity-backdrop, 0.3) !default; // backdrop透明度
+$opacity-main: var(--wot-opacity-main, 1) !default; // 默认透明度
 
 /* 基础数字 */
-$n-0: var(--wot-n-0, 0px) !default;
-$n-1: var(--wot-n-1, 1px) !default;
-$n-2: var(--wot-n-2, 2px) !default;
-$n-3: var(--wot-n-3, 3px) !default;
-$n-4: var(--wot-n-4, 4px) !default;
-$n-05: var(--wot-n-05, 0.5px) !default;
-$n-5: var(--wot-n-5, 5px) !default;
-$n-6: var(--wot-n-6, 6px) !default;
-$n-8: var(--wot-n-8, 8px) !default;
-$n-9: var(--wot-n-9, 9px) !default;
-$n-10: var(--wot-n-10, 10px) !default;
-$n-11: var(--wot-n-11, 11px) !default;
-$n-12: var(--wot-n-12, 12px) !default;
-$n-14: var(--wot-n-14, 14px) !default;
-$n-15: var(--wot-n-15, 15px) !default;
-$n-16: var(--wot-n-16, 16px) !default;
-$n-17: var(--wot-n-17, 17px) !default;
-$n-18: var(--wot-n-18, 18px) !default;
-$n-20: var(--wot-n-20, 20px) !default;
-$n-22: var(--wot-n-22, 22px) !default;
-$n-24: var(--wot-n-24, 24px) !default;
-$n-26: var(--wot-n-26, 26px) !default;
-$n-28: var(--wot-n-28, 28px) !default;
-$n-32: var(--wot-n-32, 32px) !default;
-$n-34: var(--wot-n-34, 34px) !default;
-$n-36: var(--wot-n-36, 36px) !default;
-$n-40: var(--wot-n-40, 40px) !default;
-$n-44: var(--wot-n-44, 44px) !default;
-$n-48: var(--wot-n-48, 48px) !default;
-$n-50: var(--wot-n-50, 50px) !default;
-$n-52: var(--wot-n-52, 52px) !default;
-$n-56: var(--wot-n-56, 56px) !default;
-$n-60: var(--wot-n-60, 60px) !default;
-$n-64: var(--wot-n-64, 64px) !default;
-$n-88: var(--wot-n-88, 88px) !default;
-$n-98: var(--wot-n-98, 98px) !default;
-$n-248: var(--wot-n-248, 248px) !default;
-$n-375: var(--wot-n-375, 375px) !default;
-$n-full: var(--wot-n-full, 9999px) !default;
+$n-0: var(--wot-n-0, 0px) !default; // 基础尺寸 0px
+$n-1: var(--wot-n-1, 1px) !default; // 基础尺寸 1px
+$n-2: var(--wot-n-2, 2px) !default; // 基础尺寸 2px
+$n-3: var(--wot-n-3, 3px) !default; // 基础尺寸 3px
+$n-4: var(--wot-n-4, 4px) !default; // 基础尺寸 4px
+$n-05: var(--wot-n-05, 0.5px) !default; // 基础尺寸 0.5px
+$n-5: var(--wot-n-5, 5px) !default; // 基础尺寸 5px
+$n-6: var(--wot-n-6, 6px) !default; // 基础尺寸 6px
+$n-8: var(--wot-n-8, 8px) !default; // 基础尺寸 8px
+$n-9: var(--wot-n-9, 9px) !default; // 基础尺寸 9px
+$n-10: var(--wot-n-10, 10px) !default; // 基础尺寸 10px
+$n-11: var(--wot-n-11, 11px) !default; // 基础尺寸 11px
+$n-12: var(--wot-n-12, 12px) !default; // 基础尺寸 12px
+$n-14: var(--wot-n-14, 14px) !default; // 基础尺寸 14px
+$n-15: var(--wot-n-15, 15px) !default; // 基础尺寸 15px
+$n-16: var(--wot-n-16, 16px) !default; // 基础尺寸 16px
+$n-17: var(--wot-n-17, 17px) !default; // 基础尺寸 17px
+$n-18: var(--wot-n-18, 18px) !default; // 基础尺寸 18px
+$n-20: var(--wot-n-20, 20px) !default; // 基础尺寸 20px
+$n-22: var(--wot-n-22, 22px) !default; // 基础尺寸 22px
+$n-24: var(--wot-n-24, 24px) !default; // 基础尺寸 24px
+$n-26: var(--wot-n-26, 26px) !default; // 基础尺寸 26px
+$n-28: var(--wot-n-28, 28px) !default; // 基础尺寸 28px
+$n-32: var(--wot-n-32, 32px) !default; // 基础尺寸 32px
+$n-34: var(--wot-n-34, 34px) !default; // 基础尺寸 34px
+$n-36: var(--wot-n-36, 36px) !default; // 基础尺寸 36px
+$n-40: var(--wot-n-40, 40px) !default; // 基础尺寸 40px
+$n-44: var(--wot-n-44, 44px) !default; // 基础尺寸 44px
+$n-48: var(--wot-n-48, 48px) !default; // 基础尺寸 48px
+$n-50: var(--wot-n-50, 50px) !default; // 基础尺寸 50px
+$n-52: var(--wot-n-52, 52px) !default; // 基础尺寸 52px
+$n-56: var(--wot-n-56, 56px) !default; // 基础尺寸 56px
+$n-60: var(--wot-n-60, 60px) !default; // 基础尺寸 60px
+$n-64: var(--wot-n-64, 64px) !default; // 基础尺寸 64px
+$n-88: var(--wot-n-88, 88px) !default; // 基础尺寸 88px
+$n-98: var(--wot-n-98, 98px) !default; // 基础尺寸 98px
+$n-248: var(--wot-n-248, 248px) !default; // 基础尺寸 248px
+$n-375: var(--wot-n-375, 375px) !default; // 基础尺寸 375px
+$n-full: var(--wot-n-full, 9999px) !default; // 全圆角尺寸
 
 /* 字重系列 */
-$font-weight-ultra-light: var(--wot-font-weight-ultra-light, 100) !default;
-$font-weight-thin: var(--wot-font-weight-thin, 200) !default;
-$font-weight-light: var(--wot-font-weight-light, 300) !default;
-$font-weight-regular: var(--wot-font-weight-regular, 400) !default;
-$font-weight-medium: var(--wot-font-weight-medium, 600) !default;
-$font-weight-semibold: var(--wot-font-weight-semibold, 700) !default;
-$font-weight-bold: var(--wot-font-weight-bold, 700) !default;
+$font-weight-ultra-light: var(--wot-font-weight-ultra-light, 100) !default; // ultra-light字重
+$font-weight-thin: var(--wot-font-weight-thin, 200) !default; // thin字重
+$font-weight-light: var(--wot-font-weight-light, 300) !default; // 轻量字重
+$font-weight-regular: var(--wot-font-weight-regular, 400) !default; // regular字重
+$font-weight-medium: var(--wot-font-weight-medium, 600) !default; // medium字重
+$font-weight-semibold: var(--wot-font-weight-semibold, 700) !default; // semibold字重
+$font-weight-bold: var(--wot-font-weight-bold, 700) !default; // 加粗字重
 
 
 /* 排版系列 */
 /* label */
-$typography-label-font-family: var(--wot-typography-label-font-family, PingFang SC) !default;
-$typography-label-size-small: var(--wot-typography-label-size-small, $n-11) !default;
-$typography-label-size-main: var(--wot-typography-label-size-main, $n-12) !default;
-$typography-label-size-large: var(--wot-typography-label-size-large, $n-14) !default;
-$typography-label-font-weight-main: var(--wot-typography-label-font-weight-main, $font-weight-regular) !default;
-$typography-label-font-weight-strong: var(--wot-typography-label-font-weight-strong, $font-weight-medium) !default;
-$typography-label-line-height-size-extra-small: var(--wot-typography-label-line-height-size-extra-small, $n-16) !default;
-$typography-label-line-height-size-large: var(--wot-typography-label-line-height-size-large, $n-18) !default;
-$typography-label-line-height-size-main: var(--wot-typography-label-line-height-size-main, $n-18) !default;
-$typography-label-line-height-size-small: var(--wot-typography-label-line-height-size-small, $n-16) !default;
-$typography-label-line-height-size-super-small: var(--wot-typography-label-line-height-size-super-small, $n-14) !default;
-$typography-label-size-extra-small: var(--wot-typography-label-size-extra-small, $n-10) !default;
-$typography-label-size-super-small: var(--wot-typography-label-size-super-small, $n-9) !default;
+$typography-label-font-family: var(--wot-typography-label-font-family, PingFang SC) !default; // 标签文本字体族
+$typography-label-size-small: var(--wot-typography-label-size-small, $n-11) !default; // 标签文本小号字号
+$typography-label-size-main: var(--wot-typography-label-size-main, $n-12) !default; // 标签文本默认字号
+$typography-label-size-large: var(--wot-typography-label-size-large, $n-14) !default; // 标签文本大号字号
+$typography-label-font-weight-main: var(--wot-typography-label-font-weight-main, $font-weight-regular) !default; // 标签文本默认字重
+$typography-label-font-weight-strong: var(--wot-typography-label-font-weight-strong, $font-weight-medium) !default; // 标签文本强字重
+$typography-label-line-height-size-extra-small: var(--wot-typography-label-line-height-size-extra-small, $n-16) !default; // 标签文本特小号行高
+$typography-label-line-height-size-large: var(--wot-typography-label-line-height-size-large, $n-18) !default; // 标签文本大号行高
+$typography-label-line-height-size-main: var(--wot-typography-label-line-height-size-main, $n-18) !default; // 标签文本默认行高
+$typography-label-line-height-size-small: var(--wot-typography-label-line-height-size-small, $n-16) !default; // 标签文本小号行高
+$typography-label-line-height-size-super-small: var(--wot-typography-label-line-height-size-super-small, $n-14) !default; // 标签文本超小号行高
+$typography-label-size-extra-small: var(--wot-typography-label-size-extra-small, $n-10) !default; // 标签文本特小号字号
+$typography-label-size-super-small: var(--wot-typography-label-size-super-small, $n-9) !default; // 标签文本超小号字号
 
 /* body */
-$typography-body-font-family: var(--wot-typography-body-font-family, PingFang SC) !default;
-$typography-body-size-main: var(--wot-typography-body-size-main, $n-14) !default;
-$typography-body-size-large: var(--wot-typography-body-size-large, $n-15) !default;
-$typography-body-font-weight-main: var(--wot-typography-body-font-weight-main, $font-weight-regular) !default;
-$typography-body-font-weight-strong: var(--wot-typography-body-font-weight-strong, $font-weight-medium) !default;
-$typography-body-font-weight-extra-strong: var(--wot-typography-body-font-weight-extra-strong, $font-weight-semibold) !default;
-$typography-body-line-height-size-extra-large: var(--wot-typography-body-line-height-size-extra-large, $n-24) !default;
-$typography-body-line-height-size-large: var(--wot-typography-body-line-height-size-large, $n-22) !default;
-$typography-body-line-height-size-main: var(--wot-typography-body-line-height-size-main, $n-20) !default;
-$typography-body-line-height-size-super-large: var(--wot-typography-body-line-height-size-super-large, $n-24) !default;
-$typography-body-line-height-size-ultra-large: var(--wot-typography-body-line-height-size-ultra-large, $n-26) !default;
-$typography-body-size-extra-large: var(--wot-typography-body-size-extra-large, $n-16) !default;
-$typography-body-size-super-large: var(--wot-typography-body-size-super-large, $n-17) !default;
-$typography-body-size-ultra-large: var(--wot-typography-body-size-ultra-large, $n-18) !default;
+$typography-body-font-family: var(--wot-typography-body-font-family, PingFang SC) !default; // 正文文本字体族
+$typography-body-size-main: var(--wot-typography-body-size-main, $n-14) !default; // 正文文本默认字号
+$typography-body-size-large: var(--wot-typography-body-size-large, $n-15) !default; // 正文文本大号字号
+$typography-body-font-weight-main: var(--wot-typography-body-font-weight-main, $font-weight-regular) !default; // 正文文本默认字重
+$typography-body-font-weight-strong: var(--wot-typography-body-font-weight-strong, $font-weight-medium) !default; // 正文文本强字重
+$typography-body-font-weight-extra-strong: var(--wot-typography-body-font-weight-extra-strong, $font-weight-semibold) !default; // 正文文本超强字重
+$typography-body-line-height-size-extra-large: var(--wot-typography-body-line-height-size-extra-large, $n-24) !default; // 正文文本特大号行高
+$typography-body-line-height-size-large: var(--wot-typography-body-line-height-size-large, $n-22) !default; // 正文文本大号行高
+$typography-body-line-height-size-main: var(--wot-typography-body-line-height-size-main, $n-20) !default; // 正文文本默认行高
+$typography-body-line-height-size-super-large: var(--wot-typography-body-line-height-size-super-large, $n-24) !default; // 正文文本超大号行高
+$typography-body-line-height-size-ultra-large: var(--wot-typography-body-line-height-size-ultra-large, $n-26) !default; // 正文文本极大号行高
+$typography-body-size-extra-large: var(--wot-typography-body-size-extra-large, $n-16) !default; // 正文文本特大号字号
+$typography-body-size-super-large: var(--wot-typography-body-size-super-large, $n-17) !default; // 正文文本超大号字号
+$typography-body-size-ultra-large: var(--wot-typography-body-size-ultra-large, $n-18) !default; // 正文文本极大号字号
 
 /* title */
-$typography-title-font-family: var(--wot-typography-title-font-family, PingFang SC) !default;
-$typography-title-size-main: var(--wot-typography-title-size-main, $n-18) !default;
-$typography-title-size-large: var(--wot-typography-title-size-large, $n-20) !default;
-$typography-title-size-extra-large: var(--wot-typography-title-size-extra-large, $n-24) !default;
-$typography-title-font-weight-light: var(--wot-typography-title-font-weight-light, $font-weight-regular) !default;
-$typography-title-font-weight-main: var(--wot-typography-title-font-weight-main, $font-weight-medium) !default;
-$typography-title-font-weight-strong: var(--wot-typography-title-font-weight-strong, $font-weight-semibold) !default;
-$typography-title-line-height-size-main: var(--wot-typography-title-line-height-size-main, $n-26) !default;
-$typography-title-line-height-size-large: var(--wot-typography-title-line-height-size-large, $n-28) !default;
-$typography-title-line-height-size-extra-large: var(--wot-typography-title-line-height-size-extra-large, $n-34) !default;
+$typography-title-font-family: var(--wot-typography-title-font-family, PingFang SC) !default; // 标题文本字体族
+$typography-title-size-main: var(--wot-typography-title-size-main, $n-18) !default; // 标题文本默认字号
+$typography-title-size-large: var(--wot-typography-title-size-large, $n-20) !default; // 标题文本大号字号
+$typography-title-size-extra-large: var(--wot-typography-title-size-extra-large, $n-24) !default; // 标题文本特大号字号
+$typography-title-font-weight-light: var(--wot-typography-title-font-weight-light, $font-weight-regular) !default; // 标题文本轻量字重
+$typography-title-font-weight-main: var(--wot-typography-title-font-weight-main, $font-weight-medium) !default; // 标题文本默认字重
+$typography-title-font-weight-strong: var(--wot-typography-title-font-weight-strong, $font-weight-semibold) !default; // 标题文本强字重
+$typography-title-line-height-size-main: var(--wot-typography-title-line-height-size-main, $n-26) !default; // 标题文本默认行高
+$typography-title-line-height-size-large: var(--wot-typography-title-line-height-size-large, $n-28) !default; // 标题文本大号行高
+$typography-title-line-height-size-extra-large: var(--wot-typography-title-line-height-size-extra-large, $n-34) !default; // 标题文本特大号行高
 
 /* 圆角系列 */
-$radius-zero: var(--wot-radius-zero, $n-0) !default;
-$radius-small: var(--wot-radius-small, $n-2) !default;
-$radius-main: var(--wot-radius-main, $n-4) !default;
-$radius-large: var(--wot-radius-large, $n-8) !default;
-$radius-extra-large: var(--wot-radius-extra-large, $n-12) !default;
-$radius-super-large: var(--wot-radius-super-large, $n-16) !default;
-$radius-ultra-large: var(--wot-radius-ultra-large, $n-20) !default;
-$radius-full: var(--wot-radius-full, $n-full) !default;
+$radius-zero: var(--wot-radius-zero, $n-0) !default; // 零圆角
+$radius-small: var(--wot-radius-small, $n-2) !default; // 小号圆角
+$radius-main: var(--wot-radius-main, $n-4) !default; // 默认圆角
+$radius-large: var(--wot-radius-large, $n-8) !default; // 大号圆角
+$radius-extra-large: var(--wot-radius-extra-large, $n-12) !default; // 特大号圆角
+$radius-super-large: var(--wot-radius-super-large, $n-16) !default; // 超大号圆角
+$radius-ultra-large: var(--wot-radius-ultra-large, $n-20) !default; // 极大号圆角
+$radius-full: var(--wot-radius-full, $n-full) !default; // 全量圆角
 
 /* 内边距系列 */
-$padding-zero: var(--wot-padding-zero, $n-0) !default;
-$padding-ultra-tight: var(--wot-padding-ultra-tight, $n-2) !default;
-$padding-super-tight: var(--wot-padding-super-tight, $n-4) !default;
-$padding-extra-tight: var(--wot-padding-extra-tight, $n-6) !default;
-$padding-tight: var(--wot-padding-tight, $n-8) !default;
-$padding-main: var(--wot-padding-main, $n-10) !default;
-$padding-loose: var(--wot-padding-loose, $n-12) !default;
-$padding-extra-loose: var(--wot-padding-extra-loose, $n-16) !default;
-$padding-super-loose: var(--wot-padding-super-loose, $n-20) !default;
-$padding-ultra-loose: var(--wot-padding-ultra-loose, $n-24) !default;
-$padding-spacious: var(--wot-padding-spacious, $n-28) !default;
-$padding-extra-spacious: var(--wot-padding-extra-spacious, $n-32) !default;
-$padding-super-spacious: var(--wot-padding-super-spacious, $n-40) !default;
-$padding-ultra-spacious: var(--wot-padding-ultra-spacious, $n-48) !default;
+$padding-zero: var(--wot-padding-zero, $n-0) !default; // 零内边距
+$padding-ultra-tight: var(--wot-padding-ultra-tight, $n-2) !default; // 极紧凑内边距
+$padding-super-tight: var(--wot-padding-super-tight, $n-4) !default; // 超紧凑内边距
+$padding-extra-tight: var(--wot-padding-extra-tight, $n-6) !default; // 较紧凑内边距
+$padding-tight: var(--wot-padding-tight, $n-8) !default; // 紧凑内边距
+$padding-main: var(--wot-padding-main, $n-10) !default; // 默认内边距
+$padding-loose: var(--wot-padding-loose, $n-12) !default; // 宽松内边距
+$padding-extra-loose: var(--wot-padding-extra-loose, $n-16) !default; // 较宽松内边距
+$padding-super-loose: var(--wot-padding-super-loose, $n-20) !default; // 超宽松内边距
+$padding-ultra-loose: var(--wot-padding-ultra-loose, $n-24) !default; // 极宽松内边距
+$padding-spacious: var(--wot-padding-spacious, $n-28) !default; // 舒展内边距
+$padding-extra-spacious: var(--wot-padding-extra-spacious, $n-32) !default; // 较舒展内边距
+$padding-super-spacious: var(--wot-padding-super-spacious, $n-40) !default; // 超舒展内边距
+$padding-ultra-spacious: var(--wot-padding-ultra-spacious, $n-48) !default; // 极舒展内边距
 
 /* 间距系列 */
-$spacing-zero: var(--wot-spacing-zero, $n-0) !default;
-$spacing-ultra-tight: var(--wot-spacing-ultra-tight, $n-2) !default;
-$spacing-super-tight: var(--wot-spacing-super-tight, $n-4) !default;
-$spacing-extra-tight: var(--wot-spacing-extra-tight, $n-6) !default;
-$spacing-tight: var(--wot-spacing-tight, $n-8) !default;
-$spacing-main: var(--wot-spacing-main, $n-10) !default;
-$spacing-loose: var(--wot-spacing-loose, $n-12) !default;
-$spacing-extra-loose: var(--wot-spacing-extra-loose, $n-16) !default;
-$spacing-super-loose: var(--wot-spacing-super-loose, $n-20) !default;
-$spacing-ultra-loose: var(--wot-spacing-ultra-loose, $n-24) !default;
-$spacing-spacious: var(--wot-spacing-spacious, $n-28) !default;
-$spacing-extra-spacious: var(--wot-spacing-extra-spacious, $n-32) !default;
-$spacing-super-spacious: var(--wot-spacing-super-spacious, $n-40) !default;
-$spacing-ultra-spacious: var(--wot-spacing-ultra-spacious, $n-48) !default;
+$spacing-zero: var(--wot-spacing-zero, $n-0) !default; // 零间距
+$spacing-ultra-tight: var(--wot-spacing-ultra-tight, $n-2) !default; // 极紧凑间距
+$spacing-super-tight: var(--wot-spacing-super-tight, $n-4) !default; // 超紧凑间距
+$spacing-extra-tight: var(--wot-spacing-extra-tight, $n-6) !default; // 较紧凑间距
+$spacing-tight: var(--wot-spacing-tight, $n-8) !default; // 紧凑间距
+$spacing-main: var(--wot-spacing-main, $n-10) !default; // 默认间距
+$spacing-loose: var(--wot-spacing-loose, $n-12) !default; // 宽松间距
+$spacing-extra-loose: var(--wot-spacing-extra-loose, $n-16) !default; // 较宽松间距
+$spacing-super-loose: var(--wot-spacing-super-loose, $n-20) !default; // 超宽松间距
+$spacing-ultra-loose: var(--wot-spacing-ultra-loose, $n-24) !default; // 极宽松间距
+$spacing-spacious: var(--wot-spacing-spacious, $n-28) !default; // 舒展间距
+$spacing-extra-spacious: var(--wot-spacing-extra-spacious, $n-32) !default; // 较舒展间距
+$spacing-super-spacious: var(--wot-spacing-super-spacious, $n-40) !default; // 超舒展间距
+$spacing-ultra-spacious: var(--wot-spacing-ultra-spacious, $n-48) !default; // 极舒展间距
 
 /* 边框线系列 */
-$stroke-zero: var(--wot-stroke-zero, $n-0) !default;
-$stroke-light: var(--wot-stroke-light, $n-05) !default;
-$stroke-main: var(--wot-stroke-main, $n-1) !default;
-$stroke-bold: var(--wot-stroke-bold, $n-2) !default;
+$stroke-zero: var(--wot-stroke-zero, $n-0) !default; // 零边框线宽
+$stroke-light: var(--wot-stroke-light, $n-05) !default; // 轻量边框线宽
+$stroke-main: var(--wot-stroke-main, $n-1) !default; // 默认边框线宽
+$stroke-bold: var(--wot-stroke-bold, $n-2) !default; // 加粗边框线宽
 
 
 /* 语义变量(light) */
 /* 主色系列 */
-$primary-1: var(--wot-primary-1, $blue-1) !default;
-$primary-2: var(--wot-primary-2, $blue-2) !default;
-$primary-3: var(--wot-primary-3, $blue-3) !default;
-$primary-4: var(--wot-primary-4, $blue-4) !default;
-$primary-5: var(--wot-primary-5, $blue-5) !default;
-$primary-6: var(--wot-primary-6, $blue-6) !default;
-$primary-7: var(--wot-primary-7, $blue-7) !default;
-$primary-8: var(--wot-primary-8, $blue-8) !default;
-$primary-9: var(--wot-primary-9, $blue-9) !default;
-$primary-10: var(--wot-primary-10, $blue-10) !default;
+$primary-1: var(--wot-primary-1, $blue-1) !default; // 主色色阶 1
+$primary-2: var(--wot-primary-2, $blue-2) !default; // 主色色阶 2
+$primary-3: var(--wot-primary-3, $blue-3) !default; // 主色色阶 3
+$primary-4: var(--wot-primary-4, $blue-4) !default; // 主色色阶 4
+$primary-5: var(--wot-primary-5, $blue-5) !default; // 主色色阶 5
+$primary-6: var(--wot-primary-6, $blue-6) !default; // 主色色阶 6
+$primary-7: var(--wot-primary-7, $blue-7) !default; // 主色色阶 7
+$primary-8: var(--wot-primary-8, $blue-8) !default; // 主色色阶 8
+$primary-9: var(--wot-primary-9, $blue-9) !default; // 主色色阶 9
+$primary-10: var(--wot-primary-10, $blue-10) !default; // 主色色阶 10
 
 /* 危险色系列 */
-$danger-clicked: var(--wot-danger-clicked, $red-7) !default;
-$danger-disabled: var(--wot-danger-disabled, $red-3) !default;
-$danger-hover: var(--wot-danger-hover, $red-5) !default;
-$danger-main: var(--wot-danger-main, $red-6) !default;
-$danger-particular: var(--wot-danger-particular, $red-2) !default;
-$danger-surface: var(--wot-danger-surface, $red-1) !default;
+$danger-clicked: var(--wot-danger-clicked, $red-7) !default; // 危险色点击态
+$danger-disabled: var(--wot-danger-disabled, $red-3) !default; // 危险色禁用态
+$danger-hover: var(--wot-danger-hover, $red-5) !default; // 危险色悬浮态
+$danger-main: var(--wot-danger-main, $red-6) !default; // 危险色默认
+$danger-particular: var(--wot-danger-particular, $red-2) !default; // 危险色强调
+$danger-surface: var(--wot-danger-surface, $red-1) !default; // 危险色表层
 
 /* 成功色系列 */
-$success-clicked: var(--wot-success-clicked, $green-7) !default;
-$success-disabled: var(--wot-success-disabled, $green-3) !default;
-$success-hover: var(--wot-success-hover, $green-5) !default;
-$success-main: var(--wot-success-main, $green-6) !default;
-$success-particular: var(--wot-success-particular, $green-2) !default;
-$success-surface: var(--wot-success-surface, $green-1) !default;
+$success-clicked: var(--wot-success-clicked, $green-7) !default; // 成功色点击态
+$success-disabled: var(--wot-success-disabled, $green-3) !default; // 成功色禁用态
+$success-hover: var(--wot-success-hover, $green-5) !default; // 成功色悬浮态
+$success-main: var(--wot-success-main, $green-6) !default; // 成功色默认
+$success-particular: var(--wot-success-particular, $green-2) !default; // 成功色强调
+$success-surface: var(--wot-success-surface, $green-1) !default; // 成功色表层
 
 /* 警告色系列 */
-$warning-clicked: var(--wot-warning-clicked, $orange-7) !default;
-$warning-disabled: var(--wot-warning-disabled, $orange-3) !default;
-$warning-hover: var(--wot-warning-hover, $orange-5) !default;
-$warning-main: var(--wot-warning-main, $orange-6) !default;
-$warning-particular: var(--wot-warning-particular, $orange-2) !default;
-$warning-surface: var(--wot-warning-surface, $orange-1) !default;
+$warning-clicked: var(--wot-warning-clicked, $orange-7) !default; // 警告色点击态
+$warning-disabled: var(--wot-warning-disabled, $orange-3) !default; // 警告色禁用态
+$warning-hover: var(--wot-warning-hover, $orange-5) !default; // 警告色悬浮态
+$warning-main: var(--wot-warning-main, $orange-6) !default; // 警告色默认
+$warning-particular: var(--wot-warning-particular, $orange-2) !default; // 警告色强调
+$warning-surface: var(--wot-warning-surface, $orange-1) !default; // 警告色表层
 
 /* 文字色系列 */
-$text-main: var(--wot-text-main, $coolgrey-10) !default;
-$text-secondary: var(--wot-text-secondary, $coolgrey-8) !default;
-$text-auxiliary: var(--wot-text-auxiliary, $coolgrey-6) !default;
-$text-disabled: var(--wot-text-disabled, $coolgrey-4) !default;
-$text-placeholder: var(--wot-text-placeholder, $coolgrey-5) !default;
-$text-white: var(--wot-text-white, $base-white) !default;
+$text-main: var(--wot-text-main, $coolgrey-10) !default; // 主要文字颜色
+$text-secondary: var(--wot-text-secondary, $coolgrey-8) !default; // 次要文字颜色
+$text-auxiliary: var(--wot-text-auxiliary, $coolgrey-6) !default; // 辅助文字颜色
+$text-disabled: var(--wot-text-disabled, $coolgrey-4) !default; // 禁用文字颜色
+$text-placeholder: var(--wot-text-placeholder, $coolgrey-5) !default; // 占位文字颜色
+$text-white: var(--wot-text-white, $base-white) !default; // 白色文字颜色
 
 /* 图标色系列 */
 /* 图标 */
-$icon-main: var(--wot-icon-main, $coolgrey-10) !default;
-$icon-secondary: var(--wot-icon-secondary, $coolgrey-8) !default;
-$icon-auxiliary: var(--wot-icon-auxiliary, $coolgrey-6) !default;
-$icon-disabled: var(--wot-icon-disabled, $coolgrey-4) !default;
-$icon-placeholder: var(--wot-icon-placeholder, $coolgrey-5) !default;
-$icon-white: var(--wot-icon-white, $base-white) !default;
+$icon-main: var(--wot-icon-main, $coolgrey-10) !default; // 主要图标颜色
+$icon-secondary: var(--wot-icon-secondary, $coolgrey-8) !default; // 次要图标颜色
+$icon-auxiliary: var(--wot-icon-auxiliary, $coolgrey-6) !default; // 辅助图标颜色
+$icon-disabled: var(--wot-icon-disabled, $coolgrey-4) !default; // 禁用图标颜色
+$icon-placeholder: var(--wot-icon-placeholder, $coolgrey-5) !default; // 占位图标颜色
+$icon-white: var(--wot-icon-white, $base-white) !default; // 白色图标颜色
 
 /* 边框色系列 */
-$border-extra-strong: var(--wot-border-extra-strong, $coolgrey-6) !default;
-$border-strong: var(--wot-border-strong, $coolgrey-4) !default;
-$border-main: var(--wot-border-main, $coolgrey-3) !default;
-$border-light: var(--wot-border-light, $coolgrey-2) !default;
-$border-white: var(--wot-border-white, $base-white) !default;
-$border-zero: var(--wot-border-zero, $base-transparent) !default;
+$border-extra-strong: var(--wot-border-extra-strong, $coolgrey-6) !default; // 超强边框色
+$border-strong: var(--wot-border-strong, $coolgrey-4) !default; // 强边框色
+$border-main: var(--wot-border-main, $coolgrey-3) !default; // 默认边框色
+$border-light: var(--wot-border-light, $coolgrey-2) !default; // 轻量边框色
+$border-white: var(--wot-border-white, $base-white) !default; // 白色边框色
+$border-zero: var(--wot-border-zero, $base-transparent) !default; // 零边框色
 
 /* 填充色系列 */
-$filled-extra-strong: var(--wot-filled-extra-strong, $coolgrey-4) !default;
-$filled-strong: var(--wot-filled-strong, $coolgrey-3) !default;
-$filled-content: var(--wot-filled-content, $coolgrey-2) !default;
-$filled-bottom: var(--wot-filled-bottom, $coolgrey-1) !default;
-$filled-oppo: var(--wot-filled-oppo, $base-white) !default;
-$filled-zero: var(--wot-filled-zero, $base-transparent) !default;
+$filled-extra-strong: var(--wot-filled-extra-strong, $coolgrey-4) !default; // 超强填充色
+$filled-strong: var(--wot-filled-strong, $coolgrey-3) !default; // 强填充色
+$filled-content: var(--wot-filled-content, $coolgrey-2) !default; // 内容填充色
+$filled-bottom: var(--wot-filled-bottom, $coolgrey-1) !default; // 底层填充色
+$filled-oppo: var(--wot-filled-oppo, $base-white) !default; // 反向填充色
+$filled-zero: var(--wot-filled-zero, $base-transparent) !default; // 零填充色
 
 /* 分割线系列 */
-$divider-main: var(--wot-divider-main, $opac-3_08) !default;
-$divider-light: var(--wot-divider-light, $opac-2_04) !default;
-$divider-strong: var(--wot-divider-strong, $opac-4_15) !default;
-$divider-white: var(--wot-divider-white, $base-white) !default;
+$divider-main: var(--wot-divider-main, $opac-3_08) !default; // 默认分割线颜色
+$divider-light: var(--wot-divider-light, $opac-2_04) !default; // 轻量分割线颜色
+$divider-strong: var(--wot-divider-strong, $opac-4_15) !default; // 强分割线颜色
+$divider-white: var(--wot-divider-white, $base-white) !default; // 白色分割线颜色
 
 /* 反馈色系列 */
-$feedback-accent: var(--wot-feedback-accent, $blue-opac) !default;
-$feedback-active: var(--wot-feedback-active, $opac-3_08) !default;
-$feedback-hover: var(--wot-feedback-hover, $opac-2_04) !default;
+$feedback-accent: var(--wot-feedback-accent, $blue-opac) !default; // 反馈强调颜色
+$feedback-active: var(--wot-feedback-active, $opac-3_08) !default; // 反馈激活态颜色
+$feedback-hover: var(--wot-feedback-hover, $opac-2_04) !default; // 反馈悬浮态颜色
 
 /* 透明度填充 */
-$opacfilled-light-cover: var(--wot-opacfilled-light-cover, $opac-6_30) !default;
-$opacfilled-main-cover: var(--wot-opacfilled-main-cover, $opac-7_55) !default;
-$opacfilled-tooltip-toast-cover: var(--wot-opacfilled-tooltip-toast-cover, $opac-9_75) !default;
+$opacfilled-light-cover: var(--wot-opacfilled-light-cover, $opac-6_30) !default; // 轻量透明填充遮罩
+$opacfilled-main-cover: var(--wot-opacfilled-main-cover, $opac-7_55) !default; // 默认透明填充遮罩
+$opacfilled-tooltip-toast-cover: var(--wot-opacfilled-tooltip-toast-cover, $opac-9_75) !default; // tooltip-toast透明填充遮罩
 
 /* 分类色系列 */
 /* 黄色 */
-$classifyapplication-yellow-background: var(--wot-classifyapplication-yellow-background, $yellow-1) !default;
-$classifyapplication-yellow-border: var(--wot-classifyapplication-yellow-border, $yellow-3) !default;
-$classifyapplication-yellow-content: var(--wot-classifyapplication-yellow-content, $yellow-6) !default;
+$classifyapplication-yellow-background: var(--wot-classifyapplication-yellow-background, $yellow-1) !default; // 分类应用黄色背景色
+$classifyapplication-yellow-border: var(--wot-classifyapplication-yellow-border, $yellow-3) !default; // 分类应用黄色边框色
+$classifyapplication-yellow-content: var(--wot-classifyapplication-yellow-content, $yellow-6) !default; // 分类应用黄色内容色
 
 /* 蓝色 */
-$classifyapplication-cyan-background: var(--wot-classifyapplication-cyan-background, $cyan-1) !default;
-$classifyapplication-cyan-border: var(--wot-classifyapplication-cyan-border, $cyan-3) !default;
-$classifyapplication-cyan-content: var(--wot-classifyapplication-cyan-content, $cyan-6) !default;
+$classifyapplication-cyan-background: var(--wot-classifyapplication-cyan-background, $cyan-1) !default; // 分类应用青色背景色
+$classifyapplication-cyan-border: var(--wot-classifyapplication-cyan-border, $cyan-3) !default; // 分类应用青色边框色
+$classifyapplication-cyan-content: var(--wot-classifyapplication-cyan-content, $cyan-6) !default; // 分类应用青色内容色
 
 /* 紫色 */
-$classifyapplication-purple-background: var(--wot-classifyapplication-purple-background, $purple-1) !default;
-$classifyapplication-purple-border: var(--wot-classifyapplication-purple-border, $purple-3) !default;
-$classifyapplication-purple-content: var(--wot-classifyapplication-purple-content, $purple-6) !default;
+$classifyapplication-purple-background: var(--wot-classifyapplication-purple-background, $purple-1) !default; // 分类应用紫色背景色
+$classifyapplication-purple-border: var(--wot-classifyapplication-purple-border, $purple-3) !default; // 分类应用紫色边框色
+$classifyapplication-purple-content: var(--wot-classifyapplication-purple-content, $purple-6) !default; // 分类应用紫色内容色
 
 /* 靛色 */
-$classifyapplication-grape-background: var(--wot-classifyapplication-grape-background, $grape-1) !default;
-$classifyapplication-grape-border: var(--wot-classifyapplication-grape-border, $grape-3) !default;
-$classifyapplication-grape-content: var(--wot-classifyapplication-grape-content, $grape-6) !default;
+$classifyapplication-grape-background: var(--wot-classifyapplication-grape-background, $grape-1) !default; // 分类应用靛色背景色
+$classifyapplication-grape-border: var(--wot-classifyapplication-grape-border, $grape-3) !default; // 分类应用靛色边框色
+$classifyapplication-grape-content: var(--wot-classifyapplication-grape-content, $grape-6) !default; // 分类应用靛色内容色
 
 /* 粉色 */
-$classifyapplication-pink-background: var(--wot-classifyapplication-pink-background, $pink-1) !default;
-$classifyapplication-pink-border: var(--wot-classifyapplication-pink-border, $pink-3) !default;
-$classifyapplication-pink-content: var(--wot-classifyapplication-pink-content, $pink-6) !default;
+$classifyapplication-pink-background: var(--wot-classifyapplication-pink-background, $pink-1) !default; // 分类应用粉色背景色
+$classifyapplication-pink-border: var(--wot-classifyapplication-pink-border, $pink-3) !default; // 分类应用粉色边框色
+$classifyapplication-pink-content: var(--wot-classifyapplication-pink-content, $pink-6) !default; // 分类应用粉色内容色
