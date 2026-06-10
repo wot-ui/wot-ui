@@ -27,6 +27,7 @@
     "build:app-android": "uni build -p app-android",
     "build:app-ios": "uni build -p app-ios",
     "build:custom": "uni build -p",
+    "dev:mp-dingtalk": "uni -p mp-dingtalk",
     "build:h5": "uni build",
     "build:h5:ssr": "uni build --ssr",
     "build:mp-alipay": "uni build -p mp-alipay",
