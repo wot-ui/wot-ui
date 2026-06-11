@@ -1,0 +1,6 @@
+@use '../../styles/mixin/mixin.scss' as *;
+
+@include b(qr-code) {
+  position: relative;
+  display: inline-block;
+}
