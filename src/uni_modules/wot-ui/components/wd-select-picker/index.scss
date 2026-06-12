@@ -21,6 +21,8 @@ $select-picker-footer-border-color: var(--wot-select-picker-footer-border-color,
 $select-picker-item-padding: var(--wot-select-picker-item-padding, $padding-extra-loose $padding-zero) !default;
 
 @include b(select-picker) {
+  position: relative;
+
   @include e(loading) {
     position: absolute;
     display: flex;
