@@ -295,6 +295,78 @@ function handleSubmit() {
 
 :::
 
+### 隐藏字段校验
+
+当表单项通过 `v-if` 隐藏时，对应的 `wd-form-item` 会被卸载。表单校验会根据当前已挂载的 `wd-form-item` 过滤校验结果，因此隐藏字段即使仍然存在于 `schema` 中，也不会影响 `validate()` 返回的 `valid` 和 `errors`。
+
+如果字段重新显示，它会重新参与表单校验。对于仅使用样式隐藏但组件仍然挂载的表单项，校验行为不会被跳过。
+
+::: details 隐藏字段校验
+::: code-group
+
+```html [vue]
+<wd-form ref="form" :model="model" :schema="schema" :title-width="110">
+  <wd-form-item title="显示隐藏字段" value-align="left">
+    <wd-switch v-model="showHiddenField" size="20" />
+  </wd-form-item>
+  <wd-form-item title="可见字段" prop="visibleValue">
+    <wd-input v-model="model.visibleValue" placeholder="请输入可见字段" />
+  </wd-form-item>
+  <wd-form-item v-if="showHiddenField" title="隐藏字段" prop="hiddenValue">
+    <wd-input v-model="model.hiddenValue" placeholder="请输入隐藏字段" />
+  </wd-form-item>
+  <view class="footer">
+    <wd-button type="primary" size="large" @click="handleSubmit" block>提交</wd-button>
+  </view>
+</wd-form>
+```
+
+```typescript [typescript]
+<script lang="ts" setup>
+import { reactive, ref } from 'vue'
+import { z } from 'zod'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
+import type { FormInstance } from '@/uni_modules/wot-ui/components/wd-form/types'
+
+const { success: showSuccess } = useToast()
+const form = ref<FormInstance>()
+const showHiddenField = ref(false)
+
+const model = reactive<{
+  visibleValue: string
+  hiddenValue: string
+}>({
+  visibleValue: 'wot-ui',
+  hiddenValue: ''
+})
+
+const schema = zodAdapter(
+  z.object({
+    visibleValue: z.string().min(1, '请输入可见字段'),
+    hiddenValue: z.string().min(1, '请输入隐藏字段')
+  })
+)
+
+function handleSubmit() {
+  form.value?.validate().then(({ valid }) => {
+    if (valid) {
+      showSuccess({
+        msg: '校验通过'
+      })
+    }
+  })
+}
+</script>
+```
+
+```css [css]
+.footer {
+  padding: 16px;
+}
+```
+
+:::
+
 ### 动态表单
 
 表单项动态增减。
