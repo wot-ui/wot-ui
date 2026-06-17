@@ -9,9 +9,9 @@
     @enter="handleEnter"
     @after-leave="handleAfterLeave"
   >
-    <view class="wd-video-preview__video" @click.stop="">
+    <view :class="videoClass" @click.stop="">
       <video
-        class="wd-video-preview__video"
+        class="wd-video-preview__video-player"
         v-if="state.visible && previewVideo.url"
         :controls="true"
         :poster="previewVideo.poster"
@@ -22,7 +22,7 @@
         :enable-progress-gesture="false"
       ></video>
     </view>
-    <view class="wd-video-preview__close" @click.stop="close">
+    <view :class="closeClass" @click.stop="close">
       <wd-icon name="close" custom-class="wd-video-preview__close-icon" />
     </view>
   </wd-overlay>
@@ -62,6 +62,8 @@ const state = reactive({
 })
 
 const previewVideo = reactive<PreviewVideo>({ url: '', poster: '', title: '' })
+const fullScreenValue = ref<boolean | undefined>()
+const closePositionValue = ref<VideoPreviewOptions['closePosition']>()
 
 // 获取注入的选项
 const videoPreviewOptionKey = getVideoPreviewOptionKey(props.selector)
@@ -72,6 +74,21 @@ const options = computed(() => ({
   onOpen: videoPreviewOption.value.onOpen || props.onOpen || null,
   onClose: videoPreviewOption.value.onClose || props.onClose || null
 }))
+
+const isFullScreen = computed(() => {
+  const optionFullScreen = videoPreviewOption.value.fullScreen
+  if (isDef(optionFullScreen)) return optionFullScreen!
+  return isDef(fullScreenValue.value) ? fullScreenValue.value! : props.fullScreen
+})
+
+const closePosition = computed(() => {
+  const optionClosePosition = videoPreviewOption.value.closePosition
+  if (isDef(optionClosePosition)) return optionClosePosition!
+  return isDef(closePositionValue.value) ? closePositionValue.value! : props.closePosition
+})
+
+const videoClass = computed(() => ['wd-video-preview__video', isFullScreen.value ? 'is-fullscreen' : ''])
+const closeClass = computed(() => ['wd-video-preview__close', `is-${closePosition.value}`])
 
 // 监听选项变化
 watch(
@@ -106,6 +123,8 @@ function reset(option: VideoPreviewOptions) {
     previewVideo.url = option.url
     previewVideo.poster = option.poster
     previewVideo.title = option.title
+    fullScreenValue.value = option.fullScreen
+    closePositionValue.value = option.closePosition
   }
 }
 
@@ -124,10 +143,12 @@ function close() {
   state.show = false
 }
 
-function open(video: PreviewVideo) {
+function open(video: VideoPreviewOptions | PreviewVideo) {
   previewVideo.url = video.url
   previewVideo.poster = video.poster
   previewVideo.title = video.title
+  fullScreenValue.value = (video as VideoPreviewOptions).fullScreen
+  closePositionValue.value = (video as VideoPreviewOptions).closePosition
   state.show = true
 }
 

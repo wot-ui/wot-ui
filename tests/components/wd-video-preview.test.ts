@@ -167,6 +167,61 @@ describe('WdVideoPreview', () => {
     expect(typeof (wrapper.vm as any).close).toBe('function')
   })
 
+  test('关闭按钮默认展示在左上角', async () => {
+    const wrapper = mount(WdVideoPreview)
+
+    ;(wrapper.vm as any).open({
+      url: 'https://example.com/video.mp4'
+    })
+    await nextTick()
+
+    expect(wrapper.find('.wd-video-preview__close').classes()).toContain('is-left-top')
+  })
+
+  test('支持通过组件属性设置全屏预览', async () => {
+    const wrapper = mount(WdVideoPreview, {
+      props: {
+        fullScreen: true
+      }
+    })
+
+    ;(wrapper.vm as any).open({
+      url: 'https://example.com/fullscreen.mp4'
+    })
+    await nextTick()
+
+    expect(wrapper.find('.wd-video-preview__video').classes()).toContain('is-fullscreen')
+    expect(wrapper.find('.wd-video-preview__close').classes()).toContain('is-left-top')
+  })
+
+  test('支持通过实例方法设置全屏预览', async () => {
+    const wrapper = mount(WdVideoPreview)
+
+    ;(wrapper.vm as any).open({
+      url: 'https://example.com/fullscreen.mp4',
+      fullScreen: true
+    })
+    await nextTick()
+
+    expect(wrapper.find('.wd-video-preview__video').classes()).toContain('is-fullscreen')
+    expect(wrapper.find('.wd-video-preview__close').classes()).toContain('is-left-top')
+  })
+
+  test('支持通过组件属性设置关闭按钮位置', async () => {
+    const wrapper = mount(WdVideoPreview, {
+      props: {
+        closePosition: 'right-top'
+      }
+    })
+
+    ;(wrapper.vm as any).open({
+      url: 'https://example.com/video.mp4'
+    })
+    await nextTick()
+
+    expect(wrapper.find('.wd-video-preview__close').classes()).toContain('is-right-top')
+  })
+
   test('useVideoPreview: 打开默认实例并写入视频信息', async () => {
     const TestComponent = createUseVideoPreviewTestComponent()
     const wrapper = mount(TestComponent)
@@ -203,5 +258,34 @@ describe('WdVideoPreview', () => {
     expect(defaultVm.state.show).toBe(false)
     expect(customVm.state.show).toBe(true)
     expect(customVm.previewVideo.url).toBe('https://example.com/custom.mp4')
+  })
+
+  test('useVideoPreview: 支持设置全屏预览', async () => {
+    const TestComponent = createUseVideoPreviewTestComponent()
+    const wrapper = mount(TestComponent)
+    const previewWrapper = wrapper.findAllComponents(WdVideoPreview)[0]
+
+    ;(wrapper.vm as any).videoPreview.previewVideo({
+      url: 'https://example.com/fullscreen.mp4',
+      fullScreen: true
+    })
+    await nextTick()
+
+    expect(previewWrapper.find('.wd-video-preview__video').classes()).toContain('is-fullscreen')
+    expect(previewWrapper.find('.wd-video-preview__close').classes()).toContain('is-left-top')
+  })
+
+  test('useVideoPreview: 支持设置关闭按钮位置', async () => {
+    const TestComponent = createUseVideoPreviewTestComponent()
+    const wrapper = mount(TestComponent)
+    const previewWrapper = wrapper.findAllComponents(WdVideoPreview)[0]
+
+    ;(wrapper.vm as any).videoPreview.previewVideo({
+      url: 'https://example.com/hook.mp4',
+      closePosition: 'right-top'
+    })
+    await nextTick()
+
+    expect(previewWrapper.find('.wd-video-preview__close').classes()).toContain('is-right-top')
   })
 })
