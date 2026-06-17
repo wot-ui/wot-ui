@@ -58,7 +58,7 @@ async function validate(prop?: string | string[]): Promise<{ valid: boolean; err
       message: issue.message
     }))
   const childrenProps = getChildrenProps()
-  const visibleErrors = errors.filter((error) => childrenProps.some((target) => isSameOrSubPath(error.prop, target)))
+  const visibleErrors = errors.filter((error) => getMatchedChildProp(error.prop, childrenProps))
   const filteredErrors =
     propsToValidate.length > 0
       ? visibleErrors.filter((error) => propsToValidate.some((target) => isSameOrSubPath(error.prop, target)))
@@ -89,9 +89,22 @@ function isSameOrSubPath(prop: string, target: string) {
   return prop === target || prop.startsWith(`${target}.`) || target.startsWith(`${prop}.`)
 }
 
+function getMatchedChildProp(prop: string, childrenProps: string[]) {
+  return childrenProps.find((target) => target === prop) || childrenProps.find((target) => isSameOrSubPath(prop, target))
+}
+
 function showMessage(errors: ErrorMessage[]) {
   const childrenProps = getChildrenProps()
-  const messages = errors.filter((error) => error.message && childrenProps.includes(error.prop))
+  const messages = errors.reduce<ErrorMessage[]>((result, error) => {
+    const matchedProp = getMatchedChildProp(error.prop, childrenProps)
+    if (error.message && matchedProp) {
+      result.push({
+        prop: matchedProp,
+        message: error.message
+      })
+    }
+    return result
+  }, [])
   if (messages.length) {
     messages.sort((a, b) => {
       return childrenProps.indexOf(a.prop) - childrenProps.indexOf(b.prop)
@@ -108,7 +121,11 @@ function showMessage(errors: ErrorMessage[]) {
 
 function clearMessage(prop?: string) {
   if (prop) {
-    errorMessages[prop] = ''
+    Object.keys(errorMessages).forEach((key) => {
+      if (isSameOrSubPath(key, prop)) {
+        errorMessages[key] = ''
+      }
+    })
   } else {
     Object.keys(errorMessages).forEach((key) => {
       errorMessages[key] = ''

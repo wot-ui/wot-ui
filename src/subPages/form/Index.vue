@@ -59,6 +59,17 @@
             </view>
           </wd-form>
         </demo-group-item>
+
+        <demo-group-item :title="$t('fu-lu-jing-xiao-yan')" transparent no-padding>
+          <wd-form ref="nestedForm" :model="nestedModel" :schema="nestedSchema" :title-width="110">
+            <wd-form-item :title="$t('yong-hu-ming')" prop="user">
+              <wd-input v-model="nestedModel.user.name" :placeholder="$t('qing-shu-ru-yong-hu-ming')" />
+            </wd-form-item>
+            <view class="page-form__footer">
+              <wd-button type="primary" size="large" @click="handleNestedSubmit" block>{{ $t('ti-jiao') }}</wd-button>
+            </view>
+          </wd-form>
+        </demo-group-item>
       </demo-group>
     </view>
   </page-wraper>
@@ -87,9 +98,20 @@ const hiddenModel = reactive<{
   hiddenValue: ''
 })
 
+const nestedModel = reactive<{
+  user: {
+    name: string
+  }
+}>({
+  user: {
+    name: ''
+  }
+})
+
 const { success: showSuccess, loading: showLoading, close: closeToast } = useToast()
 const form1 = ref<FormInstance>()
 const hiddenForm = ref<FormInstance>()
+const nestedForm = ref<FormInstance>()
 const showHiddenField = ref(false)
 
 const schema1 = zodAdapter(
@@ -121,6 +143,14 @@ const hiddenSchema = zodAdapter(
   })
 )
 
+const nestedSchema = zodAdapter(
+  z.object({
+    user: z.object({
+      name: z.string().min(1, t('qing-shu-ru-yong-hu-ming'))
+    })
+  })
+)
+
 function handleSubmit1() {
   form1
     .value!.validate()
@@ -138,6 +168,16 @@ function handleSubmit1() {
 
 function handleHiddenSubmit() {
   hiddenForm.value?.validate().then(({ valid }) => {
+    if (valid) {
+      showSuccess({
+        msg: t('xiao-yan-tong-guo')
+      })
+    }
+  })
+}
+
+function handleNestedSubmit() {
+  nestedForm.value?.validate().then(({ valid }) => {
     if (valid) {
       showSuccess({
         msg: t('xiao-yan-tong-guo')

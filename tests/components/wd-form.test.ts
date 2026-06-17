@@ -136,6 +136,79 @@ describe('WdForm schema validate', () => {
     expect(visibleResult.errors[0].prop).toBe('age')
   })
 
+  test('父路径表单项能展示子路径校验错误', async () => {
+    const schema: FormSchema = {
+      validate() {
+        return [{ path: ['user', 'name'], message: '请输入姓名' }]
+      }
+    }
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form ref="form" :model="formData" :schema="schema">
+            <wd-form-item prop="user" title="用户">
+              <wd-input v-model="formData.user.name" />
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return {
+            formData: { user: { name: '' } },
+            schema
+          }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+    const form = wrapper.findComponent({ ref: 'form' })
+
+    const result = await form.vm.validate()
+    await nextTick()
+
+    expect(result.valid).toBe(false)
+    expect(result.errors[0].prop).toBe('user.name')
+    expect(wrapper.find('.wd-form-item__error-message').text()).toBe('请输入姓名')
+  })
+
+  test('指定子路径校验通过后会清理父路径表单项错误', async () => {
+    const schema: FormSchema = {
+      validate(model) {
+        return model.user.name ? [] : [{ path: ['user', 'name'], message: '请输入姓名' }]
+      }
+    }
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form ref="form" :model="formData" :schema="schema" :reset-on-change="false">
+            <wd-form-item prop="user" title="用户">
+              <wd-input v-model="formData.user.name" />
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return {
+            formData: { user: { name: '' } },
+            schema
+          }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+    const form = wrapper.findComponent({ ref: 'form' })
+
+    await form.vm.validate()
+    await nextTick()
+    expect(wrapper.find('.wd-form-item__error-message').exists()).toBe(true)
+    ;(wrapper.vm as any).formData.user.name = '张三'
+    await nextTick()
+
+    const result = await form.vm.validate('user.name')
+    await nextTick()
+
+    expect(result.valid).toBe(true)
+    expect(wrapper.find('.wd-form-item__error-message').exists()).toBe(false)
+  })
+
   test('reset 能清空错误信息', async () => {
     const schema = zodAdapter(
       z.object({
