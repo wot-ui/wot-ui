@@ -93,6 +93,49 @@ describe('WdForm schema validate', () => {
     expect(result.errors[0].prop).toBe('name')
   })
 
+  test('v-if 隐藏的表单项不参与 schema 校验结果', async () => {
+    const schema = zodAdapter(
+      z.object({
+        name: z.string().min(1, '请输入姓名'),
+        age: z.string().min(1, '请输入年龄')
+      })
+    )
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form ref="form" :model="formData" :schema="schema">
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" />
+            </wd-form-item>
+            <wd-form-item v-if="showAge" prop="age" title="年龄">
+              <wd-input v-model="formData.age" />
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return {
+            formData: { name: '张三', age: '' },
+            showAge: false,
+            schema
+          }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+    const form = wrapper.findComponent({ ref: 'form' })
+
+    const hiddenResult = await form.vm.validate()
+    expect(hiddenResult.valid).toBe(true)
+    expect(hiddenResult.errors).toEqual([])
+    ;(wrapper.vm as any).showAge = true
+    await nextTick()
+
+    const visibleResult = await form.vm.validate()
+    expect(visibleResult.valid).toBe(false)
+    expect(visibleResult.errors).toHaveLength(1)
+    expect(visibleResult.errors[0].prop).toBe('age')
+  })
+
   test('reset 能清空错误信息', async () => {
     const schema = zodAdapter(
       z.object({

@@ -42,6 +42,23 @@
             <wd-button @click="handleClick2" :round="false" block size="large">{{ $t('xiao-yan-chu-fa-shi-ji-0') }}</wd-button>
           </view>
         </demo-group-item>
+
+        <demo-group-item :title="$t('yin-cang-zi-duan-xiao-yan')" transparent no-padding>
+          <wd-form ref="hiddenForm" :model="hiddenModel" :schema="hiddenSchema" :title-width="110">
+            <wd-form-item :title="$t('xian-shi-yin-cang-zi-duan')" value-align="left">
+              <wd-switch v-model="showHiddenField" size="20" />
+            </wd-form-item>
+            <wd-form-item :title="$t('ke-jian-zi-duan')" prop="visibleValue">
+              <wd-input v-model="hiddenModel.visibleValue" :placeholder="$t('qing-shu-ru-ke-jian-zi-duan')" />
+            </wd-form-item>
+            <wd-form-item v-if="showHiddenField" :title="$t('yin-cang-zi-duan')" prop="hiddenValue">
+              <wd-input v-model="hiddenModel.hiddenValue" :placeholder="$t('qing-shu-ru-yin-cang-zi-duan')" />
+            </wd-form-item>
+            <view class="page-form__footer">
+              <wd-button type="primary" size="large" @click="handleHiddenSubmit" block>{{ $t('ti-jiao') }}</wd-button>
+            </view>
+          </wd-form>
+        </demo-group-item>
       </demo-group>
     </view>
   </page-wraper>
@@ -62,8 +79,18 @@ const model1 = reactive<{
   value2: ''
 })
 
+const hiddenModel = reactive<{
+  visibleValue: string
+  hiddenValue: string
+}>({
+  visibleValue: 'wot-ui',
+  hiddenValue: ''
+})
+
 const { success: showSuccess, loading: showLoading, close: closeToast } = useToast()
 const form1 = ref<FormInstance>()
+const hiddenForm = ref<FormInstance>()
+const showHiddenField = ref(false)
 
 const schema1 = zodAdapter(
   z
@@ -87,6 +114,13 @@ const schema1 = zodAdapter(
     })
 )
 
+const hiddenSchema = zodAdapter(
+  z.object({
+    visibleValue: z.string().min(1, t('qing-shu-ru-ke-jian-zi-duan')),
+    hiddenValue: z.string().min(1, t('qing-shu-ru-yin-cang-zi-duan'))
+  })
+)
+
 function handleSubmit1() {
   form1
     .value!.validate()
@@ -100,6 +134,16 @@ function handleSubmit1() {
     .catch((error) => {
       console.log(error, 'error')
     })
+}
+
+function handleHiddenSubmit() {
+  hiddenForm.value?.validate().then(({ valid }) => {
+    if (valid) {
+      showSuccess({
+        msg: t('xiao-yan-tong-guo')
+      })
+    }
+  })
 }
 
 function handleClick1() {

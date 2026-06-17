@@ -57,12 +57,12 @@ async function validate(prop?: string | string[]): Promise<{ valid: boolean; err
       prop: issue.path.map((item) => String(item)).join('.'),
       message: issue.message
     }))
+  const childrenProps = getChildrenProps()
+  const visibleErrors = errors.filter((error) => childrenProps.some((target) => isSameOrSubPath(error.prop, target)))
   const filteredErrors =
     propsToValidate.length > 0
-      ? errors.filter((error) =>
-          propsToValidate.some((target) => error.prop === target || error.prop.startsWith(`${target}.`) || target.startsWith(`${error.prop}.`))
-        )
-      : errors
+      ? visibleErrors.filter((error) => propsToValidate.some((target) => isSameOrSubPath(error.prop, target)))
+      : visibleErrors
   const valid = filteredErrors.length === 0
 
   showMessage(filteredErrors)
@@ -81,8 +81,16 @@ async function validate(prop?: string | string[]): Promise<{ valid: boolean; err
   }
 }
 
+function getChildrenProps() {
+  return children.map((e) => e.prop).filter((prop): prop is string => Boolean(prop))
+}
+
+function isSameOrSubPath(prop: string, target: string) {
+  return prop === target || prop.startsWith(`${target}.`) || target.startsWith(`${prop}.`)
+}
+
 function showMessage(errors: ErrorMessage[]) {
-  const childrenProps = children.map((e) => e.prop).filter(Boolean)
+  const childrenProps = getChildrenProps()
   const messages = errors.filter((error) => error.message && childrenProps.includes(error.prop))
   if (messages.length) {
     messages.sort((a, b) => {
