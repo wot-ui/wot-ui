@@ -9,9 +9,9 @@ import { type LoadingProps } from '../wd-loading/types'
 export type ButtonType = 'primary' | 'success' | 'info' | 'warning' | 'danger'
 /**
  * 按钮变体
- * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'text'
+ * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'subtle' | 'text'
  */
-export type ButtonVariant = 'base' | 'plain' | 'dashed' | 'soft' | 'text'
+export type ButtonVariant = 'base' | 'plain' | 'dashed' | 'soft' | 'subtle' | 'text'
 /**
  * 按钮尺寸
  * 可选值: 'mini' | 'small' | 'medium' | 'large'
@@ -204,7 +204,7 @@ export const buttonProps = {
   /**
    * 按钮变体
    * 类型: ButtonVariant
-   * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'text'
+   * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'subtle' | 'text'
    * 不传则继承全局配置
    */
   variant: String as PropType<ButtonVariant>

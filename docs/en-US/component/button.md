@@ -58,6 +58,14 @@ Set `variant="soft"`.
 <wd-button variant="soft">Primary Button</wd-button>
 ```
 
+### Subtle
+
+Set `variant="subtle"`.
+
+```html
+<wd-button variant="subtle">Primary Button</wd-button>
+```
+
 ### Text
 
 Set `variant="text"`.
@@ -148,7 +156,7 @@ Set the `block` property.
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | type | Button type, optional values are `primary`, `success`, `info`, `warning`, `danger` | string | primary |
-| variant | Button variant, optional values are `base`, `plain`, `dashed`, `soft`, `text` | string | base |
+| variant | Button variant, optional values are `base`, `plain`, `dashed`, `soft`, `subtle`, `text` | string | base |
 | size | Button size, optional values are `mini`, `small`, `medium`, `large` | string | medium |
 | round | Round button | boolean | false |
 | disabled | Disabled button | boolean | false |
