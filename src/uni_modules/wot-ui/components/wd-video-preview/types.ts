@@ -28,10 +28,15 @@ export const videoPreviewProps = {
   zIndex: makeNumberProp(1000),
   /**
    * 是否全屏预览
+   * 类型: boolean
+   * 默认值: false
    */
   fullScreen: makeBooleanProp(false),
   /**
    * 关闭按钮位置
+   * 类型: VideoPreviewClosePosition
+   * 可选值: 'left-top' | 'right-top'
+   * 默认值: 'left-top'
    */
   closePosition: makeStringProp<VideoPreviewClosePosition>('left-top'),
   /**
@@ -72,7 +77,7 @@ export type VideoPreview = {
 
 export type VideoPreviewExpose = {
   /** 打开预览 */
-  open: (video: VideoPreviewOptions | PreviewVideo) => void
+  open: (video: VideoPreviewOptions) => void
   /** 关闭预览 */
   close: () => void
 }

@@ -143,12 +143,12 @@ function close() {
   state.show = false
 }
 
-function open(video: VideoPreviewOptions | PreviewVideo) {
+function open(video: VideoPreviewOptions) {
   previewVideo.url = video.url
   previewVideo.poster = video.poster
   previewVideo.title = video.title
-  fullScreenValue.value = (video as VideoPreviewOptions).fullScreen
-  closePositionValue.value = (video as VideoPreviewOptions).closePosition
+  fullScreenValue.value = video.fullScreen
+  closePositionValue.value = video.closePosition
   state.show = true
 }
 
