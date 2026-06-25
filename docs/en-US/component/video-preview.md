@@ -158,7 +158,7 @@ Call component instance methods through `ref`.
 
 | Method Name | Description | Parameters | Return Value |
 | --- | --- | --- | --- |
-| open | Open video preview | <code>video: VideoPreviewOptions &#124; PreviewVideo</code> | - |
+| open | Open video preview | `video: VideoPreviewOptions` | - |
 | close | Close video preview | - | - |
 
 ## useVideoPreview

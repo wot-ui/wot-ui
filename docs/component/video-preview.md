@@ -158,7 +158,7 @@ function openPreview() {
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| open | 打开视频预览 | <code>video: VideoPreviewOptions &#124; PreviewVideo</code> | - |
+| open | 打开视频预览 | `video: VideoPreviewOptions` | - |
 | close | 关闭视频预览 | - | - |
 
 ## useVideoPreview
