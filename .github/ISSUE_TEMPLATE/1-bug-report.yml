@@ -39,7 +39,7 @@ body:
   - type: input
     id: reproduce
     attributes:
-      label: 复现Demo地址（如不提供，将被直接关闭）
+      label: 复现Demo地址（出于对我们的尊重，请必须提供，如不提供，将被直接关闭）
       description: |
         我们需要你提供一个最小重现demo，以便于我们帮你排查问题。你可以通过 [create-uni](https://github.com/uni-helper/create-uni) 快速创建一个wot-ui项目，并添加相关复现逻辑来提供。不要随便填写一个东西，这会导致你的 issue 被直接关闭。即使在你看来问题很容易复现，也请认真对待，因为一个完整复现demo可以大大提高我们排查问题的效率。
     validations:

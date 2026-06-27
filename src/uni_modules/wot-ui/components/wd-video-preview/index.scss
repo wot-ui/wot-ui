@@ -33,6 +33,15 @@ $video-preview-close-z-index: var(--wot-video-preview-close-z-index, 10) !defaul
     width: 100%;
     height: $video-preview-video-height;
     transition: all 0.3s ease;
+
+    @include when(fullscreen) {
+      height: 100%;
+    }
+  }
+
+  @include e(video-player) {
+    width: 100%;
+    height: 100%;
   }
 
   @include e(close) {
@@ -42,8 +51,17 @@ $video-preview-close-z-index: var(--wot-video-preview-close-z-index, 10) !defaul
     justify-content: center;
     align-items: center;
     top: $video-preview-close-margin;
-    right: $video-preview-close-margin;
     cursor: pointer;
+
+    @include when(left-top) {
+      left: $video-preview-close-margin;
+      right: auto;
+    }
+
+    @include when(right-top) {
+      left: auto;
+      right: $video-preview-close-margin;
+    }
   }
 
   @include edeep(close-icon) {

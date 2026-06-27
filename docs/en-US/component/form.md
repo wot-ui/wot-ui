@@ -291,6 +291,78 @@ function handleSubmit() {
 
 :::
 
+### Hidden Field Validation
+
+When a form item is hidden with `v-if`, the corresponding `wd-form-item` is unmounted. Form validation filters validation results by currently mounted `wd-form-item` components, so a hidden field will not affect the `valid` and `errors` returned by `validate()` even if it still exists in `schema`.
+
+If the field is shown again, it will participate in validation again. Form items that are only hidden by styles but still mounted will not be skipped.
+
+::: details Hidden Field Validation
+::: code-group
+
+```html [vue]
+<wd-form ref="form" :model="model" :schema="schema" :title-width="110">
+  <wd-form-item title="Show hidden field" value-align="left">
+    <wd-switch v-model="showHiddenField" size="20" />
+  </wd-form-item>
+  <wd-form-item title="Visible Field" prop="visibleValue">
+    <wd-input v-model="model.visibleValue" placeholder="Please enter the visible field" />
+  </wd-form-item>
+  <wd-form-item v-if="showHiddenField" title="Hidden Field" prop="hiddenValue">
+    <wd-input v-model="model.hiddenValue" placeholder="Please enter the hidden field" />
+  </wd-form-item>
+  <view class="footer">
+    <wd-button type="primary" size="large" @click="handleSubmit" block>Submit</wd-button>
+  </view>
+</wd-form>
+```
+
+```typescript [typescript]
+<script lang="ts" setup>
+import { reactive, ref } from 'vue'
+import { z } from 'zod'
+import { useToast, zodAdapter } from '@/uni_modules/wot-ui'
+import type { FormInstance } from '@/uni_modules/wot-ui/components/wd-form/types'
+
+const { success: showSuccess } = useToast()
+const form = ref<FormInstance>()
+const showHiddenField = ref(false)
+
+const model = reactive<{
+  visibleValue: string
+  hiddenValue: string
+}>({
+  visibleValue: 'wot-ui',
+  hiddenValue: ''
+})
+
+const schema = zodAdapter(
+  z.object({
+    visibleValue: z.string().min(1, 'Please enter the visible field'),
+    hiddenValue: z.string().min(1, 'Please enter the hidden field')
+  })
+)
+
+function handleSubmit() {
+  form.value?.validate().then(({ valid }) => {
+    if (valid) {
+      showSuccess({
+        msg: 'Validation passed'
+      })
+    }
+  })
+}
+</script>
+```
+
+```css [css]
+.footer {
+  padding: 16px;
+}
+```
+
+:::
+
 ### Dynamic Form
 
 Dynamic addition and removal of form items.

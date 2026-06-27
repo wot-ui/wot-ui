@@ -70,7 +70,7 @@ const { previewVideo: openSubPreview } = useVideoPreview('sub-preview')
 
 ### 自定义层级与回调
 
-函数式调用时可直接传入 `zIndex`、`onOpen`、`onClose`，组件会优先采用函数式传入的配置。
+函数式调用时可直接传入 `zIndex`、`closePosition`、`onOpen`、`onClose`，组件会优先采用函数式传入的配置。
 
 ```ts
 previewVideo({
@@ -78,8 +78,27 @@ previewVideo({
   poster: 'https://wot-ui.cn/assets/panda.jpg',
   title: '视频预览',
   zIndex: 1200,
+  closePosition: 'right-top',
   onOpen: () => console.log('打开预览'),
   onClose: () => console.log('关闭预览')
+})
+```
+
+### 全屏预览
+
+通过 `full-screen` 可以让视频区域铺满预览层，适合预览竖屏比例的视频。
+
+```html
+<wd-video-preview full-screen />
+```
+
+函数式调用时也可以在 `previewVideo` 中传入 `fullScreen`。
+
+```ts
+previewVideo({
+  url: 'https://unpkg.com/wot-design-uni-assets@1.0.3/VID_115503.mp4',
+  title: '全屏视频',
+  fullScreen: true
 })
 ```
 
@@ -119,6 +138,8 @@ function openPreview() {
 | --- | --- | --- | --- |
 | selector | 实例标识，用于区分多个视频预览实例 | `string` | `''` |
 | z-index | 预览层级 | `number` | `1000` |
+| full-screen | 是否全屏预览 | `boolean` | `false` |
+| close-position | 关闭按钮位置，可选值为 `left-top`、`right-top` | `string` | `left-top` |
 | on-open | 组件打开时的回调 | <code>() =&gt; void</code> | - |
 | on-close | 组件关闭时的回调 | <code>() =&gt; void</code> | - |
 | custom-style | 自定义根节点样式 | `string` | `''` |
@@ -137,7 +158,7 @@ function openPreview() {
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| open | 打开视频预览 | `video: PreviewVideo` | - |
+| open | 打开视频预览 | `video: VideoPreviewOptions` | - |
 | close | 关闭视频预览 | - | - |
 
 ## useVideoPreview

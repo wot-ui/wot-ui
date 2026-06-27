@@ -220,7 +220,6 @@ export function WotResolver(): ComponentResolver {
       if (name.match(/^Wd[A-Z]/)) {
         const compName = kebabCase(name)
         return {
-          name,
           from: `@wot-ui/ui/components/${compName}/${compName}.vue`
         }
       }

@@ -70,7 +70,7 @@ function openSub() {
 
 ## Custom Configuration
 
-Use `VideoPreviewOptions` to configure z-index and open/close callbacks simultaneously.
+Use `VideoPreviewOptions` to configure z-index, fullscreen preview, close button position, and open/close callbacks simultaneously.
 
 ```ts
 previewVideo({
@@ -78,6 +78,8 @@ previewVideo({
   poster: 'https://wot-ui.cn/assets/panda.jpg',
   title: 'Video Preview',
   zIndex: 1200,
+  fullScreen: true,
+  closePosition: 'right-top',
   onOpen: () => {
     console.log('Open preview')
   },
@@ -113,5 +115,7 @@ The object returned by the programmatic call contains the following methods:
 | title | Video title | `string` | `''` |
 | show | Whether to show preview layer | `boolean` | `false` |
 | zIndex | zIndex level | `number` | `1000` |
+| fullScreen | Whether to use fullscreen preview | `boolean` | `false` |
+| closePosition | Close button position, optional values are `left-top` and `right-top` | `string` | `left-top` |
 | onOpen | Callback when opening | `() => void` | - |
 | onClose | Callback when closing | `() => void` | - |

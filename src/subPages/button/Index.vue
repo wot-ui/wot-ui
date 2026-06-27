@@ -148,6 +148,7 @@ const variantItems = computed<Array<{ title: string; variant: ButtonVariant }>>(
   { title: t('lou-kong'), variant: 'plain' },
   { title: t('xu-xian'), variant: 'dashed' },
   { title: t('rou-he'), variant: 'soft' },
+  { title: t('rou-he-miao-bian'), variant: 'subtle' },
   { title: t('wen-zi-10'), variant: 'text' }
 ])
 
