@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: pending
         if: github.event.label.name == 'pending'
-        uses: actions-cool/issues-helper@v3
+        uses: actions-cool/issues-helper-backup@d65454423c6fbbd20026b9b499d403f79422ac69
         with:
           actions: 'create-comment'
           issue-number: ${{ github.event.issue.number }}
@@ -21,7 +21,7 @@ jobs:
 
       - name: need reproduce
         if: github.event.label.name == 'need reproduce'
-        uses: actions-cool/issues-helper@v3
+        uses: actions-cool/issues-helper-backup@d65454423c6fbbd20026b9b499d403f79422ac69
         with:
           actions: 'create-comment'
           issue-number: ${{ github.event.issue.number }}
@@ -31,7 +31,7 @@ jobs:
             我们需要你提供一个最小重现demo，以便于我们帮你排查问题。你可以通过 [create-uni](https://github.com/uni-helper/create-uni) 快速创建一个wot-ui项目，并添加相关复现逻辑来提供。
       - name: help wanted
         if: github.event.label.name == 'help wanted'
-        uses: actions-cool/issues-helper@v3
+        uses: actions-cool/issues-helper-backup@d65454423c6fbbd20026b9b499d403f79422ac69
         with:
           actions: 'create-comment'
           token: ${{ secrets.ACTION_TOKEN }}
