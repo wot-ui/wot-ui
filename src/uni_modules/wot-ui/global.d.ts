@@ -3,6 +3,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     WdActionSheet: typeof import('./components/wd-action-sheet/wd-action-sheet.vue')['default']
     WdBadge: typeof import('./components/wd-badge/wd-badge.vue')['default']
+    WdBarCode: typeof import('./components/wd-bar-code/wd-bar-code.vue')['default']
     WdButton: typeof import('./components/wd-button/wd-button.vue')['default']
     WdCalendar: typeof import('./components/wd-calendar/wd-calendar.vue')['default']
     WdCalendarView: typeof import('./components/wd-calendar-view/wd-calendar-view.vue')['default']
