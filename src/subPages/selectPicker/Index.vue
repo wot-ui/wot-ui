@@ -50,6 +50,33 @@
           </wd-cell-group>
           <wd-select-picker filterable v-model="value18" v-model:visible="show18" type="radio" :columns="columns1" @confirm="handleConfirm" />
         </demo-group-item>
+        <demo-group-item :title="$t('yuan-cheng-sou-suo')" no-padding>
+          <wd-cell-group border>
+            <wd-cell :title="$t('yuan-cheng-sou-suo')" :value="getDisplayValue(value20)" is-link @click="show20 = true" />
+          </wd-cell-group>
+          <wd-select-picker
+            filterable
+            :remote-method="remoteMethod"
+            v-model="value20"
+            v-model:visible="show20"
+            v-model:columns="columns20"
+            @confirm="handleConfirm"
+          />
+        </demo-group-item>
+        <demo-group-item :title="$t('dan-xuan-yuan-cheng-sou-suo')" no-padding>
+          <wd-cell-group border>
+            <wd-cell :title="$t('dan-xuan-yuan-cheng-sou-suo')" :value="getRadioDisplayValue(value21)" is-link @click="show21 = true" />
+          </wd-cell-group>
+          <wd-select-picker
+            filterable
+            type="radio"
+            :remote-method="remoteMethod"
+            v-model="value21"
+            v-model:visible="show21"
+            v-model:columns="columns21"
+            @confirm="handleConfirm"
+          />
+        </demo-group-item>
       </demo-group>
 
       <demo-group :title="$t('te-shu-yang-shi')" transparent>
@@ -156,6 +183,21 @@ const columns2 = ref<Record<string, any>[]>([
     label: t('nv-zhuang-0')
   }
 ])
+
+const columns20 = ref<Record<string, any>[]>([{ value: '102', label: t('she-chi-pin') }])
+const columns21 = ref<Record<string, any>[]>([{ value: '102', label: t('she-chi-pin') }])
+
+function remoteMethod(keyword: string, callback: (data: Record<string, any>[]) => void) {
+  // 模拟远程搜索，300ms 后返回过滤后的结果
+  setTimeout(() => {
+    const filtered = columns1.value.filter((item) => item.label.indexOf(keyword) > -1)
+    if (keyword && !filtered.length) {
+      filtered.push({ value: keyword, label: `新搜索项: ${keyword}` }) // 模拟返回一个新的选项
+    }
+    callback(filtered)
+  }, 300)
+}
+
 const value1 = ref<string[]>(['101'])
 const value2 = ref<string>('101')
 const value5 = ref<string[]>([])
@@ -166,6 +208,8 @@ const value10 = ref<string[]>([])
 const value13 = ref<string[]>(['102'])
 const value18 = ref<string>('102')
 const value19 = ref<string>('101')
+const value20 = ref<string[]>(['102'])
+const value21 = ref<string>('102')
 
 const show1 = ref<boolean>(false)
 const show2 = ref<boolean>(false)
@@ -177,6 +221,8 @@ const show10 = ref<boolean>(false)
 const show13 = ref<boolean>(false)
 const show18 = ref<boolean>(false)
 const show19 = ref<boolean>(false)
+const show20 = ref<boolean>(false)
+const show21 = ref<boolean>(false)
 
 const toast = useToast()
 
@@ -187,7 +233,10 @@ function getDisplayValue(values: string[]) {
   if (!values || values.length === 0) return ''
   return values
     .map((val) => {
-      const item = columns1.value.find((col) => col.value === val) || columns2.value.find((col) => col.value === val)
+      const item =
+        columns1.value.find((col) => col.value === val) ||
+        columns2.value.find((col) => col.value === val) ||
+        columns20.value.find((col) => col.value === val)
       return item ? item.label : val
     })
     .join(', ')
@@ -198,7 +247,7 @@ function getDisplayValue(values: string[]) {
  */
 function getRadioDisplayValue(value: string) {
   if (!value) return ''
-  const item = columns1.value.find((col) => col.value === value)
+  const item = columns1.value.find((col) => col.value === value) || columns21.value.find((col) => col.value === value)
   return item ? item.label : value
 }
 
