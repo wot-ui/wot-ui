@@ -7,7 +7,7 @@
     <!-- 查看更多模式 -->
     <view v-else>
       <view
-        :class="`wd-collapse__content ${!modelValue ? 'is-retract' : ''} `"
+        :class="`wd-collapse__content ${!currentValue ? 'is-retract' : ''} `"
         :style="`-webkit-line-clamp: ${contentLineNum}; -webkit-box-orient: vertical`"
       >
         <slot></slot>
@@ -19,8 +19,8 @@
         </view>
         <!-- 显示展开或折叠按钮 -->
         <block v-else>
-          <span class="wd-collapse__more-txt">{{ !modelValue ? translate('expand') : translate('retract') }}</span>
-          <view :class="`wd-collapse__arrow ${modelValue ? 'is-retract' : ''}`">
+          <span class="wd-collapse__more-txt">{{ !currentValue ? translate('expand') : translate('retract') }}</span>
+          <view :class="`wd-collapse__arrow ${currentValue ? 'is-retract' : ''}`">
             <wd-icon name="down"></wd-icon>
           </view>
         </block>
@@ -44,29 +44,47 @@ export default {
 
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { onBeforeMount, ref, watch } from 'vue'
-import { COLLAPSE_KEY, collapseProps, type CollapseExpose, type CollapseToggleAllOptions } from './types'
+import { computed, getCurrentInstance, onBeforeMount, ref, watch } from 'vue'
+import { COLLAPSE_KEY, collapseProps, type CollapseExpose, type CollapseToggleAllOptions, type CollapseValue } from './types'
 import { useChildren } from '../../composables/useChildren'
 import { isArray, isBoolean, isDef } from '../../common/util'
 import { useTranslate } from '../../composables/useTranslate'
 
 const props = defineProps(collapseProps)
 const emit = defineEmits<{
-  (e: 'change', value: { value: string | string[] | boolean }): void
-  (e: 'update:modelValue', value: string | string[] | boolean): void
+  (e: 'change', value: { value: CollapseValue }): void
+  (e: 'update:modelValue', value: CollapseValue): void
 }>()
 
+const instance = getCurrentInstance()!
 const { translate } = useTranslate('collapse')
 const contentLineNum = ref<number>(0) // 查看更多的折叠面板，收起时的显示行数
+const innerValue = ref<CollapseValue>(getDefaultValue())
+const currentValue = computed<CollapseValue>(() => (hasModelValue() && isDef(props.modelValue) ? props.modelValue : innerValue.value))
 
 const { linkChildren, children } = useChildren(COLLAPSE_KEY)
 
-linkChildren({ props, toggle })
+linkChildren({ props, currentValue, toggle })
+
+function getDefaultValue(): CollapseValue {
+  if (props.viewmore) {
+    return false
+  }
+  return props.accordion ? '' : []
+}
+
+function hasModelValue() {
+  const vnodeProps = instance.vnode.props || {}
+  return Object.prototype.hasOwnProperty.call(vnodeProps, 'modelValue') || Object.prototype.hasOwnProperty.call(vnodeProps, 'model-value')
+}
 
 watch(
   () => props.modelValue,
   (newVal) => {
     const { viewmore, accordion } = props
+    if (!hasModelValue() || !isDef(newVal)) {
+      return
+    }
     // 手风琴状态下 value 类型只能为 string
     if (accordion && typeof newVal !== 'string') {
       console.error('accordion value must be string')
@@ -75,6 +93,15 @@ watch(
     }
   },
   { deep: true }
+)
+
+watch(
+  () => [props.accordion, props.viewmore],
+  () => {
+    if (!hasModelValue() || !isDef(props.modelValue)) {
+      innerValue.value = getDefaultValue()
+    }
+  }
 )
 
 watch(
@@ -88,15 +115,18 @@ watch(
 )
 
 onBeforeMount(() => {
-  const { lineNum, viewmore, modelValue } = props
-  contentLineNum.value = viewmore && !modelValue ? lineNum : 0
+  const { lineNum, viewmore } = props
+  contentLineNum.value = viewmore && !currentValue.value ? lineNum : 0
 })
 
 /**
  * 更新绑定值
  * @param activeNames 选中的值
  */
-function updateChange(activeNames: string | string[] | boolean) {
+function updateChange(activeNames: CollapseValue) {
+  if (!hasModelValue() || !isDef(props.modelValue)) {
+    innerValue.value = activeNames
+  }
   emit('update:modelValue', activeNames)
   emit('change', {
     value: activeNames
@@ -109,13 +139,16 @@ function updateChange(activeNames: string | string[] | boolean) {
  * @param expanded 是否展开
  */
 function toggle(name: string, expanded: boolean) {
-  const { accordion, modelValue } = props
+  const { accordion } = props
+  const modelValue = currentValue.value
   if (accordion) {
     updateChange(name === modelValue ? '' : name)
   } else if (expanded) {
-    updateChange((modelValue as string[]).concat(name))
+    const activeNames = isArray(modelValue) ? modelValue : []
+    updateChange(activeNames.concat(name))
   } else {
-    updateChange((modelValue as string[]).filter((activeName) => activeName !== name))
+    const activeNames = isArray(modelValue) ? modelValue : []
+    updateChange(activeNames.filter((activeName) => activeName !== name))
   }
 }
 
@@ -149,10 +182,7 @@ const toggleAll = (options: CollapseToggleAllOptions = {}) => {
  * 查看更多点击
  */
 function handleMore() {
-  emit('update:modelValue', !props.modelValue)
-  emit('change', {
-    value: !props.modelValue
-  })
+  updateChange(!currentValue.value)
 }
 
 defineExpose<CollapseExpose>({

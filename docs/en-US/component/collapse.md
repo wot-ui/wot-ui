@@ -6,7 +6,7 @@ Place a set of content in multiple collapsible panels, click panel title to expa
 
 ### Basic Usage
 
-`v-model` binding value can be:
+`v-model` is used for controlled expand state. If it is not bound, the component maintains the expand state internally. The binding value can be:
 - Normal collapse: `string[]`
 - Accordion mode: `string`
 - View more mode: `boolean`
@@ -52,6 +52,17 @@ const beforeExpend = (name: string) => {
 ```
 
 ## Component Variant
+
+### Uncontrolled Mode
+
+When `v-model` is omitted, the component maintains the expand state internally. This is useful when you only need local expand/collapse behavior and do not need the current expanded value.
+
+```html
+<wd-collapse>
+  <wd-collapse-item title="Tag 1" name="item1">This is a simple example text.</wd-collapse-item>
+  <wd-collapse-item title="Tag 2" name="item2">This is a simple example text.</wd-collapse-item>
+</wd-collapse>
+```
 
 ### Accordion
 
@@ -166,7 +177,7 @@ collapseRef.value?.toggleAll({ expanded: true, skipDisabled: true })
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| v-model | Binding value. Normal mode is `string[]`, accordion mode is `string`, view more mode is `boolean` | `string \| string[] \| boolean` | - |
+| v-model | Binding value. If omitted, the component maintains the expand state internally. Normal mode is `string[]`, accordion mode is `string`, view more mode is `boolean` | `string \| string[] \| boolean` | - |
 | accordion | Whether to enable accordion mode | boolean | false |
 | viewmore | Whether to enable view more mode | boolean | false |
 | use-more-slot | Whether to enable `more` slot in view more mode | boolean | false |
