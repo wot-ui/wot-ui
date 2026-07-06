@@ -97,7 +97,7 @@ function showMessage(errors: ErrorMessage[]) {
   const childrenProps = getChildrenProps()
   const messages = errors.reduce<ErrorMessage[]>((result, error) => {
     const matchedProp = getMatchedChildProp(error.prop, childrenProps)
-    if (error.message && matchedProp) {
+    if (error.message && matchedProp && !result.some((message) => message.prop === matchedProp)) {
       result.push({
         prop: matchedProp,
         message: error.message

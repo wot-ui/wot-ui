@@ -7,7 +7,7 @@ import WdFormItem from '@/uni_modules/wot-ui/components/wd-form-item/wd-form-ite
 import WdInput from '@/uni_modules/wot-ui/components/wd-input/wd-input.vue'
 import WdCell from '@/uni_modules/wot-ui/components/wd-cell/wd-cell.vue'
 import { zodAdapter } from '@/uni_modules/wot-ui/components/wd-form/adapters/zod'
-import type { FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
+import type { ErrorMessage, FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
 
 const globalComponents = {
   WdForm,
@@ -56,6 +56,43 @@ describe('WdForm schema validate', () => {
     const result = await form.vm.validate()
     expect(result.valid).toBe(false)
     expect(result.errors.length).toBe(2)
+  })
+
+  test('同一字段存在多条 zod 错误时展示首条错误', async () => {
+    const schema = zodAdapter(
+      z.object({
+        phone: z
+          .string()
+          .min(1, '请输入手机号')
+          .regex(/^1[3-9]\d{9}$/, '手机号格式不正确')
+      })
+    )
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form ref="form" :model="formData" :schema="schema">
+            <wd-form-item prop="phone" title="手机号">
+              <wd-input v-model="formData.phone" />
+            </wd-form-item>
+          </wd-form>
+        `,
+        data() {
+          return {
+            formData: { phone: '' },
+            schema
+          }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+    const form = wrapper.findComponent({ ref: 'form' })
+
+    const result = await form.vm.validate()
+    await nextTick()
+
+    expect(result.valid).toBe(false)
+    expect(result.errors.map((error: ErrorMessage) => error.message)).toEqual(['请输入手机号', '手机号格式不正确'])
+    expect(wrapper.find('.wd-form-item__error-message').text()).toBe('请输入手机号')
   })
 
   test('支持指定字段校验', async () => {
