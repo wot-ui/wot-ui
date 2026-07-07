@@ -51,6 +51,10 @@ export const formProps = {
     type: String as PropType<'toast' | 'message' | 'none'>,
     default: 'message'
   },
+  /**
+   * 是否禁用表单内支持禁用态的表单控件
+   */
+  disabled: makeBooleanProp(false),
   // ========== 公共配置属性（可被 form-item 继承）==========
   /**
    * 是否展示边框线

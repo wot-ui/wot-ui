@@ -1,10 +1,13 @@
 import { mount } from '@vue/test-utils'
-import { describe, test, expect } from 'vitest'
-import { nextTick } from 'vue'
+import { describe, test, expect, vi } from 'vitest'
+import { nextTick, reactive } from 'vue'
 import { z } from 'zod'
 import WdForm from '@/uni_modules/wot-ui/components/wd-form/wd-form.vue'
 import WdFormItem from '@/uni_modules/wot-ui/components/wd-form-item/wd-form-item.vue'
 import WdInput from '@/uni_modules/wot-ui/components/wd-input/wd-input.vue'
+import WdSwitch from '@/uni_modules/wot-ui/components/wd-switch/wd-switch.vue'
+import WdRadioGroup from '@/uni_modules/wot-ui/components/wd-radio-group/wd-radio-group.vue'
+import WdRadio from '@/uni_modules/wot-ui/components/wd-radio/wd-radio.vue'
 import WdCell from '@/uni_modules/wot-ui/components/wd-cell/wd-cell.vue'
 import { zodAdapter } from '@/uni_modules/wot-ui/components/wd-form/adapters/zod'
 import type { FormSchema } from '@/uni_modules/wot-ui/components/wd-form/types'
@@ -13,6 +16,9 @@ const globalComponents = {
   WdForm,
   WdFormItem,
   WdInput,
+  WdSwitch,
+  WdRadioGroup,
+  WdRadio,
   WdCell
 }
 
@@ -22,6 +28,166 @@ describe('WdForm schema validate', () => {
       props: { model: {} }
     })
     expect(wrapper.classes()).toContain('wd-form')
+  })
+
+  test('disabled 会禁用内部输入控件', () => {
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" disabled>
+            <wd-form-item prop="name" title="姓名">
+              <wd-input v-model="formData.name" clearable />
+            </wd-form-item>
+          </wd-form>
+        `,
+        setup() {
+          const formData = reactive({ name: '张三' })
+          return { formData }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    const input = wrapper.findComponent(WdInput)
+    expect(input.classes()).toContain('is-disabled')
+    expect(wrapper.find('input').attributes()).toHaveProperty('disabled')
+    expect(wrapper.find('.wd-input__clear').exists()).toBe(false)
+  })
+
+  test('disabled 会阻止内部独立控件交互', async () => {
+    const onChange = vi.fn()
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" disabled>
+            <wd-form-item prop="checked" title="开关">
+              <wd-switch v-model="formData.checked" @change="onChange" />
+            </wd-form-item>
+          </wd-form>
+        `,
+        setup() {
+          const formData = reactive({ checked: false })
+          return { formData, onChange }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    const switchWrapper = wrapper.findComponent(WdSwitch)
+    expect(switchWrapper.classes()).toContain('is-disabled')
+
+    await switchWrapper.trigger('click')
+
+    expect((wrapper.vm as any).formData.checked).toBe(false)
+    expect(onChange).not.toHaveBeenCalled()
+  })
+
+  test('disabled 会禁用内部选项控件', async () => {
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" disabled>
+            <wd-form-item prop="priority" title="优先级">
+              <wd-radio-group v-model="formData.priority">
+                <wd-radio value="high">高</wd-radio>
+              </wd-radio-group>
+            </wd-form-item>
+          </wd-form>
+        `,
+        setup() {
+          const formData = reactive({ priority: '' })
+          return { formData }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    const radio = wrapper.findComponent(WdRadio)
+    expect(radio.classes()).toContain('is-disabled')
+
+    await radio.trigger('click')
+
+    expect((wrapper.vm as any).formData.priority).toBe('')
+  })
+
+  test('disabled 会阻止 form-item 点击入口', async () => {
+    const onClick = vi.fn()
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" disabled>
+            <wd-form-item title="选择日期" is-link clickable :value="formData.date" @click="onClick" />
+          </wd-form>
+        `,
+        setup() {
+          const formData = reactive({ date: '2026-07-07' })
+          return { formData, onClick }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    const formItem = wrapper.findComponent(WdFormItem)
+    await nextTick()
+
+    expect(formItem.classes()).toContain('is-disabled')
+    expect(wrapper.find('.wd-cell__arrow-right').exists()).toBe(false)
+
+    await formItem.trigger('click')
+
+    expect(onClick).not.toHaveBeenCalled()
+  })
+
+  test('form-item disabled 会阻止自身点击入口', async () => {
+    const onClick = vi.fn()
+    const wrapper = mount(WdFormItem, {
+      props: {
+        title: '选择日期',
+        value: '2026-07-07',
+        isLink: true,
+        clickable: true,
+        disabled: true,
+        onClick
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    expect(wrapper.classes()).toContain('is-disabled')
+    expect(wrapper.find('.wd-cell__arrow-right').exists()).toBe(false)
+
+    await wrapper.trigger('click')
+
+    expect(onClick).not.toHaveBeenCalled()
+  })
+
+  test('form-item disabled false 会覆盖 Form disabled 点击入口', async () => {
+    const onClick = vi.fn()
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" disabled>
+            <wd-form-item title="选择日期" is-link clickable :disabled="false" :value="formData.date" @click="onClick" />
+          </wd-form>
+        `,
+        setup() {
+          const formData = reactive({ date: '2026-07-07' })
+          return { formData, onClick }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    const formItem = wrapper.findComponent(WdFormItem)
+    await nextTick()
+
+    expect(formItem.classes()).not.toContain('is-disabled')
+    expect(wrapper.find('.wd-cell__arrow-right').exists()).toBe(true)
+
+    await formItem.trigger('click')
+
+    expect(onClick).toHaveBeenCalledTimes(1)
   })
 
   test('zodAdapter 支持全量校验', async () => {

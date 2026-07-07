@@ -41,18 +41,20 @@ import wdLoading from '../wd-loading/wd-loading.vue'
 import { computed, type CSSProperties, onBeforeMount } from 'vue'
 import { callInterceptor } from '../../common/interceptor'
 import { addUnit, isDef, isUndefined, objToStyle, omitBy } from '../../common/util'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { switchProps } from './types'
 import { type LoadingProps } from '../wd-loading/types'
 
 const props = defineProps(switchProps)
 const emit = defineEmits(['change', 'update:modelValue'])
+const isDisabled = useFormDisabled(props)
 
 const isActive = computed(() => {
   return props.modelValue === props.activeValue
 })
 
 const rootClass = computed(() => {
-  return `wd-switch ${props.customClass} ${props.disabled ? 'is-disabled' : ''} ${props.loading ? 'is-loading' : ''} wd-switch--${props.shape} is-${
+  return `wd-switch ${props.customClass} ${isDisabled.value ? 'is-disabled' : ''} ${props.loading ? 'is-loading' : ''} wd-switch--${props.shape} is-${
     isActive.value ? 'active' : 'inactive'
   }`
 })
@@ -100,7 +102,7 @@ const customLoadingProps = computed<Partial<LoadingProps>>(() => {
 })
 
 function switchValue() {
-  if (props.disabled || props.loading) return
+  if (isDisabled.value || props.loading) return
   const newVal = isActive.value ? props.inactiveValue : props.activeValue
   const doSwitch = () => {
     emit('update:modelValue', newVal)

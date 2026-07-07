@@ -55,6 +55,10 @@ export const formItemProps = {
    * 是否展示右侧箭头并开启点击反馈
    */
   isLink: makeBooleanProp(false),
+  /**
+   * 是否禁用表单项，禁用时不触发点击事件，未设置时继承 Form
+   */
+  disabled: makeBooleanProp(void 0),
   // ========== 可继承属性（使用 undefined 默认值）==========
   /**
    * 设置单元格大小，可选值：large

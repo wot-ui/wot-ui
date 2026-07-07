@@ -1,6 +1,6 @@
 <template>
   <view
-    :class="`wd-input-number wd-input-number--${theme} ${customClass} ${disabled ? 'is-disabled' : ''} ${withoutInput ? 'is-without-input' : ''} ${
+    :class="`wd-input-number wd-input-number--${theme} ${customClass} ${isDisabled ? 'is-disabled' : ''} ${withoutInput ? 'is-without-input' : ''} ${
       round ? 'is-round' : ''
     }`"
     :style="customStyle"
@@ -21,7 +21,7 @@
         :style="`${inputWidth ? 'width: ' + inputWidth : ''}`"
         :type="inputType"
         :input-mode="precision ? 'decimal' : 'numeric'"
-        :disabled="disabled || disableInput"
+        :disabled="isDisabled || disableInput"
         :value="String(inputValue)"
         :placeholder="placeholder"
         :adjust-position="adjustPosition"
@@ -59,12 +59,14 @@ export default {
 import { computed, nextTick, ref, watch } from 'vue'
 import { isDef, isEqual } from '../../common/util'
 import { useParent } from '../../composables/useParent'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { inputNumberProps, type OperationType } from './types'
 import { callInterceptor } from '../../common/interceptor'
 import { FORM_ITEM_VALIDATE_KEY } from '../wd-form-item/types'
 
 const props = defineProps(inputNumberProps)
 const { parent: formItemValidate } = useParent(FORM_ITEM_VALIDATE_KEY)
+const isDisabled = useFormDisabled(props)
 const emit = defineEmits<{
   /**
    * 数值变化事件
@@ -91,7 +93,7 @@ let longPressTimer: ReturnType<typeof setTimeout> | null = null
  */
 const minDisabled = computed(() => {
   const val = toNumber(inputValue.value)
-  return props.disabled || val <= props.min || addStep(val, -props.step) < props.min
+  return isDisabled.value || val <= props.min || addStep(val, -props.step) < props.min
 })
 
 /**
@@ -99,7 +101,7 @@ const minDisabled = computed(() => {
  */
 const maxDisabled = computed(() => {
   const val = toNumber(inputValue.value)
-  return props.disabled || val >= props.max || addStep(val, props.step) > props.max
+  return isDisabled.value || val >= props.max || addStep(val, props.step) > props.max
 })
 
 // 监听 modelValue 变化

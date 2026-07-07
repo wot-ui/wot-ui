@@ -89,11 +89,13 @@ export default {
 <script lang="ts" setup>
 import { computed, type CSSProperties, getCurrentInstance, onMounted, ref, watch } from 'vue'
 import { deepClone, getRect, isArray, isDef, isEqual, objToStyle, uuid } from '../../common/util'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { useTouch } from '../../composables/useTouch'
 import { sliderProps, type SliderExpose, type SliderEmits, type SliderValue, type SliderMarks, type SliderPopoverVisible } from './types'
 
 const props = defineProps(sliderProps)
 const emit = defineEmits<SliderEmits>()
+const isDisabled = useFormDisabled(props)
 
 const sliderId = ref<string>(`wd-slider-${uuid()}`)
 const trackId = ref<string>(`${sliderId.value}-track`)
@@ -169,7 +171,7 @@ const scaleList = computed(() => {
 const rootClass = computed(() => {
   const classes = ['wd-slider']
   classes.push(`wd-slider--theme-${props.theme}`)
-  if (props.disabled) classes.push('is-disabled')
+  if (isDisabled.value) classes.push('is-disabled')
   if (props.vertical) {
     classes.push('wd-slider--vertical')
   } else {
@@ -194,7 +196,7 @@ const rootStyle = computed(() => {
  */
 const barClass = computed(() => {
   const classes = ['wd-slider__bar', `wd-slider__bar--${props.theme}`]
-  if (props.disabled) classes.push('is-disabled')
+  if (isDisabled.value) classes.push('is-disabled')
   return classes.join(' ')
 })
 
@@ -215,7 +217,7 @@ const barStyle = computed(() => {
 const lineClass = computed(() => {
   const classes = ['wd-slider__line', `wd-slider__line--${props.theme}`]
   if (!props.range) classes.push('wd-slider__line--single')
-  if (props.disabled) classes.push('is-disabled')
+  if (isDisabled.value) classes.push('is-disabled')
   return classes.join(' ')
 })
 
@@ -404,7 +406,7 @@ function scaleItemClass(val: number): string {
   const isActive = Array.isArray(modelValue.value) ? val >= modelValue.value[0] && val <= modelValue.value[1] : val <= (modelValue.value as number)
 
   if (isActive) classes.push('is-active')
-  if (props.disabled) classes.push('is-disabled')
+  if (isDisabled.value) classes.push('is-disabled')
 
   return classes.join(' ')
 }
@@ -449,7 +451,7 @@ function showDotPopover(index: number): boolean {
  * @param {number} index 滑块索引
  */
 function onTouchStart(event: any, index: number) {
-  if (props.disabled) return
+  if (isDisabled.value) return
 
   touchIndex.value = index
   isDragging.value = true
@@ -464,7 +466,7 @@ function onTouchStart(event: any, index: number) {
  * @param event 触摸事件
  */
 function onTouchMove(event: any) {
-  if (props.disabled) return
+  if (isDisabled.value) return
 
   touch.touchMove(event)
 
@@ -486,7 +488,7 @@ function onTouchMove(event: any) {
  * 滑块触摸结束
  */
 function onTouchEnd() {
-  if (props.disabled) return
+  if (isDisabled.value) return
 
   isDragging.value = false
   emit('dragend', { value: modelValue.value })
@@ -498,7 +500,7 @@ function onTouchEnd() {
  * @param event 点击事件
  */
 function onBarClick(event: any) {
-  if (props.disabled) return
+  if (isDisabled.value) return
 
   // 基于可滑动有效轨道换算点击位置，避免主题内边距造成偏差
   getRect(`#${trackId.value}`, false, proxy).then((data) => {

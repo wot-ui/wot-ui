@@ -921,6 +921,21 @@
           }
         },
         {
+          "path": "form/demo5",
+          "name": "formDemo5",
+          "style": {
+            "mp-alipay": {
+              "allowsBounceVertical": "NO"
+            },
+            // #ifdef MP
+            "navigationBarTitleText": "禁用表单",
+            // #endif
+            // #ifndef MP
+            "navigationBarTitleText": "%form-demo5-title%"
+            // #endif
+          }
+        },
+        {
           "path": "collapse/Index",
           "name": "collapse",
           "style": {

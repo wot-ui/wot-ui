@@ -295,6 +295,105 @@ function handleSubmit() {
 
 :::
 
+### 禁用表单控件
+
+设置 `disabled` 后，表单内支持禁用态的表单控件会统一进入禁用状态，同时 `wd-form-item` 会继承禁用态并拦截 `click` 事件。该属性不会影响 `validate`、`reset` 等表单方法，也不会自动禁用表单外层或插槽中的普通按钮。
+
+对于 `Picker`、`Calendar`、`Cascader` 等弹层选择器，推荐通过 `wd-form-item` 的 `click` 事件作为入口；表单禁用时，该入口不会触发。
+
+::: details 禁用表单控件
+::: code-group
+
+```html [vue]
+<wd-cell-group custom-class="group" title="配置切换">
+  <wd-cell title="禁用表单控件" title-width="110px" value-align="left" center>
+    <view class="switch-wrap">
+      <wd-switch v-model="disabled" size="20" />
+      <text class="status">{{ disabled ? '已开启' : '已关闭' }}</text>
+    </view>
+  </wd-cell>
+</wd-cell-group>
+
+<wd-form :model="model" :disabled="disabled" :title-width="110" border>
+  <wd-cell-group custom-class="group" title="表单内容">
+    <wd-form-item title="用户名" prop="username">
+      <wd-input v-model="model.username" clearable placeholder="请输入用户名" />
+    </wd-form-item>
+    <wd-form-item title="活动细则" prop="content">
+      <wd-textarea v-model="model.content" clearable auto-height show-word-limit :maxlength="120" placeholder="请输入活动细则信息" />
+    </wd-form-item>
+    <wd-form-item title="发货数量" prop="count" value-align="left">
+      <wd-input-number v-model="model.count" />
+    </wd-form-item>
+    <wd-form-item title="消息通知" prop="notice" value-align="left">
+      <wd-switch v-model="model.notice" size="20" />
+    </wd-form-item>
+    <wd-form-item title="投放优先级" prop="priority">
+      <wd-radio-group v-model="model.priority" direction="horizontal">
+        <wd-radio :value="1">高</wd-radio>
+        <wd-radio :value="2">中</wd-radio>
+        <wd-radio :value="3">低</wd-radio>
+      </wd-radio-group>
+    </wd-form-item>
+    <wd-form-item title="投放标签" prop="tags">
+      <wd-checkbox-group v-model="model.tags" direction="horizontal">
+        <wd-checkbox :name="1">新品</wd-checkbox>
+        <wd-checkbox :name="2">爆款</wd-checkbox>
+        <wd-checkbox :name="3">清仓</wd-checkbox>
+      </wd-checkbox-group>
+    </wd-form-item>
+    <wd-form-item title="活动评分" prop="rate">
+      <wd-rate v-model="model.rate" allow-half clearable />
+    </wd-form-item>
+    <wd-form-item title="预算强度" prop="budget">
+      <wd-slider v-model="model.budget" show-extreme-value />
+    </wd-form-item>
+  </wd-cell-group>
+</wd-form>
+```
+
+```typescript [typescript]
+<script lang="ts" setup>
+import { reactive, ref } from 'vue'
+
+const disabled = ref(true)
+
+const model = reactive({
+  username: 'wot-ui',
+  content: '',
+  count: 2,
+  notice: true,
+  priority: 2,
+  tags: [1, 2],
+  rate: 3.5,
+  budget: 60
+})
+</script>
+```
+
+```css [css]
+:deep(.group) {
+  &:not(:first-child) {
+    margin-top: 12px;
+  }
+}
+
+.switch-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  display: inline-block;
+  margin-left: 12px;
+  color: var(--wot-cell-value-color, #666);
+  font-size: var(--wot-cell-value-font-size, 14px);
+  vertical-align: middle;
+}
+```
+
+:::
+
 ### 隐藏字段校验
 
 当表单项通过 `v-if` 隐藏时，对应的 `wd-form-item` 会被卸载。表单校验会根据当前已挂载的 `wd-form-item` 过滤校验结果，因此隐藏字段即使仍然存在于 `schema` 中，也不会影响 `validate()` 返回的 `valid` 和 `errors`。
@@ -1349,6 +1448,7 @@ function handleIconClick() {
 | validate-trigger | 校验触发时机，可选值为 `change`、`blur`、`submit` | `string \| string[]` | `submit` |
 | reset-on-change | 表单数据变化时是否重置表单提示信息（设置为 `false` 时需要开发者单独对变更项进行校验） | `boolean` | `true` |
 | error-type | 校验错误提示方式，可选值为 `toast`、`message`、`none` | `string` | `message` |
+| disabled | 是否禁用表单内支持禁用态的表单控件，并禁用表单项点击入口 | `boolean` | `false` |
 | border | 是否展示边框线 | `boolean` | `false` |
 | center | 是否使内容垂直居中 | `boolean` | `false` |
 | size | 单元格大小，可选值为 `large` | `string` | - |
@@ -1383,6 +1483,7 @@ function handleIconClick() {
 | label | 描述信息 | `string` | - |
 | clickable | 是否开启点击反馈 | `boolean` | `false` |
 | is-link | 是否展示右侧箭头并开启点击反馈 | `boolean` | `false` |
+| disabled | 是否禁用表单项，优先使用自身配置，未设置时继承 Form；禁用时不触发 `click` 事件 | `boolean` | - |
 | size | 单元格大小，可选值为 `large`，优先使用自身配置，未设置时继承 Form | `string` | - |
 | border | 是否展示边框线，优先使用自身配置，未设置时继承 Form | `boolean` | - |
 | title-width | 左侧标题宽度，优先使用自身配置，未设置时继承 Form | `string \| number` | `98px` |

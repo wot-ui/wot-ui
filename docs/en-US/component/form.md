@@ -291,6 +291,105 @@ function handleSubmit() {
 
 :::
 
+### Disable Form Controls
+
+After `disabled` is set, form controls inside the form that support the disabled state will enter the disabled state together. `wd-form-item` also inherits the disabled state and blocks the `click` event. This property does not affect form methods such as `validate` and `reset`, and it does not automatically disable ordinary buttons outside the form or inside slots.
+
+For popup selectors such as `Picker`, `Calendar`, and `Cascader`, use the `click` event of `wd-form-item` as the entrance. When the form is disabled, this entrance will not be triggered.
+
+::: details Disable Form Controls
+::: code-group
+
+```html [vue]
+<wd-cell-group custom-class="group" title="Configuration Switch">
+  <wd-cell title="Disable Form Controls" title-width="110px" value-align="left" center>
+    <view class="switch-wrap">
+      <wd-switch v-model="disabled" size="20" />
+      <text class="status">{{ disabled ? 'On' : 'Off' }}</text>
+    </view>
+  </wd-cell>
+</wd-cell-group>
+
+<wd-form :model="model" :disabled="disabled" :title-width="110" border>
+  <wd-cell-group custom-class="group" title="Form Content">
+    <wd-form-item title="Username" prop="username">
+      <wd-input v-model="model.username" clearable placeholder="Please enter username" />
+    </wd-form-item>
+    <wd-form-item title="Activity Details" prop="content">
+      <wd-textarea v-model="model.content" clearable auto-height show-word-limit :maxlength="120" placeholder="Please enter activity details" />
+    </wd-form-item>
+    <wd-form-item title="Shipment Quantity" prop="count" value-align="left">
+      <wd-input-number v-model="model.count" />
+    </wd-form-item>
+    <wd-form-item title="Message Notification" prop="notice" value-align="left">
+      <wd-switch v-model="model.notice" size="20" />
+    </wd-form-item>
+    <wd-form-item title="Delivery Priority" prop="priority">
+      <wd-radio-group v-model="model.priority" direction="horizontal">
+        <wd-radio :value="1">High</wd-radio>
+        <wd-radio :value="2">Middle</wd-radio>
+        <wd-radio :value="3">Low</wd-radio>
+      </wd-radio-group>
+    </wd-form-item>
+    <wd-form-item title="Delivery Tags" prop="tags">
+      <wd-checkbox-group v-model="model.tags" direction="horizontal">
+        <wd-checkbox :name="1">New</wd-checkbox>
+        <wd-checkbox :name="2">Hot</wd-checkbox>
+        <wd-checkbox :name="3">Clearance</wd-checkbox>
+      </wd-checkbox-group>
+    </wd-form-item>
+    <wd-form-item title="Activity Rating" prop="rate">
+      <wd-rate v-model="model.rate" allow-half clearable />
+    </wd-form-item>
+    <wd-form-item title="Budget Strength" prop="budget">
+      <wd-slider v-model="model.budget" show-extreme-value />
+    </wd-form-item>
+  </wd-cell-group>
+</wd-form>
+```
+
+```typescript [typescript]
+<script lang="ts" setup>
+import { reactive, ref } from 'vue'
+
+const disabled = ref(true)
+
+const model = reactive({
+  username: 'wot-ui',
+  content: '',
+  count: 2,
+  notice: true,
+  priority: 2,
+  tags: [1, 2],
+  rate: 3.5,
+  budget: 60
+})
+</script>
+```
+
+```css [css]
+:deep(.group) {
+  &:not(:first-child) {
+    margin-top: 12px;
+  }
+}
+
+.switch-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  display: inline-block;
+  margin-left: 12px;
+  color: var(--wot-cell-value-color, #666);
+  font-size: var(--wot-cell-value-font-size, 14px);
+  vertical-align: middle;
+}
+```
+
+:::
+
 ### Hidden Field Validation
 
 When a form item is hidden with `v-if`, the corresponding `wd-form-item` is unmounted. Form validation filters validation results by currently mounted `wd-form-item` components, so a hidden field will not affect the `valid` and `errors` returned by `validate()` even if it still exists in `schema`.
@@ -820,6 +919,7 @@ function handleValidate() {
 | validate-trigger | Validation trigger timing, optional values are `change`, `blur`, `submit` | `string \| string[]` | `submit` |
 | reset-on-change | Whether to reset form prompt information when form data changes (when set to `false`, the developer needs to separately validate the changed item) | `boolean` | `true` |
 | error-type | Validation error prompt method, optional values are `toast`, `message`, `none` | `string` | `message` |
+| disabled | Whether to disable form controls inside the form that support the disabled state, and disable form item click entrances | `boolean` | `false` |
 | border | Whether to show border lines | `boolean` | `false` |
 | center | Whether to vertically center content | `boolean` | `false` |
 | size | Cell size, optional value is `large` | `string` | - |
@@ -853,6 +953,7 @@ All properties of this component, in addition to supporting specific form item c
 | label | Description information | `string` | - |
 | clickable | Whether to enable click feedback | `boolean` | `false` |
 | is-link | Whether to show right arrow and enable click feedback | `boolean` | `false` |
+| disabled | Whether to disable the form item; uses its own configuration first, and inherits from Form when not set. Disabled form items do not trigger the `click` event | `boolean` | - |
 | size | Cell size, optional value is `large`; uses its own configuration first, and inherits from Form when not set | `string` | - |
 | border | Whether to show border lines; uses its own configuration first, and inherits from Form when not set | `boolean` | - |
 | title-width | Left title width; uses its own configuration first, and inherits from Form when not set | `string \| number` | `98px` |

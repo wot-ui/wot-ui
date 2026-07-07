@@ -58,7 +58,7 @@
         </view>
       </view>
       <!-- 上传状态为上传中时不展示移除按钮 -->
-      <view class="wd-upload__close" v-if="file[props.statusKey] !== 'loading' && !disabled" @click="removeFile(index)">
+      <view class="wd-upload__close" v-if="file[props.statusKey] !== 'loading' && !isDisabled" @click="removeFile(index)">
         <wd-icon name="close" custom-class="wd-upload__close-icon"></wd-icon>
       </view>
       <!-- 自定义预览样式 -->
@@ -70,7 +70,7 @@
         <slot></slot>
       </view>
       <!-- 唤起项 -->
-      <view v-else @click="onEvokeClick" :class="['wd-upload__evoke', disabled ? 'is-disabled' : '', customEvokeClass]">
+      <view v-else @click="onEvokeClick" :class="['wd-upload__evoke', isDisabled ? 'is-disabled' : '', customEvokeClass]">
         <!-- 唤起项图标 -->
         <wd-icon custom-class="wd-upload__evoke-icon" name="camera-fill"></wd-icon>
         <!-- 有限制个数时确认是否展示限制个数 -->
@@ -105,6 +105,7 @@ import { computed, ref, watch } from 'vue'
 import { context, isEqual, isImageUrl, isVideoUrl, isFunction, isDef, deepClone, uuid, isPromise } from '../../common/util'
 import { callInterceptor } from '../../common/interceptor'
 import { useTranslate } from '../../composables/useTranslate'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { useUpload } from '../../composables/useUpload'
 import {
   uploadProps,
@@ -121,6 +122,7 @@ import {
 import { useVideoPreview } from '../wd-video-preview'
 
 const props = defineProps(uploadProps)
+const isDisabled = useFormDisabled(props)
 
 const emit = defineEmits<{
   (e: 'fail', value: UploadErrorEvent): void
@@ -400,7 +402,7 @@ function onEvokeClick() {
  * @description 选择文件，内置拦截选择操作
  */
 function handleChoose(index?: number) {
-  if (props.disabled) return
+  if (isDisabled.value) return
   const { beforeChoose } = props
 
   // 选择图片前的钩子

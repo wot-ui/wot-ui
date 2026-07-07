@@ -1,6 +1,6 @@
 <template>
   <wd-cell
-    :custom-class="`wd-form-item ${customClass}`"
+    :custom-class="`wd-form-item ${isDisabled ? 'is-disabled' : ''} ${customClass}`"
     :custom-style="customStyle"
     :use-title-slot="!!$slots.title"
     :title="title"
@@ -14,8 +14,8 @@
     :value-align="formItemValueAlign"
     :center="formItemCenter"
     :ellipsis="formItemEllipsis"
-    :clickable="clickable"
-    :is-link="isLink"
+    :clickable="!isDisabled && clickable"
+    :is-link="!isDisabled && isLink"
     :asterisk-position="formItemAsteriskPosition"
     :border="formItemBorder"
     :hide-asterisk="formItemHideAsterisk"
@@ -24,7 +24,7 @@
     :custom-label-class="customLabelClass"
     :custom-title-class="customTitleClass"
     :custom-value-class="customValueClass"
-    @click="emit('click')"
+    @click="handleClick"
   >
     <template #title v-if="$slots.title">
       <slot name="title"></slot>
@@ -69,6 +69,14 @@ const { parent: form, index } = useParent(FORM_KEY)
 const { linkChildren } = useChildren(FORM_ITEM_VALIDATE_KEY)
 
 const emit = defineEmits(['click'])
+const isDisabled = computed(() => {
+  return isDef(props.disabled) ? props.disabled : form.value?.props.disabled
+})
+
+function handleClick() {
+  if (isDisabled.value) return
+  emit('click')
+}
 
 function normalizeValidateTrigger(trigger?: FormValidateTrigger | FormValidateTrigger[]): FormValidateEvent[] {
   const triggerList = Array.isArray(trigger) ? trigger : trigger ? [trigger] : []

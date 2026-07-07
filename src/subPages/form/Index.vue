@@ -37,6 +37,12 @@
           </view>
         </demo-group-item>
 
+        <demo-group-item :title="$t('form-demo5-title')" transparent>
+          <view class="page-form__button-wrap">
+            <wd-button @click="handleClick5" :round="false" block size="large">{{ $t('form-demo5-title') }}</wd-button>
+          </view>
+        </demo-group-item>
+
         <demo-group-item :title="$t('xiao-yan-chu-fa-shi-ji')" transparent>
           <view class="page-form__button-wrap">
             <wd-button @click="handleClick2" :round="false" block size="large">{{ $t('xiao-yan-chu-fa-shi-ji-0') }}</wd-button>
@@ -196,6 +202,10 @@ function handleClick3() {
 
 function handleClick4() {
   uni.navigateTo({ url: '/subPages/form/demo4' })
+}
+
+function handleClick5() {
+  uni.navigateTo({ url: '/subPages/form/demo5' })
 }
 
 function handleClick2() {
