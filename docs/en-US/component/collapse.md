@@ -11,6 +11,8 @@ Place a set of content in multiple collapsible panels, click panel title to expa
 - Accordion mode: `string`
 - View more mode: `boolean`
 
+When binding `v-model`, provide an initial value that matches the current mode. If the initial value is `undefined`, the component treats it as uncontrolled mode.
+
 ```html
 <wd-collapse v-model="value">
   <wd-collapse-item title="Tag 1" name="item1">This is a simple example text.</wd-collapse-item>

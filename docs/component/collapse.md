@@ -11,6 +11,8 @@
 - 手风琴模式：`string`
 - 查看更多模式：`boolean`
 
+绑定 `v-model` 时请提供对应模式的初始值；如果初始值为 `undefined`，组件会按非受控模式处理。
+
 ```html
 <wd-collapse v-model="value">
   <wd-collapse-item title="标签1" name="item1">这是一条简单的示例文字。</wd-collapse-item>
