@@ -54,6 +54,60 @@ describe('WdForm schema validate', () => {
     expect(wrapper.find('.wd-input__clear').exists()).toBe(false)
   })
 
+  test('form-item disabled 会禁用内部输入控件', () => {
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData">
+            <wd-form-item prop="name" title="姓名" disabled>
+              <wd-input v-model="formData.name" clearable />
+            </wd-form-item>
+          </wd-form>
+        `,
+        setup() {
+          const formData = reactive({ name: '张三' })
+          return { formData }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    const formItem = wrapper.findComponent(WdFormItem)
+    const input = wrapper.findComponent(WdInput)
+
+    expect(formItem.classes()).toContain('is-disabled')
+    expect(input.classes()).toContain('is-disabled')
+    expect(wrapper.find('input').attributes()).toHaveProperty('disabled')
+    expect(wrapper.find('.wd-input__clear').exists()).toBe(false)
+  })
+
+  test('form-item disabled false 会覆盖 Form disabled 下的内部输入控件', () => {
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" disabled>
+            <wd-form-item prop="name" title="姓名" :disabled="false">
+              <wd-input v-model="formData.name" clearable />
+            </wd-form-item>
+          </wd-form>
+        `,
+        setup() {
+          const formData = reactive({ name: '张三' })
+          return { formData }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    const formItem = wrapper.findComponent(WdFormItem)
+    const input = wrapper.findComponent(WdInput)
+
+    expect(formItem.classes()).not.toContain('is-disabled')
+    expect(input.classes()).not.toContain('is-disabled')
+    expect(wrapper.find('input').attributes()).not.toHaveProperty('disabled')
+    expect(wrapper.find('.wd-input__clear').exists()).toBe(true)
+  })
+
   test('disabled 会阻止内部独立控件交互', async () => {
     const onChange = vi.fn()
     const wrapper = mount(

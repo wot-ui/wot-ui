@@ -55,12 +55,12 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, watch } from 'vue'
+import { computed, provide, watch } from 'vue'
 import { useChildren } from '../../composables/useChildren'
 import { useParent } from '../../composables/useParent'
 import WdCell from '../wd-cell/wd-cell.vue'
 import { FORM_KEY, FORM_VALIDATE_EVENTS, type FormValidateEvent, type FormValidateTrigger } from '../wd-form/types'
-import { FORM_ITEM_VALIDATE_KEY, formItemProps } from './types'
+import { FORM_ITEM_DISABLED_KEY, FORM_ITEM_VALIDATE_KEY, formItemProps } from './types'
 import { getPropByPath, isDef } from '../../common/util'
 
 const props = defineProps(formItemProps)
@@ -71,6 +71,9 @@ const { linkChildren } = useChildren(FORM_ITEM_VALIDATE_KEY)
 const emit = defineEmits(['click'])
 const isDisabled = computed(() => {
   return isDef(props.disabled) ? props.disabled : form.value?.props.disabled
+})
+provide(FORM_ITEM_DISABLED_KEY, {
+  disabled: isDisabled
 })
 
 function handleClick() {
