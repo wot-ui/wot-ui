@@ -44,7 +44,7 @@ export default {
 
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { computed, getCurrentInstance, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { COLLAPSE_KEY, collapseProps, type CollapseExpose, type CollapseToggleAllOptions, type CollapseValue } from './types'
 import { useChildren } from '../../composables/useChildren'
 import { isArray, isBoolean, isDef } from '../../common/util'
@@ -56,10 +56,9 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: CollapseValue): void
 }>()
 
-const instance = getCurrentInstance()!
 const { translate } = useTranslate('collapse')
 const innerValue = ref<CollapseValue>(getDefaultValue())
-const currentValue = computed<CollapseValue>(() => (hasModelValue() && isDef(props.modelValue) ? props.modelValue : innerValue.value))
+const currentValue = computed<CollapseValue>(() => (isDef(props.modelValue) ? props.modelValue : innerValue.value))
 const contentLineNum = computed<number>(() => (props.viewmore && !currentValue.value ? props.lineNum : 0))
 
 const { linkChildren, children } = useChildren(COLLAPSE_KEY)
@@ -73,16 +72,11 @@ function getDefaultValue(): CollapseValue {
   return props.accordion ? '' : []
 }
 
-function hasModelValue() {
-  const vnodeProps = instance.vnode.props || {}
-  return Object.prototype.hasOwnProperty.call(vnodeProps, 'modelValue') || Object.prototype.hasOwnProperty.call(vnodeProps, 'model-value')
-}
-
 watch(
   () => props.modelValue,
   (newVal) => {
     const { viewmore, accordion } = props
-    if (!hasModelValue() || !isDef(newVal)) {
+    if (!isDef(newVal)) {
       return
     }
     // 手风琴状态下 value 类型只能为 string
@@ -98,7 +92,7 @@ watch(
 watch(
   () => [props.accordion, props.viewmore],
   () => {
-    if (!hasModelValue() || !isDef(props.modelValue)) {
+    if (!isDef(props.modelValue)) {
       innerValue.value = getDefaultValue()
     }
   }
@@ -119,7 +113,7 @@ watch(
  * @param activeNames 选中的值
  */
 function updateChange(activeNames: CollapseValue) {
-  if (!hasModelValue() || !isDef(props.modelValue)) {
+  if (!isDef(props.modelValue)) {
     innerValue.value = activeNames
   }
   emit('update:modelValue', activeNames)

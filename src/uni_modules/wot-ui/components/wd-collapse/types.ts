@@ -30,7 +30,8 @@ export const collapseProps = {
    * 类型: string | string[] | boolean
    */
   modelValue: {
-    type: [String, Array, Boolean] as PropType<CollapseValue>
+    type: [String, Array, Boolean] as PropType<CollapseValue>,
+    default: void 0
   },
   /**
    * 是否开启手风琴模式
