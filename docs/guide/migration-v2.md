@@ -1,6 +1,3 @@
----
-version: New
----
 # 从 v1 迁移到 v2
 
 本文介绍如何将项目从 `Wot UI v1` 迁移到 `Wot UI v2`。

@@ -1,9 +1,8 @@
----
-version: New
----
-# CLI
+# @wot-ui/cli
 
 We maintain Wot UI's AI toolchain in [Open Wot](https://github.com/wot-ui/open-wot). Its main public package is [@wot-ui/cli](https://www.npmjs.com/package/@wot-ui/cli). It provides a CLI, an MCP server, an offline component knowledge base, and metadata extraction scripts, so you can bring wot-ui v2 component knowledge into editors, AI agents, and local project analysis workflows.
+
+If you want to compare `llms.txt`, CLI, MCP Server, and AI Skills, start with the [AI Guide](/en-US/guide/ai).
 
 ## Highlights
 

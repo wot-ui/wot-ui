@@ -50,7 +50,7 @@ After donation, your nickname, message, etc. will be displayed in the [Donor Lis
 | --- | --- | --- |
 | Official Ecosystem | [wot-starter](https://starter.wot-ui.cn/) | Official Wot UI quick-start project |
 | Official Ecosystem | [@wot-ui/router](https://my-uni.wot-ui.cn/) | Official Wot UI routing and project utilities |
-| Official Ecosystem | [@wot-ui/cli](https://github.com/wot-ui/open-wot) | Official Wot UI AI toolchain and CLI |
+| Official Ecosystem | [@wot-ui/cli](https://github.com/wot-ui/open-wot) | Official Wot UI AI toolchain and CLI. See the [AI Guide](/en-US/guide/ai) |
 | Official Ecosystem | [@wot-ui/unocss-preset](https://github.com/wot-ui/unocss-preset) | Official Wot UI UnoCSS preset |
 | Official Ecosystem | [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense) | Official VS Code IntelliSense extension for Wot UI |
 | Official Ecosystem | [Mini Program CI Tool](https://github.com/Moonofweisheng/uni-mini-ci) | Officially recommended CI tool for mini program builds |

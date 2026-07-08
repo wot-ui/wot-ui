@@ -1,6 +1,3 @@
----
-version: New
----
 # Migrating from v1 to v2
 
 This guide explains how to migrate your project from `Wot UI v1` to `Wot UI v2`.

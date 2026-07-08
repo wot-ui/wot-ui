@@ -1,10 +1,8 @@
----
-version: New
----
-
 # LLMs.txt
 
 [llms.txt](https://llmstxt.org/) 是一个专为大型语言模型设计的文本文件，类似 robots.txt，但目标不同。robots.txt 告诉搜索引擎爬虫哪些页面可以爬取，而 llms.txt 为 AI 工具提供网站内容的结构化信息，帮助它们更好地理解和索引组件库文档、示例和最佳实践。
+
+如果你不确定该选择哪种 AI 接入方式，可以先阅读 [AI 使用指南](/guide/ai)。
 
 ## 可用资源
 
@@ -39,5 +37,6 @@ version: New
 
 ## 延伸阅读
 
+- [AI 使用指南](/guide/ai)
 - [Skills](/guide/skills)
 - [llms.txt：让 AI 更好地理解你的文档](https://juejin.cn/post/7500981295105015847)

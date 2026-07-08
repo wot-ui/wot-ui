@@ -4,98 +4,108 @@ import packageJson from '../../../package.json'
 
 const componentNavItems = getDocsComponentNavItems('zh-CN')
 const componentSidebar = getDocsComponentSidebar('zh-CN')
-const guideGroups = [
+const gettingStartedNavItems = [
   {
-    text: '基础',
-    items: [
-      {
-        text: '介绍',
-        link: '/guide/introduction',
-      },
-      {
-        text: '设计',
-        link: '/guide/design',
-      },
-      {
-        text: '快速上手',
-        link: '/guide/quick-use',
-      },
-      {
-        text: '从 v1 迁移到 v2',
-        link: '/guide/migration-v2',
-      }
-    ]
+    text: '介绍',
+    link: '/guide/introduction',
   },
   {
-    text: '开发',
-    items: [
-      {
-        text: '定制主题',
-        link: '/guide/custom-theme',
-      },
-      {
-        text: '样式覆盖',
-        link: '/guide/custom-style',
-      },
-      {
-        text: '深色模式',
-        link: '/guide/dark-mode',
-      },
-      {
-        text: '国际化',
-        link: '/guide/locale',
-      },
-      {
-        text:'UnoCSS Preset',
-        link:'/guide/unocss-preset'
-      },
-      // {
-      //   text: '脚手架',
-      //   link: '/guide/cli',
-      // },
-      {
-        text: '模板',
-        link: '/guide/templates',
-      },
-      {
-        text: '常见问题',
-        link: '/guide/common-problems',
-      }
-    ]
+    text: '快速上手',
+    link: '/guide/quick-use',
+  },
+  {
+    text: '常见问题',
+    link: '/guide/common-problems',
+  }
+]
+const designSystemNavItems = [
+  {
+    text: '设计',
+    link: '/guide/design',
+  },
+  {
+    text: '定制主题',
+    link: '/guide/custom-theme',
+  },
+  {
+    text: '深色模式',
+    link: '/guide/dark-mode',
+  },
+  {
+    text: 'UnoCSS Preset',
+    link: '/guide/unocss-preset',
+  },
+  {
+    text: '样式覆盖',
+    link: '/guide/custom-style',
+  }
+]
+const aiNavItems = [
+  {
+    text: 'AI 总览',
+    link: '/guide/ai',
+  },
+  {
+    text: 'LLMs.txt',
+    link: '/guide/llms-txt',
+  },
+  {
+    text: '@wot-ui/cli',
+    link: '/guide/open-wot',
+  },
+  {
+    text: 'AI Skills',
+    link: '/guide/skills',
+  }
+]
+const engineeringNavItems = [
+  {
+    text: '国际化',
+    link: '/guide/locale',
+  },
+  {
+    text: '模板',
+    link: '/guide/templates',
+  },
+  {
+    text: '从 v1 迁移到 v2',
+    link: '/guide/migration-v2',
+  },
+  {
+    text: '更新日志',
+    link: '/guide/changelog',
+  }
+]
+const communityNavItems = [
+  {
+    text: '案例',
+    link: '/guide/cases',
+  },
+  {
+    text: '加群沟通',
+    link: '/guide/join-group',
+  }
+]
+const guideGroups = [
+  {
+    text: '快速开始',
+    items: gettingStartedNavItems
+  },
+  {
+    text: '设计系统',
+    items: designSystemNavItems
   },
   {
     text: 'AI',
-    items: [
-      {
-        text: 'LLMs.txt',
-        link: '/guide/llms-txt',
-      },
-      {
-        text: 'CLI',
-        link: '/guide/open-wot',
-      },
-      {
-        text: 'Skills',
-        link: '/guide/skills',
-      }
-    ]
+    items: aiNavItems
+  },
+  {
+    text: '工程实践',
+    items: engineeringNavItems
   },
   {
     text: '社区',
-    items: [
-      {
-        text: '案例',
-        link: '/guide/cases',
-      },
-      {
-        text: '更新日志',
-        link: '/guide/changelog',
-      },
-      {
-        text: '加群沟通',
-        link: '/guide/join-group',
-      }
-    ]
+    items: communityNavItems
   }
 ]
 const ecosystemNavItems = [
@@ -152,8 +162,31 @@ export default defineConfig({
     nav: [
       {
         text: '指南',
-        activeMatch: '/guide/',
-        items: guideGroups
+        activeMatch: '/guide/(introduction|quick-use|common-problems|locale|templates|migration-v2|changelog|cases|join-group)',
+        items: [
+          {
+            text: '快速开始',
+            items: gettingStartedNavItems
+          },
+          {
+            text: '工程实践',
+            items: engineeringNavItems
+          },
+          {
+            text: '社区',
+            items: communityNavItems
+          }
+        ]
+      },
+      {
+        text: '设计系统',
+        activeMatch: '/guide/(design|custom-theme|dark-mode|unocss-preset|custom-style)',
+        items: designSystemNavItems
+      },
+      {
+        text: 'AI',
+        activeMatch: '/guide/(ai|llms-txt|open-wot|skills)',
+        items: aiNavItems
       },
       {
         text: '组件',
