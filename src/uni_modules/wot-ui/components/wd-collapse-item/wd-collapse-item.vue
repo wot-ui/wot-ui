@@ -76,7 +76,7 @@ const contentStyle = computed(() => {
  * 是否选中
  */
 const isSelected = computed(() => {
-  const modelValue = collapse.value ? collapse.value.currentValue.value : []
+  const modelValue = collapse.value && collapse.value.currentValue ? collapse.value.currentValue.value : []
   const { name } = props
   return (isString(modelValue) && modelValue === name) || (isArray(modelValue) && modelValue.indexOf(name as string) >= 0)
 })

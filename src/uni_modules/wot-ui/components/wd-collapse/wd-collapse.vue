@@ -44,7 +44,7 @@ export default {
 
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { computed, getCurrentInstance, onBeforeMount, ref, watch } from 'vue'
+import { computed, getCurrentInstance, ref, watch } from 'vue'
 import { COLLAPSE_KEY, collapseProps, type CollapseExpose, type CollapseToggleAllOptions, type CollapseValue } from './types'
 import { useChildren } from '../../composables/useChildren'
 import { isArray, isBoolean, isDef } from '../../common/util'
@@ -58,9 +58,9 @@ const emit = defineEmits<{
 
 const instance = getCurrentInstance()!
 const { translate } = useTranslate('collapse')
-const contentLineNum = ref<number>(0) // 查看更多的折叠面板，收起时的显示行数
 const innerValue = ref<CollapseValue>(getDefaultValue())
 const currentValue = computed<CollapseValue>(() => (hasModelValue() && isDef(props.modelValue) ? props.modelValue : innerValue.value))
+const contentLineNum = computed<number>(() => (props.viewmore && !currentValue.value ? props.lineNum : 0))
 
 const { linkChildren, children } = useChildren(COLLAPSE_KEY)
 
@@ -113,11 +113,6 @@ watch(
   },
   { deep: true, immediate: true }
 )
-
-onBeforeMount(() => {
-  const { lineNum, viewmore } = props
-  contentLineNum.value = viewmore && !currentValue.value ? lineNum : 0
-})
 
 /**
  * 更新绑定值

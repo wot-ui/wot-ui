@@ -104,6 +104,35 @@ describe('WdCollapse', () => {
     expect(wrapper.find('.wd-collapse__content').classes()).toContain('is-retract')
   })
 
+  // 测试查看更多模式初始展开后收起时更新行数
+  test('查看更多模式初始展开后收起时恢复收起行数', async () => {
+    const wrapper = mount(WdCollapse, {
+      props: {
+        viewmore: true,
+        modelValue: true,
+        lineNum: 3
+      },
+      slots: {
+        default: '<div>这是一段很长的内容，需要折叠起来，点击查看更多才能看到全部内容。</div>'
+      },
+      global: {
+        components: {
+          WdIcon
+        }
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.find('.wd-collapse__content').attributes('style')).toContain('-webkit-line-clamp: 0')
+
+    await wrapper.setProps({ modelValue: false })
+    await nextTick()
+
+    expect(wrapper.find('.wd-collapse__content').classes()).toContain('is-retract')
+    expect(wrapper.find('.wd-collapse__content').attributes('style')).toContain('-webkit-line-clamp: 3')
+  })
+
   // 测试自定义类名
   test('应用自定义类名', async () => {
     const customClass = 'custom-collapse'
