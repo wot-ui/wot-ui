@@ -1,10 +1,8 @@
----
-version: New
----
-
 # Skills
 
 [Skills](https://agentskills.io/what-are-skills) 是 AI 的“超能力模板”，是一套完整的、可复用的、能解决特定问题的方案，我们专为 AI Agent（如 Trae, Cursor, Cline 等）设计了 Wot UI 相关的 Skills，以帮助 AI 更加准确、高效地处理 `wot-ui` 相关的开发任务。
+
+如果你只需要让 AI 读取文档或查询组件 API，可以先查看 [AI 使用指南](/guide/ai) 选择更轻量的接入方式。
 
 ## 🎯 内置技能
 
@@ -29,5 +27,6 @@ npx skills add wot-ui/open-wot
 
 ## 延伸阅读
 
+- [AI 使用指南](/guide/ai)
 - [llms.txt](/guide/llms-txt)
 - [Agent Skills、Rules、Prompt、MCP，一文把它们理清楚了](https://juejin.cn/post/7599268297201958950)

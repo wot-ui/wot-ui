@@ -6,6 +6,8 @@ version: New
 
 [llms.txt](https://llmstxt.org/) is a text file designed specifically for large language models, similar to robots.txt but with different goals. robots.txt tells search engine crawlers which pages can be crawled, while llms.txt provides structured information about website content for AI tools, helping them better understand and index component library documentation, examples, and best practices.
 
+If you are not sure which AI integration to choose, start with the [AI Guide](/en-US/guide/ai).
+
 ## Available Resources
 
 We also provide 2 `llms.txt` routes to help AI tools access the documentation:
@@ -39,5 +41,6 @@ If you don't use llms.txt, you can also directly read component library document
 
 ## Further Reading
 
+- [AI Guide](/en-US/guide/ai)
 - [Skills](./skills)
 - [llms.txt: Let AI Better Understand Your Documentation](https://juejin.cn/post/7500981295105015847)

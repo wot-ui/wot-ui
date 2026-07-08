@@ -122,4 +122,5 @@ const themeVars = reactive<ConfigProviderThemeVars>({
 
 - [ConfigProvider 全局配置](/component/config-provider)
 - [useConfigProvider](/component/use-config-provider)
-
+- [UnoCSS Preset](/guide/unocss-preset)
+- [深色模式](/guide/dark-mode)

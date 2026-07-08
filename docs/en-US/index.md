@@ -21,6 +21,9 @@ hero:
     - theme: alt
       text: Components
       link: /en-US/component/button
+    - theme: alt
+      text: AI Guide
+      link: /en-US/guide/ai
     - theme: brand
       text: 🥤 Buy Us a Coffee
       link: /en-US/reward/reward
@@ -34,7 +37,8 @@ features:
     details: Supports WeChat Mini Program, Alipay Mini Program, DingTalk Mini Program, H5, APP, and more.
   - icon: 🤖
     title: AI-Friendly
-    details: Provides an AI-friendly design system and AI toolchain.
+    details: Provides LLMs.txt, MCP Server, CLI, and AI Skills so AI tools can understand and use the component library more accurately.
+    link: /en-US/guide/ai
   - icon: 💖
     title: Quick Start
     details: Quick start template powered by wot-starter.
