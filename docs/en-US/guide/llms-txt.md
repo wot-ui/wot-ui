@@ -1,7 +1,3 @@
----
-version: New
----
-
 # LLMs.txt
 
 [llms.txt](https://llmstxt.org/) is a text file designed specifically for large language models, similar to robots.txt but with different goals. robots.txt tells search engine crawlers which pages can be crawled, while llms.txt provides structured information about website content for AI tools, helping them better understand and index component library documentation, examples, and best practices.

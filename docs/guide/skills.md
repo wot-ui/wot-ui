@@ -20,7 +20,7 @@
 推荐使用脚本安装 Skills，可以根据实际需求选择安装项：
 
 ```sh
-pnpx skills add wot-ui/open-wot
+pnpm dlx skills add wot-ui/open-wot
 # or
 npx skills add wot-ui/open-wot
 ```

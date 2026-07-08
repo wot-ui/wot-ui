@@ -6,6 +6,7 @@ import HomeFriendly from './components/HomeFriendly.vue'
 import HomeTeam from './components/HomeTeam.vue'
 import CustomFooter from './components/CustomFooter.vue'
 import WwAds from './components/WwAds.vue'
+import GitHubStarPrompt from './components/GitHubStarPrompt.vue'
 
 const { Layout } = DefaultTheme
 </script>
@@ -39,6 +40,7 @@ const { Layout } = DefaultTheme
 
     <!-- 全局底部页脚 -->
     <template #layout-bottom>
+      <GitHubStarPrompt />
       <CustomFooter />
     </template>
   </Layout>

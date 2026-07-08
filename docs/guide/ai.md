@@ -66,7 +66,7 @@ wot mcp
 安装 Wot UI 相关 Skills：
 
 ```bash
-pnpx skills add wot-ui/open-wot
+pnpm dlx skills add wot-ui/open-wot
 ```
 
 Skills 适合让 AI 执行更主动的任务，例如组件选型、API 查询、生成 Vue 3 + uni-app 页面代码、主题生成、UnoCSS Preset 接入和常见问题排查。

@@ -1,7 +1,3 @@
----
-version: New
----
-
 # AI Guide
 
 Wot UI provides AI-oriented documentation indexes, command-line queries, an MCP Server, and Agent Skills. Choose the integration path that matches your workflow so AI tools can understand components, examples, theme tokens, and best practices more accurately.
@@ -70,7 +66,7 @@ Add the server to an MCP-compatible client:
 Install Wot UI-related Skills:
 
 ```bash
-pnpx skills add wot-ui/open-wot
+pnpm dlx skills add wot-ui/open-wot
 ```
 
 Skills are useful for more active Agent workflows, such as component selection, API lookup, Vue 3 + uni-app page generation, theme generation, UnoCSS Preset integration, and troubleshooting common issues.
