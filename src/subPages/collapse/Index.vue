@@ -48,6 +48,13 @@
       </demo-group>
 
       <demo-group :title="$t('zu-jian-bian-ti')">
+        <demo-group-item :title="$t('fei-shou-kong-mo-shi')" no-padding>
+          <wd-collapse>
+            <wd-collapse-item :title="$t('biao-qian-1')" name="item1">{{ $t('zhe-shi-yi-tiao-jian-dan-de-shi-li-wen-zi') }}</wd-collapse-item>
+            <wd-collapse-item :title="$t('biao-qian-2')" name="item2">{{ $t('zhe-shi-yi-tiao-jian-dan-de-shi-li-wen-zi-0') }}</wd-collapse-item>
+          </wd-collapse>
+        </demo-group-item>
+
         <demo-group-item :title="$t('shou-feng-qin')" no-padding>
           <wd-collapse v-model="value2" :accordion="accordion" @change="handleChange2">
             <wd-collapse-item :title="$t('biao-qian-1')" name="item1">{{ $t('zhe-shi-yi-tiao-jian-dan-de-shi-li-wen-zi') }}</wd-collapse-item>

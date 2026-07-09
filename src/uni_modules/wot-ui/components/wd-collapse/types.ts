@@ -1,5 +1,7 @@
-import { type ComponentPublicInstance, type ExtractPropTypes, type InjectionKey, type PropType } from 'vue'
+import { type ComponentPublicInstance, type ComputedRef, type ExtractPropTypes, type InjectionKey, type PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeNumberProp, makeStringProp } from '../../common/props'
+
+export type CollapseValue = string | string[] | boolean
 
 export type CollapseToggleAllOptions =
   | boolean
@@ -10,6 +12,7 @@ export type CollapseToggleAllOptions =
 
 export type CollapseProvide = {
   props: Partial<CollapseProps>
+  currentValue: ComputedRef<CollapseValue>
   toggle: (name: string, expanded: boolean) => void
 }
 
@@ -27,7 +30,8 @@ export const collapseProps = {
    * 类型: string | string[] | boolean
    */
   modelValue: {
-    type: [String, Array, Boolean] as PropType<string | string[] | boolean>
+    type: [String, Array, Boolean] as PropType<CollapseValue>,
+    default: void 0
   },
   /**
    * 是否开启手风琴模式
