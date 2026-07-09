@@ -191,6 +191,8 @@ const handleClick = () => {
 | src | 图片地址 | string | `''` |
 | text | 文本内容 | string | `''` |
 | icon | 图标名称，使用 wd-icon 组件 | string | `''` |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | size | 头像尺寸，支持 `large / medium / normal / small` 或自定义数值/单位字符串 | string \| number | normal |
 | shape | 头像形状，支持 `round / square` | string | round |
 | bg-color | 背景颜色 | string | `''` |

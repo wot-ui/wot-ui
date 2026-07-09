@@ -7,7 +7,7 @@
     <!-- 文本 -->
     <text v-else-if="text" class="wd-avatar__text">{{ text }}</text>
     <!-- 图标 -->
-    <wd-icon v-else-if="icon" :name="icon" custom-class="wd-avatar__icon" />
+    <wd-icon v-else-if="hasIcon" :name="icon" :class-prefix="iconPrefix" :css-icon="cssIcon" custom-class="wd-avatar__icon" />
   </view>
 </template>
 
@@ -42,6 +42,8 @@ const props = defineProps(avatarProps)
  */
 const emit = defineEmits(['error', 'click'])
 const slots = useSlots()
+
+const hasIcon = computed(() => Boolean(props.icon || (isString(props.cssIcon) && props.cssIcon)))
 
 // 父组件上下文：_internal 用于 avatar-group 内部的溢出计数头像，跳过父组件上下文
 const { parent: avatarGroup, index } = props._internal ? { parent: ref(null), index: ref(-1) } : useParent(AVATAR_GROUP_KEY)

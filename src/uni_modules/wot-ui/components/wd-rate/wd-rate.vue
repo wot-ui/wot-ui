@@ -10,6 +10,8 @@
       <wd-icon
         :custom-class="`wd-rate__item-star ${rate === '100%' ? 'wd-rate__item-star--active' : ''}`"
         :name="isActive(rate) ? activeIcon : icon"
+        :class-prefix="iconPrefix"
+        :css-icon="cssIcon"
         :custom-style="`${rate === '100%' ? iconActiveStyle : iconStyle} ${iconSize}`"
         @click="handleClick(index, false)"
       />
@@ -17,6 +19,8 @@
         <wd-icon
           :custom-class="`wd-rate__item-star ${rate !== '0' ? 'wd-rate__item-star--active' : ''}`"
           :name="isActive(rate) ? activeIcon : icon"
+          :class-prefix="iconPrefix"
+          :css-icon="cssIcon"
           :custom-style="`${rate !== '0' ? iconActiveStyle : iconStyle} ${iconSize}`"
         />
       </view>

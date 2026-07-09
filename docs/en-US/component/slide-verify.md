@@ -121,6 +121,8 @@ Supports customizing content through slots.
 | active-background-color | Background color when active | string | - |
 | icon | Slider icon name | string | `double-right` |
 | success-icon | Success icon name | string | `check-circle-fill` |
+| icon-prefix | Icon class prefix, see Icon component for usage | string | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | icon-size | Icon size | string / number | - |
 | success-icon-size | Success icon size | string / number | - |
 

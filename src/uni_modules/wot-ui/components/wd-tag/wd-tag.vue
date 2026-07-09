@@ -19,8 +19,8 @@
     </view>
 
     <template v-else>
-      <slot name="icon" v-if="$slots.icon || icon">
-        <wd-icon :name="icon" custom-class="wd-tag__icon" />
+      <slot name="icon" v-if="$slots.icon || hasIcon">
+        <wd-icon :name="icon" :class-prefix="iconPrefix" :css-icon="cssIcon" custom-class="wd-tag__icon" />
       </slot>
       <view class="wd-tag__text" :style="textStyle" v-if="$slots.default">
         <slot />
@@ -46,7 +46,7 @@ export default {
 </script>
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { objToStyle, isUndefined } from '../../common/util'
+import { objToStyle, isString, isUndefined } from '../../common/util'
 import { computed, ref } from 'vue'
 import { useTranslate } from '../../composables/useTranslate'
 import { tagProps } from './types'
@@ -57,6 +57,8 @@ const emit = defineEmits(['click', 'close', 'confirm'])
 
 const { translate } = useTranslate('tag')
 const globalConfig = useGlobalConfig()
+
+const hasIcon = computed(() => Boolean(props.icon || (isString(props.cssIcon) && props.cssIcon)))
 
 const effectiveSize = computed(() => {
   return props.size || globalConfig.value.tag?.size || 'default'

@@ -104,6 +104,8 @@ After setting the `clearable` property, clicking the current minimum score again
 | active-color | Selected icon color, supports `string` or `string[]` | `string \| string[]` | - |
 | icon | Unselected icon class name | `string` | `'star-fill'` |
 | active-icon | Selected icon class name | `string` | `'star-fill'` |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | disabled | Whether disabled | `boolean` | `false` |
 | allow-half | Whether to allow half selection | `boolean` | `false` |
 | clearable | Whether to allow clearing after clicking again | `boolean` | `false` |

@@ -209,6 +209,7 @@
 | suffix-icon | 后置图标名 | string | - |
 | icon-size | 图标大小 | `string \| number` | - |
 | icon-prefix | 图标类名前缀 | string | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | to | 跳转地址 | string | - |
 | replace | 跳转时是否替换当前页面历史 | boolean | false |
 | clickable | 是否开启点击反馈 | boolean | false |

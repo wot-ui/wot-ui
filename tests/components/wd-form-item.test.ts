@@ -182,6 +182,17 @@ describe('WdFormItem', () => {
     expect(cell.props('isLink')).toBe(true)
   })
 
+  test('iconPrefix 和 cssIcon 透传给 wd-cell', () => {
+    const wrapper = mount(WdFormItem, {
+      props: { prefixIcon: 'i-carbon-user', iconPrefix: 'fish', cssIcon: true },
+      global: { components: globalComponents }
+    })
+    const cell = wrapper.findComponent({ name: 'wd-cell' })
+    expect(cell.props('prefixIcon')).toBe('i-carbon-user')
+    expect(cell.props('iconPrefix')).toBe('fish')
+    expect(cell.props('cssIcon')).toBe(true)
+  })
+
   test('validate-trigger 为 change 时，字段变化会触发校验', async () => {
     const schema = {
       validate(model: Record<string, string>) {

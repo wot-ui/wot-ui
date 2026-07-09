@@ -191,6 +191,8 @@ Use `vertical` property to enable vertical direction stack display.
 | src | Image URL | string | `''` |
 | text | Text content | string | `''` |
 | icon | Icon name, uses wd-icon component | string | `''` |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | size | Avatar size, supports `large / medium / normal / small` or custom number/unit string | string \| number | normal |
 | shape | Avatar shape, supports `round / square` | string | round |
 | bg-color | Background color | string | `''` |

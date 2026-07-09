@@ -104,6 +104,8 @@ function handleChange({ value }: { value: number }) {
 | active-color | 选中图标颜色，支持 `string` 或 `string[]` | `string \| string[]` | - |
 | icon | 未选中图标类名 | `string` | `'star-fill'` |
 | active-icon | 选中图标类名 | `string` | `'star-fill'` |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | allow-half | 是否允许半选 | `boolean` | `false` |
 | clearable | 是否允许再次点击后清除 | `boolean` | `false` |
@@ -116,4 +118,3 @@ function handleChange({ value }: { value: number }) {
 | 事件名称 | 说明 | 参数 |
 | --- | --- | --- |
 | change | 点击图标修改分值时触发 | `{ value }` |
-

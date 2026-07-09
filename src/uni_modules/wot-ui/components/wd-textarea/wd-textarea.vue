@@ -1,6 +1,7 @@
 <template>
   <view :class="rootClass" :style="customStyle">
     <view class="wd-textarea__body">
+      <wd-icon v-if="prefixIcon" custom-class="wd-textarea__prefix" :name="prefixIcon" :class-prefix="iconPrefix" :css-icon="cssIcon" />
       <textarea
         :class="`wd-textarea__inner ${customTextareaClass}`"
         v-model="inputValue"

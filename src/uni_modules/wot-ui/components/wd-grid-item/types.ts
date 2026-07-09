@@ -61,6 +61,15 @@ export const gridItemProps = {
    */
   iconPrefix: String,
   /**
+   * CSS 图标，用法参考 Icon 组件
+   * 类型: boolean | string
+   * 默认值: false
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 徽标显示值
    * 类型: string | number
    * 默认值: ''

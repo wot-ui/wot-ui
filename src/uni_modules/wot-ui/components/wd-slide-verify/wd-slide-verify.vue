@@ -18,11 +18,17 @@
       <!-- 滑块 -->
       <view class="wd-slide-verify__button" @touchstart.prevent="onTouchStart" @touchmove.prevent="onTouchMove" @touchend="onTouchEnd">
         <slot v-if="isPass" name="success-icon">
-          <wd-icon custom-class="wd-slide-verify__button-icon wd-slide-verify__button-icon--success" :name="successIcon" :size="successIconSize" />
+          <wd-icon
+            custom-class="wd-slide-verify__button-icon wd-slide-verify__button-icon--success"
+            :name="successIcon"
+            :size="successIconSize"
+            :class-prefix="iconPrefix"
+            :css-icon="cssIcon"
+          />
         </slot>
 
         <slot v-else name="icon">
-          <wd-icon custom-class="wd-slide-verify__button-icon" :name="icon" :size="iconSize" />
+          <wd-icon custom-class="wd-slide-verify__button-icon" :name="icon" :size="iconSize" :class-prefix="iconPrefix" :css-icon="cssIcon" />
         </slot>
       </view>
     </view>

@@ -20,6 +20,7 @@
             :name="prefixIcon"
             :size="iconSize"
             :class-prefix="iconPrefix"
+            :css-icon="cssIcon"
             :custom-class="`wd-cell__prefix ${customPrefixClass}`"
           ></wd-icon>
         </slot>
@@ -60,6 +61,7 @@
               :name="suffixIcon"
               :size="iconSize"
               :class-prefix="iconPrefix"
+              :css-icon="cssIcon"
               :custom-class="`wd-cell__suffix ${customSuffixClass}`"
             ></wd-icon>
           </slot>

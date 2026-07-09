@@ -25,6 +25,17 @@ export const tabbarItemProps = {
    */
   icon: String,
   /**
+   * 图标类名前缀，用法参考 Icon 组件
+   */
+  iconPrefix: String,
+  /**
+   * CSS 图标，用法参考 Icon 组件
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 徽标显示值
    */
   value: [Number, String] as PropType<number | string>,

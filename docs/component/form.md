@@ -1480,6 +1480,7 @@ function handleIconClick() {
 | prefix-icon | 前置图标类名 | `string` | - |
 | icon-size | 图标大小 | `string \| number` | - |
 | icon-prefix | 类名前缀，用于使用自定义图标 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | label | 描述信息 | `string` | - |
 | clickable | 是否开启点击反馈 | `boolean` | `false` |
 | is-link | 是否展示右侧箭头并开启点击反馈 | `boolean` | `false` |

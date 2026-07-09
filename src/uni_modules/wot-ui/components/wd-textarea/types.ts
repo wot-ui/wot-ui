@@ -113,6 +113,17 @@ export const textareaProps = {
    */
   prefixIcon: String,
   /**
+   * 图标类名前缀，用法参考 Icon 组件
+   */
+  iconPrefix: String,
+  /**
+   * CSS 图标，用法参考 Icon 组件
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 是否显示字数限制，需要同时设置maxlength
    */
   showWordLimit: makeBooleanProp(false),

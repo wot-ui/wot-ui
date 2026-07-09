@@ -1,7 +1,14 @@
 <template>
   <view :class="rootClass" :style="customStyle" @click="handleClick">
     <view v-if="prefixIcon || $slots.prefix" class="wd-input__prefix">
-      <wd-icon v-if="prefixIcon && !$slots.prefix" custom-class="wd-input__icon" :name="prefixIcon" @click="onClickPrefixIcon" />
+      <wd-icon
+        v-if="prefixIcon && !$slots.prefix"
+        custom-class="wd-input__icon"
+        :name="prefixIcon"
+        :class-prefix="iconPrefix"
+        :css-icon="cssIcon"
+        @click="onClickPrefixIcon"
+      />
       <slot v-else name="prefix"></slot>
     </view>
     <input
@@ -44,7 +51,14 @@
       <wd-icon v-if="showClear" custom-class="wd-input__clear" name="close-circle" @click="handleClear" />
       <wd-icon v-if="showPassword" custom-class="wd-input__icon" :name="isPwdVisible ? 'eye' : 'eye-invisible'" @click="togglePwdVisible" />
       <view v-if="showWordCount" class="wd-input__count">{{ currentLength }}/{{ maxlength }}</view>
-      <wd-icon v-if="suffixIcon && !$slots.suffix" custom-class="wd-input__icon" :name="suffixIcon" @click="onClickSuffixIcon" />
+      <wd-icon
+        v-if="suffixIcon && !$slots.suffix"
+        custom-class="wd-input__icon"
+        :name="suffixIcon"
+        :class-prefix="iconPrefix"
+        :css-icon="cssIcon"
+        @click="onClickSuffixIcon"
+      />
       <slot v-else name="suffix"></slot>
     </view>
   </view>

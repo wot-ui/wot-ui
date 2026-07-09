@@ -66,6 +66,35 @@ describe('WdSidebarItem', () => {
     expect(wrapper.find('.custom-icon').exists()).toBe(true)
   })
 
+  test('iconPrefix 和 cssIcon 透传到图标组件', () => {
+    const prefixWrapper = mount(WdSidebarItem, {
+      props: { label: '分类', value: '1', icon: 'kehuishouwu', iconPrefix: 'fish' },
+      global: { components: globalComponents }
+    })
+    expect(prefixWrapper.findComponent(WdIcon).classes()).toContain('fish-kehuishouwu')
+
+    const cssWrapper = mount(WdSidebarItem, {
+      props: { label: '分类', value: '1', icon: 'i-carbon-menu', cssIcon: true },
+      global: { components: globalComponents }
+    })
+    expect(cssWrapper.findComponent(WdIcon).classes()).toContain('wd-icon--css')
+    expect(cssWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-menu')
+  })
+
+  test('cssIcon 字符串可单独作为图标类名，布尔值不可单独渲染', () => {
+    const stringWrapper = mount(WdSidebarItem, {
+      props: { label: '分类', value: '1', cssIcon: 'i-carbon-menu' },
+      global: { components: globalComponents }
+    })
+    expect(stringWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-menu')
+
+    const booleanWrapper = mount(WdSidebarItem, {
+      props: { label: '分类', value: '1', cssIcon: true },
+      global: { components: globalComponents }
+    })
+    expect(booleanWrapper.findComponent(WdIcon).exists()).toBe(false)
+  })
+
   test('与 WdSidebar 集成：选中项添加 wd-sidebar-item--active 类', async () => {
     const wrapper = mount(
       {

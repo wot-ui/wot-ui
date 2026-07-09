@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdRate from '@/uni_modules/wot-ui/components/wd-rate/wd-rate.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, test, expect, vi } from 'vitest'
 import { nextTick } from 'vue'
 
@@ -179,6 +180,22 @@ describe('评分组件', () => {
     // 我们只检查 props 是否正确传递
     expect(vm.icon).toBe(icon)
     expect(vm.activeIcon).toBe(activeIcon)
+  })
+
+  test('iconPrefix 和 cssIcon 透传到评分图标', async () => {
+    const prefixWrapper = mount(WdRate, {
+      props: { modelValue: 0, icon: 'kehuishouwu', iconPrefix: 'fish' }
+    })
+    await nextTick()
+    expect(prefixWrapper.findComponent(WdIcon).classes()).toContain('fish-kehuishouwu')
+
+    const cssWrapper = mount(WdRate, {
+      props: { modelValue: 5, icon: 'i-carbon-star', activeIcon: 'i-carbon-star-filled', cssIcon: true }
+    })
+    await nextTick()
+    const icon = cssWrapper.findComponent(WdIcon)
+    expect(icon.classes()).toContain('wd-icon--css')
+    expect(icon.classes()).toContain('i-carbon-star-filled')
   })
 
   // 测试自定义颜色

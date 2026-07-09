@@ -78,6 +78,8 @@
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | icon | 缺省图标名称或图片 URL | string | `empty` |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | icon-size | 图标或图片大小，默认单位为 px | string / number | - |
 | tip | 提示文案 | string | - |
 

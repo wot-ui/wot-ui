@@ -81,6 +81,21 @@ describe('WdEmpty', () => {
     expect(wrapper.findComponent(WdIcon).props('name')).toBe(icon)
   })
 
+  test('iconPrefix 和 cssIcon 透传到图标组件', () => {
+    const prefixWrapper = mount(WdEmpty, {
+      props: { icon: 'kehuishouwu', iconPrefix: 'fish' },
+      global: { components: { WdIcon } }
+    })
+    expect(prefixWrapper.findComponent(WdIcon).classes()).toContain('fish-kehuishouwu')
+
+    const cssWrapper = mount(WdEmpty, {
+      props: { icon: 'i-carbon-empty', cssIcon: true },
+      global: { components: { WdIcon } }
+    })
+    expect(cssWrapper.findComponent(WdIcon).classes()).toContain('wd-icon--css')
+    expect(cssWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-empty')
+  })
+
   // 测试自定义图标大小 - 数字
   test('数字类型的图标大小', () => {
     const iconSize = 100

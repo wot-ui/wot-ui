@@ -50,6 +50,13 @@ export const formItemProps = {
    */
   iconPrefix: String,
   /**
+   * CSS 图标，用法参考 Icon 组件
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 描述信息
    */
   label: String,

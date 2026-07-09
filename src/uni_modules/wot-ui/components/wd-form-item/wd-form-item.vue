@@ -9,6 +9,7 @@
     :prefix-icon="prefixIcon"
     :icon-size="iconSize"
     :icon-prefix="iconPrefix"
+    :css-icon="cssIcon"
     :required="isRequired"
     :size="formItemSize"
     :value-align="formItemValueAlign"

@@ -39,6 +39,37 @@ describe('WdTabbarItem', () => {
     expect(wrapper.find('.wd-tabbar-item__body-icon').classes()).toContain('is-inactive')
   })
 
+  test('iconPrefix 透传到图标类名前缀', () => {
+    const wrapper = mount(WdTabbarItem, {
+      props: { title: '回收', icon: 'kehuishouwu', iconPrefix: 'fish' }
+    })
+    const icon = wrapper.findComponent(WdIcon)
+    expect(icon.classes()).toContain('fish')
+    expect(icon.classes()).toContain('fish-kehuishouwu')
+  })
+
+  test('cssIcon 透传到图标组件', () => {
+    const wrapper = mount(WdTabbarItem, {
+      props: { title: '首页', icon: 'i-carbon-sun', cssIcon: true }
+    })
+    const icon = wrapper.findComponent(WdIcon)
+    expect(icon.classes()).toContain('wd-icon--css')
+    expect(icon.classes()).toContain('i-carbon-sun')
+    expect(icon.classes()).not.toContain('wd-icon-i-carbon-sun')
+  })
+
+  test('cssIcon 字符串可单独作为图标类名，布尔值不可单独渲染', () => {
+    const stringWrapper = mount(WdTabbarItem, {
+      props: { title: '首页', cssIcon: 'i-carbon-sun' }
+    })
+    expect(stringWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-sun')
+
+    const booleanWrapper = mount(WdTabbarItem, {
+      props: { title: '首页', cssIcon: true }
+    })
+    expect(booleanWrapper.findComponent(WdIcon).exists()).toBe(false)
+  })
+
   test('customClass 追加到根元素', () => {
     const wrapper = mount(WdTabbarItem, {
       props: { title: '首页', customClass: 'my-item' }

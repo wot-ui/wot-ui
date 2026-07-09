@@ -209,6 +209,7 @@ Set `prefix-icon` to use built-in icons, or use `prefix` slot to customize leadi
 | suffix-icon | Trailing icon name | string | - |
 | icon-size | Icon size | `string \| number` | - |
 | icon-prefix | Icon class prefix | string | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | to | Navigation address | string | - |
 | replace | Whether to replace current page history when navigating | boolean | false |
 | clickable | Whether to enable click feedback | boolean | false |

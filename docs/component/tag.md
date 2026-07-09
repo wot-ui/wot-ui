@@ -184,6 +184,8 @@ function handleConfirm({ value }: { value: string }) {
 | size | 标签尺寸，可选值为 `small`、`medium`、`large`、`extra-large`、`default` | `TagSize` | `default` |
 | type | 标签类型，可选值为 `default`、`primary`、`success`、`warning`、`danger`、`volcano`、`lightblue`、`cyan`、`pink`、`purple` | `TagType` | `default` |
 | icon | 左侧图标 | `string` | `''` |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | closable | 是否可关闭 | `boolean` | `false` |
 | dynamic | 是否为新增标签 | `boolean` | `false` |
 | color | 文字颜色 | `string` | `''` |

@@ -121,6 +121,8 @@ function handleReset() {
 | active-background-color | 激活时的背景颜色 | string | - |
 | icon | 滑块图标名称 | string | `double-right` |
 | success-icon | 成功图标名称 | string | `check-circle-fill` |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | icon-size | 图标大小 | string / number | - |
 | success-icon-size | 成功图标大小 | string / number | - |
 

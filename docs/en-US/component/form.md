@@ -950,6 +950,7 @@ All properties of this component, in addition to supporting specific form item c
 | prefix-icon | Prefix icon class name | `string` | - |
 | icon-size | Icon size | `string \| number` | - |
 | icon-prefix | Class name prefix, used for custom icons | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | label | Description information | `string` | - |
 | clickable | Whether to enable click feedback | `boolean` | `false` |
 | is-link | Whether to show right arrow and enable click feedback | `boolean` | `false` |

@@ -14,6 +14,13 @@ export const sidebarItemProps = {
   badgeProps: Object as PropType<Partial<BadgeProps>>,
   /** 图标 */
   icon: String,
+  /** 图标类名前缀，用法参考 Icon 组件 */
+  iconPrefix: String,
+  /** CSS 图标，用法参考 Icon 组件 */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
   /** 是否点状徽标 */
   isDot: {
     type: Boolean,

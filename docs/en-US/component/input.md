@@ -187,6 +187,8 @@ For the current form scenario, it is recommended to use `wd-form` and `wd-form-i
 | show-password | Whether to display the password toggle button | `boolean` | `false` |
 | prefix-icon | Prefix icon name | `string` | - |
 | suffix-icon | Suffix icon name | `string` | - |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | show-word-limit | Whether to display character count, need to set `maxlength` at the same time | `boolean` | `false` |
 | error | Whether to display error state | `boolean` | `false` |
 | align-right | Whether the input content is right-aligned | `boolean` | `false` |

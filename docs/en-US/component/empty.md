@@ -78,6 +78,8 @@ Recommended styles (can be added in page or global styles):
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | icon | Empty state icon name or image URL | string | `empty` |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | icon-size | Icon or image size, default unit is px | string / number | - |
 | tip | Prompt text | string | - |
 

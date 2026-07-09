@@ -248,6 +248,8 @@ const tabbar = ref(1)
 | title | 标签页标题 | `string` | - |
 | name | 唯一标识符，不传时默认使用索引值 | `string \| number` | - |
 | icon | 图标名称 | `string` | - |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | value | 徽标显示值 | `number \| string` | - |
 | is-dot | 是否显示点状徽标 | `boolean` | `false` |
 | max | 徽标最大值 | `number` | `99` |
