@@ -166,6 +166,27 @@ describe('WdTextarea', () => {
     expect(icons[1].classes()).not.toContain('wd-icon--css')
   })
 
+  test('cssIcon 字符串可单独渲染前置图标，布尔值不单独渲染', () => {
+    const wrapper = mount(WdTextarea, {
+      props: {
+        cssIcon: 'i-carbon-edit'
+      }
+    })
+
+    const icon = wrapper.findComponent(WdIcon)
+    expect(icon.exists()).toBe(true)
+    expect(icon.classes()).toContain('wd-icon--css')
+    expect(icon.classes()).toContain('i-carbon-edit')
+
+    const booleanWrapper = mount(WdTextarea, {
+      props: {
+        cssIcon: true
+      }
+    })
+
+    expect(booleanWrapper.findComponent(WdIcon).exists()).toBe(false)
+  })
+
   // 测试自动聚焦
   test('自动聚焦', () => {
     const wrapper = mount(WdTextarea, {

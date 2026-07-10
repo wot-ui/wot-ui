@@ -1,7 +1,7 @@
 <template>
   <view :class="rootClass" :style="customStyle">
     <view class="wd-textarea__body">
-      <wd-icon v-if="prefixIcon" custom-class="wd-textarea__prefix" :name="prefixIcon" :class-prefix="iconPrefix" :css-icon="cssIcon" />
+      <wd-icon v-if="hasPrefixIcon" custom-class="wd-textarea__prefix" :name="prefixIcon" :class-prefix="iconPrefix" :css-icon="cssIcon" />
       <textarea
         :class="`wd-textarea__inner ${customTextareaClass}`"
         v-model="inputValue"
@@ -58,7 +58,7 @@ export default {
 <script lang="ts" setup>
 import { computed, onBeforeMount, ref, watch } from 'vue'
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { isDef, pause } from '../../common/util'
+import { isDef, isString, pause } from '../../common/util'
 import { useParent } from '../../composables/useParent'
 import { useTranslate } from '../../composables/useTranslate'
 import { useFormDisabled } from '../../composables/useFormDisabled'
@@ -71,6 +71,8 @@ const props = defineProps(textareaProps)
 const emit = defineEmits(['update:modelValue', 'clear', 'blur', 'focus', 'input', 'keyboardheightchange', 'confirm', 'linechange', 'click'])
 const { parent: formItemValidate } = useParent(FORM_ITEM_VALIDATE_KEY)
 const isDisabled = useFormDisabled(props)
+
+const hasPrefixIcon = computed(() => Boolean(props.prefixIcon || (isString(props.cssIcon) && props.cssIcon)))
 
 const placeholderValue = computed(() => {
   return isDef(props.placeholder) ? props.placeholder : translate('placeholder')

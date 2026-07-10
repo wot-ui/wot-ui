@@ -80,6 +80,12 @@ Set `prefix-icon` to use built-in icons, or use `prefix` slot to customize leadi
 </wd-cell-group>
 ```
 
+When both `prefix-icon` and `suffix-icon` use CSS icons, it is recommended to set `css-icon` to `true` and pass each icon prop as its own CSS icon class. If you pass a string class name directly to `css-icon`, the prefix and suffix icons will share the same CSS class.
+
+```html
+<wd-cell css-icon prefix-icon="i-carbon-user" suffix-icon="i-carbon-chevron-right" />
+```
+
 ### Large Size
 
 ```html

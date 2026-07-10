@@ -58,6 +58,12 @@ function handleFail() {
 <wd-slide-verify icon="arrow-right" success-icon="thumb-up-fill" />
 ```
 
+如果滑块图标和成功图标都使用 CSS 图标，推荐将 `css-icon` 设置为 `true`，并分别把 `icon`、`success-icon` 写成对应的 CSS 图标类名。若直接给 `css-icon` 传字符串类名，滑块图标和成功图标会共用同一个 CSS 类名。
+
+```html
+<wd-slide-verify css-icon icon="i-carbon-arrow-right" success-icon="i-carbon-checkmark" />
+```
+
 ## 特殊样式
 
 ### 自定义容错范围

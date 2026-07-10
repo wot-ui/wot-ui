@@ -111,6 +111,12 @@ function handleInput(event) {
 />
 ```
 
+如果前后图标都使用 CSS 图标，推荐将 `css-icon` 设置为 `true`，并分别把 `prefix-icon`、`suffix-icon` 写成对应的 CSS 图标类名。若直接给 `css-icon` 传字符串类名，前后图标会共用同一个 CSS 类名。
+
+```html
+<wd-input css-icon prefix-icon="i-carbon-search" suffix-icon="i-carbon-send" />
+```
+
 ### 后缀插槽
 
 通过 `suffix` 插槽自定义后缀内容。

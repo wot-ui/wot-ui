@@ -111,6 +111,12 @@ Set the front and back icons through `prefix-icon` and `suffix-icon`. For icon n
 />
 ```
 
+When both prefix and suffix icons use CSS icons, it is recommended to set `css-icon` to `true` and pass each icon prop as its own CSS icon class. If you pass a string class name directly to `css-icon`, the prefix and suffix icons will share the same CSS class.
+
+```html
+<wd-input css-icon prefix-icon="i-carbon-search" suffix-icon="i-carbon-send" />
+```
+
 ### Suffix Slot
 
 Customize the suffix content through the `suffix` slot.

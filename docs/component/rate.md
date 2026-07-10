@@ -64,6 +64,12 @@ function handleChange({ value }: { value: number }) {
 <wd-rate v-model="value" block icon="thumb-down-fill" active-icon="thumb-up-fill" active-color="var(--wot-green-6)" />
 ```
 
+如果未选中和选中图标都使用 CSS 图标，推荐将 `css-icon` 设置为 `true`，并分别把 `icon`、`active-icon` 写成对应的 CSS 图标类名。若直接给 `css-icon` 传字符串类名，未选中和选中图标会共用同一个 CSS 类名。
+
+```html
+<wd-rate v-model="value" css-icon icon="i-carbon-star" active-icon="i-carbon-star-filled" />
+```
+
 ### 修改大小与间隔
 
 通过 `size` 修改图标大小，`space` 修改图标间距。

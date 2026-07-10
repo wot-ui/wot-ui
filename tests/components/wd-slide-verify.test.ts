@@ -39,6 +39,19 @@ describe('wd-slide-verify', () => {
   })
 
   test('iconPrefix 和 cssIcon 透传到滑块图标与成功图标', async () => {
+    const prefixWrapper = mount(WdSlideVerify, {
+      props: {
+        icon: 'i-carbon-arrow-right',
+        iconPrefix: 'fish'
+      }
+    })
+
+    await flushPromises()
+
+    const prefixIcon = prefixWrapper.findComponent(WdIcon)
+    expect(prefixIcon.classes()).toContain('fish-i-carbon-arrow-right')
+    expect(prefixIcon.classes()).not.toContain('wd-icon--css')
+
     const wrapper = mount(WdSlideVerify, {
       props: {
         icon: 'i-carbon-arrow-right',
