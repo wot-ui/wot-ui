@@ -232,6 +232,7 @@
 | hide-asterisk | 是否隐藏必填星号 | boolean | false |
 | ellipsis | 内容是否超出隐藏显示省略号 | boolean | false |
 | use-title-slot | 是否启用 title 插槽 | boolean | true |
+| use-label-slot | 是否启用 label 插槽 | boolean | true |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 | custom-prefix-class | 前置图标自定义样式类 | string | `''` |

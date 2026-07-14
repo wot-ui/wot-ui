@@ -33,7 +33,7 @@
           <!--title END-->
 
           <!--label BEGIN-->
-          <slot name="label">
+          <slot v-if="(useLabelSlot && $slots, label)" name="label">
             <view v-if="label" :class="`wd-cell__label ${customLabelClass}`">{{ label }}</view>
           </slot>
           <!--label END-->
@@ -140,7 +140,7 @@ const showLeft = computed(() => {
   // 有title插槽或title属性
   const hasTitle = (slots.title && props.useTitleSlot) || props.title
   // 有label插槽或label属性
-  const hasLabel = slots.label || props.label
+  const hasLabel = (slots.label && props.useLabelSlot) || props.label
 
   return hasPrefix || hasTitle || hasLabel
 })

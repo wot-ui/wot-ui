@@ -160,6 +160,12 @@ export const cellProps = {
    */
   useTitleSlot: makeBooleanProp(true),
   /**
+   * 是否启用 label 插槽
+   * 类型: boolean
+   * 默认值: true
+   */
+  useLabelSlot: makeBooleanProp(true),
+  /**
    * 必填星号位置
    * 类型: CellAsteriskPosition
    * 可选值: 'start' | 'end'
