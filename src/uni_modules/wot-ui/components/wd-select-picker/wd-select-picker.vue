@@ -26,7 +26,7 @@
         :scroll-with-animation="true"
       >
         <!-- 多选 -->
-        <view v-if="type === 'checkbox' && isArray(selectList)" class="wd-select-picker__checkbox" id="wd-checkbox-group">
+        <view v-if="type === 'checkbox' && isArray(selectList)" id="wd-checkbox-group">
           <wd-checkbox-group
             v-model="selectList"
             :size="selectSize"
@@ -58,7 +58,7 @@
           </wd-checkbox-group>
         </view>
         <!-- 单选 -->
-        <view v-if="type === 'radio' && !isArray(selectList)" class="wd-select-picker__radio" id="wd-radio-group">
+        <view v-if="type === 'radio' && !isArray(selectList)" id="wd-radio-group">
           <wd-radio-group
             v-model="selectList"
             cell
