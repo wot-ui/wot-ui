@@ -7,8 +7,6 @@ $select-picker-bg: var(--wot-select-picker-bg, $filled-oppo) !default;
 $select-picker-loading-opacity: var(--wot-select-picker-loading-opacity, $opacity-disabled) !default;
 // loading 图标尺寸
 $select-picker-loading-icon-size: var(--wot-select-picker-loading-icon-size, $n-48) !default;  
-// 内容区水平内边距
-$select-picker-wrapper-padding-horizontal: var(--wot-select-picker-wrapper-padding-horizontal, $padding-main) !default;
 // 内容区最大高度
 $select-picker-wrapper-max-height: var(--wot-select-picker-wrapper-max-height, $n-375) !default;
 // 选中态文字颜色
@@ -17,8 +15,8 @@ $select-picker-text-active-color: var(--wot-select-picker-text-active-color, $pr
 $select-picker-footer-padding: var(--wot-select-picker-footer-padding, $padding-tight $padding-loose) !default;
 // 确认区域上边框颜色
 $select-picker-footer-border-color: var(--wot-select-picker-footer-border-color, $border-light) !default;
-// 选项内边距
-$select-picker-item-padding: var(--wot-select-picker-item-padding, $padding-extra-loose $padding-zero) !default;
+// 选项左右边距
+$select-picker-item-padding: var(--wot-select-picker-item-padding, $padding-extra-loose $padding-main) !default;
 
 @include b(select-picker) {
   @include e(loading) {
@@ -43,7 +41,6 @@ $select-picker-item-padding: var(--wot-select-picker-item-padding, $padding-extr
   }
 
   @include e(wrapper) {
-    padding: 0 $select-picker-wrapper-padding-horizontal;
     position: relative;
     height: $select-picker-wrapper-max-height;
     box-sizing: border-box;
@@ -61,7 +58,8 @@ $select-picker-item-padding: var(--wot-select-picker-item-padding, $padding-extr
     color: $select-picker-text-active-color;
   }
 
-  @include e(checkbox-item,radio-item) {
+  @include edeep(radio,checkbox) {
+    box-sizing: border-box;
     padding: $select-picker-item-padding;
   }
 
