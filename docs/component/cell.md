@@ -205,34 +205,34 @@
 
 ## Cell Attributes
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| title | 左侧标题 | string | - |
-| value | 右侧内容 | `string \| number` | `''` |
-| placeholder | 占位符，仅在 value 为空时显示 | string | - |
-| label | 标题下方描述信息 | string | - |
-| prefix-icon | 前置图标名 | string | - |
-| suffix-icon | 后置图标名 | string | - |
-| icon-size | 图标大小 | `string \| number` | - |
-| icon-prefix | 图标类名前缀 | string | - |
-| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
-| to | 跳转地址 | string | - |
-| replace | 跳转时是否替换当前页面历史 | boolean | false |
-| clickable | 是否开启点击反馈 | boolean | false |
-| is-link | 是否展示右侧箭头并开启点击反馈 | boolean | false |
-| arrow-direction | 箭头方向（仅在 is-link 为 true 时生效），支持 `left / up / down / right` | string | right |
-| size | 单元格大小，支持 `large` | string | - |
-| border | 是否显示内边框，优先级高于 cell-group 同名属性 | boolean | 继承自 CellGroup |
-| title-width | 左侧标题宽度 | `string \| number` | 继承自 CellGroup |
-| center | 是否垂直居中 | boolean | 继承自 CellGroup |
-| layout | 单元格布局方式，支持 `horizontal / vertical` | string | 继承自 CellGroup |
-| value-align | 右侧内容对齐方式，支持 `left / right / center` | string | 继承自 CellGroup |
-| required | 是否显示必填星号 | boolean | false |
-| asterisk-position | 必填星号位置，支持 `start / end` | string | start |
-| hide-asterisk | 是否隐藏必填星号 | boolean | false |
-| ellipsis | 内容是否超出隐藏显示省略号 | boolean | false |
-| use-title-slot | 是否启用 title 插槽 | boolean | true |
-| use-label-slot | 是否启用 label 插槽 | boolean | true |
+| 参数 | 说明 | 类型 | 默认值 | 最低版本 |
+| --- | --- | --- | --- | --- |
+| title | 左侧标题 | string | - | - |
+| value | 右侧内容 | `string \| number` | `''` | - |
+| placeholder | 占位符，仅在 value 为空时显示 | string | - | - |
+| label | 标题下方描述信息 | string | - | - |
+| prefix-icon | 前置图标名 | string | - | - |
+| suffix-icon | 后置图标名 | string | - | - |
+| icon-size | 图标大小 | `string \| number` | - | - |
+| icon-prefix | 图标类名前缀 | string | - | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` | - |
+| to | 跳转地址 | string | - | - |
+| replace | 跳转时是否替换当前页面历史 | boolean | false | - |
+| clickable | 是否开启点击反馈 | boolean | false | - |
+| is-link | 是否展示右侧箭头并开启点击反馈 | boolean | false | - |
+| arrow-direction | 箭头方向（仅在 is-link 为 true 时生效），支持 `left / up / down / right` | string | right | - |
+| size | 单元格大小，支持 `large` | string | - | - |
+| border | 是否显示内边框，优先级高于 cell-group 同名属性 | boolean | 继承自 CellGroup | - |
+| title-width | 左侧标题宽度 | `string \| number` | 继承自 CellGroup | - |
+| center | 是否垂直居中 | boolean | 继承自 CellGroup | - |
+| layout | 单元格布局方式，支持 `horizontal / vertical` | string | 继承自 CellGroup | - |
+| value-align | 右侧内容对齐方式，支持 `left / right / center` | string | 继承自 CellGroup | - |
+| required | 是否显示必填星号 | boolean | false | - |
+| asterisk-position | 必填星号位置，支持 `start / end` | string | start | - |
+| hide-asterisk | 是否隐藏必填星号 | boolean | false | - |
+| ellipsis | 内容是否超出隐藏显示省略号 | boolean | false | - |
+| use-title-slot | 是否启用 title 插槽 | boolean | true | - |
+| use-label-slot | 是否启用 label 插槽 | boolean | true | $LOWEST_VERSION$ |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 | custom-prefix-class | 前置图标自定义样式类 | string | `''` |
