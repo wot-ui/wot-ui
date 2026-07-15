@@ -33,7 +33,7 @@
           <!--title END-->
 
           <!--label BEGIN-->
-          <slot v-if="(useLabelSlot && $slots, label)" name="label">
+          <slot v-if="(useLabelSlot && $slots.label)" name="label">
             <view v-if="label" :class="`wd-cell__label ${customLabelClass}`">{{ label }}</view>
           </slot>
           <!--label END-->
