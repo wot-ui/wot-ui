@@ -205,40 +205,41 @@ When both `prefix-icon` and `suffix-icon` use CSS icons, it is recommended to se
 
 ## Cell Attributes
 
-| Parameter | Description | Type | Default Value |
-| --- | --- | --- | --- |
-| title | Left title | string | - |
-| value | Right content | `string \| number` | `''` |
-| placeholder | Placeholder, only displayed when value is empty | string | - |
-| label | Description info below title | string | - |
-| prefix-icon | Leading icon name | string | - |
-| suffix-icon | Trailing icon name | string | - |
-| icon-size | Icon size | `string \| number` | - |
-| icon-prefix | Icon class prefix | string | - |
-| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
-| to | Navigation address | string | - |
-| replace | Whether to replace current page history when navigating | boolean | false |
-| clickable | Whether to enable click feedback | boolean | false |
-| is-link | Whether to show right arrow and enable click feedback | boolean | false |
-| arrow-direction | Arrow direction (only effective when is-link is true), supports `left / up / down / right` | string | right |
-| size | Cell size, supports `large` | string | - |
-| border | Whether to show inner border, priority is higher than cell-group same name attribute | boolean | Inherited from CellGroup |
-| title-width | Left title width | `string \| number` | Inherited from CellGroup |
-| center | Whether to center vertically | boolean | Inherited from CellGroup |
-| layout | Cell layout method, supports `horizontal / vertical` | string | Inherited from CellGroup |
-| value-align | Right content alignment, supports `left / right / center` | string | Inherited from CellGroup |
-| required | Whether to show required asterisk | boolean | false |
-| asterisk-position | Required asterisk position, supports `start / end` | string | start |
-| hide-asterisk | Whether to hide required asterisk | boolean | false |
-| ellipsis | Whether to truncate content with ellipsis when exceeding | boolean | false |
-| use-title-slot | Whether to enable title slot | boolean | true |
-| custom-class | Root node custom class name | string | `''` |
-| custom-style | Root node custom style | string | `''` |
-| custom-prefix-class | Leading icon custom style class | string | `''` |
-| custom-suffix-class | Trailing icon custom style class | string | `''` |
-| custom-label-class | Label area custom style class | string | `''` |
-| custom-value-class | Value area custom style class | string | `''` |
-| custom-title-class | Title area custom style class | string | `''` |
+| Parameter | Description | Type | Default Value | Lowest Version |
+| --- | --- | --- | --- | --- |
+| title | Left title | string | - | - |
+| value | Right content | `string \| number` | `''` | - |
+| placeholder | Placeholder, only displayed when value is empty | string | - | - |
+| label | Description info below title | string | - | - |
+| prefix-icon | Leading icon name | string | - | - |
+| suffix-icon | Trailing icon name | string | - | - |
+| icon-size | Icon size | `string \| number` | - | - |
+| icon-prefix | Icon class prefix | string | - | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` | - |
+| to | Navigation address | string | - | - |
+| replace | Whether to replace current page history when navigating | boolean | false | - |
+| clickable | Whether to enable click feedback | boolean | false | - |
+| is-link | Whether to show right arrow and enable click feedback | boolean | false | - |
+| arrow-direction | Arrow direction (only effective when is-link is true), supports `left / up / down / right` | string | right | - |
+| size | Cell size, supports `large` | string | - | - |
+| border | Whether to show inner border, priority is higher than cell-group same name attribute | boolean | Inherited from CellGroup | - |
+| title-width | Left title width | `string \| number` | Inherited from CellGroup | - |
+| center | Whether to center vertically | boolean | Inherited from CellGroup | - |
+| layout | Cell layout method, supports `horizontal / vertical` | string | Inherited from CellGroup | - |
+| value-align | Right content alignment, supports `left / right / center` | string | Inherited from CellGroup | - |
+| required | Whether to show required asterisk | boolean | false | - |
+| asterisk-position | Required asterisk position, supports `start / end` | string | start | - |
+| hide-asterisk | Whether to hide required asterisk | boolean | false | - |
+| ellipsis | Whether to truncate content with ellipsis when exceeding | boolean | false | - |
+| use-title-slot | Whether to enable title slot | boolean | true | - |
+| use-label-slot | Whether to enable label slot | boolean | true | $LOWEST_VERSION$ |
+| custom-class | Root node custom class name | string | `''` | - |
+| custom-style | Root node custom style | string | `''` | - |
+| custom-prefix-class | Leading icon custom style class | string | `''` | - |
+| custom-suffix-class | Trailing icon custom style class | string | `''` | - |
+| custom-label-class | Label area custom style class | string | `''` | - |
+| custom-value-class | Value area custom style class | string | `''` | - |
+| custom-title-class | Title area custom style class | string | `''` | - |
 
 ## Cell Events
 
