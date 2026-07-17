@@ -34,6 +34,7 @@ function resolveThemeOptions(options: WotVitePressThemeOptions = {}): WotResolve
     team: options.team ?? false,
     friendly: options.friendly ?? false,
     cases: options.cases ?? false,
+    ecosystem: options.ecosystem ?? false,
     demoIframe: options.demoIframe ?? false,
     specialSponsor: options.specialSponsor ?? false
   }
@@ -92,3 +93,4 @@ export * from './theme/composables/adsData.js'
 export * from './theme/composables/banner.js'
 export * from './theme/composables/cases.js'
 export * from './theme/composables/friendly.js'
+export * from './theme/composables/ecosystem.js'
