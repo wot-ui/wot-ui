@@ -6,12 +6,9 @@ import { useData } from 'vitepress'
 const { data } = useEcosystem()
 const { lang } = useData()
 
-const groups = computed(() => {
-  return data.value.length ? data.value : []
-})
-
-const sectionTitle = computed(() => {
-  return lang.value === 'en-US' ? 'Ecosystem' : '生态'
+const items = computed(() => {
+  if (lang.value === 'en-US') return []
+  return data.value.find((group) => group.text === '官方生态')?.items || []
 })
 
 const isExternalLink = (link: string) => {
@@ -20,29 +17,27 @@ const isExternalLink = (link: string) => {
 </script>
 
 <template>
-  <div v-if="groups && groups.length" class="VPEcosystem">
+  <div v-if="items.length" class="VPEcosystem">
     <div class="container">
-      <h1 class="ecosystem-title">{{ sectionTitle }}</h1>
+      <h1 class="ecosystem-title">官方生态</h1>
 
-      <section v-for="group in groups" :key="group.text" class="group">
-        <h2 class="group-title">{{ group.text }}</h2>
-        <div class="items">
-          <div v-for="item in group.items" :key="`${group.text}-${item.text}`" class="item grid-3">
-            <a
-              :href="item.link"
-              class="VPFeature"
-              :target="isExternalLink(item.link) ? '_blank' : undefined"
-              :rel="isExternalLink(item.link) ? 'noopener noreferrer' : undefined"
-            >
-              <article class="box">
-                <h2 class="title">{{ item.text }}</h2>
-                <p v-if="item.desc" class="details">{{ item.desc }}</p>
-                <!-- <span class="link-hint" aria-hidden="true">→</span> -->
-              </article>
-            </a>
-          </div>
+      <div class="items">
+        <div v-for="item in items" :key="item.text" class="item grid-3">
+          <a
+            :href="item.link"
+            class="VPFeature"
+            :target="isExternalLink(item.link) ? '_blank' : undefined"
+            :rel="isExternalLink(item.link) ? 'noopener noreferrer' : undefined"
+          >
+            <article class="box">
+              <img :src="item.icon" :alt="item.text" class="icon" />
+              <h2 class="title">{{ item.text }}</h2>
+              <p v-if="item.desc" class="details">{{ item.desc }}</p>
+              <!-- <span class="link-hint" aria-hidden="true">→</span> -->
+            </article>
+          </a>
         </div>
-      </section>
+      </div>
     </div>
   </div>
 </template>
@@ -75,22 +70,6 @@ const isExternalLink = (link: string) => {
   margin-bottom: 50px;
   margin-top: 50px;
   font-size: 24px;
-}
-
-.group {
-  margin-bottom: 32px;
-}
-
-.group:last-child {
-  margin-bottom: 0;
-}
-
-.group-title {
-  text-align: center;
-  margin: 0 0 20px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--vp-c-text-2);
 }
 
 .items {
@@ -138,6 +117,14 @@ const isExternalLink = (link: string) => {
   padding: 24px;
   height: 100%;
   text-align: center;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-bottom: 20px;
 }
 
 .title {

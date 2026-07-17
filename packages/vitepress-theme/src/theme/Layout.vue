@@ -26,8 +26,8 @@ const { Layout } = DefaultTheme
 
     <!-- 首页 Features 区域下方，展示团队成员、生态与友好链接 -->
     <template #home-features-after>
-      <HomeEcosystem />
       <HomeTeam />
+      <HomeEcosystem />
       <!-- <HomeCases /> -->
       <HomeFriendly />
     </template>
