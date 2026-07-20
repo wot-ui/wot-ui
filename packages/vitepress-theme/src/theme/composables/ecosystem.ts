@@ -69,7 +69,7 @@ const MOCK_ECOSYSTEM_GROUPS: EcosystemGroup[] = [
       {
         text: '@wot-ui/oiyo-starter',
         link: 'https://github.com/wot-ui/oiyo-starter',
-        icon: 'https://github.com/favicon.ico',
+        icon: 'https://oiyo-starter.wot-ui.cn/static/logo.png',
         desc: '基于 Oiyo 的 Wot UI 起手模板'
       }
     ]
