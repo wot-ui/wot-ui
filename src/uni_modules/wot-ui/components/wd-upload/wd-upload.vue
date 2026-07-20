@@ -283,6 +283,7 @@ function initFile(file: ChooseFile, currentIndex?: number) {
     // 仅h5支持 name
     name: file.name || '',
     thumb: file.thumb || '',
+    type: file.type,
     [statusKey]: 'pending',
     size: file.size || 0,
     url: file.path,
@@ -504,7 +505,15 @@ function handlePreviewVieo(index: number, lists: UploadFileItem[]) {
   // #endif
 
   // #ifndef MP-WEIXIN
-  previewVideo({ url: lists[index].url, poster: lists[index].thumb, title: lists[index].name })
+  const item = lists[index]
+  if (!item) return
+
+  previewVideo({
+    url: item.url,
+    poster: item.thumb,
+    title: item.name,
+    showFullscreenBtn: props.showVideoFullscreenBtn
+  })
   // #endif
 }
 
@@ -555,11 +564,11 @@ function onPreviewFile(file: UploadFileItem) {
 }
 
 function isVideo(file: UploadFileItem) {
-  return (file.name && isVideoUrl(file.name)) || isVideoUrl(file.url)
+  return file.type === 'video' || (file.name && isVideoUrl(file.name)) || isVideoUrl(file.url)
 }
 
 function isImage(file: UploadFileItem) {
-  return (file.name && isImageUrl(file.name)) || isImageUrl(file.url)
+  return file.type === 'image' || (file.name && isImageUrl(file.name)) || isImageUrl(file.url)
 }
 </script>
 <style lang="scss">

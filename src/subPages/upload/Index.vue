@@ -15,7 +15,7 @@
           <wd-upload accept="video" multiple :file-list="fileList1" :action="action" :success-status="[200, 201]" @change="handleChange1"></wd-upload>
         </demo-group-item>
 
-        <!-- #ifdef MP-WEIXIN -->
+        <!-- #ifdef MP-WEIXIN || APP-PLUS -->
         <demo-group-item :title="$t('shang-chuan-shi-pin-he-tu-pian')">
           <wd-upload
             accept="media"
@@ -26,6 +26,8 @@
             @change="handleChange11"
           ></wd-upload>
         </demo-group-item>
+        <!-- #endif -->
+        <!-- #ifdef MP-WEIXIN -->
         <demo-group-item :title="$t('jin-shang-chuan-wen-jian')">
           <wd-upload
             accept="file"

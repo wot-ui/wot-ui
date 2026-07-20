@@ -116,6 +116,7 @@ The object returned by the programmatic call contains the following methods:
 | show | Whether to show preview layer | `boolean` | `false` |
 | zIndex | zIndex level | `number` | `1000` |
 | fullScreen | Whether to use fullscreen preview | `boolean` | `false` |
+| showFullscreenBtn | Whether to show the native fullscreen button | `boolean` | `true` |
 | closePosition | Close button position, optional values are `left-top` and `right-top` | `string` | `left-top` |
 | onOpen | Callback when opening | `() => void` | - |
 | onClose | Callback when closing | `() => void` | - |
