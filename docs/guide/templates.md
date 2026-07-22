@@ -30,6 +30,34 @@ pnpm install
 pnpm dev
 ```
 
+## oiyo-starter
+
+⚡ [oiyo-starter](https://github.com/wot-ui/oiyo-starter) 是一个由 [oiyo](https://oiyo.js.org) 框架赋能 `Wot Starter` 变体的快速启动模板。它由 `Wot UI` 团队维护，强约定、低配置、对 AI 协作友好，具有颠覆性创新。
+
+直接拉取不含 git 记录的纯净模板：
+
+```bash
+pnpx degit wot-ui/oiyo-starter <project-name>
+```
+
+在 VS Code 中打开项目文件夹：
+
+```bash
+code <project-name>
+```
+
+安装依赖：
+
+```bash
+pnpm install
+```
+
+运行项目：
+
+```bash
+pnpm dev
+```
+
 ## vitesse-uni-app
 
 [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) 是一个由 `Vite & uni-app` 驱动的跨端快速启动模板，背靠 `Uni Helper` 团队。虽然没有深度整合 Wot UI，但它是一个很干净的现代化基础模板。
@@ -45,6 +73,7 @@ pnpm dev
 | 模板 | Stars | 描述 |
 |------|-------|-------------|
 | [wot-starter](https://github.com/wot-ui/wot-starter) | ![stars](https://img.shields.io/github/stars/wot-ui/wot-starter) | 🍀 基于 vitesse-uni-app 深度整合 Wot UI 组件库的 uni-app 快速起手项目。 |
+| [oiyo-starter](https://github.com/wot-ui/oiyo-starter) | ![stars](https://img.shields.io/github/stars/wot-ui/oiyo-starter) | ⚡️ 由 oiyo 框架赋能 wot-starter 变体的快速启动模板。 |
 | [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) | ![stars](https://img.shields.io/github/stars/uni-helper/vitesse-uni-app) | 由 Vite & uni-app 驱动的跨端快速启动模板。 |
 | [unibest](https://github.com/unibest-tech/unibest) | ![stars](https://img.shields.io/github/stars/unibest-tech/unibest) | 使用较新技术栈的 uni-app 开发模板。 |
 | [vite-uniapp-template](https://github.com/viarotel-org/vite-uniapp-template) | ![stars](https://img.shields.io/github/stars/viarotel-org/vite-uniapp-template) | 以实用为先的 uni-app 起手模板。 |
