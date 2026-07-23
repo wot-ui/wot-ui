@@ -337,10 +337,35 @@ function getFilterText(label: string, filterVal: string): Array<{ type: 'active'
 
 function handleFilterChange({ value }: { value: string }) {
   filterVal.value = value
-  if (value === '') {
-    filterColumns.value = props.columns
+  if (props.filterHandler) {
+    if (value === '') {
+      filterColumns.value = props.columns
+    } else {
+      callInterceptor(props.filterHandler, {
+        args: [filterColumns, value],
+        done: () => {
+          const formatFilterColumns = filterColumns.value.map((item) => {
+            return {
+              ...item,
+              [props.labelKey]: getFilterText(item[props.labelKey], value)
+            }
+          })
+          filterColumns.value = formatFilterColumns
+        },
+        canceled: () => {
+          console.warn('Filter canceled')
+        },
+        error: err => {
+          console.error(err)
+        }
+      })
+    }
   } else {
-    formatFilterColumns(props.columns, value)
+    if (value === '') {
+      filterColumns.value = props.columns
+    } else {
+      formatFilterColumns(props.columns, value)
+    }
   }
 }
 
