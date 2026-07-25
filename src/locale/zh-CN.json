@@ -2293,5 +2293,6 @@
   "zuo-xia": "左下",
   "zuo-you-bu-ju": "左右布局",
   "zuo-you-hua-dong": "左右滑动",
-  "zuo-zhong": "左中"
+  "zuo-zhong": "左中",
+  "shi-yong-name-bang-ding": "使用name字段绑定v-model"
 }

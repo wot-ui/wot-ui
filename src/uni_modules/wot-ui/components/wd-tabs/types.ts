@@ -128,7 +128,14 @@ export const tabsProps = {
    * 类型: boolean
    * 默认值: false
    */
-  showScrollbar: makeBooleanProp(false)
+  showScrollbar: makeBooleanProp(false),
+
+  /**
+   * 绑定时使用name绑定 设置为true会通过name绑定 false使用索引绑定
+   * 类型: boolean
+   * 默认值: false
+   */
+  bindUseName: makeBooleanProp(false)
 }
 
 export type TabsExpose = {
