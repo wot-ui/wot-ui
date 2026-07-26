@@ -37,7 +37,7 @@ pnpm dev
 直接拉取不含 git 记录的纯净模板：
 
 ```bash
-pnpx degit wot-ui/oiyo-starter <project-name>
+pnpm create oiyo <project-name> --template=wot-starter
 ```
 
 在 VS Code 中打开项目文件夹：
