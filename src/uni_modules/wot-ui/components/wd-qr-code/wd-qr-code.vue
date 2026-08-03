@@ -4,7 +4,7 @@
     <canvas type="2d" :id="canvasId" :style="canvasStyle" />
     <!-- #endif -->
     <!-- #ifndef MP-WEIXIN -->
-    <canvas :canvas-id="canvasId" :style="canvasStyle" />
+    <canvas :id="canvasId" :canvas-id="canvasId" :width="canvasSize" :height="canvasSize" :style="canvasStyle" />
     <!-- #endif -->
   </view>
 </template>
@@ -23,8 +23,8 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, getCurrentInstance, nextTick, onMounted, ref, toRaw, watch } from 'vue'
-import { addUnit, uuid } from '../../common/util'
+import { computed, getCurrentInstance, nextTick, onBeforeMount, onMounted, ref, toRaw, watch } from 'vue'
+import { addUnit, getSystemInfo, uuid } from '../../common/util'
 import { canvas2dAdapter } from '../../common/canvasHelper'
 import { generateQRCode, QRErrorCorrectLevel } from './qrcode'
 import { qrCodeProps, type QrCodeExpose } from './types'
@@ -35,7 +35,7 @@ const emit = defineEmits<{
   error: [error: unknown]
 }>()
 
-const instance = getCurrentInstance()
+const { proxy } = getCurrentInstance() as any
 const rootClass = computed(() => `wd-qr-code ${props.customClass}`)
 const canvasStyle = computed(() => ({
   width: addUnit(props.size),
@@ -48,6 +48,13 @@ const canvasCtx = ref<UniApp.CanvasContext | null>(null)
 const pixelRatio = ref(1)
 const isCanvasReady = ref(false)
 let drawTask: Promise<void> = Promise.resolve()
+const canvasSize = computed(() => {
+  let size = props.size
+  // #ifdef MP-ALIPAY
+  size *= pixelRatio.value
+  // #endif
+  return size
+})
 
 watch(
   [
@@ -72,13 +79,24 @@ watch(
     () => props.logoBorderWidth,
     () => props.backgroundImage
   ],
-  () => {
+  (values, oldValues) => {
     if (isCanvasReady.value) {
+      // #ifdef MP-ALIPAY
+      if (values[1] !== oldValues[1]) {
+        canvasCtx.value = null
+      }
+      // #endif
       requestDraw()
     }
   },
-  { deep: true }
+  { deep: true, flush: 'post' }
 )
+
+onBeforeMount(() => {
+  // #ifdef MP-ALIPAY
+  pixelRatio.value = getSystemInfo().pixelRatio || 1
+  // #endif
+})
 
 onMounted(() => {
   nextTick(() => {
@@ -90,7 +108,7 @@ function initCanvas() {
   // #ifdef MP-WEIXIN
   uni
     .createSelectorQuery()
-    .in(instance)
+    .in(proxy)
     .select(`#${canvasId.value}`)
     .node((res) => {
       if (!res?.node) {
@@ -136,7 +154,11 @@ async function draw() {
   let ctx = canvasCtx.value
   // #ifndef MP-WEIXIN
   if (!ctx) {
-    ctx = uni.createCanvasContext(canvasId.value, instance)
+    const alipay = (globalThis as any).my
+    ctx = alipay?.createCanvasContext ? alipay.createCanvasContext(canvasId.value) : uni.createCanvasContext(canvasId.value, proxy)
+    // #ifdef MP-ALIPAY
+    ctx?.scale(pixelRatio.value, pixelRatio.value)
+    // #endif
     canvasCtx.value = ctx
   }
   // #endif
@@ -148,7 +170,7 @@ async function draw() {
 
   try {
     ctx.clearRect(0, 0, props.size, props.size)
-    ctx.fillStyle = props.colorLight
+    ctx.setFillStyle(props.colorLight)
     ctx.fillRect(0, 0, props.size, props.size)
 
     if (!props.text) {
@@ -180,57 +202,70 @@ async function draw() {
 
     if (props.enableGradient) {
       const gradient = createGradient(ctx)
-      ctx.fillStyle = gradient as unknown as string
+      ctx.setFillStyle(gradient)
     } else {
-      ctx.fillStyle = props.colorDark
+      ctx.setFillStyle(props.colorDark)
     }
 
     const hasModule = (row: number, col: number) => {
       return row >= 0 && row < modules.length && col >= 0 && col < modules[row].length && modules[row][col]
     }
 
-    for (let row = 0; row < modules.length; row++) {
-      for (let col = 0; col < modules[row].length; col++) {
-        if (!modules[row][col]) continue
+    if (props.dotType === 'square' && props.dotScale === 1) {
+      drawSquareModules(ctx, modules, tileW, tileH)
+    } else {
+      const shouldBatchPath = props.dotType !== 'square'
+      if (shouldBatchPath) {
+        ctx.beginPath()
+      }
 
-        const x = Math.ceil(col * tileW) + props.margin
-        const y = Math.ceil(row * tileH) + props.margin
-        const width = Math.ceil((col + 1) * tileW) - Math.ceil(col * tileW)
-        const height = Math.ceil((row + 1) * tileH) - Math.ceil(row * tileH)
-        const scaledWidth = width * props.dotScale
-        const scaledHeight = height * props.dotScale
-        const scaledX = x + (width - scaledWidth) / 2
-        const scaledY = y + (height - scaledHeight) / 2
+      for (let row = 0; row < modules.length; row++) {
+        for (let col = 0; col < modules[row].length; col++) {
+          if (!modules[row][col]) continue
 
-        if (props.dotType === 'dots') {
-          ctx.beginPath()
-          ctx.arc(scaledX + scaledWidth / 2, scaledY + scaledHeight / 2, scaledWidth / 2, 0, Math.PI * 2)
-          ctx.fill()
-          continue
+          const x = Math.ceil(col * tileW) + props.margin
+          const y = Math.ceil(row * tileH) + props.margin
+          const width = Math.ceil((col + 1) * tileW) - Math.ceil(col * tileW)
+          const height = Math.ceil((row + 1) * tileH) - Math.ceil(row * tileH)
+          const scaledWidth = width * props.dotScale
+          const scaledHeight = height * props.dotScale
+          const scaledX = x + (width - scaledWidth) / 2
+          const scaledY = y + (height - scaledHeight) / 2
+
+          if (props.dotType === 'dots') {
+            const centerX = scaledX + scaledWidth / 2
+            const centerY = scaledY + scaledHeight / 2
+            const radius = scaledWidth / 2
+            ctx.moveTo(centerX + radius, centerY)
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)
+            continue
+          }
+
+          if (props.dotType === 'rounded') {
+            drawRoundedRect(ctx, scaledX, scaledY, scaledWidth, scaledHeight, scaledWidth * 0.25, false)
+            continue
+          }
+
+          if (props.dotType === 'liquid') {
+            const radius = scaledWidth * 0.5
+            const top = hasModule(row - 1, col)
+            const bottom = hasModule(row + 1, col)
+            const left = hasModule(row, col - 1)
+            const right = hasModule(row, col + 1)
+            const tl = !top && !left ? radius : 0
+            const tr = !top && !right ? radius : 0
+            const br = !bottom && !right ? radius : 0
+            const bl = !bottom && !left ? radius : 0
+            drawRoundedRect(ctx, scaledX, scaledY, scaledWidth, scaledHeight, [tl, tr, br, bl], false)
+            continue
+          }
+
+          ctx.fillRect(scaledX, scaledY, scaledWidth, scaledHeight)
         }
+      }
 
-        if (props.dotType === 'rounded') {
-          drawRoundedRect(ctx, scaledX, scaledY, scaledWidth, scaledHeight, scaledWidth * 0.25)
-          ctx.fill()
-          continue
-        }
-
-        if (props.dotType === 'liquid') {
-          const radius = scaledWidth * 0.5
-          const top = hasModule(row - 1, col)
-          const bottom = hasModule(row + 1, col)
-          const left = hasModule(row, col - 1)
-          const right = hasModule(row, col + 1)
-          const tl = !top && !left ? radius : 0
-          const tr = !top && !right ? radius : 0
-          const br = !bottom && !right ? radius : 0
-          const bl = !bottom && !left ? radius : 0
-          drawRoundedRect(ctx, scaledX, scaledY, scaledWidth, scaledHeight, [tl, tr, br, bl])
-          ctx.fill()
-          continue
-        }
-
-        ctx.fillRect(scaledX, scaledY, scaledWidth, scaledHeight)
+      if (shouldBatchPath) {
+        ctx.fill()
       }
     }
 
@@ -257,10 +292,10 @@ function flushCanvas(ctx: UniApp.CanvasContext) {
     }
 
     try {
-      ctx.draw(true, done)
+      ctx.draw(false, done)
     } catch (error) {
       void error
-      ctx.draw(true)
+      ctx.draw(false)
     }
 
     // H5 上部分实现不会触发 draw 回调，兜底在下一帧后继续流程。
@@ -335,9 +370,41 @@ function createGradientWithStops(gradient: CanvasGradient) {
   return gradient
 }
 
-function drawRoundedRect(ctx: UniApp.CanvasContext, x: number, y: number, width: number, height: number, radius: number | number[]) {
+function drawSquareModules(ctx: UniApp.CanvasContext, modules: boolean[][], tileW: number, tileH: number) {
+  for (let row = 0; row < modules.length; row++) {
+    let runStart = -1
+    for (let col = 0; col <= modules[row].length; col++) {
+      if (modules[row][col]) {
+        if (runStart === -1) {
+          runStart = col
+        }
+        continue
+      }
+      if (runStart === -1) continue
+
+      const x = Math.ceil(runStart * tileW) + props.margin
+      const y = Math.ceil(row * tileH) + props.margin
+      const width = Math.ceil(col * tileW) - Math.ceil(runStart * tileW)
+      const height = Math.ceil((row + 1) * tileH) - Math.ceil(row * tileH)
+      ctx.fillRect(x, y, width, height)
+      runStart = -1
+    }
+  }
+}
+
+function drawRoundedRect(
+  ctx: UniApp.CanvasContext,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number | number[],
+  shouldBeginPath = true
+) {
   const [tl, tr, br, bl] = Array.isArray(radius) ? radius : [radius, radius, radius, radius]
-  ctx.beginPath()
+  if (shouldBeginPath) {
+    ctx.beginPath()
+  }
   ctx.moveTo(x + tl, y)
   ctx.lineTo(x + width - tr, y)
   ctx.arc(x + width - tr, y + tr, tr, 1.5 * Math.PI, 0)
@@ -366,9 +433,6 @@ async function drawImage(ctx: UniApp.CanvasContext, src: string, x: number, y: n
     await drawImageWithGetImageInfo(ctx, src, x, y, width, height)
   } catch (error) {
     ctx.drawImage(src, x, y, width, height)
-    // #ifndef MP-WEIXIN
-    ctx.draw(true)
-    // #endif
     void error
   }
 }
@@ -393,9 +457,6 @@ function drawImageWithGetImageInfo(ctx: UniApp.CanvasContext, src: string, x: nu
       src,
       success: (res) => {
         ctx.drawImage(res.path, x, y, width, height)
-        // #ifndef MP-WEIXIN
-        ctx.draw(true)
-        // #endif
         resolve()
       },
       fail: reject
@@ -442,9 +503,6 @@ async function drawLogo(ctx: UniApp.CanvasContext) {
     await drawLogoWithGetImageInfo(ctx, logoX, logoY, logoWidth, logoHeight)
   } catch (error) {
     drawLogoContent(ctx, props.logo, logoX, logoY, logoWidth, logoHeight)
-    // #ifndef MP-WEIXIN
-    ctx.draw(true)
-    // #endif
     void error
   }
 }
@@ -474,9 +532,6 @@ function drawLogoWithGetImageInfo(ctx: UniApp.CanvasContext, x: number, y: numbe
       success: (res) => {
         try {
           drawLogoContent(ctx, res.path, x, y, width, height)
-          // #ifndef MP-WEIXIN
-          ctx.draw(true)
-          // #endif
           resolve()
         } catch (error) {
           reject(error)
@@ -501,12 +556,12 @@ function drawLogoContent(ctx: UniApp.CanvasContext, image: any, x: number, y: nu
   if (backgroundColor || borderWidth > 0) {
     drawRoundedRect(ctx, boxX, boxY, boxWidth, boxHeight, radius)
     if (backgroundColor) {
-      ctx.fillStyle = backgroundColor
+      ctx.setFillStyle(backgroundColor)
       ctx.fill()
     }
     if (borderWidth > 0) {
-      ctx.lineWidth = borderWidth
-      ctx.strokeStyle = borderColor
+      ctx.setLineWidth(borderWidth)
+      ctx.setStrokeStyle(borderColor)
       ctx.stroke()
     }
   }
@@ -525,14 +580,19 @@ async function exportImage(): Promise<string> {
   await drawTask
 
   return new Promise((resolve, reject) => {
+    const exportSize = props.size * pixelRatio.value
     const options: UniApp.CanvasToTempFilePathOptions = {
       canvasId: canvasId.value,
-      width: props.size,
-      height: props.size,
-      destWidth: props.size * pixelRatio.value,
-      destHeight: props.size * pixelRatio.value,
+      width: exportSize,
+      height: exportSize,
+      destWidth: exportSize,
+      destHeight: exportSize,
       success: (res) => {
-        resolve(res.tempFilePath)
+        let tempFilePath = res.tempFilePath
+        // #ifdef MP-DINGTALK
+        tempFilePath = (res as any).filePath
+        // #endif
+        resolve(tempFilePath)
       },
       fail: reject
     }
@@ -543,7 +603,11 @@ async function exportImage(): Promise<string> {
     }
     // #endif
 
-    uni.canvasToTempFilePath(options, instance)
+    const exportArgs: [UniApp.CanvasToTempFilePathOptions, any?] = [options]
+    // #ifndef MP-ALIPAY
+    exportArgs.push(proxy)
+    // #endif
+    uni.canvasToTempFilePath(...exportArgs)
   })
 }
 

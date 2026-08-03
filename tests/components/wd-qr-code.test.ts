@@ -25,10 +25,15 @@ function createCanvasContextMock() {
     createLinearGradient: createLinearGradientMock,
     draw: drawMock,
     scale: vi.fn(),
-    fillStyle: '',
-    strokeStyle: '',
-    lineWidth: 0
+    setFillStyle: vi.fn(),
+    setStrokeStyle: vi.fn(),
+    setLineWidth: vi.fn()
   }
+}
+
+function getExpectedCanvasSize(size: number) {
+  const shouldUsePixelRatio = process.env.UNI_PLATFORM === 'mp-alipay'
+  return size * (shouldUsePixelRatio ? uni.getSystemInfoSync().pixelRatio || 1 : 1)
 }
 
 beforeAll(() => {
@@ -36,7 +41,7 @@ beforeAll(() => {
     ...(globalThis as any).uni,
     createCanvasContext: vi.fn(() => createCanvasContextMock()),
     canvasToTempFilePath: vi.fn((options: Record<string, any>) => {
-      options.success?.({ tempFilePath: '/tmp/wd-qr-code.png' })
+      options.success?.({ tempFilePath: '/tmp/wd-qr-code.png', filePath: '/tmp/wd-qr-code.png' })
     }),
     getImageInfo: vi.fn((options: Record<string, any>) => {
       options.success?.({ path: options.src })
@@ -60,7 +65,35 @@ describe('WdQrCode', () => {
     await Promise.resolve()
 
     expect(wrapper.classes()).toContain('wd-qr-code')
-    expect(wrapper.find('canvas').exists()).toBe(true)
+    const canvas = wrapper.find('canvas')
+    expect(canvas.exists()).toBe(true)
+    expect(canvas.attributes('id')).toBeTruthy()
+    expect(canvas.attributes('canvas-id')).toBe(canvas.attributes('id'))
+    const expectedCanvasSize = String(getExpectedCanvasSize(200))
+    expect(canvas.attributes('width')).toBe(expectedCanvasSize)
+    expect(canvas.attributes('height')).toBe(expectedCanvasSize)
+    expect(vi.mocked(uni.createCanvasContext).mock.calls[0][0]).toBe(canvas.attributes('id'))
+    expect(drawMock).toHaveBeenCalledWith(false, expect.any(Function))
+
+    const context = vi.mocked(uni.createCanvasContext).mock.results[0].value as ReturnType<typeof createCanvasContextMock>
+    // 默认方块按连续区间合并绘制，避免支付宝模拟器逐码点传递 Canvas 指令。
+    expect(context.fillRect.mock.calls.length).toBeLessThan(300)
+  })
+
+  test('圆角码点使用单次路径批量填充', async () => {
+    mount(WdQrCode, {
+      props: {
+        text: 'https://wot-ui.cn',
+        dotType: 'rounded'
+      }
+    })
+
+    await Promise.resolve()
+    await Promise.resolve()
+
+    const context = vi.mocked(uni.createCanvasContext).mock.results[0].value as ReturnType<typeof createCanvasContextMock>
+    expect(context.beginPath).toHaveBeenCalledTimes(1)
+    expect(context.fill).toHaveBeenCalledTimes(1)
   })
 
   test('点击时触发 click 事件', async () => {
@@ -84,10 +117,18 @@ describe('WdQrCode', () => {
     })
 
     await Promise.resolve()
+    ;(wrapper.vm as any).$.setupState.pixelRatio = 2
     const tempFilePath = await (wrapper.vm as any).exportImage()
+    const exportOptions = vi.mocked(uni.canvasToTempFilePath).mock.calls[0][0]
 
     expect(tempFilePath).toBe('/tmp/wd-qr-code.png')
     expect(uni.canvasToTempFilePath).toHaveBeenCalled()
+    expect(exportOptions).toMatchObject({
+      width: 400,
+      height: 400,
+      destWidth: 400,
+      destHeight: 400
+    })
     expect(createLinearGradientMock).toHaveBeenCalled()
   })
 })

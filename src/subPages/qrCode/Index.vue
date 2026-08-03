@@ -101,13 +101,14 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { QrCodeInstance } from '@/uni_modules/wot-ui/components/wd-qr-code/types'
+import blackMao from '../img/black_mao_1.png'
 
 const { t } = useI18n()
 
 const qrCodeRef = ref<QrCodeInstance>()
 const imgSrc = ref('')
 
-const logoUrl = 'https://img.yzcdn.cn/vant/cat.jpeg'
+const logoUrl = blackMao
 
 async function handleExport() {
   try {
