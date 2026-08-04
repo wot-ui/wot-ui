@@ -1,6 +1,9 @@
 import { mount } from '@vue/test-utils'
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 import WdQrCode from '@/uni_modules/wot-ui/components/wd-qr-code/wd-qr-code.vue'
+import { generateQRCode, QRErrorCorrectLevel } from '@/uni_modules/wot-ui/components/wd-qr-code/qrcode.js'
 
 const drawMock = vi.fn()
 const createLinearGradientMock = vi.fn(() => ({
@@ -54,6 +57,22 @@ beforeEach(() => {
 })
 
 describe('WdQrCode', () => {
+  test('二维码算法使用 ESM 命名导出', () => {
+    const result = generateQRCode('https://wot-ui.cn', {
+      errorCorrectLevel: QRErrorCorrectLevel.M
+    })
+
+    expect(result.moduleCount).toBeGreaterThan(0)
+    expect(result.modules).toHaveLength(result.moduleCount)
+    expect(result.errorCorrectLevel).toBe(QRErrorCorrectLevel.M)
+  })
+
+  test('二维码算法不包含 CommonJS 导出', () => {
+    const source = readFileSync(resolve('src/uni_modules/wot-ui/components/wd-qr-code/qrcode.js'), 'utf8')
+
+    expect(source).not.toMatch(/\bmodule\.exports\b/)
+  })
+
   test('基本渲染', async () => {
     const wrapper = mount(WdQrCode, {
       props: {

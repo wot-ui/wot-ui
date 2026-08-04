@@ -1117,22 +1117,3 @@ export {
   createQRCodeData,
   generateQRCode
 }
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    QRCodeModel,
-    QR8bitByte,
-    QRBitBuffer,
-    QRPolynomial,
-    QRRSBlock,
-    QRMath,
-    QRUtil,
-    QRMode,
-    QRErrorCorrectLevel,
-    QRMaskPattern,
-    getTypeNumber,
-    getUTF8Length,
-    createQRCodeData,
-    generateQRCode
-  }
-}
