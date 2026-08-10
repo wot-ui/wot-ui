@@ -173,6 +173,28 @@ const beforeConfirm = (value: string[]) => {
 <wd-select-picker type="radio" :show-confirm="false" v-model="value" v-model:visible="show" :columns="columns" />
 ```
 
+### 自定义选项样式
+
+通过插槽修改选项列表的显示样式，可以在选项中使用组件实现个性化显示。
+
+```html
+<wd-select-picker
+  type="checkbox"
+  :show-confirm="false"
+  v-model="value19"
+  v-model:visible="show19"
+  :columns="columns3"
+  @confirm="handleConfirm"
+>
+  <template #label="{ item, label, value }">
+    <view>
+      {{ label }}
+      <wd-tag type="primary" size="small">{{ item.source }}</wd-tag>
+    </view>
+  </template>
+</wd-select-picker>
+```
+
 ## Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -222,6 +244,13 @@ const beforeConfirm = (value: string[]) => {
 | confirm | 点击确认时触发 | `{ value, selectedItems }` |
 | open | 弹层打开时触发 | - |
 | close | 弹层关闭时触发 | - |
+
+## Slots
+
+| name  | 说明             |
+|-------|------------------|
+| label | 选项列表的 `label` |
+
 
 ## Methods
 
