@@ -351,15 +351,14 @@ describe('WdQrCode', () => {
     })
 
     await Promise.resolve()
-    ;(wrapper.vm as any).$.setupState.pixelRatio = 2
     const tempFilePath = await (wrapper.vm as any).exportImage()
     const exportOptions = vi.mocked(uni.canvasToTempFilePath).mock.calls[0][0]
 
     expect(tempFilePath).toBe('/tmp/wd-qr-code.png')
     expect(uni.canvasToTempFilePath).toHaveBeenCalled()
     expect(exportOptions).toMatchObject({
-      width: 400,
-      height: 400,
+      width: 200,
+      height: 200,
       destWidth: 400,
       destHeight: 400
     })

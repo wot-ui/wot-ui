@@ -93,7 +93,7 @@ watch(
 )
 
 onBeforeMount(() => {
-  // #ifdef MP-ALIPAY
+  // #ifdef H5 || MP-ALIPAY
   pixelRatio.value = getSystemInfo().pixelRatio || 1
   // #endif
 })
@@ -581,10 +581,14 @@ async function exportImage(): Promise<string> {
 
   return new Promise((resolve, reject) => {
     const exportSize = props.size * pixelRatio.value
+    let sourceSize = exportSize
+    // #ifdef H5
+    sourceSize = props.size
+    // #endif
     const options: UniApp.CanvasToTempFilePathOptions = {
       canvasId: canvasId.value,
-      width: exportSize,
-      height: exportSize,
+      width: sourceSize,
+      height: sourceSize,
       destWidth: exportSize,
       destHeight: exportSize,
       success: (res) => {
