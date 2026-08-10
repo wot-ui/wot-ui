@@ -1,4 +1,4 @@
-import { SelectPickerFilterHandler } from '@wot-ui/ui/components/wd-select-picker/types'
+import { type SelectPickerFilterHandler } from '@wot-ui/ui/components/wd-select-picker/types'
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeArrayProp, makeBooleanProp, makeNumberProp, makeRequiredProp, makeStringProp } from '../../common/props'
 
@@ -65,7 +65,11 @@ export type SelectPickerProps = ExtractPropTypes<typeof selectPickerProps>
 
 export type SelectPickerBeforeConfirm = (value: string | number | boolean | (string | number | boolean)[]) => boolean | Promise<boolean>
 
-export type SelectPickerFilterHandler = (columns: Record<string, any>, filterValue: string, loading: boolean) => Record<string, any> | Promise<Record<string, any>>
+export type SelectPickerFilterHandler = (
+  columns: Record<string, any>,
+  filterValue: string,
+  loading: boolean
+) => Record<string, any> | Promise<Record<string, any>>
 
 export type SelectPickerExpose = {
   // 打开picker弹框
