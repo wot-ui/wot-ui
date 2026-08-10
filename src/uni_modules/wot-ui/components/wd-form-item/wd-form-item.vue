@@ -4,6 +4,7 @@
     :custom-style="customStyle"
     :use-title-slot="!!$slots.title"
     :title="title"
+    :use-label-slot="!!$slots.label"
     :label="label"
     :title-width="formItemTitleWidth"
     :prefix-icon="prefixIcon"

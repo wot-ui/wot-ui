@@ -90,6 +90,18 @@ export interface WotThemeCasesOptions {
 }
 
 /**
+ * 生态模块展示配置。
+ */
+export interface WotThemeEcosystemOptions {
+  /**
+   * 生态数据地址列表。
+   * 开发阶段可传空数组，使用 composable 内本地 mock。
+   * 上线后填入远程 JSON 地址即可切换。
+   */
+  urls: string[]
+}
+
+/**
  * Demo iframe 展示配置。
  */
 export interface WotThemeDemoIframeOptions {
@@ -147,6 +159,10 @@ export interface WotVitePressThemeOptions {
    * 案例模块配置，传入 false 表示关闭。
    */
   cases?: false | WotThemeCasesOptions
+  /**
+   * 生态模块配置，传入 false 表示关闭。
+   */
+  ecosystem?: false | WotThemeEcosystemOptions
   /**
    * Demo iframe 配置，传入 false 表示关闭。
    */
@@ -324,6 +340,10 @@ export interface WotResolvedThemeOptions {
    * 归一化后的案例配置。
    */
   cases: false | WotThemeCasesOptions
+  /**
+   * 归一化后的生态配置。
+   */
+  ecosystem: false | WotThemeEcosystemOptions
   /**
    * 归一化后的 Demo iframe 配置。
    */

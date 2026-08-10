@@ -989,6 +989,7 @@ export type floatingPanelThemeVars = {
 }
 
 export type formItemThemeVars = {
+  formItemDisabledColor?: string // 禁用文字颜色
   formItemErrorMessageColor?: string // 错误提示文字颜色
   formItemErrorMessageFontSize?: string // 错误提示文字字号
   formItemErrorMessageLineHeight?: string // 错误提示文字行高

@@ -40,7 +40,7 @@ Use `color-dark` and `color-light` to configure the dark and light colors.
 Set `logo` to draw a logo in the center of the QR code.
 
 ```html
-<wd-qr-code text="https://wot-ui.cn" logo="https://img.yzcdn.cn/vant/cat.jpeg" />
+<wd-qr-code text="https://wot-ui.cn" logo="https://wot-ui.cn/assets/black_mao_square.png" />
 ```
 
 ### Logo Style
@@ -50,7 +50,7 @@ Use `logo-width`, `logo-height`, `logo-radius`, `logo-border-color`, and `logo-b
 ```html
 <wd-qr-code
   text="https://wot-ui.cn"
-  logo="https://img.yzcdn.cn/vant/cat.jpeg"
+  logo="https://wot-ui.cn/assets/black_mao_square.png"
   :logo-width="52"
   :logo-height="52"
   :logo-radius="12"
@@ -93,7 +93,7 @@ Use `background-image` to render a background image under the QR code.
 <wd-qr-code
   text="https://wot-ui.cn"
   background-image="https://img.yzcdn.cn/vant/apple-1.jpg"
-  logo="https://img.yzcdn.cn/vant/cat.jpeg"
+  logo="https://wot-ui.cn/assets/black_mao_square.png"
 />
 ```
 

@@ -25,7 +25,7 @@
           ></wd-icon>
         </slot>
 
-        <view class="wd-cell__title">
+        <view v-if="showTitle" class="wd-cell__title">
           <!--title BEGIN-->
           <slot v-if="useTitleSlot && $slots.title" name="title"></slot>
           <text v-else-if="title" :class="customTitleClass">{{ title }}</text>
@@ -33,9 +33,8 @@
           <!--title END-->
 
           <!--label BEGIN-->
-          <slot name="label">
-            <view v-if="label" :class="`wd-cell__label ${customLabelClass}`">{{ label }}</view>
-          </slot>
+          <slot v-if="useLabelSlot && $slots.label" name="label"></slot>
+          <view v-else-if="label" :class="`wd-cell__label ${customLabelClass}`">{{ label }}</view>
           <!--label END-->
         </view>
         <text v-if="required && !hideAsterisk && asteriskPosition === 'end'" class="wd-cell__required">*</text>
@@ -140,9 +139,13 @@ const showLeft = computed(() => {
   // 有title插槽或title属性
   const hasTitle = (slots.title && props.useTitleSlot) || props.title
   // 有label插槽或label属性
-  const hasLabel = slots.label || props.label
+  const hasLabel = (slots.label && props.useLabelSlot) || props.label
 
   return hasPrefix || hasTitle || hasLabel
+})
+
+const showTitle = computed(() => {
+  return (props.useTitleSlot && slots.title) || props.title || (props.useLabelSlot && slots.label) || props.label
 })
 
 const showPlaceholder = computed(() => {

@@ -119,6 +119,7 @@ const ecosystemNavItems = [
       { text: 'VS Code 插件', link: 'https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense' },
       { text: '小程序 CI 工具', link: 'https://github.com/Moonofweisheng/uni-mini-ci' },
       { text: 'wot-starter-retail', link: 'https://github.com/wot-ui/wot-starter-retail' },
+      { text: '@wot-ui/oiyo-starter', link: 'https://github.com/wot-ui/oiyo-starter' },
     ]
   },
   {
@@ -127,6 +128,7 @@ const ecosystemNavItems = [
       { text: 'Uni Helper', link: 'https://uni-helper.js.org/' },
       { text: 'uni-ku', link: 'https://github.com/uni-ku' },
       { text: 'uni-echarts', link: 'https://uni-echarts.xiaohe.ink/' },
+      { text: 'Oiyo', link: 'https://oiyo.js.org' },
     ]
   },
   {

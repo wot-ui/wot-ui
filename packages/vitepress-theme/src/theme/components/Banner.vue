@@ -70,22 +70,33 @@ watch(
 </script>
 
 <template>
-  <div class="banner" v-if="open && currentBanner">
+  <div v-if="open && currentBanner" class="banner" role="region" aria-label="Announcement">
+    <div class="banner__mesh" aria-hidden="true"></div>
+    <div class="banner__orb banner__orb--purple" aria-hidden="true"></div>
+    <div class="banner__orb banner__orb--cyan" aria-hidden="true"></div>
+
     <div class="vt-banner-text">
+      <span class="vt-banner-badge" aria-hidden="true">
+        <svg viewBox="0 0 20 20">
+          <path d="M10 1.75c.38 3.96 2.54 6.12 6.5 6.5-3.96.38-6.12 2.54-6.5 6.5-.38-3.96-2.54-6.12-6.5-6.5 3.96-.38 6.12-2.54 6.5-6.5Z" />
+          <path
+            d="M15.75 13.25c.16 1.66 1.09 2.59 2.75 2.75-1.66.16-2.59 1.09-2.75 2.75-.16-1.66-1.09-2.59-2.75-2.75 1.66-.16 2.59-1.09 2.75-2.75Z"
+          />
+        </svg>
+      </span>
       <p class="vt-banner-title">{{ currentBanner.title }}</p>
       <a target="_blank" class="vt-primary-action" :href="currentBanner.link">
-        {{ currentBanner.action }}
+        <span>{{ currentBanner.action }}</span>
+        <svg aria-hidden="true" viewBox="0 0 16 16">
+          <path d="m6 3 5 5-5 5" />
+        </svg>
       </a>
     </div>
-    <button aria-label="close" @click="dismiss">
+    <button class="banner__close" aria-label="Close banner" @click="dismiss">
       <svg class="close" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 24 24">
-        <path
-          d="M18.9,10.9h-6v-6c0-0.6-0.4-1-1-1s-1,0.4-1,1v6h-6c-0.6,0-1,0.4-1,1s0.4,1,1,1h6v6c0,0.6,0.4,1,1,1s1-0.4,1-1v-6h6c0.6,0,1-0.4,1-1S19.5,10.9,18.9,10.9z"
-        />
+        <path d="m7 7 10 10M17 7 7 17" />
       </svg>
     </button>
-    <div class="glow glow--purple"></div>
-    <div class="glow glow--blue"></div>
   </div>
 </template>
 
@@ -117,257 +128,345 @@ html.banner-show {
   left: 0;
   right: 0;
   height: var(--vp-layout-top-height, 64px);
-  padding: 0 48px 0 12px;
+  padding: 0 64px;
   text-align: center;
-  font-size: 18px;
-  font-weight: 600;
   color: var(--vp-c-white);
-  background: #0f0f13;
-  background-image: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: radial-gradient(circle at 18% -80%, rgba(128, 89, 243, 0.72), transparent 36%),
+    radial-gradient(circle at 82% 160%, rgba(69, 199, 255, 0.38), transparent 34%), linear-gradient(110deg, #111127 0%, #111827 48%, #0c1b2a 100%);
+  border-bottom: 1px solid rgba(137, 178, 255, 0.22);
+  box-shadow: 0 8px 28px rgba(5, 8, 20, 0.28), inset 0 -1px 0 rgba(255, 255, 255, 0.04);
   display: none;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  isolation: isolate;
 }
 
 html.banner-show .banner {
   display: flex;
 }
 
-.glow.glow--purple {
+.banner::after {
   position: absolute;
-  bottom: -15%;
-  left: -75%;
-  width: 80%;
-  aspect-ratio: 1.5;
-  pointer-events: none;
-  border-radius: 100%;
-  background: linear-gradient(270deg, var(--vt-c-accent-purple), var(--vt-c-brand-2) 60% 80%, transparent);
-  filter: blur(15vw);
-  transform: none;
-  opacity: 0.6;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 8%, #8b5cf6 34%, #60a5fa 52%, #67e8f9 68%, transparent 92%);
+  content: '';
+  opacity: 0.85;
 }
 
-.glow.glow--blue {
+.banner__mesh {
   position: absolute;
-  bottom: -15%;
-  right: -40%;
-  width: 80%;
-  aspect-ratio: 1.5;
+  z-index: -1;
+  inset: 0;
   pointer-events: none;
-  border-radius: 100%;
-  background: linear-gradient(180deg, var(--vt-c-accent-cyan), transparent);
-  filter: blur(15vw);
-  transform: none;
-  opacity: 0.3;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(90deg, transparent, #000 28%, #000 72%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 28%, #000 72%, transparent);
 }
 
-button {
+.banner__orb {
   position: absolute;
-  right: 8px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(28px);
+  opacity: 0.55;
+}
+
+.banner__orb--purple {
+  top: -44px;
+  left: 12%;
+  width: 260px;
+  height: 84px;
+  background: rgba(124, 58, 237, 0.48);
+}
+
+.banner__orb--cyan {
+  right: 10%;
+  bottom: -52px;
+  width: 320px;
+  height: 96px;
+  background: rgba(34, 211, 238, 0.34);
+}
+
+.banner__close {
+  position: absolute;
+  right: 18px;
   top: 50%;
+  width: 34px;
+  height: 34px;
   transform: translateY(-50%);
-  padding: 4px;
-  background: transparent;
-  border: none;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
-button:hover {
-  opacity: 0.8;
+.banner__close:hover {
+  color: var(--vp-c-white);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-50%) rotate(4deg);
 }
 
-button:active {
-  opacity: 0.6;
+.banner__close:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.banner__close:focus-visible,
+.vt-primary-action:focus-visible {
+  outline: 2px solid var(--vt-c-accent-cyan);
+  outline-offset: 2px;
 }
 
 .close {
-  width: 28px;
-  height: 28px;
-  fill: var(--vp-c-white);
-  transform: rotate(45deg);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 0 0 transparent);
-}
-
-button:hover .close {
-  transform: rotate(45deg) scale(1.1);
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.8;
 }
 
 .vt-banner-text {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  max-width: 1100px;
   color: var(--vp-c-white);
-  font-size: 18px;
-  line-height: 1.4;
-  padding: 8px 0;
+  line-height: 1;
+}
+
+.vt-banner-badge {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  color: #e8ddff;
+  background: linear-gradient(145deg, rgba(151, 117, 250, 0.28), rgba(68, 128, 255, 0.12));
+  border: 1px solid rgba(196, 181, 253, 0.32);
+  border-radius: 9px;
+  box-shadow: 0 0 24px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.vt-banner-badge::after {
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgba(196, 181, 253, 0.1);
+  border-radius: 12px;
+  content: '';
+}
+
+.vt-banner-badge svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  filter: drop-shadow(0 0 6px rgba(196, 181, 253, 0.55));
 }
 
 .vt-banner-title {
-  display: inline-block;
-  background: linear-gradient(90deg, var(--vt-c-accent-purple) 0%, var(--vt-c-accent-cyan) 100%);
+  display: block;
+  margin: 0;
+  background: linear-gradient(90deg, #d8b4fe 0%, #a5b4fc 42%, #7dd3fc 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   text-align: center;
-  font-size: 18px;
+  font-size: 17px;
   font-style: normal;
-  font-weight: 700;
-  line-height: 1.4;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
   white-space: nowrap;
 }
 
 .vt-primary-action {
-  display: inline-block;
-  background: radial-gradient(140.35% 140.35% at 175% 94.74%, var(--vt-c-accent-mint), transparent),
-    radial-gradient(89.94% 89.94% at 18.42% 15.79%, var(--vt-c-brand-1), transparent);
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  overflow: hidden;
+  background: linear-gradient(115deg, #7c3aed 0%, #3b82f6 52%, #0891b2 100%);
   color: var(--vp-c-white);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 8px 13px 8px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 10px;
+  box-shadow: 0 7px 20px rgba(37, 99, 235, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
   white-space: nowrap;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.vt-primary-action::before {
+  position: absolute;
+  top: -50%;
+  left: -35%;
+  width: 28px;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  content: '';
+  transform: rotate(20deg);
+  transition: left 0.55s ease;
+}
+
+.vt-primary-action svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  transition: transform 0.25s ease;
 }
 
 .vt-primary-action:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.28);
+  border-color: rgba(255, 255, 255, 0.42);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(59, 130, 246, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.vt-primary-action:hover::before {
+  left: 115%;
+}
+
+.vt-primary-action:hover svg {
+  transform: translateX(2px);
 }
 
 .vt-primary-action:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
 }
 
 /* 桌面端优化 */
 @media (min-width: 769px) {
-  .banner {
-    padding: 0 60px 0 20px;
-  }
-
-  .glow.glow--blue {
-    top: -15%;
-    right: -40%;
-    width: 80%;
-  }
-
-  .glow.glow--purple {
-    bottom: -15%;
-    left: -40%;
-    width: 80%;
-  }
-
-  .vt-banner-text {
-    gap: 12px;
+  .vt-banner-title::after {
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    margin-left: 12px;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.32), transparent);
+    content: '';
+    vertical-align: -3px;
   }
 }
 
 /* 平板端优化 */
 @media (max-width: 768px) {
   .banner {
-    padding: 0 40px 0 10px;
+    padding: 0 54px 0 18px;
   }
 
-  button {
-    right: 6px;
+  .banner__close {
+    right: 12px;
+    width: 30px;
+    height: 30px;
   }
 
   .close {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
   }
 
   .vt-banner-text {
-    font-size: 16px;
-    gap: 6px;
+    gap: 9px;
   }
 
   .vt-banner-title {
-    font-size: 16px;
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
   }
 
   .vt-primary-action {
-    font-size: 14px;
-    padding: 5px 10px;
+    padding: 7px 10px 7px 12px;
+    font-size: 13px;
   }
 }
 
 /* 手机端优化 */
 @media (max-width: 640px) {
   .banner {
-    padding: 0 36px 0 8px;
+    padding-left: 12px;
   }
 
   .vt-banner-text {
-    font-size: 14px;
-    gap: 6px;
+    width: 100%;
+    gap: 8px;
   }
 
-  .vt-banner-title {
-    font-size: 14px;
+  .vt-banner-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
   }
 
-  .vt-primary-action {
-    font-size: 13px;
-    padding: 4px 8px;
+  .vt-banner-badge svg {
+    width: 15px;
+    height: 15px;
   }
 }
 
 /* 小屏手机优化 */
 @media (max-width: 480px) {
   .banner {
-    padding: 0 32px 0 6px;
+    padding: 0 46px 0 12px;
   }
 
-  button {
-    right: 4px;
-    padding: 2px;
-  }
-
-  .close {
-    width: 20px;
-    height: 20px;
+  .banner__close {
+    right: 9px;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
   }
 
   .vt-banner-text {
-    font-size: 12px;
-    gap: 4px;
-    flex-direction: column;
-    line-height: 1.3;
+    justify-content: flex-start;
+    gap: 7px;
+  }
+
+  .vt-banner-badge {
+    display: none;
   }
 
   .vt-banner-title {
+    min-width: 0;
     font-size: 12px;
+    text-align: left;
   }
 
   .vt-primary-action {
     font-size: 12px;
-    padding: 3px 8px;
-    border-radius: 4px;
+    padding: 6px 8px 6px 9px;
+    border-radius: 8px;
   }
 }
 
 /* 超小屏优化 */
 @media (max-width: 375px) {
   .banner {
-    padding: 0 28px 0 4px;
-  }
-
-  .vt-banner-text {
-    font-size: 11px;
-    gap: 3px;
+    padding-left: 9px;
   }
 
   .vt-banner-title {
@@ -376,7 +475,16 @@ button:hover .close {
 
   .vt-primary-action {
     font-size: 11px;
-    padding: 2px 6px;
+    padding: 5px 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banner__close,
+  .vt-primary-action,
+  .vt-primary-action::before,
+  .vt-primary-action svg {
+    transition: none;
   }
 }
 </style>

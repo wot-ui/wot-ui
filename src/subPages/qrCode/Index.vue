@@ -70,7 +70,13 @@
 
         <demo-group-item :title="$t('qrcode-bei-jing-tu-pian')">
           <view class="page-qr-code__center">
-            <wd-qr-code text="https://wot-ui.cn" :background-image="logoUrl" color-dark="#22324a" color-light="rgba(255, 255, 255, 0.18)" />
+            <wd-qr-code
+              text="https://wot-ui.cn"
+              :background-image="logoUrl"
+              color-dark="rgba(255, 255, 255, 0.8)"
+              color-light="rgba(15, 31, 50, 0.88)"
+              :margin="4"
+            />
           </view>
         </demo-group-item>
       </demo-group>
@@ -101,13 +107,14 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { QrCodeInstance } from '@/uni_modules/wot-ui/components/wd-qr-code/types'
+import blackMao from '../img/black_mao_square.png'
 
 const { t } = useI18n()
 
 const qrCodeRef = ref<QrCodeInstance>()
 const imgSrc = ref('')
 
-const logoUrl = 'https://img.yzcdn.cn/vant/cat.jpeg'
+const logoUrl = blackMao
 
 async function handleExport() {
   try {
@@ -182,7 +189,6 @@ async function handleExport() {
     width: 200px;
     height: 200px;
     display: block;
-    border-radius: $radius-large;
     overflow: hidden;
   }
 }

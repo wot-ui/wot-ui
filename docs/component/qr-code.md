@@ -40,7 +40,7 @@
 设置 `logo` 可在二维码中心绘制 Logo。
 
 ```html
-<wd-qr-code text="https://wot-ui.cn" logo="https://img.yzcdn.cn/vant/cat.jpeg" />
+<wd-qr-code text="https://wot-ui.cn" logo="https://wot-ui.cn/assets/black_mao_square.png" />
 ```
 
 ### Logo 样式
@@ -50,7 +50,7 @@
 ```html
 <wd-qr-code
   text="https://wot-ui.cn"
-  logo="https://img.yzcdn.cn/vant/cat.jpeg"
+  logo="https://wot-ui.cn/assets/black_mao_square.png"
   :logo-width="52"
   :logo-height="52"
   :logo-radius="12"
@@ -93,7 +93,7 @@
 <wd-qr-code
   text="https://wot-ui.cn"
   background-image="https://img.yzcdn.cn/vant/apple-1.jpg"
-  logo="https://img.yzcdn.cn/vant/cat.jpeg"
+  logo="https://wot-ui.cn/assets/black_mao_square.png"
 />
 ```
 

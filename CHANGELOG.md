@@ -1,6 +1,52 @@
 # 更新日志 
 
 
+### [2.3.2](https://github.com/wot-ui/wot-ui/compare/v2.3.1...v2.3.2) (2026-08-10)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  更新 qr-code 组件的图片资源 ([318e987](https://github.com/wot-ui/wot-ui/commit/318e9879ac583a3a9b63bbdc0bed7a9bf241c442))
+* ✏️  更新演示 dmeo 的二维码 ([0faacee](https://github.com/wot-ui/wot-ui/commit/0faacee048cdf3fbca4d0993ac595832f05679f9))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🐛 修复 H5 端二维码导出图片模糊问题 ([#135](https://github.com/wot-ui/wot-ui/issues/135)) ([6537253](https://github.com/wot-ui/wot-ui/commit/6537253143d05b8317f8c83a52d202972e4bc258))
+* 🐛 修复 Slider 组件中图标组件未导入问题 ([#136](https://github.com/wot-ui/wot-ui/issues/136)) ([455d33b](https://github.com/wot-ui/wot-ui/commit/455d33ba974678f2df70ce0d29f155ec404fad43))
+* 🐛 修复二维码 矩阵边界溢出 ([#132](https://github.com/wot-ui/wot-ui/issues/132)) ([05b7287](https://github.com/wot-ui/wot-ui/commit/05b72873cc118e253011ae76efdfa6732c933902))
+
+### [2.3.1](https://github.com/wot-ui/wot-ui/compare/v2.3.0...v2.3.1) (2026-08-04)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 🐛 移除 qr-code 的 CommonJS 导出，避免覆盖 vendor 模块 ([#130](https://github.com/wot-ui/wot-ui/issues/130)) ([cf2c892](https://github.com/wot-ui/wot-ui/commit/cf2c8926bc97b629d33e07eb185db887f9a85532))
+
+## [2.3.0](https://github.com/wot-ui/wot-ui/compare/v2.2.0...v2.3.0) (2026-08-03)
+
+
+### ✨ Features | 新功能
+
+* ✨ 新增二维码组件 ([#23](https://github.com/wot-ui/wot-ui/issues/23)) ([55627c3](https://github.com/wot-ui/wot-ui/commit/55627c31caae1a787e5867e793b7fa16af79b68a))
+* ✨ 修复 Form 表单同字段多条校验错误提示被覆盖问题 ([#92](https://github.com/wot-ui/wot-ui/issues/92)) ([46014f5](https://github.com/wot-ui/wot-ui/commit/46014f5ba4012f10371839ff881697bd190b90d0)), closes [#89](https://github.com/wot-ui/wot-ui/issues/89)
+* ✨ 支持 Collapse 非受控模式 ([#94](https://github.com/wot-ui/wot-ui/issues/94)) ([0bd754f](https://github.com/wot-ui/wot-ui/commit/0bd754f76dba7df02c3a7e4d077522673feff8c0)), closes [#74](https://github.com/wot-ui/wot-ui/issues/74)
+* ✨ 支持 Form 表单禁用与 FormItem 点击入口拦截 ([#98](https://github.com/wot-ui/wot-ui/issues/98)) ([056ac0d](https://github.com/wot-ui/wot-ui/commit/056ac0d8332611ffb77b19953f80557ca8679062)), closes [#91](https://github.com/wot-ui/wot-ui/issues/91)
+* ✨ 支持 icon 相关组件透传 iconPrefix 与 cssIcon ([#101](https://github.com/wot-ui/wot-ui/issues/101)) ([130192b](https://github.com/wot-ui/wot-ui/commit/130192bd8bd6682a3b875f5b335703a8196615b6)), closes [#100](https://github.com/wot-ui/wot-ui/issues/100)
+* ✨ 支持 label 插槽的启用与配置 ([#109](https://github.com/wot-ui/wot-ui/issues/109)) ([78360a0](https://github.com/wot-ui/wot-ui/commit/78360a030f9658761368494ac69f97f7792ea9dc)), closes [#106](https://github.com/wot-ui/wot-ui/issues/106)
+
+
+### ✏️ Documentation | 文档
+
+* ✏️  官方生态 `@wot-ui/oiyo-starter` 新增对应的 icon 图 ([#117](https://github.com/wot-ui/wot-ui/issues/117)) ([9d6a31f](https://github.com/wot-ui/wot-ui/commit/9d6a31f3cdc0908032e53bc576525b7a782d7d58))
+* ✏️  首页添加官方生态 ([3c94050](https://github.com/wot-ui/wot-ui/commit/3c940508093048936e1ffb9bc96bf117dbc98325))
+* ✏️  突出 AI 文档入口与使用指引 ([#99](https://github.com/wot-ui/wot-ui/issues/99)) ([bc670a6](https://github.com/wot-ui/wot-ui/commit/bc670a6a25a438f23deeee05c050aae7fbd26ca4))
+* ✏️  新增顶部 生态 组中 oiyo 相关内容 ([#113](https://github.com/wot-ui/wot-ui/issues/113)) ([65fd2d8](https://github.com/wot-ui/wot-ui/commit/65fd2d82b70553dde0c52306b3d6ad2cfe622235))
+* ✏️  移除 vercel 重定向的逻辑 ([42308b1](https://github.com/wot-ui/wot-ui/commit/42308b14e5f5291aab09a1d5f0ac78b5cbab0ca4))
+* ✏️  优化文档顶部 banner 样式 ([2f4dc9b](https://github.com/wot-ui/wot-ui/commit/2f4dc9b94eb75ccfc022a26c06d62b097b9fcf13))
+* ✏️ 将 oiyo-starter 新增到工程实践的模板内容中 ([#119](https://github.com/wot-ui/wot-ui/issues/119)) ([ca1192d](https://github.com/wot-ui/wot-ui/commit/ca1192db243cd8bfa875cc8e1e76c503b1bf48df))
+* ✏️ 在首页新增展示 生态 的区域 ([#114](https://github.com/wot-ui/wot-ui/issues/114)) ([dc9c3cd](https://github.com/wot-ui/wot-ui/commit/dc9c3cd9c87961185a252004cb76f4dbf1c598a4))
+
 ## [2.2.0](https://github.com/wot-ui/wot-ui/compare/v2.1.0...v2.2.0) (2026-06-30)
 
 

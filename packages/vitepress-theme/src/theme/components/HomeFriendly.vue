@@ -49,10 +49,16 @@ const links = computed(() => {
 
 .friendly-title {
   text-align: center;
-  margin: 32px 0 20px;
+  margin: 50px 0 24px;
   font-size: 18px;
   font-weight: 600;
   color: var(--vp-c-text-2);
+}
+
+@media (max-width: 639px) {
+  .friendly-title {
+    margin: 40px 0 20px;
+  }
 }
 
 .links {
