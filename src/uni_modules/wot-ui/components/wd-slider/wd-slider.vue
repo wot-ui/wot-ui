@@ -88,6 +88,7 @@ export default {
 
 <script lang="ts" setup>
 import { computed, type CSSProperties, getCurrentInstance, onMounted, ref, watch } from 'vue'
+import wdIcon from '../wd-icon/wd-icon.vue'
 import { deepClone, getRect, isArray, isDef, isEqual, objToStyle, uuid } from '../../common/util'
 import { useFormDisabled } from '../../composables/useFormDisabled'
 import { useTouch } from '../../composables/useTouch'
