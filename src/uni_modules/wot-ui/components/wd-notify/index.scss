@@ -93,13 +93,13 @@ $notify-types: ("primary": ("bg": $notify-primary-bg,
     }
   }
 
-  @include e(prefix) {
+  @include edeep(prefix) {
     font-size: $notify-icon-size;
     margin-right: $notify-icon-spacing;
     flex: 0 0 auto;
   }
 
-  @include e(close) {
+  @include edeep(close) {
     font-size: $notify-icon-size;
     margin-left: $notify-icon-spacing;
     flex: 0 0 auto;

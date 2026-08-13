@@ -248,9 +248,9 @@ $dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) 
     display: block;
   }
 
-  @include e(icon) {
+  @include edeep(icon) {
     font-size: $dialog-icon-size;
-    line-height: $dialog-icon-size;
+    line-height: 1;
     margin: 0 auto;
     margin-bottom: $dialog-icon-margin-bottom;
     color: $dialog-primary-color;
@@ -272,7 +272,7 @@ $dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) 
     }
   }
 
-  @include e(close) {
+  @include edeep(close) {
     position: absolute;
     top: $dialog-close-icon-top;
     right: $dialog-close-icon-right;
