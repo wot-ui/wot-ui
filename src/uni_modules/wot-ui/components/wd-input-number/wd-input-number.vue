@@ -8,7 +8,7 @@
     <!-- 减号按钮 -->
     <view
       :class="`wd-input-number__action wd-input-number__sub ${minDisabled || disableMinus ? 'is-disabled' : ''}`"
-      @click="handleClick('sub')"
+      @click.stop="handleClick('sub')"
       @touchstart="handleTouchStart('sub')"
       @touchend.stop="handleTouchEnd"
     >
@@ -33,7 +33,7 @@
     <!-- 加号按钮 -->
     <view
       :class="`wd-input-number__action wd-input-number__add ${maxDisabled || disablePlus ? 'is-disabled' : ''}`"
-      @click="handleClick('add')"
+      @click.stop="handleClick('add')"
       @touchstart="handleTouchStart('add')"
       @touchend.stop="handleTouchEnd"
     >
