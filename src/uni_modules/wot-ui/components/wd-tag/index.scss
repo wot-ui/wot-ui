@@ -289,6 +289,12 @@ $tag-sizes: (
         @include pixelBorderSurround($color,dashed);
       }
 
+      @include when(plain, dashed) {
+        &::after {
+          border-color: inherit;
+        }
+      }
+
       @include when(text) {
         background: transparent;
         color: $color;

@@ -98,6 +98,9 @@
         <wd-tag custom-class="page-tag__space" color="var(--wot-warning-main, #FAA21E)" bg-color="var(--wot-warning-main, #FAA21E)" variant="plain">
           {{ $t('biao-qian-31') }}
         </wd-tag>
+        <wd-tag custom-class="page-tag__space" color="var(--wot-purple-6, #8059F3)" bg-color="var(--wot-cyan-6, #22B8CF)" variant="dashed">
+          {{ $t('biao-qian-31') }}
+        </wd-tag>
       </demo-group-item>
     </demo-group>
 

@@ -193,6 +193,24 @@ describe('WdTag', () => {
     expect(textStyle).toContain('color:')
   })
 
+  test('虚线模式下 bgColor 设置边框颜色', () => {
+    const bgColor = '#0000ff'
+    const wrapper = mount(WdTag, {
+      props: {
+        bgColor,
+        variant: 'dashed'
+      },
+      slots: {
+        default: '标签'
+      }
+    })
+
+    const style = wrapper.attributes('style')
+    expect(wrapper.classes()).toContain('is-dashed')
+    expect(style).not.toContain('background:')
+    expect(style).toContain('border-color:')
+  })
+
   // 测试插槽内容
   test('插槽内容渲染', () => {
     const wrapper = mount(WdTag, {
