@@ -120,7 +120,7 @@ async function handleExport() {
 }
 ```
 
-## QRCode Attributes
+## QrCode Attributes
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
@@ -148,14 +148,14 @@ async function handleExport() {
 | custom-class | Custom root class name | `string` | `''` |
 | custom-style | Custom root style | `string` | `''` |
 
-## QRCode Events
+## QrCode Events
 
 | Event Name | Description | Callback Parameters |
 | --- | --- | --- |
 | click | Triggered when the component is clicked | `event: Event` |
 | error | Triggered when drawing or exporting fails | `error: unknown` |
 
-## QRCode Methods
+## QrCode Methods
 
 | Method Name | Description | Parameters | Return Value |
 | --- | --- | --- | --- |

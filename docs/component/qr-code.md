@@ -120,7 +120,7 @@ async function handleExport() {
 }
 ```
 
-## QRCode Attributes
+## QrCode Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
@@ -148,14 +148,14 @@ async function handleExport() {
 | custom-class | 自定义根节点样式类 | `string` | `''` |
 | custom-style | 自定义根节点样式 | `string` | `''` |
 
-## QRCode Events
+## QrCode Events
 
 | 事件名称 | 说明 | 回调参数 |
 | --- | --- | --- |
 | click | 点击组件时触发 | `event: Event` |
 | error | 绘制或导出过程出错时触发 | `error: unknown` |
 
-## QRCode Methods
+## QrCode Methods
 
 | 方法名称 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
