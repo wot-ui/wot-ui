@@ -4,6 +4,7 @@ import { version, name } from '../package.json'
 import type { ReAttribute, ReComponentName, ReDocUrl, ReWebTypesSource, ReWebTypesType } from 'components-helper'
 import path from 'path'
 import { generateWebTypes } from './component-helper'
+import { getPureValue, resolvePropName } from './web-types-helper'
 import os from 'os'
 
 // 定义类型映射
@@ -43,19 +44,6 @@ const reWebTypesSource: ReWebTypesSource = (title) => {
   return { symbol }
 }
 
-// 获取纯净值（移除所有反引号和星号以及首尾的单双引号）
-const getPureValue = (value: string) => {
-  return value
-    .replace(/[`*]/g, '')
-    .replace(/^['"]|['"]$/g, '')
-    .trim()
-}
-
-// 移除参数列中的版本标记，避免生成的属性名被 ^(x.y.z) 污染
-const stripVersionMarker = (value: string) => {
-  return value.replace(/\s*\^\(\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?\)/g, '').trim()
-}
-
 // 重新定义 WebTypes 类型的函数
 const reWebTypesType: ReWebTypesType = (type) => {
   const _type = getPureValue(type)
@@ -80,27 +68,11 @@ const findModule = (type: string) => {
   return undefined
 }
 
-// 将驼峰写法转换为短横线连接的写法的函数
-const toKebabCase = (str: string) => {
-  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
-}
-
 // 重新定义属性名称的函数
 const reAttribute: ReAttribute = (value, key, row, title) => {
   if (title.includes('Attributes')) {
     if (key === '参数') {
-      const normalizedValue = stripVersionMarker(value)
-
-      if (normalizedValue.includes('v-model:')) {
-        const part = normalizedValue.split(/[\s/|]/).find((part) => part.startsWith('v-model:'))
-        if (part) {
-          const suffix = toKebabCase(part.split(':')[1].split(/[\s\W]/)[0])
-          return `v-model:${suffix}`
-        }
-      } else if (normalizedValue.includes('v-model')) {
-        return 'v-model'
-      }
-      return toKebabCase(stripVersionMarker(normalizedValue).replace(/[^\w\s-]/g, ''))
+      return resolvePropName(value)
     } else if (key === '可选值' || key === '默认值') {
       const pureValue = getPureValue(value)
 
