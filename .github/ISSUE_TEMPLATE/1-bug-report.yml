@@ -39,11 +39,29 @@ body:
   - type: input
     id: reproduce
     attributes:
-      label: 复现Demo地址（出于对我们的尊重，请必须提供，如不提供，将被直接关闭）
+      label: 最小复现 Demo Git 仓库地址（必填）
       description: |
-        我们需要你提供一个最小重现demo，以便于我们帮你排查问题。你可以通过 [create-uni](https://github.com/uni-helper/create-uni) 快速创建一个wot-ui项目，并添加相关复现逻辑来提供。不要随便填写一个东西，这会导致你的 issue 被直接关闭。即使在你看来问题很容易复现，也请认真对待，因为一个完整复现demo可以大大提高我们排查问题的效率。
+        请提供一个可公开访问、无需额外权限的最小复现 Git 仓库地址（如 GitHub、Gitee 或 GitLab 仓库）。
+        不接受“无”、无关链接、截图、文档地址、代码片段或仅有在线预览的页面；未提供有效复现仓库的 Issue 将被直接关闭。
+        你可以通过 [create-uni](https://github.com/uni-helper/create-uni) 快速创建 Wot UI 项目，并仅保留触发问题所需的代码。
+      placeholder: 例如：https://github.com/your-name/wot-ui-reproduction
     validations:
       required: true
+
+  - type: checkboxes
+    id: reproduce-confirmations
+    attributes:
+      label: 复现 Demo 确认项
+      description: 请逐项确认；以下条件均满足后再提交 Issue。
+      options:
+        - label: 我提供的是与本 Issue 直接相关的最小复现 Git 仓库，不是“无”、占位内容或无关项目。
+          required: true
+        - label: 该仓库可公开访问，无需申请权限、登录特定账号或依赖公司内网。
+          required: true
+        - label: 该仓库包含完整依赖和清晰的运行说明，维护者可以独立安装、运行并复现问题。
+          required: true
+        - label: 我已确认仓库中不包含密钥、账号、个人信息或其他敏感数据。
+          required: true
 
   - type: textarea
     id: reproduce-steps
