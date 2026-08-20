@@ -7,7 +7,7 @@
 ### ✏️ Documentation | 文档
 
 * ✏️  更新 qr-code 组件的图片资源 ([318e987](https://github.com/wot-ui/wot-ui/commit/318e9879ac583a3a9b63bbdc0bed7a9bf241c442))
-* ✏️  更新演示 dmeo 的二维码 ([0faacee](https://github.com/wot-ui/wot-ui/commit/0faacee048cdf3fbca4d0993ac595832f05679f9))
+* ✏️  更新演示 demo 的二维码 ([0faacee](https://github.com/wot-ui/wot-ui/commit/0faacee048cdf3fbca4d0993ac595832f05679f9))
 
 
 ### 🐛 Bug Fixes | Bug 修复
