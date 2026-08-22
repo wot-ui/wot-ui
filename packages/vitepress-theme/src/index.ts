@@ -36,6 +36,7 @@ function resolveThemeOptions(options: WotVitePressThemeOptions = {}): WotResolve
     cases: options.cases ?? false,
     ecosystem: options.ecosystem ?? false,
     demoIframe: options.demoIframe ?? false,
+    contributors: options.contributors ?? false,
     specialSponsor: options.specialSponsor ?? false
   }
 }

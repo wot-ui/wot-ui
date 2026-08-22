@@ -76,6 +76,11 @@ export default createWotVitePressTheme({
   demoIframe: {
     assetBase: '/wxqrcode' // 静态二维码图片前缀
   },
+  // 组件文档底部贡献者数据
+  contributors: {
+    dataUrl: '/data/component-contributors.json',
+    maxCount: 8
+  },
   // 以下是各业务组件的数据源配置
   // 不传或传 false 则代表关闭该模块
   banner: {
@@ -139,6 +144,7 @@ const { data: sponsors } = useSponsor()
 
 - `analytics.trackBaiduRoute`: 开启后，在路由变化时调用 `_hmt.push(['_trackPageview'])`。
 - `demoIframe`: 配置右侧手机模拟器相关选项。
+- `contributors`: 组件文档底部贡献者配置。`dataUrl` 指向由 `generate:component-contributors` 生成的静态 JSON，`maxCount` 控制最多展示的头像数量。执行根目录的 `build:docs` 时会自动刷新数据；CI 可提供 `GITHUB_TOKEN`，将普通 Git 邮箱作者关联到 GitHub 账号。
 - `banner` / `sponsors` / `ads` / `team` / `friendly` / `cases`: 提供给对应功能模块的请求地址数组（支持多线路重试）。
 - `specialSponsor`: 特别赞助位配置，支持赞助数据源 `urls`、右侧赞助位显示开关 `enabled`，以及开通赞助位跳转地址 `sponsorLink`。
 

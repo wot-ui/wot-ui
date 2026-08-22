@@ -1,0 +1,889 @@
+{
+  "repository": "wot-ui/wot-ui",
+  "components": {
+    "action-sheet": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "avatar": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 5
+      }
+    ],
+    "backtop": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "badge": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "button": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 6
+      },
+      {
+        "id": "github:xiaohe0601",
+        "login": "xiaohe0601",
+        "name": "xiaohe0601",
+        "avatarUrl": "https://github.com/xiaohe0601.png?size=80",
+        "profileUrl": "https://github.com/xiaohe0601",
+        "contributions": 3
+      }
+    ],
+    "calendar-view": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "calendar": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "card": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "cascader": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "cell": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 5
+      },
+      {
+        "id": "github:rjqinghuan",
+        "login": "RJQingHuan",
+        "name": "QingHuan",
+        "avatarUrl": "https://github.com/RJQingHuan.png?size=80",
+        "profileUrl": "https://github.com/RJQingHuan",
+        "contributions": 1
+      }
+    ],
+    "checkbox": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 6
+      }
+    ],
+    "circle": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "collapse": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "config-provider": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 20
+      }
+    ],
+    "count-down": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "count-to": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "curtain": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "datetime-picker-view": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 1
+      }
+    ],
+    "datetime-picker": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "dialog": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 8
+      }
+    ],
+    "divider": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "drop-menu": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "empty": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "fab": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 1
+      }
+    ],
+    "floating-panel": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 1
+      }
+    ],
+    "form": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 9
+      },
+      {
+        "id": "github:rjqinghuan",
+        "login": "RJQingHuan",
+        "name": "QingHuan",
+        "avatarUrl": "https://github.com/RJQingHuan.png?size=80",
+        "profileUrl": "https://github.com/RJQingHuan",
+        "contributions": 1
+      }
+    ],
+    "gap": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 1
+      }
+    ],
+    "grid": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "icon": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      },
+      {
+        "id": "github:xiaohe0601",
+        "login": "xiaohe0601",
+        "name": "xiaohe0601",
+        "avatarUrl": "https://github.com/xiaohe0601.png?size=80",
+        "profileUrl": "https://github.com/xiaohe0601",
+        "contributions": 1
+      }
+    ],
+    "image-preview": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "img-cropper": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "img": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "index-bar": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "input-number": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 5
+      }
+    ],
+    "input": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 5
+      }
+    ],
+    "keyboard": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "layout": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "loading": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 5
+      }
+    ],
+    "loadmore": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "navbar": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 1
+      }
+    ],
+    "notice-bar": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "notify": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 6
+      }
+    ],
+    "overlay": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "pagination": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "password-input": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "picker-view": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "picker": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "popover": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "popup": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "progress": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "qr-code": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      },
+      {
+        "id": "github:xiabaiyou",
+        "login": "Xiabaiyou",
+        "name": "Xiabaiyou",
+        "avatarUrl": "https://github.com/Xiabaiyou.png?size=80",
+        "profileUrl": "https://github.com/Xiabaiyou",
+        "contributions": 2
+      }
+    ],
+    "radio": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 5
+      }
+    ],
+    "rate": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "resize": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 1
+      }
+    ],
+    "root-portal": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "search": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "segmented": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "select-picker": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "sidebar": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "signature": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "skeleton": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "slide-verify": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "slider": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 6
+      }
+    ],
+    "sort-button": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "steps": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "sticky": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "swipe-action": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "swiper": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "switch": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 5
+      },
+      {
+        "id": "github:xiaohe0601",
+        "login": "xiaohe0601",
+        "name": "xiaohe0601",
+        "avatarUrl": "https://github.com/xiaohe0601.png?size=80",
+        "profileUrl": "https://github.com/xiaohe0601",
+        "contributions": 1
+      }
+    ],
+    "tabbar": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "table": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "tabs": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 5
+      }
+    ],
+    "tag": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 7
+      }
+    ],
+    "text": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "textarea": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "toast": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      },
+      {
+        "id": "github:dodu2014",
+        "login": "dodu2014",
+        "name": "dodu2014",
+        "avatarUrl": "https://github.com/dodu2014.png?size=80",
+        "profileUrl": "https://github.com/dodu2014",
+        "contributions": 1
+      },
+      {
+        "id": "github:xiaohe0601",
+        "login": "xiaohe0601",
+        "name": "xiaohe0601",
+        "avatarUrl": "https://github.com/xiaohe0601.png?size=80",
+        "profileUrl": "https://github.com/xiaohe0601",
+        "contributions": 1
+      }
+    ],
+    "tooltip": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "tour": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "transition": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 2
+      }
+    ],
+    "upload": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 4
+      }
+    ],
+    "video-preview": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 3
+      }
+    ],
+    "watermark": [
+      {
+        "id": "github:moonofweisheng",
+        "login": "Moonofweisheng",
+        "name": "不如摸鱼去",
+        "avatarUrl": "https://github.com/Moonofweisheng.png?size=80",
+        "profileUrl": "https://github.com/Moonofweisheng",
+        "contributions": 1
+      }
+    ]
+  }
+}

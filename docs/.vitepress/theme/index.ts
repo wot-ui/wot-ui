@@ -16,6 +16,10 @@ export default createWotVitePressTheme({
   demoIframe: {
     assetBase: '/wxqrcode'
   },
+  contributors: {
+    dataUrl: '/data/component-contributors.json',
+    maxCount: 8
+  },
   banner: {
     urls: ['https://sponsor.wot-ui.cn/wot-v2-banner.json', 'https://wot-sponsors.pages.dev/wot-v2-banner.json']
   },

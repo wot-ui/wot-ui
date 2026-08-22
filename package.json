@@ -59,6 +59,7 @@
     "upload:mp-dingtalk": "uni build -p mp-dingtalk && minici --platform dd",
     "build:qrcode": "esno ./scripts/qrcode.ts",
     "build:changelog": "esno ./scripts/syncChangelog.ts",
+    "generate:component-contributors": "esno ./scripts/generateComponentContributors.ts",
     "build:theme-vars": "esno ./scripts/buildThemeVars.ts",
     "type-check:vitepress-theme": "pnpm --filter @wot-ui/vitepress-theme type-check",
     "test": "vitest",

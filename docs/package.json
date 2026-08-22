@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vitepress dev --port 5174",
+    "prebuild": "pnpm --dir .. generate:component-contributors",
     "build": "vitepress build",
     "serve": "vitepress serve"
   },
