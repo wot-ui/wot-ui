@@ -79,18 +79,25 @@ function getContributorLinkAttrs(contributor: Contributor) {
 async function loadContributors() {
   if (!isComponentRoute.value || loaded.value) return
   loaded.value = true
+  const requestedComponentId = componentId.value
 
   const dataUrl = themeOptions?.contributors && themeOptions.contributors.dataUrl
   if (!dataUrl || typeof fetch === 'undefined') return
 
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 10_000)
+
   try {
-    const response = await fetch(dataUrl)
+    const response = await fetch(dataUrl, { signal: controller.signal })
     if (!response.ok) return
     const manifest = (await response.json()) as ContributorManifest
+    if (requestedComponentId !== componentId.value) return
     repository.value = manifest.repository ?? ''
-    contributors.value = manifest.components?.[componentId.value] ?? []
+    contributors.value = manifest.components?.[requestedComponentId] ?? []
   } catch {
     // 贡献者属于增强信息，数据加载失败时不影响文档正文。
+  } finally {
+    clearTimeout(timeout)
   }
 }
 

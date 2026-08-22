@@ -77,7 +77,7 @@ const expanded = ref(true)
             <Content class="vp-doc" :class="[pageName, theme.externalLinkIcon && 'external-link-icon-enabled']" />
             <VPIframe v-if="isComponent" v-model:expanded="expanded" />
           </main>
-          <VPComponentContributors v-if="isComponent" />
+          <VPComponentContributors />
           <VPDocFooter>
             <template #doc-footer-before>
               <slot name="doc-footer-before" />

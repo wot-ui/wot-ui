@@ -33,14 +33,25 @@ const githubToken = process.env.GITHUB_TOKEN
 const githubAuthorCache = new Map<string, Promise<GithubAuthor | null>>()
 
 function ensureFullGitHistory() {
-  const isShallow = execFileSync('git', ['rev-parse', '--is-shallow-repository'], { cwd: root, encoding: 'utf8' }).trim() === 'true'
-  if (!isShallow) return
+  try {
+    const isShallow =
+      execFileSync('git', ['rev-parse', '--is-shallow-repository'], {
+        cwd: root,
+        encoding: 'utf8'
+      }).trim() === 'true'
+    if (!isShallow) return true
 
-  console.log('Shallow Git history detected; fetching the full history before generating contributors.')
-  execFileSync('git', ['fetch', '--unshallow', '--tags', 'origin'], { cwd: root, stdio: 'inherit' })
+    console.log('Shallow Git history detected; fetching the full history before generating contributors.')
+    execFileSync('git', ['fetch', '--unshallow', '--tags', 'origin'], { cwd: root, stdio: 'inherit' })
+    return true
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    console.warn(`Unable to access the full Git history; keeping the existing contributor manifest. ${message}`)
+    return false
+  }
 }
 
-ensureFullGitHistory()
+const gitHistoryReady = ensureFullGitHistory()
 
 // Git author 信息通常是昵称或邮箱，使用仓库已有 GitHub 身份做归一化。
 // 新增贡献者时可在这里补充映射，也可以在后续 CI 版本中通过 GitHub API 自动解析。
@@ -124,12 +135,15 @@ async function resolveGithubAuthor(commitSha: string, cacheKey = commitSha): Pro
   const cached = githubAuthorCache.get(cacheKey)
   if (cached) return cached
 
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 10_000)
   const request = fetch(`https://api.github.com/repos/${repository}/commits/${commitSha}`, {
     headers: {
       Accept: 'application/vnd.github+json',
       Authorization: `Bearer ${githubToken}`,
       'User-Agent': 'wot-ui-component-contributors'
-    }
+    },
+    signal: controller.signal
   })
     .then(async (response) => {
       if (!response.ok) return null
@@ -137,6 +151,7 @@ async function resolveGithubAuthor(commitSha: string, cacheKey = commitSha): Pro
       return data.author ?? null
     })
     .catch(() => null)
+    .finally(() => clearTimeout(timeout))
 
   githubAuthorCache.set(cacheKey, request)
   return request
@@ -172,6 +187,8 @@ async function toContributor(signature: string, author: GitAuthor): Promise<Cont
 }
 
 async function generate() {
+  if (!gitHistoryReady) return
+
   const components: Record<string, Contributor[]> = {}
   for (const file of readdirSync(docsComponentRoot)) {
     if (!file.endsWith('.md')) continue
