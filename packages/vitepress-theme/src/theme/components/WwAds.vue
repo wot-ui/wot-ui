@@ -11,48 +11,147 @@ const wwadsSlot = ref<HTMLElement | null>(null)
 const showSupportCard = ref(false)
 const supportCardDismissed = ref(false)
 
+const BLOCK_CONFIRMATION_DELAY = 200
+
 let wwadsScript: HTMLScriptElement | null = null
-let verificationTimer: number | undefined
+let adBait: HTMLElement | null = null
+let contentObserver: MutationObserver | null = null
+let viewportObserver: IntersectionObserver | null = null
+let resizeObserver: ResizeObserver | null = null
+let verificationFrame: number | undefined
+let confirmationTimer: number | undefined
+let hostInViewport = false
+
+function cancelVerification() {
+  if (verificationFrame !== undefined) {
+    window.cancelAnimationFrame(verificationFrame)
+    verificationFrame = undefined
+  }
+  if (confirmationTimer !== undefined) {
+    window.clearTimeout(confirmationTimer)
+    confirmationTimer = undefined
+  }
+}
 
 function revealSupportCard() {
-  if (verificationTimer !== undefined) {
-    window.clearTimeout(verificationTimer)
-    verificationTimer = undefined
-  }
+  cancelVerification()
+  contentObserver?.disconnect()
+  viewportObserver?.disconnect()
+  resizeObserver?.disconnect()
   showSupportCard.value = true
+}
+
+function isExplicitlyHidden(element: Element) {
+  const style = window.getComputedStyle(element)
+
+  return style.display === 'none' || style.visibility === 'hidden' || style.visibility === 'collapse' || Number(style.opacity) === 0
+}
+
+function isVisible(element: Element) {
+  const rect = element.getBoundingClientRect()
+
+  return !isExplicitlyHidden(element) && rect.width > 0 && rect.height > 0
 }
 
 function hasVisibleAd() {
   const element = wwadsSlot.value
   if (!element || element.childElementCount === 0) return false
 
-  const style = window.getComputedStyle(element)
-  const rect = element.getBoundingClientRect()
+  const knownCreativeElements = Array.from(element.querySelectorAll(':scope > .wwads-img, :scope > .wwads-content .wwads-text'))
+  const contentElements = knownCreativeElements.length
+    ? knownCreativeElements
+    : Array.from(element.children).filter((child) => !child.classList.contains('wwads-hide'))
 
-  return style.display !== 'none' && style.visibility !== 'hidden' && style.opacity !== '0' && rect.width > 0 && rect.height > 0
+  return isVisible(element) && contentElements.some(isVisible)
+}
+
+function hasBlockingEvidence() {
+  const slot = wwadsSlot.value
+  const host = wwadsHost.value
+  if (!hostInViewport || !host || !slot) return false
+  if (slot.parentElement !== host) return false
+  if (slot.childElementCount > 0 && hasVisibleAd()) return false
+
+  if (isExplicitlyHidden(slot) || adBait?.parentElement !== host || !isVisible(adBait)) return true
+
+  return slot.childElementCount > 0
+}
+
+function confirmBlocking() {
+  confirmationTimer = undefined
+  if (hasBlockingEvidence()) revealSupportCard()
 }
 
 function verifyAd() {
-  verificationTimer = undefined
-  if (!hasVisibleAd()) revealSupportCard()
+  verificationFrame = undefined
+  if (!hasBlockingEvidence()) {
+    if (confirmationTimer !== undefined) {
+      window.clearTimeout(confirmationTimer)
+      confirmationTimer = undefined
+    }
+    return
+  }
+
+  if (confirmationTimer === undefined) {
+    confirmationTimer = window.setTimeout(confirmBlocking, BLOCK_CONFIRMATION_DELAY)
+  }
+}
+
+function scheduleVerification() {
+  if (!hostInViewport || verificationFrame !== undefined) return
+
+  verificationFrame = window.requestAnimationFrame(verifyAd)
+}
+
+function observeAdContent() {
+  const slot = wwadsSlot.value
+  if (!slot) return
+
+  resizeObserver?.disconnect()
+  resizeObserver?.observe(slot)
+  if (adBait) resizeObserver?.observe(adBait)
+  Array.from(slot.children).forEach((child) => resizeObserver?.observe(child))
+  scheduleVerification()
 }
 
 onMounted(() => {
-  if (!wwadsId || !wwadsHost.value) return
+  const host = wwadsHost.value
+  const slot = wwadsSlot.value
+  if (!wwadsId || !host || !slot) return
+
+  adBait = document.createElement('div')
+  adBait.className = 'adsbox ad-banner ad-placement'
+  adBait.setAttribute('aria-hidden', 'true')
+  adBait.style.cssText = 'position:absolute;left:-10000px;width:1px;height:1px;pointer-events:none;'
+  host.appendChild(adBait)
+
+  // 空广告位可能源于懒加载或网络问题，只有明确的隐藏证据才视为拦截。
+  contentObserver = new MutationObserver(observeAdContent)
+  contentObserver.observe(slot, { attributes: true, attributeFilter: ['class', 'hidden', 'style'], childList: true, subtree: true })
+
+  resizeObserver = new ResizeObserver(scheduleVerification)
+  observeAdContent()
+
+  viewportObserver = new IntersectionObserver(([entry]) => {
+    hostInViewport = entry.isIntersecting
+    if (hostInViewport) scheduleVerification()
+  })
+  viewportObserver.observe(host)
 
   wwadsScript = document.createElement('script')
   wwadsScript.src = 'https://cdn.wwads.cn/js/makemoney.js'
   wwadsScript.async = true
-  wwadsScript.onerror = revealSupportCard
-  wwadsHost.value.appendChild(wwadsScript)
-
-  // 网络请求成功后，广告内容仍可能被拦截器通过样式规则隐藏。
-  verificationTimer = window.setTimeout(verifyAd, 3000)
+  wwadsScript.onerror = scheduleVerification
+  host.appendChild(wwadsScript)
 })
 
 onBeforeUnmount(() => {
-  if (verificationTimer !== undefined) window.clearTimeout(verificationTimer)
+  cancelVerification()
+  contentObserver?.disconnect()
+  viewportObserver?.disconnect()
+  resizeObserver?.disconnect()
   wwadsScript?.remove()
+  adBait?.remove()
 })
 </script>
 
