@@ -1,29 +1,14 @@
 import { execFileSync } from 'node:child_process'
-import { createHash } from 'node:crypto'
 import { mkdirSync, readdirSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
-
-type Contributor = {
-  id: string
-  login?: string
-  name: string
-  avatarUrl?: string
-  profileUrl?: string
-  contributions: number
-}
-
-type GitAuthor = {
-  commitSha: string
-  name: string
-  email: string
-  contributions: number
-}
-
-type GithubAuthor = {
-  login: string
-  avatar_url: string
-  html_url: string
-}
+import {
+  type Contributor,
+  type GitAuthor,
+  type GithubAuthor,
+  createGithubContributor,
+  isIgnoredAuthor,
+  resolveContributorIdentity
+} from './componentContributorIdentity'
 
 const root = process.cwd()
 const docsComponentRoot = path.join(root, 'docs/component')
@@ -65,8 +50,6 @@ const authorAliases: Record<string, { login: string; name?: string }> = {
   'xiaohe0601 <xiaohe0601@outlook.com>': { login: 'xiaohe0601' },
   'dodu2014 <dodu@live.cn>': { login: 'dodu2014' }
 }
-
-const ignoredAuthors = new Set(['dependabot[bot]', 'github-actions[bot]', 'renovate[bot]'])
 
 const componentSourceMap: Record<string, string[]> = {
   avatar: ['wd-avatar', 'wd-avatar-group'],
@@ -113,24 +96,9 @@ function readAuthors(paths: string[]) {
   return authors
 }
 
-function createGithubContributor(login: string, name: string, contributions: number, githubAuthor?: GithubAuthor): Contributor {
-  return {
-    id: `github:${login.toLowerCase()}`,
-    login,
-    name,
-    avatarUrl: githubAuthor?.avatar_url ?? `https://github.com/${login}.png?size=80`,
-    profileUrl: githubAuthor?.html_url ?? `https://github.com/${login}`,
-    contributions
-  }
-}
-
 function parseGithubNoreplyEmail(email: string) {
   const match = email.match(/^(?:\d+\+)?([^@<>]+)@users\.noreply\.github\.com$/)
   return match?.[1]
-}
-
-function isIgnoredAuthor(author: GitAuthor, login?: string) {
-  return [author.name, author.email, login].filter(Boolean).some((value) => /\[bot\]$/i.test(String(value)) || ignoredAuthors.has(String(value)))
 }
 
 async function resolveGithubAuthor(commitSha: string, cacheKey = commitSha): Promise<GithubAuthor | null> {
@@ -176,20 +144,7 @@ async function toContributor(signature: string, author: GitAuthor): Promise<Cont
   }
 
   const githubAuthor = await resolveGithubAuthor(author.commitSha, author.email.toLowerCase())
-  if (githubAuthor && !isIgnoredAuthor(author, githubAuthor.login)) {
-    return createGithubContributor(githubAuthor.login, author.name, author.contributions, githubAuthor)
-  }
-
-  if (isIgnoredAuthor(author)) return null
-  const anonymousId = createHash('sha256').update(author.email.toLowerCase()).digest('hex').slice(0, 16)
-  if (githubToken) {
-    console.warn('Unable to resolve a GitHub account; keeping the Git author with a fallback avatar.')
-  }
-  return {
-    id: `git:${anonymousId}`,
-    name: author.name,
-    contributions: author.contributions
-  }
+  return resolveContributorIdentity(author, githubAuthor, Boolean(githubToken))
 }
 
 async function generate() {
