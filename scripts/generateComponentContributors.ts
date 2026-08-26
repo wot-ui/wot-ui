@@ -42,7 +42,11 @@ function ensureFullGitHistory() {
     if (!isShallow) return true
 
     console.log('Shallow Git history detected; fetching the full history before generating contributors.')
-    execFileSync('git', ['fetch', '--unshallow', '--tags', 'origin'], { cwd: root, stdio: 'inherit' })
+    execFileSync('git', ['fetch', '--unshallow', '--tags', 'origin'], {
+      cwd: root,
+      stdio: 'inherit',
+      timeout: 60_000
+    })
     return true
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
@@ -178,7 +182,7 @@ async function toContributor(signature: string, author: GitAuthor): Promise<Cont
 
   if (isIgnoredAuthor(author)) return null
   const anonymousId = createHash('sha256').update(author.email.toLowerCase()).digest('hex').slice(0, 16)
-  console.warn(`Unable to resolve GitHub account for ${signature}; keeping the Git author with a fallback avatar.`)
+  console.warn('Unable to resolve a GitHub account; keeping the Git author with a fallback avatar.')
   return {
     id: `git:${anonymousId}`,
     name: author.name,
