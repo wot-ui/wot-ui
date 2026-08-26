@@ -182,7 +182,9 @@ async function toContributor(signature: string, author: GitAuthor): Promise<Cont
 
   if (isIgnoredAuthor(author)) return null
   const anonymousId = createHash('sha256').update(author.email.toLowerCase()).digest('hex').slice(0, 16)
-  console.warn('Unable to resolve a GitHub account; keeping the Git author with a fallback avatar.')
+  if (githubToken) {
+    console.warn('Unable to resolve a GitHub account; keeping the Git author with a fallback avatar.')
+  }
   return {
     id: `git:${anonymousId}`,
     name: author.name,
