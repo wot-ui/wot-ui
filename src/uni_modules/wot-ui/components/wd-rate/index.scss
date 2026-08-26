@@ -29,6 +29,8 @@ $rate-item-space: var(--wot-rate-item-space, $spacing-extra-tight) !default;
 
   @include edeep(item-star) {
     -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent;
     color: transparent;
     background: $rate-color;
     font-size: $rate-size;
