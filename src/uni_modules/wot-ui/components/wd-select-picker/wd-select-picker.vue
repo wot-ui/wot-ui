@@ -123,31 +123,29 @@ const props = defineProps(selectPickerProps)
 const emit = defineEmits(['change', 'cancel', 'confirm', 'update:modelValue', 'open', 'close', 'update:visible'])
 
 const pickerShow = ref<boolean>(false)
-const selectList = ref<Array<number | boolean | string> | number | boolean | string>([])
+const selectList = ref<Array<number | boolean | string> | number | boolean | string | undefined>([])
 const isConfirm = ref<boolean>(false)
-const lastSelectList = ref<Array<number | boolean | string> | number | boolean | string>([])
+const lastSelectList = ref<Array<number | boolean | string> | number | boolean | string | undefined>([])
 const filterVal = ref<string>('')
 const filterColumns = ref<Array<Record<string, any>>>([])
 const scrollTop = ref<number>(0) // 滚动位置
 
 const valueItemMap = computed(() => {
-  const map = new Map<string | number | boolean, Record<string, any>>()
+  const map = new Map<string | number | boolean | undefined, Record<string, any>>()
   const { columns, valueKey } = props
   columns.forEach((item) => {
     map.set(item[valueKey], item)
   })
   return map
 })
-
 const showHighlightText = computed(() => {
   return props.filterable && !!filterVal.value
 })
 
-function getModelValueWatchKey(value: string | number | boolean | (string | number | boolean)[]) {
-  if (props.type === 'checkbox') {
-    return isArray(value) ? value.join('|') : ''
-  }
-  return isDef(value) ? String(value) : ''
+function getModelValueWatchKey(value: string | number | boolean | (string | number | boolean)[] | undefined) {
+  if (!isDef(value)) return 'undefined'
+  if (isArray(value)) return `array:${JSON.stringify(value)}`
+  return `${typeof value}:${String(value)}`
 }
 
 function getColumnsWatchKey(columns: Record<string, any>[]) {
@@ -238,7 +236,7 @@ async function setScrollIntoView() {
 
 function noop() {}
 
-function getSelectedItem(value: string | number | boolean) {
+function getSelectedItem(value: string | number | boolean | undefined) {
   const { valueKey, labelKey } = props
   const selected = valueItemMap.value.get(value)
 
@@ -252,7 +250,7 @@ function getSelectedItem(value: string | number | boolean) {
   }
 }
 
-function valueFormat(value: string | number | boolean | (string | number | boolean)[]) {
+function valueFormat(value: string | number | boolean | (string | number | boolean)[] | undefined) {
   return props.type === 'checkbox' ? (isArray(value) ? value : []) : value
 }
 
@@ -310,7 +308,7 @@ function handleConfirm() {
       return getSelectedItem(item)
     })
   } else {
-    selectedItems = getSelectedItem(lastSelectList.value as string | number | boolean)
+    selectedItems = getSelectedItem(lastSelectList.value as string | number | boolean | undefined)
   }
   emit('update:modelValue', lastSelectList.value)
   emit('confirm', {

@@ -11,6 +11,74 @@ const globalComponents = {
 }
 
 describe('WdSelectPicker', () => {
+  test('modelValue 默认值为 undefined', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+    try {
+      const propsWithoutModelValue: InstanceType<typeof WdSelectPicker>['$props'] = {}
+      const wrapper = mount(WdSelectPicker, {
+        props: propsWithoutModelValue,
+        global: {
+          components: globalComponents
+        }
+      })
+
+      expect(warn).not.toHaveBeenCalledWith(expect.stringContaining('[Vue warn]: Missing required prop: "modelValue"'))
+      expect(wrapper.vm.modelValue).toBeUndefined()
+    } finally {
+      warn.mockRestore()
+    }
+  })
+
+  test('modelValue 从 undefined 切换为空字符串时刷新选中值', async () => {
+    const wrapper = mount(WdSelectPicker, {
+      props: {
+        type: 'radio',
+        columns: [{ value: '', label: '空选项' }]
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    await wrapper.setProps({ modelValue: '' })
+    await nextTick()
+
+    expect((wrapper.vm as any).selectList).toBe('')
+  })
+
+  test('多选 modelValue 的数组边界、分隔符和元素类型变化时刷新选中值', async () => {
+    const wrapper = mount(WdSelectPicker, {
+      props: {
+        modelValue: [''],
+        columns: [{ value: '', label: '空选项' }]
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    await wrapper.setProps({ modelValue: [] })
+    await nextTick()
+    expect((wrapper.vm as any).selectList).toEqual([])
+
+    await wrapper.setProps({ modelValue: ['a|b'] })
+    await nextTick()
+    expect((wrapper.vm as any).selectList).toEqual(['a|b'])
+
+    await wrapper.setProps({ modelValue: ['a', 'b'] })
+    await nextTick()
+    expect((wrapper.vm as any).selectList).toEqual(['a', 'b'])
+
+    await wrapper.setProps({ modelValue: [1] })
+    await nextTick()
+    expect((wrapper.vm as any).selectList).toEqual([1])
+
+    await wrapper.setProps({ modelValue: ['1'] })
+    await nextTick()
+    expect((wrapper.vm as any).selectList).toEqual(['1'])
+  })
+
   test('基本渲染', async () => {
     const wrapper = mount(WdSelectPicker, {
       props: {
