@@ -37,7 +37,7 @@
             placement="right"
             @change="handleChange"
           >
-            <view v-for="item in filterColumns" :key="item[valueKey]" :id="'check' + item[valueKey]" class="wd-select-picker__checkbox-item">
+            <view v-for="(item, index) in filterColumns" :key="item[valueKey]" :id="'check' + index" class="wd-select-picker__checkbox-item">
               <wd-checkbox :name="item[valueKey]" :disabled="item.disabled" custom-label-class="wd-select-picker__checkbox-label">
                 <block v-if="showHighlightText">
                   <block v-for="text in item[labelKey]" :key="text.label">
@@ -63,7 +63,7 @@
             type="dot"
             @change="handleChange"
           >
-            <view v-for="(item, index) in filterColumns" :key="index" :id="'radio' + item[valueKey]" class="wd-select-picker__radio-item">
+            <view v-for="(item, index) in filterColumns" :key="index" :id="'radio' + index" class="wd-select-picker__radio-item">
               <wd-radio :value="item[valueKey]" :disabled="item.disabled" custom-label-class="wd-select-picker__radio-label">
                 <block v-if="showHighlightText">
                   <block v-for="text in item[labelKey]" :key="text.label">
@@ -208,15 +208,20 @@ const { proxy } = getCurrentInstance() as any
 
 async function setScrollIntoView() {
   let wraperSelector: string = ''
-  let targetSelector: string = ''
+  let targetSelectorPrefix: string = ''
+  let selectedValue: string | number | boolean | undefined
   if (isDef(selectList.value) && selectList.value !== '' && !isArray(selectList.value)) {
     wraperSelector = '#wd-radio-group'
-    targetSelector = `#radio${selectList.value}`
+    targetSelectorPrefix = '#radio'
+    selectedValue = selectList.value
   } else if (isArray(selectList.value) && selectList.value.length > 0) {
     wraperSelector = '#wd-checkbox-group'
-    targetSelector = `#check${selectList.value[0]}`
+    targetSelectorPrefix = '#check'
+    selectedValue = selectList.value[0]
   }
-  if (wraperSelector && targetSelector) {
+  const targetIndex = filterColumns.value.findIndex((item) => item[props.valueKey] === selectedValue)
+  if (wraperSelector && targetSelectorPrefix && targetIndex >= 0) {
+    const targetSelector = `${targetSelectorPrefix}${targetIndex}`
     await pause(2000 / 30)
     const [scrollView, wraper, target] = await Promise.all([
       getRect('.wd-select-picker__wrapper', false, proxy),
