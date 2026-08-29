@@ -2293,5 +2293,6 @@
   "zuo-xia": "lower left",
   "zuo-you-bu-ju": "Horizontal layout",
   "zuo-you-hua-dong": "Slide left and right",
-  "zuo-zhong": "Middle Left"
+  "zuo-zhong": "Middle Left",
+  "shi-yong-name-bang-ding": "use name bind v-model"
 }
