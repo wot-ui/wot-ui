@@ -56,7 +56,9 @@ export const selectPickerProps = {
   /**
    * 控制弹窗显示
    */
-  visible: makeBooleanProp(false)
+  visible: makeBooleanProp(false),
+  /** 远程搜索方法，接收 (keyword, callback) 两个参数，callback 接收接口返回的数据数组作为选项 */
+  remoteMethod: Function as PropType<(keyword: string, callback: (data: Record<string, any>[]) => void) => void>
 }
 export type SelectPickerProps = ExtractPropTypes<typeof selectPickerProps>
 

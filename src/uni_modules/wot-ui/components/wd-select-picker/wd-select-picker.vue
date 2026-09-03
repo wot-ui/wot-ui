@@ -8,7 +8,7 @@
       :safe-area-inset-bottom="safeAreaInsetBottom"
       :root-portal="rootPortal"
       @close="close"
-      @after-enter="scrollIntoView ? setScrollIntoView() : ''"
+      @after-enter="onAfterEnter"
       custom-class="wd-select-picker__popup"
     >
       <wd-search
@@ -20,7 +20,7 @@
         @change="handleFilterChange"
       />
       <scroll-view
-        :class="`wd-select-picker__wrapper ${loading ? 'is-loading' : ''} ${customContentClass}`"
+        :class="`wd-select-picker__wrapper ${loading || remoteLoading ? 'is-loading' : ''} ${customContentClass}`"
         :scroll-y="!loading"
         :scroll-top="scrollTop"
         :scroll-with-animation="true"
@@ -77,10 +77,11 @@
             </view>
           </wd-radio-group>
         </view>
-        <view v-if="loading" class="wd-select-picker__loading" @touchmove="noop">
-          <wd-loading :color="loadingColor" custom-class="wd-select-picker__loading-icon" />
-        </view>
       </scroll-view>
+      <!-- loading 在 scroll-view 外部，固定不随滚动 -->
+      <view v-if="loading || remoteLoading" class="wd-select-picker__loading" @touchmove="noop">
+        <wd-loading :color="loadingColor" custom-class="wd-select-picker__loading-icon" />
+      </view>
       <!-- 确认按钮 -->
       <view v-if="showConfirm" class="wd-select-picker__footer">
         <wd-button block size="large" @click="onConfirm" :disabled="loading">{{ confirmButtonText || translate('confirm') }}</wd-button>
@@ -112,7 +113,7 @@ import wdLoading from '../wd-loading/wd-loading.vue'
 import wdSearch from '../wd-search/wd-search.vue'
 
 import { getCurrentInstance, onBeforeMount, ref, watch, nextTick, computed } from 'vue'
-import { getRect, isArray, isDef, isFunction, pause } from '../../common/util'
+import { debounce, getRect, isArray, isDef, isFunction, pause } from '../../common/util'
 import { callInterceptor } from '../../common/interceptor'
 import { useTranslate } from '../../composables/useTranslate'
 import { selectPickerProps, type SelectPickerExpose } from './types'
@@ -120,15 +121,18 @@ import { selectPickerProps, type SelectPickerExpose } from './types'
 const { translate } = useTranslate('select-picker')
 
 const props = defineProps(selectPickerProps)
-const emit = defineEmits(['change', 'cancel', 'confirm', 'update:modelValue', 'open', 'close', 'update:visible'])
+const emit = defineEmits(['change', 'cancel', 'confirm', 'update:modelValue', 'open', 'close', 'update:visible', 'update:columns'])
 
 const pickerShow = ref<boolean>(false)
 const selectList = ref<Array<number | boolean | string> | number | boolean | string>([])
 const isConfirm = ref<boolean>(false)
 const lastSelectList = ref<Array<number | boolean | string> | number | boolean | string>([])
 const filterVal = ref<string>('')
+const remoteLoading = ref<boolean>(false)
 const filterColumns = ref<Array<Record<string, any>>>([])
 const scrollTop = ref<number>(0) // 滚动位置
+// 最近一次远程搜索返回的原始数据（未高亮处理），用于确认时仅缓存已选中项到 columns
+const lastRemoteData = ref<Record<string, any>[]>([])
 
 const valueItemMap = computed(() => {
   const map = new Map<string | number | boolean, Record<string, any>>()
@@ -177,6 +181,8 @@ watch(
 watch(
   () => getColumnsWatchKey(props.columns),
   () => {
+    // 远程搜索模式下，filterColumns 由 executeRemoteSearch 统一管理，不做任何操作
+    if (props.remoteMethod) return
     const newValue = props.columns
     if (props.filterable && filterVal.value) {
       formatFilterColumns(newValue, filterVal.value)
@@ -214,25 +220,47 @@ async function setScrollIntoView() {
     targetSelector = `#radio${selectList.value}`
   } else if (isArray(selectList.value) && selectList.value.length > 0) {
     wraperSelector = '#wd-checkbox-group'
-    targetSelector = `#check${selectList.value[0]}`
+    // 找到 filterColumns 中最靠前的已选项作为滚动目标
+    // （因为远程搜索会把部分选中项置顶插入，selectList.value[0] 可能不是最顶部的）
+    const { valueKey } = props
+    const selectedVals = new Set(selectList.value.map((v: any) => v))
+    const topmost = filterColumns.value.find((item: Record<string, any>) => selectedVals.has(item[valueKey]))
+    const targetVal = topmost ? topmost[valueKey] : selectList.value[0]
+    targetSelector = `#check${targetVal}`
   }
   if (wraperSelector && targetSelector) {
     await pause(2000 / 30)
-    const [scrollView, wraper, target] = await Promise.all([
-      getRect('.wd-select-picker__wrapper', false, proxy),
-      getRect(wraperSelector, false, proxy),
-      getRect(targetSelector, false, proxy)
-    ])
+    try {
+      const [scrollView, wraper, target] = await Promise.all([
+        getRect('.wd-select-picker__wrapper', false, proxy),
+        getRect(wraperSelector, false, proxy),
+        getRect(targetSelector, false, proxy)
+      ])
 
-    if (isDef(wraper) && isDef(scrollView) && isDef(target)) {
-      const isVisible = target.bottom! > scrollView.top! && target.top! < scrollView.bottom!
-      if (!isVisible) {
-        scrollTop.value = -1
-        nextTick(() => {
-          scrollTop.value = Math.max(0, target.top! - wraper.top! - scrollView.height! / 2)
-        })
+      if (isDef(wraper) && isDef(scrollView) && isDef(target)) {
+        const isVisible = target.bottom! > scrollView.top! && target.top! < scrollView.bottom!
+        if (!isVisible) {
+          scrollTop.value = -1
+          nextTick(() => {
+            scrollTop.value = Math.max(0, target.top! - wraper.top! - scrollView.height! / 2)
+          })
+        }
       }
+    } catch (e) {
+      // 目标节点未找到（可能因远程搜索结果变更导致选中项不在当前数据集中），静默跳过滚动定位
     }
+  }
+}
+
+function onAfterEnter() {
+  // 非远程搜索时，滚动到选中项
+  if (!props.remoteMethod && props.scrollIntoView) {
+    setScrollIntoView()
+  }
+  // 始终触发远程搜索（空 keyword 时拉取默认数据，初始加载不经过防抖）
+  if (props.remoteMethod) {
+    remoteLoading.value = true
+    executeRemoteSearch(filterVal.value)
   }
 }
 
@@ -256,9 +284,53 @@ function valueFormat(value: string | number | boolean | (string | number | boole
   return props.type === 'checkbox' ? (isArray(value) ? value : []) : value
 }
 
+// ====== 远程搜索辅助函数 ======
+
+/** 将选中值统一转为数组 */
+function toValueList(value: any): (string | number | boolean)[] {
+  if (isArray(value)) return value
+  return isDef(value) && value !== '' ? [value] : []
+}
+
+/** 从 lastRemoteData 查找项 */
+function findInRemote(key: string | number | boolean) {
+  return lastRemoteData.value.find((d) => d[props.valueKey] === key)
+}
+
+/** 高亮包装：将字符串 label 转为高亮片段数组 */
+function highlightIfSearch(item: Record<string, any>, keyword: string) {
+  if (keyword && typeof item[props.labelKey] === 'string') {
+    return { ...item, [props.labelKey]: getFilterText(item[props.labelKey], keyword) }
+  }
+  return item
+}
+
+/** 根据类型构建同步到 columns 的数据 */
+function buildSyncColumns(value: any): Record<string, any>[] {
+  if (props.type === 'radio') {
+    const item = findInRemote(value) || props.columns.find((c) => c[props.valueKey] === value)
+    return item ? [{ ...item }] : []
+  }
+  // checkbox：累积去重
+  const values = toValueList(value)
+  const merged = [...props.columns]
+  values.forEach((val) => {
+    if (!merged.some((col) => col[props.valueKey] === val)) {
+      const item = findInRemote(val)
+      if (item) merged.push({ ...item })
+    }
+  })
+  return merged
+}
+
 function handleChange({ value }: { value: string | number | boolean | (string | number | boolean)[] }) {
   selectList.value = value
   emit('change', { value })
+  // 远程搜索：选中项立即双向同步到 columns（filterColumns 不受影响，保持当前搜索结果）
+  if (props.remoteMethod) {
+    const newColumns = buildSyncColumns(value)
+    emit('update:columns', newColumns)
+  }
   if (props.type === 'radio' && !props.showConfirm) {
     onConfirm()
   }
@@ -304,19 +376,39 @@ function handleConfirm() {
   pickerShow.value = false
   emit('update:visible', false)
   lastSelectList.value = valueFormat(selectList.value)
+
+  // 仅缓存已确认的选中项到 columns
+  if (props.remoteMethod && lastRemoteData.value.length > 0) {
+    const newColumns = buildSyncColumns(lastSelectList.value)
+    if (props.type === 'radio') {
+      emit('update:columns', newColumns)
+    } else {
+      // 多选：比较 key 列表避免无效 emit
+      const oldKeys = props.columns
+        .map((c) => String(c[props.valueKey]))
+        .sort()
+        .join(',')
+      const newKeys = newColumns
+        .map((c) => String(c[props.valueKey]))
+        .sort()
+        .join(',')
+      if (oldKeys !== newKeys) emit('update:columns', newColumns)
+    }
+  }
+
+  // 构建 selectedItems
   let selectedItems: Record<string, any> = {}
   if (props.type === 'checkbox') {
-    selectedItems = (isArray(lastSelectList.value) ? lastSelectList.value : []).map((item) => {
-      return getSelectedItem(item)
+    const values = toValueList(lastSelectList.value)
+    selectedItems = values.map((val) => {
+      return findInRemote(val) ? { ...findInRemote(val)! } : getSelectedItem(val)
     })
   } else {
-    selectedItems = getSelectedItem(lastSelectList.value as string | number | boolean)
+    const val = lastSelectList.value as string | number | boolean
+    selectedItems = findInRemote(val) ? { ...findInRemote(val)! } : getSelectedItem(val)
   }
   emit('update:modelValue', lastSelectList.value)
-  emit('confirm', {
-    value: lastSelectList.value,
-    selectedItems
-  })
+  emit('confirm', { value: lastSelectList.value, selectedItems })
   emit('close')
 }
 
@@ -338,11 +430,71 @@ function getFilterText(label: string, filterVal: string): Array<{ type: 'active'
 function handleFilterChange({ value }: { value: string }) {
   filterVal.value = value
   if (value === '') {
-    filterColumns.value = props.columns
-  } else {
-    formatFilterColumns(props.columns, value)
+    if (props.remoteMethod) {
+      // 空值时也触发远程搜索（常用于默认拉取数据）
+      remoteLoading.value = true
+      filterColumns.value = []
+      executeRemoteSearch('')
+    } else {
+      filterColumns.value = props.columns
+    }
+    return
+  }
+  if (props.remoteMethod) {
+    remoteLoading.value = true
+    filterColumns.value = []
+    debouncedRemoteSearch(value)
+    return
+  }
+  formatFilterColumns(props.columns, value)
+}
+
+function executeRemoteSearch(keyword: string) {
+  if (props.remoteMethod) {
+    props.remoteMethod(keyword, (data: Record<string, any>[]) => {
+      if (filterVal.value !== keyword) return
+      remoteLoading.value = false
+      lastRemoteData.value = data
+
+      // 无搜索关键词时，将未在结果中的已选中项置顶插入
+      const merged = [...data]
+      if (!keyword) {
+        const selectedValues = toValueList(selectList.value)
+        let prependIndex = 0
+        selectedValues.forEach((val) => {
+          if (!merged.some((item) => item[props.valueKey] === val)) {
+            const source = props.columns.find((c) => c[props.valueKey] === val)
+            if (source) {
+              merged.splice(prependIndex, 0, { ...source })
+              prependIndex++
+            }
+          }
+        })
+      }
+
+      // 对搜索结果项做高亮处理
+      filterColumns.value = merged.map((item) => {
+        if (keyword && typeof item[props.labelKey] === 'string') {
+          const isSearchResult = data.some((d) => d[props.valueKey] === item[props.valueKey])
+          if (isSearchResult) return highlightIfSearch(item, keyword)
+        }
+        return item
+      })
+      // 数据加载后滚动到选中项（有选中项时直接滚动，无选中项时回顶部）
+      const hasSelection = toValueList(selectList.value).length > 0
+      if (hasSelection && props.scrollIntoView) {
+        nextTick(() => setScrollIntoView())
+      } else {
+        scrollTop.value = -1
+        nextTick(() => {
+          scrollTop.value = 0
+        })
+      }
+    })
   }
 }
+
+const debouncedRemoteSearch = debounce(executeRemoteSearch, 500)
 
 function formatFilterColumns(columns: Record<string, any>[], filterVal: string) {
   const filterColumnsTemp = columns.filter((item) => {

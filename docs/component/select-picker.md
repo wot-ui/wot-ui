@@ -81,6 +81,26 @@ const columns = ref([
 <wd-select-picker filterable type="radio" v-model="singleValue" v-model:visible="show" :columns="columns" />
 ```
 
+### 远程搜索
+
+设置 `remote-method` 开启远程搜索（需要同时设置 `filterable`），搜索时调用传入的函数，用户停止输入 500ms 后发起请求。函数接收搜索关键词 `keyword` 和 `callback` 回调，`callback` 接收接口返回的数据作为选项显示。
+
+```html
+<wd-select-picker filterable :remote-method="remoteMethod" v-model="value" v-model:visible="show" :columns="columns" />
+```
+
+```ts
+function remoteMethod(keyword: string, callback: (data: Record<string, any>[]) => void) {
+  uni.request({
+    url: '/api/search',
+    data: { q: keyword },
+    success: (res) => {
+      callback(res.data as Record<string, any>[])
+    }
+  })
+}
+```
+
 ## 特殊样式
 
 ### 选项变化事件
@@ -127,57 +147,57 @@ const beforeConfirm = (value: string[]) => {
 
 ## Attributes
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| v-model | 选中项，`checkbox` 时为数组，`radio` 时为 `string`、`number` 或 `boolean` | `string \| number \| boolean \| (string \| number \| boolean)[]` | - |
-| visible / v-model:visible | 控制弹层显示状态 | `boolean` | `false` |
-| title | 弹出层标题 | `string` | `'选择器'` |
-| checked-color | 单选框或复选框选中颜色 | `string` | - |
-| min | 最小选中数量，仅 `checkbox` 生效 | `number` | `0` |
-| max | 最大选中数量，`0` 表示不限制，仅 `checkbox` 生效 | `number` | `0` |
-| select-size | 选择器内部选项尺寸 | `string` | - |
-| loading | 是否显示加载状态 | `boolean` | `false` |
-| loading-color | 加载图标颜色 | `string` | `'#4D80F0'` |
-| close-on-click-modal | 点击遮罩是否关闭 | `boolean` | `true` |
-| columns | 选择器数据，一维数组 | `Record<string, any>[]` | `[]` |
-| type | 选择器类型，可选值为 `checkbox`、`radio` | `string` | `'checkbox'` |
-| value-key | 选项对象中值字段的 key | `string` | `'value'` |
-| label-key | 选项对象中展示文本字段的 key | `string` | `'label'` |
-| confirm-button-text | 确认按钮文案 | `string` | `'确认'` |
-| before-confirm | 确认前校验函数，接收当前选中值，返回 `boolean` 或 `Promise<boolean>` | `function` | - |
-| z-index | 弹层层级 | `number` | `15` |
-| safe-area-inset-bottom | 是否适配底部安全区 | `boolean` | `true` |
-| filterable | 是否支持本地搜索 | `boolean` | `false` |
-| filter-placeholder | 搜索框占位符 | `string` | `'搜索'` |
-| scroll-into-view | 重新打开时是否滚动到选中项 | `boolean` | `true` |
-| custom-content-class | 自定义弹层内容区域类名 | `string` | `''` |
-| show-confirm | 是否显示确认按钮，仅 `radio` 模式生效 | `boolean` | `true` |
-| root-portal | 是否从页面结构中脱离出来，用于解决 fixed 失效问题 | `boolean` | `false` |
-| custom-class | 根节点自定义类名 | `string` | `''` |
-| custom-style | 根节点自定义样式 | `string` | `''` |
+| 参数                      | 说明                                                                                                                   | 类型                                                                         | 默认值       |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------ |
+| v-model                   | 选中项，`checkbox` 时为数组，`radio` 时为 `string`、`number` 或 `boolean`                                              | `string \| number \| boolean \| (string \| number \| boolean)[]`             | -            |
+| visible / v-model:visible | 控制弹层显示状态                                                                                                       | `boolean`                                                                    | `false`      |
+| title                     | 弹出层标题                                                                                                             | `string`                                                                     | `'选择器'`   |
+| checked-color             | 单选框或复选框选中颜色                                                                                                 | `string`                                                                     | -            |
+| min                       | 最小选中数量，仅 `checkbox` 生效                                                                                       | `number`                                                                     | `0`          |
+| max                       | 最大选中数量，`0` 表示不限制，仅 `checkbox` 生效                                                                       | `number`                                                                     | `0`          |
+| select-size               | 选择器内部选项尺寸                                                                                                     | `string`                                                                     | -            |
+| loading                   | 是否显示加载状态                                                                                                       | `boolean`                                                                    | `false`      |
+| loading-color             | 加载图标颜色                                                                                                           | `string`                                                                     | `'#4D80F0'`  |
+| close-on-click-modal      | 点击遮罩是否关闭                                                                                                       | `boolean`                                                                    | `true`       |
+| columns                   | 选择器数据，一维数组                                                                                                   | `Record<string, any>[]`                                                      | `[]`         |
+| type                      | 选择器类型，可选值为 `checkbox`、`radio`                                                                               | `string`                                                                     | `'checkbox'` |
+| value-key                 | 选项对象中值字段的 key                                                                                                 | `string`                                                                     | `'value'`    |
+| label-key                 | 选项对象中展示文本字段的 key                                                                                           | `string`                                                                     | `'label'`    |
+| confirm-button-text       | 确认按钮文案                                                                                                           | `string`                                                                     | `'确认'`     |
+| before-confirm            | 确认前校验函数，接收当前选中值，返回 `boolean` 或 `Promise<boolean>`                                                   | `function`                                                                   | -            |
+| z-index                   | 弹层层级                                                                                                               | `number`                                                                     | `15`         |
+| safe-area-inset-bottom    | 是否适配底部安全区                                                                                                     | `boolean`                                                                    | `true`       |
+| filterable                | 是否支持本地搜索                                                                                                       | `boolean`                                                                    | `false`      |
+| filter-placeholder        | 搜索框占位符                                                                                                           | `string`                                                                     | `'搜索'`     |
+| remote-method             | 远程搜索方法，与 `filterable` 配合使用，接收 `(keyword, callback)` 两个参数，`callback` 接收接口返回的数据数组作为选项 | `(keyword: string, callback: (data: Record<string, any>[]) => void) => void` | -            |
+| scroll-into-view          | 重新打开时是否滚动到选中项                                                                                             | `boolean`                                                                    | `true`       |
+| custom-content-class      | 自定义弹层内容区域类名                                                                                                 | `string`                                                                     | `''`         |
+| show-confirm              | 是否显示确认按钮，仅 `radio` 模式生效                                                                                  | `boolean`                                                                    | `true`       |
+| root-portal               | 是否从页面结构中脱离出来，用于解决 fixed 失效问题                                                                      | `boolean`                                                                    | `false`      |
+| custom-class              | 根节点自定义类名                                                                                                       | `string`                                                                     | `''`         |
+| custom-style              | 根节点自定义样式                                                                                                       | `string`                                                                     | `''`         |
 
 ## 选项数据结构
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| value | 选项值 | `string \| number \| boolean` | - |
-| label | 选项文案 | `string` | - |
-| disabled | 是否禁用该选项 | `boolean` | `false` |
+| 参数     | 说明           | 类型                          | 默认值  |
+| -------- | -------------- | ----------------------------- | ------- |
+| value    | 选项值         | `string \| number \| boolean` | -       |
+| label    | 选项文案       | `string`                      | -       |
+| disabled | 是否禁用该选项 | `boolean`                     | `false` |
 
 ## Events
 
-| 事件名称 | 说明 | 参数 |
-| --- | --- | --- |
-| change | 选择器内部选项变化时触发 | `{ value }` |
-| cancel | 点击关闭按钮或遮罩关闭时触发 | - |
-| confirm | 点击确认时触发 | `{ value, selectedItems }` |
-| open | 弹层打开时触发 | - |
-| close | 弹层关闭时触发 | - |
+| 事件名称 | 说明                         | 参数                       |
+| -------- | ---------------------------- | -------------------------- |
+| change   | 选择器内部选项变化时触发     | `{ value }`                |
+| cancel   | 点击关闭按钮或遮罩关闭时触发 | -                          |
+| confirm  | 点击确认时触发               | `{ value, selectedItems }` |
+| open     | 弹层打开时触发               | -                          |
+| close    | 弹层关闭时触发               | -                          |
 
 ## Methods
 
-| 方法名 | 说明 | 类型 |
-| --- | --- | --- |
-| open | 打开弹层 | `() => void` |
-| close | 关闭弹层 | `() => void` |
-
+| 方法名 | 说明     | 类型         |
+| ------ | -------- | ------------ |
+| open   | 打开弹层 | `() => void` |
+| close  | 关闭弹层 | `() => void` |
