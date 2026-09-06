@@ -24,19 +24,20 @@ describe('WdTabbarItem', () => {
     expect(wrapper.text()).toContain('消息')
   })
 
-  test('无父级时 title 添加 is-inactive 类', () => {
+  test('无父级时 body 添加 is-inactive 类', () => {
     const wrapper = mount(WdTabbarItem, {
       props: { title: '我的' }
     })
     // 无父级 tabbar，active=false → is-inactive
-    expect(wrapper.find('.wd-tabbar-item__body-title').classes()).toContain('is-inactive')
+    expect(wrapper.find('.wd-tabbar-item__body').classes()).toContain('is-inactive')
+    expect(wrapper.find('.wd-tabbar-item__body-title').classes()).not.toContain('is-inactive')
   })
 
-  test('icon 渲染时添加 is-inactive 类（无父级）', () => {
+  test('icon 渲染时不添加 is-inactive 类（无父级）', () => {
     const wrapper = mount(WdTabbarItem, {
       props: { title: '首页', icon: 'home' }
     })
-    expect(wrapper.find('.wd-tabbar-item__body-icon').classes()).toContain('is-inactive')
+    expect(wrapper.find('.wd-tabbar-item__body-icon').classes()).not.toContain('is-inactive')
   })
 
   test('iconPrefix 透传到图标类名前缀', () => {
@@ -99,13 +100,13 @@ describe('WdTabbarItem', () => {
     expect(wrapper.find('.custom-icon').exists()).toBe(true)
   })
 
-  test('与 WdTabbar 集成：选中项 title 添加 is-active 类', async () => {
+  test('与 WdTabbar 集成：选中项 body 添加 is-active 类', async () => {
     const wrapper = mount(
       {
         template: `
           <wd-tabbar v-model="active">
-            <wd-tabbar-item name="home" title="首页" />
-            <wd-tabbar-item name="msg" title="消息" />
+            <wd-tabbar-item name="home" title="首页" icon="home" />
+            <wd-tabbar-item name="msg" title="消息" icon="chat" />
           </wd-tabbar>
         `,
         data() {
@@ -115,12 +116,14 @@ describe('WdTabbarItem', () => {
       {}
     )
     await nextTick()
-    const titles = wrapper.findAll('.wd-tabbar-item__body-title')
-    const homeTitles = titles.filter((t) => t.text() === '首页')
-    expect(homeTitles.some((t) => t.classes().includes('is-active'))).toBe(true)
+    const bodies = wrapper.findAll('.wd-tabbar-item__body')
+    const homeBodies = bodies.filter((body) => body.text().includes('首页'))
+    expect(homeBodies.some((body) => body.classes().includes('is-active'))).toBe(true)
+    expect(wrapper.find('.wd-tabbar-item__body-title').classes()).not.toContain('is-active')
+    expect(wrapper.find('.wd-tabbar-item__body-icon').classes()).not.toContain('is-active')
   })
 
-  test('与 WdTabbar 集成：非选中项 title 添加 is-inactive 类', async () => {
+  test('与 WdTabbar 集成：非选中项 body 添加 is-inactive 类', async () => {
     const wrapper = mount(
       {
         template: `
@@ -136,9 +139,9 @@ describe('WdTabbarItem', () => {
       {}
     )
     await nextTick()
-    const titles = wrapper.findAll('.wd-tabbar-item__body-title')
-    const msgTitles = titles.filter((t) => t.text() === '消息')
-    expect(msgTitles.some((t) => t.classes().includes('is-inactive'))).toBe(true)
+    const bodies = wrapper.findAll('.wd-tabbar-item__body')
+    const msgBodies = bodies.filter((body) => body.text().includes('消息'))
+    expect(msgBodies.some((body) => body.classes().includes('is-inactive'))).toBe(true)
   })
 
   test('与 WdTabbar 集成：点击触发 update:modelValue', async () => {
