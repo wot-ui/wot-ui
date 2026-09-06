@@ -39,15 +39,17 @@
           >
             <view v-for="item in filterColumns" :key="item[valueKey]" :id="'check' + item[valueKey]" class="wd-select-picker__checkbox-item">
               <wd-checkbox :name="item[valueKey]" :disabled="item.disabled" custom-label-class="wd-select-picker__checkbox-label">
-                <block v-if="showHighlightText">
-                  <block v-for="text in item[labelKey]" :key="text.label">
-                    <text v-if="text.type === 'active'" class="wd-select-picker__text-active">{{ text.label }}</text>
-                    <block v-else>{{ text.label }}</block>
+                <slot name="label" :item="item" :label="item[labelKey]" :value="item[valueKey]">
+                  <block v-if="showHighlightText">
+                    <block v-for="text in item[labelKey]" :key="text.label">
+                      <text v-if="text.type === 'active'" class="wd-select-picker__text-active">{{ text.label }}</text>
+                      <block v-else>{{ text.label }}</block>
+                    </block>
                   </block>
-                </block>
-                <block v-else>
-                  {{ item[labelKey] }}
-                </block>
+                  <block v-else>
+                    {{ item[labelKey] }}
+                  </block>
+                </slot>
               </wd-checkbox>
             </view>
           </wd-checkbox-group>
@@ -65,14 +67,16 @@
           >
             <view v-for="(item, index) in filterColumns" :key="index" :id="'radio' + item[valueKey]" class="wd-select-picker__radio-item">
               <wd-radio :value="item[valueKey]" :disabled="item.disabled" custom-label-class="wd-select-picker__radio-label">
-                <block v-if="showHighlightText">
-                  <block v-for="text in item[labelKey]" :key="text.label">
-                    <text :class="`${text.type === 'active' ? 'wd-select-picker__text-active' : ''}`">{{ text.label }}</text>
+                <slot name="label" :item="item" :label="item[labelKey]" :value="item[valueKey]">
+                  <block v-if="showHighlightText">
+                    <block v-for="text in item[labelKey]" :key="text.label">
+                      <text :class="`${text.type === 'active' ? 'wd-select-picker__text-active' : ''}`">{{ text.label }}</text>
+                    </block>
                   </block>
-                </block>
-                <block v-else>
-                  {{ item[labelKey] }}
-                </block>
+                  <block v-else>
+                    {{ item[labelKey] }}
+                  </block>
+                </slot>
               </wd-radio>
             </view>
           </wd-radio-group>
@@ -337,10 +341,35 @@ function getFilterText(label: string, filterVal: string): Array<{ type: 'active'
 
 function handleFilterChange({ value }: { value: string }) {
   filterVal.value = value
-  if (value === '') {
-    filterColumns.value = props.columns
+  if (props.filterHandler) {
+    if (value === '') {
+      filterColumns.value = props.columns
+    } else {
+      callInterceptor(props.filterHandler, {
+        args: [filterColumns, value],
+        done: () => {
+          const formatFilterColumns = filterColumns.value.map((item) => {
+            return {
+              ...item,
+              [props.labelKey]: getFilterText(item[props.labelKey], value)
+            }
+          })
+          filterColumns.value = formatFilterColumns
+        },
+        canceled: () => {
+          console.warn('Filter canceled')
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      })
+    }
   } else {
-    formatFilterColumns(props.columns, value)
+    if (value === '') {
+      filterColumns.value = props.columns
+    } else {
+      formatFilterColumns(props.columns, value)
+    }
   }
 }
 
