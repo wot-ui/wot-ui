@@ -26,7 +26,7 @@
         :scroll-with-animation="true"
       >
         <!-- 多选 -->
-        <view v-if="type === 'checkbox' && isArray(selectList)" class="wd-select-picker__checkbox" id="wd-checkbox-group">
+        <view v-if="type === 'checkbox' && isArray(selectList)" id="wd-checkbox-group">
           <wd-checkbox-group
             v-model="selectList"
             :size="selectSize"
@@ -38,7 +38,12 @@
             @change="handleChange"
           >
             <view v-for="item in filterColumns" :key="item[valueKey]" :id="'check' + item[valueKey]" class="wd-select-picker__checkbox-item">
-              <wd-checkbox :name="item[valueKey]" :disabled="item.disabled" custom-label-class="wd-select-picker__checkbox-label">
+              <wd-checkbox
+                :name="item[valueKey]"
+                :disabled="item.disabled"
+                custom-class="wd-select-picker__checkbox"
+                custom-label-class="wd-select-picker__checkbox-label"
+              >
                 <block v-if="showHighlightText">
                   <block v-for="text in item[labelKey]" :key="text.label">
                     <text v-if="text.type === 'active'" class="wd-select-picker__text-active">{{ text.label }}</text>
@@ -53,7 +58,7 @@
           </wd-checkbox-group>
         </view>
         <!-- 单选 -->
-        <view v-if="type === 'radio' && !isArray(selectList)" class="wd-select-picker__radio" id="wd-radio-group">
+        <view v-if="type === 'radio' && !isArray(selectList)" id="wd-radio-group">
           <wd-radio-group
             v-model="selectList"
             cell
@@ -64,7 +69,12 @@
             @change="handleChange"
           >
             <view v-for="(item, index) in filterColumns" :key="index" :id="'radio' + item[valueKey]" class="wd-select-picker__radio-item">
-              <wd-radio :value="item[valueKey]" :disabled="item.disabled" custom-label-class="wd-select-picker__radio-label">
+              <wd-radio
+                :value="item[valueKey]"
+                :disabled="item.disabled"
+                custom-class="wd-select-picker__radio"
+                custom-label-class="wd-select-picker__radio-label"
+              >
                 <block v-if="showHighlightText">
                   <block v-for="text in item[labelKey]" :key="text.label">
                     <text :class="`${text.type === 'active' ? 'wd-select-picker__text-active' : ''}`">{{ text.label }}</text>
