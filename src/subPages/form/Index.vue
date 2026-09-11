@@ -37,10 +37,44 @@
           </view>
         </demo-group-item>
 
+        <demo-group-item :title="$t('form-demo5-title')" transparent>
+          <view class="page-form__button-wrap">
+            <wd-button @click="handleClick5" :round="false" block size="large">{{ $t('form-demo5-title') }}</wd-button>
+          </view>
+        </demo-group-item>
+
         <demo-group-item :title="$t('xiao-yan-chu-fa-shi-ji')" transparent>
           <view class="page-form__button-wrap">
             <wd-button @click="handleClick2" :round="false" block size="large">{{ $t('xiao-yan-chu-fa-shi-ji-0') }}</wd-button>
           </view>
+        </demo-group-item>
+
+        <demo-group-item :title="$t('yin-cang-zi-duan-xiao-yan')" transparent no-padding>
+          <wd-form ref="hiddenForm" :model="hiddenModel" :schema="hiddenSchema" :title-width="110">
+            <wd-form-item :title="$t('xian-shi-yin-cang-zi-duan')" value-align="left">
+              <wd-switch v-model="showHiddenField" size="20" />
+            </wd-form-item>
+            <wd-form-item :title="$t('ke-jian-zi-duan')" prop="visibleValue">
+              <wd-input v-model="hiddenModel.visibleValue" :placeholder="$t('qing-shu-ru-ke-jian-zi-duan')" />
+            </wd-form-item>
+            <wd-form-item v-if="showHiddenField" :title="$t('yin-cang-zi-duan')" prop="hiddenValue">
+              <wd-input v-model="hiddenModel.hiddenValue" :placeholder="$t('qing-shu-ru-yin-cang-zi-duan')" />
+            </wd-form-item>
+            <view class="page-form__footer">
+              <wd-button type="primary" size="large" @click="handleHiddenSubmit" block>{{ $t('ti-jiao') }}</wd-button>
+            </view>
+          </wd-form>
+        </demo-group-item>
+
+        <demo-group-item :title="$t('fu-lu-jing-xiao-yan')" transparent no-padding>
+          <wd-form ref="nestedForm" :model="nestedModel" :schema="nestedSchema" :title-width="110">
+            <wd-form-item :title="$t('yong-hu-ming')" prop="user">
+              <wd-input v-model="nestedModel.user.name" :placeholder="$t('qing-shu-ru-yong-hu-ming')" />
+            </wd-form-item>
+            <view class="page-form__footer">
+              <wd-button type="primary" size="large" @click="handleNestedSubmit" block>{{ $t('ti-jiao') }}</wd-button>
+            </view>
+          </wd-form>
         </demo-group-item>
       </demo-group>
     </view>
@@ -62,8 +96,29 @@ const model1 = reactive<{
   value2: ''
 })
 
+const hiddenModel = reactive<{
+  visibleValue: string
+  hiddenValue: string
+}>({
+  visibleValue: 'wot-ui',
+  hiddenValue: ''
+})
+
+const nestedModel = reactive<{
+  user: {
+    name: string
+  }
+}>({
+  user: {
+    name: ''
+  }
+})
+
 const { success: showSuccess, loading: showLoading, close: closeToast } = useToast()
 const form1 = ref<FormInstance>()
+const hiddenForm = ref<FormInstance>()
+const nestedForm = ref<FormInstance>()
+const showHiddenField = ref(false)
 
 const schema1 = zodAdapter(
   z
@@ -87,6 +142,21 @@ const schema1 = zodAdapter(
     })
 )
 
+const hiddenSchema = zodAdapter(
+  z.object({
+    visibleValue: z.string().min(1, t('qing-shu-ru-ke-jian-zi-duan')),
+    hiddenValue: z.string().min(1, t('qing-shu-ru-yin-cang-zi-duan'))
+  })
+)
+
+const nestedSchema = zodAdapter(
+  z.object({
+    user: z.object({
+      name: z.string().min(1, t('qing-shu-ru-yong-hu-ming'))
+    })
+  })
+)
+
 function handleSubmit1() {
   form1
     .value!.validate()
@@ -102,6 +172,26 @@ function handleSubmit1() {
     })
 }
 
+function handleHiddenSubmit() {
+  hiddenForm.value?.validate().then(({ valid }) => {
+    if (valid) {
+      showSuccess({
+        msg: t('xiao-yan-tong-guo')
+      })
+    }
+  })
+}
+
+function handleNestedSubmit() {
+  nestedForm.value?.validate().then(({ valid }) => {
+    if (valid) {
+      showSuccess({
+        msg: t('xiao-yan-tong-guo')
+      })
+    }
+  })
+}
+
 function handleClick1() {
   uni.navigateTo({ url: '/subPages/form/demo1' })
 }
@@ -112,6 +202,10 @@ function handleClick3() {
 
 function handleClick4() {
   uni.navigateTo({ url: '/subPages/form/demo4' })
+}
+
+function handleClick5() {
+  uni.navigateTo({ url: '/subPages/form/demo5' })
 }
 
 function handleClick2() {

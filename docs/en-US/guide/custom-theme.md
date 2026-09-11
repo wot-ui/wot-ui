@@ -120,5 +120,7 @@ If you are a `vibe coding` user, we also provide [Skills](https://github.com/wot
 
 ## Related Documentation
 
-- [ConfigProvider Global Configuration](/component/config-provider)
-- [useConfigProvider](/component/use-config-provider)
+- [ConfigProvider Global Configuration](/en-US/component/config-provider)
+- [useConfigProvider](/en-US/component/use-config-provider)
+- [UnoCSS Preset](/en-US/guide/unocss-preset)
+- [Dark Mode](/en-US/guide/dark-mode)

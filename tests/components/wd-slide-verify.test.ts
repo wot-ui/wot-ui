@@ -1,6 +1,7 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import WdSlideVerify from '@/uni_modules/wot-ui/components/wd-slide-verify/wd-slide-verify.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 
 describe('wd-slide-verify', () => {
   test('基本渲染', () => {
@@ -35,6 +36,46 @@ describe('wd-slide-verify', () => {
     const icon = wrapper.findComponent({ name: 'wd-icon' })
     expect(icon.props('name')).toBe('star')
     expect(icon.props('size')).toBe(30)
+  })
+
+  test('iconPrefix 和 cssIcon 透传到滑块图标与成功图标', async () => {
+    const prefixWrapper = mount(WdSlideVerify, {
+      props: {
+        icon: 'i-carbon-arrow-right',
+        iconPrefix: 'fish'
+      }
+    })
+
+    await flushPromises()
+
+    const prefixIcon = prefixWrapper.findComponent(WdIcon)
+    expect(prefixIcon.classes()).toContain('fish-i-carbon-arrow-right')
+    expect(prefixIcon.classes()).not.toContain('wd-icon--css')
+
+    const wrapper = mount(WdSlideVerify, {
+      props: {
+        icon: 'i-carbon-arrow-right',
+        successIcon: 'i-carbon-checkmark',
+        iconPrefix: 'fish',
+        cssIcon: true
+      }
+    })
+
+    await flushPromises()
+
+    const icon = wrapper.findComponent(WdIcon)
+    expect(icon.classes()).toContain('wd-icon--css')
+    expect(icon.classes()).toContain('i-carbon-arrow-right')
+
+    const button = wrapper.find('.wd-slide-verify__button')
+    await button.trigger('touchstart', { touches: [{ clientX: 0, clientY: 0 }] })
+    await button.trigger('touchmove', { touches: [{ clientX: 260, clientY: 0 }] })
+    await button.trigger('touchend')
+    await wrapper.vm.$nextTick()
+
+    const successIcon = wrapper.find('.wd-slide-verify__button-icon--success')
+    expect(successIcon.classes()).toContain('wd-icon--css')
+    expect(successIcon.classes()).toContain('i-carbon-checkmark')
   })
 
   test('插槽渲染', () => {

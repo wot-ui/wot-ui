@@ -275,6 +275,7 @@ $button-variants: (
   "plain": ("show-border": true),
   "dashed": ("show-border": true, "border-style": dashed),
   "soft": ("hide-border": true, "soft-bg": true),
+  "subtle": ("show-border": true, "soft-bg": true),
   "text": ("hide-border": true)
 );
 

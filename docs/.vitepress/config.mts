@@ -35,7 +35,7 @@ export default createWotVitePressConfig({
   features: {
     llms: {
       ignoreFiles: ['reward/*', 'index.md', 'README.md', 'en-US/*.md', 'en-US/**/*.md', 'ads/*', 'guide/cases.md', 'guide/changelog.md', 'guide/join-group.md', 'guide/typography.md'],
-      domain: 'https://v2.wot-ui.cn',
+      domain: 'https://wot-ui.cn',
     },
     compression: {},
   },

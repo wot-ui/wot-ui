@@ -184,6 +184,8 @@ function handleConfirm({ value }: { value: string }) {
 | size | Tag size, optional values are `small`, `medium`, `large`, `extra-large`, `default` | `TagSize` | `default` |
 | type | Tag type, optional values are `default`, `primary`, `success`, `warning`, `danger`, `volcano`, `lightblue`, `cyan`, `pink`, `purple` | `TagType` | `default` |
 | icon | Left icon | `string` | `''` |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | closable | Whether closable | `boolean` | `false` |
 | dynamic | Whether it is an add tag | `boolean` | `false` |
 | color | Text color | `string` | `''` |

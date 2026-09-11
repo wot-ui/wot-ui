@@ -921,6 +921,21 @@
           }
         },
         {
+          "path": "form/demo5",
+          "name": "formDemo5",
+          "style": {
+            "mp-alipay": {
+              "allowsBounceVertical": "NO"
+            },
+            // #ifdef MP
+            "navigationBarTitleText": "禁用表单",
+            // #endif
+            // #ifndef MP
+            "navigationBarTitleText": "%form-demo5-title%"
+            // #endif
+          }
+        },
+        {
           "path": "collapse/Index",
           "name": "collapse",
           "style": {
@@ -1399,6 +1414,21 @@
             // #endif
             // #ifndef MP
             "navigationBarTitleText": "%imagepreview-title%"
+            // #endif
+          }
+        },
+        {
+          "path": "qrCode/Index",
+          "name": "qrCode",
+          "style": {
+            "mp-alipay": {
+              "allowsBounceVertical": "NO"
+            },
+            // #ifdef MP
+            "navigationBarTitleText": "QRCode 二维码",
+            // #endif
+            // #ifndef MP
+            "navigationBarTitleText": "%qrcode-title%"
             // #endif
           }
         }

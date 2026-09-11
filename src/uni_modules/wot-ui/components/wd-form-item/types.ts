@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, InjectionKey, PropType } from 'vue'
+import type { ComputedRef, ExtractPropTypes, InjectionKey, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeStringProp, numericProp } from '../../common/props'
 import { type CellValueAlign, type CellAsteriskPosition, type CellLayout, type CellSize } from '../wd-cell/types'
 import type { FormValidateEvent, FormValidateTrigger } from '../wd-form/types'
@@ -10,6 +10,12 @@ export type FormItemValidateProvide = {
 }
 
 export const FORM_ITEM_VALIDATE_KEY: InjectionKey<FormItemValidateProvide> = Symbol('wd-form-item-validate')
+
+export type FormItemDisabledProvide = {
+  disabled: ComputedRef<boolean | undefined>
+}
+
+export const FORM_ITEM_DISABLED_KEY: InjectionKey<FormItemDisabledProvide> = Symbol('wd-form-item-disabled')
 
 export const formItemProps = {
   ...baseProps,
@@ -44,6 +50,13 @@ export const formItemProps = {
    */
   iconPrefix: String,
   /**
+   * CSS 图标，用法参考 Icon 组件
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 描述信息
    */
   label: String,
@@ -55,6 +68,10 @@ export const formItemProps = {
    * 是否展示右侧箭头并开启点击反馈
    */
   isLink: makeBooleanProp(false),
+  /**
+   * 是否禁用表单项，禁用时不触发点击事件，未设置时继承 Form
+   */
+  disabled: makeBooleanProp(void 0),
   // ========== 可继承属性（使用 undefined 默认值）==========
   /**
    * 设置单元格大小，可选值：large

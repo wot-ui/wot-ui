@@ -512,7 +512,7 @@ describe('WdButton', () => {
 
   // 测试按钮变体
   test('不同按钮变体', () => {
-    const variants: ButtonVariant[] = ['plain', 'dashed', 'text', 'base']
+    const variants: ButtonVariant[] = ['plain', 'dashed', 'soft', 'subtle', 'text', 'base']
 
     variants.forEach((variant) => {
       const wrapper = mount(WdButton, {

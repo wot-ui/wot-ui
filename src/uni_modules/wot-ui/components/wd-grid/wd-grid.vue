@@ -32,8 +32,6 @@ const rootStyle = computed(() => {
   const style: CSSProperties = {}
   if (isDef(props.gutter)) {
     style.paddingLeft = addUnit(props.gutter)
-    console.log(props.square)
-
     if (props.square) {
       style.marginBottom = addUnit(-props.gutter)
     }

@@ -2,6 +2,50 @@
 
 基于字体的图标集。
 
+## v1 升级到 v2
+
+`v2` 重新整理了内置图标，部分图标名称发生变化，也有部分图标不再提供。升级时需要结合图形外观与业务语义选择替代项，不要只按名称进行替换。
+
+下列关系是常用的推荐替代项，不是自动替换规则。相同目标图标可能承接多个 `v1` 图标，替换后仍需结合页面语义和实际效果进行回归。图标名称区分大小写，例如 `Launch`、`Export` 需要保留首字母大写。
+
+- [查看完整 v1 → v2 迁移指南](/guide/migration-v2#图标迁移)
+- [使用 open-wot 的迁移 Skill 查看完整图标映射](https://github.com/wot-ui/open-wot/tree/main/skills/migrate-v1-to-v2)
+
+### 常用名称变更
+
+| v1 图标名称     | v2 推荐名称     |
+| --------------- | --------------- |
+| `add`           | `plus`          |
+| `add-circle`    | `plus-circle`   |
+| `decrease`      | `minus`         |
+| `arrow-left`    | `left`          |
+| `arrow-right`   | `right`         |
+| `arrow-up`      | `up`            |
+| `arrow-down`    | `down`          |
+| `search`        | `search-line`   |
+| `more`          | `more-vertical` |
+| `picture`       | `image`         |
+| `eye-close`     | `eye-invisible` |
+| `setting`       | `settings`      |
+| `help`          | `question`      |
+| `check-outline` | `check-circle`  |
+| `close-outline` | `close-circle`  |
+| `fullsreen`     | `fullscreen`    |
+
+```html
+<!-- v1 -->
+<wd-icon name="add" />
+<wd-icon name="picture" />
+
+<!-- v2 -->
+<wd-icon name="plus" />
+<wd-icon name="image" />
+```
+
+### 无对应图标
+
+如果在 `v2` 中找不到合适的视觉或语义等价项，不应强行替换。可以根据业务语义重新选择图标，也可以通过下方的自定义图标能力保留原有外观。
+
 ## 组件类型
 
 ### 基础用法

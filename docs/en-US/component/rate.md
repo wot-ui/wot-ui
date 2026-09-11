@@ -64,6 +64,12 @@ You can set unselected and selected icons through `icon` and `active-icon` respe
 <wd-rate v-model="value" block icon="thumb-down-fill" active-icon="thumb-up-fill" active-color="var(--wot-green-6)" />
 ```
 
+When both inactive and active icons use CSS icons, it is recommended to set `css-icon` to `true` and pass `icon` and `active-icon` as their own CSS icon classes. If you pass a string class name directly to `css-icon`, inactive and active icons will share the same CSS class.
+
+```html
+<wd-rate v-model="value" css-icon icon="i-carbon-star" active-icon="i-carbon-star-filled" />
+```
+
 ### Modify Size and Spacing
 
 Modify icon size through `size`, and icon spacing through `space`.
@@ -104,6 +110,8 @@ After setting the `clearable` property, clicking the current minimum score again
 | active-color | Selected icon color, supports `string` or `string[]` | `string \| string[]` | - |
 | icon | Unselected icon class name | `string` | `'star-fill'` |
 | active-icon | Selected icon class name | `string` | `'star-fill'` |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | disabled | Whether disabled | `boolean` | `false` |
 | allow-half | Whether to allow half selection | `boolean` | `false` |
 | clearable | Whether to allow clearing after clicking again | `boolean` | `false` |

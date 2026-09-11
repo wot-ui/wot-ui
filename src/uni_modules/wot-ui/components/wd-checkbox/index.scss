@@ -18,7 +18,7 @@ $checkbox-button-font-size: var(--wot-checkbox-button-font-size, $typography-bod
 $checkbox-button-line-height: var(--wot-checkbox-button-line-height, $typography-body-line-height-size-main) !default; // 按钮模式行高
 $checkbox-button-bg: var(--wot-checkbox-button-bg, $filled-bottom) !default; // 按钮模式背景颜色
 $checkbox-button-bg-checked: var(--wot-checkbox-button-bg-checked, $filled-oppo) !default; // 按钮模式选中状态背景颜色
-$checkbox-button-icon-size: var(--wot-checkbox-icon-size, $n-10) !default; // 按钮模式图标尺寸
+$checkbox-button-icon-size: var(--wot-checkbox-button-icon-size, $n-10) !default; // 按钮模式图标尺寸
 $checkbox-button-min-width: var(--wot-checkbox-button-min-width, calc(74 * #{$n-1})) !default; // 按钮模式最小宽
 $checkbox-button-max-width: var(--wot-checkbox-button-max-width, calc(148 * #{$n-1})) !default; // 按钮模式最大宽
 $checkbox-button-border-radius: var(--wot-checkbox-button-border-radius, $radius-main) !default; // 按钮圆角大小

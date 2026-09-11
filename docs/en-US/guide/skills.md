@@ -1,10 +1,8 @@
----
-version: New
----
-
 # Skills
 
 [Skills](https://agentskills.io/what-are-skills) are “superpower templates” for AI: a complete, reusable set of instructions designed for specific tasks. This chapter introduces Wot UI-related Skills built for AI Agents (such as Trae, Cursor, Cline, etc.), helping them handle `wot-ui` development tasks more accurately and efficiently.
+
+If you only need AI tools to read the docs or query component APIs, start with the [AI Guide](/en-US/guide/ai) to choose a lighter integration path.
 
 ## 🎯 Built-in Skills
 
@@ -13,6 +11,7 @@ We provide the following AI Skills, which can be loaded by an AI agent as needed
 | Skill | Description | Use Cases | Entry |
 | --- | --- | --- | --- |
 | `wot-ui-v2` | Core skill for daily development with the wot-ui v2 component library. | Component selection, API lookups, generating Vue 3 + uni-app page code, troubleshooting common pitfalls (e.g. Toast/Dialog mounting). | [skills/wot-ui-v2/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-v2/SKILL.md) |
+| `migrate-v1-to-v2` | Migrates Wot UI v1 projects to v2. | Scanning legacy usage, migrating incompatible APIs, handling form and theme changes, and migrating built-in icons with the human-reviewed mapping. | [skills/migrate-v1-to-v2/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/migrate-v1-to-v2/SKILL.md) |
 | `wot-ui-cli` | Skill dedicated to answering, using, and debugging the `@wot-ui/cli` tool itself. | CLI command usage (list, info, doc, etc.), configuring MCP Server, local debugging of CLI source, running offline metadata extraction. | [skills/wot-ui-cli/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-cli/SKILL.md) |
 | `wot-ui-unocss-preset-guide` | Guides installation, configuration, and usage of `@wot-ui/unocss-preset`. | Preset integration, `unocss.config.ts` setup (e.g. `presetWot`), examples for `prefix/preflight/baseTokens`, troubleshooting issues like missing styles or no IntelliSense. | [skills/wot-ui-unocss-preset-guide/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/wot-ui-unocss-preset-guide/SKILL.md) |
 | `create-wot-ui-theme` | Specialized skill for generating a single-file wot-ui theme SCSS. | Creating a brand theme for wot-ui while following the constraint: “single file includes mixins and mount selector; App.vue only uses `@use` to import”. | [skills/create-wot-ui-theme/SKILL.md](https://github.com/wot-ui/open-wot/tree/main/skills/create-wot-ui-theme/SKILL.md) |
@@ -22,12 +21,13 @@ We provide the following AI Skills, which can be loaded by an AI agent as needed
 We recommend installing Skills via a script. Choose the items you need:
 
 ```sh
-pnpx skills add wot-ui/open-wot
+pnpm dlx skills add wot-ui/open-wot
 # or
 npx skills add wot-ui/open-wot
 ```
 
 ## Further Reading
 
+- [AI Guide](/en-US/guide/ai)
 - [LLMs.txt](./llms-txt)
 - [Agent Skills, Rules, Prompts, MCP: A Clear Guide](https://juejin.cn/post/7599268297201958950)

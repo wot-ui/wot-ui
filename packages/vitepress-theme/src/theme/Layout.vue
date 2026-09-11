@@ -4,8 +4,10 @@ import Banner from './components/Banner.vue'
 import SpecialSponsor from './components/SpecialSponsor.vue'
 import HomeFriendly from './components/HomeFriendly.vue'
 import HomeTeam from './components/HomeTeam.vue'
+import HomeEcosystem from './components/HomeEcosystem.vue'
 import CustomFooter from './components/CustomFooter.vue'
 import WwAds from './components/WwAds.vue'
+import GitHubStarPrompt from './components/GitHubStarPrompt.vue'
 
 const { Layout } = DefaultTheme
 </script>
@@ -22,9 +24,10 @@ const { Layout } = DefaultTheme
       <SpecialSponsor />
     </template>
 
-    <!-- 首页 Features 区域下方，展示团队成员、用户案例与友好链接 -->
+    <!-- 首页 Features 区域下方，展示团队成员、生态与友好链接 -->
     <template #home-features-after>
       <HomeTeam />
+      <HomeEcosystem />
       <!-- <HomeCases /> -->
       <HomeFriendly />
     </template>
@@ -39,6 +42,7 @@ const { Layout } = DefaultTheme
 
     <!-- 全局底部页脚 -->
     <template #layout-bottom>
+      <GitHubStarPrompt />
       <CustomFooter />
     </template>
   </Layout>

@@ -61,6 +61,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import wdIcon from '../../wd-icon/wd-icon.vue'
 import { computed, ref, onMounted } from 'vue'
 import { compareYear, formatYearTitle, getYears } from '../utils'
 import { isArray, isNumber, pause } from '../../../common/util'

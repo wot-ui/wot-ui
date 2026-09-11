@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdTag from '@/uni_modules/wot-ui/components/wd-tag/wd-tag.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { type TagType } from '@/uni_modules/wot-ui/components/wd-tag/types'
 
@@ -20,6 +21,16 @@ describe('WdTag', () => {
     expect(wrapper.classes()).toContain('is-default')
     expect(wrapper.find('.wd-tag__text').exists()).toBe(true)
     expect(wrapper.text()).toBe('标签')
+  })
+
+  test('默认插槽内容使用 view 容器承载', () => {
+    const wrapper = mount(WdTag, {
+      slots: {
+        default: '标签'
+      }
+    })
+
+    expect(wrapper.find('.wd-tag__text').element.tagName).toBe('VIEW')
   })
 
   // 测试不同类型
@@ -182,6 +193,24 @@ describe('WdTag', () => {
     expect(textStyle).toContain('color:')
   })
 
+  test('虚线模式下 bgColor 设置边框颜色', () => {
+    const bgColor = '#0000ff'
+    const wrapper = mount(WdTag, {
+      props: {
+        bgColor,
+        variant: 'dashed'
+      },
+      slots: {
+        default: '标签'
+      }
+    })
+
+    const style = wrapper.attributes('style')
+    expect(wrapper.classes()).toContain('is-dashed')
+    expect(style).not.toContain('background:')
+    expect(style).toContain('border-color:')
+  })
+
   // 测试插槽内容
   test('插槽内容渲染', () => {
     const wrapper = mount(WdTag, {
@@ -222,6 +251,35 @@ describe('WdTag', () => {
     // icon 不添加额外的根节点类，只渲染图标组件
     expect(wrapper.findComponent({ name: 'wd-icon' }).exists()).toBe(true)
     expect(wrapper.findComponent({ name: 'wd-icon' }).props('name')).toBe(icon)
+  })
+
+  test('iconPrefix 和 cssIcon 透传到图标组件', () => {
+    const prefixWrapper = mount(WdTag, {
+      props: { icon: 'kehuishouwu', iconPrefix: 'fish' },
+      slots: { default: '标签' }
+    })
+    expect(prefixWrapper.findComponent(WdIcon).classes()).toContain('fish-kehuishouwu')
+
+    const cssWrapper = mount(WdTag, {
+      props: { icon: 'i-carbon-tag', cssIcon: true },
+      slots: { default: '标签' }
+    })
+    expect(cssWrapper.findComponent(WdIcon).classes()).toContain('wd-icon--css')
+    expect(cssWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-tag')
+  })
+
+  test('cssIcon 字符串可单独作为图标类名，布尔值不可单独渲染', () => {
+    const stringWrapper = mount(WdTag, {
+      props: { cssIcon: 'i-carbon-tag' },
+      slots: { default: '标签' }
+    })
+    expect(stringWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-tag')
+
+    const booleanWrapper = mount(WdTag, {
+      props: { cssIcon: true },
+      slots: { default: '标签' }
+    })
+    expect(booleanWrapper.findComponent(WdIcon).exists()).toBe(false)
   })
 
   // 测试图标插槽

@@ -108,7 +108,9 @@ export function useSelection(valueKey: string, labelKey: string, childrenKey: st
    * @returns {string[]} label数组
    */
   const selectedLabels = computed(() => {
-    return selectedIndex.value.map((row, col) => String(formatColumns.value[col][row][labelKey] ?? ''))
+    return selectedIndex.value.map((row, col) =>
+      String(isDef(formatColumns.value[col][row][labelKey]) ? formatColumns.value[col][row][labelKey] : '')
+    )
   })
 
   /**

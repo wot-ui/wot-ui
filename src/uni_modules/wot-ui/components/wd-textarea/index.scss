@@ -70,6 +70,14 @@ $textarea-error-color: var(--wot-textarea-error-color, $danger-main) !default;
     }
   }
 
+  @include edeep(prefix) {
+    flex: none;
+    margin-right: $textarea-icon-margin;
+    font-size: $textarea-icon-font-size;
+    color: $textarea-icon-color;
+    line-height: $textarea-inner-line-height;
+  }
+
   @include edeep(clear) {
     margin-left: $textarea-icon-margin;
     font-size: $textarea-icon-font-size;

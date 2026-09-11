@@ -274,14 +274,72 @@ useConfigProvider({ themeVars })
 </script>
 ```
 
+## 全局组件配置
+
+`ConfigProvider` 支持为子组件统一设置默认值，减少重复配置。
+
+### 作用范围一览
+
+不同配置项实际影响的组件不同，请按需配置。
+
+| 配置项 | 作用范围（当前生效的组件） |
+| --- | --- |
+| `button.size` | `wd-button` |
+| `button.variant` | `wd-button` |
+| `button.type` | `wd-button` |
+| `button.round` | `wd-button` |
+| `tag.size` | `wd-tag` |
+| `tag.variant` | `wd-tag` |
+| `tag.round` | `wd-tag` |
+
+::: tip 提示
+未在上表中列出的组件（如 `wd-input`、`wd-avatar` 等）当前**不受**全局配置影响，需要继续在组件上直接传 prop。后续版本会逐步扩大接入范围。
+:::
+
+### 组件专属配置
+
+通过 `button` / `tag` 等属性为特定组件设置全局默认值。
+
+- **`button`**：`{ size, variant, type, round }` —— 影响 `wd-button` 的默认尺寸、变体、类型、圆角
+- **`tag`**：`{ size, variant, round }` —— 影响 `wd-tag` 的默认尺寸、变体、圆角
+
+::: code-group
+
+```vue [vue]
+<wd-config-provider :button="{ size: 'large', variant: 'plain', round: true }" :tag="{ size: 'small', variant: 'light' }">
+  <wd-button>大号朴素圆角按钮</wd-button>
+  <wd-tag>小号浅色标签</wd-tag>
+</wd-config-provider>
+```
+
+:::
+
+::: tip 关于命令式 API
+`useToast()` / `useDialog()` 等命令式 API 是通过函数式调用使用的，**不读取** `ConfigProvider` 配置，需要在调用时直接传入 `options`（如 `useToast().show({ msg, duration })`）。这是 wot-ui 当前的设计取舍，目的是避免模块单例在 Vite 预构建 / 多实例场景下带来的同步问题。
+:::
+
+### 配置优先级
+
+```text
+组件 prop > 组件专属配置（如 button.size） > 组件内置默认值
+```
+
+### 生效边界
+
+1. **嵌套合并**：`ConfigProvider` 可以嵌套，内层配置会与外层做深度合并，同名键以内层为准；未指定的键继承外层。
+2. **Portal / 小程序插槽兜底**：通过 `root-portal` 移出文档流或在小程序原生插槽中渲染的组件无法通过 inject 拿到 provider 上下文，此时可使用 `useConfigProvider` 组合式函数在逻辑层显式注入主题（详见 [useConfigProvider](/component/use-config-provider)）。
+
+
 ## ConfigProvider Attributes
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| theme | 主题风格，可选值为 `light`、`dark` | string | `light` |
-| theme-vars | 自定义主题变量 | `ConfigProviderThemeVars` | `{}` |
-| custom-class | 根节点自定义样式类 | string | `''` |
-| custom-style | 根节点自定义样式 | string | `''` |
+| 参数 | 说明 | 类型 | 默认值 | 作用范围 |
+| --- | --- | --- | --- | --- |
+| theme | 主题风格，可选值为 `light`、`dark` | string | `light` | 所有 Wot 组件 |
+| theme-vars | 自定义主题变量 | `ConfigProviderThemeVars` | `{}` | 所有 Wot 组件 |
+| button | Button 组件全局配置，支持 `size` / `variant` / `type` / `round` | `{ size?: string; variant?: string; type?: string; round?: boolean }` | `{}` | `wd-button` |
+| tag | Tag 组件全局配置，支持 `size` / `variant` / `round` | `{ size?: string; variant?: string; round?: boolean }` | `{}` | `wd-tag` |
+| custom-class | 根节点自定义样式类 | string | `''` | 根节点 |
+| custom-style | 根节点自定义样式 | string | `''` | 根节点 |
 
 ## ConfigProvider Slots
 

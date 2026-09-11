@@ -134,7 +134,7 @@ $upload-row-spacing: var(--wot-upload-row-spacing, $spacing-tight) !default;
     background-color: $upload-evoke-bg;
   }
 
-  @include e(video-icon, file-icon) {
+  @include edeep(video-icon, file-icon) {
     font-size: $upload-cover-icon-size;
   }
 

@@ -64,6 +64,12 @@ function handleChange({ value }: { value: number }) {
 <wd-rate v-model="value" block icon="thumb-down-fill" active-icon="thumb-up-fill" active-color="var(--wot-green-6)" />
 ```
 
+如果未选中和选中图标都使用 CSS 图标，推荐将 `css-icon` 设置为 `true`，并分别把 `icon`、`active-icon` 写成对应的 CSS 图标类名。若直接给 `css-icon` 传字符串类名，未选中和选中图标会共用同一个 CSS 类名。
+
+```html
+<wd-rate v-model="value" css-icon icon="i-carbon-star" active-icon="i-carbon-star-filled" />
+```
+
 ### 修改大小与间隔
 
 通过 `size` 修改图标大小，`space` 修改图标间距。
@@ -104,6 +110,8 @@ function handleChange({ value }: { value: number }) {
 | active-color | 选中图标颜色，支持 `string` 或 `string[]` | `string \| string[]` | - |
 | icon | 未选中图标类名 | `string` | `'star-fill'` |
 | active-icon | 选中图标类名 | `string` | `'star-fill'` |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | allow-half | 是否允许半选 | `boolean` | `false` |
 | clearable | 是否允许再次点击后清除 | `boolean` | `false` |
@@ -116,4 +124,3 @@ function handleChange({ value }: { value: number }) {
 | 事件名称 | 说明 | 参数 |
 | --- | --- | --- |
 | change | 点击图标修改分值时触发 | `{ value }` |
-

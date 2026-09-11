@@ -53,7 +53,7 @@ const configProviderStyle = computed(() => {
 })
 
 const themeClass = computed(() => {
-  const theme = hooksProvider !== None ? hooksProvider.theme?.value : configProvider.value?.theme?.value
+  const theme = hooksProvider !== None ? hooksProvider.globalConfig?.value.theme : configProvider.value?.globalConfig?.value.theme
   return theme ? `wot-theme-${theme}` : 'wot-theme-light'
 })
 </script>
@@ -62,15 +62,19 @@ const themeClass = computed(() => {
 <script module="render" lang="renderjs">
 export default {
   mounted() {
-    if (this.$ownerInstance.$el) {
-      (document.querySelector('uni-app') || document.body).appendChild(this.$ownerInstance.$el)
-    }
+    const ownerInstance = this.$ownerInstance
+    if (!ownerInstance || !ownerInstance.$el) return
+
+    const root = document.querySelector('uni-app') || document.body
+    root.appendChild(ownerInstance.$el)
   },
   beforeDestroy() {
     // 清理，将元素移回原位置
-    if (this.$ownerInstance.$el) {
-      (document.querySelector('uni-app') || document.body).removeChild(this.$ownerInstance.$el)
-    }
+    const ownerInstance = this.$ownerInstance
+    if (!ownerInstance || !ownerInstance.$el) return
+
+    const root = document.querySelector('uni-app') || document.body
+    if (ownerInstance.$el.parentNode === root) root.removeChild(ownerInstance.$el)
   }
 }
 </script>

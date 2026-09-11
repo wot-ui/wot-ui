@@ -78,14 +78,14 @@ $skeleton-animation-flashed-opacity: var(--wot-skeleton-animation-flashed-opacit
       &::after {
         content: ' ';
         position: absolute;
-        animation: wd-skeleton-gradient 1.5s linear 2s infinite;
+        animation: wd-skeleton-gradient 1.5s linear infinite;
         background: linear-gradient(90deg, transparent, $skeleton-animation-gradient, transparent);
         inset: 0;
       }
     }
 
     &-flashed {
-      animation: wd-skeleton-flashed 2s linear 2s infinite;
+      animation: wd-skeleton-flashed 2s linear infinite;
     }
   }
 

@@ -21,6 +21,20 @@ export const emptyProps = {
    */
   icon: makeStringProp('empty'),
   /**
+   * 图标类名前缀，用法参考 Icon 组件。
+   * 类型: string
+   */
+  iconPrefix: String,
+  /**
+   * CSS 图标，用法参考 Icon 组件。
+   * 类型: boolean | string
+   * 默认值: false
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 图片大小，默认单位为 `px`。
    * 类型: string 或 number
    * 默认值: 空字符串

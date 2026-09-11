@@ -238,6 +238,7 @@ Enable clickable state through `clickable` property, and set page jump through `
 | icon | Icon name, optional values see `wd-icon` component | `string` | - |
 | icon-color | Icon color | `string` | - |
 | icon-prefix | Icon class name prefix | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | is-dot | Whether to show small red dot in upper right corner of icon | `boolean` | `false` |
 | value | Badge display value in upper right corner of icon | `string \| number` | - |
 | max | Badge maximum value in upper right corner of icon, exceeding maximum will display `{max}+` | `number` | `99` |

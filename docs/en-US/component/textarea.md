@@ -118,6 +118,9 @@ For current form scenarios, it is recommended to have `wd-form` and `wd-form-ite
 | readonly | Whether read-only | `boolean` | `false` |
 | maxlength | Maximum input length, set to `-1` for unlimited length | `number` | `-1` |
 | clearable | Whether to show clear button | `boolean` | `false` |
+| prefix-icon | Prefix icon name | `string` | - |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | show-word-limit | Whether to show word count, requires `maxlength` to be set | `boolean` | `false` |
 | clear-trigger | Clear button display timing, optional values are `focus`, `always` | `InputClearTrigger` | `always` |
 | focus-when-clear | Whether to auto-focus after clicking clear button | `boolean` | `true` |

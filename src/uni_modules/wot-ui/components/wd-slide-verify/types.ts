@@ -59,6 +59,20 @@ export const slideVerifyProps = {
    * 默认值: 'check-circle-fill'
    */
   successIcon: makeStringProp('check-circle-fill'),
+  /**
+   * 图标类名前缀，用法参考 Icon 组件
+   * 类型: string
+   */
+  iconPrefix: String,
+  /**
+   * CSS 图标，用法参考 Icon 组件
+   * 类型: boolean | string
+   * 默认值: false
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
 
   /**
    * 图标大小（单位：px）

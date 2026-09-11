@@ -127,6 +127,7 @@ $tag-extra-large-round-padding: var(--wot-tag-extra-large-round-padding, $n-3 $p
 // 超大尺寸图标尺寸
 $tag-extra-large-icon-size: var(--wot-tag-extra-large-icon-size, $n-12) !default;
 
+// 这里的顺序决定了生成的 CSS 优先级，default 必须放在首位以确保其他尺寸可以覆盖它
 $tag-types: (
   "default": (
     "color": $tag-info-color,
@@ -181,6 +182,13 @@ $tag-types: (
 );
 
 $tag-sizes: (
+  "default": (
+    "font-size": $tag-default-font-size,
+    "line-height": $tag-default-line-height,
+    "padding": $tag-default-padding,
+    "round-padding": $tag-default-round-padding,
+    "icon-size": $tag-default-icon-size
+  ),
   "small": (
     "font-size": $tag-small-font-size,
     "line-height": $tag-small-line-height,
@@ -194,13 +202,6 @@ $tag-sizes: (
     "padding": $tag-medium-padding,
     "round-padding": $tag-medium-round-padding,
     "icon-size": $tag-medium-icon-size
-  ),
-  "default": (
-    "font-size": $tag-default-font-size,
-    "line-height": $tag-default-line-height,
-    "padding": $tag-default-padding,
-    "round-padding": $tag-default-round-padding,
-    "icon-size": $tag-default-icon-size
   ),
   "large": (
     "font-size": $tag-large-font-size,
@@ -286,6 +287,12 @@ $tag-sizes: (
         background: transparent;
         color: $color;
         @include pixelBorderSurround($color,dashed);
+      }
+
+      @include when(plain, dashed) {
+        &::after {
+          border-color: inherit;
+        }
       }
 
       @include when(text) {

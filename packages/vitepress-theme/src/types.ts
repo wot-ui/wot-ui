@@ -90,6 +90,18 @@ export interface WotThemeCasesOptions {
 }
 
 /**
+ * 生态模块展示配置。
+ */
+export interface WotThemeEcosystemOptions {
+  /**
+   * 生态数据地址列表。
+   * 开发阶段可传空数组，使用 composable 内本地 mock。
+   * 上线后填入远程 JSON 地址即可切换。
+   */
+  urls: string[]
+}
+
+/**
  * Demo iframe 展示配置。
  */
 export interface WotThemeDemoIframeOptions {
@@ -107,6 +119,28 @@ export interface WotThemeDemoIframeOptions {
   routePatterns?: string[]
   /**
    * 自定义需要排除的路由模式。
+   */
+  excludePatterns?: string[]
+}
+
+/**
+ * 组件贡献者展示配置。
+ */
+export interface WotThemeContributorsOptions {
+  /**
+   * 贡献者数据 JSON 地址。
+   */
+  dataUrl?: string
+  /**
+   * 每个组件最多展示的贡献者数量。
+   */
+  maxCount?: number
+  /**
+   * 自定义需要显示贡献者的路由模式。
+   */
+  routePatterns?: string[]
+  /**
+   * 自定义需要排除贡献者的路由模式。
    */
   excludePatterns?: string[]
 }
@@ -148,9 +182,17 @@ export interface WotVitePressThemeOptions {
    */
   cases?: false | WotThemeCasesOptions
   /**
+   * 生态模块配置，传入 false 表示关闭。
+   */
+  ecosystem?: false | WotThemeEcosystemOptions
+  /**
    * Demo iframe 配置，传入 false 表示关闭。
    */
   demoIframe?: false | WotThemeDemoIframeOptions
+  /**
+   * 组件贡献者模块配置，传入 false 可关闭。
+   */
+  contributors?: false | WotThemeContributorsOptions
 }
 
 /**
@@ -325,9 +367,17 @@ export interface WotResolvedThemeOptions {
    */
   cases: false | WotThemeCasesOptions
   /**
+   * 归一化后的生态配置。
+   */
+  ecosystem: false | WotThemeEcosystemOptions
+  /**
    * 归一化后的 Demo iframe 配置。
    */
   demoIframe: false | WotThemeDemoIframeOptions
+  /**
+   * 归一化后的组件贡献者配置。
+   */
+  contributors: false | WotThemeContributorsOptions
   /**
    * 归一化后的特别赞助位配置。
    */

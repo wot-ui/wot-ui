@@ -121,6 +121,7 @@ $cell-border-margin-horizontal: var(--wot-cell-border-margin-horizontal, $spacin
   @include e(left) {
     position: relative;
     flex: 1;
+    min-width: 0;
     display: flex;
     text-align: left;
     font-size: $cell-title-font-size;
@@ -135,9 +136,13 @@ $cell-border-margin-horizontal: var(--wot-cell-border-margin-horizontal, $spacin
   }
 
   @include e(title) {
+    min-width: 0;
     font-size: $cell-title-font-size;
     line-height: $cell-title-line-height;
     color: $cell-title-color;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   @include e(required) {
@@ -157,6 +162,9 @@ $cell-border-margin-horizontal: var(--wot-cell-border-margin-horizontal, $spacin
     font-size: $cell-label-font-size;
     line-height: $cell-label-line-height;
     color: $cell-label-color;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   @include edeep(prefix) {
@@ -175,11 +183,14 @@ $cell-border-margin-horizontal: var(--wot-cell-border-margin-horizontal, $spacin
   @include e(value) {
     position: relative;
     flex: 1;
+    min-width: 0;
     font-size: $cell-value-font-size;
     line-height: $cell-value-line-height;
     color: $cell-value-color;
     vertical-align: middle;
-    word-break: break-all;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 
     @include m(left) {
       text-align: left;

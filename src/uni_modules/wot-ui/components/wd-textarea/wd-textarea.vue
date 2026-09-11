@@ -1,12 +1,13 @@
 <template>
   <view :class="rootClass" :style="customStyle">
     <view class="wd-textarea__body">
+      <wd-icon v-if="hasPrefixIcon" custom-class="wd-textarea__prefix" :name="prefixIcon" :class-prefix="iconPrefix" :css-icon="cssIcon" />
       <textarea
         :class="`wd-textarea__inner ${customTextareaClass}`"
         v-model="inputValue"
         :show-count="false"
         :placeholder="placeholderValue"
-        :disabled="disabled || readonly"
+        :disabled="isDisabled || readonly"
         :enable-native="enableNative"
         :maxlength="maxlength"
         :focus="focused"
@@ -57,9 +58,10 @@ export default {
 <script lang="ts" setup>
 import { computed, onBeforeMount, ref, watch } from 'vue'
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { isDef, pause } from '../../common/util'
+import { isDef, isString, pause } from '../../common/util'
 import { useParent } from '../../composables/useParent'
 import { useTranslate } from '../../composables/useTranslate'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { textareaProps } from './types'
 import { FORM_ITEM_VALIDATE_KEY } from '../wd-form-item/types'
 
@@ -68,6 +70,9 @@ const { translate } = useTranslate('textarea')
 const props = defineProps(textareaProps)
 const emit = defineEmits(['update:modelValue', 'clear', 'blur', 'focus', 'input', 'keyboardheightchange', 'confirm', 'linechange', 'click'])
 const { parent: formItemValidate } = useParent(FORM_ITEM_VALIDATE_KEY)
+const isDisabled = useFormDisabled(props)
+
+const hasPrefixIcon = computed(() => Boolean(props.prefixIcon || (isString(props.cssIcon) && props.cssIcon)))
 
 const placeholderValue = computed(() => {
   return isDef(props.placeholder) ? props.placeholder : translate('placeholder')
@@ -98,8 +103,14 @@ watch(
  * 展示清空按钮
  */
 const showClear = computed(() => {
-  const { disabled, readonly, clearable, clearTrigger } = props
-  if (clearable && !readonly && !disabled && inputValue.value && (clearTrigger === 'always' || (props.clearTrigger === 'focus' && focusing.value))) {
+  const { readonly, clearable, clearTrigger } = props
+  if (
+    clearable &&
+    !readonly &&
+    !isDisabled.value &&
+    inputValue.value &&
+    (clearTrigger === 'always' || (props.clearTrigger === 'focus' && focusing.value))
+  ) {
     return true
   } else {
     return false
@@ -110,8 +121,8 @@ const showClear = computed(() => {
  * 展示字数统计
  */
 const showWordCount = computed(() => {
-  const { disabled, readonly, maxlength, showWordLimit } = props
-  return Boolean(!disabled && !readonly && isDef(maxlength) && maxlength > -1 && showWordLimit)
+  const { readonly, maxlength, showWordLimit } = props
+  return Boolean(!isDisabled.value && !readonly && isDef(maxlength) && maxlength > -1 && showWordLimit)
 })
 
 // 当前文本域文字长度
@@ -124,7 +135,7 @@ const currentLength = computed(() => {
 })
 
 const rootClass = computed(() => {
-  return `wd-textarea ${props.error ? 'is-error' : ''} ${props.disabled ? 'is-disabled' : ''} ${props.autoHeight ? 'is-auto-height' : ''} ${
+  return `wd-textarea ${props.error ? 'is-error' : ''} ${isDisabled.value ? 'is-disabled' : ''} ${props.autoHeight ? 'is-auto-height' : ''} ${
     isCompact.value ? 'is-compact' : ''
   } ${props.customClass}`
 })

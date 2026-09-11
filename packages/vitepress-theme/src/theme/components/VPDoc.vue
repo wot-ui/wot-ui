@@ -6,6 +6,7 @@ import VPDocFooter from 'vitepress/dist/client/theme-default/components/VPDocFoo
 import { useData } from 'vitepress'
 import { useLayout } from 'vitepress/theme'
 import VPIframe from './VPIframe.vue'
+import VPComponentContributors from './VPComponentContributors.vue'
 import { wotThemeOptionsKey } from '../options'
 
 const { theme }: any = useData()
@@ -76,6 +77,7 @@ const expanded = ref(true)
             <Content class="vp-doc" :class="[pageName, theme.externalLinkIcon && 'external-link-icon-enabled']" />
             <VPIframe v-if="isComponent" v-model:expanded="expanded" />
           </main>
+          <VPComponentContributors />
           <VPDocFooter>
             <template #doc-footer-before>
               <slot name="doc-footer-before" />

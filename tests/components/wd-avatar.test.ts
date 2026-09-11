@@ -66,6 +66,31 @@ describe('WdAvatar', () => {
     expect(wrapper.findComponent(WdIcon).props('name')).toBe(icon)
   })
 
+  test('iconPrefix 和 cssIcon 透传到图标头像', () => {
+    const prefixWrapper = mount(WdAvatar, {
+      props: { icon: 'kehuishouwu', iconPrefix: 'fish' }
+    })
+    expect(prefixWrapper.findComponent(WdIcon).classes()).toContain('fish-kehuishouwu')
+
+    const cssWrapper = mount(WdAvatar, {
+      props: { icon: 'i-carbon-user', cssIcon: true }
+    })
+    expect(cssWrapper.findComponent(WdIcon).classes()).toContain('wd-icon--css')
+    expect(cssWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-user')
+  })
+
+  test('cssIcon 字符串可单独作为图标类名，布尔值不可单独渲染', () => {
+    const stringWrapper = mount(WdAvatar, {
+      props: { cssIcon: 'i-carbon-user' }
+    })
+    expect(stringWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-user')
+
+    const booleanWrapper = mount(WdAvatar, {
+      props: { cssIcon: true }
+    })
+    expect(booleanWrapper.findComponent(WdIcon).exists()).toBe(false)
+  })
+
   // 测试默认插槽
   test('渲染默认插槽', () => {
     const wrapper = mount(WdAvatar, {

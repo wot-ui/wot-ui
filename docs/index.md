@@ -21,6 +21,9 @@ hero:
     - theme: alt
       text: 组件列表
       link: /component/button
+    - theme: alt
+      text: AI 使用指南
+      link: /guide/ai
     - theme: brand
       text: 🥤一杯咖啡
       link: /reward/reward
@@ -34,7 +37,8 @@ features:
     details: 支持 微信小程序、支付宝小程序、钉钉小程序、H5、APP 等平台。
   - icon: 🤖
     title: AI 友好
-    details: 提供 AI 友好的设计系统与 AI 工具链。
+    details: 提供 LLMs.txt、MCP Server、CLI 与 AI Skills，让 AI 更准确地理解和使用组件库。
+    link: /guide/ai
   - icon: 💖
     title: 快速上手
     details: wot-starter 快速启动模板。
@@ -55,5 +59,4 @@ features:
 
 footer: false
 ---
-
 

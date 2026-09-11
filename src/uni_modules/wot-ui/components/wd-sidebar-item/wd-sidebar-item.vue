@@ -7,8 +7,8 @@
     :style="customStyle"
   >
     <slot name="icon"></slot>
-    <template v-if="!$slots.icon && icon">
-      <wd-icon custom-class="wd-sidebar-item__icon" :name="icon"></wd-icon>
+    <template v-if="!$slots.icon && hasIcon">
+      <wd-icon custom-class="wd-sidebar-item__icon" :name="icon" :class-prefix="iconPrefix" :css-icon="cssIcon"></wd-icon>
     </template>
     <wd-badge v-bind="customBadgeProps" custom-class="wd-sidebar-item__badge">
       {{ label }}
@@ -37,11 +37,13 @@ import { useParent } from '../../composables/useParent'
 import { SIDEBAR_KEY } from '../wd-sidebar/types'
 import { sidebarItemProps } from './types'
 import type { BadgeProps } from '../wd-badge/types'
-import { deepAssign, isDef, isUndefined, omitBy } from '../../common/util'
+import { deepAssign, isDef, isString, isUndefined, omitBy } from '../../common/util'
 
 const props = defineProps(sidebarItemProps)
 
 const { parent: sidebar } = useParent(SIDEBAR_KEY)
+
+const hasIcon = computed(() => Boolean(props.icon || (isString(props.cssIcon) && props.cssIcon)))
 
 const customBadgeProps = computed(() => {
   const badgeProps: Partial<BadgeProps> = deepAssign(

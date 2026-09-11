@@ -59,6 +59,26 @@ describe('WdCell', () => {
     expect(wrapper.find('.wd-cell__prefix').exists()).toBe(true)
   })
 
+  test('cssIcon 透传到前置和后置图标', () => {
+    const wrapper = mount(WdCell, {
+      props: {
+        prefixIcon: 'i-carbon-search',
+        suffixIcon: 'i-carbon-send',
+        cssIcon: true
+      },
+      global: {
+        components: {
+          WdIcon
+        }
+      }
+    })
+    const icons = wrapper.findAllComponents(WdIcon)
+    expect(icons[0].classes()).toContain('wd-icon--css')
+    expect(icons[0].classes()).toContain('i-carbon-search')
+    expect(icons[1].classes()).toContain('wd-icon--css')
+    expect(icons[1].classes()).toContain('i-carbon-send')
+  })
+
   // 测试可点击状态
   test('可点击状态', async () => {
     const wrapper = mount(WdCell, {

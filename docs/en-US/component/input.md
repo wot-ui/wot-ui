@@ -111,6 +111,12 @@ Set the front and back icons through `prefix-icon` and `suffix-icon`. For icon n
 />
 ```
 
+When both prefix and suffix icons use CSS icons, it is recommended to set `css-icon` to `true` and pass each icon prop as its own CSS icon class. If you pass a string class name directly to `css-icon`, the prefix and suffix icons will share the same CSS class.
+
+```html
+<wd-input css-icon prefix-icon="i-carbon-search" suffix-icon="i-carbon-send" />
+```
+
 ### Suffix Slot
 
 Customize the suffix content through the `suffix` slot.
@@ -187,6 +193,8 @@ For the current form scenario, it is recommended to use `wd-form` and `wd-form-i
 | show-password | Whether to display the password toggle button | `boolean` | `false` |
 | prefix-icon | Prefix icon name | `string` | - |
 | suffix-icon | Suffix icon name | `string` | - |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | show-word-limit | Whether to display character count, need to set `maxlength` at the same time | `boolean` | `false` |
 | error | Whether to display error state | `boolean` | `false` |
 | align-right | Whether the input content is right-aligned | `boolean` | `false` |

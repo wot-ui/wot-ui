@@ -1,10 +1,8 @@
 <template>
   <view class="wd-table-column">
     <view v-for="config in cellConfigs" :key="config.rowIndex" :class="config.class" :style="config.style" @click="handleRowClick(config.rowIndex)">
-      <template v-if="config.visible">
-        <slot name="value" v-if="$slots.value" :row="getScope(config.rowIndex)" :index="config.rowIndex"></slot>
-        <text :class="['wd-table__value', { 'is-ellipsis': ellipsis }]" v-else>{{ config.value }}</text>
-      </template>
+      <slot name="value" v-if="$slots.value" :row="getScope(config.rowIndex)" :index="config.rowIndex"></slot>
+      <text :class="['wd-table__value', { 'is-ellipsis': ellipsis }]" v-else>{{ config.value }}</text>
     </view>
   </view>
 </template>
@@ -92,7 +90,7 @@ const isLastColumn = computed(() => {
  * @returns 每行单元格的渲染配置数组
  */
 const cellConfigs = computed(() => {
-  const configs: Array<{ rowIndex: number; value: any; class: any; style: string; visible: boolean }> = []
+  const configs: Array<{ rowIndex: number; value: any; class: any; style: string }> = []
   const data = isDef(table.value) && Array.isArray(table.value.props.data) ? table.value.props.data : []
   if (data.length === 0) return configs
 
@@ -111,7 +109,8 @@ const cellConfigs = computed(() => {
 
   for (let rowIndex = range.start; rowIndex <= range.end; rowIndex++) {
     const span = getSpanResult(rowIndex)
-    const hidden = span.rowspan === 0 || span.colspan === 0
+    const isHidden = span.rowspan === 0 || span.colspan === 0
+    if (isHidden) continue
 
     const cls = [
       'wd-table__cell',
@@ -120,27 +119,22 @@ const cellConfigs = computed(() => {
         'is-border': borderVal,
         'is-fixed': isFixed,
         'is-shadow': isLast && hasScrollLeft,
-        'is-hidden': hidden,
         'is-last': isLastCol
       },
       `is-${align}`
     ]
 
     const style: CSSProperties = {}
-    if (hidden) {
-      style['display'] = 'none'
+    if (span.colspan > 1) {
+      style['grid-column'] = `${colStart} / span ${span.colspan}`
     } else {
-      if (span.colspan > 1) {
-        style['grid-column'] = `${colStart} / span ${span.colspan}`
-      } else {
-        style['grid-column'] = `${colStart}`
-      }
-      const rowStart = rowIndex + 1
-      if (span.rowspan > 1) {
-        style['grid-row'] = `${rowStart} / span ${span.rowspan}`
-      } else {
-        style['grid-row'] = `${rowStart}`
-      }
+      style['grid-column'] = `${colStart}`
+    }
+    const rowStart = rowIndex + 1
+    if (span.rowspan > 1) {
+      style['grid-row'] = `${rowStart} / span ${span.rowspan}`
+    } else {
+      style['grid-row'] = `${rowStart}`
     }
     if (isFixed && left) {
       style['left'] = left
@@ -150,8 +144,7 @@ const cellConfigs = computed(() => {
       rowIndex,
       value: data[rowIndex]?.[propKey],
       class: cls,
-      style: objToStyle(style),
-      visible: !hidden
+      style: objToStyle(style)
     })
   }
   return configs

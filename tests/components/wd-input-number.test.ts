@@ -110,6 +110,31 @@ describe('WdInputNumber', () => {
     expect(wrapper.findAll('.wd-input-number__action').length).toBe(2)
   })
 
+  test('点击加减按钮不会触发父容器点击事件', async () => {
+    const parentClick = vi.fn()
+    const WrapperComponent = defineComponent({
+      components: { WdInputNumber },
+      setup() {
+        const value = ref(1)
+        return { parentClick, value }
+      },
+      template: `
+        <view @click="parentClick">
+          <WdInputNumber v-model="value" />
+        </view>
+      `
+    })
+    const wrapper = mount(WrapperComponent)
+    const actionButtons = wrapper.findAll('.wd-input-number__action')
+
+    await actionButtons[1].trigger('click')
+    expect(wrapper.vm.value).toBe(2)
+
+    await actionButtons[0].trigger('click')
+    expect(wrapper.vm.value).toBe(1)
+    expect(parentClick).not.toHaveBeenCalled()
+  })
+
   // 测试输入值
   test('显示正确的值', async () => {
     const wrapper = createWrapper({}, 5)

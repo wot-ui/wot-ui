@@ -6,10 +6,12 @@
 
 ### 基本使用
 
-`v-model` 绑定值可为：
+`v-model` 用于受控展开状态，不绑定时组件会自行维护展开状态。绑定值可为：
 - 普通折叠：`string[]`
 - 手风琴模式：`string`
 - 查看更多模式：`boolean`
+
+绑定 `v-model` 时请提供对应模式的初始值；如果初始值为 `undefined`，组件会按非受控模式处理。
 
 ```html
 <wd-collapse v-model="value">
@@ -52,6 +54,17 @@ const beforeExpend = (name: string) => {
 ```
 
 ## 组件变体
+
+### 非受控模式
+
+不传 `v-model` 时，组件会在内部维护展开状态，适用于只需要本地展开/收起、不关心当前展开值的场景。
+
+```html
+<wd-collapse>
+  <wd-collapse-item title="标签1" name="item1">这是一条简单的示例文字。</wd-collapse-item>
+  <wd-collapse-item title="标签2" name="item2">这是一条简单的示例文字。</wd-collapse-item>
+</wd-collapse>
+```
 
 ### 手风琴
 
@@ -166,7 +179,7 @@ collapseRef.value?.toggleAll({ expanded: true, skipDisabled: true })
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 绑定值。普通模式为 `string[]`，手风琴模式为 `string`，查看更多模式为 `boolean` | `string \| string[] \| boolean` | - |
+| v-model | 绑定值，不传时组件内部维护展开状态。普通模式为 `string[]`，手风琴模式为 `string`，查看更多模式为 `boolean` | `string \| string[] \| boolean` | - |
 | accordion | 是否开启手风琴模式 | boolean | false |
 | viewmore | 是否开启查看更多模式 | boolean | false |
 | use-more-slot | 查看更多模式下是否启用 `more` 插槽 | boolean | false |

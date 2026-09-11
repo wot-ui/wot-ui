@@ -30,3 +30,4 @@ yarn-error.log*
 tags.json
 attributes.json
 web-types.json
+.cursor

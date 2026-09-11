@@ -70,6 +70,15 @@ export const cellProps = {
    */
   iconPrefix: String,
   /**
+   * CSS 图标，用法参考 Icon 组件
+   * 类型: boolean | string
+   * 默认值: false
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 标题下方的描述信息
    * 类型: string
    */
@@ -150,6 +159,12 @@ export const cellProps = {
    * 默认值: true
    */
   useTitleSlot: makeBooleanProp(true),
+  /**
+   * 是否启用 label 插槽
+   * 类型: boolean
+   * 默认值: true
+   */
+  useLabelSlot: makeBooleanProp(true),
   /**
    * 必填星号位置
    * 类型: CellAsteriskPosition

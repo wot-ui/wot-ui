@@ -102,6 +102,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import wdIcon from '../../wd-icon/wd-icon.vue'
 import wdDatetimePickerView from '../../wd-datetime-picker-view/wd-datetime-picker-view.vue'
 import { computed, ref, watch, onMounted, type CSSProperties } from 'vue'
 import { debounce, isArray, isEqual, isNumber, pause, padZero, addUnit, objToStyle } from '../../../common/util'

@@ -50,22 +50,47 @@ pnpm add @wot-ui/ui
 
 ## Sass
 
-`Wot UI` 依赖 `sass` ，因此在使用之前需要确认项目中是否已经安装了 `sass`，如果没有安装，可以通过以下命令进行安装：
+`Wot UI` 依赖 `sass`，且 `sass` 版本要求高于 `1.78`，推荐使用 `1.98` 及以上版本。因此在使用之前需要确认项目中是否已经安装了符合版本要求的 `sass`，如果没有安装，可以通过以下命令进行安装：
 
 ::: code-group
 
 ```bash [npm]
-npm i sass -D
+npm i sass@^1.98.0 -D
 ```
 
 ```bash [yarn]
-yarn add sass -D
+yarn add sass@^1.98.0 -D
 ```
 
 ```bash [pnpm]
-pnpm add sass -D
+pnpm add sass@^1.98.0 -D
 ```
 :::
+
+如果遇到编译或开发时抛出以下警告：
+
+```sh
+Deprecation Warning [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+```
+
+可以在 `vite.config.ts` 中这样做：
+
+```ts
+export default defineConfig({
+  // ...
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api']
+      }
+    }
+  },
+  // ...
+})
+```
+
+`Sass` 废弃了大批 API，而 `uni-app` 仍然在使用这些 API，导致警告的抛出。
 
 ## 配置
 

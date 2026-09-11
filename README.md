@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="https://v2.wot-ui.cn/logo.svg" width="200">
+    <img alt="logo" src="https://wot-ui.cn/logo.svg" width="200">
 </p>
 <h1 align="center">Wot UI</h1>
 
@@ -35,7 +35,7 @@
 </p>
 
 <p align="center">
-  🚀 <a href="https://v2.wot-ui.cn">文档网站 (推荐)</a>&nbsp;
+  🚀 <a href="https://wot-ui.cn">文档网站 (推荐)</a>&nbsp;
 </p>
 
 ## ✨ 特性
@@ -54,19 +54,19 @@
 扫描二维码访问演示，注意：因微信审核机制限制，当前的微信小程序示例可能不是最新版本，可以 clone 代码到本地预览。
 
 <p style="display:flex;gap:24px">
-<img src="https://v2.wot-ui.cn/wx.jpg" width="200" height="200"/>
-<img src="https://v2.wot-ui.cn/alipay.png" width="200" height="200" />
-<img src="https://v2.wot-ui.cn/h5.png" width="200" height="200" />
+<img src="https://wot-ui.cn/wx.jpg" width="200" height="200"/>
+<img src="https://wot-ui.cn/alipay.png" width="200" height="200" />
+<img src="https://wot-ui.cn/h5.png" width="200" height="200" />
 
 </p>
 
 ## 快速上手
 
-详细说明见 [快速上手](https://v2.wot-ui.cn/guide/quick-use.html)。
+详细说明见 [快速上手](https://wot-ui.cn/guide/quick-use.html)。
   
 ## 优秀案例
 
-[这里](https://v2.wot-ui.cn/guide/cases.html)我们收集了一些优秀的案例，欢迎大家体验！
+[这里](https://wot-ui.cn/guide/cases.html)我们收集了一些优秀的案例，欢迎大家体验！
 
 我们也非常欢迎大家一起贡献优秀的 Demo 与案例，欢迎在此 [issue](https://github.com/wot-ui/wot-ui/issues/16) 提交案例。
 
@@ -108,7 +108,7 @@
 
 如果您认为 Wot UI 帮助到了您的开发工作，您可以捐赠 Wot UI 的研发工作，捐赠无门槛，哪怕是一杯可乐也好。
 
-捐赠后您的昵称、留言等将会展示在[捐赠榜单](https://v2.wot-ui.cn/reward/donor.html)中。
+捐赠后您的昵称、留言等将会展示在[捐赠榜单](https://wot-ui.cn/reward/donor.html)中。
 
 
 ### 爱发电捐赠
@@ -118,15 +118,15 @@
 ### 扫码捐赠
 
 <p>
-<img src="https://v2.wot-ui.cn/weixinQrcode.jpg" width="200" height="200" style="margin-right:30px"/>
-<img src="https://v2.wot-ui.cn/alipayQrcode.jpg" width="200" height="200" />
+<img src="https://wot-ui.cn/weixinQrcode.jpg" width="200" height="200" style="margin-right:30px"/>
+<img src="https://wot-ui.cn/alipayQrcode.jpg" width="200" height="200" />
 </p>
 
 ## 鸣谢
 
 - [wot-design](https://github.com/jd-ftf/wot-design-mini) - 感谢 wot-design 团队多年来的不断维护，让 wot-ui 能够站在巨人的肩膀上。
 - [uni-helper](https://github.com/uni-helper) - 感谢 uni-helper 团队提供的 uni-app 工具库，让 wot-ui 能够更方便地使用。
-- [捐赠者](https://v2.wot-ui.cn/reward/donor.html) - 感谢所有捐赠者，是你们的捐赠让 wot-ui 能够更好地发展。
+- [捐赠者](https://wot-ui.cn/reward/donor.html) - 感谢所有捐赠者，是你们的捐赠让 wot-ui 能够更好地发展。
 
 
 ## 开源协议

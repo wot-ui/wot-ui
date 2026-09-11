@@ -68,6 +68,20 @@ export const avatarProps = {
    * 默认值: ''
    */
   icon: makeStringProp(''),
+  /**
+   * 图标类名前缀，用法参考 Icon 组件
+   * 类型: string
+   */
+  iconPrefix: String,
+  /**
+   * CSS 图标，用法参考 Icon 组件
+   * 类型: boolean | string
+   * 默认值: false
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
 
   /**
    * 图片加载失败时的占位文本

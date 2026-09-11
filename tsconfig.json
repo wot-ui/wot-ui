@@ -30,16 +30,11 @@
       "@uni-helper/uni-types/volar-plugin"
     ]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.vue",
-    "src/**/*.d.ts",
-    "tests/**/*.ts",
-    "components.d.ts"
-  ],
   "exclude": [
     "node_modules",
     "unpackage",
-    "src/**/*.nvue"
+    "src/**/*.nvue",
+    "docs",
+    "packages"
   ]
 }

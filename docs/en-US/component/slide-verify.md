@@ -58,6 +58,12 @@ Customize icons through `icon` and `success-icon` properties.
 <wd-slide-verify icon="arrow-right" success-icon="thumb-up-fill" />
 ```
 
+When both the slider icon and success icon use CSS icons, it is recommended to set `css-icon` to `true` and pass `icon` and `success-icon` as their own CSS icon classes. If you pass a string class name directly to `css-icon`, the slider icon and success icon will share the same CSS class.
+
+```html
+<wd-slide-verify css-icon icon="i-carbon-arrow-right" success-icon="i-carbon-checkmark" />
+```
+
 ## Special Styles
 
 ### Custom Tolerance Range
@@ -121,6 +127,8 @@ Supports customizing content through slots.
 | active-background-color | Background color when active | string | - |
 | icon | Slider icon name | string | `double-right` |
 | success-icon | Success icon name | string | `check-circle-fill` |
+| icon-prefix | Icon class prefix, see Icon component for usage | string | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | icon-size | Icon size | string / number | - |
 | success-icon-size | Success icon size | string / number | - |
 

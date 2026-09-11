@@ -18,14 +18,14 @@ const themeVars = reactive({
   buttonPrimaryBg: '#07c160'
 })
 
-useConfigProvider({ themeVars })
+useConfigProvider({ themeVars, button: { size: 'small', variant: 'plain' } })
 
 // 或者使用 ref
 const themeVarsRef = ref({
   primary6: '#2c68ff'
 })
 
-useConfigProvider({ themeVars: themeVarsRef })
+useConfigProvider({ themeVars: themeVarsRef, button: { size: 'large', type: 'success', round: true }, tag: { size: 'medium', variant: 'light', round: true } })
 ```
 
 ## API
@@ -35,3 +35,6 @@ useConfigProvider({ themeVars: themeVarsRef })
 | 参数 | 说明 | 类型 | 默认值 | 最低版本 |
 |-----|------|------|--------|---------|
 | themeVars | 主题变量对象，支持响应式更新 | `ConfigProviderThemeVars` \| `Ref<ConfigProviderThemeVars>` | - | 1.14.0 |
+| theme | 主题风格，可选值为 `light`、`dark` | `string` \| `Ref<string>` | `'light'` | 1.14.0 |
+| button | Button 组件全局配置，支持 `size` / `variant` / `type` / `round` | `{ size?: string; variant?: string; type?: string; round?: boolean }` \| `Ref<ButtonConfig>` | `{}` | - |
+| tag | Tag 组件全局配置，支持 `size` / `variant` / `round` | `{ size?: string; variant?: string; round?: boolean }` \| `Ref<TagConfig>` | `{}` | - |

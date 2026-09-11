@@ -9,9 +9,9 @@ import { type LoadingProps } from '../wd-loading/types'
 export type ButtonType = 'primary' | 'success' | 'info' | 'warning' | 'danger'
 /**
  * 按钮变体
- * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'text'
+ * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'subtle' | 'text'
  */
-export type ButtonVariant = 'base' | 'plain' | 'dashed' | 'soft' | 'text'
+export type ButtonVariant = 'base' | 'plain' | 'dashed' | 'soft' | 'subtle' | 'text'
 /**
  * 按钮尺寸
  * 可选值: 'mini' | 'small' | 'medium' | 'large'
@@ -69,9 +69,12 @@ export const buttonProps = {
   ...baseProps,
   /**
    * 圆角按钮
-   * 默认值: false
+   * 不传则继承全局配置
    */
-  round: makeBooleanProp(false),
+  round: {
+    type: Boolean,
+    default: void 0
+  },
   /**
    * 禁用按钮
    * 默认值: false
@@ -91,16 +94,16 @@ export const buttonProps = {
    * 按钮类型
    * 类型: ButtonType
    * 可选值: 'primary' | 'success' | 'info' | 'warning' | 'danger'
-   * 默认值: 'primary'
+   * 不传则继承全局配置
    */
-  type: makeStringProp<ButtonType>('primary'),
+  type: String as PropType<ButtonType>,
   /**
    * 按钮尺寸
    * 类型: ButtonSize
    * 可选值: 'mini' | 'small' | 'medium' | 'large'
-   * 默认值: 'medium'
+   * 不传则继承全局配置
    */
-  size: makeStringProp<ButtonSize>('medium'),
+  size: String as PropType<ButtonSize>,
   /**
    * 图标类名
    */
@@ -201,10 +204,10 @@ export const buttonProps = {
   /**
    * 按钮变体
    * 类型: ButtonVariant
-   * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'text'
-   * 默认值: 'base'
+   * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'subtle' | 'text'
+   * 不传则继承全局配置
    */
-  variant: makeStringProp<ButtonVariant>('base')
+  variant: String as PropType<ButtonVariant>
 }
 
 /**

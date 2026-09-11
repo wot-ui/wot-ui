@@ -1,11 +1,11 @@
 @use '../../styles/mixin/mixin.scss' as *;
 @use '../../styles/variable.scss' as *;
 
-$index-anchor-bg: var(--wot-index-anchor-bg, $filled-bottom) !default;
-$index-anchor-padding: var(--wot-index-anchor-padding, $padding-main) !default;
-$index-anchor-font-size: var(--wot-index-anchor-font-size, $typography-body-size-main) !default;
-$index-anchor-color: var(--wot-index-anchor-color, $text-main) !default;
-$index-anchor-z-index: var(--wot-index-anchor-z-index, 1) !default;
+$index-anchor-bg: var(--wot-index-anchor-bg, $filled-bottom) !default; // 索引锚点背景色
+$index-anchor-padding: var(--wot-index-anchor-padding, $padding-main) !default; // 索引锚点内边距
+$index-anchor-font-size: var(--wot-index-anchor-font-size, $typography-body-size-main) !default; // 索引锚点文字字号
+$index-anchor-color: var(--wot-index-anchor-color, $text-main) !default; // 索引锚点文字颜色
+$index-anchor-z-index: var(--wot-index-anchor-z-index, 1) !default; // 索引锚点吸顶层级
 
 // #ifdef MP-DINGTALK
 @include b(index-anchor-ding) {

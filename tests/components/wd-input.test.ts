@@ -176,6 +176,20 @@ describe('输入框组件', () => {
     expect(wrapper.props('suffixIcon')).toBe('arrow-right')
   })
 
+  test('iconPrefix 和 cssIcon 透传到前置后置图标', () => {
+    const wrapper = mount(WdInput, {
+      props: {
+        prefixIcon: 'i-carbon-search',
+        suffixIcon: 'i-carbon-send',
+        iconPrefix: 'fish',
+        cssIcon: true
+      }
+    })
+    expect(wrapper.find('.i-carbon-search').exists()).toBe(true)
+    expect(wrapper.find('.i-carbon-send').exists()).toBe(true)
+    expect(wrapper.findAll('.wd-icon--css').length).toBe(2)
+  })
+
   // 测试错误状态
   test('渲染错误状态', () => {
     const wrapper = mount(WdInput, {

@@ -248,6 +248,8 @@ const tabbar = ref(1)
 | title | Tab title | `string` | - |
 | name | Unique identifier, defaults to index value if not passed | `string \| number` | - |
 | icon | Icon name | `string` | - |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | value | Badge display value | `number \| string` | - |
 | is-dot | Whether to show dot badge | `boolean` | `false` |
 | max | Badge maximum value | `number` | `99` |

@@ -19,12 +19,12 @@
     </view>
 
     <template v-else>
-      <slot name="icon" v-if="$slots.icon || icon">
-        <wd-icon :name="icon" custom-class="wd-tag__icon" />
+      <slot name="icon" v-if="$slots.icon || hasIcon">
+        <wd-icon :name="icon" :class-prefix="iconPrefix" :css-icon="cssIcon" custom-class="wd-tag__icon" />
       </slot>
-      <text class="wd-tag__text" :style="textStyle" v-if="$slots.default">
+      <view class="wd-tag__text" :style="textStyle" v-if="$slots.default">
         <slot />
-      </text>
+      </view>
       <view class="wd-tag__close" v-if="closable" @click.stop="handleClose">
         <wd-icon name="close" custom-class="wd-tag__close-icon"></wd-icon>
       </view>
@@ -46,15 +46,34 @@ export default {
 </script>
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { objToStyle } from '../../common/util'
+import { objToStyle, isString, isUndefined } from '../../common/util'
 import { computed, ref } from 'vue'
 import { useTranslate } from '../../composables/useTranslate'
 import { tagProps } from './types'
+import { useGlobalConfig } from '../../composables/useGlobalConfig'
 
 const props = defineProps(tagProps)
 const emit = defineEmits(['click', 'close', 'confirm'])
 
 const { translate } = useTranslate('tag')
+const globalConfig = useGlobalConfig()
+
+const hasIcon = computed(() => Boolean(props.icon || (isString(props.cssIcon) && props.cssIcon)))
+
+const effectiveSize = computed(() => {
+  return props.size || globalConfig.value.tag?.size || 'default'
+})
+
+const effectiveVariant = computed(() => {
+  return props.variant || globalConfig.value.tag?.variant || 'dark'
+})
+
+const effectiveRound = computed(() => {
+  if (isUndefined(props.round)) {
+    return isUndefined(globalConfig.value.tag?.round) ? false : globalConfig.value.tag?.round
+  }
+  return props.round
+})
 
 const dynamicValue = ref<string>('')
 const dynamicInput = ref<boolean>(false)
@@ -63,12 +82,12 @@ const dynamicInput = ref<boolean>(false)
  * 根节点类名
  */
 const rootClass = computed<string>(() => {
-  const { type, variant, size, round, mark, customClass } = props
+  const { type, mark, customClass } = props
   const classList: string[] = []
   type && classList.push(`is-${type}`)
-  variant && classList.push(`is-${variant}`)
-  size && classList.push(`is-${size}`)
-  round && classList.push('is-round')
+  effectiveVariant.value && classList.push(`is-${effectiveVariant.value}`)
+  effectiveSize.value && classList.push(`is-${effectiveSize.value}`)
+  effectiveRound.value && classList.push('is-round')
   mark && classList.push('is-mark')
   return `wd-tag ${customClass} ${classList.join(' ')}`
 })
@@ -78,7 +97,7 @@ const rootClass = computed<string>(() => {
  */
 const rootStyle = computed<string>(() => {
   const rootStyle: Record<string, any> = {}
-  if (props.variant !== 'plain' && props.variant !== 'dashed' && props.variant !== 'text' && props.bgColor) {
+  if (effectiveVariant.value !== 'plain' && effectiveVariant.value !== 'dashed' && effectiveVariant.value !== 'text' && props.bgColor) {
     rootStyle['background'] = props.bgColor
   }
   if (props.bgColor) {

@@ -71,6 +71,68 @@ describe('WdCollapse', () => {
     expect(wrapper.emitted('change')?.[0]).toEqual([{ value: true }])
   })
 
+  // 测试非受控查看更多模式
+  test('未传modelValue时查看更多模式可自行切换', async () => {
+    const wrapper = mount(WdCollapse, {
+      props: {
+        viewmore: true
+      },
+      slots: {
+        default: '<div>这是一段很长的内容，需要折叠起来，点击查看更多才能看到全部内容。</div>'
+      },
+      global: {
+        components: {
+          WdIcon
+        }
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.find('.wd-collapse__content').classes()).toContain('is-retract')
+
+    await wrapper.find('.wd-collapse__more').trigger('click')
+    await nextTick()
+
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true])
+    expect(wrapper.find('.wd-collapse__content').classes()).not.toContain('is-retract')
+
+    await wrapper.find('.wd-collapse__more').trigger('click')
+    await nextTick()
+
+    expect(wrapper.emitted('update:modelValue')?.[1]).toEqual([false])
+    expect(wrapper.find('.wd-collapse__content').classes()).toContain('is-retract')
+  })
+
+  // 测试查看更多模式初始展开后收起时更新行数
+  test('查看更多模式初始展开后收起时恢复收起行数', async () => {
+    const wrapper = mount(WdCollapse, {
+      props: {
+        viewmore: true,
+        modelValue: true,
+        lineNum: 3
+      },
+      slots: {
+        default: '<div>这是一段很长的内容，需要折叠起来，点击查看更多才能看到全部内容。</div>'
+      },
+      global: {
+        components: {
+          WdIcon
+        }
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.find('.wd-collapse__content').attributes('style')).toContain('-webkit-line-clamp: 0')
+
+    await wrapper.setProps({ modelValue: false })
+    await nextTick()
+
+    expect(wrapper.find('.wd-collapse__content').classes()).toContain('is-retract')
+    expect(wrapper.find('.wd-collapse__content').attributes('style')).toContain('-webkit-line-clamp: 3')
+  })
+
   // 测试自定义类名
   test('应用自定义类名', async () => {
     const customClass = 'custom-collapse'
@@ -593,6 +655,37 @@ describe('WdCollapse and WdCollapseItem Integration', () => {
     expect(wrapper.html()).toContain('标签2')
   })
 
+  // 测试普通模式非受控使用
+  test('works without modelValue in normal mode', async () => {
+    const wrapper = mount(WdCollapse, {
+      slots: {
+        default: `
+          <wd-collapse-item title="标签1" name="item1">内容1</wd-collapse-item>
+          <wd-collapse-item title="标签2" name="item2">内容2</wd-collapse-item>
+        `
+      },
+      global: {
+        components: {
+          WdIcon,
+          WdCollapseItem
+        }
+      }
+    })
+
+    await nextTick()
+
+    const items = wrapper.findAllComponents(WdCollapseItem)
+    await items[0].find('.wd-collapse-item__header').trigger('click')
+
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([['item1']])
+    expect(wrapper.emitted('change')?.[0]).toEqual([{ value: ['item1'] }])
+
+    await items[1].find('.wd-collapse-item__header').trigger('click')
+
+    expect(wrapper.emitted('update:modelValue')?.[1]).toEqual([['item1', 'item2']])
+    expect(wrapper.emitted('change')?.[1]).toEqual([{ value: ['item1', 'item2'] }])
+  })
+
   // 测试手风琴模式
   test('works in accordion mode', async () => {
     const wrapper = mount(WdCollapse, {
@@ -622,6 +715,40 @@ describe('WdCollapse and WdCollapseItem Integration', () => {
 
     // 应该发出更新事件，将值更改为 'item2'
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['item2'])
+  })
+
+  // 测试手风琴非受控使用
+  test('works without modelValue in accordion mode', async () => {
+    const wrapper = mount(WdCollapse, {
+      props: {
+        accordion: true
+      },
+      slots: {
+        default: `
+          <wd-collapse-item title="标签1" name="item1">内容1</wd-collapse-item>
+          <wd-collapse-item title="标签2" name="item2">内容2</wd-collapse-item>
+        `
+      },
+      global: {
+        components: {
+          WdIcon,
+          WdCollapseItem
+        }
+      }
+    })
+
+    await nextTick()
+
+    const items = wrapper.findAllComponents(WdCollapseItem)
+    await items[1].find('.wd-collapse-item__header').trigger('click')
+
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['item2'])
+    expect(wrapper.emitted('change')?.[0]).toEqual([{ value: 'item2' }])
+
+    await items[0].find('.wd-collapse-item__header').trigger('click')
+
+    expect(wrapper.emitted('update:modelValue')?.[1]).toEqual(['item1'])
+    expect(wrapper.emitted('change')?.[1]).toEqual([{ value: 'item1' }])
   })
 
   // 测试禁用项

@@ -115,6 +115,17 @@ export const inputProps = {
    */
   suffixIcon: String,
   /**
+   * 图标类名前缀，用法参考 Icon 组件
+   */
+  iconPrefix: String,
+  /**
+   * CSS 图标，用法参考 Icon 组件
+   */
+  cssIcon: {
+    type: [Boolean, String],
+    default: false
+  },
+  /**
    * 显示字数限制，需要同时设置 maxlength
    */
   showWordLimit: makeBooleanProp(false),

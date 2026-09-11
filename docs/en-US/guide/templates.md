@@ -30,6 +30,34 @@ Run the project:
 pnpm dev
 ```
 
+## oiyo-starter
+
+⚡ [oiyo-starter](https://github.com/wot-ui/oiyo-starter) is a quick start template powered by the [oiyo](https://oiyo.js.org) framework as a variant of `Wot Starter`. It is maintained by the `Wot UI` team, with strong conventions, low configuration, and AI-friendly collaboration, bringing disruptive innovation.
+
+Pull a clean template without git history:
+
+```bash
+pnpm create oiyo <project-name> --template=wot-starter
+```
+
+Open the project folder in VS Code:
+
+```bash
+code <project-name>
+```
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Run the project:
+
+```bash
+pnpm dev
+```
+
 ## vitesse-uni-app
 
 [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) is a cross-platform quick start template driven by `Vite & uni-app`, backed by the `Uni Helper` team. Although it does not deeply integrate Wot UI, it is a very clean modern basic template.
@@ -45,6 +73,7 @@ If you are developing a `uni-app` template that integrates `Wot UI`, you are als
 | Template | Stars | Description |
 |------|-------|-------------|
 | [wot-starter](https://github.com/wot-ui/wot-starter) | ![stars](https://img.shields.io/github/stars/wot-ui/wot-starter) | 🍀 A uni-app quick starter project based on vitesse-uni-app deeply integrated with Wot UI component library. |
+| [oiyo-starter](https://github.com/wot-ui/oiyo-starter) | ![stars](https://img.shields.io/github/stars/wot-ui/oiyo-starter) | ⚡️ A quick start template powered by the oiyo framework as a wot-starter variant. |
 | [vitesse-uni-app](https://github.com/uni-helper/vitesse-uni-app) | ![stars](https://img.shields.io/github/stars/uni-helper/vitesse-uni-app) | A cross-platform quick start template driven by Vite & uni-app. |
 | [unibest](https://github.com/unibest-tech/unibest) | ![stars](https://img.shields.io/github/stars/unibest-tech/unibest) | A uni-app development template using a newer technology stack. |
 | [vite-uniapp-template](https://github.com/viarotel-org/vite-uniapp-template) | ![stars](https://img.shields.io/github/stars/viarotel-org/vite-uniapp-template) | A practical-first uni-app starter template. |

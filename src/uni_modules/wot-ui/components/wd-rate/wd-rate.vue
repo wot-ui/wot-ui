@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-rate ${disabled ? 'is-disabled' : ''} ${block ? 'is-block' : ''} ${customClass}`" :style="customStyle" @touchmove="onTouchMove">
+  <view :class="`wd-rate ${isDisabled ? 'is-disabled' : ''} ${block ? 'is-block' : ''} ${customClass}`" :style="customStyle" @touchmove="onTouchMove">
     <view
       v-for="(rate, index) in rateList"
       :key="index"
@@ -10,6 +10,8 @@
       <wd-icon
         :custom-class="`wd-rate__item-star ${rate === '100%' ? 'wd-rate__item-star--active' : ''}`"
         :name="isActive(rate) ? activeIcon : icon"
+        :class-prefix="iconPrefix"
+        :css-icon="cssIcon"
         :custom-style="`${rate === '100%' ? iconActiveStyle : iconStyle} ${iconSize}`"
         @click="handleClick(index, false)"
       />
@@ -17,6 +19,8 @@
         <wd-icon
           :custom-class="`wd-rate__item-star ${rate !== '0' ? 'wd-rate__item-star--active' : ''}`"
           :name="isActive(rate) ? activeIcon : icon"
+          :class-prefix="iconPrefix"
+          :css-icon="cssIcon"
           :custom-style="`${rate !== '0' ? iconActiveStyle : iconStyle} ${iconSize}`"
         />
       </view>
@@ -39,12 +43,14 @@ export default {
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
 import { computed, getCurrentInstance, ref, watch } from 'vue'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { rateProps } from './types'
 import { addUnit, getRect, isDef } from '../../common/util'
 const { proxy } = getCurrentInstance() as any
 
 const props = defineProps(rateProps)
 const emit = defineEmits(['update:modelValue', 'change'])
+const isDisabled = useFormDisabled(props)
 
 const rateList = ref<Array<string>>([])
 const iconStyle = computed(() => {
@@ -121,8 +127,8 @@ function computeRateList() {
  * @param isHalf 是否为半星
  */
 function handleClick(index: number, isHalf: boolean) {
-  const { readonly, disabled, clearable, allowHalf, modelValue } = props
-  if (readonly || disabled) return
+  const { readonly, clearable, allowHalf, modelValue } = props
+  if (readonly || isDisabled.value) return
   let value = isHalf ? index + 0.5 : index + 1
   // 点击清空逻辑：当点击的值与当前modelValue相等且等于最小值时允许清空
   if (clearable) {
@@ -145,7 +151,7 @@ function updateValue(value: number) {
 }
 
 async function onTouchMove(event: TouchEvent) {
-  if (props.readonly || props.disabled) return
+  if (props.readonly || isDisabled.value) return
   const { clientX } = event.touches[0]
   const rateItems = await getRect('.wd-rate__item', true, proxy)
   const targetIndex = Array.from(rateItems).findIndex((rect) => {

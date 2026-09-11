@@ -70,7 +70,7 @@ const { previewVideo: openSubPreview } = useVideoPreview('sub-preview')
 
 ### Custom Z-index and Callbacks
 
-When calling functionally, you can directly pass `zIndex`, `onOpen`, `onClose`, and the component will prioritize configurations passed functionally.
+When calling functionally, you can directly pass `zIndex`, `closePosition`, `onOpen`, `onClose`, and the component will prioritize configurations passed functionally.
 
 ```ts
 previewVideo({
@@ -78,8 +78,27 @@ previewVideo({
   poster: 'https://wot-ui.cn/assets/panda.jpg',
   title: 'Video Preview',
   zIndex: 1200,
+  closePosition: 'right-top',
   onOpen: () => console.log('Open preview'),
   onClose: () => console.log('Close preview')
+})
+```
+
+### Fullscreen Preview
+
+Use `full-screen` to make the video area fill the preview layer, which is suitable for portrait videos.
+
+```html
+<wd-video-preview full-screen />
+```
+
+When using programmatic calls, you can also pass `fullScreen` to `previewVideo`.
+
+```ts
+previewVideo({
+  url: 'https://unpkg.com/wot-design-uni-assets@1.0.3/VID_115503.mp4',
+  title: 'Fullscreen Video',
+  fullScreen: true
 })
 ```
 
@@ -119,6 +138,8 @@ function openPreview() {
 | --- | --- | --- | --- |
 | selector | Instance identifier, used to distinguish multiple video preview instances | `string` | `''` |
 | z-index | Preview z-index | `number` | `1000` |
+| full-screen | Whether to use fullscreen preview | `boolean` | `false` |
+| close-position | Close button position, optional values are `left-top` and `right-top` | `string` | `left-top` |
 | on-open | Callback when component opens | <code>() =&gt; void</code> | - |
 | on-close | Callback when component closes | <code>() =&gt; void</code> | - |
 | custom-style | Custom root node style | `string` | `''` |
@@ -137,7 +158,7 @@ Call component instance methods through `ref`.
 
 | Method Name | Description | Parameters | Return Value |
 | --- | --- | --- | --- |
-| open | Open video preview | `video: PreviewVideo` | - |
+| open | Open video preview | `video: VideoPreviewOptions` | - |
 | close | Close video preview | - | - |
 
 ## useVideoPreview

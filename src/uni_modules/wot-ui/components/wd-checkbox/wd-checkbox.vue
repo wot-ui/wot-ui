@@ -42,6 +42,7 @@ export default {
 import wdIcon from '../wd-icon/wd-icon.vue'
 import { computed, getCurrentInstance, onBeforeMount, watch } from 'vue'
 import { useParent } from '../../composables/useParent'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { CHECKBOX_GROUP_KEY } from '../wd-checkbox-group/types'
 import { getPropByPath, isDef } from '../../common/util'
 import { checkboxProps, type CheckboxExpose, type CheckboxDirection, type CheckboxPlacement, type CheckboxType } from './types'
@@ -54,6 +55,7 @@ defineExpose<CheckboxExpose>({
 })
 
 const { parent: checkboxGroup } = useParent(CHECKBOX_GROUP_KEY)
+const formDisabled = useFormDisabled(props)
 const { proxy } = getCurrentInstance() as any
 
 const isChecked = computed(() => {
@@ -104,6 +106,9 @@ const uncheckedColorValue = computed(() => {
 })
 
 const disabledValue = computed(() => {
+  if (formDisabled.value) {
+    return true
+  }
   if (isDef(props.disabled)) {
     return props.disabled
   }

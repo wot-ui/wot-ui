@@ -118,6 +118,9 @@ const value = ref('')
 | readonly | 是否只读 | `boolean` | `false` |
 | maxlength | 最大输入长度，设置为 `-1` 时不限制长度 | `number` | `-1` |
 | clearable | 是否显示清空按钮 | `boolean` | `false` |
+| prefix-icon | 前置图标名称 | `string` | - |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | show-word-limit | 是否显示字数统计，需要同时设置 `maxlength` | `boolean` | `false` |
 | clear-trigger | 清空按钮显示时机，可选值为 `focus`、`always` | `InputClearTrigger` | `always` |
 | focus-when-clear | 点击清空按钮后是否自动聚焦 | `boolean` | `true` |

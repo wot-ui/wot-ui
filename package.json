@@ -1,6 +1,6 @@
 {
   "name": "wot-ui",
-  "version": "2.0.5",
+  "version": "2.3.2",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "build:app-android": "uni build -p app-android",
     "build:app-ios": "uni build -p app-ios",
     "build:custom": "uni build -p",
+    "dev:mp-dingtalk": "uni -p mp-dingtalk",
     "build:h5": "uni build",
     "build:h5:ssr": "uni build --ssr",
     "build:mp-alipay": "uni build -p mp-alipay",
@@ -58,6 +59,7 @@
     "upload:mp-dingtalk": "uni build -p mp-dingtalk && minici --platform dd",
     "build:qrcode": "esno ./scripts/qrcode.ts",
     "build:changelog": "esno ./scripts/syncChangelog.ts",
+    "generate:component-contributors": "esno ./scripts/generateComponentContributors.ts",
     "build:theme-vars": "esno ./scripts/buildThemeVars.ts",
     "type-check:vitepress-theme": "pnpm --filter @wot-ui/vitepress-theme type-check",
     "test": "vitest",
@@ -131,6 +133,7 @@
     "inquirer": "^12.3.2",
     "jsdom": "^26.0.0",
     "json5": "^2.2.3",
+    "jsqr": "^1.4.0",
     "lint-staged": "^13.2.0",
     "mini-types": "^0.1.7",
     "miniprogram-api-typings": "^3.12.3",

@@ -3,7 +3,7 @@
     <wd-watermark v-if="globalType === 'text'" :width="130" :height="140" content="wot-ui" :layout="globalLayout"></wd-watermark>
     <wd-watermark
       v-else-if="globalType === 'image'"
-      image="https://v2.wot-ui.cn/logo.svg"
+      image="https://wot-ui.cn/logo.svg"
       :width="130"
       :height="140"
       :image-width="38"
@@ -46,7 +46,7 @@
 
         <demo-group-item :title="$t('ju-bu-tu-pian-shui-yin')">
           <view class="page-watermark__wrap">
-            <wd-watermark :full-screen="false" image="https://v2.wot-ui.cn/logo.svg" :image-width="38" :image-height="38"></wd-watermark>
+            <wd-watermark :full-screen="false" image="https://wot-ui.cn/logo.svg" :image-width="38" :image-height="38"></wd-watermark>
             <wd-checkbox-group custom-class="page-watermark__radio-group" v-model="checkVal" type="square" placement="right">
               <wd-checkbox name="1">{{ $t('cha-kan-quan-xian') }}</wd-checkbox>
               <wd-checkbox name="2">{{ $t('bian-ji-quan-xian') }}</wd-checkbox>

@@ -73,6 +73,21 @@ describe('WdDialog', () => {
     expect((wrapper.vm as any).dialogState.show).toBe(true)
   })
 
+  test('closeOnClickModal 为 false 时 close 仍可关闭并返回 close action', async () => {
+    const wrapper = mount(WdDialog)
+    const fail = vi.fn()
+
+    ;(wrapper.vm as any).dialogState.show = true
+    ;(wrapper.vm as any).dialogState.showClose = true
+    ;(wrapper.vm as any).dialogState.closeOnClickModal = false
+    ;(wrapper.vm as any).dialogState.fail = fail
+
+    await (wrapper.vm as any).toggleModal('close')
+
+    expect(fail).toHaveBeenCalledWith({ action: 'close' })
+    expect((wrapper.vm as any).dialogState.show).toBe(false)
+  })
+
   test('closeOnClickModal 为 true 时点击遮罩触发 modal 关闭', async () => {
     const wrapper = mount(WdDialog)
     const fail = vi.fn()

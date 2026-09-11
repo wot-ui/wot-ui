@@ -16,6 +16,7 @@
         :custom-class="`wd-toast__icon ${direction === 'vertical' ? 'is-vertical' : ''}`"
         :size="iconSize"
         :class-prefix="classPrefix"
+        :color="iconColor"
         :name="toastIcon[iconName]"
       ></wd-icon>
       <wd-icon
@@ -23,6 +24,7 @@
         :custom-class="`wd-toast__icon ${direction === 'vertical' ? 'is-vertical' : ''}`"
         :size="iconSize"
         :class-prefix="classPrefix"
+        :color="iconColor"
         :name="iconClass"
         :css-icon="cssIcon"
       ></wd-icon>
@@ -65,6 +67,7 @@ const zIndex = ref<number>(100)
 const loadingType = ref<ToastLoadingType>('circular')
 const loadingColor = ref<string>('#fff')
 const iconSize = ref<string>() // 图标大小
+const iconColor = ref<string>() // 图标颜色
 const loadingSize = ref<string>() // loading大小
 const cover = ref<boolean>(false) // 是否存在遮罩层
 const classPrefix = ref<string>('wd-icon') // 图标前缀
@@ -148,6 +151,7 @@ function mergeOptionsWithProps(option: ToastOptions, props: ToastProps) {
   loadingType.value = isDef(option.loadingType!) ? option.loadingType! : props.loadingType
   loadingColor.value = isDef(option.loadingColor!) ? option.loadingColor! : props.loadingColor
   iconSize.value = isDef(option.iconSize) ? addUnit(option.iconSize) : isDef(props.iconSize) ? addUnit(props.iconSize) : undefined
+  iconColor.value = isDef(option.iconColor!) ? option.iconColor! : props.iconColor
   loadingSize.value = isDef(option.loadingSize) ? addUnit(option.loadingSize) : isDef(props.loadingSize) ? addUnit(props.loadingSize) : undefined
   cover.value = isDef(option.cover!) ? option.cover! : props.cover
   classPrefix.value = isDef(option.classPrefix) ? option.classPrefix : props.classPrefix

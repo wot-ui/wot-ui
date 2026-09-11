@@ -81,6 +81,11 @@ function handleReset() {
 
 <style lang="scss" scoped>
 .page-slide-verify {
+  :deep(.wd-slide-verify) {
+    width: auto;
+    margin: 0 $spacing-super-loose;
+  }
+
   &__reset-button {
     margin-top: $spacing-super-loose;
   }

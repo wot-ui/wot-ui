@@ -54,7 +54,6 @@ $toast-loading-margin-bottom: var(--wot-toast-loading-margin-bottom, $spacing-ex
 
   @include edeep(icon) {
     font-size: $toast-icon-size;
-    line-height: $toast-icon-size;
     @include when(vertical) {
       margin-bottom: $toast-icon-margin-bottom;
     }

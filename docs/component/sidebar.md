@@ -106,6 +106,8 @@ sidebar 也可以作为左侧目录，右侧内容区按当前选中项整屏切
 | badge | 徽标显示值 | `string \| number` | - |
 | badge-props | 自定义徽标属性，会透传给 Badge 组件 | `Partial<BadgeProps>` | - |
 | icon | 图标名称 | `string` | - |
+| icon-prefix | 图标类名前缀，用法参考 Icon 组件 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | is-dot | 是否显示点状徽标 | `boolean` | `false` |
 | max | 徽标最大值 | `number` | `99` |
 | disabled | 是否禁用当前选项 | `boolean` | `false` |
@@ -117,4 +119,3 @@ sidebar 也可以作为左侧目录，右侧内容区按当前选中项整屏切
 | name | 说明 |
 | --- | --- |
 | icon | 自定义图标内容 |
-

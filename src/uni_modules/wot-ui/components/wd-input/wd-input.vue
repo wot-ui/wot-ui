@@ -1,7 +1,14 @@
 <template>
   <view :class="rootClass" :style="customStyle" @click="handleClick">
     <view v-if="prefixIcon || $slots.prefix" class="wd-input__prefix">
-      <wd-icon v-if="prefixIcon && !$slots.prefix" custom-class="wd-input__icon" :name="prefixIcon" @click="onClickPrefixIcon" />
+      <wd-icon
+        v-if="prefixIcon && !$slots.prefix"
+        custom-class="wd-input__icon"
+        :name="prefixIcon"
+        :class-prefix="iconPrefix"
+        :css-icon="cssIcon"
+        @click="onClickPrefixIcon"
+      />
       <slot v-else name="prefix"></slot>
     </view>
     <input
@@ -16,7 +23,7 @@
       :password="showPassword && !isPwdVisible"
       v-model="inputValue"
       :placeholder="placeholderValue"
-      :disabled="disabled || readonly"
+      :disabled="isDisabled || readonly"
       :maxlength="maxlength"
       :focus="focused"
       :confirm-type="confirmType"
@@ -44,7 +51,14 @@
       <wd-icon v-if="showClear" custom-class="wd-input__clear" name="close-circle" @click="handleClear" />
       <wd-icon v-if="showPassword" custom-class="wd-input__icon" :name="isPwdVisible ? 'eye' : 'eye-invisible'" @click="togglePwdVisible" />
       <view v-if="showWordCount" class="wd-input__count">{{ currentLength }}/{{ maxlength }}</view>
-      <wd-icon v-if="suffixIcon && !$slots.suffix" custom-class="wd-input__icon" :name="suffixIcon" @click="onClickSuffixIcon" />
+      <wd-icon
+        v-if="suffixIcon && !$slots.suffix"
+        custom-class="wd-input__icon"
+        :name="suffixIcon"
+        :class-prefix="iconPrefix"
+        :css-icon="cssIcon"
+        @click="onClickSuffixIcon"
+      />
       <slot v-else name="suffix"></slot>
     </view>
   </view>
@@ -69,6 +83,7 @@ import wdIcon from '../wd-icon/wd-icon.vue'
 import { isDef, pause, isEqual } from '../../common/util'
 import { useParent } from '../../composables/useParent'
 import { useTranslate } from '../../composables/useTranslate'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { inputProps } from './types'
 import { FORM_ITEM_VALIDATE_KEY } from '../wd-form-item/types'
 
@@ -87,6 +102,7 @@ const emit = defineEmits([
 ])
 const { translate } = useTranslate('input')
 const { parent: formItemValidate } = useParent(FORM_ITEM_VALIDATE_KEY)
+const isDisabled = useFormDisabled(props)
 
 const isPwdVisible = ref<boolean>(false)
 const clearing = ref<boolean>(false) // 是否正在清空操作，避免重复触发失焦
@@ -117,8 +133,14 @@ const placeholderValue = computed(() => {
  * 展示清空按钮
  */
 const showClear = computed(() => {
-  const { disabled, readonly, clearable, clearTrigger } = props
-  if (clearable && !readonly && !disabled && inputValue.value && (clearTrigger === 'always' || (props.clearTrigger === 'focus' && focusing.value))) {
+  const { readonly, clearable, clearTrigger } = props
+  if (
+    clearable &&
+    !readonly &&
+    !isDisabled.value &&
+    inputValue.value &&
+    (clearTrigger === 'always' || (props.clearTrigger === 'focus' && focusing.value))
+  ) {
     return true
   } else {
     return false
@@ -129,8 +151,8 @@ const showClear = computed(() => {
  * 展示字数统计
  */
 const showWordCount = computed(() => {
-  const { disabled, readonly, maxlength, showWordLimit } = props
-  return Boolean(!disabled && !readonly && isDef(maxlength) && maxlength > -1 && showWordLimit)
+  const { readonly, maxlength, showWordLimit } = props
+  return Boolean(!isDisabled.value && !readonly && isDef(maxlength) && maxlength > -1 && showWordLimit)
 })
 
 // 当前输入框文字长度
@@ -143,7 +165,7 @@ const currentLength = computed(() => {
 })
 
 const rootClass = computed(() => {
-  return `wd-input ${props.error ? 'is-error' : ''} ${props.disabled ? 'is-disabled' : ''}  ${isCompact.value ? 'is-compact' : ''} ${
+  return `wd-input ${props.error ? 'is-error' : ''} ${isDisabled.value ? 'is-disabled' : ''}  ${isCompact.value ? 'is-compact' : ''} ${
     props.customClass
   }`
 })

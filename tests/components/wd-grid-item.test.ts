@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdGridItem from '@/uni_modules/wot-ui/components/wd-grid-item/wd-grid-item.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, test, expect, vi } from 'vitest'
 
 describe('WdGridItem', () => {
@@ -26,6 +27,27 @@ describe('WdGridItem', () => {
     })
     // 检查 props 是否正确设置，而不是检查 DOM
     expect(wrapper.props('icon')).toBe(icon)
+  })
+
+  test('cssIcon 透传到图标组件', () => {
+    const wrapper = mount(WdGridItem, {
+      props: { icon: 'i-carbon-sun', cssIcon: true }
+    })
+    const icon = wrapper.findComponent(WdIcon)
+    expect(icon.classes()).toContain('wd-icon--css')
+    expect(icon.classes()).toContain('i-carbon-sun')
+  })
+
+  test('cssIcon 字符串可单独作为图标类名，布尔值不可单独渲染', () => {
+    const stringWrapper = mount(WdGridItem, {
+      props: { cssIcon: 'i-carbon-sun' }
+    })
+    expect(stringWrapper.findComponent(WdIcon).classes()).toContain('i-carbon-sun')
+
+    const booleanWrapper = mount(WdGridItem, {
+      props: { cssIcon: true }
+    })
+    expect(booleanWrapper.findComponent(WdIcon).exists()).toBe(false)
   })
 
   // 测试徽标

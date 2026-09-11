@@ -1,7 +1,7 @@
 <template>
   <view :class="`wd-empty  ${customClass}`" :style="customStyle">
     <slot name="image">
-      <wd-icon :name="icon" custom-class="wd-empty__icon" :custom-style="iconStyle"></wd-icon>
+      <wd-icon :name="icon" :class-prefix="iconPrefix" :css-icon="cssIcon" custom-class="wd-empty__icon" :custom-style="iconStyle"></wd-icon>
     </slot>
     <view v-if="tip" class="wd-empty__text">{{ tip }}</view>
     <slot name="bottom" />

@@ -40,6 +40,7 @@ export default {
 import wdIcon from '../wd-icon/wd-icon.vue'
 import { computed, watch } from 'vue'
 import { useParent } from '../../composables/useParent'
+import { useFormDisabled } from '../../composables/useFormDisabled'
 import { RADIO_GROUP_KEY } from '../wd-radio-group/types'
 import { type RadioDirection, type RadioPlacement, radioProps, type RadioType } from './types'
 import { getPropByPath, isDef } from '../../common/util'
@@ -47,6 +48,7 @@ import { getPropByPath, isDef } from '../../common/util'
 const props = defineProps(radioProps)
 
 const { parent: radioGroup } = useParent(RADIO_GROUP_KEY)
+const formDisabled = useFormDisabled(props)
 
 const isChecked = computed(() => {
   if (radioGroup.value) {
@@ -113,6 +115,9 @@ const isButton = computed(() => {
 })
 
 const disabledValue = computed(() => {
+  if (formDisabled.value) {
+    return true
+  }
   if (isDef(props.disabled)) {
     return props.disabled
   } else {

@@ -51,7 +51,7 @@
 | --- | --- | --- |
 | 官方生态 | [wot-starter](https://starter.wot-ui.cn/) | Wot UI 官方快速起手项目 |
 | 官方生态 | [@wot-ui/router](https://my-uni.wot-ui.cn/) | Wot UI 官方路由与工程能力扩展 |
-| 官方生态 | [@wot-ui/cli](https://github.com/wot-ui/open-wot) | Wot UI 官方 AI 工具链与 CLI |
+| 官方生态 | [@wot-ui/cli](https://github.com/wot-ui/open-wot) | Wot UI 官方 AI 工具链与 CLI，详见 [AI 使用指南](/guide/ai) |
 | 官方生态 | [@wot-ui/unocss-preset](https://github.com/wot-ui/unocss-preset) | Wot UI 官方 UnoCSS 预设 |
 | 官方生态 | [VS Code 插件](https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense) | Wot UI 官方 VS Code 代码提示插件 |
 | 官方生态 | [小程序 CI 工具](https://github.com/Moonofweisheng/uni-mini-ci) | Wot UI 官方推荐的小程序 CI 工具 |

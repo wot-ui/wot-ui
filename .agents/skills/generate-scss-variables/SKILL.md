@@ -1,7 +1,8 @@
 ---
 name: generate-scss-variables
 description: 为新组件或新特性快速生成符合设计系统规范的 SCSS 变量定义代码，或检查现有变量是否合规。
-applyTo: "**/*.scss"
+metadata:
+  applyTo: "**/*.scss"
 ---
 
 # SCSS 变量生成与检查技能

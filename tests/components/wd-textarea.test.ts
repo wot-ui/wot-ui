@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdTextarea from '@/uni_modules/wot-ui/components/wd-textarea/wd-textarea.vue'
+import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { describe, test, expect, vi } from 'vitest'
 
 describe('WdTextarea', () => {
@@ -131,6 +132,59 @@ describe('WdTextarea', () => {
     })
     // 只检查组件是否添加了错误状态类
     expect(wrapper.classes()).toContain('is-error')
+  })
+
+  test('prefixIcon 渲染前置图标', () => {
+    const wrapper = mount(WdTextarea, {
+      props: {
+        prefixIcon: 'sound'
+      }
+    })
+
+    const icon = wrapper.findComponent(WdIcon)
+    expect(icon.exists()).toBe(true)
+    expect(icon.props('name')).toBe('sound')
+    expect(wrapper.find('.wd-textarea__prefix').exists()).toBe(true)
+  })
+
+  test('iconPrefix 和 cssIcon 透传到前置图标且不影响清除图标', () => {
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: 'abc',
+        clearable: true,
+        clearTrigger: 'always',
+        prefixIcon: 'i-carbon-edit',
+        iconPrefix: 'fish',
+        cssIcon: true
+      }
+    })
+
+    const icons = wrapper.findAllComponents(WdIcon)
+    expect(icons[0].classes()).toContain('wd-icon--css')
+    expect(icons[0].classes()).toContain('i-carbon-edit')
+    expect(icons[1].classes()).toContain('wd-icon-close-circle')
+    expect(icons[1].classes()).not.toContain('wd-icon--css')
+  })
+
+  test('cssIcon 字符串可单独渲染前置图标，布尔值不单独渲染', () => {
+    const wrapper = mount(WdTextarea, {
+      props: {
+        cssIcon: 'i-carbon-edit'
+      }
+    })
+
+    const icon = wrapper.findComponent(WdIcon)
+    expect(icon.exists()).toBe(true)
+    expect(icon.classes()).toContain('wd-icon--css')
+    expect(icon.classes()).toContain('i-carbon-edit')
+
+    const booleanWrapper = mount(WdTextarea, {
+      props: {
+        cssIcon: true
+      }
+    })
+
+    expect(booleanWrapper.findComponent(WdIcon).exists()).toBe(false)
   })
 
   // 测试自动聚焦

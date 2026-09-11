@@ -238,6 +238,7 @@
 | icon | 图标名称，可选值见 `wd-icon` 组件 | `string` | - |
 | icon-color | 图标颜色 | `string` | - |
 | icon-prefix | 图标类名前缀 | `string` | - |
+| css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | is-dot | 是否显示图标右上角小红点 | `boolean` | `false` |
 | value | 图标右上角徽标显示值 | `string \| number` | - |
 | max | 图标右上角徽标最大值，超过最大值会显示 `{max}+` | `number` | `99` |

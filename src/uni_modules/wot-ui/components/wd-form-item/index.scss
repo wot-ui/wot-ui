@@ -12,7 +12,18 @@ $form-item-error-message-margin-top: var(--wot-form-item-error-message-margin-to
 // 占位符文字颜色
 $form-item-placeholder-color: var(--wot-form-item-placeholder-color, $text-placeholder) !default;
 
+// 禁用文字颜色
+$form-item-disabled-color: var(--wot-form-item-disabled-color, $text-disabled) !default;
+
 @include b(form-item) {
+  @include when(disabled) {
+    .wd-cell__title,
+    .wd-cell__value,
+    .wd-form-item__placeholder {
+      color: $form-item-disabled-color;
+    }
+  }
+
   @include e(placeholder) {
     color: $form-item-placeholder-color;
   }

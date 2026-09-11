@@ -50,22 +50,47 @@ Download link: <a href="https://ext.dcloud.net.cn/plugin?id=27534"><span>wot-ui<
 
 ## Sass
 
-`Wot UI` depends on `sass`, so before using, you need to confirm whether `sass` is installed in the project. If not installed, you can install it with the following command:
+`Wot UI` depends on `sass`, and the `sass` version must be higher than `1.78`. We recommend using version `1.98` or above. Before using `Wot UI`, make sure your project has a compatible `sass` version installed. If not, you can install it with the following command:
 
 ::: code-group
 
 ```bash [npm]
-npm i sass -D
+npm i sass@^1.98.0 -D
 ```
 
 ```bash [yarn]
-yarn add sass -D
+yarn add sass@^1.98.0 -D
 ```
 
 ```bash [pnpm]
-pnpm add sass -D
+pnpm add sass@^1.98.0 -D
 ```
 :::
+
+If the following warning is thrown during build or development:
+
+```sh
+Deprecation Warning [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+```
+
+You can configure `vite.config.ts` like this:
+
+```ts
+export default defineConfig({
+  // ...
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        silenceDeprecations: ['legacy-js-api']
+      }
+    }
+  },
+  // ...
+})
+```
+
+`Sass` has deprecated a large number of APIs, while `uni-app` is still using these APIs, which causes this warning to be thrown.
 
 ## Configuration
 

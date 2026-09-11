@@ -2,7 +2,7 @@
   <view :class="rootClass" @click="click" :style="rootStyle">
     <view :class="contentClass" :style="contentStyle" :hover-class="hoverClass">
       <slot>
-        <view class="wd-grid-item__wrapper" v-if="icon || $slots.icon">
+        <view class="wd-grid-item__wrapper" v-if="hasIcon || $slots.icon">
           <wd-badge v-bind="customBadgeProps" custom-class="wd-grid-item__badge">
             <slot name="icon">
               <wd-icon
@@ -10,6 +10,7 @@
                 :size="iconSize"
                 :color="iconColor"
                 :class-prefix="iconPrefix"
+                :css-icon="cssIcon"
                 :custom-class="`wd-grid-item__icon ${customIcon}`"
               />
             </slot>
@@ -41,7 +42,7 @@ import wdBadge from '../wd-badge/wd-badge.vue'
 import { computed, type CSSProperties } from 'vue'
 import { useParent } from '../../composables/useParent'
 import { GRID_KEY } from '../wd-grid/types'
-import { addUnit, deepAssign, isDef, isUndefined, omitBy } from '../../common/util'
+import { addUnit, deepAssign, isDef, isString, isUndefined, omitBy } from '../../common/util'
 import { gridItemProps } from './types'
 import type { BadgeProps } from '../wd-badge/types'
 
@@ -68,6 +69,8 @@ const childCount = computed(() => grid.value?.children?.length || 0)
 
 /** 图标大小（从父级 Grid 组件继承） */
 const iconSize = computed(() => grid.value?.props.iconSize)
+/** 是否渲染图标，cssIcon 字符串可作为图标类名独立渲染 */
+const hasIcon = computed(() => Boolean(props.icon || (isString(props.cssIcon) && props.cssIcon)))
 
 /**
  * 边框 CSS 类名计算

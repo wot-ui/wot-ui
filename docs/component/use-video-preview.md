@@ -70,7 +70,7 @@ function openSub() {
 
 ## 自定义配置
 
-通过 `VideoPreviewOptions` 可同时配置层级与打开、关闭回调。
+通过 `VideoPreviewOptions` 可同时配置层级、全屏预览、关闭按钮位置与打开、关闭回调。
 
 ```ts
 previewVideo({
@@ -78,6 +78,8 @@ previewVideo({
   poster: 'https://wot-ui.cn/assets/panda.jpg',
   title: '视频预览',
   zIndex: 1200,
+  fullScreen: true,
+  closePosition: 'right-top',
   onOpen: () => {
     console.log('打开预览')
   },
@@ -113,5 +115,7 @@ previewVideo({
 | title | 视频标题 | `string` | `''` |
 | show | 是否显示预览层 | `boolean` | `false` |
 | zIndex | zIndex 层级 | `number` | `1000` |
+| fullScreen | 是否全屏预览 | `boolean` | `false` |
+| closePosition | 关闭按钮位置，可选值为 `left-top`、`right-top` | `string` | `left-top` |
 | onOpen | 打开时的回调 | `() => void` | - |
 | onClose | 关闭时的回调 | `() => void` | - |

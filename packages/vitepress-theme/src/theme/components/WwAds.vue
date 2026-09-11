@@ -1,74 +1,269 @@
-<!-- eslint-disable quotes -->
 <script setup lang="ts">
-import { onMounted, ref, inject } from 'vue'
+import { inject, onBeforeUnmount, onMounted, ref } from 'vue'
 import AsideSponsors from './AsideSponsors.vue'
 import { wotThemeOptionsKey } from '../options'
 
-const showTemp = ref(false)
 const options = inject(wotThemeOptionsKey)
 const wwadsId = options?.ads !== false ? options?.ads?.wwadsId : null
 
-// function called if wwads is blocked
-function ABDetected() {
-  const wwadsElement = document.getElementsByClassName('aside-temp')[0]
-  if (wwadsElement) {
-    wwadsElement.insertAdjacentHTML(
-      'beforeend',
-      "<style>.wwads-horizontal,.wwads-vertical{background-color:#f4f8fa;padding:5px;min-height:120px;margin-top:20px;box-sizing:border-box;border-radius:3px;font-family:sans-serif;display:flex;min-width:150px;position:relative;overflow:hidden;}.wwads-horizontal{flex-wrap:wrap;justify-content:center}.wwads-vertical{flex-direction:column;align-items:center;padding-bottom:32px}.wwads-horizontal a,.wwads-vertical a{text-decoration:none}.wwads-horizontal .wwads-img,.wwads-vertical .wwads-img{margin:5px}.wwads-horizontal .wwads-content,.wwads-vertical .wwads-content{margin:5px}.wwads-horizontal .wwads-content{flex:130px}.wwads-vertical .wwads-content{margin-top:10px}.wwads-horizontal .wwads-text,.wwads-content .wwads-text{font-size:14px;line-height:1.4;color:#0e1011;-webkit-font-smoothing:antialiased}.wwads-horizontal .wwads-poweredby,.wwads-vertical .wwads-poweredby{display:block;font-size:11px;color:#a6b7bf;margin-top:1em}.wwads-vertical .wwads-poweredby{position:absolute;left:10px;bottom:10px}.wwads-horizontal .wwads-poweredby span,.wwads-vertical .wwads-poweredby span{transition:all 0.2s ease-in-out;margin-left:-1em}.wwads-horizontal .wwads-poweredby span:first-child,.wwads-vertical .wwads-poweredby span:first-child{opacity:0}.wwads-horizontal:hover .wwads-poweredby span,.wwads-vertical:hover .wwads-poweredby span{opacity:1;margin-left:0}.wwads-horizontal .wwads-hide,.wwads-vertical .wwads-hide{position:absolute;right:-23px;bottom:-23px;width:46px;height:46px;border-radius:23px;transition:all 0.3s ease-in-out;cursor:pointer;}.wwads-horizontal .wwads-hide:hover,.wwads-vertical .wwads-hide:hover{background:rgb(0 0 0 /0.05)}.wwads-horizontal .wwads-hide svg,.wwads-vertical .wwads-hide svg{position:absolute;left:10px;top:10px;fill:#a6b7bf}.wwads-horizontal .wwads-hide:hover svg,.wwads-vertical .wwads-hide:hover svg{fill:#3E4546}</style><a href='https://wwads.cn/page/whitelist-wwads' class='wwads-img' target='_blank' rel='nofollow'><img src='https://creatives-1301677708.file.myqcloud.com/images/placeholder/wwads-friendly-ads.png' width='130'></a><div class='wwads-content'><a href='https://wwads.cn/page/whitelist-wwads' class='wwads-text' target='_blank' rel='nofollow'>为了本站的长期运营，请将我们的网站加入广告拦截器的白名单，感谢您的支持！</a><a href='https://wwads.cn/page/end-user-privacy' class='wwads-poweredby' title='万维广告 ～ 让广告更优雅，且有用' target='_blank'><span>万维</span><span>广告</span></a></div><a class='wwads-hide' onclick='parentNode.remove()' title='隐藏广告'><svg xmlns='http://www.w3.org/2000/svg' width='6' height='7'><path d='M.879.672L3 2.793 5.121.672a.5.5 0 11.707.707L3.708 3.5l2.12 2.121a.5.5 0 11-.707.707l-2.12-2.12-2.122 2.12a.5.5 0 11-.707-.707l2.121-2.12L.172 1.378A.5.5 0 01.879.672z'></path></svg></a>"
-    )
+const wwadsHost = ref<HTMLElement | null>(null)
+const wwadsSlot = ref<HTMLElement | null>(null)
+const showSupportCard = ref(false)
+const supportCardDismissed = ref(false)
+
+const BLOCK_CONFIRMATION_DELAY = 200
+
+let wwadsScript: HTMLScriptElement | null = null
+let adBait: HTMLElement | null = null
+let contentObserver: MutationObserver | null = null
+let viewportObserver: IntersectionObserver | null = null
+let resizeObserver: ResizeObserver | null = null
+let verificationFrame: number | undefined
+let confirmationTimer: number | undefined
+let hostInViewport = false
+
+function cancelVerification() {
+  if (verificationFrame !== undefined) {
+    window.cancelAnimationFrame(verificationFrame)
+    verificationFrame = undefined
+  }
+  if (confirmationTimer !== undefined) {
+    window.clearTimeout(confirmationTimer)
+    confirmationTimer = undefined
   }
 }
 
-// check document ready
-function docReady(callback: () => void) {
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(callback, 1)
-  } else {
-    document.addEventListener('DOMContentLoaded', callback)
+function revealSupportCard() {
+  cancelVerification()
+  contentObserver?.disconnect()
+  viewportObserver?.disconnect()
+  resizeObserver?.disconnect()
+  showSupportCard.value = true
+}
+
+function isExplicitlyHidden(element: Element) {
+  const style = window.getComputedStyle(element)
+
+  return style.display === 'none' || style.visibility === 'hidden' || style.visibility === 'collapse' || Number(style.opacity) === 0
+}
+
+function isVisible(element: Element) {
+  const rect = element.getBoundingClientRect()
+
+  return !isExplicitlyHidden(element) && rect.width > 0 && rect.height > 0
+}
+
+function hasVisibleAd() {
+  const element = wwadsSlot.value
+  if (!element || element.childElementCount === 0) return false
+
+  const knownCreativeElements = Array.from(element.querySelectorAll(':scope > .wwads-img, :scope > .wwads-content .wwads-text'))
+  const contentElements = knownCreativeElements.length
+    ? knownCreativeElements
+    : Array.from(element.children).filter((child) => !child.classList.contains('wwads-hide'))
+
+  return isVisible(element) && contentElements.some(isVisible)
+}
+
+function hasBlockingEvidence() {
+  const slot = wwadsSlot.value
+  const host = wwadsHost.value
+  if (!hostInViewport || !host || !slot) return false
+  if (slot.parentElement !== host) return false
+  if (slot.childElementCount > 0 && hasVisibleAd()) return false
+
+  if (isExplicitlyHidden(slot) || adBait?.parentElement !== host || !isVisible(adBait)) return true
+
+  return slot.childElementCount > 0
+}
+
+function confirmBlocking() {
+  confirmationTimer = undefined
+  if (hasBlockingEvidence()) revealSupportCard()
+}
+
+function verifyAd() {
+  verificationFrame = undefined
+  if (!hasBlockingEvidence()) {
+    if (confirmationTimer !== undefined) {
+      window.clearTimeout(confirmationTimer)
+      confirmationTimer = undefined
+    }
+    return
   }
+
+  if (confirmationTimer === undefined) {
+    confirmationTimer = window.setTimeout(confirmBlocking, BLOCK_CONFIRMATION_DELAY)
+  }
+}
+
+function scheduleVerification() {
+  if (!hostInViewport || verificationFrame !== undefined) return
+
+  verificationFrame = window.requestAnimationFrame(verifyAd)
+}
+
+function observeAdContent() {
+  const slot = wwadsSlot.value
+  if (!slot) return
+
+  resizeObserver?.disconnect()
+  resizeObserver?.observe(slot)
+  if (adBait) resizeObserver?.observe(adBait)
+  Array.from(slot.children).forEach((child) => resizeObserver?.observe(child))
+  scheduleVerification()
 }
 
 onMounted(() => {
-  if (!wwadsId) return
+  const host = wwadsHost.value
+  const slot = wwadsSlot.value
+  if (!wwadsId || !host || !slot) return
 
-  const s = document.createElement('script')
-  s.type = 'text/javascript'
-  s.src = 'https://cdn.wwads.cn/js/makemoney.js'
-  document.querySelector('.wwads-container')!.appendChild(s)
+  adBait = document.createElement('div')
+  adBait.className = 'adsbox ad-banner ad-placement'
+  adBait.setAttribute('aria-hidden', 'true')
+  adBait.style.cssText = 'position:absolute;left:-10000px;width:1px;height:1px;pointer-events:none;'
+  host.appendChild(adBait)
 
-  // check if wwads' fire function was blocked after document is ready with 3s timeout (waiting the ad loading)
-  docReady(() => {
-    setTimeout(() => {
-      if ((window as any)._AdBlockInit === undefined) {
-        showTemp.value = true
-        ABDetected()
-      }
-    }, 3000)
+  // 空广告位可能源于懒加载或网络问题，只有明确的隐藏证据才视为拦截。
+  contentObserver = new MutationObserver(observeAdContent)
+  contentObserver.observe(slot, { attributes: true, attributeFilter: ['class', 'hidden', 'style'], childList: true, subtree: true })
+
+  resizeObserver = new ResizeObserver(scheduleVerification)
+  observeAdContent()
+
+  viewportObserver = new IntersectionObserver(([entry]) => {
+    hostInViewport = entry.isIntersecting
+    if (hostInViewport) scheduleVerification()
   })
+  viewportObserver.observe(host)
+
+  wwadsScript = document.createElement('script')
+  wwadsScript.src = 'https://cdn.wwads.cn/js/makemoney.js'
+  wwadsScript.async = true
+  wwadsScript.onerror = scheduleVerification
+  host.appendChild(wwadsScript)
+})
+
+onBeforeUnmount(() => {
+  cancelVerification()
+  contentObserver?.disconnect()
+  viewportObserver?.disconnect()
+  resizeObserver?.disconnect()
+  wwadsScript?.remove()
+  adBait?.remove()
 })
 </script>
 
 <template>
-  <AsideSponsors></AsideSponsors>
+  <AsideSponsors />
   <template v-if="wwadsId">
-    <div class="wwads-container" v-if="!showTemp">
-      <div class="wwads-cn wwads-vertical" :data-id="wwadsId"></div>
+    <div v-if="!showSupportCard" ref="wwadsHost" class="site-aside-panel">
+      <div ref="wwadsSlot" class="wwads-cn wwads-vertical" :data-id="wwadsId"></div>
     </div>
-    <div class="aside-temp wwads-vertical" v-if="showTemp"></div>
+
+    <aside v-else-if="!supportCardDismissed" class="site-support-card" aria-label="支持本站" aria-live="polite">
+      <button class="site-support-card__close" type="button" aria-label="隐藏提示" @click="supportCardDismissed = true">
+        <svg aria-hidden="true" viewBox="0 0 12 12" width="10" height="10">
+          <path d="M1.5 1.5l9 9m0-9l-9 9" />
+        </svg>
+      </button>
+      <p class="site-support-card__title">感谢你支持 Wot UI</p>
+      <p class="site-support-card__description">本站依靠赞助维持运营。若你正在使用内容拦截器，可以将本站加入白名单。</p>
+      <div class="site-support-card__actions">
+        <a href="https://wwads.cn/page/whitelist-wwads" target="_blank" rel="nofollow noopener">如何加入白名单</a>
+        <a href="/reward/sponsor">赞助本站</a>
+      </div>
+    </aside>
   </template>
 </template>
 
 <style>
-.wwads-container,
-.aside-temp {
+.site-aside-panel {
   padding: 1px 15px 10px;
   margin-top: 20px;
   background-color: var(--vp-c-bg-soft);
 }
+
 .wwads-vertical {
   background-color: transparent !important;
 }
+
 .wwads-text {
   color: var(--vp-c-text-2) !important;
+}
+
+.site-support-card {
+  position: relative;
+  padding: 16px;
+  margin-top: 20px;
+  color: var(--vp-c-text-2);
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+}
+
+.site-support-card__title,
+.site-support-card__description {
+  margin: 0;
+}
+
+.site-support-card__title {
+  padding-right: 20px;
+  color: var(--vp-c-text-1);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.site-support-card__description {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.site-support-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.site-support-card__actions a {
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.site-support-card__actions a:hover {
+  color: var(--vp-c-brand-2);
+}
+
+.site-support-card__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  place-items: center;
+}
+
+.site-support-card__close:hover {
+  color: var(--vp-c-text-1);
+  background-color: var(--vp-c-default-soft);
+}
+
+.site-support-card__close path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.5;
 }
 </style>

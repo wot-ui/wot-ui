@@ -24,6 +24,27 @@ describe('WdFormItem', () => {
     expect(wrapper.text()).toContain('姓名')
   })
 
+  test('label prop 渲染描述信息', () => {
+    const wrapper = mount(WdFormItem, {
+      props: { title: '姓名', label: '请输入真实姓名' },
+      global: { components: globalComponents }
+    })
+
+    const cell = wrapper.findComponent({ name: 'wd-cell' })
+    expect(cell.props('label')).toBe('请输入真实姓名')
+  })
+
+  test('label slot 覆盖默认描述信息', () => {
+    const wrapper = mount(WdFormItem, {
+      props: { title: '姓名', label: '请输入真实姓名' },
+      slots: { label: '<text class="custom-label">自定义描述</text>' },
+      global: { components: globalComponents }
+    })
+
+    expect(wrapper.find('.custom-label').exists()).toBe(true)
+    expect(wrapper.find('.custom-label').text()).toBe('自定义描述')
+  })
+
   test('value prop 渲染值，不显示 placeholder', () => {
     const wrapper = mount(WdFormItem, {
       props: { value: '张三', placeholder: '请输入姓名' },
@@ -161,6 +182,17 @@ describe('WdFormItem', () => {
     expect(cell.props('isLink')).toBe(true)
   })
 
+  test('iconPrefix 和 cssIcon 透传给 wd-cell', () => {
+    const wrapper = mount(WdFormItem, {
+      props: { prefixIcon: 'i-carbon-user', iconPrefix: 'fish', cssIcon: true },
+      global: { components: globalComponents }
+    })
+    const cell = wrapper.findComponent({ name: 'wd-cell' })
+    expect(cell.props('prefixIcon')).toBe('i-carbon-user')
+    expect(cell.props('iconPrefix')).toBe('fish')
+    expect(cell.props('cssIcon')).toBe(true)
+  })
+
   test('validate-trigger 为 change 时，字段变化会触发校验', async () => {
     const schema = {
       validate(model: Record<string, string>) {
@@ -274,6 +306,44 @@ describe('WdFormItem', () => {
     expect(cell.props('layout')).toBe('horizontal')
     expect(cell.props('valueAlign')).toBe('left')
     expect(cell.props('asteriskPosition')).toBe('start')
+  })
+
+  test('form 的 value-align 会应用到 form-item 内容区域', async () => {
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" value-align="right">
+            <wd-form-item title="姓名" value="张三" />
+          </wd-form>
+        `,
+        data() {
+          return { formData: {} }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    await nextTick()
+
+    expect(wrapper.find('.wd-cell__value').classes()).toContain('wd-cell__value--right')
+  })
+
+  test('form-item 的 value-align 优先级高于 form', () => {
+    const wrapper = mount(
+      {
+        template: `
+          <wd-form :model="formData" value-align="left">
+            <wd-form-item title="姓名" value="张三" value-align="center" />
+          </wd-form>
+        `,
+        data() {
+          return { formData: {} }
+        }
+      },
+      { global: { components: globalComponents } }
+    )
+
+    expect(wrapper.find('.wd-cell__value').classes()).toContain('wd-cell__value--center')
   })
 
   test('form-item 传入 border 时优先使用自身配置', () => {

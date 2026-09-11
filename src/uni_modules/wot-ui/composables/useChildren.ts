@@ -80,14 +80,8 @@ export function useChildren<
     const link = (child: ComponentInternalInstance) => {
       if (child.proxy) {
         if (internalChildren.indexOf(child) === -1) {
-          // #ifdef MP-ALIPAY
-          internalChildren.unshift(child)
-          publicChildren.unshift(child.proxy as Child)
-          // #endif
-          // #ifndef MP-ALIPAY
           internalChildren.push(child)
           publicChildren.push(child.proxy as Child)
-          // #endif
           sortChildren(parent, publicChildren, internalChildren)
         }
       }

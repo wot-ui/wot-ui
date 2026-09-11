@@ -16,6 +16,10 @@ export default createWotVitePressTheme({
   demoIframe: {
     assetBase: '/wxqrcode'
   },
+  contributors: {
+    dataUrl: '/data/component-contributors.json',
+    maxCount: 8
+  },
   banner: {
     urls: ['https://sponsor.wot-ui.cn/wot-v2-banner.json', 'https://wot-sponsors.pages.dev/wot-v2-banner.json']
   },
@@ -34,6 +38,25 @@ export default createWotVitePressTheme({
   },
   cases: {
     urls: ['https://sponsor.wot-ui.cn/cases.json', 'https://wot-sponsors.pages.dev/cases.json']
+  },
+  /**
+   * 约定格式
+   * 
+   * ```
+   * {
+   *   "groups": [
+   *     {
+   *       "text": "官方生态",
+   *       "items": [
+   *         { "text": "wot-starter", "link": "https://starter.wot-ui.cn/", "desc": "可选描述" }
+   *       ]
+   *     }
+   *   ]
+   * }
+   * ```
+   */
+  ecosystem: {
+    urls: ['https://sponsor.wot-ui.cn/ecosystem.json', 'https://wot-sponsors.pages.dev/ecosystem.json']
   },
   specialSponsor: {
     urls: ['https://sponsor.wot-ui.cn/sponsor.json', 'https://wot-sponsors.pages.dev/sponsor.json']

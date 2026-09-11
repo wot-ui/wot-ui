@@ -106,6 +106,8 @@ Set the `icon` property of `wd-sidebar-item` to display different icons in the n
 | badge | Badge display value | `string \| number` | - |
 | badge-props | Custom badge properties, will be passed to Badge component | `Partial<BadgeProps>` | - |
 | icon | Icon name | `string` | - |
+| icon-prefix | Icon class prefix, see Icon component for usage | `string` | - |
+| css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | is-dot | Whether to display dot badge | `boolean` | `false` |
 | max | Badge maximum value | `number` | `99` |
 | disabled | Whether to disable the current option | `boolean` | `false` |

@@ -2,6 +2,50 @@
 
 Font-based icon set.
 
+## Upgrade from v1 to v2
+
+`v2` reorganizes the built-in icon set. Some icon names have changed, while some icons are no longer provided. During an upgrade, choose replacements based on both visual appearance and business meaning instead of matching names alone.
+
+The mappings below are common recommendations, not automatic replacement rules. Multiple `v1` icons may map to the same `v2` icon, so verify the business meaning and rendered result after migration. Icon names are case-sensitive; names such as `Launch` and `Export` must keep their initial uppercase letter.
+
+- [Read the complete v1 → v2 migration guide](/en-US/guide/migration-v2#icon-migration)
+- [Use the open-wot migration Skill to view the complete icon mappings](https://github.com/wot-ui/open-wot/tree/main/skills/migrate-v1-to-v2)
+
+### Common name changes
+
+| v1 icon name    | Recommended v2 name |
+| --------------- | ------------------- |
+| `add`           | `plus`              |
+| `add-circle`    | `plus-circle`       |
+| `decrease`      | `minus`             |
+| `arrow-left`    | `left`              |
+| `arrow-right`   | `right`             |
+| `arrow-up`      | `up`                |
+| `arrow-down`    | `down`              |
+| `search`        | `search-line`       |
+| `more`          | `more-vertical`     |
+| `picture`       | `image`             |
+| `eye-close`     | `eye-invisible`     |
+| `setting`       | `settings`          |
+| `help`          | `question`          |
+| `check-outline` | `check-circle`      |
+| `close-outline` | `close-circle`      |
+| `fullsreen`     | `fullscreen`        |
+
+```html
+<!-- v1 -->
+<wd-icon name="add" />
+<wd-icon name="picture" />
+
+<!-- v2 -->
+<wd-icon name="plus" />
+<wd-icon name="image" />
+```
+
+### Icons without an equivalent
+
+If `v2` has no suitable visual or semantic equivalent, do not force a replacement. Choose another icon based on the business meaning, or use the custom icon support documented below to preserve the original appearance.
+
 ## Component Type
 
 ### Basic Usage

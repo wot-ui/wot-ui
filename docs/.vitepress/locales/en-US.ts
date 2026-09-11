@@ -4,90 +4,108 @@ import packageJson from '../../../package.json'
 
 const componentNavItems = getDocsComponentNavItems('en-US')
 const componentSidebar = getDocsComponentSidebar('en-US')
-const guideGroups = [
+const gettingStartedNavItems = [
   {
-    text: 'Basics',
-    items: [
-      {
-        text: 'Introduction',
-        link: '/en-US/guide/introduction',
-      },
-      {
-        text: 'Design',
-        link: '/en-US/guide/design',
-      },
-      {
-        text: 'Quick Start',
-        link: '/en-US/guide/quick-use',
-      }
-    ]
+    text: 'Introduction',
+    link: '/en-US/guide/introduction',
   },
   {
-    text: 'Development',
-    items: [
-      {
-        text: 'Custom Theme',
-        link: '/en-US/guide/custom-theme',
-      },
-      {
-        text: 'Custom Style',
-        link: '/en-US/guide/custom-style',
-      },
-      {
-        text: 'Dark Mode',
-        link: '/en-US/guide/dark-mode',
-      },
-      {
-        text: 'Internationalization',
-        link: '/en-US/guide/locale',
-      },
-      {
-        text: 'UnoCSS Preset',
-        link: '/en-US/guide/unocss-preset',
-      },
-      {
-        text: 'Templates',
-        link: '/en-US/guide/templates',
-      },
-      {
-        text: 'Common Problems',
-        link: '/en-US/guide/common-problems',
-      }
-    ]
+    text: 'Quick Start',
+    link: '/en-US/guide/quick-use',
+  },
+  {
+    text: 'Common Problems',
+    link: '/en-US/guide/common-problems',
+  }
+]
+const designSystemNavItems = [
+  {
+    text: 'Design',
+    link: '/en-US/guide/design',
+  },
+  {
+    text: 'Custom Theme',
+    link: '/en-US/guide/custom-theme',
+  },
+  {
+    text: 'Dark Mode',
+    link: '/en-US/guide/dark-mode',
+  },
+  {
+    text: 'UnoCSS Preset',
+    link: '/en-US/guide/unocss-preset',
+  },
+  {
+    text: 'Custom Style',
+    link: '/en-US/guide/custom-style',
+  }
+]
+const aiNavItems = [
+  {
+    text: 'AI Overview',
+    link: '/en-US/guide/ai',
+  },
+  {
+    text: 'LLMs.txt',
+    link: '/en-US/guide/llms-txt',
+  },
+  {
+    text: '@wot-ui/cli',
+    link: '/en-US/guide/open-wot',
+  },
+  {
+    text: 'AI Skills',
+    link: '/en-US/guide/skills',
+  }
+]
+const engineeringNavItems = [
+  {
+    text: 'Internationalization',
+    link: '/en-US/guide/locale',
+  },
+  {
+    text: 'Templates',
+    link: '/en-US/guide/templates',
+  },
+  {
+    text: 'Migrating from v1 to v2',
+    link: '/en-US/guide/migration-v2',
+  },
+  {
+    text: 'Changelog',
+    link: '/en-US/guide/changelog',
+  }
+]
+const communityNavItems = [
+  {
+    text: 'Cases',
+    link: '/en-US/guide/cases',
+  },
+  {
+    text: 'Join Group',
+    link: '/en-US/guide/join-group',
+  }
+]
+const guideGroups = [
+  {
+    text: 'Getting Started',
+    items: gettingStartedNavItems
+  },
+  {
+    text: 'Design System',
+    items: designSystemNavItems
   },
   {
     text: 'AI',
-    items: [
-      {
-        text: 'LLMs.txt',
-        link: '/en-US/guide/llms-txt',
-      },
-      {
-        text: 'CLI',
-        link: '/en-US/guide/open-wot',
-      },
-      {
-        text: 'Skills',
-        link: '/en-US/guide/skills',
-      }
-    ]
+    items: aiNavItems
+  },
+  {
+    text: 'Engineering',
+    items: engineeringNavItems
   },
   {
     text: 'Community',
-    items: [
-      {
-        text: 'Cases',
-        link: '/en-US/guide/cases',
-      },
-      {
-        text: 'Changelog',
-        link: '/en-US/guide/changelog',
-      },
-      {
-        text: 'Join Group',
-        link: '/en-US/guide/join-group',
-      }
-    ]
+    items: communityNavItems
   }
 ]
 const ecosystemNavItems = [
@@ -101,6 +119,7 @@ const ecosystemNavItems = [
       { text: 'VS Code Extension', link: 'https://marketplace.visualstudio.com/items?itemName=wot-ui.wot-ui-intellisense' },
       { text: 'Mini Program CI Tool', link: 'https://github.com/Moonofweisheng/uni-mini-ci' },
       { text: 'wot-starter-retail', link: 'https://github.com/wot-ui/wot-starter-retail' },
+      { text: '@wot-ui/oiyo-starter', link: 'https://github.com/wot-ui/oiyo-starter' },
     ]
   },
   {
@@ -109,6 +128,7 @@ const ecosystemNavItems = [
       { text: 'Uni Helper', link: 'https://uni-helper.js.org/' },
       { text: 'uni-ku', link: 'https://github.com/uni-ku' },
       { text: 'uni-echarts', link: 'https://uni-echarts.xiaohe.ink/' },
+      { text: 'Oiyo', link: 'https://oiyo.js.org' },
 
     ]
   },
@@ -145,8 +165,31 @@ export default defineConfig({
     nav: [
       {
         text: 'Guide',
-        activeMatch: '/en-US/guide/',
-        items: guideGroups
+        activeMatch: '/en-US/guide/(introduction|quick-use|common-problems|locale|templates|migration-v2|changelog|cases|join-group)',
+        items: [
+          {
+            text: 'Getting Started',
+            items: gettingStartedNavItems
+          },
+          {
+            text: 'Engineering',
+            items: engineeringNavItems
+          },
+          {
+            text: 'Community',
+            items: communityNavItems
+          }
+        ]
+      },
+      {
+        text: 'Design System',
+        activeMatch: '/en-US/guide/(design|custom-theme|dark-mode|unocss-preset|custom-style)',
+        items: designSystemNavItems
+      },
+      {
+        text: 'AI',
+        activeMatch: '/en-US/guide/(ai|llms-txt|open-wot|skills)',
+        items: aiNavItems
       },
       {
         text: 'Components',
