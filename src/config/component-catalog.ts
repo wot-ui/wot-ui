@@ -767,6 +767,14 @@ const categories: CatalogCategory[] = [
         }
       },
       {
+        id: 'barCode',
+        titleKey: 'bar-code-tiao-xing-ma',
+        docs: {
+          'zh-CN': { slug: 'bar-code', text: 'BarCode 条形码' },
+          'en-US': { slug: 'bar-code', text: 'BarCode' }
+        }
+      },
+      {
         id: 'qrCode',
         titleKey: 'qrcode-er-wei-ma',
         docs: {
