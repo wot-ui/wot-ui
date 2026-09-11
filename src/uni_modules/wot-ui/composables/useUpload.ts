@@ -174,7 +174,7 @@ export function useUpload(): UseUploadReturn {
         path: item.path || '',
         name: item.name || '',
         size: item.size,
-        type: 'image',
+        type: 'image' as ChooseFile['type'],
         thumb: item.path || ''
       }))
     }
