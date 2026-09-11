@@ -338,6 +338,24 @@ describe('WdBarCode', () => {
     expect(JsBarcode).toHaveBeenLastCalledWith(expect.any(Object), '456789', expect.any(Object))
   })
 
+  test('同一 tick 内重复请求只绘制最后一次状态', async () => {
+    const wrapper = mount(WdBarCode, {
+      props: {
+        value: '123'
+      }
+    })
+
+    await waitForDraw(wrapper)
+    vi.mocked(JsBarcode).mockClear()
+
+    await wrapper.setProps({ value: '456' })
+    await wrapper.setProps({ value: '789' })
+    await waitForDraw(wrapper)
+
+    expect(JsBarcode).toHaveBeenCalledTimes(1)
+    expect(JsBarcode).toHaveBeenLastCalledWith(expect.any(Object), '789', expect.any(Object))
+  })
+
   test('valid 事件透传校验结果', async () => {
     const wrapper = mount(WdBarCode, {
       props: {

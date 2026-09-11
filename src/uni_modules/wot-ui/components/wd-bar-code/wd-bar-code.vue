@@ -108,9 +108,7 @@ watch(
 watch(canvasVisible, (visible) => {
   if (visible) {
     resetCanvasContext()
-    nextTick(() => {
-      requestDraw()
-    })
+    requestDraw()
   } else {
     resetCanvasContext()
     canvasWidth.value = 0
@@ -123,9 +121,7 @@ onBeforeMount(() => {
 })
 
 onMounted(() => {
-  nextTick(() => {
-    requestDraw()
-  })
+  requestDraw()
 })
 
 /**
@@ -162,6 +158,7 @@ function barcodeCanvas2dAdapter(rawCtx: CanvasRenderingContext2D) {
 // #endif
 
 let drawTask: Promise<void> = Promise.resolve()
+let drawQueued = false
 
 type ResolvedBarCodeOptions = {
   format: BarCodeFormat
@@ -189,10 +186,14 @@ type ResolvedBarCodeOptions = {
  * 合并同一帧内的重复绘制请求
  */
 function requestDraw() {
+  if (drawQueued) return
+
+  drawQueued = true
   drawTask = drawTask
     .catch(() => undefined)
     .then(async () => {
       await nextTick()
+      drawQueued = false
       await renderBarCode()
     })
 }

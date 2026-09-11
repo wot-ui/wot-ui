@@ -6,7 +6,7 @@ Generates one-dimensional barcodes based on [JsBarcode](https://github.com/linde
 
 ### Basic Usage
 
-Set the barcode content with `value`. The default format is `CODE128`.
+Set the barcode content with `value`. The default format is `auto`.
 
 ```html
 <wd-bar-code value="1234567890" />
@@ -137,38 +137,38 @@ async function handleExportImage() {
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| value | Barcode content | `string \| number` | - |
-| format | Barcode format. Supported values: `auto`, `CODE128`, `CODE128A`, `CODE128B`, `CODE128C`, `EAN13`, `EAN8`, `UPC`, `UPCE`, `CODE39`, `ITF14`, `MSI`, `MSI10`, `MSI11`, `MSI1010`, `MSI1110`, `pharmacode`, `codabar` | `string` | `auto` |
-| width | Overall barcode width | `number` | `200` |
-| height | Overall render height, including vertical margins, bars, and text | `number` | `100` |
-| text | Display text, defaults to `value` | `string` | `''` |
-| font | Font family | `string` | `monospace` |
-| font-size | Text size | `number` | `20` |
-| font-options | Font style. Supported values: `bold`, `italic`, `bold italic` | `string` | `''` |
-| text-margin | Spacing between text and barcode | `number` | `2` |
-| background | Background color | `string` | `#ffffff` |
-| line-color | Line color | `string` | `#000000` |
-| margin | Margin | `number` | `10` |
-| margin-top | Top margin | `number` | - |
-| margin-bottom | Bottom margin | `number` | - |
-| margin-left | Left margin | `number` | - |
-| margin-right | Right margin | `number` | - |
-| display-value | Whether to display text | `boolean` | `true` |
-| text-align | Text alignment. Supported values: `left`, `center`, `right` | `string` | `center` |
-| text-position | Text position. Supported values: `bottom`, `top` | `string` | `bottom` |
+| value ^(2.0.5) | Barcode content | `string \| number` | - |
+| format ^(2.0.5) | Barcode format. Supported values: `auto`, `CODE128`, `CODE128A`, `CODE128B`, `CODE128C`, `EAN13`, `EAN8`, `UPC`, `UPCE`, `CODE39`, `ITF14`, `MSI`, `MSI10`, `MSI11`, `MSI1010`, `MSI1110`, `pharmacode`, `codabar` | `string` | `auto` |
+| width ^(2.0.5) | Overall barcode width | `number` | `200` |
+| height ^(2.0.5) | Overall render height, including vertical margins, bars, and text | `number` | `100` |
+| text ^(2.0.5) | Display text, defaults to `value` | `string` | `''` |
+| font ^(2.0.5) | Font family | `string` | `monospace` |
+| font-size ^(2.0.5) | Text size | `number` | `20` |
+| font-options ^(2.0.5) | Font style. Supported values: `bold`, `italic`, `bold italic` | `string` | `''` |
+| text-margin ^(2.0.5) | Spacing between text and barcode | `number` | `2` |
+| background ^(2.0.5) | Background color | `string` | `#ffffff` |
+| line-color ^(2.0.5) | Line color | `string` | `#000000` |
+| margin ^(2.0.5) | Margin | `number` | `10` |
+| margin-top ^(2.0.5) | Top margin | `number` | - |
+| margin-bottom ^(2.0.5) | Bottom margin | `number` | - |
+| margin-left ^(2.0.5) | Left margin | `number` | - |
+| margin-right ^(2.0.5) | Right margin | `number` | - |
+| display-value ^(2.0.5) | Whether to display text | `boolean` | `true` |
+| text-align ^(2.0.5) | Text alignment. Supported values: `left`, `center`, `right` | `string` | `center` |
+| text-position ^(2.0.5) | Text position. Supported values: `bottom`, `top` | `string` | `bottom` |
 
 ## BarCode Events
 
 | Event | Description | Arguments |
 | --- | --- | --- |
-| error | Triggered when rendering fails | `error` |
-| valid | Triggered when validation result changes | `valid: boolean` |
+| error ^(2.0.5) | Triggered when rendering fails | `error` |
+| valid ^(2.0.5) | Triggered when validation result changes | `valid: boolean` |
 
 ## BarCode Methods
 
 | Method | Description | Arguments | Return value |
 | --- | --- | --- | --- |
-| exportImage | Exports the barcode image | - | `Promise<string>` |
+| exportImage ^(2.0.5) | Exports the barcode image | - | `Promise<string>` |
 
 ## External Classes
 
