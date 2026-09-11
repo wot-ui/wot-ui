@@ -46,6 +46,37 @@ describe('WdSelectPicker', () => {
     expect(emitted['open']).toBeTruthy()
   })
 
+  test('中文 value 使用安全索引滚动定位', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdSelectPicker, {
+      props: {
+        modelValue: ['卡皮巴拉'],
+        columns: [
+          { value: '卡皮巴拉', label: '卡皮巴拉' },
+          { value: '水豚', label: '水豚' }
+        ],
+        visible: true,
+        scrollIntoView: false
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    const createSelectorQuery = vi.mocked(uni.createSelectorQuery)
+    createSelectorQuery.mockClear()
+    const scrollPromise = (wrapper.vm as any).setScrollIntoView()
+    await vi.advanceTimersByTimeAsync(100)
+    await scrollPromise
+
+    const selectors = createSelectorQuery.mock.results.map((result) => {
+      const query = result.value as any
+      return query.select.mock.calls[0][0]
+    })
+    expect(selectors).toEqual(['.wd-select-picker__wrapper', '#wd-checkbox-group', '#check0'])
+    vi.useRealTimers()
+  })
+
   test('自定义标题', async () => {
     const title = '请选择'
     const wrapper = mount(WdSelectPicker, {
