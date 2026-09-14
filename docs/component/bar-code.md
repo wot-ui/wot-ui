@@ -79,7 +79,7 @@
 
 ### 字体样式
 
-通过 `font-size` 设置底部数字大小，通过 `font-options` 设置文字样式，可选值为 `bold`、`italic`、`bold italic`。
+通过 `font-size` 设置底部数字的最大字号，文字宽度不足时会自动缩小。通过 `font-options` 设置文字样式，可选值为 `bold`、`italic`、`bold italic`。
 
 ```html
 <wd-bar-code value="1234567890" :font-size="14" />
@@ -139,22 +139,22 @@ async function handleExportImage() {
 | --- | --- | --- | --- |
 | value ^(2.0.5) | 条形码内容 | `string \| number` | - |
 | format ^(2.0.5) | 条形码格式，可选值为 `auto`、`CODE128`、`CODE128A`、`CODE128B`、`CODE128C`、`EAN13`、`EAN8`、`UPC`、`UPCE`、`CODE39`、`ITF14`、`MSI`、`MSI10`、`MSI11`、`MSI1010`、`MSI1110`、`pharmacode`、`codabar` | `string` | `auto` |
-| width ^(2.0.5) | 条形码整体宽度 | `number` | `200` |
+| width ^(2.0.5) | 条形码整体宽度，必须为有限正数 | `number` | `200` |
 | height ^(2.0.5) | 条形码整体渲染高度，包含上下留白、条和文本 | `number` | `100` |
-| text ^(2.0.5) | 显示的文本，默认显示 `value` | `string` | `''` |
+| text ^(2.0.5) | 自定义显示文本，默认使用编码器生成的文本，包含自动补充的校验位 | `string` | `''` |
 | font ^(2.0.5) | 字体 | `string` | `monospace` |
-| font-size ^(2.0.5) | 文本大小 | `number` | `20` |
+| font-size ^(2.0.5) | 文本最大字号，宽度不足时自动缩小 | `number` | `20` |
 | font-options ^(2.0.5) | 字体样式，可选值为 `bold`、`italic`、`bold italic` | `string` | `''` |
-| text-margin ^(2.0.5) | 文本与条码的间距 | `number` | `2` |
+| text-margin ^(2.0.5) | 文本与条码的间距，必须为有限非负数 | `number` | `2` |
 | background ^(2.0.5) | 背景色 | `string` | `#ffffff` |
 | line-color ^(2.0.5) | 线条颜色 | `string` | `#000000` |
-| margin ^(2.0.5) | 边距 | `number` | `10` |
-| margin-top ^(2.0.5) | 上边距 | `number` | - |
-| margin-bottom ^(2.0.5) | 下边距 | `number` | - |
-| margin-left ^(2.0.5) | 左边距 | `number` | - |
-| margin-right ^(2.0.5) | 右边距 | `number` | - |
+| margin ^(2.0.5) | 边距，必须为有限非负数 | `number` | `10` |
+| margin-top ^(2.0.5) | 上边距，必须为有限非负数，未设置时使用 `margin` | `number` | - |
+| margin-bottom ^(2.0.5) | 下边距，必须为有限非负数，未设置时使用 `margin` | `number` | - |
+| margin-left ^(2.0.5) | 左边距，必须为有限非负数，未设置时使用 `margin` | `number` | - |
+| margin-right ^(2.0.5) | 右边距，必须为有限非负数，未设置时使用 `margin` | `number` | - |
 | display-value ^(2.0.5) | 是否显示文本 | `boolean` | `true` |
-| text-align ^(2.0.5) | 文本对齐方式，可选值为 `left`、`center`、`right` | `string` | `center` |
+| text-align ^(2.0.5) | 文本对齐方式，可选值为 `left`、`center`、`right`；适用于普通格式及自定义文本，EAN13、EAN8、UPC、UPCE 的默认数字保持分段居中 | `string` | `center` |
 | text-position ^(2.0.5) | 文本位置，可选值为 `bottom`、`top` | `string` | `bottom` |
 
 ## BarCode Events
@@ -162,7 +162,7 @@ async function handleExportImage() {
 | 事件名称 | 说明 | 参数 |
 | --- | --- | --- |
 | error ^(2.0.5) | 生成失败时触发 | `error` |
-| valid ^(2.0.5) | 校验结果变化时触发 | `valid: boolean` |
+| valid ^(2.0.5) | 每次编码校验完成时触发，即使结果未变化；仅表示编码内容是否合法，不代表绘制或导出成功 | `valid: boolean` |
 
 ## BarCode Methods
 

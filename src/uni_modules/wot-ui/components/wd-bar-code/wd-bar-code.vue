@@ -53,10 +53,12 @@ const canvasId = ref(`wd-bar-code-${uuid()}`)
 const canvasWidth = ref(300)
 const canvasHeight = ref(150)
 const pixelRatio = ref(1)
+const renderReady = ref(false)
 
 let ctx: UniApp.CanvasContext | null = null
 // #ifdef MP-WEIXIN
 let canvasNode: WechatMiniprogram.Canvas | null = null
+let canvasNodeVersion = 0
 // #endif
 
 const rootClass = computed(() => `wd-bar-code ${props.customClass}`)
@@ -64,7 +66,8 @@ const rootClass = computed(() => `wd-bar-code ${props.customClass}`)
 const canvasStyle = computed(() =>
   objToStyle({
     width: `${canvasWidth.value}px`,
-    height: `${canvasHeight.value}px`
+    height: `${canvasHeight.value}px`,
+    visibility: renderReady.value ? 'visible' : 'hidden'
   })
 )
 
@@ -140,6 +143,7 @@ function resetCanvasContext() {
   ctx = null
   // #ifdef MP-WEIXIN
   canvasNode = null
+  canvasNodeVersion++
   // #endif
 }
 
@@ -159,6 +163,8 @@ function barcodeCanvas2dAdapter(rawCtx: CanvasRenderingContext2D) {
 
 let drawTask: Promise<void> = Promise.resolve()
 let drawQueued = false
+let drawVersion = 0
+let drawError: unknown = null
 
 type ResolvedBarCodeOptions = {
   format: BarCodeFormat
@@ -186,6 +192,9 @@ type ResolvedBarCodeOptions = {
  * 合并同一帧内的重复绘制请求
  */
 function requestDraw() {
+  drawVersion++
+  renderReady.value = false
+  drawError = null
   if (drawQueued) return
 
   drawQueued = true
@@ -199,23 +208,36 @@ function requestDraw() {
 }
 
 function flushCanvas(context: UniApp.CanvasContext) {
-  return new Promise<void>((resolve) => {
-    let settled = false
+  // #ifdef MP-WEIXIN
+  if (canvasNode) return Promise.resolve()
+  // #endif
+
+  return new Promise<void>((resolve, reject) => {
+    const timeout = setTimeout(() => reject(new Error('Canvas draw timed out')), 5000)
     const done = () => {
-      if (settled) return
-      settled = true
+      clearTimeout(timeout)
       resolve()
+    }
+    const fail = (error: unknown) => {
+      clearTimeout(timeout)
+      reject(error)
     }
 
     try {
-      context.draw?.(false, done)
+      context.draw(false, done)
     } catch (error) {
-      void error
-      context.draw?.(false)
+      fail(error)
     }
-
-    setTimeout(done, 16)
   })
+}
+
+function getRenderPixelRatio() {
+  let ratio = 1
+  // H5/App webview canvases apply HiDPI internally; WeChat uses applyCanvasNodeSize.
+  // #ifdef H5 || APP-PLUS || MP-WEIXIN
+  ratio = pixelRatio.value
+  // #endif
+  return ratio
 }
 
 /**
@@ -239,19 +261,19 @@ function getContext() {
     // #endif
 
     // #ifdef MP-WEIXIN
+    const nodeVersion = canvasNodeVersion
     const query = uni.createSelectorQuery()
     const scopedQuery = proxy && query.in ? query.in(proxy) : query
 
     scopedQuery
       .select(`#${canvasId.value}`)
       .node((res) => {
-        if (!res?.node) {
+        if (nodeVersion !== canvasNodeVersion || !res?.node) {
           resolve(null)
           return
         }
 
         const node = res.node as WechatMiniprogram.Canvas
-        canvasNode = node
         const rawCtx = node.getContext('2d') as unknown as CanvasRenderingContext2D
         if (!rawCtx) {
           resolve(null)
@@ -259,6 +281,7 @@ function getContext() {
         }
 
         const dpr = uni.getWindowInfo ? uni.getWindowInfo().pixelRatio : uni.getSystemInfoSync().pixelRatio
+        canvasNode = node
         pixelRatio.value = dpr || 1
         ctx = barcodeCanvas2dAdapter(rawCtx)
         resolve(ctx)
@@ -303,10 +326,6 @@ function getResolvedMargin(value: number | undefined) {
   return value ?? props.margin
 }
 
-function getDisplayText() {
-  return props.text || String(props.value)
-}
-
 function createBarCodeEncodings(barcodeValue: string, options: ResolvedBarCodeOptions) {
   const encoded: { encodings?: BarCodeRenderEncoding[] } = {}
   const encodeOptions: Record<string, unknown> = { ...options, width: DEFAULT_BAR_CODE_LINE_WIDTH }
@@ -335,86 +354,121 @@ function resolveFormat(format: string): BarCodeFormat | null {
  * 绘制条形码到 canvas
  */
 async function renderBarCode() {
+  const version = drawVersion
   if (!canvasVisible.value) {
+    drawError = new Error('Barcode value is empty')
     return
-  }
-
-  const barcodeValue = String(props.value)
-  if (barcodeValue.length > MAX_BAR_CODE_VALUE_LENGTH) {
-    emit('error', new Error(`Barcode value exceeds max length ${MAX_BAR_CODE_VALUE_LENGTH}`))
-    return
-  }
-
-  const format = resolveFormat(props.format)
-  if (!format) {
-    emit('error', new Error(`Unsupported barcode format: ${props.format}`))
-    return
-  }
-
-  const context = await getContext()
-  if (!context) {
-    emit('error', new Error('Canvas context is not ready'))
-    return
-  }
-
-  const options: ResolvedBarCodeOptions = {
-    format,
-    width: DEFAULT_BAR_CODE_LINE_WIDTH,
-    height: props.height,
-    text: props.text || undefined,
-    font: props.font,
-    fontSize: props.fontSize,
-    fontOptions: props.fontOptions,
-    textMargin: props.textMargin,
-    background: props.background,
-    lineColor: props.lineColor,
-    margin: props.margin,
-    marginTop: getResolvedMargin(props.marginTop),
-    marginBottom: getResolvedMargin(props.marginBottom),
-    marginLeft: getResolvedMargin(props.marginLeft),
-    marginRight: getResolvedMargin(props.marginRight),
-    displayValue: props.displayValue,
-    textAlign: props.textAlign,
-    textPosition: props.textPosition,
-    valid: (valid: boolean) => {
-      emit('valid', valid)
-    }
   }
 
   try {
+    const barcodeValue = String(props.value)
+    if (barcodeValue.length > MAX_BAR_CODE_VALUE_LENGTH) {
+      throw new Error(`Barcode value exceeds max length ${MAX_BAR_CODE_VALUE_LENGTH}`)
+    }
+    const format = resolveFormat(props.format)
+    if (!format) {
+      throw new Error(`Unsupported barcode format: ${props.format}`)
+    }
+    for (const key of ['margin', 'marginTop', 'marginBottom', 'marginLeft', 'marginRight', 'textMargin'] as const) {
+      const margin = props[key]
+      if (margin !== undefined && (!Number.isFinite(margin) || margin < 0)) {
+        throw new Error(`Barcode ${key} must be a non-negative finite number`)
+      }
+    }
+    let encodingValid = true
+    const options: ResolvedBarCodeOptions = {
+      format,
+      width: DEFAULT_BAR_CODE_LINE_WIDTH,
+      height: props.height,
+      text: props.text || undefined,
+      font: props.font,
+      fontSize: props.fontSize,
+      fontOptions: props.fontOptions,
+      textMargin: props.textMargin,
+      background: props.background,
+      lineColor: props.lineColor,
+      margin: props.margin,
+      marginTop: getResolvedMargin(props.marginTop),
+      marginBottom: getResolvedMargin(props.marginBottom),
+      marginLeft: getResolvedMargin(props.marginLeft),
+      marginRight: getResolvedMargin(props.marginRight),
+      displayValue: props.displayValue,
+      textAlign: props.textAlign,
+      textPosition: props.textPosition,
+      valid: (valid: boolean) => {
+        encodingValid = valid
+        emit('valid', valid)
+      }
+    }
+
     const encodings = createBarCodeEncodings(barcodeValue, options)
+    if (!encodingValid || !encodings.some((encoding) => encoding.data.length > 0)) {
+      throw new Error('Invalid barcode value')
+    }
     const renderOptions = options as BarCodeRenderOptions
     const size = resolveBarCodeRenderSize(encodings, renderOptions, props.width)
+    const context = await getContext()
+    if (version !== drawVersion) return
+    if (!context) {
+      throw new Error('Canvas context is not ready')
+    }
     canvasWidth.value = size.width
     canvasHeight.value = size.height
     applyCanvasNodeSize()
     await nextTick()
     await waitCanvasUpdated()
-    drawBarCodeToCanvas(context, encodings, renderOptions, size, getDisplayText())
+    if (version !== drawVersion) return
+    const displayText = options.text || encodings.map((encoding) => encoding.text).join('')
+    drawBarCodeToCanvas(context, encodings, renderOptions, size, displayText, getRenderPixelRatio())
     await flushCanvas(context)
+    if (version === drawVersion) {
+      renderReady.value = true
+    }
   } catch (error) {
-    console.error('JsBarcode render error:', error)
+    if (version !== drawVersion) return
+    drawError = error
+    renderReady.value = false
     emit('error', error)
   }
 }
 
 async function exportImage(): Promise<string> {
-  await drawTask
+  let task: Promise<void>
+  do {
+    await nextTick()
+    task = drawTask
+    await task
+    await nextTick()
+  } while (task !== drawTask)
+
+  if (!renderReady.value) {
+    throw drawError || new Error('Barcode is not ready for export')
+  }
 
   return new Promise((resolve, reject) => {
-    const sourceWidth = Math.ceil(canvasWidth.value * pixelRatio.value)
-    const sourceHeight = Math.ceil(canvasHeight.value * pixelRatio.value)
+    let sourceWidth = canvasWidth.value
+    let sourceHeight = canvasHeight.value
+    // #ifdef MP-WEIXIN
+    if (canvasNode) {
+      sourceWidth = canvasNode.width
+      sourceHeight = canvasNode.height
+    }
+    // #endif
     const options: UniApp.CanvasToTempFilePathOptions = {
       canvasId: canvasId.value,
       width: sourceWidth,
       height: sourceHeight,
-      destWidth: sourceWidth,
-      destHeight: sourceHeight,
+      destWidth: Math.ceil(canvasWidth.value * pixelRatio.value),
+      destHeight: Math.ceil(canvasHeight.value * pixelRatio.value),
       success: (res) => {
         let tempFilePath = res.tempFilePath
         // #ifdef MP-DINGTALK
-        tempFilePath = (res as any).filePath
+        tempFilePath = (res as any).filePath || tempFilePath
         // #endif
+        if (typeof tempFilePath !== 'string' || !tempFilePath) {
+          reject(new Error('Canvas export did not return an image path'))
+          return
+        }
         resolve(tempFilePath)
       },
       fail: reject

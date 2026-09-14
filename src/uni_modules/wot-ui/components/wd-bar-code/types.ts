@@ -70,7 +70,7 @@ export const barCodeProps = {
    */
   format: makeStringProp('auto'),
   /**
-   * 条形码整体宽度
+   * 条形码整体宽度，必须为有限正数
    * 类型: number
    * 默认值: 200
    */
@@ -82,7 +82,7 @@ export const barCodeProps = {
    */
   height: makeNumberProp(100),
   /**
-   * 显示的文本，默认显示 value
+   * 显示的文本，默认使用编码器生成的文本，包含自动补充的校验位
    * 类型: string
    * 默认值: ''
    */
@@ -94,7 +94,7 @@ export const barCodeProps = {
    */
   font: makeStringProp('monospace'),
   /**
-   * 文本大小，底部数字和特殊格式文本都会使用
+   * 文本最大字号，底部数字和特殊格式文本都会使用，宽度不足时自动缩小
    * 类型: number
    * 默认值: 20
    */
@@ -107,7 +107,7 @@ export const barCodeProps = {
    */
   fontOptions: makeStringProp(''),
   /**
-   * 文本与条码的间距
+   * 文本与条码的间距，必须为有限非负数
    * 类型: number
    * 默认值: 2
    */
@@ -125,28 +125,28 @@ export const barCodeProps = {
    */
   lineColor: makeStringProp('#000000'),
   /**
-   * 边距
+   * 边距，必须为有限非负数
    * 类型: number
    * 默认值: 10
    */
   margin: makeNumberProp(10),
   /**
-   * 上边距
+   * 上边距，必须为有限非负数，未设置时使用 margin
    * 类型: number
    */
   marginTop: Number,
   /**
-   * 下边距
+   * 下边距，必须为有限非负数，未设置时使用 margin
    * 类型: number
    */
   marginBottom: Number,
   /**
-   * 左边距
+   * 左边距，必须为有限非负数，未设置时使用 margin
    * 类型: number
    */
   marginLeft: Number,
   /**
-   * 右边距
+   * 右边距，必须为有限非负数，未设置时使用 margin
    * 类型: number
    */
   marginRight: Number,
@@ -157,7 +157,7 @@ export const barCodeProps = {
    */
   displayValue: makeBooleanProp(true),
   /**
-   * 文本对齐方式
+   * 文本对齐方式，适用于普通格式及自定义文本；EAN13、EAN8、UPC、UPCE 默认数字保持分段居中
    * 类型: string
    * 可选值: left、center、right
    * 默认值: center
