@@ -116,6 +116,7 @@ previewVideo({
 | show | 是否显示预览层 | `boolean` | `false` |
 | zIndex | zIndex 层级 | `number` | `1000` |
 | fullScreen | 是否全屏预览 | `boolean` | `false` |
+| showFullscreenBtn | 是否显示原生全屏按钮 | `boolean` | `true` |
 | closePosition | 关闭按钮位置，可选值为 `left-top`、`right-top` | `string` | `left-top` |
 | onOpen | 打开时的回调 | `() => void` | - |
 | onClose | 关闭时的回调 | `() => void` | - |

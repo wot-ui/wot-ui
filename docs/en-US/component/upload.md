@@ -297,6 +297,7 @@ function buildFormData({ file, formData }) {
 | status-key | The key corresponding to the status field in `file` data structure | `string` | `status` |
 | compressed | Whether to compress video, effective when `accept` is `video` or `media` | `boolean` | `true` |
 | max-duration | Maximum video recording duration, in seconds | `number` | `60` |
+| show-video-fullscreen-btn | Whether to show the native fullscreen button in video preview | `boolean` | `true` |
 | camera | Use front or back camera, optional values are `front`, `back` | `UploadCameraType` | `back` |
 | image-mode | `mode` property for preview image | `ImageMode` | `aspectFit` |
 | success-status | Interface response success status code | `number \| number[]` | `200` |
@@ -315,7 +316,7 @@ function buildFormData({ file, formData }) {
 | --- | --- | --- | --- |
 | image | Image, supported on all platforms, WeChat Mini Program uses `chooseMedia` implementation | `UploadFileType` | - |
 | video | Video, supported on all platforms, WeChat Mini Program uses `chooseMedia` implementation | `UploadFileType` | - |
-| media | Image and video, only supported on WeChat Mini Program, uses `chooseMedia` implementation | `UploadFileType` | - |
+| media | Image and video, supported on WeChat Mini Program and App (HBuilderX 4.52+), uses `chooseMedia` implementation | `UploadFileType` | - |
 | file | Regular file, only supported on WeChat Mini Program, uses `chooseMessageFile` implementation | `UploadFileType` | - |
 | all | All file types, only supported on WeChat Mini Program and H5 | `UploadFileType` | - |
 
@@ -325,6 +326,7 @@ function buildFormData({ file, formData }) {
 | --- | --- | --- | --- |
 | uid | Unique identifier of current upload file in the list | `number` | - |
 | thumb | Thumbnail address | `string` | - |
+| type | File type | <code>'image' &#124; 'video' &#124; 'file'</code> | - |
 | name | Current file name | `string` | - |
 | status | Current file upload status, optional values are `pending`, `loading`, `success`, `fail` | `UploadStatusType` | - |
 | size | File size | `number` | - |
