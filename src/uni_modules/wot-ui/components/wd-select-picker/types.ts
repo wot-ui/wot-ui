@@ -1,5 +1,5 @@
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
-import { baseProps, makeArrayProp, makeBooleanProp, makeNumberProp, makeRequiredProp, makeStringProp } from '../../common/props'
+import { baseProps, makeArrayProp, makeBooleanProp, makeNumberProp, makeOptionalProp, makeStringProp } from '../../common/props'
 
 export type SelectPickerType = 'checkbox' | 'radio'
 
@@ -21,8 +21,13 @@ export const selectPickerProps = {
   loadingColor: makeStringProp('#4D80F0'),
   /** 点击遮罩是否关闭 */
   closeOnClickModal: makeBooleanProp(true),
-  /** 选中项，`type`类型为`checkbox`时，类型为 array；`type`为`radio` 时 ，类型为 number / boolean / string */
-  modelValue: makeRequiredProp([String, Number, Boolean, Array] as PropType<string | number | boolean | (string | number | boolean)[]>),
+  /**
+   * 选中项，可省略或传入 undefined
+   * 类型: string | number | boolean | (string | number | boolean)[] | undefined
+   * checkbox 类型传入数组，radio 类型传入 string | number | boolean
+   * 默认值: undefined
+   */
+  modelValue: makeOptionalProp([String, Number, Boolean, Array] as PropType<string | number | boolean | (string | number | boolean)[] | undefined>),
   /** 选择器数据，一维数组 */
   columns: makeArrayProp<Record<string, any>>(),
   /** 单复选选择器类型 */

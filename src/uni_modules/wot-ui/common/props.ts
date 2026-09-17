@@ -16,6 +16,11 @@ export const makeRequiredProp = <T>(type: T) => ({
   required: true as const
 })
 
+export const makeOptionalProp = <T>(type: T) => ({
+  type,
+  default: undefined
+})
+
 export const makeArrayProp = <T>() => ({
   type: Array as PropType<T[]>,
   default: () => []
