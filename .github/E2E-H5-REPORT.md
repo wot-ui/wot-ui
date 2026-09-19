@@ -1,8 +1,8 @@
 # H5 E2E 本地执行报告
 
-日期：2026-09-18。H5 Playwright 接入和已发现问题的本地修复回归已完成：**100 个组件、94 条路由、367 个独立场景**。修复后完整矩阵连续三轮共 **3693 次执行：3660 通过、33 明确跳过、0 已知缺陷、0 非预期失败、0 重试**。
+日期：2026-09-19。当前覆盖清单为 **101 个组件、95 条路由、371 个独立场景**。前 100 个组件、94 条路由、367 个场景的修复后完整矩阵连续三轮共 **3693 次执行：3660 通过、33 明确跳过、0 已知缺陷、0 非预期失败、0 重试**。随后主分支新增的 BarCode 已补充真实 Canvas、导出图片和路由场景，四配置增量 **14 次通过**。
 
-这是本计划核心场景的本地验收结果，不代表穷举全部 API 或覆盖真实设备。远程 GitHub Actions 与 Linux 视觉基线仍待验证。
+这是本计划核心场景的本地验收结果，不代表穷举全部 API 或覆盖真实设备。远程 GitHub Actions 已触发；首次运行通过清单守卫发现 BarCode 漏登，增量补齐后等待重新验证。Linux 视觉候选图仍需审阅。
 
 ## 最终浏览器矩阵
 
@@ -37,7 +37,7 @@ H5-008 修复前新增单测稳定失败；修复后两种观察回调顺序均�
 
 | 范围         | 已执行内容                                                                                                           |
 | ------------ | -------------------------------------------------------------------------------------------------------------------- |
-| 冒烟         | 94 条注册路由独立加载；首页进入组件、深链刷新和返回；目录/路由清单差异守卫                                           |
+| 冒烟         | 95 条注册路由独立加载；首页进入组件、深链刷新和返回；目录/路由清单差异守卫                                           |
 | 弹层反馈     | Popup、Overlay、Dialog、ActionSheet、Toast、Notify、Popover、Tooltip、Curtain、RootPortal、Transition、Tour          |
 | 表单输入     | Input、Textarea、Switch、Checkbox、Radio、InputNumber、Rate、Search、Form、Keyboard、PasswordInput；5 个 Form 子页面 |
 | 选择器与导航 | 选择、确认/取消、禁选、联动、日期范围；Tabs、Sidebar、Tabbar、Segmented、Collapse、Pagination 等                     |
@@ -47,7 +47,7 @@ H5-008 修复前新增单测稳定失败；修复后两种观察回调顺序均�
 | 集成         | Provider 配置穿透 RootPortal、暗色表单选择器、语言刷新持久化、Chromium 连续触摸及桌面鼠标流程                        |
 | 视觉         | 6 张 macOS 基线：按钮尺寸控件的明暗主题、手机/桌面布局；每张比较 3 次                                                |
 
-100 个组件均有核心场景映射；组合子组件通过父级流程中的子项内容、状态或布局断言验证。矩阵状态保持 `partial-functional`，不把“存在用例”解释为全部 API 覆盖。
+101 个组件均有核心场景映射；组合子组件通过父级流程中的子项内容、状态或布局断言验证。矩阵状态保持 `partial-functional`，不把“存在用例”解释为全部 API 覆盖。
 
 ## 其他验证
 
@@ -68,7 +68,7 @@ H5-008 修复前新增单测稳定失败；修复后两种观察回调顺序均�
 
 功能工作流已配置 Chromium 手机/桌面、WebKit mobile、Firefox desktop 四个任务。PR 另生成 Linux 视觉候选图，手动入口可启用 `generate_visual_candidates`；候选图必须逐张审阅，并在相同容器中不带 `--update-snapshots` 比较后才能接受。
 
-本机尝试官方 Playwright 1.63.0 Linux x64 容器时，ARM 主机的 QEMU 在 Chromium 启动阶段因 `rcu_read_unlock` 断言崩溃，尚未打开页面。没有生成或接受 Linux 基线，诊断在 `verification/linux-diagnostic/`；需原生 x64 Linux runner 完成后续验证。远程 Actions 未触发、分支保护未配置，代码未提交或推送。
+本机尝试官方 Playwright 1.63.0 Linux x64 容器时，ARM 主机的 QEMU 在 Chromium 启动阶段因 `rcu_read_unlock` 断言崩溃，尚未打开页面。没有生成或接受 Linux 基线，诊断在 `verification/linux-diagnostic/`；需原生 x64 Linux runner 完成后续验证。PR #171 已触发远程 Actions；首次运行正确发现主分支新合入的 BarCode 尚未登记，补充后的运行结果将在同一 PR 收口。分支保护仍需在仓库设置中单独配置。
 
 连续触摸通过 Chromium CDP；其余部分拖动使用鼠标和现有触摸模拟器，不能据此声称真实 iOS/Android 手势通过。中文组合输入验证合成事件契约，未验证真机输入法。小程序/App、SSR、文档站、真实设备和真实第三方服务不属于本次 H5 E2E 范围。
 

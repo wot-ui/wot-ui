@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "H5",
-  "generatedAt": "2026-09-18T05:31:06.385Z",
+  "generatedAt": "2026-09-19T12:50:01.618Z",
   "note": "功能用例存在不代表完整覆盖；known-defect 不计入正常通过，smoke-only 尚未实现功能场景。结果仅对应 evidence 所指运行。",
   "components": [
     {
@@ -74,6 +74,20 @@
       "scenarios": [
         "72f479ec38ac",
         "d222f12ceef9"
+      ]
+    },
+    {
+      "name": "wd-bar-code",
+      "phase": "M9",
+      "demo": "src/subPages/barCode/Index.vue",
+      "mode": "独立组件场景",
+      "routes": [
+        "subPages/barCode/Index"
+      ],
+      "coverageStatus": "partial-functional",
+      "scenarios": [
+        "fe42220b470f",
+        "5f5561a28611"
       ]
     },
     {
@@ -1838,6 +1852,68 @@
           "runs": 3,
           "date": "2026-09-17T03:48:16.522Z",
           "evidence": "test-results/verification/post-fix-final/results.json",
+          "annotations": []
+        }
+      }
+    },
+    {
+      "id": "fe42220b470f",
+      "file": "tests/e2e/components/wd-bar-code.spec.ts",
+      "title": "基础条形码绘制真实条纹并采用默认尺寸",
+      "results": {
+        "chromium-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:01.188Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "webkit-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:02.115Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "chromium-desktop": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:03.629Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        }
+      }
+    },
+    {
+      "id": "5f5561a28611",
+      "file": "tests/e2e/components/wd-bar-code.spec.ts",
+      "title": "导出图片生成可加载且包含条纹的 PNG",
+      "results": {
+        "chromium-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:01.185Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "webkit-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:02.312Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "chromium-desktop": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:04.066Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
           "annotations": []
         }
       }
@@ -10332,6 +10408,45 @@
       }
     },
     {
+      "id": "ddb57a31e3c8",
+      "file": "tests/e2e/smoke/routes.spec.ts",
+      "title": "路由与组件覆盖清单保持同步",
+      "results": {
+        "chromium-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:01.192Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "webkit-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:02.398Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "chromium-desktop": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:04.160Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "firefox-desktop": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:04.654Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        }
+      }
+    },
+    {
       "id": "93ef2fdd055c",
       "file": "tests/e2e/smoke/routes.spec.ts",
       "title": "页面冒烟：pages/index/Index",
@@ -13993,6 +14108,45 @@
           "runs": 3,
           "date": "2026-09-17T03:52:18.860Z",
           "evidence": "test-results/verification/post-fix-final/results.json",
+          "annotations": []
+        }
+      }
+    },
+    {
+      "id": "cc767a0690ec",
+      "file": "tests/e2e/smoke/routes.spec.ts",
+      "title": "页面冒烟：subPages/barCode/Index",
+      "results": {
+        "chromium-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:01.192Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "webkit-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:02.666Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "chromium-desktop": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:04.199Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
+          "annotations": []
+        },
+        "firefox-desktop": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-09-19T12:48:04.702Z",
+          "evidence": "test-results/verification/bar-code-ci-fix/results.json",
           "annotations": []
         }
       }

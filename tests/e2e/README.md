@@ -50,7 +50,7 @@ Linux 首次运行需要 `pnpm exec playwright install --with-deps chromium`。�
 - `components/wd-input.spec.ts`：编辑、禁用/只读、清空、密码显隐、字数边界。
 - `components/wd-popup.spec.ts`：遮罩关闭、再次打开、关闭按钮、禁止遮罩关闭、无模态模式。
 
-完整阶段和组件清单见 [执行计划](../../.github/E2E-H5-PLAN.md)。目前 100 个组件、94 条路由和 367 个独立场景已登记；最新完整三轮为 3660 通过、33 明确跳过、0 失败、0 重试。组合子组件通过父组件流程中的内容、状态或布局断言验证。
+完整阶段和组件清单见 [执行计划](../../.github/E2E-H5-PLAN.md)。目前 101 个组件、95 条路由和 371 个独立场景已登记；其中前 367 个场景的最新完整三轮为 3660 通过、33 明确跳过、0 失败、0 重试，新合入的 BarCode 与清单守卫完成四配置增量 14 次通过。组合子组件通过父组件流程中的内容、状态或布局断言验证。
 
 M3 ～ M9 的核心场景已加入 `components/`；`flows/` 验证配置穿透、暗色表单、语言持久化及两种输入路径。最新实际结果见 [阶段报告](../../.github/E2E-H5-REPORT.md)，历史缺陷单独记录，不计入初始矩阵的正常通过。历史 `@known-defect` 场景在修复后必须移除标记；当前修复相关场景已按正常通过处理。
 
@@ -61,7 +61,7 @@ pnpm exec cross-env E2E_VISUAL=1 playwright test --list --reporter=json > /tmp/w
 node tests/e2e/scripts/update-coverage-matrix.mjs /tmp/wot-e2e-list.json test-results/e2e-results.json
 ```
 
-`coverage-matrix.json` 登记 100 个组件、场景 ID 和实际执行证据。`partial-functional` 只表示已有功能场景，绝不等于完整覆盖。组件目录及路由在测试收集时检查遗漏。
+`coverage-matrix.json` 登记 101 个组件、场景 ID 和实际执行证据。`partial-functional` 只表示已有功能场景，绝不等于完整覆盖。组件目录及路由在测试执行时检查遗漏；该守卫位于用例内，允许 `--list` 先收集新增场景并重建矩阵。
 
 ## 编写约定
 
@@ -90,7 +90,7 @@ node tests/e2e/scripts/update-coverage-matrix.mjs /tmp/wot-e2e-list.json test-re
 - JSON 结果：`test-results/e2e-results.json`。
 - 截图、Trace 与诊断：`test-results/e2e/`。
 - 报告被下一次运行更新，阶段验收前应另存证据；以上生成目录不提交。
-- CI 工作流为 `.github/workflows/e2e-h5.yml`，在 master 的 PR/push 和手动触发时执行，失败也上传报告。
+- CI 工作流为 `.github/workflows/e2e-h5.yml`，在 main 的 PR/push 和手动触发时执行，失败也上传报告。
 - 功能 CI 包含 Chromium mobile、WebKit mobile、Chromium desktop 和 Firefox desktop。PR 另外生成 Linux 视觉候选图供审阅，手动触发时也可启用 `generate_visual_candidates`；这些图片不会被自动提交或接受，候选任务通过不等于视觉对比通过。
 
 ## 现有基线
@@ -101,7 +101,7 @@ node tests/e2e/scripts/update-coverage-matrix.mjs /tmp/wot-e2e-list.json test-re
 
 - Chromium mobile（Pixel 7）和 WebKit mobile（iPhone 13）：全部核心功能与路由。
 - Chromium desktop：全部核心功能及纯鼠标滚轮回归。四个 Picker 文件使用项目默认输入配置；`picker-mouse` 显式 hasTouch=false/isMobile=false，`picker-touch` 显式 hasTouch=true。
-- Firefox desktop：94 路由、首页流程、Button/Input/Popup 及跨组件关键流程；不是全部组件功能矩阵。
+- Firefox desktop：95 路由、首页流程、Button/Input/Popup 及跨组件关键流程；不是全部组件功能矩阵。
 - 连续触摸使用 Chromium CDP 的 Input.dispatchTouchEvent，没有在 DOM 内派发伪造事件。其他引擎没有对应 Playwright API，因此显式排除该用例；真机手势不由这一结果保证。
 
 视觉集默认关闭，避免 macOS 和 Linux 基线混用。当前已审阅 6 张 macOS 基线，截取配置页 Button.size 控件，覆盖浅/暗主题、手机/桌面布局。Linux 基线尚未生成，功能 CI 不运行视觉集。

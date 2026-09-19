@@ -374,5 +374,9 @@
   {
     "path": "subPages/qrCode/Index",
     "ready": ".wd-qr-code"
+  },
+  {
+    "path": "subPages/barCode/Index",
+    "ready": ".page-bar-code .wd-bar-code canvas"
   }
 ]

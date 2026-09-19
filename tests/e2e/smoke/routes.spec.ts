@@ -13,14 +13,16 @@ const registeredPaths = [
   ...pages.subPackages.flatMap((group) => group.pages.map((page) => `${group.root}/${page.path}`))
 ]
 
-// 新增/删除路由时要求同步清单，不能静默遗漏页面。
-expect(routes.map((route) => route.path).sort()).toEqual(registeredPaths.sort())
-expect(new Set(routes.map((route) => route.path)).size).toBe(routes.length)
-expect(matrix.components.map((component) => component.name).sort()).toEqual(
-  readdirSync('src/uni_modules/wot-ui/components')
-    .filter((name) => name.startsWith('wd-'))
-    .sort()
-)
+test('路由与组件覆盖清单保持同步', () => {
+  // 新增/删除路由时要求同步清单，不能静默遗漏页面；放在用例内以允许先收集测试再重建矩阵。
+  expect(routes.map((route) => route.path).sort()).toEqual(registeredPaths.sort())
+  expect(new Set(routes.map((route) => route.path)).size).toBe(routes.length)
+  expect(matrix.components.map((component) => component.name).sort()).toEqual(
+    readdirSync('src/uni_modules/wot-ui/components')
+      .filter((name) => name.startsWith('wd-'))
+      .sort()
+  )
+})
 
 for (const route of routes) {
   test(`页面冒烟：${route.path}`, async ({ page }) => {
