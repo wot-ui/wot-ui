@@ -242,6 +242,28 @@ describe('分段器组件', () => {
     expect(uni.vibrateShort).toHaveBeenCalled()
   })
 
+  test('振动不可用时仍能切换，默认关闭振动且禁用项不触发', async () => {
+    const vibrate = vi.spyOn(uni, 'vibrateShort').mockImplementation((options) => {
+      options?.fail?.({ errMsg: 'vibrateShort:fail unsupported' })
+    })
+    const wrapper = mount(WdSegmented, {
+      props: { value: 'a', options: ['a', 'b', { value: 'c', disabled: true }] }
+    })
+    await wrapper.setProps({ value: 'b' })
+    expect(vibrate).not.toHaveBeenCalled()
+    await wrapper.setProps({ vibrateShort: true })
+    await wrapper.findAll('.wd-segmented__item')[2].trigger('click')
+    expect(wrapper.emitted('change')).toBeUndefined()
+    expect(vibrate).not.toHaveBeenCalled()
+    await wrapper.findAll('.wd-segmented__item')[0].trigger('click')
+    await wrapper.setProps({ value: 'a' })
+    expect(vibrate).toHaveBeenCalledTimes(1)
+    expect(wrapper.find('.is-active').text()).toBe('a')
+    expect(wrapper.emitted('change')).toEqual([[{ value: 'a' }]])
+    wrapper.unmount()
+    vibrate.mockRestore()
+  })
+
   // 测试自定义类名
   test('应用自定义类名', () => {
     const customClass = 'my-segmented'

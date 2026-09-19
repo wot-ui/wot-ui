@@ -52,7 +52,7 @@
             <wd-popover v-model="show4" ref="popoverRef" :placement="placement">
               <template #content>
                 <view class="page-popover__content" :style="{ width: dynamicWidth + 'px' }">
-                  <view class="page-popover__status">{{ $t('dang-qian-kuan-du-dynamicwidth-px', dynamicWidth) }}</view>
+                  <view class="page-popover__status">{{ $t('dang-qian-kuan-du-dynamicwidth-px', [dynamicWidth]) }}</view>
                   <wd-button custom-class="page-popover__btn" size="small" @click="changeSize">{{ $t('gai-bian-da-xiao-bing-geng-xin') }}</wd-button>
                 </view>
               </template>

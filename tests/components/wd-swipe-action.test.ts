@@ -163,6 +163,36 @@ describe('WdSwipeAction', () => {
     expect(emitted['update:modelValue'][0][0]).toBe('close')
   })
 
+  test.each([-60, -180])('拖动 %s px 后的附带点击不关闭，下一次点击仍正常执行', async (distance) => {
+    const beforeClose = vi.fn().mockReturnValue(true)
+    const wrapper = mount(WdSwipeAction, { props: { beforeClose }, slots: { right: '<button>操作</button>' } })
+    const root = wrapper.find('.wd-swipe-action')
+    try {
+      await flushSwipe()
+      await root.trigger('touchstart', { touches: [{ clientX: 200, clientY: 0 }] })
+      await root.trigger('touchmove', { touches: [{ clientX: 200 + distance, clientY: 0 }] })
+      await flushSwipe()
+      await root.trigger('touchend', { touches: [] })
+      await flushSwipe()
+      await root.trigger('click')
+      await flushSwipe()
+      expect(wrapper.find('.wd-swipe-action__wrapper').attributes('style')).toContain('translate3d(-100px')
+      expect(beforeClose).not.toHaveBeenCalled()
+      expect(wrapper.emitted('click')).toBeUndefined()
+
+      await root.trigger('touchstart', { touches: [{ clientX: 50, clientY: 0 }] })
+      await root.trigger('touchend', { touches: [] })
+      await flushSwipe()
+      await wrapper.find('.wd-swipe-action__right').trigger('click')
+      await flushSwipe()
+      expect(beforeClose).toHaveBeenCalledWith('click', 'right')
+      expect(wrapper.emitted('click')).toEqual([[{ value: 'right' }]])
+      expect(wrapper.find('.wd-swipe-action__wrapper').attributes('style')).toContain('translate3d(0px')
+    } finally {
+      wrapper.unmount()
+    }
+  })
+
   test('close(swipe) 根据 originOffset 推断 right 并执行 beforeClose', async () => {
     const beforeClose = vi.fn().mockReturnValue(true)
     const wrapper = mount(WdSwipeAction, {

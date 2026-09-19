@@ -26,8 +26,13 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+!tests/e2e/fixtures/assets/generate-video.swift
 .history
 tags.json
 attributes.json
 web-types.json
 .cursor
+
+# Playwright generated artifacts
+playwright-report/
+test-results/

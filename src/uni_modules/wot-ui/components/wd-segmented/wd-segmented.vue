@@ -67,7 +67,10 @@ watch(
     updateCurrentIndex()
     updateActiveStyle()
     if (props.vibrateShort) {
-      uni.vibrateShort({})
+      uni.vibrateShort({
+        // 振动是可选反馈，不支持或被系统拒绝时不影响选项切换。
+        fail: () => {}
+      })
     }
   },
   {

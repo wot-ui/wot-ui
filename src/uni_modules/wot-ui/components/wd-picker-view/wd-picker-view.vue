@@ -1,5 +1,6 @@
 <template>
-  <view :class="`wd-picker-view ${customClass}`" :style="customStyle">
+  <view :class="`wd-picker-view ${customClass}`" :style="customStyle" data-no-touch-simulate="">
+    <!-- uni-app 的 picker-view 已支持鼠标和触摸，排除 H5 touch-emulator，避免重复点击。 -->
     <picker-view
       class="wd-picker-view__main"
       mask-class="wd-picker-view__mask"

@@ -1,0 +1,125 @@
+name: Playwright E2E (H5)
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/e2e/**'
+      - 'patches/**'
+      - 'playwright.config.ts'
+      - 'tsconfig.json'
+      - 'vite.config.ts'
+      - 'vite-plugins/**'
+      - 'index.html'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.npmrc'
+      - '.eslintrc*'
+      - '.prettierrc*'
+      - '.github/workflows/e2e-h5.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tests/e2e/**'
+      - 'patches/**'
+      - 'playwright.config.ts'
+      - 'tsconfig.json'
+      - 'vite.config.ts'
+      - 'vite-plugins/**'
+      - 'index.html'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - '.npmrc'
+      - '.eslintrc*'
+      - '.prettierrc*'
+      - '.github/workflows/e2e-h5.yml'
+  workflow_dispatch:
+    inputs:
+      generate_visual_candidates:
+        description: '生成 Linux 视觉候选图（需逐张审阅后入库）'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-h5-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  functional:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - project: chromium-mobile
+            browser: chromium
+          - project: webkit-mobile
+            browser: webkit
+          - project: chromium-desktop
+            browser: chromium
+          - project: firefox-desktop
+            browser: firefox
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps ${{ matrix.browser }}
+      - name: Record test environment
+        run: |
+          mkdir -p test-results
+          node -e "const os=require('node:os'); console.log(JSON.stringify({node:process.version, platform:os.platform(), arch:os.arch(), release:os.release(), playwright:require('@playwright/test/package.json').version},null,2))" > test-results/environment.json
+      - run: pnpm lint:e2e
+      - run: pnpm type-check:e2e
+      - run: pnpm build:h5
+      - run: pnpm exec cross-env E2E_SERVER=preview playwright test --project=${{ matrix.project }}
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-h5-${{ matrix.project }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+
+  visual-candidates:
+    if: github.event_name == 'pull_request' || (github.event_name == 'workflow_dispatch' && inputs.generate_visual_candidates)
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --shm-size=1g
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Record test environment
+        run: |
+          mkdir -p test-results
+          node -e "const os=require('node:os'); console.log(JSON.stringify({node:process.version, platform:os.platform(), arch:os.arch(), release:os.release(), playwright:require('@playwright/test/package.json').version, image:'mcr.microsoft.com/playwright:v1.63.0-noble'},null,2))" > test-results/environment.json
+      - run: pnpm build:h5
+      - run: pnpm exec cross-env E2E_SERVER=preview E2E_VISUAL=1 playwright test visual --project=chromium-mobile --project=webkit-mobile --project=chromium-desktop --update-snapshots --workers=1
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-h5-linux-visual-candidates
+          path: |
+            tests/e2e/visual/themes.spec.ts-snapshots/*-linux.png
+            playwright-report/
+            test-results/
+          retention-days: 14

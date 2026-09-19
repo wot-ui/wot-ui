@@ -66,6 +66,8 @@ const originOffset = ref<number>(0)
 const wrapperOffset = ref<number>(0)
 /** 是否处于手指滑动中（用于区分程序设置与手势） */
 const touching = ref<boolean>(false)
+/** 忽略本次拖动结束后浏览器附带的点击，下一次触摸开始时恢复。 */
+let ignoreClick = false
 
 const touch = useTouch()
 
@@ -168,7 +170,7 @@ function swipeMove(offset = 0) {
  * @param position 点击位置（'left' | 'right' | undefined 表示内容区）
  */
 function handleClick(position?: SwipeActionPosition) {
-  if (props.disabled || wrapperOffset.value === 0) {
+  if (props.disabled || ignoreClick || wrapperOffset.value === 0) {
     return
   }
 
@@ -184,9 +186,10 @@ function handleClick(position?: SwipeActionPosition) {
  * 触摸开始：记录初始偏移并关闭其他已展开的滑动项
  * @param event 触摸事件
  */
-function startDrag(event: TouchEvent) {
+function startDrag(event: TouchEvent, resetClick = true) {
   if (props.disabled) return
 
+  if (resetClick) ignoreClick = false
   originOffset.value = wrapperOffset.value
   touch.touchStart(event)
   if (queue && queue.closeOther) {
@@ -212,19 +215,21 @@ function onDrag(event: TouchEvent) {
   }
 
   touching.value = true
+  // 与 uni-h5 的点击位移阈值一致；边界处重设拖动原点时仍保留此标记。
+  ignoreClick = ignoreClick || touch.offsetX.value >= 20
 
   const offset = originOffset.value + touch.deltaX.value
   getWidths().then(([leftWidth, rightWidth]) => {
     if ((leftWidth === 0 && offset > 0) || (rightWidth === 0 && offset < 0)) {
       swipeMove(0)
-      return startDrag(event)
+      return startDrag(event, false)
     }
     if (leftWidth !== 0 && offset >= leftWidth) {
       swipeMove(leftWidth)
-      return startDrag(event)
+      return startDrag(event, false)
     } else if (rightWidth !== 0 && -offset >= rightWidth) {
       swipeMove(-rightWidth)
-      return startDrag(event)
+      return startDrag(event, false)
     }
     swipeMove(offset)
   })

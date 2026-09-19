@@ -1,0 +1,378 @@
+[
+  {
+    "path": "pages/index/Index",
+    "ready": ".page-home__title-name"
+  },
+  {
+    "path": "pages/about/Index",
+    "ready": ".page-about__title"
+  },
+  {
+    "path": "subPages/button/Index",
+    "ready": ".wd-button"
+  },
+  {
+    "path": "subPages/icon/Index",
+    "ready": ".wd-icon"
+  },
+  {
+    "path": "subPages/badge/Index",
+    "ready": ".wd-badge"
+  },
+  {
+    "path": "subPages/avatar/Index",
+    "ready": ".wd-avatar"
+  },
+  {
+    "path": "subPages/cell/Index",
+    "ready": ".wd-cell"
+  },
+  {
+    "path": "subPages/rate/Index",
+    "ready": ".wd-rate"
+  },
+  {
+    "path": "subPages/slider/Index",
+    "ready": ".wd-slider"
+  },
+  {
+    "path": "subPages/layout/Index",
+    "ready": ".page-layout .wd-col"
+  },
+  {
+    "path": "subPages/card/Index",
+    "ready": ".wd-card"
+  },
+  {
+    "path": "subPages/tag/Index",
+    "ready": ".wd-tag"
+  },
+  {
+    "path": "subPages/search/Index",
+    "ready": ".wd-search"
+  },
+  {
+    "path": "subPages/transition/Index",
+    "ready": ".page-transition .wd-button"
+  },
+  {
+    "path": "subPages/popup/Index",
+    "ready": ".page-popup .wd-cell"
+  },
+  {
+    "path": "subPages/divider/Index",
+    "ready": ".wd-divider"
+  },
+  {
+    "path": "subPages/switch/Index",
+    "ready": ".wd-switch"
+  },
+  {
+    "path": "subPages/input/Index",
+    "ready": ".wd-input"
+  },
+  {
+    "path": "subPages/textarea/Index",
+    "ready": ".wd-textarea"
+  },
+  {
+    "path": "subPages/dialog/Index",
+    "ready": ".page-dialog .wd-button"
+  },
+  {
+    "path": "subPages/toast/Index",
+    "ready": ".page-toast__button-group .wd-button"
+  },
+  {
+    "path": "subPages/notify/Index",
+    "ready": ".page-notify .wd-cell"
+  },
+  {
+    "path": "subPages/loading/Index",
+    "ready": ".wd-loading"
+  },
+  {
+    "path": "subPages/progress/Index",
+    "ready": ".wd-progress"
+  },
+  {
+    "path": "subPages/empty/Index",
+    "ready": ".wd-empty"
+  },
+  {
+    "path": "subPages/inputNumber/Index",
+    "ready": ".wd-input-number"
+  },
+  {
+    "path": "subPages/loadmore/Index",
+    "ready": ".wd-loadmore"
+  },
+  {
+    "path": "subPages/resize/Index",
+    "ready": ".wd-resize"
+  },
+  {
+    "path": "subPages/sticky/Index",
+    "ready": ".wd-sticky"
+  },
+  {
+    "path": "subPages/img/Index",
+    "ready": ".wd-img"
+  },
+  {
+    "path": "subPages/imgCropper/Index",
+    "ready": ".page-img-cropper__image-placeholder"
+  },
+  {
+    "path": "subPages/pagination/Index",
+    "ready": ".wd-pagination"
+  },
+  {
+    "path": "subPages/sortButton/Index",
+    "ready": ".wd-sort-button"
+  },
+  {
+    "path": "subPages/actionSheet/Index",
+    "ready": ".page-action-sheet .wd-button"
+  },
+  {
+    "path": "subPages/curtain/Index",
+    "ready": ".page-curtain .wd-button"
+  },
+  {
+    "path": "subPages/noticeBar/Index",
+    "ready": ".wd-notice-bar"
+  },
+  {
+    "path": "subPages/popover/Index",
+    "ready": ".page-popover .wd-button"
+  },
+  {
+    "path": "subPages/tooltip/Index",
+    "ready": ".page-tooltip .wd-button"
+  },
+  {
+    "path": "subPages/pickerView/Index",
+    "ready": ".wd-picker-view"
+  },
+  {
+    "path": "subPages/picker/Index",
+    "ready": ".wd-cell"
+  },
+  {
+    "path": "subPages/tabs/Index",
+    "ready": ".wd-tabs"
+  },
+  {
+    "path": "subPages/radio/Index",
+    "ready": ".wd-radio"
+  },
+  {
+    "path": "subPages/checkbox/Index",
+    "ready": ".wd-checkbox"
+  },
+  {
+    "path": "subPages/cascader/Index",
+    "ready": ".page-cascader .wd-cell"
+  },
+  {
+    "path": "subPages/selectPicker/Index",
+    "ready": ".page-select-picker .wd-cell"
+  },
+  {
+    "path": "subPages/dropMenu/Index",
+    "ready": ".wd-drop-menu"
+  },
+  {
+    "path": "subPages/grid/Index",
+    "ready": ".wd-grid"
+  },
+  {
+    "path": "subPages/swipeAction/Index",
+    "ready": ".wd-swipe-action"
+  },
+  {
+    "path": "subPages/skeleton/Index",
+    "ready": ".wd-skeleton"
+  },
+  {
+    "path": "subPages/slideVerify/Index",
+    "ready": ".wd-slide-verify"
+  },
+  {
+    "path": "subPages/steps/Index",
+    "ready": ".wd-steps"
+  },
+  {
+    "path": "subPages/videoPreview/Index",
+    "ready": ".page-video-preview .wd-button"
+  },
+  {
+    "path": "subPages/upload/Index",
+    "ready": ".wd-upload"
+  },
+  {
+    "path": "subPages/calendarView/Index",
+    "ready": ".wd-calendar-view"
+  },
+  {
+    "path": "subPages/calendar/Index",
+    "ready": ".page-calendar .wd-cell"
+  },
+  {
+    "path": "subPages/datetimePickerView/Index",
+    "ready": ".page-datetime-picker-view .wd-picker-view"
+  },
+  {
+    "path": "subPages/datetimePicker/Index",
+    "ready": ".page-datetime-picker .wd-cell"
+  },
+  {
+    "path": "subPages/form/Index",
+    "ready": ".page-form .wd-form"
+  },
+  {
+    "path": "subPages/form/demo1",
+    "ready": ".wd-form"
+  },
+  {
+    "path": "subPages/form/demo2",
+    "ready": ".wd-form"
+  },
+  {
+    "path": "subPages/form/demo3",
+    "ready": ".wd-form"
+  },
+  {
+    "path": "subPages/form/demo5",
+    "ready": ".wd-form"
+  },
+  {
+    "path": "subPages/collapse/Index",
+    "ready": ".wd-collapse"
+  },
+  {
+    "path": "subPages/configProvider/Index",
+    "ready": ".wd-radio"
+  },
+  {
+    "path": "subPages/watermark/Index",
+    "ready": ".wd-watermark"
+  },
+  {
+    "path": "subPages/circle/Index",
+    "ready": ".wd-circle"
+  },
+  {
+    "path": "subPages/swiper/Index",
+    "ready": ".wd-swiper"
+  },
+  {
+    "path": "subPages/segmented/Index",
+    "ready": ".wd-segmented"
+  },
+  {
+    "path": "subPages/tabbar/Index",
+    "ready": ".wd-tabbar"
+  },
+  {
+    "path": "subPages/overlay/Index",
+    "ready": ".page-overlay .wd-button"
+  },
+  {
+    "path": "subPages/navbar/Index",
+    "ready": ".wd-navbar"
+  },
+  {
+    "path": "subPages/table/Index",
+    "ready": ".wd-table"
+  },
+  {
+    "path": "subPages/sidebar/Index",
+    "ready": ".wd-sidebar"
+  },
+  {
+    "path": "subPages/sidebar/demo1",
+    "ready": ".page-sidebar-demo1 .wd-sidebar"
+  },
+  {
+    "path": "subPages/sidebar/demo2",
+    "ready": ".page-sidebar-demo2 .wd-sidebar"
+  },
+  {
+    "path": "subPages/sidebar/demo3",
+    "ready": ".page-sidebar-demo3 .wd-sidebar"
+  },
+  {
+    "path": "subPages/form/demo4",
+    "ready": ".wd-form"
+  },
+  {
+    "path": "subPages/fab/Index",
+    "ready": ".page-fab .wd-radio"
+  },
+  {
+    "path": "subPages/text/Index",
+    "ready": ".wd-text"
+  },
+  {
+    "path": "subPages/countDown/Index",
+    "ready": ".wd-count-down"
+  },
+  {
+    "path": "subPages/countTo/Index",
+    "ready": ".wd-count-to"
+  },
+  {
+    "path": "subPages/keyboard/Index",
+    "ready": ".page-keyboard .wd-cell"
+  },
+  {
+    "path": "subPages/gap/Index",
+    "ready": ".wd-gap"
+  },
+  {
+    "path": "subPages/passwordInput/Index",
+    "ready": ".wd-password-input"
+  },
+  {
+    "path": "subPages/signature/Index",
+    "ready": ".wd-signature"
+  },
+  {
+    "path": "subPages/signature/Landscape",
+    "ready": ".landscape-signature .wd-signature"
+  },
+  {
+    "path": "subPages/backtop/Index",
+    "ready": ".page-backtop .wd-checkbox"
+  },
+  {
+    "path": "subPages/indexBar/Index",
+    "ready": ".wd-index-bar"
+  },
+  {
+    "path": "subPages/floatingPanel/Index",
+    "ready": ".page-floating-panel .wd-tabs"
+  },
+  {
+    "path": "subPages/wxRewardAd/Index",
+    "ready": ".page-wx-reward-ad__button-group .wd-button"
+  },
+  {
+    "path": "subPages/rootPortal/Index",
+    "ready": ".page-root-portal .wd-button"
+  },
+  {
+    "path": "subPages/tour/Index",
+    "ready": ".page-tour__button-group .wd-button"
+  },
+  {
+    "path": "subPages/imagePreview/Index",
+    "ready": ".page-image-preview .wd-button"
+  },
+  {
+    "path": "subPages/qrCode/Index",
+    "ready": ".wd-qr-code"
+  }
+]
