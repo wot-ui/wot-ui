@@ -1,0 +1,56 @@
+schema: spec-driven
+
+context: |
+  Wot UI 是面向 uni-app 的 Vue 3 + TypeScript 多端组件库，支持 H5、微信小程序、
+  支付宝小程序和 App 等平台。仓库使用 pnpm workspace，样式使用 SCSS，文档使用 VitePress，
+  单元测试使用 Vitest 与 Vue Test Utils。
+
+  组件源码位于 src/uni_modules/wot-ui/components/wd-<name>/，包含 wd-<name>.vue、
+  types.ts 和 index.scss；全局组件类型位于 src/uni_modules/wot-ui/global.d.ts。
+  Demo 位于 src/subPages/<name>/Index.vue，中文文档位于 docs/component/<name>.md，
+  英文文档位于 docs/en-US/component/<name>.md，测试位于 tests/components/<name>.test.ts。
+  公共工具位于 src/uni_modules/wot-ui/common/，共享样式与设计变量位于 src/uni_modules/wot-ui/styles/。
+  文档主题位于 packages/vitepress-theme/，开发与发布脚本位于 scripts/。
+
+  遵循 AGENTS.md 与 .agents/skills/wot-ui-component-baseline/SKILL.md 的组件公共基线。
+  所有现有 API（props、events、slots、methods、默认值）以源码为准，不能凭空补充能力。
+  proposal 可以提出新能力，但必须说明兼容性影响；实现后再同步对应 Demo、文档和测试。
+  文件与组件目录使用 kebab-case，全局组件名使用 Wd<Name>，变量与函数使用 camelCase，
+  类型与接口使用 PascalCase。样式复用现有设计系统变量，并考虑暗色模式与多端兼容。
+  只做任务范围内的最小必要修改；一致性核对、文档迁移、Demo 重构与样式调整各自保持边界。
+
+  根据改动范围验证：源码改动运行 pnpm type-check 或检查类型声明；样式与模板改动运行
+  pnpm lint；测试改动运行 pnpm test:h5 --run tests/components/<name>.test.ts。
+  覆盖率检查使用 pnpm coverage:h5，目标为 80%+，关键组件为 90%+。
+  涉及平台差异时补充 pnpm test:mp-weixin --run 或相关平台的构建与人工验证。
+  pnpm lint 会自动修复 src 下文件，验证后必须检查并避免混入无关改动。
+
+  所有 SDD/OpenSpec 规划文档必须使用简体中文。只有代码标识符、文件路径、命令、产品名以及
+  OpenSpec 校验器要求的固定语法保留英文。
+
+rules:
+  proposal:
+    - 使用简体中文撰写标题和正文；保留模板要求的固定英文标题、代码标识符、路径、命令与产品名。
+    - 说明用户可见结果、兼容性影响和明确的非目标。
+    - 明确组件 API、全局类型、样式变量、Demo、中文与英文文档、测试或构建脚本是否受到影响。
+  specs:
+    - 使用简体中文撰写 Purpose 正文、Requirement 名称、Scenario 名称、描述和验收内容；保留固定英文标记及 SHALL/MUST 等校验关键字。
+    - 使用具体的 GIVEN/WHEN/THEN 风格场景表达外部可观察行为。
+    - 组件行为变更应覆盖默认行为、状态切换、事件与边界条件；按影响补充禁用态、暗色模式、多端差异和兼容性场景。
+  design:
+    - 使用简体中文撰写设计背景、决策、取舍、风险和迁移方案，保留模板要求的固定英文标题。
+    - 明确受影响的组件、公共工具、设计变量及平台边界，复用现有组件开发 Skills。
+    - 说明公共 API、类型、样式变量和已有用法的兼容或迁移方式，避免无关重构。
+  tasks:
+    - 使用简体中文撰写任务分组和任务描述，保留命令、文件路径及代码标识符原文。
+    - 保持任务粒度小、顺序明确且可独立验证，使用可追踪的复选框。
+    - 按实际影响包含源码、类型注册、Demo、文档与定向测试任务，以及适合本次变更的准确验证命令。
+
+operations:
+  apply:
+    guidance:
+      - 保留无关的用户改动，避免无关重构；组件任务按 AGENTS.md 选择并读取对应 Skills。
+      - 实现过程中运行定向检查，完成后运行受影响范围要求的完整验证。
+  archive:
+    guidance:
+      - 记录已经通过的验证命令，以及仍然存在的多端兼容性或发布风险。

@@ -6,6 +6,7 @@ Wot UI 是一个面向 uni-app 的多端组件库（微信小程序、支付宝�
 
 | 你的任务 | 推荐方案 |
 |---------|--------|
+| 新功能、破坏性变更、跨模块改造或架构调整 | OpenSpec 提案 → 实现 → 验证 → 归档，再组合下方专项 Skills |
 | 创建新组件骨架 | Skill `create-component` + `wot-ui-component-baseline` |
 | 创建 / 重构演示页 | Skill `create-demo-page` + `wot-ui-component-baseline` |
 | 核对文档与源码 API 是否一致 | Skill `check-doc-component-consistency` |
@@ -50,6 +51,18 @@ Wot UI 是一个面向 uni-app 的多端组件库（微信小程序、支付宝�
    - 样式/模板改动：运行 `pnpm lint`
    - 测试改动：运行 `pnpm test:h5` 确认目标组件测试通过
    - 覆盖率检查：`pnpm coverage:h5`（目标 80%+，关键组件 90%+）
+
+## OpenSpec 工作流
+
+- 新功能、破坏性变更、跨模块改造或架构调整，先使用 `.agents/skills/openspec-propose` 创建并评审变更提案，再使用 `.agents/skills/openspec-apply-change` 实现。
+- 小型 bug 修复、拼写和文档微调可以直接修改，不要求创建 OpenSpec change。
+- 实现完成后使用 `.agents/skills/openspec-verify-change` 核对规格、任务、实现和测试；确认无误后使用 `.agents/skills/openspec-archive-change` 归档。
+- 需求探索、规划修订和主规格同步分别使用 `openspec-explore`、`openspec-update-change` 和 `openspec-sync-specs`。
+- 项目上下文和 artifact 规则位于 `openspec/config.yaml`；以 CLI 返回的路径和状态为准，不手工假设 artifact 位置。
+- proposal、spec、design 和 tasks 统一使用简体中文；仅保留工具要求的固定英文标记及代码标识符、路径、命令和产品名。
+- OpenSpec 管理变更生命周期，组件实现仍须遵循核心约束，并组合本仓库已有专项 Skills。
+- 手动执行 OpenSpec 命令时使用 `pnpm exec openspec`，确保使用仓库锁定的版本。生成的 Skill 与 Claude `/opsx:*` 命令调用 PATH 中的 `openspec`，使用这些入口前需将相同版本安装到 PATH。
+- 安装、验证与升级方式见 [贡献指南](.github/CONTRIBUTING.md#openspec-变更流程)。
 
 ## Skills 速查
 

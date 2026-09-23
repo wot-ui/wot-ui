@@ -18,6 +18,45 @@
 - 使用 `git clone` 将自己 github 上 fork 得到的源码同步到到你的本地
 - 请确保基于 `master` 分支进行开发，我们只接受此分支上的代码贡献。
 
+### OpenSpec 变更流程
+
+本仓库参考 open-wot，使用 [OpenSpec](https://github.com/Fission-AI/OpenSpec) 管理新功能、破坏性变更、跨模块改造和架构调整。小型 bug 修复、拼写和文档微调可以直接修改。
+
+OpenSpec `1.13.1` 已作为精确版本的开发依赖锁定，需要 Node.js `>= 20.19.0`。在仓库根目录执行：
+
+```bash
+pnpm install
+pnpm exec openspec --version # 应输出 1.13.1
+pnpm exec openspec list
+npm install -g @fission-ai/openspec@1.13.1 # 使用 Skill 或 Claude /opsx:* 入口时需要
+openspec --version # 应输出 1.13.1
+```
+
+共享工作流位于 `.agents/skills/openspec-*`，按以下顺序使用：
+
+1. `openspec-propose`：创建并评审 proposal、specs、design 和 tasks。
+2. `openspec-apply-change`：按任务实现，并组合组件、Demo、文档和测试等专项 Skills。
+3. `openspec-verify-change`：核对规格、任务、实现和验证结果。
+4. `openspec-archive-change`：将完成的变更归档并更新主规格。
+
+需要探索需求、修订规划或提前同步主规格时，分别使用 `openspec-explore`、`openspec-update-change` 和 `openspec-sync-specs`。手动执行命令时使用 `pnpm exec openspec ...`；Skill 与 Claude `/opsx:*` 入口直接调用 PATH 中的 `openspec`，需要预先安装同版本 CLI。
+
+项目上下文和 artifact 规则位于 `openspec/config.yaml`。活动变更保存在 `openspec/changes/`，归档历史位于 `openspec/changes/archive/`，主规格保存在 `openspec/specs/`。引入时保留空目录，后续随实际变更逐步沉淀规格。所有规划文档使用简体中文，仅保留模板与校验器要求的英文标记、代码标识符、路径、命令和产品名。
+
+常用校验命令：
+
+```bash
+pnpm exec openspec status --change <change-name> --json
+pnpm exec openspec validate <change-name> --strict
+pnpm exec openspec validate --all --strict
+```
+
+OpenSpec 校验检查规划文档结构，不能替代 `pnpm type-check`、`pnpm lint` 和受影响组件的测试。
+
+共享工作流 Skills 维护在 `.agents/skills/`，Claude Code 通过已有的 `CLAUDE.md -> AGENTS.md` 与 `.claude/skills -> ../.agents/skills` 相对 Git 符号链接复用规则和 Skills；OpenSpec 1.13.1 同时生成 `.claude/commands/opsx/` 下的 Claude `/opsx:*` 命令入口。检出仓库时需保留符号链接。`.agents/skills/.openspec-target` 标记共享目标为 `agents`。
+
+升级时显式更新 `package.json` 中的固定版本并安装依赖。`update` 会按本机全局 profile 刷新或删除工作流，先通过 `pnpm exec openspec config profile` 确认自定义选择包含 `propose`、`explore`、`apply`、`update`、`sync`、`archive`、`verify`，再运行 `pnpm exec openspec update --force`。检查生成物 diff，保留共享 `agents` 目标与上述 7 个工作流，并一并提交依赖、lockfile 和生成物。项目约束写入 `AGENTS.md` 与 `openspec/config.yaml`，避免手改生成的工作流后被升级覆盖。
+
 ### 代码规范
 
 在编写代码时，请注意：

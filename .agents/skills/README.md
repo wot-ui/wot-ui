@@ -26,6 +26,24 @@
 | `generate-theme` | 生成单文件主题 SCSS，并在 App.vue 中挂载 | 组件级变量命名审计 |
 | `optimize-page-styles` | 按顺序巡检并修复 `src/pages`、`src/subPages` 页面样式，统一语义变量与 BEM 命名 | 组件源码样式、业务逻辑改写、文档迁移 |
 
+## OpenSpec 变更工作流
+
+较大的需求与设计变更使用 OpenSpec 管理生命周期，再按任务组合上表中的专项 Skills。小型 bug 修复、拼写和文档微调无需创建 change。
+
+| Skill | 用途 |
+| --- | --- |
+| `openspec-explore` | 探索需求、问题和设计方案 |
+| `openspec-propose` | 创建变更提案、规格、设计和任务 |
+| `openspec-update-change` | 修订已有规划文档并保持一致 |
+| `openspec-apply-change` | 按任务实现变更 |
+| `openspec-verify-change` | 验证实现与规划是否一致 |
+| `openspec-sync-specs` | 将变更规格同步至主规格 |
+| `openspec-archive-change` | 归档已完成变更并更新主规格 |
+
+这些文件由 OpenSpec 1.13.1 生成，统一维护在 `.agents/skills/`，由 `.openspec-target` 标记为共享 `agents` 目标。Claude Code 的 `/opsx:*` 命令入口由 OpenSpec 生成在 `.claude/commands/opsx/`。项目约束写入 `AGENTS.md` 与 `openspec/config.yaml`，不修改生成的 Skill 模板。手动执行命令时使用 `pnpm exec openspec ...`；Skill 和 `/opsx:*` 入口使用 PATH 中的 `openspec`，需预先安装相同版本。
+
+安装与升级说明见[贡献指南](../../.github/CONTRIBUTING.md#openspec-变更流程)。
+
 ## 推荐使用方式
 
 ### 1. 新建组件
