@@ -278,8 +278,9 @@ const updateActive = (value: number | string = 0, init: boolean = false, setScro
   if (children.length === 0) return
 
   value = getActiveIndex(value)
-  // 被禁用，不执行任何操作
-  if (children[value].disabled) return
+  const activeChild = children[value]
+  // 子项不存在或被禁用，不执行任何操作
+  if (!isDef(activeChild) || activeChild.disabled) return
   state.activeIndex = value
   if (setScroll) {
     updateLineStyle(init === false)
@@ -483,8 +484,8 @@ function onTouchEnd() {
  * @param {number | string} value 绑定值
  */
 function getActiveIndex(value: number | string) {
-  // name代表的索引超过了children长度的边界，自动用0兜底
-  if (isNumber(value) && value >= children.length) {
+  // 数字索引越界（负数、超出 children 长度）或对应子项不存在时，用 0 兜底
+  if (isNumber(value) && (value < 0 || value >= children.length || !isDef(children[value]))) {
     // eslint-disable-next-line prettier/prettier
     console.error('[wot ui] warning(wd-tabs): the type of tabs\' value is Number shouldn\'t be less than its children')
     value = 0
