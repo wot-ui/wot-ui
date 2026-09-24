@@ -1,6 +1,6 @@
-import { config, mount } from '@vue/test-utils'
+import { config, mount, type VueWrapper } from '@vue/test-utils'
 import { describe, test, expect } from 'vitest'
-import { nextTick } from 'vue'
+import { nextTick, type VNode } from 'vue'
 import WdTableColumn from '@/uni_modules/wot-ui/components/wd-table-column/wd-table-column.vue'
 import WdTable from '@/uni_modules/wot-ui/components/wd-table/wd-table.vue'
 import WdSortButton from '@/uni_modules/wot-ui/components/wd-sort-button/wd-sort-button.vue'
@@ -138,4 +138,74 @@ describe('WdTableColumn', () => {
     expect(text).toContain('25')
     expect(text).toContain('北京')
   })
+
+  test('虚拟滚动下 #value 列用窗口下标作 key，平移时复用节点并更新行数据', async () => {
+    const data = Array.from({ length: 100 }, (_, i) => ({ name: `name-${i}` }))
+    const wrapper = mount(
+      {
+        template: `
+          <wd-table :data="data" virtual :row-height="50" :height="400" :buffer="3">
+            <wd-table-column prop="name" label="姓名" fixed>
+              <template #value="{ row, index }">
+                <span class="custom-cell" :data-row-index="index">{{ row.name }}</span>
+              </template>
+            </wd-table-column>
+          </wd-table>
+        `,
+        data() {
+          return { data }
+        }
+      },
+      {}
+    )
+    await nextTick()
+
+    const table = wrapper.findComponent(WdTable)
+    const column = wrapper.findComponent(WdTableColumn)
+
+    // scrollTop=500 → start=7,end=21；scrollTop=550 → start=8,end=22，窗口长度同为 15
+    ;(table.vm as any).state.scrollTop = 500
+    await nextTick()
+
+    const before = getCellVNodes(column)
+    const beforeRowIndexes = wrapper.findAll('.custom-cell').map((cell) => cell.attributes('data-row-index'))
+    expect(before.length).toBe(15)
+    // key 是窗口下标 0..14，而不是绝对行号 7..21
+    expect(before.map((vnode) => vnode.key)).toEqual(before.map((_, i) => i))
+    expect(beforeRowIndexes[0]).toBe('7')
+    expect(beforeRowIndexes[14]).toBe('21')
+    expect(wrapper.find('.custom-cell').text()).toBe('name-7')
+    const firstCell = before[0].el as HTMLElement
+    expect(firstCell.classList.contains('is-fixed')).toBe(true)
+    // 斑马纹和 grid 行号仍按绝对 rowIndex，不跟窗口下标走
+    expect(firstCell.classList.contains('is-stripe')).toBe(true)
+    expect(firstCell.style.gridRow).toBe('8')
+    const beforeEls = before.map((vnode) => vnode.el)
+
+    ;(table.vm as any).state.scrollTop = 550
+    await nextTick()
+
+    const after = getCellVNodes(column)
+    const afterRowIndexes = wrapper.findAll('.custom-cell').map((cell) => cell.attributes('data-row-index'))
+    expect(after.length).toBe(before.length)
+    expect(after.map((vnode) => vnode.key)).toEqual(after.map((_, i) => i))
+    after.forEach((vnode, i) => {
+      expect(vnode.el).toBe(beforeEls[i])
+    })
+    expect(afterRowIndexes[0]).toBe('8')
+    expect(afterRowIndexes[14]).toBe('22')
+    expect(wrapper.find('.custom-cell').text()).toBe('name-8')
+    expect(firstCell.classList.contains('is-fixed')).toBe(true)
+    expect(firstCell.classList.contains('is-stripe')).toBe(false)
+    expect(firstCell.style.gridRow).toBe('9')
+  })
 })
+
+/** 取出列内 v-for 渲染出的单元格 vnode（虚拟窗口内的节点） */
+function getCellVNodes(column: VueWrapper): VNode[] {
+  const children = (column.vm as any).$?.subTree?.children
+  if (!Array.isArray(children)) return []
+  const fragment = children.find((vnode: VNode) => String(vnode?.type) === 'Symbol(v-fgt)')
+  const cells = Array.isArray(fragment?.children) ? fragment.children : children
+  return cells.filter((vnode: VNode) => vnode && vnode.key != null)
+}
