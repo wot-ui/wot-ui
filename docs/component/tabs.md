@@ -193,26 +193,27 @@ function handlePopupShow() {
 
 ## Tabs Attributes
 
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| v-model | 当前激活项，可为索引或名称 | `number | string` | `0` |
-| slidable-num | 自动开启滚动的标签数量阈值 | `number` | `6` |
-| map-num | 显示导航地图的标签数量阈值 | `number` | `10` |
-| map-title | 导航地图标题 | `string` | - |
-| sticky | 是否开启粘性布局 | `boolean` | `false` |
-| offset-top | 吸顶偏移量 | `number` | `0` |
-| swipeable | 是否开启手势滑动 | `boolean` | `false` |
-| line-theme | 底部条样式，可选值为 `normal`、`text`、`underline`、`dot` | `TabsLineTheme` | `normal` |
-| line-width | 底部条宽度 | `number | string` | - |
-| line-height | 底部条高度 | `number | string` | - |
-| color | 激活项文字颜色 | `string` | `''` |
-| inactive-color | 非激活项文字颜色 | `string` | `''` |
-| animated | 是否开启切换动画 | `boolean` | `false` |
-| duration | 动画时长，单位毫秒 | `number` | `300` |
-| slidable | 是否开启滚动导航，可选值为 `auto`、`always` | `TabsSlidable` | `auto` |
-| show-scrollbar | 滚动时是否显示滚动条 | `boolean` | `false` |
-| custom-class | 根节点自定义类名 | `string` | `''` |
-| custom-style | 根节点自定义样式 | `string` | `''` |
+| 参数             | 说明                                           | 类型                                       | 默认值      | 最低版本             |
+|----------------|----------------------------------------------|------------------------------------------|----------|------------------|
+| v-model        | 当前激活项，可为索引或名称                                | `number \| string`                       | `0`      |                  |
+| slidable-num   | 自动开启滚动的标签数量阈值                                | `number`                                 | `6`      |                  |
+| map-num        | 显示导航地图的标签数量阈值                                | `number`                                 | `10`     |                  |
+| map-title      | 导航地图标题                                       | `string`                                 | -        |                  |
+| sticky         | 是否开启粘性布局                                     | `boolean`                                | `false`  |                  |
+| offset-top     | 吸顶偏移量                                        | `number`                                 | `0`      |                  |
+| swipeable      | 是否开启手势滑动                                     | `boolean`                                | `false`  |                  |
+| line-theme     | 底部条样式，可选值为 `normal`、`text`、`underline`、`dot` | `TabsLineTheme`                          | `normal` |                  |
+| line-width     | 底部条宽度                                        | `number                       \| string` | -        |                  |
+| line-height    | 底部条高度                                        | `number            \| string`            | -        |                  |
+| color          | 激活项文字颜色                                      | `string`                                 | `''`     |                  |
+| inactive-color | 非激活项文字颜色                                     | `string`                                 | `''`     |                  |
+| animated       | 是否开启切换动画                                     | `boolean`                                | `false`  |                  |
+| duration       | 动画时长，单位毫秒                                    | `number`                                 | `300`    |                  |
+| slidable       | 是否开启滚动导航，可选值为 `auto`、`always`                | `TabsSlidable`                           | `auto`   |                  |
+| show-scrollbar | 滚动时是否显示滚动条                                   | `boolean`                                | `false`  |                  |
+| custom-class   | 根节点自定义类名                                     | `string`                                 | `''`     |                  |
+| custom-style   | 根节点自定义样式                                     | `string`                                 | `''`     |                  |
+| bindUseName    | 使用name绑定v-model                              | `boolean`                                | `false`  | $LOWEST_VERSION$ |
 
 ## Tabs Events
 
