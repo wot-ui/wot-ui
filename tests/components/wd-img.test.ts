@@ -220,4 +220,47 @@ describe('WdImg', () => {
     // 加载失败后，错误插槽应该可见
     expect(wrapper.find('.error-indicator').exists()).toBe(true)
   })
+
+  // 首图失败后 image 被卸载，更新 src 必须退出错误态并重新加载
+  test('加载失败后更新 src 会重新加载', async () => {
+    const wrapper = mount(WdImg, {
+      props: { src: 'aaaaaa.png' }
+    })
+
+    await wrapper.find('image').trigger('error')
+    expect(wrapper.find('.wd-img__error').exists()).toBe(true)
+    expect(wrapper.find('image').exists()).toBe(false)
+
+    await wrapper.setProps({ src: 'bbbb.png' })
+
+    expect(wrapper.find('.wd-img__error').exists()).toBe(false)
+    expect(wrapper.find('.wd-img__loading').exists()).toBe(true)
+    const img = wrapper.find('image')
+    expect(img.exists()).toBe(true)
+    expect(img.attributes('src')).toBe('bbbb.png')
+
+    await img.trigger('load')
+    expect(wrapper.emitted('load')).toBeTruthy()
+    expect(wrapper.find('.wd-img__error').exists()).toBe(false)
+    expect(wrapper.find('.wd-img__loading').exists()).toBe(false)
+    expect(wrapper.find('image').exists()).toBe(true)
+  })
+
+  // 新地址仍然失败时，应再次进入错误态，而不是停在上一次的结果
+  test('加载失败后更新 src 仍失败时再次显示错误', async () => {
+    const wrapper = mount(WdImg, {
+      props: { src: 'aaaaaa.png' }
+    })
+
+    await wrapper.find('image').trigger('error')
+    await wrapper.setProps({ src: 'cccc.png' })
+
+    const img = wrapper.find('image')
+    expect(img.attributes('src')).toBe('cccc.png')
+    await img.trigger('error')
+
+    expect(wrapper.find('.wd-img__error').exists()).toBe(true)
+    expect(wrapper.find('image').exists()).toBe(false)
+    expect(wrapper.emitted('error')).toHaveLength(2)
+  })
 })

@@ -37,7 +37,7 @@ export default {
 
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { addUnit, isDef, objToStyle } from '../../common/util'
 import { imgProps } from './types'
 
@@ -68,6 +68,14 @@ const rootClass = computed(() => {
 })
 
 const status = ref<'loading' | 'error' | 'success'>('loading')
+
+// 失败时 image 会被卸载；src 变化后必须回到 loading，新地址才能重新挂载并触发 load/error
+watch(
+  () => props.src,
+  () => {
+    status.value = 'loading'
+  }
+)
 
 function handleError(event: any) {
   status.value = 'error'
