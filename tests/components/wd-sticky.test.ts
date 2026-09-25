@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdSticky from '@/uni_modules/wot-ui/components/wd-sticky/wd-sticky.vue'
+import WdStickyBox from '@/uni_modules/wot-ui/components/wd-sticky-box/wd-sticky-box.vue'
 import WdResize from '@/uni_modules/wot-ui/components/wd-resize/wd-resize.vue'
 import { describe, test, expect } from 'vitest'
 
@@ -222,6 +223,44 @@ describe('吸顶组件', () => {
     expect(vm.stickyState.state).toBe('sticky')
     expect(vm.stickyState.position).toBe('fixed')
     expect(vm.stickyState.top).toBe(vm.innerOffsetTop)
+  })
+
+  test.each(['container-first', 'content-first'])('快速滚出容器时保持底边约束，并能返回吸顶和普通状态：%s', async (order) => {
+    const wrapper = mount(WdSticky, { global: { stubs: { 'wd-resize': true } } })
+    const box = mount(WdStickyBox, { global: { stubs: { 'wd-resize': true } } })
+    const sticky = wrapper.vm as any
+    const container = box.vm as any
+    sticky.stickyState.height = 40
+    const notifyContent = () => sticky.handleRelativeTo({ boundingClientRect: { top: -220, bottom: -180 } })
+    const notifyContainer = () => container.handleRelativeTo(sticky, { boundingClientRect: { top: -220, bottom: -100, height: 120 } })
+
+    try {
+      if (order === 'container-first') {
+        notifyContainer()
+        notifyContent()
+      } else {
+        notifyContent()
+        notifyContainer()
+      }
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('.wd-sticky__container').attributes('style')).toContain('position: absolute')
+      expect(wrapper.find('.wd-sticky__container').attributes('style')).toContain('top: 80px')
+      expect(sticky.stickyState.boxLeaved).toBe(true)
+
+      // 返回容器可吸顶区域，由容器观察者解除底边约束。
+      container.handleRelativeTo(sticky, { boundingClientRect: { top: 0, bottom: 120, height: 120 } })
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('.wd-sticky__container').attributes('style')).toContain('position: fixed')
+      expect(sticky.stickyState.boxLeaved).toBe(false)
+
+      sticky.handleRelativeTo({ boundingClientRect: { top: 200, bottom: 240 } })
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('.wd-sticky__container').attributes('style')).toContain('position: absolute')
+      expect(wrapper.find('.wd-sticky__container').attributes('style')).toContain('top: 0px')
+    } finally {
+      wrapper.unmount()
+      box.unmount()
+    }
   })
 
   // 测试观察者内容滚动

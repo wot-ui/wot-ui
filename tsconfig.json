@@ -35,6 +35,10 @@
     "unpackage",
     "src/**/*.nvue",
     "docs",
-    "packages"
+    "packages",
+    "tests/e2e",
+    "test-results",
+    "playwright-report",
+    "playwright.config.ts"
   ]
 }

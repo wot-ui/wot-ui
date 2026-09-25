@@ -1,0 +1,113 @@
+diff --git a/dist/uni-h5.es.js b/dist/uni-h5.es.js
+index 4330ba246b7822339357c439002aedc96d4935bb..4b9d4852598e9b7678b72d71e3545de65dfeca72 100644
+--- a/dist/uni-h5.es.js
++++ b/dist/uni-h5.es.js
+@@ -10281,10 +10281,19 @@ function useValueSync(props2, state2, emit2, trigger) {
+       { setTimeout, clearTimeout }
+     );
+   }
+-  watch(() => props2.modelValue, valueChangeFn);
+-  watch(() => props2.value, valueChangeFn);
++  let emittedValue = state2.value;
++  const syncValue = (val) => {
++    // Parent echoes must not cancel a newer keystroke; external edits must.
++    if (getValueString(val, props2.type) !== emittedValue) {
++      triggerInputFn.cancel();
++    }
++    valueChangeFn(val);
++  };
++  watch(() => props2.modelValue, syncValue);
++  watch(() => props2.value, syncValue);
+   const triggerInputFn = throttle((event, detail) => {
+     valueChangeFn.cancel();
++    emittedValue = detail.value;
+     emit2("update:modelValue", detail.value);
+     emit2("update:value", detail.value);
+     trigger("input", event, detail);
+@@ -10302,7 +10311,8 @@ function useValueSync(props2, state2, emit2, trigger) {
+   });
+   return {
+     trigger,
+-    triggerInput
++    triggerInput,
++    flushInput: () => triggerInputFn.flush()
+   };
+ }
+ function useAutoFocus(props2, fieldRef) {
+@@ -10343,7 +10353,7 @@ function useAutoFocus(props2, fieldRef) {
+     }
+   });
+ }
+-function useEvent(fieldRef, state2, props2, trigger, triggerInput, beforeInput) {
++function useEvent(fieldRef, state2, props2, trigger, triggerInput, beforeInput, flushInput) {
+   function checkSelection() {
+     const field = fieldRef.value;
+     if (field && state2.focus && state2.selectionStart > -1 && state2.selectionEnd > -1 && field.type !== "number") {
+@@ -10398,6 +10408,7 @@ function useEvent(fieldRef, state2, props2, trigger, triggerInput, beforeInput)
+         state2.composing = false;
+         onInput(event, true);
+       }
++      flushInput();
+       state2.focus = false;
+       trigger("blur", event, {
+         value: state2.value,
+@@ -10437,12 +10448,12 @@ function useEvent(fieldRef, state2, props2, trigger, triggerInput, beforeInput)
+ function useField(props2, rootRef, emit2, beforeInput) {
+   UniViewJSBridgeSubscribe();
+   const { fieldRef, state: state2, trigger } = useBase(props2, rootRef, emit2);
+-  const { triggerInput } = useValueSync(props2, state2, emit2, trigger);
++  const { triggerInput, flushInput } = useValueSync(props2, state2, emit2, trigger);
+   useAutoFocus(props2, fieldRef);
+   useKeyboard$1(props2, fieldRef);
+   const { state: scopedAttrsState } = useScopedAttrs();
+   useFormField("name", state2);
+-  useEvent(fieldRef, state2, props2, trigger, triggerInput, beforeInput);
++  useEvent(fieldRef, state2, props2, trigger, triggerInput, beforeInput, flushInput);
+   const fixDisabledColor = String(navigator.vendor).indexOf("Apple") === 0 && CSS.supports("image-orientation:from-image");
+   return {
+     fieldRef,
+@@ -12930,11 +12941,12 @@ class Scroller {
+     if (this._position !== i) {
+       this._snapping = true;
+       this.scrollTo(-i);
+-      if (isFunction(this._options.onSnap)) {
+-        this._options.onSnap(
+-          Math.floor(Math.abs(this._position) / this._itemSize)
+-        );
+-      }
++    }
++    // An exact row position still needs to publish the selected index.
++    if (isFunction(this._options.onSnap)) {
++      this._options.onSnap(
++        Math.floor(Math.abs(this._position) / this._itemSize)
++      );
+     }
+   }
+   scrollTo(position, time) {
+@@ -13220,9 +13232,14 @@ const PickerViewColumn = /* @__PURE__ */ defineBuiltInComponent({
+       }
+       event.preventDefault();
+     }
++    let dragged = false;
+     function handleTap({
+       clientY
+     }) {
++      // A mouse click dispatched after a drag must not select another row.
++      if (dragged) {
++        return;
++      }
+       const el = rootRef.value;
+       if (!scroller.isScrolling()) {
+         const rect = el.getBoundingClientRect();
+@@ -13262,9 +13279,11 @@ const PickerViewColumn = /* @__PURE__ */ defineBuiltInComponent({
+       useTouchtrack(el, (e2) => {
+         switch (e2.detail.state) {
+           case "start":
++            dragged = false;
+             handleTouchStart(e2);
+             break;
+           case "move":
++            dragged = dragged || Math.abs(e2.detail.dy) >= 20 || Math.abs(e2.detail.dx) >= 20;
+             handleTouchMove(e2);
+             e2.stopPropagation();
+             break;
