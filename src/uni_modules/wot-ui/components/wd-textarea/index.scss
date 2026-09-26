@@ -78,6 +78,12 @@ $textarea-error-color: var(--wot-textarea-error-color, $danger-main) !default;
     line-height: $textarea-inner-line-height;
   }
 
+  @include e(clear-trigger) {
+    display: flex;
+    flex: none;
+    align-items: flex-start;
+  }
+
   @include edeep(clear) {
     margin-left: $textarea-icon-margin;
     font-size: $textarea-icon-font-size;
