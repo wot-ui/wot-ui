@@ -84,6 +84,23 @@ describe('WdSwiper', () => {
     // 所以我们只检查相关属性是否正确传递
   })
 
+  test('指示器对象配置', async () => {
+    const fractionIndicator = { type: 'fraction' }
+    const wrapper = mount(WdSwiper, {
+      props: {
+        indicator: fractionIndicator,
+        list: ['a.jpg', 'b.jpg']
+      },
+      global: {
+        components: {
+          'wd-swiper-nav': WdSwiperNav
+        }
+      }
+    })
+
+    expect((wrapper.vm as any).indicator).toEqual({ type: 'fraction' })
+  })
+
   test('垂直方向', async () => {
     const wrapper = mount(WdSwiper, {
       props: {

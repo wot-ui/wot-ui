@@ -1,6 +1,6 @@
 import type { ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp, numericProp } from '../../common/props'
-import type { SwiperNavProps } from '../wd-swiper-nav/types'
+import type { SwiperIndicatorType, SwiperNavProps } from '../wd-swiper-nav/types'
 import type { ImageMode } from '../wd-img/types'
 
 /**
@@ -37,6 +37,15 @@ export interface SwiperItem {
   poster?: string
   // 资源文件类型，可选值：'image' | 'video'
   type?: SwiperItemType
+}
+
+/**
+ * 指示器配置。
+ * `string & Record<never, never>` 与 string 等价，但不会把字面量联合折叠掉：
+ * 单独声明的 `{ type: 'fraction' }` 会被推断成 `{ type: string }`，这样仍能赋值，并保留补全。
+ */
+export type SwiperIndicatorProps = Partial<Omit<SwiperNavProps, 'type'>> & {
+  type?: SwiperIndicatorType | (string & Record<never, never>)
 }
 
 export const swiperProps = {
@@ -161,12 +170,13 @@ export const swiperProps = {
   snapToEdge: makeBooleanProp(false),
   /**
    * 指示器全部配置，可以是布尔值或指示器配置对象
-   * 类型：boolean 或 object
+   * 类型：boolean | SwiperIndicatorProps
    * 默认值：true
    */
   indicator: {
-    type: [Boolean, Object] as PropType<boolean | Partial<SwiperNavProps>>,
-    default: true
+    type: [Boolean, Object] as PropType<boolean | SwiperIndicatorProps>,
+    // 默认值类型写成完整联合，避免 PropType 推断失败时退回成 boolean
+    default: true as boolean | SwiperIndicatorProps
   },
 
   /**

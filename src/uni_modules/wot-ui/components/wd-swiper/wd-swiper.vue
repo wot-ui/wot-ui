@@ -158,7 +158,8 @@ const swiperIndicator = computed(() => {
     indicatorPosition: indicatorPosition || 'bottom'
   }
   if (isObj(indicator)) {
-    swiperIndicator.type = indicator.type || 'dots'
+    // 配置对象的 type 允许 string，导航器 props 仍使用 SwiperIndicatorType
+    swiperIndicator.type = (indicator.type || 'dots') as SwiperNavProps['type']
     swiperIndicator.minShowNum = indicator.minShowNum || 2
     swiperIndicator.showControls = indicator.showControls || false
   }
