@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils'
 import WdSearch from '../../src/uni_modules/wot-ui/components/wd-search/wd-search.vue'
+import type { InputType } from '../../src/uni_modules/wot-ui/components/wd-input/types'
 import { describe, expect, test, vi } from 'vitest'
 
 async function flushSearchTimers(ms = 200) {
@@ -11,6 +12,35 @@ describe('WdSearch', () => {
   test('基本渲染', async () => {
     const wrapper = mount(WdSearch)
     expect(wrapper.classes()).toContain('wd-search')
+  })
+
+  test('默认输入类型为 text，且 confirm-type 保持 search', () => {
+    const wrapper = mount(WdSearch, {
+      props: {
+        placeholderLeft: true
+      }
+    })
+
+    const input = wrapper.find('.wd-search__input')
+    expect(input.attributes('type')).toBe('text')
+    expect(input.attributes('confirm-type')).toBe('search')
+  })
+
+  test('type 会透传到内部 input，且不改变 confirm-type', () => {
+    const types: InputType[] = ['text', 'number', 'digit', 'idcard', 'safe-password', 'nickname', 'tel']
+
+    types.forEach((type) => {
+      const wrapper = mount(WdSearch, {
+        props: {
+          type,
+          placeholderLeft: true
+        }
+      })
+
+      const input = wrapper.find('.wd-search__input')
+      expect(input.attributes('type')).toBe(type)
+      expect(input.attributes('confirm-type')).toBe('search')
+    })
   })
 
   test('输入功能会触发 update:modelValue 与 change', async () => {
