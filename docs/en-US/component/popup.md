@@ -68,7 +68,7 @@ By setting `modal="false"`, you can close the mask layer, allowing underlying co
 
 ### Bottom Safe Area
 
-By setting `safe-area-inset-bottom="true"`, you can ensure that the bottom popup is not blocked by the safe area on notch screen devices.
+By setting `safe-area-inset-bottom="true"`, you can ensure that the bottom popup is not blocked by the safe area on notch screen devices. On H5 pages with a tabbar, a bottom popup also clears `--window-bottom` (the tabbar height). Mini Program and App still use the system safe area.
 
 ```html
 <wd-popup v-model="show" position="bottom" :safe-area-inset-bottom="true" custom-style="height: 200px;" @close="handleClose"></wd-popup>

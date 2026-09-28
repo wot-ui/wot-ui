@@ -75,6 +75,7 @@ export const popupProps = {
   modalStyle: makeStringProp(''),
   /**
    * 弹出面板是否设置底部安全距离（iphone X 类型的机型）
+   * H5 且 position 为 bottom 时，同时避让 tabbar（CSS 变量 --window-bottom）；小程序与 App 仍读取系统安全区
    * 类型：boolean
    * 默认值：false
    */
