@@ -412,4 +412,59 @@ describe('WdTabs 和 WdTab 组件', () => {
 
     wrapper.unmount()
   })
+
+  // 负数 / 越界 / 缺失子项的 modelValue 不能读取 undefined.disabled（#120）
+  test('负数或越界 modelValue 回退到第一个标签且不崩溃', async () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
+    const mountTabs = (activeTab: number) =>
+      mount(
+        {
+          template: `
+          <wd-tabs v-model="activeTab">
+            <wd-tab title="全部" />
+            <wd-tab title="待兑换" disabled />
+            <wd-tab title="已兑换" />
+          </wd-tabs>
+        `,
+          data() {
+            return {
+              activeTab
+            }
+          }
+        },
+        {}
+      )
+
+    const wrapper = mountTabs(-1)
+    await nextTick()
+
+    const navItems = wrapper.findAll('.wd-tabs__nav-item')
+    expect(navItems.length).toBe(3)
+    expect(navItems[0].classes()).toContain('is-active')
+    expect((wrapper.vm as any).activeTab).toBe(0)
+
+    const overflowWrapper = mountTabs(99)
+    await nextTick()
+    expect(overflowWrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
+    expect((overflowWrapper.vm as any).activeTab).toBe(0)
+
+    const missingWrapper = mountTabs(Number.NaN)
+    await nextTick()
+    expect(missingWrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
+    expect((missingWrapper.vm as any).activeTab).toBe(0)
+
+    const runtimeWrapper = mountTabs(0)
+    await nextTick()
+    await runtimeWrapper.setData({ activeTab: -1 })
+    await pause(120)
+    expect(runtimeWrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
+    expect((runtimeWrapper.vm as any).activeTab).toBe(0)
+
+    errorSpy.mockRestore()
+    wrapper.unmount()
+    overflowWrapper.unmount()
+    missingWrapper.unmount()
+    runtimeWrapper.unmount()
+  })
 })
