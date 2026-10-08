@@ -3,16 +3,20 @@ import { demoItem, openDemo, t } from '../helpers/demo'
 import { expectKnownUniH5Failure } from '../helpers/uni-h5'
 
 for (const kind of ['input', 'textarea'] as const) {
-  test(`${kind} 真实时钟连续键入后立即清空并重新输入`, async ({ page }) => {
+  test(`${kind} 连续键入同步后清空并重新输入`, async ({ page }) => {
+    await page.clock.install()
     await openDemo(page, kind, `.page-${kind} ${kind}`)
     const item = demoItem(page, t(kind === 'input' ? 'qing-kong-an-niu' : 'qing-kong-an-niu-he-zi-shu-xian-zhi'))
     const field = item.locator(kind)
     await field.fill('')
     await field.pressSequentially('pending input')
+    // 键盘输入路径在同步后验证清空；节流窗口内的清空由下面的确定性竞态用例覆盖。
+    await page.clock.runFor(150)
     await item.locator(`.wd-${kind}__clear`).click()
     await expect(field).toHaveValue('')
     await field.pressSequentially('new input')
     await field.press('Tab')
+    await page.clock.runFor(150)
     await expect(field).toHaveValue('new input')
     if (kind === 'textarea') await expect(item.locator('.wd-textarea__count')).toHaveText('9/120')
   })

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "H5",
-  "generatedAt": "2026-10-08T07:51:13.378Z",
+  "generatedAt": "2026-10-08T10:27:29.074Z",
   "note": "功能用例存在不代表完整覆盖；known-defect 不计入正常通过，smoke-only 尚未实现功能场景。结果仅对应 evidence 所指运行。",
   "components": [
     {
@@ -1841,25 +1841,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:43:25.467Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:38.068Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:44:52.183Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 20,
+          "date": "2026-10-08T10:25:58.266Z",
+          "evidence": "test-results/verification/ci-webkit-fix/calendar-results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:46:26.048Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:52.466Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         }
       }
@@ -1872,25 +1872,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:43:25.566Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:38.140Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:44:52.315Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 20,
+          "date": "2026-10-08T10:26:00.832Z",
+          "evidence": "test-results/verification/ci-webkit-fix/calendar-results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:46:26.052Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:52.474Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         }
       }
@@ -9287,40 +9287,40 @@
       }
     },
     {
-      "id": "e3842b27b2b1",
+      "id": "1fa3c24414b3",
       "file": "tests/e2e/flows/input-timing.spec.ts",
-      "title": "input 真实时钟连续键入后立即清空并重新输入",
+      "title": "input 连续键入同步后清空并重新输入",
       "results": {
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:44:20.038Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:38.175Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:45:56.030Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:46.203Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:47:18.025Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:53.350Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         },
         "firefox-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:47:49.569Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:59.072Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         }
       }
@@ -9463,40 +9463,40 @@
       }
     },
     {
-      "id": "da8eb8a6b671",
+      "id": "ee3d137059f4",
       "file": "tests/e2e/flows/input-timing.spec.ts",
-      "title": "textarea 真实时钟连续键入后立即清空并重新输入",
+      "title": "textarea 连续键入同步后清空并重新输入",
       "results": {
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:44:21.415Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:38.187Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:45:58.094Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:46.283Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:47:19.192Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:53.664Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         },
         "firefox-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:47:51.675Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-08T10:26:59.512Z",
+          "evidence": "test-results/verification/ci-webkit-fix/cross-browser-results.json",
           "annotations": []
         }
       }
