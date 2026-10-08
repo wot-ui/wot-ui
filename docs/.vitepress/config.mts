@@ -7,7 +7,7 @@ export default createWotVitePressConfig({
   description: '一个轻量、美观、AI友好的 uni-app 组件库',
   markdown: {
     componentLinks: {
-      repoUrl: 'https://github.com/wot-ui/wot-ui/tree/master',
+      repoUrl: 'https://github.com/wot-ui/wot-ui/tree/main',
       demoSourceRoot: 'src/subPages',
       componentSourceRoot: 'src/uni_modules/wot-ui/components',
     },
@@ -70,7 +70,7 @@ export default createWotVitePressConfig({
       text: '最后更新'
     },
     editLink: {
-      pattern: 'https://github.com/wot-ui/wot-ui/edit/master/docs/:path',
+      pattern: 'https://github.com/wot-ui/wot-ui/edit/main/docs/:path',
       text: '为此页提供修改建议',
     },
     socialLinks: [
