@@ -75,7 +75,7 @@ wot-ui 使用 GitHub Actions 自动化测试流程，主要工作流文件是 `.
 
 Playwright 与以下 Vitest 单元测试独立运行。首次执行 `pnpm exec playwright install chromium`，然后使用 `pnpm test:e2e:h5` 测试开发服务，或使用 `pnpm test:e2e:h5:preview` 构建并测试 H5 产物。
 
-运行方法、报告和用例约定见 [H5 E2E 指南](../tests/e2e/README.md)，分阶段覆盖范围与验收进度见 [H5 E2E 执行计划](./E2E-H5-PLAN.md)。
+运行方法、报告和用例约定见 [H5 E2E 指南](../tests/e2e/README.md)。
 
 ### 本地运行测试
 

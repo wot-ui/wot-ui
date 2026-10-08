@@ -5,14 +5,13 @@ import { createHash } from 'node:crypto'
 const [listPath, ...reportPaths] = process.argv.slice(2)
 if (!listPath) throw new Error('Usage: node tests/e2e/scripts/update-coverage-matrix.mjs <list.json> [results.json ...]')
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'))
-const plan = readFileSync('.github/E2E-H5-PLAN.md', 'utf8')
+const mappings = readJson('tests/e2e/fixtures/components.json')
 const routes = readJson('tests/e2e/fixtures/routes.json')
-const mappings = [...plan.matchAll(/^\|\s*(wd-[\w-]+)\s*\|\s*\[([^\]]+)\]\([^\n]+?\s*\|\s*(M\d+)\s*\|\s*([^|]+)\|/gm)]
 const componentNames = readdirSync('src/uni_modules/wot-ui/components')
   .filter((name) => name.startsWith('wd-'))
   .sort()
-if (JSON.stringify(mappings.map((match) => match[1]).sort()) !== JSON.stringify(componentNames)) {
-  throw new Error('组件目录与 E2E-H5-PLAN.md 不一致，请先登记新增/删除的组件')
+if (JSON.stringify(Object.keys(mappings).sort()) !== JSON.stringify(componentNames)) {
+  throw new Error('组件目录与 fixtures/components.json 不一致，请先登记新增/删除的组件')
 }
 
 function specs(suite) {
@@ -44,7 +43,8 @@ for (const reportPath of reportPaths) {
         runs: (previous?.runs || 0) + results.length,
         date: result.startTime,
         evidence: reportPath,
-        annotations: test.annotations || []
+        // Playwright 的 location 含执行机器绝对路径，入库时仅保留说明。
+        annotations: (test.annotations || []).map(({ type, description }) => ({ type, description }))
       }
       // 重复验证中任何一次非预期失败都不能被后一次成功覆盖。
       if (previous?.status === 'unexpected') entry.status = 'unexpected'
@@ -77,14 +77,12 @@ const combinedFiles = {
   'wd-popup': ['wd-popup', 'wd-popup-advanced']
 }
 const scenarioList = [...scenarios.values()]
-const components = mappings.map(([, name, demo, phase, mode]) => {
+const components = Object.entries(mappings).map(([name, demo]) => {
   const files = (combinedFiles[name] || [name]).map((file) => `tests/e2e/components/${file}.spec.ts`)
   const ids = scenarioList.filter((scenario) => files.includes(scenario.file)).map((scenario) => scenario.id)
   return {
     name,
-    phase,
     demo: `src/subPages/${demo}/Index.vue`,
-    mode: mode.trim(),
     routes: routes.filter((route) => route.path.startsWith(`subPages/${demo}/`)).map((route) => route.path),
     coverageStatus: ids.length ? 'partial-functional' : 'smoke-only',
     scenarios: ids

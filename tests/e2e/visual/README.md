@@ -12,6 +12,4 @@
 
 Linux 尚无经过审阅的基线，因此 Ubuntu 功能 CI 不启用视觉集。后续在固定 Linux 环境生成并审阅对应基线后，再开启同平台的视觉任务。Mac 与 Linux 的字体渲染差异不能通过提高截图容差来掩盖。
 
-2026-09-16 已尝试在本机 Colima 中运行官方 `mcr.microsoft.com/playwright:v1.63.0-noble` x64 镜像。ARM 主机上的 QEMU 在 Chromium 启动时因 `rcu_read_unlock` 内部断言崩溃，尚未打开页面；没有生成或接受 Linux 基线。诊断见 `test-results/verification/linux-diagnostic/`，不能将此环境失败认定为组件回归。
-
 工作流 `Playwright E2E (H5)` 在 PR 上生成候选图；手动入口也增加了 `generate_visual_candidates`。它在原生 x64 runner 的同版本官方容器中生成候选 PNG，可下载 `playwright-h5-linux-visual-candidates` artifact。候选生成成功不等于视觉验收通过：必须逐张查看、在同一容器中不带 `--update-snapshots` 再比较，最后将审阅通过的 Linux PNG 纳入版本管理。普通 push 不生成候选图；当前尚未启用以 Linux 基线为准的视觉对比检查。

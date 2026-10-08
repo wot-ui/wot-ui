@@ -1,6 +1,7 @@
 import { test, expect } from '../fixtures/test'
 import { openDemo, t } from '../helpers/demo'
 import { stepPickerColumn } from '../helpers/picker'
+import { expectKnownUniH5Failure } from '../helpers/uni-h5'
 
 // 所有浏览器均在无触摸输入配置下验证，包括 WebKit。
 test.use({ hasTouch: false, isMobile: false })
@@ -41,6 +42,7 @@ for (const rows of [1.8, 2, -2]) {
       await page.clock.runFor(50)
     }
     await page.mouse.up()
+    if (Math.abs(rows) === 2) expectKnownUniH5Failure('整行拖动未同步选中值，松开后的附带 click 会再次选中')
     await expect(minutes.locator('.wd-picker-view__column-item--active')).toHaveText(rows > 0 ? '22' : '18')
     // 选中值先于吸附动画更新，动画结束后 uni-h5 才接受下一次点击。
     await minutes.locator('.uni-picker-view-content').evaluate(async (el) => {

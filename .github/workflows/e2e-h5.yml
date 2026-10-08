@@ -6,7 +6,6 @@ on:
     paths:
       - 'src/**'
       - 'tests/e2e/**'
-      - 'patches/**'
       - 'playwright.config.ts'
       - 'tsconfig.json'
       - 'vite.config.ts'
@@ -24,7 +23,6 @@ on:
     paths:
       - 'src/**'
       - 'tests/e2e/**'
-      - 'patches/**'
       - 'playwright.config.ts'
       - 'tsconfig.json'
       - 'vite.config.ts'
