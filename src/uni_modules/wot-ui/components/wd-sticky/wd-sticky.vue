@@ -158,6 +158,8 @@ function handleRelativeTo({ boundingClientRect }: any) {
 
   if (isStycky) {
     stickyState.state = 'sticky'
+    // 容器观察者已限制到底边时，较晚到达的内容观察回调不能覆盖该位置。
+    if (stickyState.boxLeaved) return
     stickyState.boxLeaved = false
     stickyState.position = 'fixed'
     stickyState.top = innerOffsetTop.value

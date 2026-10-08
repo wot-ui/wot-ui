@@ -379,13 +379,17 @@ function customButtonStyle() {
 }
 
 function verticalLayout() {
-  dialog.confirm({
-    title: '版本更新',
-    msg: '发现新版本，是否立即更新？',
-    actionLayout: 'vertical',
-    confirmButtonText: '立即更新',
-    cancelButtonText: '稍后再说'
-  })
+  dialog
+    .confirm({
+      title: '版本更新',
+      msg: '发现新版本，是否立即更新？',
+      actionLayout: 'vertical',
+      confirmButtonText: '立即更新',
+      cancelButtonText: '稍后再说'
+    })
+    .catch(() => {
+      // 用户取消属于正常操作，无需额外提示。
+    })
 }
 
 function singleButton() {
@@ -451,17 +455,21 @@ function loadingButton() {
 }
 
 function disabledButton() {
-  dialog.show({
-    title: '操作提示',
-    msg: '该操作暂时不可用',
-    confirmButtonProps: {
-      text: '确定',
-      disabled: true
-    },
-    cancelButtonProps: {
-      text: '取消'
-    }
-  })
+  dialog
+    .show({
+      title: '操作提示',
+      msg: '该操作暂时不可用',
+      confirmButtonProps: {
+        text: '确定',
+        disabled: true
+      },
+      cancelButtonProps: {
+        text: '取消'
+      }
+    })
+    .catch(() => {
+      // 用户取消属于正常操作，无需额外提示。
+    })
 }
 
 // ==================== 6. 输入配置（Prompt） ====================
