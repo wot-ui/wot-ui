@@ -1,6 +1,7 @@
 <template>
   <view class="wd-table-column">
-    <view v-for="config in cellConfigs" :key="config.rowIndex" :class="config.class" :style="config.style" @click="handleRowClick(config.rowIndex)">
+    <!-- 虚拟窗口平移时用窗口内下标作 key，就地复用节点。绝对 rowIndex 会在滑动时整窗换 key，微信端会重建 #value 并白屏 -->
+    <view v-for="(config, index) in cellConfigs" :key="index" :class="config.class" :style="config.style" @click="handleRowClick(config.rowIndex)">
       <slot name="value" v-if="$slots.value" :row="getScope(config.rowIndex)" :index="config.rowIndex"></slot>
       <text :class="['wd-table__value', { 'is-ellipsis': ellipsis }]" v-else>{{ config.value }}</text>
     </view>
