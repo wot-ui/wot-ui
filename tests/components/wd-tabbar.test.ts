@@ -44,10 +44,10 @@ describe('WdTabbar', () => {
     await nextTick()
 
     // 检查激活状态：仅少 1 个 item 激活
-    const activeTitles = wrapper.findAll('.wd-tabbar-item__body-title.is-active')
-    expect(activeTitles.length).toBe(1)
-    const inactiveTitles = wrapper.findAll('.wd-tabbar-item__body-title.is-inactive')
-    expect(inactiveTitles.length).toBe(2)
+    const activeBodies = wrapper.findAll('.wd-tabbar-item__body.is-active')
+    expect(activeBodies.length).toBe(1)
+    const inactiveBodies = wrapper.findAll('.wd-tabbar-item__body.is-inactive')
+    expect(inactiveBodies.length).toBe(2)
 
     // 检查图标和文字是否正确渲染
     expect(items[0].find('.wd-icon-home').exists()).toBe(true)
@@ -82,7 +82,7 @@ describe('WdTabbar', () => {
     await nextTick()
 
     // 初始应有 1 个激活项
-    expect(wrapper.findAll('.wd-tabbar-item__body-title.is-active').length).toBe(1)
+    expect(wrapper.findAll('.wd-tabbar-item__body.is-active').length).toBe(1)
 
     // 点击第二个标签
     await items[1].find('.wd-tabbar-item').trigger('click')
@@ -90,8 +90,8 @@ describe('WdTabbar', () => {
 
     // 检查 active 是否更新
     expect(wrapper.vm.active).toBe('message')
-    expect(items[0].find('.wd-tabbar-item__body-title').classes()).not.toContain('is-active')
-    expect(items[1].find('.wd-tabbar-item__body-title').classes()).toContain('is-active')
+    expect(items[0].find('.wd-tabbar-item__body').classes()).not.toContain('is-active')
+    expect(items[1].find('.wd-tabbar-item__body').classes()).toContain('is-active')
     const tabbarWrapper = wrapper.findComponent(WdTabbar)
     // 检查 change 事件是否触发
     expect(tabbarWrapper.emitted('change')).toBeTruthy()
@@ -163,9 +163,9 @@ describe('WdTabbar', () => {
     await nextTick()
 
     // 验证激活项使用 activeColor，非激活项使用 inactiveColor
-    const activeTitle = wrapper.find('.wd-tabbar-item__body-title.is-active')
+    const activeTitle = wrapper.find('.wd-tabbar-item__body.is-active .wd-tabbar-item__body-title')
     expect(activeTitle.attributes('style')).toContain(`color: ${activeColor}`)
-    const inactiveTitle = wrapper.find('.wd-tabbar-item__body-title.is-inactive')
+    const inactiveTitle = wrapper.find('.wd-tabbar-item__body.is-inactive .wd-tabbar-item__body-title')
     expect(inactiveTitle.attributes('style')).toContain(`color: ${inactiveColor}`)
   })
 })

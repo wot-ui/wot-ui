@@ -2,7 +2,7 @@
   <view :class="`wd-tabbar-item ${customClass}`" :style="customStyle" @click="handleClick">
     <slot>
       <wd-badge v-bind="customBadgeProps">
-        <view class="wd-tabbar-item__body">
+        <view class="wd-tabbar-item__body" :class="active ? 'is-active' : 'is-inactive'">
           <slot name="icon" :active="active"></slot>
           <template v-if="!$slots.icon && hasIcon">
             <wd-icon
@@ -10,10 +10,10 @@
               :class-prefix="iconPrefix"
               :css-icon="cssIcon"
               :custom-style="textStyle"
-              :custom-class="`wd-tabbar-item__body-icon ${active ? 'is-active' : 'is-inactive'}`"
+              custom-class="wd-tabbar-item__body-icon"
             ></wd-icon>
           </template>
-          <text v-if="title" :style="textStyle" :class="`wd-tabbar-item__body-title ${active ? 'is-active' : 'is-inactive'}`">
+          <text v-if="title" :style="textStyle" class="wd-tabbar-item__body-title">
             {{ title }}
           </text>
         </view>
