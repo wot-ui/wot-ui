@@ -88,6 +88,8 @@ previewVideo({
 
 通过 `full-screen` 可以让视频区域铺满预览层，适合预览竖屏比例的视频。
 
+App 平台在 HBuilderX 3.6.14 及以上且手机系统为 iOS 16 及以上时，`video` 全屏需要应用支持横屏。可在 `manifest.json` 的 `app-plus` 节点下配置 `screenOrientation` 为 `["portrait-primary", "portrait-secondary", "landscape-primary", "landscape-secondary"]`。
+
 ```html
 <wd-video-preview full-screen />
 ```
@@ -139,6 +141,7 @@ function openPreview() {
 | selector | 实例标识，用于区分多个视频预览实例 | `string` | `''` |
 | z-index | 预览层级 | `number` | `1000` |
 | full-screen | 是否全屏预览 | `boolean` | `false` |
+| show-fullscreen-btn | 是否显示原生全屏按钮 | `boolean` | `true` |
 | close-position | 关闭按钮位置，可选值为 `left-top`、`right-top` | `string` | `left-top` |
 | on-open | 组件打开时的回调 | <code>() =&gt; void</code> | - |
 | on-close | 组件关闭时的回调 | <code>() =&gt; void</code> | - |

@@ -33,6 +33,12 @@ export const videoPreviewProps = {
    */
   fullScreen: makeBooleanProp(false),
   /**
+   * 是否显示原生全屏按钮
+   * 类型: boolean
+   * 默认值: true
+   */
+  showFullscreenBtn: makeBooleanProp(true),
+  /**
    * 关闭按钮位置
    * 类型: VideoPreviewClosePosition
    * 可选值: 'left-top' | 'right-top'
@@ -62,6 +68,8 @@ export interface VideoPreviewOptions extends PreviewVideo {
   zIndex?: number
   /** 是否全屏预览 */
   fullScreen?: boolean
+  /** 是否显示原生全屏按钮 */
+  showFullscreenBtn?: boolean
   /** 关闭按钮位置 */
   closePosition?: VideoPreviewClosePosition
   /** 打开时的回调 */

@@ -88,6 +88,8 @@ previewVideo({
 
 Use `full-screen` to make the video area fill the preview layer, which is suitable for portrait videos.
 
+On App, when using HBuilderX 3.6.14 or later on iOS 16 or later, `video` fullscreen requires the app to support landscape orientation. Configure `screenOrientation` under the `app-plus` node in `manifest.json` as `["portrait-primary", "portrait-secondary", "landscape-primary", "landscape-secondary"]`.
+
 ```html
 <wd-video-preview full-screen />
 ```
@@ -139,6 +141,7 @@ function openPreview() {
 | selector | Instance identifier, used to distinguish multiple video preview instances | `string` | `''` |
 | z-index | Preview z-index | `number` | `1000` |
 | full-screen | Whether to use fullscreen preview | `boolean` | `false` |
+| show-fullscreen-btn | Whether to show the native fullscreen button | `boolean` | `true` |
 | close-position | Close button position, optional values are `left-top` and `right-top` | `string` | `left-top` |
 | on-open | Callback when component opens | <code>() =&gt; void</code> | - |
 | on-close | Callback when component closes | <code>() =&gt; void</code> | - |
