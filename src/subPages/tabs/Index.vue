@@ -148,6 +148,14 @@
         </wd-tab>
       </wd-tabs>
     </wd-popup>
+
+    <demo-group transparent>
+      <demo-group-item no-padding :title="$t('shi-yong-name-bang-ding')">
+        <wd-tabs v-model="activeTab" @change="handleChange" sticky :bindUseName="true">
+          <wd-tab v-for="(tab, i) in tabs2" :key="i" :title="tab.label" :name="tab.value" />
+        </wd-tabs>
+      </demo-group-item>
+    </demo-group>
   </page-wraper>
 </template>
 <script lang="ts" setup>
@@ -157,6 +165,15 @@ import { computed, reactive, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
+const tabs2 = [
+  { label: '全部', value: -1, disabled: false },
+  { label: '待兑换', value: 0, disabled: true },
+  { label: '已兑换', value: 1, disabled: false },
+  { label: '已拒绝', value: 3, disabled: false },
+  { label: '已取消', value: 2, disabled: false }
+]
+
+const activeTab = ref(0)
 
 const tab = ref('a')
 
