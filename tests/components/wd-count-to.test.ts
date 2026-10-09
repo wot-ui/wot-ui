@@ -306,8 +306,9 @@ describe('WdCountTo', () => {
       }
     })
 
-    // 验证 customStyle prop 被正确传递
+    // 验证 customStyle 绑定到根节点，而不仅是 prop 被接收
     expect(wrapper.props('customStyle')).toBe(customStyle)
+    expect(wrapper.attributes('style')).toBe(customStyle)
   })
 
   // 测试文本颜色
