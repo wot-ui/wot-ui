@@ -389,8 +389,16 @@ async function scrollIntoView() {
     activeDate = props.value
   }
 
-  if (!activeDate) {
+  // 当传入日期为空或超出可选范围，修改为当前日期
+  if (!activeDate || activeDate < props.minDate || activeDate > props.maxDate) {
     activeDate = Date.now()
+
+    // 确保 Date.now() 也在可选范围内
+    if (activeDate < props.minDate) {
+      activeDate = props.minDate
+    } else if (activeDate > props.maxDate) {
+      activeDate = props.maxDate
+    }
   }
 
   let top: number = 0
