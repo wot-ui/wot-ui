@@ -1,7 +1,15 @@
 import { mount } from '@vue/test-utils'
 import WdTextarea from '@/uni_modules/wot-ui/components/wd-textarea/wd-textarea.vue'
 import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
+import { isH5 } from '@/uni_modules/wot-ui/common/util'
+import { FORM_ITEM_VALIDATE_KEY } from '@/uni_modules/wot-ui/components/wd-form-item/types'
 import { describe, test, expect, vi } from 'vitest'
+
+async function flushClear(wrapper: ReturnType<typeof mount>) {
+  const pending = (wrapper.vm as any).handleClear()
+  await vi.advanceTimersByTimeAsync(200)
+  await pending
+}
 
 describe('WdTextarea', () => {
   // 测试基本渲染
@@ -215,9 +223,7 @@ describe('WdTextarea', () => {
     const clear = wrapper.find('.wd-textarea__clear')
     expect(clear.exists()).toBe(true)
 
-    const clearPromise = (wrapper.vm as any).handleClear()
-    vi.advanceTimersByTime(100)
-    await clearPromise
+    await flushClear(wrapper)
 
     const emitted = wrapper.emitted() as Record<string, any[]>
     expect(emitted['clear']).toBeTruthy()
@@ -265,6 +271,193 @@ describe('WdTextarea', () => {
     })
 
     expect(wrapper.find('.wd-textarea__readonly-mask').exists()).toBe(true)
+  })
+
+  test('清空长文本时发出空值，H5 已聚焦时不切换 focus', async () => {
+    vi.useFakeTimers()
+    const longText = '疯狂星期四'.repeat(7)
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: longText,
+        clearable: true,
+        clearTrigger: 'always',
+        focusWhenClear: true,
+        maxlength: 120,
+        showWordLimit: true
+      }
+    })
+
+    await (wrapper.vm as any).handleFocus({ detail: { value: longText } })
+    expect((wrapper.vm as any).focusing).toBe(true)
+    expect((wrapper.vm as any).focused).toBe(false)
+
+    await flushClear(wrapper)
+
+    const emitted = wrapper.emitted() as Record<string, any[]>
+    expect(emitted['clear']).toBeTruthy()
+    expect(emitted['update:modelValue'][emitted['update:modelValue'].length - 1][0]).toBe('')
+    const textarea = wrapper.find('textarea').element as HTMLTextAreaElement
+    expect(textarea.value).toBe('')
+    // H5 保住当前焦点，不再 false→true；小程序/App 仍用 focus 属性重新聚焦
+    expect((wrapper.vm as any).focused).toBe(!isH5)
+    expect((wrapper.vm as any).focusing).toBe(true)
+
+    const blurPromise = (wrapper.vm as any).handleBlur({ detail: { cursor: 3 } })
+    await vi.advanceTimersByTimeAsync(200)
+    await blurPromise
+    if (isH5) {
+      // 没有走 focus 切换，clearing 不应吞掉随后的真实失焦
+      const blurEvents = wrapper.emitted('blur') as any[]
+      expect(blurEvents?.[0]?.[0]).toEqual({ value: '', cursor: 3 })
+    }
+
+    vi.useRealTimers()
+  })
+
+  test('未聚焦且 focusWhenClear=true 时清空不留下 clearing，后续 blur 仍会校验', async () => {
+    vi.useFakeTimers()
+    const validateByTrigger = vi.fn().mockResolvedValue(undefined)
+    const internalChildren: unknown[] = []
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: 'abc',
+        clearable: true,
+        clearTrigger: 'always',
+        focusWhenClear: true,
+        focus: true
+      },
+      global: {
+        provide: {
+          [FORM_ITEM_VALIDATE_KEY as symbol]: {
+            link(child: unknown) {
+              internalChildren.push(child)
+            },
+            unlink(child: unknown) {
+              const index = internalChildren.indexOf(child)
+              if (index >= 0) internalChildren.splice(index, 1)
+            },
+            children: [],
+            internalChildren,
+            validateByTrigger
+          }
+        }
+      }
+    })
+
+    expect((wrapper.vm as any).focusing).toBe(false)
+    expect((wrapper.vm as any).focused).toBe(true)
+
+    await flushClear(wrapper)
+
+    if (isH5) {
+      expect((wrapper.vm as any).clearing).toBe(false)
+      const blurPromise = (wrapper.vm as any).handleBlur({ detail: { cursor: 1 } })
+      await vi.advanceTimersByTimeAsync(200)
+      await blurPromise
+      expect((wrapper.emitted('blur') as any[])?.[0]?.[0]).toEqual({ value: '', cursor: 1 })
+      expect(validateByTrigger).toHaveBeenCalledWith('blur')
+    }
+
+    vi.useRealTimers()
+  })
+
+  test('H5 回焦前若焦点已在其他控件上则不再抢回', async () => {
+    vi.useFakeTimers()
+    const other = document.createElement('input')
+    document.body.appendChild(other)
+    other.focus()
+
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: 'abc',
+        clearable: true,
+        clearTrigger: 'always',
+        focusWhenClear: true
+      }
+    })
+
+    await flushClear(wrapper)
+    if (isH5) {
+      expect((wrapper.vm as any).focused).toBe(false)
+      expect(document.activeElement).toBe(other)
+    }
+
+    other.remove()
+    vi.useRealTimers()
+  })
+
+  test('未聚焦且 focusWhenClear=true 时清空后会聚焦', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: '疯狂星期四'.repeat(7),
+        clearable: true,
+        focusWhenClear: true
+      }
+    })
+
+    expect((wrapper.vm as any).focused).toBe(false)
+    await flushClear(wrapper)
+    expect((wrapper.vm as any).focused).toBe(true)
+    expect((wrapper.emitted('update:modelValue') as any[]).at(-1)[0]).toBe('')
+    vi.useRealTimers()
+  })
+
+  test('focusWhenClear=false 时清空后不聚焦，随后 blur 仍会触发', async () => {
+    vi.useFakeTimers()
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: 'abc',
+        clearable: true,
+        focusWhenClear: false
+      }
+    })
+
+    await (wrapper.vm as any).handleFocus({ detail: { value: 'abc' } })
+    await flushClear(wrapper)
+    expect((wrapper.vm as any).focused).toBe(false)
+    expect((wrapper.emitted('clear') as any[]).length).toBe(1)
+
+    const blurPromise = (wrapper.vm as any).handleBlur({ detail: { cursor: 2 } })
+    await vi.advanceTimersByTimeAsync(200)
+    await blurPromise
+    const blurEvents = wrapper.emitted('blur') as any[]
+    expect(blurEvents).toBeTruthy()
+    expect(blurEvents[0][0]).toEqual({ value: '', cursor: 2 })
+    vi.useRealTimers()
+  })
+
+  test('H5 按下清空图标会阻止失焦，且 touchstart 后的 click 不会重复清空', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date(0))
+    const wrapper = mount(WdTextarea, {
+      props: {
+        modelValue: 'abc',
+        clearable: true,
+        focusWhenClear: true
+      }
+    })
+
+    const trigger = wrapper.find('.wd-textarea__clear-trigger')
+    // 模板条件编译跟 UNI_PLATFORM 走；测试里 isH5 的脚本条件编译不一定被裁掉
+    const h5Template = (process.env.UNI_PLATFORM || 'h5') === 'h5'
+    if (h5Template) {
+      expect(trigger.exists()).toBe(true)
+      const mouseDown = new MouseEvent('mousedown', { bubbles: true, cancelable: true })
+      const preventDefault = vi.spyOn(mouseDown, 'preventDefault')
+      trigger.element.dispatchEvent(mouseDown)
+      expect(preventDefault).toHaveBeenCalled()
+
+      await trigger.trigger('touchstart')
+      await trigger.trigger('click')
+      await vi.advanceTimersByTimeAsync(200)
+      expect((wrapper.emitted('clear') as any[] | undefined)?.length ?? 0).toBe(1)
+    } else {
+      expect(trigger.exists()).toBe(false)
+      expect(wrapper.find('.wd-textarea__clear').exists()).toBe(true)
+    }
+
+    vi.useRealTimers()
   })
 
   test('blur 事件在非 clearing 状态下携带 cursor', async () => {
