@@ -1,5 +1,5 @@
 <template>
-  <view :class="rootClass">
+  <view :class="rootClass" :style="customStyle">
     <!-- 前缀插槽 -->
     <slot name="prefix">
       <wd-text custom-class="wd-count-to__separator-text" :type="type" :color="color" :text="prefix"></wd-text>
