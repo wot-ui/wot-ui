@@ -6,7 +6,7 @@ Tab component for switching between different content areas.
 
 ### Basic Usage
 
-`v-model` can use numeric index or string name.
+`v-model` accepts a numeric index or a string or numeric name.
 
 ```html
 <wd-tabs v-model="tab1" @change="handleChange">
@@ -28,7 +28,7 @@ function handleChange(event) {
 
 ### Name Matching
 
-After setting `name` for `wd-tab`, you can match the current active item through string value.
+Set `name` on `wd-tab` to select a tab by its string or numeric name. Names use strict equality: the number `1` and the string `'1'` are different names.
 
 ```html
 <wd-tabs v-model="tab">
@@ -42,6 +42,23 @@ After setting `name` for `wd-tab`, you can match the current active item through
 const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
 const tab = ref('a')
 ```
+
+Numeric names can be negative, zero, or nonconsecutive. Bind them to `wd-tab` with `:name`:
+
+```html
+<wd-tabs v-model="numericTab" swipeable>
+  <wd-tab v-for="name in numericTabs" :key="name" :name="name" :title="`Tab${name}`" :disabled="name === 0">
+    <view class="content">Content{{ name }}</view>
+  </wd-tab>
+</wd-tabs>
+```
+
+```ts
+const numericTabs = [-1, 0, 1, 3, 2]
+const numericTab = ref(-1)
+```
+
+Tabs without a `name` use their zero-based index as their identifier. Names take precedence; if no name matches, a valid numeric index can still select a tab. Unmatched names and invalid indices fall back to the first tab, while disabled tabs cannot be activated. Switching tabs updates the bound value to the selected tab's name, or its index if no name is set.
 
 ### Use Badge
 

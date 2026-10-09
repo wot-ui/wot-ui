@@ -1,11 +1,12 @@
 import { mount, config } from '@vue/test-utils'
-import { describe, expect, test, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
 import WdTabs from '@/uni_modules/wot-ui/components/wd-tabs/wd-tabs.vue'
 import WdTab from '@/uni_modules/wot-ui/components/wd-tab/wd-tab.vue'
 import WdBadge from '@/uni_modules/wot-ui/components/wd-badge/wd-badge.vue'
 import WdIcon from '@/uni_modules/wot-ui/components/wd-icon/wd-icon.vue'
 import { pause } from '@/uni_modules/wot-ui/common/util'
+import * as utils from '@/uni_modules/wot-ui/common/util'
 
 // 全局组件
 const globalComponents = {
@@ -16,6 +17,194 @@ const globalComponents = {
 }
 
 config.global.components = globalComponents
+
+describe('Tabs 名称绑定回归', () => {
+  const wrappers: ReturnType<typeof mount>[] = []
+
+  beforeEach(() => {
+    vi.useFakeTimers()
+    // 全局测量 mock 只返回四个节点，本组需要覆盖更多数字名称标签。
+    vi.spyOn(utils, 'getRect').mockImplementation((async (_selector, all) => {
+      const rect = { width: 100, height: 44, left: 0, right: 100, top: 0, bottom: 44 }
+      return all ? Array.from({ length: 10 }, () => ({ ...rect })) : rect
+    }) as typeof utils.getRect)
+  })
+
+  afterEach(() => {
+    wrappers.splice(0).forEach((wrapper) => wrapper.unmount())
+    vi.clearAllTimers()
+    vi.useRealTimers()
+    vi.mocked(utils.getRect).mockRestore()
+  })
+
+  function mountTabs(value: number | string, names: (number | string | undefined)[], sticky = false, disabledIndex = -1) {
+    const wrapper = mount({
+      template: `
+        <wd-tabs v-model="activeTab" :sticky="sticky" :map-num="2" swipeable>
+          <wd-tab v-for="(name, index) in names" :key="index" :name="name" :title="'标签' + index" :disabled="index === disabledIndex">
+            内容{{ index }}
+          </wd-tab>
+        </wd-tabs>
+      `,
+      data: () => ({ activeTab: value, names, sticky, disabledIndex })
+    })
+    wrappers.push(wrapper)
+    return wrapper
+  }
+
+  async function settle() {
+    await nextTick()
+    await vi.advanceTimersByTimeAsync(150)
+  }
+
+  test.each([-1, 0, 1, 3, 2, 99])('初始化时按数字 name=%s 匹配，不将其解释为索引', async (name) => {
+    const names = [-1, 0, 1, 3, 2, 99]
+    const wrapper = mountTabs(name, names)
+    await settle()
+
+    expect(wrapper.findAll('.wd-tabs__nav-item')[names.indexOf(name)].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(name)
+    expect(wrapper.findComponent(WdTabs).emitted('update:modelValue')).toBeUndefined()
+  })
+
+  test.each([false, true])('点击数字名称标签后保持选中项和事件一致（sticky=%s）', async (sticky) => {
+    const wrapper = mountTabs(1, [1, 0, 20], sticky)
+    await settle()
+    const tabs = wrapper.findComponent(WdTabs)
+    const navItems = wrapper.findAll('.wd-tabs__nav-item')
+
+    await navItems[1].trigger('click')
+    await settle()
+    expect(navItems[1].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(0)
+    expect(tabs.emitted('click')).toEqual([[{ index: 1, name: 0 }]])
+    expect(tabs.emitted('change')).toEqual([[{ index: 1, name: 0 }]])
+    expect(tabs.emitted('update:modelValue')).toEqual([[0]])
+
+    await navItems[0].trigger('click')
+    await settle()
+    expect(navItems[0].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(1)
+    expect(tabs.emitted('change')).toHaveLength(2)
+  })
+
+  test.each([false, true])('导航地图按数字名称切换并保留禁用行为（sticky=%s）', async (sticky) => {
+    const wrapper = mountTabs(-1, [-1, 0, 1, 3, 2], sticky, 1)
+    await settle()
+    const tabs = wrapper.findComponent(WdTabs)
+    await wrapper.find('.wd-tabs__map-btn').trigger('click')
+    await settle()
+    const mapItems = wrapper.findAll('.wd-tabs__map-nav-item')
+
+    await mapItems[1].trigger('click')
+    await settle()
+    expect(wrapper.vm.activeTab).toBe(-1)
+    expect(tabs.emitted('disabled')).toEqual([[{ index: 1, name: 0 }]])
+    expect(tabs.emitted('change')).toBeUndefined()
+
+    await mapItems[4].trigger('click')
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[4].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(2)
+    expect(tabs.emitted('change')).toEqual([[{ index: 4, name: 2 }]])
+  })
+
+  test('外部更新和 setActive 方法均按数字名称切换', async () => {
+    const wrapper = mountTabs(10, [10, 20, 30])
+    await settle()
+    const tabs = wrapper.findComponent(WdTabs)
+
+    await wrapper.setData({ activeTab: 20 })
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[1].classes()).toContain('is-active')
+    expect(tabs.emitted('change')).toBeUndefined()
+
+    tabs.vm.setActive(30, false, true)
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[2].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(30)
+    expect(tabs.emitted('change')).toEqual([[{ index: 2, name: 30 }]])
+  })
+
+  test('仍可通过数字索引选中字符串名称的标签', async () => {
+    const wrapper = mountTabs(1, ['first', 'second', 'third'])
+    await settle()
+
+    expect(wrapper.findAll('.wd-tabs__nav-item')[1].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe('second')
+  })
+
+  test('数字名称与字符串名称严格区分', async () => {
+    const wrapper = mountTabs('1', [1, '1', 2])
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[1].classes()).toContain('is-active')
+
+    await wrapper.findAll('.wd-tabs__nav-item')[0].trigger('click')
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(1)
+  })
+
+  test.each([
+    { names: [-1, 0, 1, 3, 2], values: [-1, 0, 1] },
+    { names: ['first', 'second', 'third'], values: ['first', 'second', 'third'] },
+    { names: [undefined, undefined, undefined], values: [0, 1, 2] }
+  ])('滑动按相邻位置切换，回写对应名称或索引：$names', async ({ names, values }) => {
+    const wrapper = mountTabs(values[0], names)
+    await settle()
+    const container = wrapper.find('.wd-tabs__container')
+
+    for (const [distance, index] of [
+      [-100, 1],
+      [-100, 2],
+      [100, 1]
+    ]) {
+      await container.trigger('touchstart', { touches: [{ clientX: 100, clientY: 0 }] })
+      await container.trigger('touchmove', { touches: [{ clientX: 100 + distance, clientY: 0 }] })
+      await container.trigger('touchend')
+      await settle()
+      expect(wrapper.findAll('.wd-tabs__nav-item')[index].classes()).toContain('is-active')
+      expect(wrapper.vm.activeTab).toBe(values[index])
+    }
+  })
+
+  test.each([-1, 0.5, NaN, Infinity, 99])('未设置 name 时，非法索引 %s 安全回退到首项', async (value) => {
+    const wrapper = mountTabs(value, [undefined, undefined, undefined])
+    await settle()
+
+    expect(wrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(0)
+  })
+
+  test.each([
+    { scenario: '初始空列表左滑', names: [], value: 0, distance: -100, remaining: [] },
+    { scenario: '初始空列表右滑', names: [], value: 0, distance: 100, remaining: [] },
+    { scenario: '左滑期间清空列表', names: [0, 1, 2], value: 1, distance: -100, remaining: [] },
+    { scenario: '右滑期间清空列表', names: [0, 1, 2], value: 1, distance: 100, remaining: [] },
+    { scenario: '左滑期间缩短列表', names: [0, 1, 2], value: 2, distance: -100, remaining: [0] },
+    { scenario: '右滑期间缩短列表', names: [0, 1, 2], value: 2, distance: 100, remaining: [0] },
+    { scenario: '首项右滑', names: [0, 1, 2], value: 0, distance: 100, remaining: [0, 1, 2] },
+    { scenario: '末项左滑', names: [0, 1, 2], value: 2, distance: -100, remaining: [0, 1, 2] }
+  ])('$scenario 时安全忽略不存在的目标标签', async ({ names, value, distance, remaining }) => {
+    const wrapper = mountTabs(value, names)
+    const errorHandler = vi.fn()
+    wrapper.vm.$.appContext.config.errorHandler = errorHandler
+    await settle()
+    const tabs = wrapper.findComponent(WdTabs)
+    const container = wrapper.find('.wd-tabs__container')
+
+    await container.trigger('touchstart', { touches: [{ clientX: 100, clientY: 0 }] })
+    await container.trigger('touchmove', { touches: [{ clientX: 100 + distance, clientY: 0 }] })
+    await wrapper.setData({ names: remaining })
+    await container.trigger('touchend')
+    await settle()
+
+    expect(errorHandler).not.toHaveBeenCalled()
+    expect(wrapper.vm.activeTab).toBe(value)
+    expect(tabs.emitted('update:modelValue')).toBeUndefined()
+    expect(tabs.emitted('change')).toBeUndefined()
+  })
+})
 
 describe('WdTabs 和 WdTab 组件', () => {
   // 测试 WdTabs 基本渲染

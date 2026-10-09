@@ -6,7 +6,7 @@
 
 ### 基本用法
 
-`v-model` 可以使用数字下标，也可以使用字符串名称。
+`v-model` 可以使用数字下标，也可以使用字符串或数字名称。
 
 ```html
 <wd-tabs v-model="tab1" @change="handleChange">
@@ -28,7 +28,7 @@ function handleChange(event) {
 
 ### name 匹配
 
-为 `wd-tab` 设置 `name` 后，可通过字符串值匹配当前激活项。
+为 `wd-tab` 设置 `name` 后，可通过字符串或数字值匹配当前激活项。名称采用严格匹配，例如数字 `1` 与字符串 `'1'` 是不同的名称。
 
 ```html
 <wd-tabs v-model="tab">
@@ -42,6 +42,23 @@ function handleChange(event) {
 const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
 const tab = ref('a')
 ```
+
+数字名称也支持负数、`0` 和不连续的数值，需通过 `:name` 绑定到 `wd-tab`：
+
+```html
+<wd-tabs v-model="numericTab" swipeable>
+  <wd-tab v-for="name in numericTabs" :key="name" :name="name" :title="`标签${name}`" :disabled="name === 0">
+    <view class="content">内容{{ name }}</view>
+  </wd-tab>
+</wd-tabs>
+```
+
+```ts
+const numericTabs = [-1, 0, 1, 3, 2]
+const numericTab = ref(-1)
+```
+
+未设置 `name` 时，标签使用从 `0` 开始的索引作为标识。绑定值优先匹配名称；未匹配到名称时，合法数字索引仍可选中对应标签。不存在的名称或非法索引会回退到首项，禁用项不会被激活。设置了 `name` 的标签在切换时会回写名称，否则回写索引。
 
 ### 使用徽标
 

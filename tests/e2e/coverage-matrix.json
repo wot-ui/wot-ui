@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "H5",
-  "generatedAt": "2026-10-08T10:27:29.074Z",
+  "generatedAt": "2026-10-09T11:30:04.160Z",
   "note": "功能用例存在不代表完整覆盖；known-defect 不计入正常通过，smoke-only 尚未实现功能场景。结果仅对应 evidence 所指运行。",
   "components": [
     {
@@ -1128,7 +1128,10 @@
         "8dc6e70e7475",
         "8a2d8f241633",
         "2a89176fe40c",
-        "7744703bb586"
+        "7744703bb586",
+        "54f4fd93f48d",
+        "cbe5a3764e36",
+        "6247fec5c268"
       ]
     },
     {
@@ -1198,7 +1201,10 @@
         "8dc6e70e7475",
         "8a2d8f241633",
         "2a89176fe40c",
-        "7744703bb586"
+        "7744703bb586",
+        "54f4fd93f48d",
+        "cbe5a3764e36",
+        "6247fec5c268"
       ]
     },
     {
@@ -7783,24 +7789,24 @@
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:44:09.605Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:43.800Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:45:43.961Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:50.455Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:47:07.301Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:56.537Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         }
       }
@@ -7814,24 +7820,24 @@
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:44:09.731Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:43.781Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:45:44.005Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:52.175Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:47:07.533Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:57.233Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         }
       }
@@ -7845,24 +7851,24 @@
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:44:10.013Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:46.140Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:45:44.221Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:53.851Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:47:07.742Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:57.734Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         }
       }
@@ -7876,25 +7882,128 @@
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:44:10.028Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:46.176Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:45:44.424Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:53.852Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
           "runs": 1,
-          "date": "2026-10-08T07:47:07.874Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "date": "2026-10-09T11:28:58.201Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
           "annotations": []
+        }
+      }
+    },
+    {
+      "id": "54f4fd93f48d",
+      "file": "tests/e2e/components/wd-tabs.spec.ts",
+      "title": "数字名称点击保持高亮与面板一致，禁用的零值不可选中",
+      "results": {
+        "chromium-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-10-09T11:28:46.754Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": []
+        },
+        "webkit-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-10-09T11:28:54.506Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": []
+        },
+        "chromium-desktop": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-10-09T11:28:58.548Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": []
+        }
+      }
+    },
+    {
+      "id": "cbe5a3764e36",
+      "file": "tests/e2e/components/wd-tabs.spec.ts",
+      "title": "数字名称地图忽略禁用项，选择后同步面板并收起",
+      "results": {
+        "chromium-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-10-09T11:28:47.842Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": []
+        },
+        "webkit-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-10-09T11:28:55.663Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": []
+        },
+        "chromium-desktop": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-10-09T11:28:59.732Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": []
+        }
+      }
+    },
+    {
+      "id": "6247fec5c268",
+      "file": "tests/e2e/components/wd-tabs.spec.ts",
+      "title": "Chromium 连续触摸按相邻数字名称切换并保留禁用和边界行为",
+      "results": {
+        "chromium-mobile": {
+          "status": "passed",
+          "expectedStatus": "passed",
+          "runs": 1,
+          "date": "2026-10-09T11:28:48.500Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": []
+        },
+        "webkit-mobile": {
+          "status": "skipped",
+          "expectedStatus": "skipped",
+          "runs": 1,
+          "date": "2026-10-09T11:28:55.714Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": [
+            {
+              "type": "skip",
+              "description": "连续触摸使用 Chromium CDP，仅在 Chromium 移动设备模拟中验证"
+            }
+          ]
+        },
+        "chromium-desktop": {
+          "status": "skipped",
+          "expectedStatus": "skipped",
+          "runs": 1,
+          "date": "2026-10-09T11:29:00.345Z",
+          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "annotations": [
+            {
+              "type": "skip",
+              "description": "连续触摸使用 Chromium CDP，仅在 Chromium 移动设备模拟中验证"
+            }
+          ]
         }
       }
     },

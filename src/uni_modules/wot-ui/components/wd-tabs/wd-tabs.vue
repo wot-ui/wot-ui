@@ -144,7 +144,7 @@ import wdBadge from '../wd-badge/wd-badge.vue'
 import wdSticky from '../wd-sticky/wd-sticky.vue'
 import wdStickyBox from '../wd-sticky-box/wd-sticky-box.vue'
 import { computed, getCurrentInstance, onMounted, watch, nextTick, reactive, type CSSProperties, type ComponentInstance } from 'vue'
-import { addUnit, checkNumRange, debounce, getRect, isDef, isNumber, isString, objToStyle } from '../../common/util'
+import { addUnit, checkNumRange, debounce, getRect, isDef, isNumber, objToStyle } from '../../common/util'
 import { useTouch } from '../../composables/useTouch'
 import { TABS_KEY, tabsProps, type TabsExpose } from './types'
 import { useChildren } from '../../composables/useChildren'
@@ -451,7 +451,7 @@ function handleSelect(index: number) {
     return
   }
   state.mapShow && toggleMap()
-  setActive(index)
+  setActive(name)
   emit('click', {
     index,
     name
@@ -470,11 +470,11 @@ function onTouchEnd() {
   const { direction, deltaX, offsetX } = touch
   const minSwipeDistance = 50
   if (direction.value === 'horizontal' && offsetX.value >= minSwipeDistance) {
-    if (deltaX.value > 0 && state.activeIndex !== 0) {
-      setActive(state.activeIndex - 1)
-    } else if (deltaX.value < 0 && state.activeIndex !== children.length - 1) {
-      setActive(state.activeIndex + 1)
-    }
+    const index = state.activeIndex + (deltaX.value > 0 ? -1 : 1)
+    const tab = children[index]
+    // 标签可能在滑动期间被移除，读取名称前先检查目标是否存在。
+    if (!tab) return
+    setActive(getTabName(tab, index))
   }
 }
 
@@ -483,19 +483,21 @@ function onTouchEnd() {
  * @param {number | string} value 绑定值
  */
 function getActiveIndex(value: number | string) {
-  // name代表的索引超过了children长度的边界，自动用0兜底
-  if (isNumber(value) && value >= children.length) {
-    // eslint-disable-next-line prettier/prettier
-    console.error('[wot ui] warning(wd-tabs): the type of tabs\' value is Number shouldn\'t be less than its children')
-    value = 0
-  }
-  // 如果是字符串直接匹配，匹配不到用0兜底
-  if (isString(value)) {
-    const index = children.findIndex((item) => item.name === value)
-    value = index === -1 ? 0 : index
+  // 名称优先匹配，未设置 name 的标签使用索引作为名称。
+  const index = children.findIndex((item, index) => getTabName(item, index) === value)
+  if (index !== -1) {
+    return index
   }
 
-  return value
+  // 兼容通过索引选择具名标签；非法索引或未匹配的名称回退到首项。
+  if (isNumber(value)) {
+    if (Number.isInteger(value) && value >= 0 && value < children.length) {
+      return value
+    }
+    console.error('[wot ui] warning(wd-tabs): the tab index should be an integer within the range of its children')
+  }
+
+  return 0
 }
 
 defineExpose<TabsExpose>({
