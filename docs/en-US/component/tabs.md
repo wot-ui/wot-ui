@@ -58,7 +58,9 @@ const numericTabs = [-1, 0, 1, 3, 2]
 const numericTab = ref(-1)
 ```
 
-Tabs without a `name` use their zero-based index as their identifier. Names take precedence; if no name matches, a valid numeric index can still select a tab. Unmatched names and invalid indices fall back to the first tab, while disabled tabs cannot be activated. Switching tabs updates the bound value to the selected tab's name, or its index if no name is set.
+Tabs without a `name` use their zero-based index as their identifier. Explicitly set names take precedence; if no name matches, a valid numeric index can still select a tab. Unmatched names and invalid indices fall back to the first tab, while disabled tabs cannot be activated. Switching tabs updates the bound value to the selected tab's name, or its index if no name is set.
+
+If an explicit numeric name equals an unnamed tab's index, the explicit name takes precedence. For example, if the first tab has no name and the second has `:name="0"`, binding `0` selects the second tab. When mixing names and indices, keep tab identifiers unique so every tab can be distinguished by its bound value.
 
 ### Use Badge
 

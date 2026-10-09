@@ -146,6 +146,87 @@ describe('Tabs 名称绑定回归', () => {
   })
 
   test.each([
+    { names: [undefined, 0, 2], value: 0, index: 1 },
+    { names: [undefined, undefined, 1], value: 1, index: 2 },
+    { names: [1, undefined, 2], value: 1, index: 0 }
+  ])('显式数字名称优先于默认索引：$names', async ({ names, value, index }) => {
+    const wrapper = mountTabs(value, names)
+    await settle()
+
+    expect(wrapper.findAll('.wd-tabs__nav-item')[index].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(value)
+    expect(wrapper.findComponent(WdTabs).emitted('update:modelValue')).toBeUndefined()
+  })
+
+  test('混合名称列表中未匹配显式名称时仍回退到合法索引', async () => {
+    const wrapper = mountTabs(1, [10, undefined, 30])
+    await settle()
+
+    expect(wrapper.findAll('.wd-tabs__nav-item')[1].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(1)
+  })
+
+  test('外部绑定和 setActive 优先选择冲突的显式数字名称', async () => {
+    const wrapper = mountTabs(2, [undefined, 0, 2])
+    await settle()
+    const tabs = wrapper.findComponent(WdTabs)
+
+    await wrapper.setData({ activeTab: 0 })
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[1].classes()).toContain('is-active')
+    expect(tabs.emitted('change')).toBeUndefined()
+
+    await wrapper.setData({ activeTab: 2 })
+    await settle()
+    tabs.vm.setActive(0, false, true)
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[1].classes()).toContain('is-active')
+    expect(tabs.emitted('change')).toEqual([[{ index: 1, name: 0 }]])
+  })
+
+  test('匹配到的显式数字名称禁用时不回退到同值索引', async () => {
+    const wrapper = mountTabs(2, [undefined, 0, 2], false, 1)
+    await settle()
+    const tabs = wrapper.findComponent(WdTabs)
+
+    tabs.vm.setActive(0, false, true)
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[2].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(2)
+    expect(tabs.emitted('change')).toBeUndefined()
+  })
+
+  test.each([
+    { action: 'click', sticky: false },
+    { action: 'click', sticky: true },
+    { action: 'map', sticky: false },
+    { action: 'map', sticky: true },
+    { action: 'swipe', sticky: false },
+    { action: 'swipe', sticky: true }
+  ])('$action 选中显式 name=0 的标签而非未命名首项（sticky=$sticky）', async ({ action, sticky }) => {
+    const wrapper = mountTabs(2, [undefined, 0, 2], sticky)
+    await settle()
+
+    if (action === 'map') {
+      await wrapper.find('.wd-tabs__map-btn').trigger('click')
+      await settle()
+      await wrapper.findAll('.wd-tabs__map-nav-item')[1].trigger('click')
+    } else if (action === 'swipe') {
+      const container = wrapper.find('.wd-tabs__container')
+      await container.trigger('touchstart', { touches: [{ clientX: 100, clientY: 0 }] })
+      await container.trigger('touchmove', { touches: [{ clientX: 200, clientY: 0 }] })
+      await container.trigger('touchend')
+    } else {
+      await wrapper.findAll('.wd-tabs__nav-item')[1].trigger('click')
+    }
+    await settle()
+
+    expect(wrapper.findAll('.wd-tabs__nav-item')[1].classes()).toContain('is-active')
+    expect(wrapper.vm.activeTab).toBe(0)
+    expect(wrapper.findComponent(WdTabs).emitted('change')).toEqual([[{ index: 1, name: 0 }]])
+  })
+
+  test.each([
     { names: [-1, 0, 1, 3, 2], values: [-1, 0, 1] },
     { names: ['first', 'second', 'third'], values: ['first', 'second', 'third'] },
     { names: [undefined, undefined, undefined], values: [0, 1, 2] }

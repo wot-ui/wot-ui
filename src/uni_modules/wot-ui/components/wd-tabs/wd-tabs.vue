@@ -483,8 +483,8 @@ function onTouchEnd() {
  * @param {number | string} value 绑定值
  */
 function getActiveIndex(value: number | string) {
-  // 名称优先匹配，未设置 name 的标签使用索引作为名称。
-  const index = children.findIndex((item, index) => getTabName(item, index) === value)
+  // 先匹配显式名称，避免未命名标签的默认索引遮蔽同值名称。
+  const index = children.findIndex((item) => isDef(item.name) && item.name === value)
   if (index !== -1) {
     return index
   }
