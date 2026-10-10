@@ -247,6 +247,30 @@ describe('Tabs 名称绑定回归', () => {
     )
   })
 
+  test.each(['bigint', 'circular'])('非法 %s 名称保留类型诊断，不在重复检查中抛错', async (kind) => {
+    const circular: { self?: unknown } = {}
+    circular.self = circular
+    // 故意绕过静态类型，验证运行时错误输入；两项使用同一个值以触发重复检查。
+    const invalidName = (kind === 'bigint' ? BigInt(1) : circular) as unknown as string
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {})
+    try {
+      const wrapper = mountTabs(2, [invalidName, invalidName, 2])
+      const errorHandler = vi.fn()
+      wrapper.vm.$.appContext.config.errorHandler = errorHandler
+      await settle()
+
+      expect(errorHandler).not.toHaveBeenCalled()
+      expect(duplicateWarnings()).toHaveLength(0)
+      expect(error.mock.calls).toEqual([
+        ['[wot ui] error(wd-tab): the type of name should be number or string'],
+        ['[wot ui] error(wd-tab): the type of name should be number or string']
+      ])
+      expect(wrapper.findAll('.wd-tabs__nav-item')[2].classes()).toContain('is-active')
+    } finally {
+      error.mockRestore()
+    }
+  })
+
   test.each([
     [undefined, undefined, undefined],
     [10, undefined, 30],

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "H5",
-  "generatedAt": "2026-10-09T11:30:04.160Z",
+  "generatedAt": "2026-10-10T06:45:05.112Z",
   "note": "功能用例存在不代表完整覆盖；known-defect 不计入正常通过，smoke-only 尚未实现功能场景。结果仅对应 evidence 所指运行。",
   "components": [
     {
@@ -5431,25 +5431,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:43:54.479Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 10,
+          "date": "2026-10-10T05:19:02.475Z",
+          "evidence": "test-results/verification/pr186-popup-animation/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:45:27.686Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 10,
+          "date": "2026-10-10T05:19:37.487Z",
+          "evidence": "test-results/verification/pr186-popup-animation/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:46:53.472Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 10,
+          "date": "2026-10-10T05:20:09.891Z",
+          "evidence": "test-results/verification/pr186-popup-animation/results.json",
           "annotations": []
         }
       }

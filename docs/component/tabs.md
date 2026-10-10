@@ -214,7 +214,7 @@ function handlePopupShow() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 当前激活项，可为索引或名称 | `number | string` | `0` |
+| v-model | 当前激活项，优先匹配显式名称；未匹配时按合法数字索引回退 | `number | string` | `0` |
 | slidable-num | 自动开启滚动的标签数量阈值 | `number` | `6` |
 | map-num | 显示导航地图的标签数量阈值 | `number` | `10` |
 | map-title | 导航地图标题 | `string` | - |

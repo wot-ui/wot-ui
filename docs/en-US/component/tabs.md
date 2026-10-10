@@ -214,7 +214,7 @@ function handlePopupShow() {
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| v-model | Current active item, can be index or name | `number | string` | `0` |
+| v-model | Active item; explicit names take precedence, falling back to a valid numeric index when no name matches | `number | string` | `0` |
 | slidable-num | Threshold for automatically enabling scrollable tabs | `number` | `6` |
 | map-num | Threshold for showing navigation map | `number` | `10` |
 | map-title | Navigation map title | `string` | - |

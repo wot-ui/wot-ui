@@ -240,6 +240,8 @@ watch(
     await nextTick()
     if (cancelled) return
     names.forEach((name, index) => {
+      // 非法类型由 wd-tab 诊断，避免格式化 bigint 或循环引用对象时再次抛错。
+      if (typeof name !== 'string' && typeof name !== 'number') return
       const firstIndex = names.indexOf(name)
       if (firstIndex >= 0 && firstIndex !== index) {
         console.warn(
