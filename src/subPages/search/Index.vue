@@ -6,6 +6,9 @@
           <demo-group-item no-padding :title="$t('ji-chu-yong-fa-0')">
             <wd-search v-model="valueBasic" @search="search" @change="change" @cancel="cancel" @clear="clear" />
           </demo-group-item>
+          <demo-group-item no-padding :title="$t('shu-zi-lei-xing')">
+            <wd-search v-model="valueNumber" type="number" :placeholder="$t('qing-shu-ru-shou-ji-hao')" />
+          </demo-group-item>
         </demo-group>
 
         <demo-group transparent :title="$t('zu-jian-zhuang-tai')">
@@ -127,6 +130,7 @@ const { t } = useI18n()
 const { closeOutside } = useQueue()
 
 const valueBasic = ref<string>('')
+const valueNumber = ref<string>('')
 const valuePlain = ref<string>('')
 const valueFilled = ref<string>('')
 const valueLight = ref<string>('')

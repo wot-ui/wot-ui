@@ -7,6 +7,7 @@
  * @FilePath: /wot-ui/src/uni_modules/wot-ui/components/wd-search/types.ts
  * 记得注释
  */
+import type { InputType } from '../wd-input/types'
 import { baseProps, makeBooleanProp, makeNumberProp, makeNumericProp, makeStringProp } from '../../common/props'
 
 export type SearchVariant = 'filled' | 'plain' | 'light'
@@ -33,6 +34,14 @@ export const searchProps = {
    * 类型: string
    */
   placeholder: String,
+
+  /**
+   * 输入框类型，与 wd-input 一致
+   * 类型: InputType
+   * 可选值: 'text' | 'number' | 'digit' | 'idcard' | 'safe-password' | 'nickname' | 'tel'
+   * 默认值: 'text'
+   */
+  type: makeStringProp<InputType>('text'),
 
   /**
    * 搜索框右侧文本

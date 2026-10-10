@@ -29,6 +29,14 @@ function change({ value }: { value: string }) {
 }
 ```
 
+### 输入框类型
+
+通过 `type` 设置输入框类型，可选值与 `wd-input` 一致，默认 `text`。搜索手机号、订单号等场景可设置为 `number`、`tel` 等，以唤起对应键盘。键盘右下角确认按钮仍为搜索。
+
+```html
+<wd-search v-model="value" type="number" placeholder="请输入手机号" />
+```
+
 ## 组件状态
 
 ### 自动聚焦
@@ -199,6 +207,7 @@ function changeSearchType({ item }) {
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | v-model | 输入框内容，双向绑定 | `string` | `''` |
+| type ^($LOWEST_VERSION$) | 输入框类型，可选值为 `text`、`number`、`digit`、`idcard`、`safe-password`、`nickname`、`tel` | `InputType` | `text` |
 | custom-input-class | 自定义输入框类名 | `string` | `''` |
 | placeholder | 搜索框占位文本 | `string` | `'搜索'` |
 | cancel-txt | 搜索框右侧文本 | `string` | `'取消'` |

@@ -10,6 +10,7 @@
         <wd-icon v-if="showInput || inputValue || placeholderLeft" name="search-line" custom-class="wd-search__search-left-icon"></wd-icon>
         <input
           v-if="showInput || inputValue || placeholderLeft"
+          :type="type"
           :placeholder="placeholder || translate('search')"
           :placeholder-class="`wd-search__placeholder-txt ${placeholderClass}`"
           :placeholder-style="placeholderStyle"
