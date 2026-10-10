@@ -23,6 +23,7 @@ describe('Tabs 名称绑定回归', () => {
 
   beforeEach(() => {
     vi.useFakeTimers()
+    vi.spyOn(console, 'warn').mockImplementation(() => {})
     // 全局测量 mock 只返回四个节点，本组需要覆盖更多数字名称标签。
     vi.spyOn(utils, 'getRect').mockImplementation((async (_selector, all) => {
       const rect = { width: 100, height: 44, left: 0, right: 100, top: 0, bottom: 44 }
@@ -35,21 +36,26 @@ describe('Tabs 名称绑定回归', () => {
     vi.clearAllTimers()
     vi.useRealTimers()
     vi.mocked(utils.getRect).mockRestore()
+    vi.mocked(console.warn).mockRestore()
   })
 
-  function mountTabs(value: number | string, names: (number | string | undefined)[], sticky = false, disabledIndex = -1) {
+  function mountTabs(value: number | string, names: (number | string | undefined)[], sticky = false, disabledIndex = -1, bindModel = true) {
     const wrapper = mount({
       template: `
-        <wd-tabs v-model="activeTab" :sticky="sticky" :map-num="2" swipeable>
+        <wd-tabs :model-value="activeTab" @update:model-value="bindModel && (activeTab = $event)" :sticky="sticky" :map-num="2" swipeable>
           <wd-tab v-for="(name, index) in names" :key="index" :name="name" :title="'标签' + index" :disabled="index === disabledIndex">
             内容{{ index }}
           </wd-tab>
         </wd-tabs>
       `,
-      data: () => ({ activeTab: value, names, sticky, disabledIndex })
+      data: () => ({ activeTab: value, names, sticky, disabledIndex, bindModel })
     })
     wrappers.push(wrapper)
     return wrapper
+  }
+
+  function duplicateWarnings() {
+    return vi.mocked(console.warn).mock.calls.filter(([message]) => String(message).includes('duplicate tab identifier'))
   }
 
   async function settle() {
@@ -227,8 +233,100 @@ describe('Tabs 名称绑定回归', () => {
   })
 
   test.each([
+    { names: [undefined, 0, 2], value: 2, identifier: '0' },
+    { names: [1, undefined, 2], value: 2, identifier: '1' },
+    { names: ['same', 'same', 2], value: 2, identifier: '"same"' },
+    { names: ['', '', 2], value: 2, identifier: '""' }
+  ])('重复绑定标识给出明确警告：$names', async ({ names, value, identifier }) => {
+    mountTabs(value, names)
+    await settle()
+
+    expect(duplicateWarnings()).toHaveLength(1)
+    expect(console.warn).toHaveBeenCalledWith(
+      `[wot ui] warning(wd-tabs): duplicate tab identifier ${identifier} at indices 0 and 1; use unique names for reliable v-model binding`
+    )
+  })
+
+  test.each([
+    [undefined, undefined, undefined],
+    [10, undefined, 30],
+    [0, '0', 2]
+  ])('唯一标识不产生冲突警告：%j', async (...names) => {
+    mountTabs(2, names)
+    await settle()
+    expect(duplicateWarnings()).toHaveLength(0)
+  })
+
+  test('动态改名、移除和新增子项时重新检查有效标识', async () => {
+    const wrapper = mountTabs(2, [10, undefined, 2])
+    await settle()
+    expect(duplicateWarnings()).toHaveLength(0)
+
+    await wrapper.setData({ names: [1, undefined, 2] })
+    await settle()
+    expect(duplicateWarnings()).toHaveLength(1)
+    vi.mocked(console.warn).mockClear()
+
+    await wrapper.setData({ names: [undefined, 2] })
+    await settle()
+    expect(duplicateWarnings()).toHaveLength(0)
+
+    await wrapper.setData({ names: [undefined, 2, undefined] })
+    await settle()
+    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('identifier 2 at indices 1 and 2'))
+  })
+
+  test.each([
+    { action: 'click', sticky: false },
+    { action: 'click', sticky: true },
+    { action: 'map', sticky: false },
+    { action: 'map', sticky: true },
+    { action: 'swipe', sticky: false },
+    { action: 'swipe', sticky: true }
+  ])('$action 按目标位置选中未命名项，不重新解析为同名项（sticky=$sticky）', async ({ action, sticky }) => {
+    // 重复标识无法可靠往返绑定；此处不回写父组件，仅验证内部交互按位置执行。
+    const wrapper = mountTabs(0, [undefined, 0, 2], sticky, -1, false)
+    await settle()
+    expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('duplicate tab identifier 0'))
+    expect(wrapper.findAll('.wd-tabs__nav-item')[1].classes()).toContain('is-active')
+
+    if (action === 'map') {
+      await wrapper.find('.wd-tabs__map-btn').trigger('click')
+      await settle()
+      await wrapper.findAll('.wd-tabs__map-nav-item')[0].trigger('click')
+    } else if (action === 'swipe') {
+      const container = wrapper.find('.wd-tabs__container')
+      await container.trigger('touchstart', { touches: [{ clientX: 100, clientY: 0 }] })
+      await container.trigger('touchmove', { touches: [{ clientX: 200, clientY: 0 }] })
+      await container.trigger('touchend')
+    } else {
+      await wrapper.findAll('.wd-tabs__nav-item')[0].trigger('click')
+    }
+    await settle()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
+  })
+
+  test('防抖等待期间移除目标标签时安全忽略过期索引', async () => {
+    const wrapper = mountTabs(0, [undefined, undefined, undefined])
+    const errorHandler = vi.fn()
+    wrapper.vm.$.appContext.config.errorHandler = errorHandler
+    await settle()
+    const navItems = wrapper.findAll('.wd-tabs__nav-item')
+    await navItems[0].trigger('click')
+    await navItems[2].trigger('click')
+    await wrapper.setData({ names: [undefined] })
+    await settle()
+
+    expect(errorHandler).not.toHaveBeenCalled()
+    expect(wrapper.vm.activeTab).toBe(0)
+    expect(wrapper.findComponent(WdTabs).emitted('change')).toBeUndefined()
+    expect(wrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
+  })
+
+  test.each([
     { names: [-1, 0, 1, 3, 2], values: [-1, 0, 1] },
     { names: ['first', 'second', 'third'], values: ['first', 'second', 'third'] },
+    { names: [10, undefined, 30], values: [10, 1, 30] },
     { names: [undefined, undefined, undefined], values: [0, 1, 2] }
   ])('滑动按相邻位置切换，回写对应名称或索引：$names', async ({ names, values }) => {
     const wrapper = mountTabs(values[0], names)

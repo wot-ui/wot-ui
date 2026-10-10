@@ -60,7 +60,7 @@ const numericTab = ref(-1)
 
 Tabs without a `name` use their zero-based index as their identifier. Explicitly set names take precedence; if no name matches, a valid numeric index can still select a tab. Unmatched names and invalid indices fall back to the first tab, while disabled tabs cannot be activated. Switching tabs updates the bound value to the selected tab's name, or its index if no name is set.
 
-If an explicit numeric name equals an unnamed tab's index, the explicit name takes precedence. For example, if the first tab has no name and the second has `:name="0"`, binding `0` selects the second tab. When mixing names and indices, keep tab identifiers unique so every tab can be distinguished by its bound value.
+If an explicit numeric name equals an unnamed tab's index, the explicit name takes precedence. For example, if the first tab has no name and the second has `:name="0"`, binding `0` selects the second tab. However, both tabs then have the identifier `0`, so the component logs a warning. A single bound value cannot distinguish these tabs, and reliable two-way binding is not supported with duplicate identifiers. All identifiers (explicit names or default indices) must be unique. When mixing named and unnamed tabs, consider assigning a unique `name` to every tab.
 
 ### Use Badge
 

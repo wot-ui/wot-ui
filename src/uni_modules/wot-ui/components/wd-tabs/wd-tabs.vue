@@ -228,6 +228,31 @@ const getTabName = (tab: ComponentInstance<any>, index: number) => {
   return isDef(tab.name) ? tab.name : index
 }
 
+// 默认索引也是绑定标识；在子项完成注册、排序后统一检查，并跟踪动态变化。
+watch(
+  () => children.map(getTabName),
+  async (names, _oldNames, onCleanup) => {
+    let cancelled = false
+    onCleanup(() => {
+      cancelled = true
+    })
+    // useParent 在 onUnmounted 中注销子项，等待注销完成，避免对中间状态误报。
+    await nextTick()
+    if (cancelled) return
+    names.forEach((name, index) => {
+      const firstIndex = names.indexOf(name)
+      if (firstIndex >= 0 && firstIndex !== index) {
+        console.warn(
+          `[wot ui] warning(wd-tabs): duplicate tab identifier ${JSON.stringify(
+            name
+          )} at indices ${firstIndex} and ${index}; use unique names for reliable v-model binding`
+        )
+      }
+    })
+  },
+  { flush: 'post' }
+)
+
 /**
  * 获取 tab item 的样式
  * @param index 索引
@@ -272,15 +297,16 @@ const getMapTabStyle = (index: number) => {
  * @param value 激活值
  * @param init 是否已初始化
  * @param setScroll 是否设置scroll-view滚动
+ * @param byIndex 是否直接使用内部交互的物理索引
  */
-const updateActive = (value: number | string = 0, init: boolean = false, setScroll: boolean = true) => {
+const updateActive = (value: number | string = 0, init: boolean = false, setScroll: boolean = true, byIndex: boolean = false) => {
   // 没有tab子元素，不执行任何操作
   if (children.length === 0) return
 
-  value = getActiveIndex(value)
-  // 被禁用，不执行任何操作
-  if (children[value].disabled) return
-  state.activeIndex = value
+  const index = byIndex ? (value as number) : getActiveIndex(value)
+  // 防抖等待期间子项可能被移除，执行时再次检查索引和禁用状态。
+  if (!Number.isInteger(index) || index < 0 || index >= children.length || children[index].disabled) return
+  state.activeIndex = index
   if (setScroll) {
     updateLineStyle(init === false)
     scrollIntoView()
@@ -293,7 +319,15 @@ const updateActive = (value: number | string = 0, init: boolean = false, setScro
  * @param {string | number} value 绑定值或 tab 索引，默认值 0
  * @param {boolean} init 是否伴随初始化操作
  */
-const setActive = debounce(updateActive, 100, { leading: true })
+const debouncedUpdateActive = debounce(updateActive, 100, { leading: true })
+const setActive = (value: number | string = 0, init: boolean = false, setScroll: boolean = true) => {
+  debouncedUpdateActive(value, init, setScroll)
+}
+
+/** 内部交互已确定目标位置，无须再次按名称解析。 */
+const setActiveByIndex = (index: number) => {
+  debouncedUpdateActive(index, false, true, true)
+}
 
 watch(
   () => props.modelValue,
@@ -439,9 +473,10 @@ function scrollIntoView() {
  * @param index 索引
  */
 function handleSelect(index: number) {
-  if (index === undefined) return
-  const { disabled } = children[index]
-  const name = getTabName(children[index], index)
+  const tab = children[index]
+  if (!tab) return
+  const { disabled } = tab
+  const name = getTabName(tab, index)
 
   if (disabled) {
     emit('disabled', {
@@ -451,7 +486,7 @@ function handleSelect(index: number) {
     return
   }
   state.mapShow && toggleMap()
-  setActive(name)
+  setActiveByIndex(index)
   emit('click', {
     index,
     name
@@ -472,9 +507,9 @@ function onTouchEnd() {
   if (direction.value === 'horizontal' && offsetX.value >= minSwipeDistance) {
     const index = state.activeIndex + (deltaX.value > 0 ? -1 : 1)
     const tab = children[index]
-    // 标签可能在滑动期间被移除，读取名称前先检查目标是否存在。
+    // 标签可能在滑动期间被移除，切换前先检查目标是否存在。
     if (!tab) return
-    setActive(getTabName(tab, index))
+    setActiveByIndex(index)
   }
 }
 
