@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "H5",
-  "generatedAt": "2026-10-10T06:45:05.112Z",
+  "generatedAt": "2026-10-10T07:50:29.084Z",
   "note": "功能用例存在不代表完整覆盖；known-defect 不计入正常通过，smoke-only 尚未实现功能场景。结果仅对应 evidence 所指运行。",
   "components": [
     {
@@ -1358,25 +1358,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:43:22.722Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:54.156Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:44:48.516Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:19.661Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:46:23.391Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:44.607Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -1389,25 +1389,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:43:22.700Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:55.219Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:44:48.641Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:21.357Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:46:23.475Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:45.572Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -1420,25 +1420,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:43:22.717Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:55.826Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:44:48.813Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:21.067Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:46:23.850Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:46.459Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -1451,25 +1451,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:43:22.725Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:56.157Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:44:49.798Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:22.239Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:46:24.580Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:46.630Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -5395,17 +5395,17 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:43:54.265Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:56.979Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "skipped",
           "expectedStatus": "skipped",
-          "runs": 1,
-          "date": "2026-10-08T07:45:27.567Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:22.841Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": [
             {
               "type": "skip",
@@ -5416,9 +5416,9 @@
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-08T07:46:53.365Z",
-          "evidence": "test-results/verification/unpatched-final/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:47.580Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -5431,25 +5431,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 10,
-          "date": "2026-10-10T05:19:02.475Z",
-          "evidence": "test-results/verification/pr186-popup-animation/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:57.133Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 10,
-          "date": "2026-10-10T05:19:37.487Z",
-          "evidence": "test-results/verification/pr186-popup-animation/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:23.478Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 10,
-          "date": "2026-10-10T05:20:09.891Z",
-          "evidence": "test-results/verification/pr186-popup-animation/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:47.600Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -7788,25 +7788,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:43.800Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:57.866Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:50.455Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:26.590Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:56.537Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:48.932Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -7819,25 +7819,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:43.781Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:58.246Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:52.175Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:27.041Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:57.233Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:49.261Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -7850,25 +7850,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:46.140Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:58.616Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:53.851Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:27.490Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:57.734Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:49.677Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -7881,25 +7881,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:46.176Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:48:58.981Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:53.852Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:27.915Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:58.201Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:49.943Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -7912,25 +7912,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:46.754Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:00.046Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:54.506Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:28.188Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:58.548Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:50.503Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -7943,25 +7943,25 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:47.842Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:00.881Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:55.663Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:29.189Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "chromium-desktop": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:59.732Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:51.306Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         }
       }
@@ -7974,17 +7974,17 @@
         "chromium-mobile": {
           "status": "passed",
           "expectedStatus": "passed",
-          "runs": 1,
-          "date": "2026-10-09T11:28:48.500Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:01.007Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": []
         },
         "webkit-mobile": {
           "status": "skipped",
           "expectedStatus": "skipped",
-          "runs": 1,
-          "date": "2026-10-09T11:28:55.714Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:29.998Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": [
             {
               "type": "skip",
@@ -7995,9 +7995,9 @@
         "chromium-desktop": {
           "status": "skipped",
           "expectedStatus": "skipped",
-          "runs": 1,
-          "date": "2026-10-09T11:29:00.345Z",
-          "evidence": "test-results/verification/tabs-numeric-name/results.json",
+          "runs": 3,
+          "date": "2026-10-10T07:49:51.881Z",
+          "evidence": "test-results/verification/pr186-page-fixture/results.json",
           "annotations": [
             {
               "type": "skip",
