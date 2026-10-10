@@ -6,7 +6,7 @@ Tab component for switching between different content areas.
 
 ### Basic Usage
 
-`v-model` can use numeric index or string name.
+`v-model` accepts a numeric index or a string or numeric name.
 
 ```html
 <wd-tabs v-model="tab1" @change="handleChange">
@@ -28,7 +28,7 @@ function handleChange(event) {
 
 ### Name Matching
 
-After setting `name` for `wd-tab`, you can match the current active item through string value.
+Set `name` on `wd-tab` to select a tab by its string or numeric name. Names use strict equality: the number `1` and the string `'1'` are different names.
 
 ```html
 <wd-tabs v-model="tab">
@@ -42,6 +42,25 @@ After setting `name` for `wd-tab`, you can match the current active item through
 const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
 const tab = ref('a')
 ```
+
+Numeric names can be negative, zero, or nonconsecutive. Bind them to `wd-tab` with `:name`:
+
+```html
+<wd-tabs v-model="numericTab" swipeable>
+  <wd-tab v-for="name in numericTabs" :key="name" :name="name" :title="`Tab${name}`" :disabled="name === 0">
+    <view class="content">Content{{ name }}</view>
+  </wd-tab>
+</wd-tabs>
+```
+
+```ts
+const numericTabs = [-1, 0, 1, 3, 2]
+const numericTab = ref(-1)
+```
+
+Tabs without a `name` use their zero-based index as their identifier. Explicitly set names take precedence; if no name matches, a valid numeric index can still select a tab. Unmatched names and invalid indices fall back to the first tab, while disabled tabs cannot be activated. Switching tabs updates the bound value to the selected tab's name, or its index if no name is set.
+
+If an explicit numeric name equals an unnamed tab's index, the explicit name takes precedence. For example, if the first tab has no name and the second has `:name="0"`, binding `0` selects the second tab. However, both tabs then have the identifier `0`, so the component logs a warning. A single bound value cannot distinguish these tabs, and reliable two-way binding is not supported with duplicate identifiers. All identifiers (explicit names or default indices) must be unique. When mixing named and unnamed tabs, consider assigning a unique `name` to every tab.
 
 ### Use Badge
 
@@ -195,7 +214,7 @@ function handlePopupShow() {
 
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
-| v-model | Current active item, can be index or name | `number | string` | `0` |
+| v-model | Active item; explicit names take precedence, falling back to a valid numeric index when no name matches | `number | string` | `0` |
 | slidable-num | Threshold for automatically enabling scrollable tabs | `number` | `6` |
 | map-num | Threshold for showing navigation map | `number` | `10` |
 | map-title | Navigation map title | `string` | - |

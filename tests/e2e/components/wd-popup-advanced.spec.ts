@@ -24,12 +24,19 @@ test('锁定背景滚动，关闭后恢复滚动能力 @wheel', async ({ page, b
 
 test('RootPortal 子弹层脱离父容器，关闭后父弹层仍可操作', async ({ page }) => {
   await demoItem(page, t('qian-tao-dan-chuang-yu-rootportal')).locator('.wd-cell').click()
-  await page.locator('.wd-button').getByText(t('da-kai-chuan-song-zi-dan-chuang'), { exact: true }).click()
+  const parent = page.locator('.page-popup .wd-popup').filter({
+    has: page.locator('.nested-popup__title').getByText(t('fu-dan-chuang-pu-tong-mo-shi'), { exact: true })
+  })
+  // 缩放开始前按钮可能短暂满足 stable；等待同步的淡入完成，避免点击落在移动中的位置。
+  await expect(parent).toHaveCSS('opacity', '1')
+  const openChild = parent.locator('.wd-button').getByText(t('da-kai-chuan-song-zi-dan-chuang'), { exact: true })
+  await openChild.click()
   const child = page.locator('body > .wd-root-portal .wd-popup:visible')
   await expect(child).toContainText(t('zi-dan-chuang-chuan-song-mo-shi'))
+  await expect(child).toHaveCSS('opacity', '1')
   await child.locator('.wd-button').getByText(t('guan-bi'), { exact: true }).click()
   await expect(child).toHaveCount(0)
-  await expect(page.locator('.nested-popup__title').getByText(t('fu-dan-chuang-pu-tong-mo-shi'), { exact: true })).toBeVisible()
-  await page.locator('.wd-button').getByText(t('da-kai-chuan-song-zi-dan-chuang'), { exact: true }).click()
+  await expect(parent).toBeVisible()
+  await openChild.click()
   await expect(child).toBeVisible()
 })

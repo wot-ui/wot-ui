@@ -2,6 +2,14 @@ import { test as base, expect } from '@playwright/test'
 import { mockDemoAssets } from './network'
 
 export const test = base.extend<{ browserDiagnostics: void }>({
+  page: [
+    async ({ context }, use) => {
+      // CI 的 WebKit 首次建页可能耗时数十秒；单独计时，不占用业务用例的 30 秒预算。
+      // 沿用内置 context，由其负责页面清理、Trace 和截图。
+      await use(await context.newPage())
+    },
+    { scope: 'test', timeout: 60_000 }
+  ],
   browserDiagnostics: [
     async ({ page, baseURL }, use, testInfo) => {
       const unexpectedRequests = await mockDemoAssets(page, baseURL!)

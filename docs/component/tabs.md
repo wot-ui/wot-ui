@@ -6,7 +6,7 @@
 
 ### 基本用法
 
-`v-model` 可以使用数字下标，也可以使用字符串名称。
+`v-model` 可以使用数字下标，也可以使用字符串或数字名称。
 
 ```html
 <wd-tabs v-model="tab1" @change="handleChange">
@@ -28,7 +28,7 @@ function handleChange(event) {
 
 ### name 匹配
 
-为 `wd-tab` 设置 `name` 后，可通过字符串值匹配当前激活项。
+为 `wd-tab` 设置 `name` 后，可通过字符串或数字值匹配当前激活项。名称采用严格匹配，例如数字 `1` 与字符串 `'1'` 是不同的名称。
 
 ```html
 <wd-tabs v-model="tab">
@@ -42,6 +42,25 @@ function handleChange(event) {
 const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
 const tab = ref('a')
 ```
+
+数字名称也支持负数、`0` 和不连续的数值，需通过 `:name` 绑定到 `wd-tab`：
+
+```html
+<wd-tabs v-model="numericTab" swipeable>
+  <wd-tab v-for="name in numericTabs" :key="name" :name="name" :title="`标签${name}`" :disabled="name === 0">
+    <view class="content">内容{{ name }}</view>
+  </wd-tab>
+</wd-tabs>
+```
+
+```ts
+const numericTabs = [-1, 0, 1, 3, 2]
+const numericTab = ref(-1)
+```
+
+未设置 `name` 时，标签使用从 `0` 开始的索引作为标识。绑定值优先匹配显式设置的 `name`；未匹配到名称时，合法数字索引仍可选中对应标签。不存在的名称或非法索引会回退到首项，禁用项不会被激活。设置了 `name` 的标签在切换时会回写名称，否则回写索引。
+
+显式数字名称与未命名标签的索引相同时，显式名称优先。例如首项未设置 `name`、第二项设置 `:name="0"` 时，绑定 `0` 会选中第二项。但这两个标签的绑定标识均为 `0`，属于重复标识，组件会输出警告；同一个绑定值无法区分两个标签，不保证此配置下的双向绑定行为。所有标签的标识（显式 `name` 或默认索引）必须唯一，混用时建议为每个标签设置唯一的 `name`。
 
 ### 使用徽标
 
@@ -195,7 +214,7 @@ function handlePopupShow() {
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| v-model | 当前激活项，可为索引或名称 | `number | string` | `0` |
+| v-model | 当前激活项，优先匹配显式名称；未匹配时按合法数字索引回退 | `number | string` | `0` |
 | slidable-num | 自动开启滚动的标签数量阈值 | `number` | `6` |
 | map-num | 显示导航地图的标签数量阈值 | `number` | `10` |
 | map-title | 导航地图标题 | `string` | - |

@@ -144,7 +144,7 @@ import wdBadge from '../wd-badge/wd-badge.vue'
 import wdSticky from '../wd-sticky/wd-sticky.vue'
 import wdStickyBox from '../wd-sticky-box/wd-sticky-box.vue'
 import { computed, getCurrentInstance, onMounted, watch, nextTick, reactive, type CSSProperties, type ComponentInstance } from 'vue'
-import { addUnit, checkNumRange, debounce, getRect, isDef, isNumber, isString, objToStyle } from '../../common/util'
+import { addUnit, checkNumRange, debounce, getRect, isDef, isNumber, objToStyle } from '../../common/util'
 import { useTouch } from '../../composables/useTouch'
 import { TABS_KEY, tabsProps, type TabsExpose } from './types'
 import { useChildren } from '../../composables/useChildren'
@@ -228,6 +228,33 @@ const getTabName = (tab: ComponentInstance<any>, index: number) => {
   return isDef(tab.name) ? tab.name : index
 }
 
+// 默认索引也是绑定标识；在子项完成注册、排序后统一检查，并跟踪动态变化。
+watch(
+  () => children.map(getTabName),
+  async (names, _oldNames, onCleanup) => {
+    let cancelled = false
+    onCleanup(() => {
+      cancelled = true
+    })
+    // useParent 在 onUnmounted 中注销子项，等待注销完成，避免对中间状态误报。
+    await nextTick()
+    if (cancelled) return
+    names.forEach((name, index) => {
+      // 非法类型由 wd-tab 诊断，避免格式化 bigint 或循环引用对象时再次抛错。
+      if (typeof name !== 'string' && typeof name !== 'number') return
+      const firstIndex = names.indexOf(name)
+      if (firstIndex >= 0 && firstIndex !== index) {
+        console.warn(
+          `[wot ui] warning(wd-tabs): duplicate tab identifier ${JSON.stringify(
+            name
+          )} at indices ${firstIndex} and ${index}; use unique names for reliable v-model binding`
+        )
+      }
+    })
+  },
+  { flush: 'post' }
+)
+
 /**
  * 获取 tab item 的样式
  * @param index 索引
@@ -272,15 +299,16 @@ const getMapTabStyle = (index: number) => {
  * @param value 激活值
  * @param init 是否已初始化
  * @param setScroll 是否设置scroll-view滚动
+ * @param byIndex 是否直接使用内部交互的物理索引
  */
-const updateActive = (value: number | string = 0, init: boolean = false, setScroll: boolean = true) => {
+const updateActive = (value: number | string = 0, init: boolean = false, setScroll: boolean = true, byIndex: boolean = false) => {
   // 没有tab子元素，不执行任何操作
   if (children.length === 0) return
 
-  value = getActiveIndex(value)
-  // 被禁用，不执行任何操作
-  if (children[value].disabled) return
-  state.activeIndex = value
+  const index = byIndex ? (value as number) : getActiveIndex(value)
+  // 防抖等待期间子项可能被移除，执行时再次检查索引和禁用状态。
+  if (!Number.isInteger(index) || index < 0 || index >= children.length || children[index].disabled) return
+  state.activeIndex = index
   if (setScroll) {
     updateLineStyle(init === false)
     scrollIntoView()
@@ -293,7 +321,15 @@ const updateActive = (value: number | string = 0, init: boolean = false, setScro
  * @param {string | number} value 绑定值或 tab 索引，默认值 0
  * @param {boolean} init 是否伴随初始化操作
  */
-const setActive = debounce(updateActive, 100, { leading: true })
+const debouncedUpdateActive = debounce(updateActive, 100, { leading: true })
+const setActive = (value: number | string = 0, init: boolean = false, setScroll: boolean = true) => {
+  debouncedUpdateActive(value, init, setScroll)
+}
+
+/** 内部交互已确定目标位置，无须再次按名称解析。 */
+const setActiveByIndex = (index: number) => {
+  debouncedUpdateActive(index, false, true, true)
+}
 
 watch(
   () => props.modelValue,
@@ -439,9 +475,10 @@ function scrollIntoView() {
  * @param index 索引
  */
 function handleSelect(index: number) {
-  if (index === undefined) return
-  const { disabled } = children[index]
-  const name = getTabName(children[index], index)
+  const tab = children[index]
+  if (!tab) return
+  const { disabled } = tab
+  const name = getTabName(tab, index)
 
   if (disabled) {
     emit('disabled', {
@@ -451,7 +488,7 @@ function handleSelect(index: number) {
     return
   }
   state.mapShow && toggleMap()
-  setActive(index)
+  setActiveByIndex(index)
   emit('click', {
     index,
     name
@@ -470,11 +507,11 @@ function onTouchEnd() {
   const { direction, deltaX, offsetX } = touch
   const minSwipeDistance = 50
   if (direction.value === 'horizontal' && offsetX.value >= minSwipeDistance) {
-    if (deltaX.value > 0 && state.activeIndex !== 0) {
-      setActive(state.activeIndex - 1)
-    } else if (deltaX.value < 0 && state.activeIndex !== children.length - 1) {
-      setActive(state.activeIndex + 1)
-    }
+    const index = state.activeIndex + (deltaX.value > 0 ? -1 : 1)
+    const tab = children[index]
+    // 标签可能在滑动期间被移除，切换前先检查目标是否存在。
+    if (!tab) return
+    setActiveByIndex(index)
   }
 }
 
@@ -483,19 +520,21 @@ function onTouchEnd() {
  * @param {number | string} value 绑定值
  */
 function getActiveIndex(value: number | string) {
-  // name代表的索引超过了children长度的边界，自动用0兜底
-  if (isNumber(value) && value >= children.length) {
-    // eslint-disable-next-line prettier/prettier
-    console.error('[wot ui] warning(wd-tabs): the type of tabs\' value is Number shouldn\'t be less than its children')
-    value = 0
-  }
-  // 如果是字符串直接匹配，匹配不到用0兜底
-  if (isString(value)) {
-    const index = children.findIndex((item) => item.name === value)
-    value = index === -1 ? 0 : index
+  // 先匹配显式名称，避免未命名标签的默认索引遮蔽同值名称。
+  const index = children.findIndex((item) => isDef(item.name) && item.name === value)
+  if (index !== -1) {
+    return index
   }
 
-  return value
+  // 兼容通过索引选择具名标签；非法索引或未匹配的名称回退到首项。
+  if (isNumber(value)) {
+    if (Number.isInteger(value) && value >= 0 && value < children.length) {
+      return value
+    }
+    console.error('[wot ui] warning(wd-tabs): the tab index should be an integer within the range of its children')
+  }
+
+  return 0
 }
 
 defineExpose<TabsExpose>({

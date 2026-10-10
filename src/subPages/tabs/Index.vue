@@ -26,6 +26,13 @@
           </block>
         </wd-tabs>
       </demo-group-item>
+      <demo-group-item no-padding :title="`${$t('name-pi-pei')} (${$t('shu-zi-lei-xing')})`">
+        <wd-tabs v-model="numericTab" :map-num="3" swipeable @change="handleChange">
+          <wd-tab v-for="name in numericTabs" :key="name" :name="name" :title="`${$t('biao-qian-item')}${name}`" :disabled="name === 0">
+            <view class="page-tabs__content">{{ $t('nei-rong') }}{{ name }}</view>
+          </wd-tab>
+        </wd-tabs>
+      </demo-group-item>
       <demo-group-item no-padding :title="$t('shi-yong-hui-biao')">
         <wd-tabs v-model="tabWithBadge" @change="handleChange">
           <wd-tab v-for="(item, index) in tabsWithBadge" :key="index" :title="item.title" :badge-props="item.badgeProps">
@@ -159,6 +166,9 @@ const { t } = useI18n()
 const tabs = ref(['this', 'is', 'a', 'individual', 'example'])
 
 const tab = ref('a')
+
+const numericTabs = [-1, 0, 1, 3, 2]
+const numericTab = ref(-1)
 
 const tabWithBadge = ref(0)
 

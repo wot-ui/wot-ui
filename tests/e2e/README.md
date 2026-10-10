@@ -40,6 +40,8 @@ pnpm exec cross-env E2E_SERVER=preview playwright test --project=chromium-deskto
 
 使用独占的 `127.0.0.1:4173`，禁止自动换端口和复用未知服务。端口占用时请关闭自己启动的同端口服务后重跑。测试退出后由 Playwright 管理服务关闭。
 
+页面创建使用独立的 60 秒 fixture 超时，避免 Linux WebKit 首次建页耗尽业务测试预算。业务用例仍为 30 秒，操作和断言默认仍为 8 秒；页面导航计入业务预算，不开启自动重试。
+
 Linux 首次运行需要 `pnpm exec playwright install --with-deps chromium`。浏览器下载在安装依赖后单独执行。
 
 ## 覆盖与维护
