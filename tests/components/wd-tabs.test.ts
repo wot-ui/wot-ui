@@ -372,11 +372,17 @@ describe('Tabs 名称绑定回归', () => {
   })
 
   test.each([-1, 0.5, NaN, Infinity, 99])('未设置 name 时，非法索引 %s 安全回退到首项', async (value) => {
-    const wrapper = mountTabs(value, [undefined, undefined, undefined])
-    await settle()
+    const error = vi.spyOn(console, 'error').mockImplementation(() => {})
+    try {
+      const wrapper = mountTabs(value, [undefined, undefined, undefined])
+      await settle()
 
-    expect(wrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
-    expect(wrapper.vm.activeTab).toBe(0)
+      expect(wrapper.findAll('.wd-tabs__nav-item')[0].classes()).toContain('is-active')
+      expect(wrapper.vm.activeTab).toBe(0)
+      expect(error).toHaveBeenCalledWith('[wot ui] warning(wd-tabs): the tab index should be an integer within the range of its children')
+    } finally {
+      error.mockRestore()
+    }
   })
 
   test.each([
