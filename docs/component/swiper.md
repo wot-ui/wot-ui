@@ -52,6 +52,43 @@ const swiperList = ref([
 ></wd-swiper>
 ```
 
+### TypeScript 指示器配置
+
+将指示器配置单独声明为变量时，使用 `SwiperIndicatorProps` 提供类型约束，避免 `type` 被推断为普通 `string`。
+
+```vue
+<script setup lang="ts">
+import type { SwiperIndicatorProps } from '@/uni_modules/wot-ui/components/wd-swiper/types'
+
+const indicator = {
+  type: 'fraction'
+} satisfies SwiperIndicatorProps
+
+const swiperList = ['https://wot-ui.cn/assets/redpanda.jpg', 'https://wot-ui.cn/assets/capybara.jpg']
+</script>
+
+<template>
+  <wd-swiper :list="swiperList" :indicator="indicator" />
+</template>
+```
+
+`satisfies` 需要 TypeScript 4.9 及以上版本。也可以使用类型标注：`const indicator: SwiperIndicatorProps = { type: 'fraction' }`。
+
+需要动态切换指示器类型时，使用 `ref<SwiperIndicatorProps>`，允许在合法类型之间切换：
+
+```ts
+import { ref } from 'vue'
+import type { SwiperIndicatorProps } from '@/uni_modules/wot-ui/components/wd-swiper/types'
+
+const indicator = ref<SwiperIndicatorProps>({ type: 'fraction' })
+
+function useDotsBar() {
+  indicator.value.type = 'dots-bar'
+}
+```
+
+`type` 仅支持 `dots`、`dots-bar`、`fraction`，拼写错误会在类型检查时被发现。
+
 ## 组件变体
 
 ### 手动切换
@@ -288,7 +325,7 @@ const videoList = ref([
 | previous-margin | 前边距 | <code>string &#124; number</code> | `0` |
 | radius | 轮播圆角 | <code>string &#124; number</code> | - |
 | snap-to-edge | 是否将边距应用到首尾元素 | `boolean` | `false` |
-| indicator | 指示器配置，传入 `false` 时隐藏指示器 | <code>boolean &#124; Partial&lt;SwiperIndicatorProps&gt;</code> | `true` |
+| indicator | 指示器配置，传入 `false` 时隐藏指示器 | <code>boolean &#124; SwiperIndicatorProps</code> | `true` |
 | image-mode | 图片裁剪模式，取值参考 uni-app Image 组件 `mode` | `ImageMode` | `aspectFill` |
 | show-menu-by-longpress | 是否开启长按图片显示识别小程序码菜单 | `boolean` | `false` |
 | value-key | 选项对象中图片地址字段名 | `string` | `value` |
@@ -347,6 +384,10 @@ const videoList = ref([
 ### SwiperIndicatorType
 
 指示器类型，可选值为 `dots`、`dots-bar`、`fraction`。
+
+### SwiperIndicatorProps
+
+指示器配置对象，类型为 `Partial<SwiperNavProps>`，所有字段均可选。可从 `@/uni_modules/wot-ui/components/wd-swiper/types` 导入。
 
 ### SwiperItem
 

@@ -52,6 +52,43 @@ const swiperList = ref([
 ></wd-swiper>
 ```
 
+### TypeScript Indicator Configuration
+
+When declaring the indicator configuration as a separate variable, use `SwiperIndicatorProps` to prevent `type` from being widened to `string`.
+
+```vue
+<script setup lang="ts">
+import type { SwiperIndicatorProps } from '@/uni_modules/wot-ui/components/wd-swiper/types'
+
+const indicator = {
+  type: 'fraction'
+} satisfies SwiperIndicatorProps
+
+const swiperList = ['https://wot-ui.cn/assets/redpanda.jpg', 'https://wot-ui.cn/assets/capybara.jpg']
+</script>
+
+<template>
+  <wd-swiper :list="swiperList" :indicator="indicator" />
+</template>
+```
+
+`satisfies` requires TypeScript 4.9 or later. A type annotation also works: `const indicator: SwiperIndicatorProps = { type: 'fraction' }`.
+
+To switch indicator types dynamically, use `ref<SwiperIndicatorProps>` so the value can change between supported types:
+
+```ts
+import { ref } from 'vue'
+import type { SwiperIndicatorProps } from '@/uni_modules/wot-ui/components/wd-swiper/types'
+
+const indicator = ref<SwiperIndicatorProps>({ type: 'fraction' })
+
+function useDotsBar() {
+  indicator.value.type = 'dots-bar'
+}
+```
+
+`type` only accepts `dots`, `dots-bar`, and `fraction`, so misspelled values are caught during type checking.
+
 ## Component Variants
 
 ### Manual Switching
@@ -288,7 +325,7 @@ Customize carousel item content through the default slot.
 | previous-margin | Front margin | <code>string &#124; number</code> | `0` |
 | radius | Carousel border radius | <code>string &#124; number</code> | - |
 | snap-to-edge | Whether to apply margin to first and last elements | `boolean` | `false` |
-| indicator | Indicator configuration, pass `false` to hide indicator | <code>boolean &#124; Partial&lt;SwiperIndicatorProps&gt;</code> | `true` |
+| indicator | Indicator configuration, pass `false` to hide indicator | <code>boolean &#124; SwiperIndicatorProps</code> | `true` |
 | image-mode | Image cropping mode, refer to uni-app Image component `mode` | `ImageMode` | `aspectFill` |
 | show-menu-by-longpress | Whether to enable long-press image to show QR code recognition menu | `boolean` | `false` |
 | value-key | Image address field name in option objects | `string` | `value` |
@@ -347,6 +384,10 @@ Auto height strategy, optional values are `first`, `current`, `highest`, `none`.
 ### SwiperIndicatorType
 
 Indicator type, optional values are `dots`, `dots-bar`, `fraction`.
+
+### SwiperIndicatorProps
+
+Indicator configuration object, defined as `Partial<SwiperNavProps>` with all fields optional. Import it from `@/uni_modules/wot-ui/components/wd-swiper/types`.
 
 ### SwiperItem
 

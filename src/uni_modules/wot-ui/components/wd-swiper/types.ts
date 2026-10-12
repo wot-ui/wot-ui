@@ -39,6 +39,11 @@ export interface SwiperItem {
   type?: SwiperItemType
 }
 
+/**
+ * 指示器配置，所有字段均可选，type 仅支持 dots、dots-bar 和 fraction。
+ */
+export type SwiperIndicatorProps = Partial<SwiperNavProps>
+
 export const swiperProps = {
   ...baseProps,
 
@@ -161,11 +166,11 @@ export const swiperProps = {
   snapToEdge: makeBooleanProp(false),
   /**
    * 指示器全部配置，可以是布尔值或指示器配置对象
-   * 类型：boolean 或 object
+   * 类型：boolean | SwiperIndicatorProps
    * 默认值：true
    */
   indicator: {
-    type: [Boolean, Object] as PropType<boolean | Partial<SwiperNavProps>>,
+    type: [Boolean, Object] as PropType<boolean | SwiperIndicatorProps>,
     default: true
   },
 

@@ -1,9 +1,54 @@
 import { mount } from '@vue/test-utils'
 import WdSwiper from '@/uni_modules/wot-ui/components/wd-swiper/wd-swiper.vue'
-import { describe, expect, test, vi } from 'vitest'
+import { describe, expect, expectTypeOf, test, vi } from 'vitest'
+import { nextTick, ref } from 'vue'
 import WdSwiperNav from '@/uni_modules/wot-ui/components/wd-swiper-nav/wd-swiper-nav.vue'
+import type { SwiperIndicatorProps, SwiperProps } from '@/uni_modules/wot-ui/components/wd-swiper/types'
 
 describe('WdSwiper', () => {
+  // expectTypeOf 的断言由 pnpm type-check 验证，Vitest 仅执行运行时测试。
+  test('指示器配置保留严格类型', () => {
+    type ComponentIndicator = NonNullable<InstanceType<typeof WdSwiper>['$props']['indicator']>
+
+    expectTypeOf<SwiperProps['indicator']>().toEqualTypeOf<boolean | SwiperIndicatorProps>()
+    expectTypeOf<ComponentIndicator>().toEqualTypeOf<boolean | SwiperIndicatorProps>()
+    expectTypeOf<NonNullable<SwiperIndicatorProps['type']>>().toEqualTypeOf<'dots' | 'dots-bar' | 'fraction'>()
+  })
+
+  test.each([{ type: 'dots' }, { type: 'dots-bar' }, { type: 'fraction' }] satisfies SwiperIndicatorProps[])('渲染 $type 指示器配置', (indicator) => {
+    const wrapper = mount(WdSwiper, {
+      props: { indicator, list: ['a.jpg', 'b.jpg'] }
+    })
+
+    expect(wrapper.findComponent(WdSwiperNav).props('type')).toBe(indicator.type)
+    if (indicator.type === 'fraction') {
+      expect(wrapper.find('.wd-swiper-nav').text()).toBe('1/2')
+    } else {
+      expect(wrapper.findAll(`.wd-swiper-nav__item--${indicator.type}`)).toHaveLength(2)
+    }
+    wrapper.unmount()
+  })
+
+  test('响应式指示器配置支持切换类型和显示状态', async () => {
+    const indicator = ref<SwiperIndicatorProps>({ type: 'fraction' })
+    const wrapper = mount(WdSwiper, {
+      props: { indicator: indicator.value, list: ['a.jpg', 'b.jpg'] }
+    })
+
+    expect(wrapper.find('.wd-swiper-nav').text()).toBe('1/2')
+
+    indicator.value.type = 'dots-bar'
+    await nextTick()
+    expect(wrapper.findAll('.wd-swiper-nav__item--dots-bar')).toHaveLength(2)
+
+    await wrapper.setProps({ indicator: false })
+    expect(wrapper.findComponent(WdSwiperNav).exists()).toBe(false)
+
+    await wrapper.setProps({ indicator: true })
+    expect(wrapper.findAll('.wd-swiper-nav__item--dots')).toHaveLength(2)
+    wrapper.unmount()
+  })
+
   test('基本渲染', async () => {
     const wrapper = mount(WdSwiper, {
       global: {
