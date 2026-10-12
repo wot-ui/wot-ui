@@ -124,9 +124,9 @@ After donating, your nickname and message will be displayed on the [donor list](
 
 | Sponsor | Description | Links |
 | --- | --- | --- |
-| [![AI-native Java full-stack framework](./.github/images/ruoyi-uniapp.png)](https://license.ruoyi.plus/flm/s/100003) | **AI-native Java full-stack framework** | [Visit website](https://license.ruoyi.plus/flm/s/100003) |
-| [![Reliable model API gateway, 50% off](./.github/images/kaopu-api.png)](https://ctmoai.com) | **Reliable model API gateway with 50% off for all models** | [Visit website](https://ctmoai.com) |
-| [![AICentOS enterprise LLM service platform](./.github/images/t-api.png)](https://www.aicentos.com/) | A high-availability, low-latency and cost-effective LLM access service for enterprises and developers, with stable support for **OpenAI Codex, Claude Code, Grok, Gemini** and other popular models and developer tools.<br><br>It provides a unified API that is easy to integrate and suitable for AI programming, intelligent application development, enterprise automation and LLM integration.<br><br>🎁 **New users receive ¥1 in trial credit** | [Official website](https://www.aicentos.com/)<br>[Service status & SLA](https://status.aicentos.com/)<br>[Integration docs](https://docs.aicentos.com/) |
+| <a href="https://license.ruoyi.plus/flm/s/100003"><img src="./.github/images/ruoyi-uniapp.png" width="160" alt="AI-native Java full-stack framework" /></a> | **AI-native Java full-stack framework** | [Visit website](https://license.ruoyi.plus/flm/s/100003) |
+| <a href="https://ctmoai.com"><img src="./.github/images/kaopu-api.png" width="160" alt="Reliable model API gateway, 50% off" /></a> | **Reliable model API gateway with 50% off for all models** | [Visit website](https://ctmoai.com) |
+| <a href="https://www.aicentos.com/"><img src="./.github/images/t-api.png" width="160" alt="AICentOS enterprise LLM service platform" /></a> | A high-availability, low-latency and cost-effective LLM access service for enterprises and developers, with stable support for **OpenAI Codex, Claude Code, Grok, Gemini** and other popular models and developer tools.<br><br>It provides a unified API that is easy to integrate and suitable for AI programming, intelligent application development, enterprise automation and LLM integration.<br><br>🎁 **New users receive ¥1 in trial credit** | [Official website](https://www.aicentos.com/)<br>[Service status & SLA](https://status.aicentos.com/)<br>[Integration docs](https://docs.aicentos.com/) |
 
 ## Acknowledgments
 
