@@ -129,6 +129,7 @@
 | <a href="https://license.ruoyi.plus/flm/s/100003"><img src="./.github/images/ruoyi-uniapp.png" width="160" alt="AI原生架构 Java全栈框架" /></a> | **AI原生架构 Java全栈框架** | [访问官网](https://license.ruoyi.plus/flm/s/100003) |
 | <a href="https://ctmoai.com"><img src="./.github/images/kaopu-api.png" width="160" alt="靠谱中转国模全场5折" /></a> | **靠谱中转国模全场 5 折** | [访问官网](https://ctmoai.com) |
 | <a href="https://www.aicentos.com/"><img src="./.github/images/t-api.png" width="160" alt="AICentOS 企业级大模型服务平台" /></a> | 专为企业与开发者打造的高可用、低延迟、高性价比大模型接入服务，稳定支持 **OpenAI Codex、Claude Code、Grok、Gemini** 等主流模型与开发工具。<br><br>统一 API 接口，适用于 AI 编程、智能应用开发、企业自动化及大模型集成等场景。<br><br>🎁 **新用户注册即赠 1 元体验额度** | [官方网站](https://www.aicentos.com/)<br>[服务状态与 SLA](https://status.aicentos.com/)<br>[接入文档](https://docs.aicentos.com/) |
+| <a href="https://prodclub.xyz/r/4AWXK4"><img src="./.github/images/prodclub.png" width="160" alt="ProdClub GPT 直充" /></a> | **ProdClub GPT 直充**，ChatGPT Plus/Pro 开通到自己的账号，不换号、不共享，付款后自动交付，服务费 ¥0。 | [访问官网](https://prodclub.xyz/r/4AWXK4) |
 
 ## 鸣谢
 
