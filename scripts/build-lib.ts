@@ -3,6 +3,7 @@ import path from 'path'
 
 const src = path.resolve(__dirname, '../src/uni_modules/wot-ui')
 const libDir = path.resolve(__dirname, '../lib')
+fs.mkdirSync(libDir, { recursive: true })
 
 const copyComponents = function (srcPath: string, tarPath: string, filter: string[] = []) {
   fs.mkdir(tarPath, (err) => {})
@@ -43,5 +44,9 @@ const copyFile = function (srcPath: string, tarPath: string) {
 
 const readme = path.resolve(__dirname, '../README.md')
 const license = path.resolve(__dirname, '../LICENSE')
-copyFile(readme, path.join(libDir, 'README.md'))
+// npm 展示 README 时使用仓库图片的绝对地址。
+const readmeContent = fs
+  .readFileSync(readme, 'utf8')
+  .replaceAll('./.github/images/', 'https://raw.githubusercontent.com/wot-ui/wot-ui/main/.github/images/')
+fs.writeFileSync(path.join(libDir, 'README.md'), readmeContent)
 copyFile(license, path.join(libDir, 'LICENSE'))

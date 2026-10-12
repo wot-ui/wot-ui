@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="https://wot-ui.cn/logo.svg" width="200">
+    <img alt="logo" src="./.github/images/logo.svg" width="200">
 </p>
 <h1 align="center">Wot UI</h1>
 
@@ -54,9 +54,9 @@
 扫描二维码访问演示，注意：因微信审核机制限制，当前的微信小程序示例可能不是最新版本，可以 clone 代码到本地预览。
 
 <p style="display:flex;gap:24px">
-<img src="https://wot-ui.cn/wx.jpg" width="200" height="200"/>
-<img src="https://wot-ui.cn/alipay.png" width="200" height="200" />
-<img src="https://wot-ui.cn/h5.png" width="200" height="200" />
+<img src="./.github/images/wx.jpg" alt="微信小程序体验二维码" width="200" height="200"/>
+<img src="./.github/images/alipay.jpg" alt="支付宝小程序体验二维码" width="200" height="200" />
+<img src="./.github/images/h5.png" alt="H5 体验二维码" width="200" height="200" />
 
 </p>
 
@@ -118,17 +118,17 @@
 ### 扫码捐赠
 
 <p>
-<img src="https://wot-ui.cn/weixinQrcode.jpg" width="200" height="200" style="margin-right:30px"/>
-<img src="https://wot-ui.cn/alipayQrcode.jpg" width="200" height="200" />
+<img src="./.github/images/weixin-qrcode.png" alt="微信捐赠二维码" width="200" height="200" style="margin-right:30px"/>
+<img src="./.github/images/alipay-qrcode.jpg" alt="支付宝捐赠二维码" width="200" height="200" />
 </p>
 
 ## 赞助商
 
 | 赞助商 | 简介 | 相关链接 |
 | --- | --- | --- |
-| [![AI原生架构 Java全栈框架](https://sponsor.wot-ui.cn/assets/sponsor/ruoyi-uniapp.png)](https://license.ruoyi.plus/flm/s/100003) | **AI原生架构 Java全栈框架** | [访问官网](https://license.ruoyi.plus/flm/s/100003) |
-| [![靠谱中转国模全场5折](https://sponsor.wot-ui.cn/assets/sponsor/kaopu-API.png)](https://ctmoai.com) | **靠谱中转国模全场 5 折** | [访问官网](https://ctmoai.com) |
-| [![AICentOS 企业级大模型服务平台](https://sponsor.wot-ui.cn/assets/sponsor/T-API.png)](https://www.aicentos.com/) | 专为企业与开发者打造的高可用、低延迟、高性价比大模型接入服务，稳定支持 **OpenAI Codex、Claude Code、Grok、Gemini** 等主流模型与开发工具。<br><br>统一 API 接口，适用于 AI 编程、智能应用开发、企业自动化及大模型集成等场景。<br><br>🎁 **新用户注册即赠 1 元体验额度** | [官方网站](https://www.aicentos.com/)<br>[服务状态与 SLA](https://status.aicentos.com/)<br>[接入文档](https://docs.aicentos.com/) |
+| [![AI原生架构 Java全栈框架](./.github/images/ruoyi-uniapp.png)](https://license.ruoyi.plus/flm/s/100003) | **AI原生架构 Java全栈框架** | [访问官网](https://license.ruoyi.plus/flm/s/100003) |
+| [![靠谱中转国模全场5折](./.github/images/kaopu-api.png)](https://ctmoai.com) | **靠谱中转国模全场 5 折** | [访问官网](https://ctmoai.com) |
+| [![AICentOS 企业级大模型服务平台](./.github/images/t-api.png)](https://www.aicentos.com/) | 专为企业与开发者打造的高可用、低延迟、高性价比大模型接入服务，稳定支持 **OpenAI Codex、Claude Code、Grok、Gemini** 等主流模型与开发工具。<br><br>统一 API 接口，适用于 AI 编程、智能应用开发、企业自动化及大模型集成等场景。<br><br>🎁 **新用户注册即赠 1 元体验额度** | [官方网站](https://www.aicentos.com/)<br>[服务状态与 SLA](https://status.aicentos.com/)<br>[接入文档](https://docs.aicentos.com/) |
 
 ## 鸣谢
 
