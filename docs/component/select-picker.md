@@ -81,6 +81,54 @@ const columns = ref([
 <wd-select-picker filterable type="radio" v-model="singleValue" v-model:visible="show" :columns="columns" />
 ```
 
+#### 自定义搜索
+
+设置自定义搜索函数可以实现更复杂的搜索逻辑。远程搜索也可以用这个方法实现。
+
+```html
+<wd-select-picker
+  v-model="exampleSelectorOptions.value"
+  :visible="exampleSelectorOptions.visible"
+  :columns="exampleSelectorOptions.columns"
+  :loading="exampleSelectorOptions.loading"
+  :filter-handler="onExampleSelectorSearch"
+  filterable
+/>
+```
+
+```ts
+const exampleSelectorOptions = reactive({
+  columns: [],
+  visible: false,
+  value: '',
+  loading: false,
+})
+
+/**
+ * filter-handler 接受三个参数，但是只能通过外部定义的 exampleSelectorOptions 来控制状态
+ * 
+ * 筛选后的选项数据
+ * @param columns
+ * 搜索值
+ * @param filterValue
+ * 加载状态
+ * @param loading
+ */
+function onExampleSelectorSearch(columns: Ref<Record<string, any>[]>, filterValue: string) {
+  exampleSelectorOptions.loading = true
+  exampleSelectorOptions.filter_value = filterValue
+  return exampleFilter({ limit: 50, q: filterValue }).then((response) => {
+    columns.value = response.data
+    exampleSelectorOptions.loading = false
+    // 如果是符合预期的结果，必须返回 true
+    return true
+  })
+}
+```
+
+`exampleFilter` 是搜索回调函数，无论是自定义搜索还是远程搜索都通过这个函数完成。如果是远程搜索，配合 `@wot-ui/starter` 集成的 `alova` 自动缓存能获得更加流程的体验。
+
+
 ## 特殊样式
 
 ### 选项变化事件
@@ -125,6 +173,28 @@ const beforeConfirm = (value: string[]) => {
 <wd-select-picker type="radio" :show-confirm="false" v-model="value" v-model:visible="show" :columns="columns" />
 ```
 
+### 自定义选项样式
+
+通过插槽修改选项列表的显示样式，可以在选项中使用组件实现个性化显示。
+
+```html
+<wd-select-picker
+  type="checkbox"
+  :show-confirm="false"
+  v-model="value19"
+  v-model:visible="show19"
+  :columns="columns3"
+  @confirm="handleConfirm"
+>
+  <template #label="{ item, label, value }">
+    <view>
+      {{ label }}
+      <wd-tag type="primary" size="small">{{ item.source }}</wd-tag>
+    </view>
+  </template>
+</wd-select-picker>
+```
+
 ## Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -149,6 +219,7 @@ const beforeConfirm = (value: string[]) => {
 | safe-area-inset-bottom | 是否适配底部安全区 | `boolean` | `true` |
 | filterable | 是否支持本地搜索 | `boolean` | `false` |
 | filter-placeholder | 搜索框占位符 | `string` | `'搜索'` |
+| filter-handler | 自定义搜索回调函数 | `function` | - |
 | scroll-into-view | 重新打开时是否滚动到选中项 | `boolean` | `true` |
 | custom-content-class | 自定义弹层内容区域类名 | `string` | `''` |
 | show-confirm | 是否显示确认按钮，仅 `radio` 模式生效 | `boolean` | `true` |
@@ -174,10 +245,18 @@ const beforeConfirm = (value: string[]) => {
 | open | 弹层打开时触发 | - |
 | close | 弹层关闭时触发 | - |
 
+## Slots
+
+| name  | 说明             |
+|-------|------------------|
+| label | 选项列表的 `label` |
+
+
 ## Methods
 
-| 方法名 | 说明 | 类型 |
-| --- | --- | --- |
-| open | 打开弹层 | `() => void` |
-| close | 关闭弹层 | `() => void` |
+| 方法名 | 说明                                                                                                   | 类型                                                                                        |
+| --- |--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| open | 打开弹层                                                                                               | `() => void`                                                                                |
+| close | 关闭弹层                                                                                               | `() => void`                                                                                |
+| filter-placeholder | 自定义搜索 | `(columns: Ref<Record<string, any>[]>, filterValue: string) => boolean \| Promise<boolean>` |
 
