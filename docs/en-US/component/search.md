@@ -29,6 +29,14 @@ function change({ value }: { value: string }) {
 }
 ```
 
+### Input Type
+
+Set the input type with `type`. Optional values match `wd-input`, and the default is `text`. For searches such as phone numbers or order numbers, use `number` or `tel` to bring up the corresponding keyboard. The keyboard confirm button remains search.
+
+```html
+<wd-search v-model="value" type="number" placeholder="Please enter phone number" />
+```
+
 ## Component States
 
 ### Auto Focus
@@ -198,6 +206,7 @@ function changeSearchType({ item }) {
 | Parameter | Description | Type | Default Value |
 | --- | --- | --- | --- |
 | v-model | Input box content, two-way binding | `string` | `''` |
+| type ^($LOWEST_VERSION$) | Input box type, optional values are `text`, `number`, `digit`, `idcard`, `safe-password`, `nickname`, `tel` | `InputType` | `text` |
 | custom-input-class | Custom input box class name | `string` | `''` |
 | placeholder | Search box placeholder text | `string` | `'Search'` |
 | cancel-txt | Search box right text | `string` | `'Cancel'` |
