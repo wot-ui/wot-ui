@@ -1,12 +1,37 @@
 import { config, mount } from '@vue/test-utils'
 import WdImgCropper from '@/uni_modules/wot-ui/components/wd-img-cropper/wd-img-cropper.vue'
-import { describe, expect, test, vi, beforeEach } from 'vitest'
+import { describe, expect, test, vi, beforeEach, afterEach } from 'vitest'
 import { nextTick } from 'vue'
 import WdLoading from '@/uni_modules/wot-ui/components/wd-loading/wd-loading.vue'
 config.global.components = { WdLoading }
+
+const TOP_PERCENT = 0.85
+const CUT_OFFSET = 20
+const originalSystemInfo = uni.getSystemInfoSync()
+
+function setWindowSize(windowWidth: number, windowHeight: number) {
+  vi.mocked(uni.getSystemInfoSync).mockReturnValue({
+    ...originalSystemInfo,
+    screenWidth: windowWidth,
+    screenHeight: windowHeight,
+    windowWidth,
+    windowHeight
+  })
+}
+
+function readStylePx(style: string | undefined, prop: string) {
+  const matched = style?.match(new RegExp(`(?:^|;)\\s*${prop}\\s*:\\s*(-?[\\d.]+)px`, 'i'))
+  return matched ? Number(matched[1]) : Number.NaN
+}
+
 describe('WdImgCropper 图片裁剪组件', () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    setWindowSize(375, 667)
+  })
+
+  afterEach(() => {
+    vi.mocked(uni.getSystemInfoSync).mockReturnValue(originalSystemInfo)
   })
 
   test('基本渲染', async () => {
@@ -312,5 +337,70 @@ describe('WdImgCropper 图片裁剪组件', () => {
     const cropper = wrapper.find('.wd-img-cropper')
     expect(cropper.classes()).toContain('custom-cropper')
     expect(cropper.attributes('style')).toContain('background: red;')
+  })
+
+  test('窄屏下裁剪框仍按窗口宽度计算', async () => {
+    setWindowSize(375, 667)
+    const wrapper = mount(WdImgCropper, {
+      props: {
+        modelValue: true,
+        imgSrc: 'test-image.jpg',
+        aspectRatio: '1:1'
+      }
+    })
+    await nextTick()
+
+    const cutBody = wrapper.find('.wd-img-cropper__cut-body')
+    const cutStyle = cutBody.attributes('style')
+    const cutWidth = readStylePx(cutStyle, 'width')
+    const cutHeight = readStylePx(cutStyle, 'height')
+    const cutLeft = readStylePx(wrapper.find('.wd-img-cropper__cut-middle .wd-img-cropper__overlay').attributes('style'), 'width')
+
+    expect(cutWidth).toBeCloseTo(375 - CUT_OFFSET * 2)
+    expect(cutHeight).toBeCloseTo(375 - CUT_OFFSET * 2)
+    expect(cutLeft).toBeCloseTo(CUT_OFFSET)
+    expect(cutHeight).toBeLessThanOrEqual(667 * TOP_PERCENT)
+  })
+
+  test('宽屏下裁剪框适应视口高度且画布不覆盖页面', async () => {
+    const windowWidth = 1440
+    const windowHeight = 900
+    setWindowSize(windowWidth, windowHeight)
+    const wrapper = mount(WdImgCropper, {
+      props: {
+        modelValue: true,
+        imgSrc: 'test-image.jpg',
+        aspectRatio: '1:1',
+        exportScale: 3
+      }
+    })
+    await nextTick()
+
+    const maxWidth = windowWidth - CUT_OFFSET * 2
+    const maxHeight = windowHeight * TOP_PERCENT
+    const cutStyle = wrapper.find('.wd-img-cropper__cut-body').attributes('style')
+    const cutWidth = readStylePx(cutStyle, 'width')
+    const cutHeight = readStylePx(cutStyle, 'height')
+    const cutLeft = readStylePx(wrapper.find('.wd-img-cropper__cut-middle .wd-img-cropper__overlay').attributes('style'), 'width')
+    const cutTop = readStylePx(wrapper.find('.wd-img-cropper__cut > .wd-img-cropper__overlay').attributes('style'), 'height')
+
+    expect(cutWidth).toBeGreaterThan(0)
+    expect(cutHeight).toBeGreaterThan(0)
+    expect(cutWidth).toBeLessThanOrEqual(maxWidth + 0.5)
+    expect(cutHeight).toBeLessThanOrEqual(maxHeight + 0.5)
+    expect(cutWidth).toBeCloseTo(cutHeight)
+    expect(cutLeft).toBeCloseTo((windowWidth - cutWidth) / 2)
+    expect(cutTop).toBeGreaterThanOrEqual(0)
+
+    const canvasStyle = wrapper.find('.wd-img-cropper__canvas').attributes('style')
+    const canvasWidth = readStylePx(canvasStyle, 'width')
+    const canvasHeight = readStylePx(canvasStyle, 'height')
+    const canvasLeft = readStylePx(canvasStyle, 'left')
+    const canvasTop = readStylePx(canvasStyle, 'top')
+
+    expect(canvasWidth).toBeCloseTo(cutWidth * 3)
+    expect(canvasHeight).toBeCloseTo(cutHeight * 3)
+    expect(canvasLeft + canvasWidth).toBeLessThanOrEqual(0)
+    expect(canvasTop + canvasHeight).toBeLessThanOrEqual(0)
   })
 })

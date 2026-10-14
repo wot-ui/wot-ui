@@ -42,13 +42,7 @@
       />
     </view>
     <!-- 绘制的图片canvas -->
-    <canvas
-      :canvas-id="canvasId"
-      :id="canvasId"
-      class="wd-img-cropper__canvas"
-      :disable-scroll="true"
-      :style="`width: ${Number(canvasWidth) * canvasScale}px; height: ${Number(canvasHeight) * canvasScale}px;`"
-    />
+    <canvas :canvas-id="canvasId" :id="canvasId" class="wd-img-cropper__canvas" :disable-scroll="true" :style="canvasStyle" />
     <!-- 下方按钮 -->
     <view class="wd-img-cropper__footer">
       <wd-icon custom-class="wd-img-cropper__rotate" v-if="!disabledRotate" name="refresh" @click="handleRotate"></wd-icon>
@@ -93,6 +87,40 @@ const TOP_PERCENT = 0.85
 const ANIMATION_DURATION = 300
 /** 节流频率（毫秒） */
 const THROTTLE_INTERVAL = 1000 / 40
+
+interface CutRect {
+  width: number
+  height: number
+  left: number
+  top: number
+}
+
+/**
+ * 在视口可用区域内按宽高比计算裁剪框。
+ * 窄屏以宽度为上限；宽屏或横屏高度不够时缩小宽度并水平居中，
+ * 避免裁剪框和离屏 canvas 超出视口后盖住页面。
+ */
+function computeCutRect(windowWidth: number, windowHeight: number, aspectRatio: string, horizontalOffset: number): CutRect {
+  const [rawWidthRatio, rawHeightRatio] = aspectRatio.split(':').map((item) => Number(item))
+  const widthRatio = Number.isFinite(rawWidthRatio) && rawWidthRatio > 0 ? rawWidthRatio : 1
+  const heightRatio = Number.isFinite(rawHeightRatio) && rawHeightRatio > 0 ? rawHeightRatio : 1
+  const maxWidth = Math.max((Number(windowWidth) || 0) - horizontalOffset * 2, 0)
+  const maxHeight = Math.max((Number(windowHeight) || 0) * TOP_PERCENT, 0)
+
+  let width = maxWidth
+  let height = (width * heightRatio) / widthRatio
+  if (maxHeight > 0 && height > maxHeight) {
+    height = maxHeight
+    width = (height * widthRatio) / heightRatio
+  }
+
+  return {
+    width,
+    height,
+    left: Math.max((Number(windowWidth) || 0) - width, 0) / 2,
+    top: Math.max(maxHeight - height, 0) / 2
+  }
+}
 
 const canvasId = ref<string>(`cropper${uuid()}`) // canvas 组件的唯一标识符
 
@@ -173,19 +201,17 @@ watch(
       initImgHeight = props.imgHeight
       info.value = getSystemInfo()
 
-      // 根据aspectRatio计算裁剪框尺寸
-      const [widthRatio, heightRatio] = props.aspectRatio.split(':').map(Number)
-      const tempCutWidth = info.value.windowWidth - offset.value * 2
-      const tempCutHeight = (tempCutWidth * heightRatio) / widthRatio
+      // 按宽高比把裁剪框限制在视口可用区域内，宽屏时不能只按窗口宽度放大
+      const cutRect = computeCutRect(info.value.windowWidth, info.value.windowHeight, props.aspectRatio, offset.value)
 
-      cutWidth.value = tempCutWidth
-      cutHeight.value = tempCutHeight
-      cutTop.value = (info.value.windowHeight * TOP_PERCENT - tempCutHeight) / 2
-      cutLeft.value = offset.value
+      cutWidth.value = cutRect.width
+      cutHeight.value = cutRect.height
+      cutTop.value = cutRect.top
+      cutLeft.value = cutRect.left
 
       canvasScale.value = props.exportScale
-      canvasHeight.value = tempCutHeight
-      canvasWidth.value = tempCutWidth
+      canvasHeight.value = cutRect.height
+      canvasWidth.value = cutRect.width
       // 根据开发者设置的图片目标尺寸计算实际尺寸
       initImageSize()
       // 初始化canvas
@@ -253,6 +279,24 @@ const imageStyle = computed(() => {
     'transition-duration': (isAnimation.value ? ANIMATION_DURATION : 0) + 'ms'
   }
   return objToStyle(style)
+})
+
+/**
+ * 导出用 canvas 按自身尺寸移出视口。
+ * `top: -200%` 相对视口计算，宽屏下画布高于两倍视口时白色背景会盖住裁剪页。
+ */
+const canvasStyle = computed(() => {
+  const width = Number(canvasWidth.value) * canvasScale.value
+  const height = Number(canvasHeight.value) * canvasScale.value
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
+    return ''
+  }
+  return objToStyle({
+    width: addUnit(width),
+    height: addUnit(height),
+    left: addUnit(-width),
+    top: addUnit(-height)
+  })
 })
 
 /**

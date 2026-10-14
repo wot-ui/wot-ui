@@ -224,7 +224,7 @@ $img-cropper-icon-color: var(--wot-img-cropper-icon-color, $base-white) !default
     position: fixed;
     background: $img-cropper-canvas-bg;
     z-index: $img-cropper-canvas-z-index;
-    top: -200%;
+    // 位移由模板按画布实际宽高设为负值，避免宽屏时白色画布盖住裁剪界面
     pointer-events: none;
   }
 
