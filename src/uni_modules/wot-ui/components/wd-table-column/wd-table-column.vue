@@ -1,7 +1,7 @@
 <template>
   <view class="wd-table-column">
-    <view v-for="config in cellConfigs" :key="config.rowIndex" :class="config.class" :style="config.style" @click="handleRowClick(config.rowIndex)">
-      <slot name="value" v-if="$slots.value" :row="getScope(config.rowIndex)" :index="config.rowIndex"></slot>
+    <view v-for="config in cellSlots" :key="config.rowIndex" :class="config.class" :style="config.style" @click="handleRowClick(config.rowIndex)">
+      <slot name="value" v-if="config.rowIndex >= 0 && $slots.value" :row="getScope(config.rowIndex)" :index="config.rowIndex"></slot>
       <text :class="['wd-table__value', { 'is-ellipsis': ellipsis }]" v-else>{{ config.value }}</text>
     </view>
   </view>
@@ -130,11 +130,16 @@ const cellConfigs = computed(() => {
     } else {
       style['grid-column'] = `${colStart}`
     }
-    const rowStart = rowIndex + 1
-    if (span.rowspan > 1) {
-      style['grid-row'] = `${rowStart} / span ${span.rowspan}`
+    if (table.value?.props.virtual) {
+      const rowH = Number(table.value.props.rowHeight) || 44
+      // 位置只依赖绝对行号，窗口平移时保留行无需重定位，也不依赖父组件占位更新。
+      style['grid-row'] = '1'
+      style.height = `${span.rowspan * rowH}px`
+      style.transform = `translateY(${rowIndex * rowH}px)`
+    } else if (span.rowspan > 1) {
+      style['grid-row'] = `${rowIndex + 1} / span ${span.rowspan}`
     } else {
-      style['grid-row'] = `${rowStart}`
+      style['grid-row'] = `${rowIndex + 1}`
     }
     if (isFixed && left) {
       style['left'] = left
@@ -147,6 +152,34 @@ const cellConfigs = computed(() => {
       style: objToStyle(style)
     })
   }
+  // 按逻辑行顺序标记本列最后一个渲染单元格，避免循环缓冲重排后误用 :last-child。
+  if (configs.length > 0) {
+    configs[configs.length - 1].class.push('is-last-row')
+  }
+  return configs
+})
+
+/**
+ * 微信作用域插槽的名称包含 v-for 的位置。用固定大小的循环缓冲区保留行的位置，
+ * 避免窗口平移时所有插槽改名；单元格仍保留绝对行号 key，不改为窗口内的下标。
+ */
+const cellSlots = computed(() => {
+  const configs = cellConfigs.value
+  // #ifdef MP-WEIXIN
+  if (table.value?.props.virtual && configs.length > 0) {
+    const slotCount = table.value.virtualSlotCount.value
+    const slots: typeof configs = Array.from({ length: slotCount }, (_, index) => ({
+      rowIndex: -index - 1,
+      value: undefined,
+      class: [],
+      style: 'display:none;'
+    }))
+    configs.forEach((config) => {
+      slots[config.rowIndex % slotCount] = config
+    })
+    return slots
+  }
+  // #endif
   return configs
 })
 

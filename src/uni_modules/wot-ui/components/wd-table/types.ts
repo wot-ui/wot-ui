@@ -108,6 +108,7 @@ export const tableProps = {
   rowHeight: makeNumericProp(44),
   /**
    * 可视区域上下各额外预渲染的行数
+   * 小数向下取整，负数归零，非有限值使用默认值 5；支持设为 0
    * 类型: number
    * 默认值: 5
    */
@@ -130,6 +131,8 @@ export type TableProvide = {
   }
   /** 当前可视行范围（虚拟滚动时只渲染此范围内的行） */
   visibleRange: ComputedRef<{ start: number; end: number }>
+  /** 虚拟插槽循环缓冲区容量，由父表格与可视范围统一计算 */
+  virtualSlotCount: ComputedRef<number>
   /**
    * 行点击事件回调
    * @param index - 被点击行的索引

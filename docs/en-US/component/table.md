@@ -79,6 +79,19 @@ Demo page corresponding content: Custom index column centered display.
 
 Demo page corresponding content: Score column additionally displays year-over-year information.
 
+::: warning Overlays inside virtual table slots
+When `virtual` is enabled, clipping of the table's scroll area and cell positioning can affect overlays inside cells. When using overlay components such as `wd-picker` or `wd-popup` in the `value` slot, explicitly enable `root-portal` on the overlay component (it defaults to `false`) to avoid misplaced or clipped popups and backdrops. Regular tables do not use these virtual scrolling clipping and transform styles.
+
+For example, add `root-portal` to your existing Picker / Popup usage:
+
+```html
+<wd-picker v-model="value" v-model:visible="showPicker" :columns="columns" root-portal />
+<wd-popup v-model="showPopup" position="bottom" root-portal>Popup content</wd-popup>
+```
+
+Root portal rendering supports H5, App, WeChat Mini Programs, and Alipay Mini Programs (excluding DingTalk). See [RootPortal](./root-portal.md). On other platforms, or when using a custom overlay without `root-portal` support, place the overlay outside the table and control its visibility from a trigger inside the cell.
+:::
+
 ### Merge Cells
 
 Control cell spanning through `span-method`. Callback returns `{ rowspan, colspan }`. When returning empty, it is processed as `{ rowspan: 1, colspan: 1 }`.
@@ -181,6 +194,36 @@ const virtualData = Array.from({ length: 10000 }, (_, index) => ({
 }))
 ```
 
+In WeChat Mini Programs, uni-app reuses scoped slot instances. If the `value` slot contains a component with internal state, wrap it in a single-item `v-for` with a stable business `key` to prevent state from carrying over to another row after scrolling. The example below uses `wd-input-number` to edit quantities and stores each value in the row's `quantity` field. The `row.id` must be a stable, unique identifier in your data.
+
+::: code-group
+
+```html [template]
+<wd-table :data="editableVirtualData" :height="320" virtual :row-height="64">
+  <wd-table-column prop="quantity" label="Quantity" width="100%" align="center">
+    <template #value="{ row }">
+      <view v-for="item in [row]" :key="item.id">
+        <wd-input-number v-model="item.quantity" :min="0" :max="99" />
+      </view>
+    </template>
+  </wd-table-column>
+</wd-table>
+```
+
+```ts [script]
+import { ref } from 'vue'
+
+const editableVirtualData = ref(Array.from({ length: 200 }, (_, index) => ({ id: index + 1, quantity: index % 10 })))
+```
+
+:::
+
+Cells may be unmounted or reused during virtual scrolling. Store input values, selection state, and other data that must persist in the row data or external state, rather than relying solely on the child component's internal state.
+
+`root-portal` only changes where the overlay is rendered; it does not prevent its owning cell from being unmounted. If the overlay must stay open after its row leaves the virtual rendering range, place the overlay component outside the table and keep the active row and visibility state outside the cell as well.
+
+For virtual tables, the CSS variable `--wot-table-scroll-clip-inset` adjusts the vertical inset of the scroll viewport's clipping region. It only controls the inset distance: setting it to `0` still clips content outside the viewport. It does not disable clipping or replace `root-portal` on overlay components.
+
 ## Component States
 
 ### No Border
@@ -228,7 +271,7 @@ const paginationData = computed(() => {
 | span-method | Cell merge method, returns `{ rowspan, colspan }` | `SpanMethod` | - |
 | virtual | Whether to enable virtual scrolling | `boolean` | `false` |
 | row-height | Virtual scrolling row height | `number` | `44` |
-| buffer | Virtual scrolling pre-render rows above and below | `number` | `5` |
+| buffer | Extra rows rendered above and below the virtual viewport; supports `0`, rounds fractions down, clamps negative values to `0`, and uses the default for non-finite values | `number` | `5` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

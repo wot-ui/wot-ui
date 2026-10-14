@@ -1,0 +1,55 @@
+name: Table Testing (H5 / WeChat)
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'src/uni_modules/wot-ui/components/wd-table/**'
+      - 'src/uni_modules/wot-ui/components/wd-table-column/**'
+      - 'src/uni_modules/wot-ui/composables/**'
+      - 'src/uni_modules/wot-ui/styles/**'
+      - 'tests/**'
+      - 'vite-plugins/**'
+      - 'vitest.config.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/table-testing.yml'
+  pull_request:
+    paths:
+      - 'src/uni_modules/wot-ui/components/wd-table/**'
+      - 'src/uni_modules/wot-ui/components/wd-table-column/**'
+      - 'src/uni_modules/wot-ui/composables/**'
+      - 'src/uni_modules/wot-ui/styles/**'
+      - 'tests/**'
+      - 'vite-plugins/**'
+      - 'vitest.config.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/table-testing.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-table:
+    name: Table (${{ matrix.platform }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [h5, mp-weixin]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Run Table and TableColumn tests
+        run: pnpm test:${{ matrix.platform }} --run tests/components/wd-table.test.ts tests/components/wd-table-column.test.ts

@@ -738,8 +738,8 @@ describe('WdTable', () => {
     expect(range).toEqual({ start: 0, end: 2 })
   })
 
-  // 测试虚拟滚动 bodyGridStyle 包含 grid-template-rows
-  test('virtual 模式下 bodyGridStyle 包含 grid-template-rows', async () => {
+  // 虚拟表体使用固定坐标系，避免父子组件分批更新时整窗位移。
+  test('virtual 模式下表体固定总高度并只创建一个基础网格行', async () => {
     const data = Array.from({ length: 100 }, (_, i) => ({ name: `test${i}`, age: i }))
 
     const wrapper = mount(WdTable, {
@@ -756,7 +756,66 @@ describe('WdTable', () => {
     await nextTick()
 
     const style = (wrapper.vm as any).bodyGridStyle
-    expect(style).toContain('grid-template-rows:repeat(100, 40px)')
+    expect(style).toContain('grid-template-rows:40px')
+    expect(style).toContain('height:4000px')
+  })
+
+  test('万行虚拟表格保持完整高度，跨千行和末尾仍按绝对索引渲染', async () => {
+    const data = Array.from({ length: 10000 }, (_, id) => ({ id, name: `row-${id}` }))
+    const wrapper = mount(WdTable, {
+      props: { data, virtual: true, rowHeight: 50, height: 400 },
+      slots: {
+        default: `<wd-table-column prop="name" label="姓名" fixed>
+          <template #value="{ row, index }"><text :data-index="index">{{ row.name }}</text></template>
+        </wd-table-column>`
+      }
+    })
+    try {
+      await nextTick()
+      const vm = wrapper.vm as any
+      for (const scrollTop of [0, 49800, 50100, 250000, 499600, 500000, 0]) {
+        vm.handleScroll({ detail: { scrollTop, scrollLeft: 0 } })
+        await nextTick()
+        const { start, end } = vm.visibleRange
+        const body = wrapper.find('.wd-table__body').element as HTMLElement
+        expect(body.style.gridTemplateRows).toBe('50px')
+        expect(body.style.height).toBe('500000px')
+        expect(body.style.paddingTop).toBe('')
+        const cells = wrapper.findAll('.wd-table-column .wd-table__cell')
+        const indices = cells.map((cell) => Number(cell.find('[data-index]').attributes('data-index')))
+        expect([...indices].sort((a, b) => a - b)).toEqual(Array.from({ length: end - start + 1 }, (_, i) => start + i))
+        for (const cell of cells) {
+          const index = Number(cell.find('[data-index]').attributes('data-index'))
+          const cellStyle = (cell.element as HTMLElement).style
+          expect(cellStyle.gridRow).toBe('1')
+          expect(cellStyle.height).toBe('50px')
+          expect(cellStyle.transform).toBe(`translateY(${index * 50}px)`)
+          expect(cell.text()).toBe(`row-${index}`)
+          expect(cell.classes()).toContain('is-fixed')
+          expect(cell.classes().includes('is-stripe')).toBe(index % 2 === 1)
+        }
+        const lastCell = cells.find((cell) => cell.find('[data-index]').attributes('data-index') === String(end))!
+        await lastCell.trigger('click')
+        expect(wrapper.emitted('row-click')?.at(-1)).toEqual([{ rowIndex: end }])
+      }
+      // 数据在底部缩短时，不产生负行数或超出新数据长度的占位高度。
+      vm.state.scrollTop = 499600
+      await wrapper.setProps({ data: data.slice(0, 3) })
+      const body = wrapper.find('.wd-table__body').element as HTMLElement
+      expect(body.style.gridTemplateRows).toBe('50px')
+      expect(body.style.height).toBe('150px')
+      await wrapper.setProps({ data: [] })
+      expect(body.style.gridTemplateRows).toBe('')
+      expect(body.style.paddingTop).toBe('')
+      expect(body.style.height).toBe('')
+      expect(wrapper.findAll('.wd-table-column .wd-table__cell')).toHaveLength(0)
+      await wrapper.setProps({ data: data.slice(0, 3), virtual: false })
+      expect(body.style.gridTemplateRows).toBe('')
+      expect(body.style.height).toBe('')
+      expect(wrapper.findAll('.wd-table-column .wd-table__cell').map((cell) => (cell.element as HTMLElement).style.gridRow)).toEqual(['1', '2', '3'])
+    } finally {
+      wrapper.unmount()
+    }
   })
 
   // 测试虚拟滚动 visibleRange 根据 scrollTop 计算

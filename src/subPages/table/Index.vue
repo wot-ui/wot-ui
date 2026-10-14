@@ -34,7 +34,7 @@
             <template #value="{ row }">
               <view class="page-table__custom-cell">
                 <text>{{ row.grade }}</text>
-                <text>{{ $t('tong-bi-rowcompare', row.compare) }}</text>
+                <text>{{ $t('tong-bi-rowcompare', [row.compare]) }}</text>
               </view>
             </template>
           </wd-table-column>
@@ -60,7 +60,7 @@
             <template #value="{ row }">
               <view class="page-table__custom-cell">
                 <text>{{ row.grade }}</text>
-                <text>{{ $t('tong-bi-rowcompare-0', row.compare) }}</text>
+                <text>{{ $t('tong-bi-rowcompare-0', [row.compare]) }}</text>
               </view>
             </template>
           </wd-table-column>
@@ -88,11 +88,33 @@
         </wd-table>
       </demo-group-item>
       <demo-group-item :title="$t('xu-ni-gun-dong')">
+        <view class="page-table__hint">{{ $t('table-virtual-rows', [virtualData.length]) }}</view>
         <wd-table :data="virtualData" :height="400" virtual :row-height="50">
           <wd-table-column prop="index" :label="$t('xu-hao')" width="80px" align="center"></wd-table-column>
           <wd-table-column prop="name" :label="$t('xing-ming')" width="120px" align="center"></wd-table-column>
           <wd-table-column prop="score" :label="$t('fen-shu')" width="100px" align="center"></wd-table-column>
           <wd-table-column prop="remark" :label="$t('bei-zhu')" width="200px"></wd-table-column>
+        </wd-table>
+      </demo-group-item>
+      <demo-group-item :title="$t('table-virtual-custom-slots')">
+        <view class="page-table__hint">{{ $t('table-virtual-edit-hint') }}</view>
+        <wd-table :data="editableVirtualData" :height="320" virtual :row-height="64" :index="{ fixed: true, width: 60, align: 'center' }">
+          <wd-table-column prop="id" :label="$t('xing-ming')" width="calc(100% - 220px)">
+            <template #value="{ row, index }">
+              <view class="page-table__virtual-cell">
+                <text>{{ $t('shu-bingi-1-hao', [row.id]) }}</text>
+                <text class="page-table__row-position">{{ $t('table-row-position', [index + 1]) }}</text>
+              </view>
+            </template>
+          </wd-table-column>
+          <wd-table-column prop="quantity" :label="$t('table-quantity')" :width="160" align="center">
+            <template #value="{ row }">
+              <!-- 稳定业务 key 隔离插槽组件实例，数量保存在行数据中。 -->
+              <view v-for="item in [row]" :key="item.id">
+                <wd-input-number v-model="item.quantity" :min="0" :max="99" />
+              </view>
+            </template>
+          </wd-table-column>
         </wd-table>
       </demo-group-item>
     </demo-group>
@@ -319,15 +341,18 @@ const paginationData = computed(() => {
  * @param e
  */
 /** 合并单元格示例数据（取前 5 条） */
-/** 虚拟滚动 demo 数据（1000 行） */
+/** 虚拟滚动 demo 数据（10000 行） */
 const virtualData = computed(() => {
   return Array.from({ length: 10000 }, (_, i) => ({
     index: i + 1,
-    name: t('shu-bingi-1-hao', i + 1),
+    name: t('shu-bingi-1-hao', [i + 1]),
     score: Math.floor(Math.random() * 100),
-    remark: t('zhe-shi-shu-bingi-1-hao-de-bei-zhu-xin-xi', i + 1)
+    remark: t('zhe-shi-shu-bingi-1-hao-de-bei-zhu-xin-xi', [i + 1])
   }))
 })
+
+/** 可编辑虚拟列表：使用稳定 ID，编辑值随行数据保存。 */
+const editableVirtualData = ref(Array.from({ length: 200 }, (_, index) => ({ id: index + 1, quantity: index % 10 })))
 
 const spanData = computed(() => dataList.value.slice(0, 5))
 
@@ -425,6 +450,22 @@ function handleRowClick({ rowIndex }: any) {
 </script>
 <style lang="scss" scoped>
 .page-table {
+  &__hint {
+    margin-bottom: $spacing-main;
+    color: $text-secondary;
+    font-size: $typography-label-size-small;
+  }
+
+  &__virtual-cell {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__row-position {
+    color: $text-secondary;
+    font-size: $typography-label-size-small;
+  }
+
   &__custom-cell {
     display: flex;
     flex-direction: column;

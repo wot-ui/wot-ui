@@ -119,6 +119,19 @@ function handleRowClick({ rowIndex }: { rowIndex: number }) {
 </wd-table>
 ```
 
+::: warning 虚拟表格插槽内使用浮层
+开启 `virtual` 后，表格滚动区域的裁剪及单元格定位会影响内部浮层。在 `value` 插槽中使用 `wd-picker`、`wd-popup` 等浮层组件时，请在浮层组件上显式设置 `root-portal`（默认为 `false`），避免弹窗或遮罩错位、被裁剪。普通表格不启用这套虚拟滚动裁剪和位移样式。
+
+例如，已有的 Picker / Popup 用法应加上 `root-portal`：
+
+```html
+<wd-picker v-model="value" v-model:visible="showPicker" :columns="columns" root-portal />
+<wd-popup v-model="showPopup" position="bottom" root-portal>弹窗内容</wd-popup>
+```
+
+根节点传送支持 H5、App、微信小程序和支付宝小程序（不含钉钉），详见 [RootPortal 根节点传送](./root-portal.md)。在其他平台，或使用不支持 `root-portal` 的自定义浮层时，应将浮层放在表格外部，由单元格中的触发器控制显示。
+:::
+
 ### 合并单元格
 
 通过 `span-method` 控制单元格跨行跨列。回调接收 `{ row, column, rowIndex, columnIndex }` 四个参数，返回 `{ rowspan, colspan }` 或 `void`（等同 `{ rowspan: 1, colspan: 1 }`）。`rowspan`/`colspan` 为 `0` 表示该单元格被合并隐藏。
@@ -296,6 +309,36 @@ const virtualData = Array.from({ length: 10000 }, (_, index) => ({
 
 :::
 
+微信小程序中，uni-app 会复用作用域插槽实例。如果 `value` 插槽包含有内部状态的组件，可通过带稳定业务 `key` 的单项 `v-for` 隔离每行组件，避免滚动后状态带到另一行。以下示例使用 `wd-input-number` 编辑数量，将编辑值保存在行数据的 `quantity` 中；`row.id` 需要是数据中稳定且唯一的标识。
+
+::: code-group
+
+```html [template]
+<wd-table :data="editableVirtualData" :height="320" virtual :row-height="64">
+  <wd-table-column prop="quantity" label="数量" width="100%" align="center">
+    <template #value="{ row }">
+      <view v-for="item in [row]" :key="item.id">
+        <wd-input-number v-model="item.quantity" :min="0" :max="99" />
+      </view>
+    </template>
+  </wd-table-column>
+</wd-table>
+```
+
+```ts [script]
+import { ref } from 'vue'
+
+const editableVirtualData = ref(Array.from({ length: 200 }, (_, index) => ({ id: index + 1, quantity: index % 10 })))
+```
+
+:::
+
+虚拟滚动中的单元格可能被卸载或复用。需要保留的输入值、选中状态等业务数据应存放在行数据或外部状态中，不应只依赖子组件的内部状态。
+
+`root-portal` 只改变浮层的渲染位置，不会阻止所属单元格被卸载。如果需要在该行滚出虚拟渲染范围后仍保持浮层打开，请将浮层组件放在表格外部，并在外部保存当前编辑行与显隐状态。
+
+虚拟表格可通过 CSS 变量 `--wot-table-scroll-clip-inset` 调整滚动视口上下的裁剪内缩量。该变量只控制内缩距离，设置为 `0` 仍会裁剪视口外的内容，并不关闭裁剪，也不能替代浮层组件的 `root-portal`。
+
 ## 组件状态
 
 ### 无边框
@@ -380,7 +423,7 @@ const paginationData = computed(() => {
 | span-method | 合并单元格方法，回调参数为 `SpanMethodParams`，返回 `{ rowspan, colspan }` 或 `void`（等同 `{ rowspan: 1, colspan: 1 }`） | `SpanMethod` | - |
 | virtual | 是否开启虚拟滚动，大数据量时只渲染可视区域行 | `boolean` | `false` |
 | row-height | 虚拟滚动固定行高，开启 `virtual` 时必须传入 | `number` | `44` |
-| buffer | 虚拟滚动可视区域上下各额外预渲染行数 | `number` | `5` |
+| buffer | 虚拟滚动可视区域上下各额外预渲染行数；支持 `0`，小数向下取整，负数按 `0` 处理，非有限值使用默认值 | `number` | `5` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

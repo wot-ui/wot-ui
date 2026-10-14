@@ -11,6 +11,8 @@ $table-stripe-bg: var(--wot-table-stripe-bg, $filled-bottom) !default;
 $table-border-color: var(--wot-table-border-color, $border-main) !default;
 // 边框宽度
 $table-border-width: var(--wot-table-border-width, $stroke-main) !default;
+// 滚动视口上下裁剪内缩量
+$table-scroll-clip-inset: var(--wot-table-scroll-clip-inset, $n-1) !default;
 // 单元格字号
 $table-cell-font-size: var(--wot-table-cell-font-size, $typography-body-size-main) !default;
 // 单元格行高
@@ -30,6 +32,13 @@ $table-sort-button-height: var(--wot-table-sort-button-height, $n-20) !default;
 
   @include when(border) {
     border: $table-border-width solid $table-border-color;
+  }
+
+  @include e(scroll) {
+    @include when(virtual) {
+      // 上下内收，避免虚拟单元格在小数像素滚动时从裁剪边缘露出。
+      clip-path: inset($table-scroll-clip-inset 0);
+    }
   }
 
   @include e(header) {

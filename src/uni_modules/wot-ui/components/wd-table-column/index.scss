@@ -5,7 +5,7 @@
 @include b(table-column) {
   display: contents;
 
-  .wd-table__cell:last-child {
+  .wd-table__cell.is-last-row {
     @include when(border) {
       &::before {
         border-bottom: none;
