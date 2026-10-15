@@ -1,0 +1,8 @@
+journal-lake.jpg
+Photographer: Will Truettner
+Photo: Forest beside lake and mountain (Lake Helen, United States)
+Source: https://unsplash.com/photos/forest-beside-lake-and-mountain-JXt8HYZqf3M
+Image: https://images.unsplash.com/photo-1536686984648-9bcaa70abf45
+License: https://unsplash.com/license
+Downloaded 2026-10-14 as a 1200 x 750 JPEG crop for the Wot UI rich-text demo.
+The accompanying journal text is fictional demo copy, not a route guide for the photographed location.

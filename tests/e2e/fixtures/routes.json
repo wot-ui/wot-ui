@@ -8,6 +8,10 @@
     "ready": ".page-about__title"
   },
   {
+    "path": "subPages/richText/Index",
+    "ready": ".page-rich-text__article .wd-rich-text"
+  },
+  {
     "path": "subPages/button/Index",
     "ready": ".wd-button"
   },

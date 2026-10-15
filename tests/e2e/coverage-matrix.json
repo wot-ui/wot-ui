@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "scope": "H5",
-  "generatedAt": "2026-10-10T07:50:29.084Z",
+  "generatedAt": "2026-10-15T09:34:22.240Z",
   "note": "功能用例存在不代表完整覆盖；known-defect 不计入正常通过，smoke-only 尚未实现功能场景。结果仅对应 evidence 所指运行。",
   "components": [
     {
@@ -846,6 +846,33 @@
       "coverageStatus": "partial-functional",
       "scenarios": [
         "67ada09882eb"
+      ]
+    },
+    {
+      "name": "wd-rich-text",
+      "demo": "src/subPages/richText/Index.vue",
+      "routes": [
+        "subPages/richText/Index"
+      ],
+      "coverageStatus": "partial-functional",
+      "scenarios": [
+        "21034288eb91",
+        "a478220d09ff",
+        "6bd46238834d",
+        "d22309d3c3cd",
+        "9d4985cb45cf",
+        "dbf47e012ca7",
+        "640e36390266",
+        "e9d37c16ed1f",
+        "b30a6809d2d6",
+        "d1dda535587a",
+        "12ebe82e96a0",
+        "0f3a58380d23",
+        "b6100be08098",
+        "5d773b380e46",
+        "90f4448a03bd",
+        "9f8d174b0ec4",
+        "fb1cc050ecee"
       ]
     },
     {
@@ -14184,6 +14211,114 @@
           "annotations": []
         }
       }
+    },
+    {
+      "id": "21034288eb91",
+      "file": "tests/e2e/components/wd-rich-text-demo.spec.ts",
+      "title": "编辑器示例单块切换，列宽与合并表格可交互",
+      "results": {}
+    },
+    {
+      "id": "a478220d09ff",
+      "file": "tests/e2e/components/wd-rich-text-demo.spec.ts",
+      "title": "从首页数据展示目录进入富文本示例",
+      "results": {}
+    },
+    {
+      "id": "6bd46238834d",
+      "file": "tests/e2e/components/wd-rich-text-demo.spec.ts",
+      "title": "旅行图文展示本地照片、链接反馈与主题，页面不横向溢出",
+      "results": {}
+    },
+    {
+      "id": "d22309d3c3cd",
+      "file": "tests/e2e/components/wd-rich-text-demo.spec.ts",
+      "title": "长文按需挂载与收起，播放器直接展示但不自动播放，内容可以更新和清空",
+      "results": {}
+    },
+    {
+      "id": "9d4985cb45cf",
+      "file": "tests/e2e/components/wd-rich-text-demo.spec.ts",
+      "title": "媒体目录只定位，外部按钮控制音视频并显示实际进度",
+      "results": {}
+    },
+    {
+      "id": "dbf47e012ca7",
+      "file": "tests/e2e/components/wd-rich-text-demo.spec.ts",
+      "title": "video 加载失败可手动重试，恢复后不自动播放",
+      "results": {}
+    },
+    {
+      "id": "640e36390266",
+      "file": "tests/e2e/components/wd-rich-text-demo.spec.ts",
+      "title": "audio 加载失败可手动重试，恢复后不自动播放",
+      "results": {}
+    },
+    {
+      "id": "e9d37c16ed1f",
+      "file": "tests/e2e/components/wd-rich-text-performance.spec.ts",
+      "title": "长内容首次挂载与同等规模更新基线",
+      "results": {}
+    },
+    {
+      "id": "b30a6809d2d6",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "明确列宽在原生与交互合并表格中保持比例，长单词换行且不撑宽页面",
+      "results": {}
+    },
+    {
+      "id": "d1dda535587a",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "真实编辑器导出保留空段落、字号、任务状态、图注和链接",
+      "results": {}
+    },
+    {
+      "id": "12ebe82e96a0",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "静态块合并、行内链接不额外换行、事件只触发一次",
+      "results": {}
+    },
+    {
+      "id": "0f3a58380d23",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "图片链接与表格交互、宽表格滚动不撑开页面",
+      "results": {}
+    },
+    {
+      "id": "b6100be08098",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "内容替换清空、多实例保留、主题继承及验证截图",
+      "results": {}
+    },
+    {
+      "id": "5d773b380e46",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "原生与交互路径保留格式、Unicode 和字面实体",
+      "results": {}
+    },
+    {
+      "id": "90f4448a03bd",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "有序列表起始编号、样式映射和交互合并表格布局",
+      "results": {}
+    },
+    {
+      "id": "9f8d174b0ec4",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "视频真实加载错误转为占位",
+      "results": {}
+    },
+    {
+      "id": "fb1cc050ecee",
+      "file": "tests/e2e/components/wd-rich-text.spec.ts",
+      "title": "容器内锚点定位不滚动页面，多实例 ID 不冲突",
+      "results": {}
+    },
+    {
+      "id": "81ab21c04e3b",
+      "file": "tests/e2e/smoke/routes.spec.ts",
+      "title": "页面冒烟：subPages/richText/Index",
+      "results": {}
     }
   ]
 }

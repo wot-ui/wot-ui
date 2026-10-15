@@ -36,6 +36,21 @@
       "root": "subPages",
       "pages": [
         {
+          "path": "richText/Index",
+          "name": "richText",
+          "style": {
+            "mp-alipay": {
+              "allowsBounceVertical": "NO"
+            },
+            // #ifdef MP
+            "navigationBarTitleText": "RichText 富文本",
+            // #endif
+            // #ifndef MP
+            "navigationBarTitleText": "%rich-text-title%"
+            // #endif
+          }
+        },
+        {
           "path": "button/Index",
           "name": "button",
           "style": {

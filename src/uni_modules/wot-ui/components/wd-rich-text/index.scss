@@ -1,0 +1,97 @@
+@use '../../styles/variable.scss' as *;
+
+$rich-text-color: var(--wot-rich-text-color, $text-main) !default;
+$rich-text-font-size: var(--wot-rich-text-font-size, $typography-body-size-main) !default;
+$rich-text-line-height: var(--wot-rich-text-line-height, 1.7) !default;
+$rich-text-video-height: var(--wot-rich-text-video-height, 225px) !default;
+$rich-text-image-state-min-height: var(--wot-rich-text-image-state-min-height, $n-48) !default;
+$rich-text-image-state-color: var(--wot-rich-text-image-state-color, $text-secondary) !default;
+$rich-text-image-state-bg: var(--wot-rich-text-image-state-bg, $filled-content) !default;
+
+.wd-rich-text {
+  color: $rich-text-color;
+  font-size: $rich-text-font-size;
+  line-height: $rich-text-line-height;
+  overflow-wrap: break-word;
+
+  &.is-selectable {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+  &__media {
+    max-width: 100%;
+  }
+  &__video {
+    display: block;
+    width: 100%;
+    height: $rich-text-video-height;
+    max-width: 100%;
+  }
+  &__audio-control {
+    font: inherit;
+    text-align: left;
+    color: $rich-text-color;
+    background: $rich-text-image-state-bg;
+  }
+  &__media-error {
+    color: $rich-text-image-state-color;
+  }
+  &__break {
+    white-space: pre;
+  }
+  &__static {
+    display: block;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  &__text {
+    white-space: inherit;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  &__scroll {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  &__image-box {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: middle;
+    &.is-loading,
+    &.is-error {
+      min-height: $rich-text-image-state-min-height;
+    }
+  }
+  &__image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  &__image-placeholder {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: $rich-text-image-state-bg;
+  }
+  &__image-state {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $rich-text-image-state-bg;
+    color: $rich-text-image-state-color;
+    font-size: $rich-text-font-size;
+    line-height: $rich-text-line-height;
+  }
+}

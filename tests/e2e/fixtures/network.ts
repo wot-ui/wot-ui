@@ -4,6 +4,20 @@ import type { Page } from '@playwright/test'
 
 const image = readFileSync(resolve('src/subPages/img/black_mao.png'))
 const video = readFileSync(resolve('tests/e2e/fixtures/assets/sample.mp4'))
+// 本地生成一秒 PCM 静音，固定富文本音频资源，避免访问外部服务。
+const audio = Buffer.alloc(44 + 16000)
+audio.write('RIFF', 0)
+audio.writeUInt32LE(audio.length - 8, 4)
+audio.write('WAVEfmt ', 8)
+audio.writeUInt32LE(16, 16)
+audio.writeUInt16LE(1, 20)
+audio.writeUInt16LE(1, 22)
+audio.writeUInt32LE(8000, 24)
+audio.writeUInt32LE(16000, 28)
+audio.writeUInt16LE(2, 32)
+audio.writeUInt16LE(16, 34)
+audio.write('data', 36)
+audio.writeUInt32LE(16000, 40)
 const font = readFileSync(resolve('tests/e2e/fixtures/assets/fish.woff2'))
 const icons = readFileSync(resolve('tests/e2e/fixtures/assets/wd-icons.woff'))
 const shadow = readFileSync(resolve('tests/e2e/fixtures/assets/shadow-grey.png'))
@@ -22,6 +36,9 @@ export async function mockDemoAssets(page: Page, baseURL: string) {
   await page.route(
     (url) => imageHosts.has(url.hostname) && (/\.(png|jpe?g|svg|webp)$/i.test(url.pathname) || url.hostname === 'avatars.githubusercontent.com'),
     (route) => route.fulfill({ status: 200, contentType: 'image/png', body: image, headers: { 'access-control-allow-origin': '*' } })
+  )
+  await page.route('https://images.unsplash.com/photo-1536686984648-9bcaa70abf45?*', (route) =>
+    route.fulfill({ status: 200, contentType: 'image/jpeg', body: readFileSync(resolve('src/subPages/richText/assets/journal-lake.jpg')) })
   )
   // Img Demo 刻意展示加载失败；使用不可解码的本地响应保留错误态，不访问不存在的域名。
   await page.route('https://www.123.wot.com/a.jpg', (route) => route.fulfill({ status: 200, contentType: 'image/png', body: 'invalid-image' }))
@@ -50,5 +67,8 @@ export async function mockDemoAssets(page: Page, baseURL: string) {
       headers: { ...headers, 'content-range': `bytes ${start}-${end}/${video.length}` }
     })
   })
+  await page.route('https://web-ext-storage.dcloud.net.cn/uni-app/ForElise.mp3', (route) =>
+    route.fulfill({ status: 200, contentType: 'audio/wav', body: audio, headers: { 'access-control-allow-origin': '*' } })
+  )
   return unexpectedRequests
 }

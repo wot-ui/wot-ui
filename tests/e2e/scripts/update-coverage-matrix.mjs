@@ -58,6 +58,7 @@ for (const reportPath of reportPaths) {
 const combinedFiles = {
   'wd-checkbox-group': ['wd-checkbox'],
   'wd-radio-group': ['wd-radio'],
+  'wd-rich-text': ['wd-rich-text', 'wd-rich-text-demo', 'wd-rich-text-performance'],
   'wd-form-item': ['wd-form'],
   'wd-tab': ['wd-tabs'],
   'wd-tabbar-item': ['wd-tabbar'],

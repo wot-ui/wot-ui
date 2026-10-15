@@ -713,6 +713,14 @@ const categories: CatalogCategory[] = [
         }
       },
       {
+        id: 'richText',
+        titleKey: 'rich-text-title',
+        docs: {
+          'zh-CN': { slug: 'rich-text', text: 'RichText 富文本' },
+          'en-US': { slug: 'rich-text', text: 'RichText' }
+        }
+      },
+      {
         id: 'img',
         titleKey: 'img-tu-pian',
         docs: {

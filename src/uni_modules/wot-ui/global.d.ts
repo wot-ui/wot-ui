@@ -45,6 +45,7 @@ declare module 'vue' {
     WdRadioGroup: typeof import('./components/wd-radio-group/wd-radio-group.vue')['default']
     WdRate: typeof import('./components/wd-rate/wd-rate.vue')['default']
     WdResize: typeof import('./components/wd-resize/wd-resize.vue')['default']
+    WdRichText: typeof import('./components/wd-rich-text/wd-rich-text.vue')['default']
     WdRow: typeof import('./components/wd-row/wd-row.vue')['default']
     WdSearch: typeof import('./components/wd-search/wd-search.vue')['default']
     WdSelectPicker: typeof import('./components/wd-select-picker/wd-select-picker.vue')['default']

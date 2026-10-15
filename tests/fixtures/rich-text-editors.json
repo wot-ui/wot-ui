@@ -1,0 +1,17 @@
+{
+  "quill": {
+    "version": "2.0.3",
+    "api": "getSemanticHTML()",
+    "html": "<p class=\"ql-align-center\"><span class=\"ql-size-large ql-font-serif\">山野来信</span></p><p></p><p class=\"ql-indent-1\">慢下来，听见风。</p><ol><li>出发<ul><li>带上水</li></ul></li></ol><ul><li data-list=\"checked\">收好行囊</li></ul><ul><li data-list=\"unchecked\"><a href=\"/journal/gear\" rel=\"noopener noreferrer\" target=\"_blank\">阅读清单</a></li></ul><pre data-language=\"plain\">\nconst trip = &quot;weekend&quot;;\n</pre>"
+  },
+  "wangEditor": {
+    "version": "5.1.23",
+    "api": "getHtml()",
+    "html": "<h2>山野来信</h2><p style=\"text-align: center;\"><strong>周末，去见山。</strong></p><p><br></p><p style=\"text-indent: 2em;\">慢下来，听见风。</p><p><img src=\"/static/icon/app.png\" alt=\"旅途图示\" data-href=\"\" style=\"width: 80px;height: 80px;\"/></p><pre><code class=\"language-javascript\">const trip = \"weekend\";\n  go();</code></pre><table style=\"width: 100%;\"><tbody><tr><td colSpan=\"1\" rowSpan=\"1\" width=\"auto\">时刻</td><td colSpan=\"1\" rowSpan=\"1\" width=\"auto\"><a href=\"/journal/gear\" target=\"_blank\">阅读清单</a></td></tr></tbody></table><p><br></p>"
+  },
+  "tinyMCE": {
+    "version": "7.9.1",
+    "api": "getContent()",
+    "html": "<h2>山野来信</h2>\n<p>&nbsp;</p>\n<p style=\"padding-left: 40px;\">慢下来，听见风。</p>\n<figure class=\"image\"><img src=\"static/icon/app.png\" alt=\"旅途图示\" width=\"80\" height=\"80\">\n<figcaption>01 / 在路上</figcaption>\n</figure>\n<table style=\"border-collapse: collapse; width: 100%;\"><colgroup><col style=\"width: 25%;\"><col style=\"width: 75%;\"></colgroup>\n<tbody>\n<tr>\n<th colspan=\"2\">周末计划</th>\n</tr>\n<tr>\n<td>09:00</td>\n<td><a href=\"journal/gear\">阅读清单</a></td>\n</tr>\n</tbody>\n</table>"
+  }
+}
