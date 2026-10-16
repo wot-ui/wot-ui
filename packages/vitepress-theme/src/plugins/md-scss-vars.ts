@@ -18,21 +18,43 @@ const COMPONENT_MAP: Record<string, string[]> = {
 }
 
 function parseScssVariables(scssContent: string) {
-  // Regex matches:
-  // 1: Optional description comment
-  // 2: SCSS variable name (e.g., picker-bg)
-  // 3: CSS variable core name (e.g., picker-bg, which becomes --wot-picker-bg)
-  // 4: Default value
-  const SCSS_VAR_REGEX = /(?:\/\/\s*(.*)\n)?\$([a-zA-Z0-9-]+):\s*var\(--wot-([a-zA-Z0-9-]+),\s*(.+)\)(?:\s*!default)?\s*;/g
+  // Descriptions are written in either of these forms. A trailing comment wins:
+  // $picker-bg: var(--wot-picker-bg, $filled) !default; // background
+  // // background
+  // $picker-bg: var(--wot-picker-bg, $filled) !default;
+  // A previous line's trailing comment must not become the next variable's description.
+  const VARIABLE_REGEX =
+    /^\$([a-zA-Z0-9-]+):\s*var\(--wot-([a-zA-Z0-9-]+),\s*(.+)\)(?:\s*!default)?\s*;(?:\s*\/\/\s*(.*))?$/
 
   const variables: Array<{ name: string; defaultValue: string; desc: string }> = []
-  let match
-  while ((match = SCSS_VAR_REGEX.exec(scssContent)) !== null) {
-    variables.push({
-      desc: match[1] ? match[1].trim() : '-',
-      name: `--wot-${match[3]}`,
-      defaultValue: match[4].trim()
-    })
+  let pendingDesc = ''
+
+  for (const rawLine of scssContent.split(/\r?\n/)) {
+    const line = rawLine.trim()
+    if (!line) {
+      pendingDesc = ''
+      continue
+    }
+
+    const variableMatch = line.match(VARIABLE_REGEX)
+    if (variableMatch) {
+      const trailingDesc = variableMatch[4]?.trim() ?? ''
+      variables.push({
+        desc: trailingDesc || pendingDesc || '-',
+        name: `--wot-${variableMatch[2]}`,
+        defaultValue: variableMatch[3].trim()
+      })
+      pendingDesc = ''
+      continue
+    }
+
+    const commentMatch = line.match(/^\/\/\s*(.*)$/)
+    if (commentMatch) {
+      pendingDesc = commentMatch[1].trim()
+      continue
+    }
+
+    pendingDesc = ''
   }
 
   return variables
