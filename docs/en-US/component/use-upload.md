@@ -102,6 +102,14 @@ Different platforms have different limits on file selection quantity, which are 
 The count value on H5 platform is based on browser specifications. Current test results show that it can only limit single/multiple selection, but cannot limit specific quantity. Moreover, in actual mobile browsers, few support multiple selection.
 :::
 
+### App Platform
+
+| Selection Method | Maximum Quantity | Description | Applicable Scenario |
+|---------|---------|------|----------|
+| `chooseImage` | 9 | Maximum quantity limit when selecting images | Used when accept is `image` |
+| `chooseVideo` | 1 | Does not support multiple selection, can only select single video file | Used when accept is `video` |
+| `chooseMedia` | Depends on App runtime | Select images and videos, requires HBuilderX 4.52+ | Used when accept is `media` |
+
 ### Other Platforms
 
 | Selection Method | Maximum Quantity | Description | Applicable Scenario |
@@ -111,6 +119,7 @@ The count value on H5 platform is based on browser specifications. Current test 
 
 ::: tip Hint
 - WeChat platform prioritizes using `chooseMedia` and `chooseMessageFile`, with higher selection quantity limits
+- App platform uses `chooseMedia` when accept is `media`, requiring HBuilderX 4.52+
 - Video selection does not support multiple selection on most platforms
 - Actual selectable quantity is also further limited by the `maxCount` parameter
 :::
