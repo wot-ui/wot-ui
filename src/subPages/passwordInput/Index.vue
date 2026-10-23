@@ -38,6 +38,9 @@
           <wd-password-input v-model="value6" :focused="visible6" @focus="showKeyBoard(6)" />
           <wd-keyboard v-model="value6" v-model:visible="visible6" :maxlength="6" random-key-order />
         </demo-group-item>
+        <demo-group-item :title="$t('yuan-sheng-shu-ru')" no-padding>
+          <wd-password-input v-model="value7" native-input :mask="false" @focus="showKeyBoard(0)" />
+        </demo-group-item>
       </demo-group>
     </view>
   </page-wraper>
@@ -54,6 +57,7 @@ const value3 = ref<string>('123')
 const value4 = ref<string>('123')
 const value5 = ref<string>('123')
 const value6 = ref<string>('12')
+const value7 = ref<string>('')
 const errorInfo = ref<string>('')
 
 const visible1 = ref<boolean>(false)
