@@ -43,7 +43,7 @@
 
 ### 隐藏文字
 
-通过 `display-value` 控制是否显示条码下方文字。
+通过 `display-value` 控制是否显示条码文本。
 
 ```html
 <wd-bar-code value="1234567890" :display-value="false" />
@@ -79,7 +79,7 @@
 
 ### 字体样式
 
-通过 `font-size` 设置底部数字的最大字号，文字宽度不足时会自动缩小。通过 `font-options` 设置文字样式，可选值为 `bold`、`italic`、`bold italic`。
+通过 `font-size` 设置条码文本的最大字号，文本宽度超出可用空间时会自动缩小。通过 `font-options` 设置文字样式，可选值为 `bold`、`italic`、`bold italic`。
 
 ```html
 <wd-bar-code value="1234567890" :font-size="14" />

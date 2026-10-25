@@ -2,7 +2,7 @@
 
 Display HTML articles and activity descriptions with formatted text, image previews, link events, tables, audio, and video.
 
-Targets H5, uni-app App-Vue, and mini programs. App-nvue and uni-app x are not supported. Text selection, lazy loading, merged tables, and media playback vary by platform; mini program and App behavior still requires device validation.
+Targets H5, uni-app App-Vue, and mini programs. App-nvue and uni-app x are not supported. Text selection, lazy loading, merged tables, and media playback vary by platform; compatibility on physical devices has not yet been verified for mini programs or App.
 
 ::: details Supported content and boundaries
 
@@ -10,7 +10,7 @@ Targets H5, uni-app App-Vue, and mini programs. App-nvue and uni-app x are not s
 - Preserves basic typography, colors, spacing, dimensions, and borders. External stylesheets, positioning, Flex, and Grid content layouts are not supported.
 - Scripts, event attributes, iframe, SVG, and other unsupported embedded content are filtered. Use well-formed HTML where possible.
 - Resources accept HTTP(S), protocol-relative URLs, and relative paths. Links also accept anchors, `mailto:`, and `tel:`. Platform domain and access requirements still apply.
-- Each input is limited to 200000 UTF-16 code units, 10000 parsed nodes, and 128 nesting levels, with additional output budgets. Exceeding a limit emits `error` and displays the default slot. Split very long articles into sections.
+- Each input is limited to 200000 UTF-16 code units, 10000 parsed nodes, and 128 nesting levels, with an additional size limit on parsed output. Exceeding a limit emits `error` and displays the default slot. Split very long articles into sections.
   :::
 
 ## Component Type
@@ -103,7 +103,7 @@ function handleLink({ href }: { href: string }) {
 </script>
 ```
 
-Demo links display nearby feedback. Replace them with your own page URLs when integrating the component.
+Replace the example links with your page URLs and handle navigation in the `link-click` callback.
 
 ## Component Style
 
@@ -160,7 +160,7 @@ Grid column widths accept numbers (px), `px`, and `%`, but do not resolve `em`, 
 
 ### Contents and anchors
 
-Enable `enable-anchor`, read the heading list with `getHeadings()`, and navigate with `scrollToAnchor()`. When disabled, default static batching remains active and the heading list is empty.
+Enable `enable-anchor`, read the heading list with `getHeadings()`, and navigate with `scrollToAnchor()`. When disabled, `getHeadings()` returns an empty array.
 
 ```vue
 <template>
@@ -211,7 +211,7 @@ Pass exported HTML to `content`: use `getSemanticHTML()` in Quill 2, `getHtml()`
 
 Standard paragraphs, empty paragraphs, nested lists, captions, and code whitespace are supported. Built-in Quill mappings include `ql-align-center/right/justify`, `ql-indent-1`–`8` (3em per level), `ql-size-small/large/huge`, and `ql-font-serif/monospace`. Task lists display their checked state without editing it. Map other custom classes through `class-styles`.
 
-Regression fixtures use official export APIs from Quill 2.0.3, wangEditor 5.1.23, and TinyMCE 7.9.1. Editor DOM, Delta/JSON, custom plugins, and complete editor themes are outside this scope. Code blocks preserve text and indentation without automatic syntax highlighting.
+HTML examples exported through the APIs above have been verified with Quill 2.0.3, wangEditor 5.1.23, and TinyMCE 7.9.1. Editor DOM, Delta/JSON, custom plugins, and complete editor themes are outside this scope. Code blocks preserve text and indentation without automatic syntax highlighting.
 
 ### Audio and video
 
@@ -257,11 +257,11 @@ The three control methods return a `boolean`: `true` means a command was sent, n
 
 Use an HTTP(S) image URL for video posters. Replace the example URLs and verify format support and network access on your target platforms.
 
-After all sources fail, the component displays a fallback and emits `error`; it does not retry indefinitely. Update `content` after correcting the resource URL. To retry the same URL, change the component's `key` to remount it. Remounting resets the playback progress of all media in that component and does not start playback automatically. The demo provides a reload action after a media failure.
+After all sources fail, the component displays a fallback and emits `error`; it does not retry indefinitely. Update `content` after correcting the resource URL. To retry the same URL, change the component's `key` to remount it. Remounting resets the playback progress of all media in that component and does not start playback automatically.
 
 ### Long articles
 
-The demo places the long article last and mounts it only when expanded. Use `v-if` to display long content on demand so it does not obstruct other examples.
+Use `v-if` to mount long articles when users expand them, reducing the amount of content rendered initially.
 
 ```vue
 <template>
@@ -294,7 +294,7 @@ const expanded = ref(false)
 | preview-image    | Automatically preview ordinary images                        | `boolean`                | `true`  |
 | lazy-load        | Enable platform image lazy loading                           | `boolean`                | `false` |
 | base-url         | Resource base URL; href is unchanged                         | `string`                 | `''`    |
-| allow-data-image | Allow bounded raster Base64 images, excluding native preview | `boolean`                | `false` |
+| allow-data-image | Allow PNG/JPEG/GIF/WebP Base64 images up to 64 KiB; no automatic preview | `boolean`                | `false` |
 | tag-style        | Default inline styles by tag                                 | `Record<string, string>` | `{}`    |
 | class-styles     | HTML class token to inline style mapping                     | `Record<string, string>` | `{}`    |
 | custom-class     | Root class                                                   | `string`                 | `''`    |

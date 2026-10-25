@@ -195,7 +195,7 @@
         return api
       }
 
-      // To make tests work TODO: remove
+      // 按名称获取条码编码器。
       JsBarcode.getModule = function (name) {
         return _barcodes2.default[name]
       }

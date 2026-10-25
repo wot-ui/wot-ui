@@ -2,7 +2,7 @@
 
 用于展示文章、活动介绍等 HTML 内容，支持图文排版、图片预览、链接事件、表格和音视频。
 
-适用于 H5、uni-app App-Vue 和小程序，不支持 App-nvue、uni-app x。文字选择、懒加载、合并表格和媒体播放的表现依平台而定；小程序和 App 尚待真机验收。
+适用于 H5、uni-app App-Vue 和小程序，不支持 App-nvue、uni-app x。文字选择、懒加载、合并表格和媒体播放的表现依平台而定；小程序和 App 尚未完成真机兼容性验证。
 
 ::: details 内容支持与使用边界
 
@@ -10,7 +10,7 @@
 - 保留颜色、字体、间距、尺寸、边框等基础排版样式。不支持外部样式表、定位、Flex 或 Grid 内容布局。
 - 脚本、事件属性、iframe、SVG 等不支持的嵌入内容会被过滤。建议使用结构完整的 HTML。
 - 资源允许 HTTP(S)、协议相对地址和相对路径；链接还允许锚点、`mailto:` 和 `tel:`。资源须符合目标平台的域名与访问规则。
-- 单次内容限制为 200000 个 UTF-16 代码单元、10000 个解析节点、128 层嵌套；还有输出数据预算。超限触发 `error` 并显示默认插槽，建议将超长文章拆分加载。
+- 单次内容限制为 200000 个 UTF-16 代码单元、10000 个解析节点、128 层嵌套；解析后的输出数据也有大小限制。超限触发 `error` 并显示默认插槽，建议将超长文章拆分加载。
   :::
 
 ## 组件类型
@@ -103,7 +103,7 @@ function handleLink({ href }: { href: string }) {
 </script>
 ```
 
-示例页面的链接会在旁边显示反馈；实际接入时请替换为自己的页面地址。
+请将示例中的链接替换为实际页面地址，并在 `link-click` 回调中处理导航。
 
 ## 组件样式
 
@@ -159,7 +159,7 @@ const classStyles = { eyebrow: 'font-size:12px;letter-spacing:3px;color:var(--wo
 
 ### 目录与锚点
 
-设置 `enable-anchor` 后，可通过 `getHeadings()` 获取标题目录，用 `scrollToAnchor()` 滚动到章节。关闭时保留默认的静态合并渲染，目录为空。
+设置 `enable-anchor` 后，可通过 `getHeadings()` 获取标题目录，用 `scrollToAnchor()` 滚动到章节。未开启时，`getHeadings()` 返回空数组。
 
 ```vue
 <template>
@@ -210,7 +210,7 @@ const nextScrollTop = currentScrollTop + anchor.top - container.top - offset
 
 支持标准段落、空段落、嵌套列表、图注和代码空白。内置 Quill 的 `ql-align-center/right/justify`、`ql-indent-1`–`8`（每级 3em）、`ql-size-small/large/huge`、`ql-font-serif/monospace` 样式；任务列表的勾选状态只读展示。其他自定义类可用 `class-styles` 映射。
 
-已用 Quill 2.0.3、wangEditor 5.1.23、TinyMCE 7.9.1 的正式 API 导出样本做回归。编辑器内的 DOM、Delta/JSON、自定义插件和完整编辑器主题不在此范围；代码块保留文本与缩进，不自动进行语法高亮。
+已验证 Quill 2.0.3、wangEditor 5.1.23 和 TinyMCE 7.9.1 通过上述 API 导出的 HTML 示例。编辑器内的 DOM、Delta/JSON、自定义插件和完整编辑器主题不在此范围；代码块保留文本与缩进，不自动进行语法高亮。
 
 ### 音视频
 
@@ -256,11 +256,11 @@ onHide(() => richText.value?.pauseMedia())
 
 视频封面请使用 HTTP(S) 网络图片地址。请替换示例地址，并确认目标平台支持资源格式及网络访问。
 
-所有来源都失败后，组件显示失败占位并触发 `error`，不会自动循环重试。修正资源地址后更新 `content` 即可重新加载；若要重试原地址，可由业务更新组件的 `key` 重新挂载。重新挂载会重置该组件内全部媒体的播放进度，并保持不自动播放。演示页在失败后提供了“重新加载音视频”入口。
+所有来源都失败后，组件显示失败占位并触发 `error`，不会自动循环重试。修正资源地址后更新 `content` 即可重新加载；若要重试原地址，可由业务更新组件的 `key` 重新挂载。重新挂载会重置该组件内全部媒体的播放进度，并保持不自动播放。
 
 ### 长文章
 
-演示页将长文放在最后，点击后才挂载组件。业务中也可通过 `v-if` 按需展示，避免长内容影响其他区域的浏览。
+可通过 `v-if` 按需挂载长文章内容，在用户展开文章时加载，减少页面初始渲染的内容。
 
 ```vue
 <template>
@@ -293,7 +293,7 @@ const expanded = ref(false)
 | preview-image    | 点击普通图片时自动预览               | `boolean`                | `true`  |
 | lazy-load        | 开启平台支持的图片懒加载             | `boolean`                | `false` |
 | base-url         | 资源基址；不转换链接 href            | `string`                 | `''`    |
-| allow-data-image | 允许受限栅格 Base64 图片；不自动预览 | `boolean`                | `false` |
+| allow-data-image | 允许 PNG/JPEG/GIF/WebP Base64 图片，最大 64 KiB；不自动预览 | `boolean`                | `false` |
 | tag-style        | 标签默认样式映射                     | `Record<string, string>` | `{}`    |
 | class-styles     | class 到内联样式的显式映射           | `Record<string, string>` | `{}`    |
 | custom-class     | 根节点自定义类名                     | `string`                 | `''`    |

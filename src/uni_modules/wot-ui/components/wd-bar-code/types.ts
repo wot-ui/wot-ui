@@ -94,7 +94,7 @@ export const barCodeProps = {
    */
   font: makeStringProp('monospace'),
   /**
-   * 文本最大字号，底部数字和特殊格式文本都会使用，宽度不足时自动缩小
+   * 条码文本的最大字号，文本宽度超出可用空间时自动缩小
    * 类型: number
    * 默认值: 20
    */

@@ -224,7 +224,7 @@ export const richTextProps = {
    */
   errorImage: makeStringProp(''),
   /**
-   * 开启标题目录和锚点定位；仅展开需要定位的节点及其祖先。
+   * 是否开启标题目录和锚点定位。
    * 类型: boolean
    * 默认值: false
    */
