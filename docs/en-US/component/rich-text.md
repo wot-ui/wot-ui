@@ -2,7 +2,7 @@
 
 Display HTML articles and activity descriptions with formatted text, image previews, link events, tables, audio, and video.
 
-Targets H5, uni-app App-Vue, and mini programs. App-nvue and uni-app x are not supported. Text selection, lazy loading, merged tables, and media playback vary by platform; compatibility on physical devices has not yet been verified for mini programs or App.
+Targets H5, uni-app App-Vue, and mini programs. App-nvue and uni-app x are not supported. Text selection, lazy loading, merged tables, and media playback vary by platform.
 
 ::: details Supported content and boundaries
 
