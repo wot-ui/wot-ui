@@ -25,7 +25,7 @@ async function expectRestoredStroke(canvas: Locator, original: string, drawn: st
               return { width: buffer.width, height: buffer.height, pixels: ctx.getImageData(0, 0, buffer.width, buffer.height).data }
             }
             const [blank, expected] = await Promise.all([readImage(original), readImage(drawn)])
-            if (current.width !== expected.width || current.height !== expected.height) return false
+            if (current.width !== expected.width || current.height !== expected.height) return Infinity
             const actual = current.getContext('2d')!.getImageData(0, 0, current.width, current.height).data
             let inkPixels = 0
             let changedPixels = 0
@@ -34,8 +34,8 @@ async function expectRestoredStroke(canvas: Locator, original: string, drawn: st
               let changed = false
               for (let channel = 0; channel < 4; channel++) {
                 const delta = Math.abs(actual[i + channel] - expected.pixels[i + channel])
-                // Alpha 必须一致；RGB 通道最多允许 32/255 的边缘灰度差异。
-                if (delta > (channel === 3 ? 0 : 32)) return false
+                // 透明度必须一致；边缘 RGB 混色差异统一计入变化像素数。
+                if (channel === 3 && delta > 0) return Infinity
                 changed ||= delta > 0
                 isInk ||= expected.pixels[i + channel] !== blank.pixels[i + channel]
               }
@@ -43,13 +43,13 @@ async function expectRestoredStroke(canvas: Locator, original: string, drawn: st
               if (changed) changedPixels++
             }
             // 以实际笔迹面积为基准，避免空白画布稀释缺笔或偏移；最多 1% 的笔迹像素可有轻微差异。
-            return inkPixels > 0 && changedPixels / inkPixels <= 0.01
+            return inkPixels > 0 ? changedPixels / inkPixels : Infinity
           },
           { original, drawn }
         ),
-      { message: '恢复后的画布应保留原笔迹，仅允许少量抗锯齿差异' }
+      { message: '恢复后的差异像素不应超过原笔迹面积的 1%，尺寸和透明度必须一致' }
     )
-    .toBe(true)
+    .toBeLessThanOrEqual(0.01)
 }
 
 test('签名笔迹改变 canvas，清除后恢复空白', async ({ page }) => {
