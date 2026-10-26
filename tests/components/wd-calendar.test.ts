@@ -147,6 +147,50 @@ describe('WdCalendar', () => {
     expect(wrapper.findAll('.wd-calendar__tag').length).toBe(2)
     expect(wrapper.findAll('.wd-calendar__tag')[0].text()).toBe('最近7天')
     expect(wrapper.findAll('.wd-calendar__tag')[1].text()).toBe('最近15天')
+    expect(wrapper.findAll('.wd-calendar__tag')[0].attributes('style') || '').not.toContain('margin-right')
+    expect(wrapper.findAll('.wd-calendar__tag')[1].classes()).toContain('is-last-tag')
+  })
+
+  test('root-portal 下快捷选项保留间距', async () => {
+    const shortcuts = [
+      {
+        text: '最近7天',
+        id: 7
+      },
+      {
+        text: '最近15天',
+        id: 15
+      },
+      {
+        text: '最近30天',
+        id: 30
+      }
+    ]
+
+    const wrapper = mount(WdCalendar, {
+      attachTo: document.body,
+      props: {
+        modelValue: [],
+        type: 'daterange',
+        rootPortal: true,
+        shortcuts
+      }
+    })
+
+    await nextTick()
+    wrapper.vm.open()
+    await nextTick()
+
+    const tags = document.body.querySelectorAll('.wd-calendar__tag')
+    expect(tags).toHaveLength(3)
+    expect(tags[0].getAttribute('style') || '').toContain('margin-right')
+    expect(tags[1].getAttribute('style') || '').toContain('margin-right')
+    expect(tags[2].getAttribute('style') || '').not.toContain('margin-right')
+    expect(tags[2].className).toContain('is-last-tag')
+    // 传送后快捷项不再位于宿主 .wd-calendar 内部，后代选择器无法提供间距
+    expect(tags[0].closest('.wd-calendar')).toBeNull()
+
+    wrapper.unmount()
   })
 
   test('自定义格式化', async () => {
