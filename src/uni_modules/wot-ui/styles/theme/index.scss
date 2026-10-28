@@ -1,4 +1,5 @@
 @use './base/index.scss'as *;
+@use '../mixin/glass.scss' as glass;
 @use './light.scss'as light;
 @use './dark.scss'as dark;
 
@@ -13,4 +14,8 @@ page,
 .wot-theme-light,
 .wot-theme-light .wd-root-portal {
   @include light.light-theme-vars;
+}
+
+.wd-glass {
+  @include glass.glass();
 }

@@ -98,4 +98,12 @@
   --wot-classifyapplication-pink-background: var(--wot-pink-1);
   --wot-classifyapplication-pink-border: var(--wot-pink-3);
   --wot-classifyapplication-pink-content: var(--wot-pink-6);
+
+  /* Glass (glassmorphism) helpers */
+  --wot-glass-surface: rgba(255, 255, 255, 0.25);
+  --wot-glass-blur: 12px;
+  --wot-glass-saturate: 180%;
+  --wot-glass-border: rgba(255, 255, 255, 0.3);
+  --wot-glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.12);
+  --wot-glass-radius: 12px;
 }
