@@ -82,7 +82,13 @@ export const noticeBarProps = {
    * 可选值: 'horizontal' | 'vertical'
    * 默认值: 'horizontal'
    */
-  direction: makeStringProp<NoticeBarScrollDirection>('horizontal')
+  direction: makeStringProp<NoticeBarScrollDirection>('horizontal'),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type NoticeBarProps = ExtractPropTypes<typeof noticeBarProps>

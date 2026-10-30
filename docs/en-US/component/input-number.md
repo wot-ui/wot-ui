@@ -244,6 +244,7 @@ After setting `long-press`, support long pressing the button to continuously inc
 | input-type | Input box type, optional values are `number`, `digit` | `'number' \| 'digit'` | `digit` |
 | theme | Theme style, optional values are `default`, `outline`, `outline-split`, `primary` | `InputNumberTheme` | `default` |
 | round | Whether to enable rounded style | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

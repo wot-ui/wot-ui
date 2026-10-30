@@ -28,6 +28,10 @@ const designSystemNavItems = [
     link: '/en-US/guide/custom-theme',
   },
   {
+    text: 'Glassmorphism',
+    link: '/en-US/guide/glass',
+  },
+  {
     text: 'Dark Mode',
     link: '/en-US/guide/dark-mode',
   },
@@ -183,7 +187,7 @@ export default defineConfig({
       },
       {
         text: 'Design System',
-        activeMatch: '/en-US/guide/(design|custom-theme|dark-mode|unocss-preset|custom-style)',
+        activeMatch: '/en-US/guide/(design|custom-theme|glass|dark-mode|unocss-preset|custom-style)',
         items: designSystemNavItems
       },
       {

@@ -108,6 +108,7 @@ Combined with `wd-keyboard`'s `random-key-order` capability, security in numeric
 | gutter | Spacing between input box grids, default unit is `px` | `number \| string` | `0` |
 | length | Password length | `number` | `6` |
 | focused | Whether in focused state; cursor is displayed when focused, usually linked with keyboard visibility state | `boolean` | `true` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Custom class name for root node | `string` | `''` |
 | custom-style | Custom style for root node | `string` | `''` |
 

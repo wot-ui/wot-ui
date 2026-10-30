@@ -144,6 +144,7 @@
 | show-zero | 是否显示 0 | boolean | false |
 | shape | 徽标形状，支持 `circle / square / bubble` | string | circle |
 | border | 是否显示白色描边 | boolean | false |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | string | - |
 | custom-style | 根节点自定义样式 | string | - |
 

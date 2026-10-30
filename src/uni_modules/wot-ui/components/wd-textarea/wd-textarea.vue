@@ -137,7 +137,7 @@ const currentLength = computed(() => {
 const rootClass = computed(() => {
   return `wd-textarea ${props.error ? 'is-error' : ''} ${isDisabled.value ? 'is-disabled' : ''} ${props.autoHeight ? 'is-auto-height' : ''} ${
     isCompact.value ? 'is-compact' : ''
-  } ${props.customClass}`
+  } ${props.glass ? 'is-glass' : ''} ${props.customClass}`
 })
 
 const isCompact = computed(() => {

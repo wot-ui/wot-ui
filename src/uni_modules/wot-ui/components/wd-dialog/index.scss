@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 对话框背景色
@@ -103,6 +104,10 @@ $dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) 
     overflow: hidden;
     width: $dialog-width;
     box-sizing: border-box;
+
+    &.wd-dialog--glass {
+      @include glass;
+    }
   }
 
   @include e(img) {
@@ -279,5 +284,6 @@ $dialog-action-text-border: var(--wot-dialog-action-text-border, $stroke-light) 
     font-size: $dialog-close-icon-size;
     color: $dialog-close-icon-color;
   }
+
 
 }

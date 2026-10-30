@@ -85,7 +85,13 @@ export const badgeProps = {
    * 类型: boolean
    * 默认值: false
    */
-  border: makeBooleanProp(false)
+  border: makeBooleanProp(false),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 /**

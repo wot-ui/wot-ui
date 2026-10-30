@@ -112,7 +112,13 @@ export const tableProps = {
    * 类型: number
    * 默认值: 5
    */
-  buffer: makeNumericProp(5)
+  buffer: makeNumericProp(5),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 /** 表格 Props 类型 */

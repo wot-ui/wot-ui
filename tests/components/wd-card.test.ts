@@ -241,4 +241,16 @@ describe('WdCard', () => {
     expect(wrapper.find('.action-btn').exists()).toBe(true)
     expect(wrapper.find('.action-btn').text()).toBe('操作按钮')
   })
+
+  test('玻璃卡片', async () => {
+    const wrapper = mount(WdCard, {
+      props: {
+        glass: true
+      }
+    })
+
+    await nextTick()
+
+    expect(wrapper.classes()).toContain('wd-card--glass')
+  })
 })

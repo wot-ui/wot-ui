@@ -261,6 +261,7 @@ Set `title` to display title.
 | safe-area-inset-bottom | Whether popup panel sets bottom safe distance (iPhone X type devices) | boolean | true |
 | root-portal | Whether to detach from page (H5: teleport, App: renderjs, Mini Program: root-portal) | boolean | false |
 | custom-title-class | Title area custom class name | string | - |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | string | - |
 | custom-style | Root node custom style | string | - |
 

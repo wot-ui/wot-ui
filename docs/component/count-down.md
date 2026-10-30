@@ -83,6 +83,7 @@ const reset = () => countDown.value?.reset()
 | millisecond | 是否开启毫秒级渲染 | boolean | false |
 | format | 倒计时格式化字符串 | string | `HH:mm:ss` |
 | auto-start | 是否在初始化和重置后自动开始倒计时 | boolean | true |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 

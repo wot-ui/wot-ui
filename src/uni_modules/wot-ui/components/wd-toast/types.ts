@@ -8,7 +8,7 @@
  * 记得注释
  */
 import type { ExtractPropTypes, PropType } from 'vue'
-import { baseProps, makeStringProp } from '../../common/props'
+import { baseProps, makeBooleanProp, makeStringProp } from '../../common/props'
 import type { LoadingType } from '../wd-loading/types'
 
 export type ToastIconType = 'success' | 'error' | 'warning' | 'loading' | 'info' // 图标类型
@@ -194,7 +194,13 @@ export const toastProps = {
    * 完全关闭时的回调函数
    * @type {Function}
    */
-  closed: Function as PropType<() => void>
+  closed: Function as PropType<() => void>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * @type {boolean}
+   * @default false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type ToastProps = ExtractPropTypes<typeof toastProps>

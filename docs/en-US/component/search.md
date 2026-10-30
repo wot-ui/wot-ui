@@ -219,6 +219,7 @@ function changeSearchType({ item }) {
 | focus-when-clear | Whether to focus the input box after clicking the clear button | `boolean` | `false` |
 | placeholder-style | Native property, specifies the style of the placeholder, currently only supports `color`, `font-size` and `font-weight` | `string` | - |
 | placeholder-class | Native property, specifies the style class of the placeholder | `string` | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

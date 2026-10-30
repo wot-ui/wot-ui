@@ -128,6 +128,7 @@ const pageSize = ref<number>(20)
 | show-message | 是否展示文字提示 | `boolean` | `false` |
 | button-variant | 分页按钮风格，可选值为 `base`、`plain`、`dashed`、`text` | `ButtonVariant` | `text` |
 | hide-if-one-page | 总页数只有一页时是否隐藏 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

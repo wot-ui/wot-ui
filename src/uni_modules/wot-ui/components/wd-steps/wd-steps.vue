@@ -8,7 +8,7 @@
  * 记得注释
 -->
 <template>
-  <view :class="`wd-steps ${customClass} ${vertical ? 'is-vertical' : ''}`" :style="customStyle">
+  <view :class="`wd-steps ${customClass} ${vertical ? 'is-vertical' : ''} ${glass ? 'wd-steps--glass' : ''}`" :style="customStyle">
     <slot />
   </view>
 </template>

@@ -253,6 +253,7 @@ function changeSize() {
 | visible-arrow | Whether to show arrow | `boolean` | `true` |
 | disabled | Whether disabled | `boolean` | `false` |
 | show-close | Whether to show close button | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Custom class name for root node | `string` | `''` |
 | custom-style | Custom style for root node | `string` | `''` |
 | custom-arrow | Custom class name for arrow node | `string` | `''` |

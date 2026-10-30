@@ -7,6 +7,7 @@
       :z-index="zIndex"
       :safe-area-inset-bottom="safeAreaInsetBottom"
       :root-portal="rootPortal"
+      :glass="glass"
       @close="close"
       @after-enter="scrollIntoView ? setScrollIntoView() : ''"
       custom-class="wd-select-picker__popup"

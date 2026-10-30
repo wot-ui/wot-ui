@@ -32,7 +32,13 @@ export const dropMenuProps = {
   /**
    * 菜单展开收起动画时间，单位 ms
    */
-  duration: makeNumberProp(200)
+  duration: makeNumberProp(200),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type DropMenuProps = ExtractPropTypes<typeof dropMenuProps>

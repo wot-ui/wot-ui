@@ -163,6 +163,7 @@ You can listen to prompt state changes through `open`, `close`, `change`.
 | show-close | Whether to show close button | `boolean` | `false` |
 | custom-arrow | Arrow custom class name | `string` | `''` |
 | custom-pop | Prompt layer custom class name | `string` | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

@@ -153,6 +153,7 @@ const beforeConfirm = (value: string[]) => {
 | custom-content-class | 自定义弹层内容区域类名 | `string` | `''` |
 | show-confirm | 是否显示确认按钮，仅 `radio` 模式生效 | `boolean` | `true` |
 | root-portal | 是否从页面结构中脱离出来，用于解决 fixed 失效问题 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

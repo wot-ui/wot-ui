@@ -20,7 +20,7 @@
       :z-index="zIndex"
     >
       <view
-        :class="`wd-action-sheet ${customClass}`"
+        :class="`wd-action-sheet ${customClass} ${glass ? 'wd-action-sheet--glass' : ''}`"
         :style="`${(actions && actions.length) || (panels && panels.length) ? ' ' : ''} ${customStyle}`"
       >
         <view v-if="title" :class="`wd-action-sheet__title ${customTitleClass}`">

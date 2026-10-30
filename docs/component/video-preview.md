@@ -142,6 +142,7 @@ function openPreview() {
 | close-position | 关闭按钮位置，可选值为 `left-top`、`right-top` | `string` | `left-top` |
 | on-open | 组件打开时的回调 | <code>() =&gt; void</code> | - |
 | on-close | 组件关闭时的回调 | <code>() =&gt; void</code> | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-style | 自定义根节点样式 | `string` | `''` |
 | custom-class | 自定义根节点样式类 | `string` | `''` |
 

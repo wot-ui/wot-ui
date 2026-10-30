@@ -1,5 +1,5 @@
 import type { PropType } from 'vue'
-import { baseProps } from '../../common/props'
+import { baseProps, makeBooleanProp } from '../../common/props'
 import type { LoadingProps } from '../wd-loading/types'
 
 /**
@@ -38,5 +38,11 @@ export const loadmoreProps = {
    * 类型: Partial<LoadingProps>
    * 默认值: {}
    */
-  loadingProps: Object as PropType<Partial<LoadingProps>>
+  loadingProps: Object as PropType<Partial<LoadingProps>>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }

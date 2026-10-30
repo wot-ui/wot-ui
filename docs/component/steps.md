@@ -142,6 +142,7 @@ function nextStep() {
 | dot | 是否使用点状步骤条 | `boolean` | `false` |
 | space | 步骤条间距，默认自动计算 | `string` | `''` |
 | align-center | 是否水平居中，只对横向步骤条有效 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

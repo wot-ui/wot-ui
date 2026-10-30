@@ -1,5 +1,5 @@
 <template>
-  <view :class="['wd-loadmore', customClass]" :style="customStyle" @click="reload">
+  <view :class="['wd-loadmore', { 'is-glass': glass }, customClass]" :style="customStyle" @click="reload">
     <slot v-if="state === 'finished'" name="finished">
       <wd-divider custom-class="wd-loadmore__divider">{{ finishedText || translate('finished') }}</wd-divider>
     </slot>

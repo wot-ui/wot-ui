@@ -1,7 +1,12 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 @include b(swipe-action) {
+  &.is-glass {
+    @include glass;
+  }
+
   position: relative;
   overflow: hidden;
   @include e(left) {

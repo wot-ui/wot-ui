@@ -3,7 +3,7 @@
     @touchmove.stop.prevent="handleTouchMove"
     @touchstart="handleTouchStart"
     @touchend="handleTouchEnd"
-    :class="`wd-fab ${customClass}`"
+    :class="`wd-fab ${customClass} ${glass ? 'wd-fab--glass' : ''}`"
     :style="rootStyle"
     @click.stop=""
   >

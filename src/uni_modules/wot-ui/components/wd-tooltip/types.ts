@@ -82,7 +82,13 @@ export const tooltipProps = {
    * 类型: boolean
    * 默认值: false
    */
-  modelValue: makeBooleanProp(false)
+  modelValue: makeBooleanProp(false),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type TooltipProps = ExtractPropTypes<typeof tooltipProps>

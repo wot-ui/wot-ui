@@ -72,7 +72,9 @@ const themeVars = reactive<ConfigProviderThemeVars>({
 
 如果你需要维护多套可复用主题，例如品牌 A、品牌 B，又或者想要动态切换主题，建议使用独立的 SCSS 主题文件来组织。
 
-当前我们在 [src/theme/presets.scss](https://github.com/wot-ui/wot-ui/tree/main/src/theme/presets.scss) 中提供了多个主题的示例，包含 `shadcn`、`cartoon`、`illustration`、`nutui`、`vant`、`tdesign` 等主题。
+当前我们在 [src/theme/presets.scss](https://github.com/wot-ui/wot-ui/tree/main/src/theme/presets.scss) 中提供了多个主题的示例，包含 `shadcn`、`cartoon`、`illustration`、`nutui`、`vant`、`tdesign`、`glass` 等主题。
+
+`glass` 主题为毛玻璃（glassmorphism）风格预设，基于半透明表面与 `backdrop-filter` 实现，适合需要模糊背景的卡片、弹层与导航栏场景；在不支持 `backdrop-filter` 的端上会自动退化为半透明纯色表面。
 ::: code-group
 ```scss [css]
 /* src/theme/brand-a.scss */
@@ -113,6 +115,41 @@ const themeVars = reactive<ConfigProviderThemeVars>({
 </template>
 ```
 :::
+
+
+### Glass 主题使用示例
+
+```scss [App.vue]
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
+@use './theme/presets.scss' as *;
+
+page,
+.wd-root-portal {
+  @include glass-theme-vars();
+}
+```
+
+深色模式可切换为 `glass-dark-theme-vars()`。玻璃效果依赖 `backdrop-filter`，不支持的端会退化为半透明纯色表面。
+
+
+### 任意组件玻璃效果
+
+未提供 `glass` 属性的组件，可通过全局工具类 `.wd-glass` 或 `custom-class` 直接启用玻璃效果：
+
+```html
+<view class="wd-glass">任意容器</view>
+<wd-cell title="玻璃单元格" custom-class="wd-glass"></wd-cell>
+```
+
+也可以在自己的样式文件中复用共享 mixin：
+
+```scss
+@use '@wot-ui/ui/styles/mixin/glass.scss' as *;
+
+.my-panel {
+  @include glass;
+}
+```
 
 ### Skills
 如果你是 `vibe coding` 用户，我们也提供了 [Skills](https://github.com/wot-ui/wot-ui/tree/main/.agents/skills/generate-theme) 用于帮助开发者生成自定义主题，欢迎使用。

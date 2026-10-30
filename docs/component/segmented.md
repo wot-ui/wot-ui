@@ -149,6 +149,7 @@ function handlePopupShow() {
 | options | 数据集合 | `string[] \| number[] \| SegmentedOption[]` | `[]` |
 | theme | 分段器主题，可选值为 `card`、`outline` | `string` | `'card'` |
 | vibrate-short | 切换选项时是否触发短振动 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

@@ -1,6 +1,6 @@
 <template>
   <view
-    :class="`wd-floating-panel ${customClass} ${safeAreaInsetBottom ? 'is-safe' : ''}`"
+    :class="`wd-floating-panel ${customClass} ${safeAreaInsetBottom ? 'is-safe' : ''} ${glass ? 'wd-floating-panel--glass' : ''}`"
     :style="rootStyle"
     @touchstart.passive="handleTouchStart"
     @touchmove.passive="handleTouchMove"

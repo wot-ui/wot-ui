@@ -219,6 +219,7 @@ const tabbar = ref(1)
 | placeholder | 固定在底部时，是否生成等高占位元素 | `boolean` | `false` |
 | z-index | 组件层级 | `number` | `10` |
 | before-change | 切换前的回调函数，返回 `false` 可阻止切换，支持返回 `Promise<boolean>` | `TabbarBeforeChange` | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

@@ -8,7 +8,7 @@
  * 记得注释
  */
 import type { ExtractPropTypes, PropType } from 'vue'
-import { baseProps, makeStringProp } from '../../common/props'
+import { baseProps, makeBooleanProp, makeStringProp } from '../../common/props'
 
 export const emptyProps = {
   ...baseProps,
@@ -45,7 +45,13 @@ export const emptyProps = {
    * 类型: string
    * 默认值: 空字符串
    */
-  tip: makeStringProp('')
+  tip: makeStringProp(''),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type EmptyProps = ExtractPropTypes<typeof emptyProps>

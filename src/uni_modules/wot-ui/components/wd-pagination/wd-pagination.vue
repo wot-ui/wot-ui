@@ -1,5 +1,9 @@
 <template>
-  <view :class="`wd-pagination ${customClass}`" :style="customStyle" v-if="!(hideIfOnePage && totalPageNum === 1)">
+  <view
+    :class="`wd-pagination ${customClass} ${glass ? 'wd-pagination--glass' : ''}`"
+    :style="customStyle"
+    v-if="!(hideIfOnePage && totalPageNum === 1)"
+  >
     <view class="wd-pagination__content">
       <slot name="prev" :modelValue="modelValue" :totalPageNum="totalPageNum" :total="total" :pageSize="pageSize">
         <wd-button

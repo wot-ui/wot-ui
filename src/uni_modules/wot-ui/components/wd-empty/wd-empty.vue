@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-empty  ${customClass}`" :style="customStyle">
+  <view :class="`wd-empty  ${customClass} ${glass ? 'wd-empty--glass' : ''}`" :style="customStyle">
     <slot name="image">
       <wd-icon :name="icon" :class-prefix="iconPrefix" :css-icon="cssIcon" custom-class="wd-empty__icon" :custom-style="iconStyle"></wd-icon>
     </slot>

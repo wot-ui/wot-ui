@@ -1,13 +1,18 @@
 <template>
   <!-- #ifdef APP-PLUS -->
-  <view v-if="state.show" :class="`wd-video-preview ${customClass}`" :style="`z-index: ${options.zIndex}; ${customStyle}`" @click="close">
+  <view
+    v-if="state.show"
+    :class="`wd-video-preview ${customClass} ${glass ? 'wd-video-preview--glass' : ''}`"
+    :style="`z-index: ${options.zIndex}; ${customStyle}`"
+    @click="close"
+  >
     <!-- #endif -->
     <!-- #ifndef APP-PLUS -->
     <wd-overlay
       :show="state.show"
       :z-index="options.zIndex"
       :lock-scroll="true"
-      :custom-class="`wd-video-preview ${customClass}`"
+      :custom-class="`wd-video-preview ${customClass} ${glass ? 'wd-video-preview--glass' : ''}`"
       :custom-style="customStyle"
       @click="close"
       @enter="handleEnter"

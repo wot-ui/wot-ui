@@ -8,7 +8,7 @@
  * 记得注释
  */
 import type { ExtractPropTypes, PropType } from 'vue'
-import { baseProps, makeStringProp } from '../../common/props'
+import { baseProps, makeBooleanProp, makeStringProp } from '../../common/props'
 
 export type CardType = 'rectangle'
 
@@ -41,7 +41,13 @@ export const cardProps = {
    * 类型: string
    * 默认值: ''
    */
-  customFooterClass: makeStringProp('')
+  customFooterClass: makeStringProp(''),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type CardProps = ExtractPropTypes<typeof cardProps>

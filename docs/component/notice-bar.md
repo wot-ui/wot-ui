@@ -198,6 +198,7 @@ function handleReset() {
 | color | 文字和图标颜色 | `string` | - |
 | background-color | 背景颜色 | `string` | - |
 | direction | 滚动方向，可选值为 `horizontal`、`vertical` | `NoticeBarScrollDirection` | `horizontal` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

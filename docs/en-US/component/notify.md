@@ -174,6 +174,7 @@ export default {
 | root-portal | Whether to detach from the page, used to solve various fixed positioning issues | `boolean` | `false` |
 | closable | Whether to show the close button | `boolean` | `false` |
 | variant | Display form, optional values are `filled` `floating` | `NotifyVariant` | `filled` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node style class name | `string` | - |
 | custom-style | Root node style | `string` | - |
 

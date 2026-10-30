@@ -255,6 +255,7 @@ function handleClick({ value }: SwipeActionClickEvent) {
 | v-model | Current swipe state, optional values are `left`, `close`, `right` | `SwipeActionStatus` | `close` |
 | disabled | Whether to disable swipe action | `boolean` | `false` |
 | before-close | Pre-close interceptor function, receives `(reason, position)`, returns `true` or `Promise<boolean>` to continue closing, returns `false` to prevent closing | `SwipeActionBeforeClose` | - |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

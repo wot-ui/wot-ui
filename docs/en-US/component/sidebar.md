@@ -76,6 +76,7 @@ Set the `icon` property of `wd-sidebar-item` to display different icons in the n
 | --- | --- | --- | --- |
 | model-value / v-model | Current active item's value | `string \| number` | `0` |
 | before-change | Hook before switching, receives target value, returns `boolean` or `Promise<boolean>` | `function` | - |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

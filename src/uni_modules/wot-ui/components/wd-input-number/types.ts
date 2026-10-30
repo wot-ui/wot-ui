@@ -125,7 +125,13 @@ export const inputNumberProps = {
   /**
    * 是否圆形按钮
    */
-  round: Boolean
+  round: Boolean,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type InputNumberProps = ExtractPropTypes<typeof inputNumberProps>

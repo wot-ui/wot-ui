@@ -86,6 +86,7 @@ onPageScroll((event) => {
 | shape | 按钮形状，可选值为 `circle`、`square` | string | `circle` |
 | bottom | 距离屏幕底部的距离，单位为 `px` | `number` | `100` |
 | right | 距离屏幕右侧的距离，单位为 `px` | `number` | `20` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-style | 自定义根节点样式 | `string` | `''` |
 | custom-class | 自定义根节点样式类 | `string` | `''` |
 

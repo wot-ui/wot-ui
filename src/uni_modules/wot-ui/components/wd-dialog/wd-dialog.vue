@@ -170,7 +170,7 @@ const iconTypeClass = computed(() => {
 })
 
 const rootClass = computed(() => {
-  return `wd-dialog__container ${props.customClass}`
+  return `wd-dialog__container ${props.glass ? 'wd-dialog--glass' : ''} ${props.customClass}`
 })
 
 const bodyClass = computed(() => {

@@ -223,6 +223,7 @@ function openPreview() {
 | close-on-click | Whether to close when clicking image or mask | `boolean` | `true` |
 | show-menu-by-longpress | Enable long-press to show QR code recognition menu | `boolean` | `true` |
 | z-index | Z-index | `number` | `1000` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 
 ## Events
 

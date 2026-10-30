@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 高度
@@ -67,5 +68,9 @@ $tabbar-round-shadow: var(
     bottom: 0;
     right: 0;
     z-index: $tabbar-z-index;
+  }
+
+  &.wd-tabbar--glass {
+    @include glass;
   }
 }

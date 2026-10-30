@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 表格背景色
@@ -29,6 +30,10 @@ $table-sort-button-height: var(--wot-table-sort-button-height, $n-20) !default;
   width: 100%;
   overflow: hidden;
   background: $table-bg;
+
+  &.is-glass {
+    @include glass;
+  }
 
   @include when(border) {
     border: $table-border-width solid $table-border-color;

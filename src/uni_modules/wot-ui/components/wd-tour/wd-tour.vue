@@ -4,7 +4,7 @@
       <slot name="highlight" :elementInfo="highlightElementInfo">
         <view :class="highlightClass" :style="highlightStyle"></view>
       </slot>
-      <view class="wd-tour__popover" :style="popoverStyle">
+      <view :class="['wd-tour__popover', { 'is-glass': glass }]" :style="popoverStyle">
         <view class="wd-tour__info">
           <slot name="content">
             <rich-text :nodes="currentStep.content"></rich-text>

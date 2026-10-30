@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 徽标高度
@@ -41,6 +42,10 @@ $badge-transform: var(--wot-badge-transform, translateY(-50%) translateX(50%)) !
 $badge-border-color: var(--wot-badge-border-color, $border-white) !default;
 
 @include b(badge) {
+  &.is-glass {
+    @include glass;
+  }
+
   position: relative;
   vertical-align: middle;
   display: inline-block;

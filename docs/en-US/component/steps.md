@@ -142,6 +142,7 @@ Dot-style steps support controlling the current step via external `active`.
 | dot | Whether to use dot-style steps | `boolean` | `false` |
 | space | Step bar spacing, automatically calculated by default | `string` | `''` |
 | align-center | Whether to center horizontally, only effective for horizontal step bars | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

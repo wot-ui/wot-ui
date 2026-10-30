@@ -966,6 +966,7 @@ All properties of this component, in addition to supporting specific form item c
 | ellipsis | Whether to hide overflow and show ellipsis; uses its own configuration first, and inherits from Form when not set | `boolean` | - |
 | asterisk-position | Required asterisk position, optional values are `start`, `end`; uses its own configuration first, and inherits from Form when not set | `string` | `start` |
 | hide-asterisk | Whether to hide required asterisk; uses its own configuration first, and inherits from Form when not set | `boolean` | - |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 
 ### FormSchema Data Structure
 

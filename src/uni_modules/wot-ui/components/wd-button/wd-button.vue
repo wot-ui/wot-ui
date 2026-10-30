@@ -14,7 +14,8 @@
       disabled ? 'is-disabled' : '',
       block ? 'is-block' : '',
       loading ? 'is-loading' : '',
-      customClass
+      customClass,
+      glass ? 'is-glass' : ''
     ]"
     :hover-start-time="hoverStartTime"
     :hover-stay-time="hoverStayTime"

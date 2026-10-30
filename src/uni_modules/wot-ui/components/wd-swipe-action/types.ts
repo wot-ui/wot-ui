@@ -81,7 +81,13 @@ export const swipeActionProps = {
    * 类型: SwipeActionBeforeClose
    * 默认值: 无
    */
-  beforeClose: Function as PropType<SwipeActionBeforeClose>
+  beforeClose: Function as PropType<SwipeActionBeforeClose>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type SwipeActionProps = ExtractPropTypes<typeof swipeActionProps>

@@ -1,6 +1,13 @@
 <template>
   <view
-    :class="['wd-cell', isBorder ? 'is-border' : '', cellSize ? 'is-' + cellSize : '', isCenter ? 'is-center' : '', customClass]"
+    :class="[
+      'wd-cell',
+      isBorder ? 'is-border' : '',
+      cellSize ? 'is-' + cellSize : '',
+      isCenter ? 'is-center' : '',
+      glass ? 'is-glass' : '',
+      customClass
+    ]"
     :style="customStyle"
     :hover-class="isLink || clickable ? 'is-hover' : 'none'"
     :hover-stay-time="70"

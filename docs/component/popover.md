@@ -253,6 +253,7 @@ function changeSize() {
 | visible-arrow | 是否显示箭头 | `boolean` | `true` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | show-close | 是否显示关闭按钮 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 | custom-arrow | 箭头节点自定义类名 | `string` | `''` |

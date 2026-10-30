@@ -1,5 +1,6 @@
 @use '../../styles/variable.scss' as *;
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 // 单元格背景色
 $cell-bg: var(--wot-cell-bg, $filled-oppo) !default;
@@ -253,5 +254,9 @@ $cell-border-margin-horizontal: var(--wot-cell-border-margin-horizontal, $spacin
     .wd-cell__wrapper {
       align-items: center;
     }
+  }
+
+  &.is-glass {
+    @include glass;
   }
 }

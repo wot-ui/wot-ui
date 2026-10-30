@@ -1,6 +1,11 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 @include b(steps) {
+  &.wd-steps--glass {
+    @include glass;
+  }
+
   @include when(vertical) {
     display: block;
   }

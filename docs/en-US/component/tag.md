@@ -193,6 +193,7 @@ function handleConfirm({ value }: { value: string }) {
 | round | Whether round | `boolean` | `false` |
 | mark | Whether mark style | `boolean` | `false` |
 | variant | Tag variant, optional values are `light`, `dark`, `plain`, `dashed`, `text` | `TagVariant` | `dark` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

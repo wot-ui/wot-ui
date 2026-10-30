@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-password-input ${customClass}`" :style="customStyle">
+  <view :class="`wd-password-input ${customClass} ${glass ? 'is-glass' : ''}`" :style="customStyle">
     <view @touchstart="onTouchStart" class="wd-password-input__security">
       <view
         v-for="(_, index) in length"

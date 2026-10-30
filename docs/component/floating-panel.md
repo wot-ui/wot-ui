@@ -97,6 +97,7 @@ onLoad(() => {
 | content-draggable | 允许拖拽内容容器 | `boolean` | `true` |
 | safe-area-inset-bottom | 是否开启底部安全区适配 | `boolean` | `false` |
 | show-scrollbar | 是否开启滚动条 | `boolean` | `true` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

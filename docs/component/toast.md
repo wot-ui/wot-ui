@@ -150,6 +150,7 @@ toast.success({
 | closed | 完全关闭后的回调 | <code>() =&gt; void</code> | - |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ## Toast Options
 

@@ -190,4 +190,18 @@ describe('WdPopup', () => {
     // 检查锁定滚动
     expect(wrapper.findComponent({ name: 'wd-overlay' }).props('lockScroll')).toBe(true)
   })
+
+  test('玻璃弹窗', () => {
+    const wrapper = mount(WdPopup, {
+      props: {
+        modelValue: true,
+        glass: true
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    expect(wrapper.html()).toContain('wd-popup--glass')
+  })
 })

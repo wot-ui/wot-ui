@@ -8,6 +8,7 @@
       :safe-area-inset-bottom="safeAreaInsetBottom"
       :z-index="zIndex"
       :root-portal="rootPortal"
+      :glass="glass"
       @close="onCancel"
       custom-class="wd-datetime-picker__popup"
     >

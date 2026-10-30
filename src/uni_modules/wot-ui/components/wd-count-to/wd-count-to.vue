@@ -46,7 +46,7 @@ const { start, pause, reset, current } = useCountDown({
 
 // 计算根元素的类名
 const rootClass = computed(() => {
-  return `wd-count-to ${props.customClass}`
+  return `wd-count-to ${props.glass ? 'is-glass' : ''} ${props.customClass}`
 })
 
 const timeText = computed(() => {

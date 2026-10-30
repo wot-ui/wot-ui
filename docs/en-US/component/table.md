@@ -272,6 +272,7 @@ const paginationData = computed(() => {
 | virtual | Whether to enable virtual scrolling | `boolean` | `false` |
 | row-height | Virtual scrolling row height | `number` | `44` |
 | buffer | Extra rows rendered above and below the virtual viewport; supports `0`, rounds fractions down, clamps negative values to `0`, and uses the default for non-finite values | `number` | `5` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

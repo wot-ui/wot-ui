@@ -1,5 +1,5 @@
 <template>
-  <view :style="customStyle" :class="`wd-drop-menu ${customClass}`" @click.stop.prevent="noop" :id="dropMenuId">
+  <view :style="customStyle" :class="`wd-drop-menu ${customClass} ${glass ? 'wd-drop-menu--glass' : ''}`" @click.stop.prevent="noop" :id="dropMenuId">
     <wd-overlay
       :show="overlayVisible"
       :duration="duration"

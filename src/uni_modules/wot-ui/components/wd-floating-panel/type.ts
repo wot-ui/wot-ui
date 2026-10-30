@@ -26,7 +26,13 @@ export const floatingPanelProps = {
   /**
    * 是否允许内容区容器拖拽，默认值为 true
    */
-  contentDraggable: truthProp
+  contentDraggable: truthProp,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type FloatingPanelProps = ExtractPropTypes<typeof floatingPanelProps>

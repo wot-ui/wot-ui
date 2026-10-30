@@ -46,7 +46,13 @@ export const videoPreviewProps = {
   /**
    * 关闭时的回调
    */
-  onClose: Function as PropType<() => void>
+  onClose: Function as PropType<() => void>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type PreviewVideo = {

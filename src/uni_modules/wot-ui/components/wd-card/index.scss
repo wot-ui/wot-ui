@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss'as *;
 @use '../../styles/variable.scss'as *;
 
 // 卡片背景色
@@ -100,5 +101,10 @@ $card-footer-border-color: var(--wot-card-footer-border-color, $border-main) !de
     @include me(content) {
       @include halfPixelBorder('top', $padding-loose, $card-content-border-color);
     }
+  }
+
+
+  @include m(glass) {
+    @include glass;
   }
 }

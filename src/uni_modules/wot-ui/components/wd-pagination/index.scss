@@ -1,5 +1,6 @@
 @use '../../styles/variable.scss' as *;
 @use '../../styles/mixin/_mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 // 分页背景色
 $pagination-bg: var(--wot-pagination-bg, $filled-oppo) !default;
@@ -31,6 +32,10 @@ $pagination-size-separator-margin: var(--wot-pagination-size-separator-margin, $
 @include b(pagination) {
   user-select: none;
   background-color: $pagination-bg;
+
+  &.wd-pagination--glass {
+    @include glass;
+  }
   padding: $pagination-padding;
 
   @include edeep(icon) {

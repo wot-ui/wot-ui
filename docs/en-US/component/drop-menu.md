@@ -197,6 +197,7 @@ const handleOpened = () => {
 | duration | Menu expand/collapse animation duration, unit ms | `number` | `200` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 
 ## DropMenuItem Attributes
 

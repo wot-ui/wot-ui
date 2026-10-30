@@ -68,7 +68,13 @@ export const navbarProps = {
    * 类型: boolean
    * 默认值: false
    */
-  rightDisabled: makeBooleanProp(false)
+  rightDisabled: makeBooleanProp(false),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type NavbarProps = ExtractPropTypes<typeof navbarProps>

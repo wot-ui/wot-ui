@@ -1,6 +1,9 @@
 <template>
   <view :style="{ height: addUnit(height) }">
-    <view :class="`wd-navbar ${customClass} ${fixed ? 'is-fixed' : ''} ${bordered ? 'is-border' : ''}`" :style="rootStyle">
+    <view
+      :class="`wd-navbar ${customClass} ${fixed ? 'is-fixed' : ''} ${bordered ? 'is-border' : ''} ${glass ? 'wd-navbar--glass' : ''}`"
+      :style="rootStyle"
+    >
       <view class="wd-navbar__content">
         <view class="wd-navbar__capsule" v-if="$slots.capsule">
           <slot name="capsule" />

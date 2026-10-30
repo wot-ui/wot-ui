@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 // 组件整体内边距
@@ -67,6 +68,10 @@ $search-cancel-color: var(--wot-search-cancel-color, $primary-6) !default;
   padding: $search-padding;
   align-items: center;
   background: $search-bg;
+
+  &.is-glass {
+    @include glass;
+  }
 
   @include e(block) {
     flex: 1;

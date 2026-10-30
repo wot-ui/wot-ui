@@ -163,6 +163,7 @@ function changeTooltipSize() {
 | show-close | 是否显示关闭按钮 | `boolean` | `false` |
 | custom-arrow | 箭头自定义类名 | `string` | `''` |
 | custom-pop | 提示层自定义类名 | `string` | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

@@ -199,6 +199,7 @@ Use `vertical` property to enable vertical direction stack display.
 | color | Text color | string | `''` |
 | alt | Placeholder text when image fails to load | string | `''` |
 | mode | Image fill mode, same as uni-app image component's mode | string | aspectFill |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | string | - |
 | custom-style | Root node custom style | string | - |
 

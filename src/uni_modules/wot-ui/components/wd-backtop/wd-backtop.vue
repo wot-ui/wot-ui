@@ -1,7 +1,7 @@
 <template>
   <wd-transition :show="show" name="fade">
     <view
-      :class="`wd-backtop ${customClass} is-${shape}`"
+      :class="`wd-backtop ${customClass} is-${shape} ${glass ? 'is-glass' : ''}`"
       :style="`z-index: ${zIndex}; bottom: ${bottom}px; right: ${right}px; ${customStyle}`"
       @click="handleBacktop"
     >

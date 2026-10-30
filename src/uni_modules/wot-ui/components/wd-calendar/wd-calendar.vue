@@ -7,6 +7,7 @@
       :safe-area-inset-bottom="safeAreaInsetBottom"
       :z-index="zIndex"
       :root-portal="rootPortal"
+      :glass="glass"
       :title="title || translate('title')"
       custom-class="wd-calendar__popup"
       @close="close"

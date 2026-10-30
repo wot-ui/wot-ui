@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-popover ${customClass}`" :style="customStyle" id="popover" @click.stop>
+  <view :class="`wd-popover ${customClass} ${glass ? 'wd-popover--glass' : ''}`" :style="customStyle" id="popover" @click.stop>
     <view class="wd-popover__pos wd-popover__hidden" id="pos">
       <view :class="`wd-popover__container ${customPop}`">
         <view v-if="!$slots.content && mode === 'normal'" class="wd-popover__inner">

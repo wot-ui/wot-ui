@@ -1,7 +1,12 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 @include b(grid) {
+  &.wd-grid--glass {
+    @include glass;
+  }
+
   position: relative;
   box-sizing: border-box;
   overflow: hidden;

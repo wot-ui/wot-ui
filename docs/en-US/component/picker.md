@@ -186,6 +186,7 @@ const beforeConfirm = (value: string[]) => {
 | safe-area-inset-bottom | Whether the popup panel sets the default bottom safe distance | `boolean` | `true` |
 | immediate-change | Whether to trigger `change` immediately when finger is released instead of after scrolling ends | `boolean` | `false` |
 | root-portal | Whether to enable `root-portal` to detach the component from the current node for rendering | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 | custom-view-class | External custom style class for pickerView component | `string` | `''` |

@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 底部弹层背景色
@@ -94,6 +95,10 @@ $action-sheet-loading-size: var(--wot-action-sheet-loading-size, $n-20) !default
   background: $action-sheet-bg;
   border-radius: $action-sheet-radius $action-sheet-radius 0 0;
   overflow: hidden;
+
+  &.wd-action-sheet--glass {
+    @include glass;
+  }
 
   @include e(actions) {
     max-height: 50vh;

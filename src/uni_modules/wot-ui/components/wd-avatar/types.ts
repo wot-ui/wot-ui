@@ -1,5 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue'
-import { baseProps, makeStringProp } from '../../common/props'
+import { baseProps, makeBooleanProp, makeStringProp } from '../../common/props'
 import type { ImageMode } from '../wd-img/types'
 
 /**
@@ -103,7 +103,13 @@ export const avatarProps = {
    * 默认值: false
    * @private
    */
-  _internal: Boolean
+  _internal: Boolean,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 /**

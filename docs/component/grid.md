@@ -226,6 +226,7 @@
 | direction | 格子内容排列的方向，可选值为 `horizontal`、`vertical` | `string` | `'vertical'` |
 | reverse | 是否调换图标和文本的位置 | `boolean` | `false` |
 | icon-size | 图标大小，默认单位为 `px` | `string` | `'28px'` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

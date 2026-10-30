@@ -344,6 +344,7 @@ Customize carousel item content through the default slot.
 | custom-next-class | Custom next carousel item class name | `string` | `''` |
 | custom-text-class | Custom title class name | `string` | `''` |
 | custom-text-style | Custom title style | `string` | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom style class | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

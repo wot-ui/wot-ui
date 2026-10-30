@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 文本域内边距
@@ -36,6 +37,10 @@ $textarea-error-color: var(--wot-textarea-error-color, $danger-main) !default;
   -webkit-tap-highlight-color: transparent;
   text-align: left;
   background: $textarea-bg;
+
+  &.is-glass {
+    @include glass;
+  }
   padding: $textarea-padding;
 
   @include e(placeholder) {

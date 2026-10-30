@@ -82,6 +82,7 @@ Recommended styles (can be added in page or global styles):
 | css-icon | CSS icon, see Icon component for usage | `boolean \| string` | `false` |
 | icon-size | Icon or image size, default unit is px | string / number | - |
 | tip | Prompt text | string | - |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 
 ## Slots
 

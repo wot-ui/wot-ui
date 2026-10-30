@@ -219,6 +219,7 @@ const tabbar = ref(1)
 | placeholder | When fixed at the bottom, whether to generate an equal-height placeholder element | `boolean` | `false` |
 | z-index | Component z-index level | `number` | `10` |
 | before-change | Callback function before switching, returning `false` can prevent switching, supports returning `Promise<boolean>` | `TabbarBeforeChange` | - |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

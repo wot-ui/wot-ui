@@ -170,7 +170,13 @@ export const inputProps = {
    * 类型: boolean
    * 默认值: -
    */
-  compact: makeBooleanProp(void 0)
+  compact: makeBooleanProp(void 0),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type InputProps = ExtractPropTypes<typeof inputProps>

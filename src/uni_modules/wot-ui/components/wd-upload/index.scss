@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 // 组件级 CSS 变量定义
@@ -66,6 +67,10 @@ $upload-mask-bg: var(--wot-upload-mask-bg, $opacfilled-main-cover) !default;
 $upload-row-spacing: var(--wot-upload-row-spacing, $spacing-tight) !default;
 
 @include b(upload) {
+  &.is-glass {
+    @include glass;
+  }
+
   position: relative;
   display: flex;
   flex-wrap: wrap;

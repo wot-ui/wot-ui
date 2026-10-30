@@ -128,6 +128,7 @@ The component provides four slots: `prev`, `size`, `next`, and `message`, which 
 | show-message | Whether to show text hints | `boolean` | `false` |
 | button-variant | Pagination button style, optional values are `base`, `plain`, `dashed`, `text` | `ButtonVariant` | `text` |
 | hide-if-one-page | Whether to hide when total pages is only one page | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

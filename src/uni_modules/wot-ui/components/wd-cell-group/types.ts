@@ -91,7 +91,13 @@ export const cellGroupProps = {
    * 类型: CellValueAlign
    * 可选值: 'left' | 'right' | 'center'
    */
-  valueAlign: String as PropType<CellValueAlign>
+  valueAlign: String as PropType<CellValueAlign>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type CellGroupProps = ExtractPropTypes<typeof cellGroupProps>

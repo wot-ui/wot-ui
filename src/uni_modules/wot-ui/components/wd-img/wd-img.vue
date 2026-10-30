@@ -64,7 +64,7 @@ const rootStyle = computed(() => {
 })
 
 const rootClass = computed(() => {
-  return `wd-img  ${props.round ? 'is-round' : ''} ${props.customClass}`
+  return `wd-img  ${props.round ? 'is-round' : ''} ${props.glass ? 'is-glass' : ''} ${props.customClass}`
 })
 
 const status = ref<'loading' | 'error' | 'success'>('loading')

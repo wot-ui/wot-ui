@@ -1496,6 +1496,7 @@ function handleIconClick() {
 | ellipsis | 是否超出隐藏显示省略号，优先使用自身配置，未设置时继承 Form | `boolean` | - |
 | asterisk-position | 必填星号位置，可选值为 `start`、`end`，优先使用自身配置，未设置时继承 Form | `string` | `start` |
 | hide-asterisk | 是否隐藏必填星号，优先使用自身配置，未设置时继承 Form | `boolean` | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ### FormSchema 数据结构
 

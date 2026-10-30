@@ -38,7 +38,13 @@ export const stepsProps = {
    * 类型: boolean
    * 默认值: false
    */
-  alignCenter: makeBooleanProp(false)
+  alignCenter: makeBooleanProp(false),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type StepsProps = ExtractPropTypes<typeof stepsProps>

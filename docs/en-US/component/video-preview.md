@@ -142,6 +142,7 @@ function openPreview() {
 | close-position | Close button position, optional values are `left-top` and `right-top` | `string` | `left-top` |
 | on-open | Callback when component opens | <code>() =&gt; void</code> | - |
 | on-close | Callback when component closes | <code>() =&gt; void</code> | - |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-style | Custom root node style | `string` | `''` |
 | custom-class | Custom root node style class | `string` | `''` |
 

@@ -184,6 +184,7 @@
 | loading-color | 加载图标颜色 | string | - |
 | custom-class | 根节点自定义类名 | string | - |
 | custom-style | 根节点自定义样式 | string | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ### ButtonOpenType 开放能力
 

@@ -213,6 +213,7 @@ function handleInput(event) {
 | inputmode | 输入模式提示，可选值为 `none`、`text`、`decimal`、`numeric`、`tel`、`search`、`email`、`url` | `InputMode` | `text` |
 | enable-native | 支付宝小程序下是否启用原生输入框，设为 `false` 可避免弹起键盘后内容上移 | `boolean` | `true` |
 | custom-input-class | 输入框自定义类名 | `string` | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

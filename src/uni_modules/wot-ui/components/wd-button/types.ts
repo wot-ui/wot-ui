@@ -207,7 +207,13 @@ export const buttonProps = {
    * 可选值: 'base' | 'plain' | 'dashed' | 'soft' | 'subtle' | 'text'
    * 不传则继承全局配置
    */
-  variant: String as PropType<ButtonVariant>
+  variant: String as PropType<ButtonVariant>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 /**

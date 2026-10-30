@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-collapse ${viewmore ? 'is-viewmore' : ''} ${customClass}`" :style="customStyle">
+  <view :class="`wd-collapse ${viewmore ? 'is-viewmore' : ''} ${glass ? 'wd-collapse--glass' : ''} ${customClass}`" :style="customStyle">
     <!-- 普通或手风琴 -->
     <block v-if="!viewmore">
       <slot></slot>

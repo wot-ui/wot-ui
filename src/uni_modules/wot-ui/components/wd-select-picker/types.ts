@@ -56,7 +56,13 @@ export const selectPickerProps = {
   /**
    * 控制弹窗显示
    */
-  visible: makeBooleanProp(false)
+  visible: makeBooleanProp(false),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 export type SelectPickerProps = ExtractPropTypes<typeof selectPickerProps>
 

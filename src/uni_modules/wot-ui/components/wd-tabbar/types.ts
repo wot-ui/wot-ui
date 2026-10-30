@@ -71,7 +71,13 @@ export const tabbarProps = {
   /**
    * 切换前的回调函数，返回 false 可阻止切换，支持返回 Promise
    */
-  beforeChange: Function as PropType<TabbarBeforeChange>
+  beforeChange: Function as PropType<TabbarBeforeChange>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type TabbarBeforeChange = (value: number | string) => boolean | Promise<boolean>

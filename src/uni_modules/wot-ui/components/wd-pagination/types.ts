@@ -65,5 +65,11 @@ export const paginationProps = {
    * 类型: boolean
    * 默认值: false
    */
-  hideIfOnePage: makeBooleanProp(false)
+  hideIfOnePage: makeBooleanProp(false),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }

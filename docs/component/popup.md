@@ -137,6 +137,7 @@ H5 端默认已经处理滚动锁定，一般不需要额外处理滚动穿透�
 | round | 是否开启圆角，开启后根据弹出位置自动适配（底部弹出→上圆角，顶部弹出→下圆角，居中→四圆角） | `boolean` | `false` |
 | custom-class | 自定义根节点类名 | `string` | - |
 | custom-style | 自定义弹层样式 | `string` | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | `boolean` | `false` |
 
 ## Events
 

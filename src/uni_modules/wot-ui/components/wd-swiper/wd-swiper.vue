@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-swiper ${customClass}`" :style="customStyle">
+  <view :class="`wd-swiper ${customClass} ${glass ? 'is-glass' : ''}`" :style="customStyle">
     <!-- #ifdef MP-WEIXIN -->
     <scroll-view scroll-x scroll-y style="width: 100%; height: 100%">
       <!-- #endif -->

@@ -144,6 +144,7 @@ const value = ref('')
 | enable-native | 支付宝小程序下是否启用原生输入框，设为 `false` 可避免弹起键盘后内容上移 | `boolean` | `true` |
 | compact | 是否开启紧凑模式；未显式设置时，在 `wd-form-item` 中会自动启用 | `boolean` | - |
 | custom-textarea-class | textarea 自定义类名 | `string` | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

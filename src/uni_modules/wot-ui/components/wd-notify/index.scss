@@ -1,6 +1,7 @@
 @use "sass:map";
 @use '../../styles/variable.scss'as *;
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 // 通知文字颜色
 $notify-text-color: var(--wot-notify-text-color, $text-white) !default;
@@ -54,6 +55,10 @@ $notify-types: ("primary": ("bg": $notify-primary-bg,
     "color": $notify-warning-color));
 
 @include b(notify) {
+  &.wd-notify--glass {
+    @include glass;
+  }
+
   display: flex;
   align-items: center;
   box-sizing: border-box;

@@ -58,6 +58,7 @@ function getDefaultOptions(): NotifyProps {
     onClosed: undefined,
     onOpened: undefined,
     closable: false,
-    variant: 'filled'
+    variant: 'filled',
+    glass: false
   }
 }
