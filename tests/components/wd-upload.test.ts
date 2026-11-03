@@ -4,7 +4,15 @@ import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { type UploadFile } from '@/uni_modules/wot-ui/components/wd-upload/types'
 import { nextTick } from 'vue'
 
+vi.mock('@/uni_modules/wot-ui/components/wd-root-portal/wd-root-portal.vue', () => ({
+  default: {
+    name: 'wd-root-portal',
+    template: '<view class="wd-root-portal"><slot /></view>'
+  }
+}))
+
 const previewVideoSpy = vi.fn()
+
 vi.mock('@/uni_modules/wot-ui/components/wd-video-preview', () => ({
   useVideoPreview: () => ({
     previewVideo: previewVideoSpy,
@@ -79,6 +87,24 @@ describe('WdUpload', () => {
     // 根据组件的isImage和isVideo方法判断文件类型
     expect(images.length).toBeGreaterThan(0)
     expect(videos.length + files.length).toBeGreaterThan(0)
+  })
+
+  test('通过 type 识别无扩展名的 Android content 视频', async () => {
+    const videoUrl = 'content://com.android.providers.media.documents/document/video%3A10687'
+    const thumb = 'file:///tmp/video-thumb.jpg'
+    const wrapper = mount(WdUpload)
+
+    await (wrapper.vm as any).initFile({
+      path: videoUrl,
+      type: 'video',
+      thumb,
+      size: 1024
+    })
+    await nextTick()
+
+    expect(wrapper.find('.wd-upload__video').exists()).toBe(true)
+    expect(wrapper.find('.wd-upload__file').exists()).toBe(false)
+    expect(wrapper.find('.wd-upload__picture').attributes('src')).toBe(thumb)
   })
 
   test('删除文件', async () => {
@@ -190,6 +216,37 @@ describe('WdUpload', () => {
     await videoThumb.trigger('click')
 
     expect(previewVideoSpy).toHaveBeenCalled()
+    expect(previewVideoSpy).toHaveBeenCalledWith({
+      url: 'https://example.com/video1.mp4',
+      poster: 'https://example.com/thumb1.jpg',
+      title: 'video1.mp4',
+      showFullscreenBtn: true
+    })
+  })
+
+  test('视频预览支持关闭原生全屏按钮', async () => {
+    previewVideoSpy.mockClear()
+    const wrapper = mount(WdUpload, {
+      props: {
+        showVideoFullscreenBtn: false,
+        fileList: [
+          {
+            url: 'https://example.com/video1.mp4',
+            name: 'video1.mp4',
+            thumb: 'https://example.com/thumb1.jpg'
+          }
+        ]
+      }
+    })
+
+    await wrapper.find('.wd-upload__video').trigger('click')
+
+    expect(previewVideoSpy).toHaveBeenCalledWith({
+      url: 'https://example.com/video1.mp4',
+      poster: 'https://example.com/thumb1.jpg',
+      title: 'video1.mp4',
+      showFullscreenBtn: false
+    })
   })
 
   test('自定义上传方法', async () => {
