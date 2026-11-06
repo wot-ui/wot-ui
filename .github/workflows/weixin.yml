@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: '版本号 (例如: 1.0.0)'
-        required: true
+        description: '上传版本号（留空则使用 package.json 的 version）'
+        required: false
         type: string
       description:
         description: '版本描述'
@@ -49,6 +49,7 @@ jobs:
         run: pnpm build:mp-weixin
 
       - name: Resolve upload version
+        if: github.event_name != 'workflow_dispatch' || inputs.version != ''
         shell: bash
         env:
           REQUESTED_VERSION: ${{ inputs.version }}
@@ -65,7 +66,7 @@ jobs:
           echo "UPLOAD_VERSION=$version" >> "$GITHUB_ENV"
 
       - name: Upload WeChat mini program
-        uses: wot-ui/ci@v0.5.0
+        uses: wot-ui/ci@v0.5.1
         with:
           platform: weixin
           project-path: dist/build/mp-weixin
@@ -73,6 +74,7 @@ jobs:
           private-key: ${{ secrets.MP_PRIVATE_KEY }}
           upload-version: ${{ env.UPLOAD_VERSION }}
           upload-desc: ${{ inputs.description || '自动发布版本' }}
+          setting: '{"useProjectConfig":true,"minifyJS":true,"minifyWXML":true,"minifyWXSS":true,"minify":true}'
           summary: ${{ runner.temp }}/weixin-upload-summary.md
 
       - name: Publish upload summary
