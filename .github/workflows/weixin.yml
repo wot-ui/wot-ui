@@ -74,7 +74,7 @@ jobs:
           private-key: ${{ secrets.MP_PRIVATE_KEY }}
           upload-version: ${{ env.UPLOAD_VERSION }}
           upload-desc: ${{ inputs.description || '自动发布版本' }}
-          setting: '{"useProjectConfig":false,"minifyJS":true,"minifyWXML":true,"minifyWXSS":true,"minify":true}'
+          setting: '{"useProjectConfig":true,"minifyJS":true,"minifyWXML":true,"minifyWXSS":true,"minify":true}'
           summary: ${{ runner.temp }}/weixin-upload-summary.md
 
       - name: Publish upload summary
