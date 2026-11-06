@@ -70,6 +70,8 @@ jobs:
       - name: Prepare WeChat upload CLI
         shell: bash
         run: |
+          # miniprogram-ci 2.1.31 compiles this main package above 2 MB.
+          # Keep the last working compiler until the new output fits again.
           mkdir -p "$RUNNER_TEMP/wotci-weixin"
           cat > "$RUNNER_TEMP/wotci-weixin/package.json" <<'JSON'
           {
