@@ -45,7 +45,7 @@ jobs:
         run: pnpm build:mp-alipay
 
       - name: Upload Alipay mini program
-        uses: wot-ui/ci@v0.5.3
+        uses: wot-ui/ci-action@v2
         with:
           platform: alipay
           project-path: dist/build/mp-alipay
@@ -54,7 +54,7 @@ jobs:
           private-key: ${{ secrets.ALI_PRIVATE_KEY }}
           platform-options: '{"autoincrement":true}'
           upload-desc: ${{ inputs.description || '自动发布版本' }}
-          json: 'true'
+          json-output: ${{ runner.temp }}/alipay-upload.json
           summary: ${{ runner.temp }}/alipay-upload-summary.md
 
       - name: Publish upload summary
@@ -64,3 +64,13 @@ jobs:
           if [[ -f "$RUNNER_TEMP/alipay-upload-summary.md" ]]; then
             cat "$RUNNER_TEMP/alipay-upload-summary.md" >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Archive upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: alipay-upload-result
+          path: |
+            ${{ runner.temp }}/alipay-upload.json
+            ${{ runner.temp }}/alipay-upload-summary.md
+          if-no-files-found: warn

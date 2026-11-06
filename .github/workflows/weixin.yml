@@ -68,7 +68,7 @@ jobs:
           echo "UPLOAD_VERSION=$version" >> "$GITHUB_ENV"
 
       - name: Upload WeChat mini program
-        uses: wot-ui/ci@v0.5.3
+        uses: wot-ui/ci-action@v2
         with:
           platform: weixin
           project-path: dist/build/mp-weixin
@@ -77,6 +77,7 @@ jobs:
           upload-version: ${{ env.UPLOAD_VERSION }}
           upload-desc: ${{ inputs.description || '自动发布版本' }}
           setting: '{"useProjectConfig":true,"minifyJS":true,"minifyWXML":true,"minifyWXSS":true,"minify":true}'
+          json-output: ${{ runner.temp }}/weixin-upload.json
           summary: ${{ runner.temp }}/weixin-upload-summary.md
 
       - name: Publish upload summary
@@ -86,3 +87,13 @@ jobs:
           if [[ -f "$RUNNER_TEMP/weixin-upload-summary.md" ]]; then
             cat "$RUNNER_TEMP/weixin-upload-summary.md" >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Archive upload result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weixin-upload-result
+          path: |
+            ${{ runner.temp }}/weixin-upload.json
+            ${{ runner.temp }}/weixin-upload-summary.md
+          if-no-files-found: warn
