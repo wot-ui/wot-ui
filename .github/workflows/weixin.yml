@@ -64,30 +64,17 @@ jobs:
           fi
           echo "UPLOAD_VERSION=$version" >> "$GITHUB_ENV"
 
-      - name: Prepare WeChat private key
-        shell: bash
-        env:
-          MP_PRIVATE_KEY: ${{ secrets.MP_PRIVATE_KEY }}
-        run: |
-          if [[ -z "$MP_PRIVATE_KEY" ]]; then
-            echo "Missing MP_PRIVATE_KEY secret" >&2
-            exit 1
-          fi
-          umask 077
-          printf '%s' "$MP_PRIVATE_KEY" > "$RUNNER_TEMP/weixin-private.key"
-
       - name: Upload WeChat mini program
-        uses: wot-ui/ci@v0.5.0
+        uses: wot-ui/ci@v0.5.1
         with:
           platform: weixin
-          config: .github/wotci-weixin.config.cjs
-          package-version: '0.5.0'
+          project-path: dist/build/mp-weixin
+          appid: ${{ secrets.MP_APPID }}
+          private-key: ${{ secrets.MP_PRIVATE_KEY }}
+          upload-version: ${{ env.UPLOAD_VERSION }}
+          upload-desc: ${{ inputs.description || '自动发布版本' }}
+          setting: '{"useProjectConfig":false,"minifyJS":true,"minifyWXML":true,"minifyWXSS":true,"minify":true}'
           summary: ${{ runner.temp }}/weixin-upload-summary.md
-        env:
-          WEIXIN_APPID: ${{ secrets.MP_APPID }}
-          WEIXIN_PRIVATE_KEY_PATH: ${{ runner.temp }}/weixin-private.key
-          WOTCI_VERSION: ${{ env.UPLOAD_VERSION }}
-          WOTCI_DESC: ${{ inputs.description || '自动发布版本' }}
 
       - name: Publish upload summary
         if: always()
@@ -96,8 +83,3 @@ jobs:
           if [[ -f "$RUNNER_TEMP/weixin-upload-summary.md" ]]; then
             cat "$RUNNER_TEMP/weixin-upload-summary.md" >> "$GITHUB_STEP_SUMMARY"
           fi
-
-      - name: Remove WeChat private key
-        if: always()
-        shell: bash
-        run: rm -f -- "$RUNNER_TEMP/weixin-private.key"

@@ -67,7 +67,6 @@ jobs:
       - name: Upload Alipay mini program
         uses: wot-ui/ci@v0.5.0
         with:
-          package-version: '0.5.0'
           platform: alipay
           project-path: dist/build/mp-alipay
           appid: ${{ secrets.ALI_APPID }}
