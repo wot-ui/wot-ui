@@ -68,7 +68,7 @@ jobs:
           echo "UPLOAD_VERSION=$version" >> "$GITHUB_ENV"
 
       - name: Upload WeChat mini program
-        uses: wot-ui/ci@v0.5.2
+        uses: wot-ui/ci@v0.5.3
         with:
           platform: weixin
           project-path: dist/build/mp-weixin

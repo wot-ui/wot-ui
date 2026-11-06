@@ -45,7 +45,7 @@ jobs:
         run: pnpm build:mp-alipay
 
       - name: Upload Alipay mini program
-        uses: wot-ui/ci@v0.5.2
+        uses: wot-ui/ci@v0.5.3
         with:
           platform: alipay
           project-path: dist/build/mp-alipay
