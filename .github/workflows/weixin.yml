@@ -49,13 +49,15 @@ jobs:
         run: pnpm build:mp-weixin
 
       - name: Resolve upload version
-        if: github.event_name != 'workflow_dispatch' || inputs.version != ''
         shell: bash
         env:
           REQUESTED_VERSION: ${{ inputs.version }}
         run: |
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
             version="$REQUESTED_VERSION"
+            if [[ -z "$version" ]]; then
+              version="$(node -p "require('./package.json').version")"
+            fi
           else
             version="${GITHUB_REF_NAME#v}"
           fi
@@ -65,11 +67,33 @@ jobs:
           fi
           echo "UPLOAD_VERSION=$version" >> "$GITHUB_ENV"
 
+      - name: Prepare WeChat upload CLI
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/wotci-weixin"
+          cat > "$RUNNER_TEMP/wotci-weixin/package.json" <<'JSON'
+          {
+            "name": "wotci-weixin-runtime",
+            "private": true,
+            "version": "0.0.0",
+            "dependencies": {
+              "@wot-ui/ci": "0.5.1",
+              "less": "4.5.1"
+            },
+            "overrides": {
+              "miniprogram-ci": "1.9.27"
+            }
+          }
+          JSON
+          npm install --prefix "$RUNNER_TEMP/wotci-weixin" --no-audit --no-fund
+          node -e 'const p = process.env.RUNNER_TEMP + "/wotci-weixin/node_modules/@wot-ui/ci"; const v = require(require.resolve("miniprogram-ci/package.json", { paths: [p] })).version; if (v !== "1.9.27") throw new Error(`Unexpected miniprogram-ci version: ${v}`)'
+
       - name: Upload WeChat mini program
         uses: wot-ui/ci@v0.5.1
         with:
           platform: weixin
-          project-path: dist/build/mp-weixin
+          working-directory: ${{ runner.temp }}/wotci-weixin
+          project-path: ${{ github.workspace }}/dist/build/mp-weixin
           appid: ${{ secrets.MP_APPID }}
           private-key: ${{ secrets.MP_PRIVATE_KEY }}
           upload-version: ${{ env.UPLOAD_VERSION }}
