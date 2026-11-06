@@ -49,13 +49,15 @@ jobs:
         run: pnpm build:mp-weixin
 
       - name: Resolve upload version
-        if: github.event_name != 'workflow_dispatch' || inputs.version != ''
         shell: bash
         env:
           REQUESTED_VERSION: ${{ inputs.version }}
         run: |
           if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
             version="$REQUESTED_VERSION"
+            if [[ -z "$version" ]]; then
+              version="$(node -p "require('./package.json').version")"
+            fi
           else
             version="${GITHUB_REF_NAME#v}"
           fi
@@ -66,7 +68,7 @@ jobs:
           echo "UPLOAD_VERSION=$version" >> "$GITHUB_ENV"
 
       - name: Upload WeChat mini program
-        uses: wot-ui/ci@v0.5.1
+        uses: wot-ui/ci@v0.5.2
         with:
           platform: weixin
           project-path: dist/build/mp-weixin
