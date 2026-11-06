@@ -6,10 +6,6 @@ on:
       - 'v*'
   workflow_dispatch:
     inputs:
-      version:
-        description: '版本号 (例如: 1.0.0)'
-        required: true
-        type: string
       description:
         description: '版本描述'
         required: false
@@ -48,32 +44,17 @@ jobs:
       - name: Build Alipay mini program
         run: pnpm build:mp-alipay
 
-      - name: Resolve upload version
-        shell: bash
-        env:
-          REQUESTED_VERSION: ${{ inputs.version }}
-        run: |
-          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
-            version="$REQUESTED_VERSION"
-          else
-            version="${GITHUB_REF_NAME#v}"
-          fi
-          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.][0-9A-Za-z.-]+)?$ ]]; then
-            echo "Invalid upload version: $version" >&2
-            exit 1
-          fi
-          echo "UPLOAD_VERSION=$version" >> "$GITHUB_ENV"
-
       - name: Upload Alipay mini program
-        uses: wot-ui/ci@v0.5.0
+        uses: wot-ui/ci@v0.5.1
         with:
           platform: alipay
           project-path: dist/build/mp-alipay
           appid: ${{ secrets.ALI_APPID }}
           tool-id: ${{ secrets.ALI_TOOL_ID }}
           private-key: ${{ secrets.ALI_PRIVATE_KEY }}
-          upload-version: ${{ env.UPLOAD_VERSION }}
+          platform-options: '{"autoincrement":true}'
           upload-desc: ${{ inputs.description || '自动发布版本' }}
+          json: 'true'
           summary: ${{ runner.temp }}/alipay-upload-summary.md
 
       - name: Publish upload summary
