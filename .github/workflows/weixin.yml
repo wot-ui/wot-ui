@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: '版本号 (例如: 1.0.0)'
-        required: true
+        description: '上传版本号（留空则使用 package.json 的 version）'
+        required: false
         type: string
       description:
         description: '版本描述'
@@ -49,6 +49,7 @@ jobs:
         run: pnpm build:mp-weixin
 
       - name: Resolve upload version
+        if: github.event_name != 'workflow_dispatch' || inputs.version != ''
         shell: bash
         env:
           REQUESTED_VERSION: ${{ inputs.version }}
