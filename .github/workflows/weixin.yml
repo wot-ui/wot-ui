@@ -70,8 +70,8 @@ jobs:
       - name: Prepare WeChat upload CLI
         shell: bash
         run: |
-          # miniprogram-ci 2.1.31 compiles this main package above 2 MB.
-          # Keep the last working compiler until the new output fits again.
+          # miniprogram-ci 2.1.31 ignores the CI minification setting and exceeds 2 MB.
+          # 2.1.39 fixes the setting and keeps the compiled main package below the limit.
           mkdir -p "$RUNNER_TEMP/wotci-weixin"
           cat > "$RUNNER_TEMP/wotci-weixin/package.json" <<'JSON'
           {
@@ -79,16 +79,15 @@ jobs:
             "private": true,
             "version": "0.0.0",
             "dependencies": {
-              "@wot-ui/ci": "0.5.1",
-              "less": "4.5.1"
+              "@wot-ui/ci": "0.5.1"
             },
             "overrides": {
-              "miniprogram-ci": "1.9.27"
+              "miniprogram-ci": "2.1.39"
             }
           }
           JSON
           npm install --prefix "$RUNNER_TEMP/wotci-weixin" --no-audit --no-fund
-          node -e 'const p = process.env.RUNNER_TEMP + "/wotci-weixin/node_modules/@wot-ui/ci"; const v = require(require.resolve("miniprogram-ci/package.json", { paths: [p] })).version; if (v !== "1.9.27") throw new Error(`Unexpected miniprogram-ci version: ${v}`)'
+          node -e 'const p = process.env.RUNNER_TEMP + "/wotci-weixin/node_modules/@wot-ui/ci"; const v = require(require.resolve("miniprogram-ci/package.json", { paths: [p] })).version; if (v !== "2.1.39") throw new Error(`Unexpected miniprogram-ci version: ${v}`)'
 
       - name: Upload WeChat mini program
         uses: wot-ui/ci@v0.5.1
