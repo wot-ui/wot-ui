@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 默认尺寸
@@ -54,6 +55,10 @@ $avatar-color: var(--wot-avatar-color, $text-auxiliary) !default;
   line-height: $avatar-line-height;
   text-align: center;
   background: $avatar-bg;
+
+  &.is-glass {
+    @include glass;
+  }
   border-radius: $avatar-border-radius;
   overflow: hidden;
   user-select: none;

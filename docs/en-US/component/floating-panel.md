@@ -97,6 +97,7 @@ By default, both the header area and content area of <b>FloatingPanel</b> can be
 | content-draggable | Allow dragging content container | `boolean` | `true` |
 | safe-area-inset-bottom | Whether to enable bottom safe area adaptation | `boolean` | `false` |
 | show-scrollbar | Whether to enable scrollbar | `boolean` | `true` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Custom class name for root node | `string` | `''` |
 | custom-style | Custom style for root node | `string` | `''` |
 

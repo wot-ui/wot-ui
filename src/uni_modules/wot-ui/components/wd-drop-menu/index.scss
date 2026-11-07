@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 
@@ -38,6 +39,10 @@ $drop-menu-text-color-active: var(--wot-drop-menu-text-color-active, $primary-6)
     display: flex;
     text-align: center;
     background-color: $drop-menu-list-bg;
+  }
+
+  &.wd-drop-menu--glass .wd-drop-menu__list {
+    @include glass;
   }
 
   @include e(option) {

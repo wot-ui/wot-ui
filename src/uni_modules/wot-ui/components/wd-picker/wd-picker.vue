@@ -8,6 +8,7 @@
       :z-index="zIndex"
       :safe-area-inset-bottom="safeAreaInsetBottom"
       :root-portal="rootPortal"
+      :glass="glass"
       @close="onCancel"
       custom-class="wd-picker__popup"
     >

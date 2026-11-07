@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 输入框内边距
@@ -41,6 +42,10 @@ $input-error-color: var(--wot-input-error-color, $danger-main) !default;
   -webkit-tap-highlight-color: transparent;
   text-align: left;
   background: $input-bg;
+
+  &.is-glass {
+    @include glass;
+  }
 
   @include e(prefix) {
     margin-right: $input-icon-margin;

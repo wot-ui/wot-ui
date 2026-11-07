@@ -1,5 +1,6 @@
 @use "sass:map";
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss'as *;
 @use '../../styles/variable.scss'as *;
 
 // 主类型背景色
@@ -474,6 +475,11 @@ $button-variants: (
   @include e(text) {
     user-select: none;
     white-space: nowrap;
+  }
+
+  &.is-glass {
+    @include glass;
+    color: var(--wot-text-main);
   }
 }
 

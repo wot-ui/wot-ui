@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 // 导航栏高度
@@ -92,5 +93,10 @@ $navbar-z-index: var(--wot-navbar-z-index, 10) !default;
     left: 0;
     width: 100%;
     z-index: $navbar-z-index;
+  }
+
+  &.wd-navbar--glass {
+    @include glass;
+    border-bottom: 1px solid var(--wot-glass-border, var(--wot-border-main, rgba(255, 255, 255, 0.3)));
   }
 }

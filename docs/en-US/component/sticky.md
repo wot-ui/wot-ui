@@ -104,6 +104,7 @@ onShow(() => {
 | --- | --- | --- | --- |
 | z-index | Z-index level | `number` | `1` |
 | offset-top | Sticky distance | `number` | `0` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

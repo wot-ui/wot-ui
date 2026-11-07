@@ -148,7 +148,13 @@ export const imagePreviewProps = {
    * 类型: number
    * 默认值: 1000
    */
-  zIndex: makeNumberProp(1000)
+  zIndex: makeNumberProp(1000),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type ImagePreviewProps = ExtractPropTypes<typeof imagePreviewProps>

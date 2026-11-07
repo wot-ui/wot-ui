@@ -185,6 +185,7 @@ collapseRef.value?.toggleAll({ expanded: true, skipDisabled: true })
 | use-more-slot | 查看更多模式下是否启用 `more` 插槽 | boolean | false |
 | line-num | 查看更多模式下收起显示行数 | number | 2 |
 | custom-more-slot-class | 查看更多模式下 `more` 插槽外部自定义类名 | string | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 

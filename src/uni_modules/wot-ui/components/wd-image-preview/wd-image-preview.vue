@@ -3,7 +3,7 @@
     :show="state.show"
     :z-index="options.zIndex"
     :lock-scroll="true"
-    :custom-class="`wd-image-preview ${customClass}`"
+    :custom-class="`wd-image-preview ${customClass} ${glass ? 'wd-image-preview--glass' : ''}`"
     :custom-style="customStyle"
     @enter="handleEnter"
     @after-leave="handleAfterLeave"

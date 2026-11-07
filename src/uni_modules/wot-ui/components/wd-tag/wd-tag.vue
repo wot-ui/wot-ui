@@ -82,14 +82,14 @@ const dynamicInput = ref<boolean>(false)
  * 根节点类名
  */
 const rootClass = computed<string>(() => {
-  const { type, mark, customClass } = props
+  const { type, mark, customClass, glass } = props
   const classList: string[] = []
   type && classList.push(`is-${type}`)
   effectiveVariant.value && classList.push(`is-${effectiveVariant.value}`)
   effectiveSize.value && classList.push(`is-${effectiveSize.value}`)
   effectiveRound.value && classList.push('is-round')
   mark && classList.push('is-mark')
-  return `wd-tag ${customClass} ${classList.join(' ')}`
+  return `wd-tag ${customClass} ${glass ? 'is-glass' : ''} ${classList.join(' ')}`
 })
 
 /**

@@ -76,6 +76,7 @@ sidebar 也可以作为左侧目录，右侧内容区按当前选中项整屏切
 | --- | --- | --- | --- |
 | model-value / v-model | 当前激活项的值 | `string \| number` | `0` |
 | before-change | 切换前钩子，接收目标值，返回 `boolean` 或 `Promise<boolean>` | `function` | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

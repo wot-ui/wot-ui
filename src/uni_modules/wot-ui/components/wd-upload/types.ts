@@ -341,7 +341,13 @@ export const uploadProps = {
    * H5支持全部类型过滤。
    * 微信小程序支持all和file时过滤,其余平台不支持。
    */
-  extension: Array as PropType<string[]>
+  extension: Array as PropType<string[]>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type UploadProps = ExtractPropTypes<typeof uploadProps>

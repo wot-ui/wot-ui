@@ -1,7 +1,12 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 @include b(sticky) {
+  &.is-glass {
+    @include glass;
+  }
+
   display: inline-block;
   @include e(container) {
     display: inline-block;

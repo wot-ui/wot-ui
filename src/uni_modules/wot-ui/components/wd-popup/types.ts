@@ -74,6 +74,12 @@ export const popupProps = {
    */
   modalStyle: makeStringProp(''),
   /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型：boolean
+   * 默认值：false
+   */
+  glass: makeBooleanProp(false),
+  /**
    * 弹出面板是否设置底部安全距离（iphone X 类型的机型）
    * 类型：boolean
    * 默认值：false

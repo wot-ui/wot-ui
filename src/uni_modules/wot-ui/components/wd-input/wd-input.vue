@@ -166,8 +166,8 @@ const currentLength = computed(() => {
 
 const rootClass = computed(() => {
   return `wd-input ${props.error ? 'is-error' : ''} ${isDisabled.value ? 'is-disabled' : ''}  ${isCompact.value ? 'is-compact' : ''} ${
-    props.customClass
-  }`
+    props.glass ? 'is-glass' : ''
+  } ${props.customClass}`
 })
 
 const inputPlaceholderClass = computed(() => {

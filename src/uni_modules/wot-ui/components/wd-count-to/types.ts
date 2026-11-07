@@ -98,7 +98,13 @@ export const countToProps = {
    * 类型: boolean
    * 默认值: true
    */
-  useEasing: makeBooleanProp(true)
+  useEasing: makeBooleanProp(true),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type CountToProps = ExtractPropTypes<typeof countToProps>

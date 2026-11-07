@@ -174,6 +174,7 @@ export default {
 | root-portal | 是否从页面中脱离出来，用于解决各种 fixed 失效问题 | `boolean` | `false` |
 | closable | 是否显示关闭按钮 | `boolean` | `false` |
 | variant | 展示形态，可选值为 `filled` `floating` | `NotifyVariant` | `filled` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点样式类名 | `string` | - |
 | custom-style | 根节点样式 | `string` | - |
 

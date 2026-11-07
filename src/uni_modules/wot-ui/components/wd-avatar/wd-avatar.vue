@@ -98,7 +98,7 @@ const shapeValue = computed(() => {
 const hasDefaultSlot = computed(() => !!slots.default)
 
 const rootClass = computed(() => {
-  const classes = ['wd-avatar', props.customClass]
+  const classes = ['wd-avatar', props.customClass, props.glass ? 'is-glass' : '']
   classes.push(`is-${shapeValue.value}`)
 
   // 尺寸类仅预设尺寸

@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-count-down ${customClass}`" :style="customStyle">
+  <view :class="`wd-count-down ${customClass} ${glass ? 'is-glass' : ''}`" :style="customStyle">
     <slot :current="current" v-if="$slots.default" />
     <block v-else>{{ timeText }}</block>
   </view>

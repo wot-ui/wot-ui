@@ -1,5 +1,8 @@
 <template>
-  <view :class="['wd-cell-group', border ? 'is-border' : '', customClass, insert ? 'wd-cell-group--insert' : '']" :style="customStyle">
+  <view
+    :class="['wd-cell-group', border ? 'is-border' : '', { 'is-glass': glass }, customClass, insert ? 'wd-cell-group--insert' : '']"
+    :style="customStyle"
+  >
     <view v-if="title || value || $slots.title || $slots.value" class="wd-cell-group__title">
       <!--左侧标题-->
       <view class="wd-cell-group__left">

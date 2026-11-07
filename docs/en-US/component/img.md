@@ -156,6 +156,7 @@ const previewURL = blackMaoPreview
 | show-menu-by-longpress | Whether to enable long-press image to show识别小程序码 menu, only valid for WeChat Mini Programs | `boolean` | `false` |
 | show-loading | Whether to display default loading state | `boolean` | `true` |
 | show-error | Whether to display default failed state | `boolean` | `true` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 | custom-image | Internal `image` node custom class name | `string` | `''` |

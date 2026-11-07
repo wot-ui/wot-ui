@@ -156,7 +156,13 @@ export const cascaderProps = {
    * 类型: string
    * 默认值: 'isLeaf'
    */
-  isLeafKey: makeStringProp('isLeaf')
+  isLeafKey: makeStringProp('isLeaf'),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type CascaderProps = ExtractPropTypes<typeof cascaderProps>

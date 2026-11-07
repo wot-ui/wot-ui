@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss'as *;
 @use '../../styles/variable.scss'as *;
 
 // 浮动按钮触发器宽度
@@ -120,5 +121,9 @@ $fab-trigger-icon-size: var(--wot-fab-trigger-icon-size, $n-32) !default;
         transform: translateX(calc(-1 * $fab-transition-offset));
       }
     }
+  }
+
+  &.wd-fab--glass {
+    @include glass;
   }
 }

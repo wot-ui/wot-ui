@@ -1,5 +1,6 @@
 @use '../../styles/variable.scss'as *;
 @use '../../styles/mixin/mixin'as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 // 轮播容器圆角
 $swiper-border-radius: var(--wot-swiper-border-radius, $radius-zero) !default;
@@ -13,6 +14,10 @@ $swiper-item-text-font-size: var(--wot-swiper-item-text-font-size, $typography-b
 $swiper-item-text-spacing: var(--wot-swiper-item-text-spacing, $spacing-loose) !default;
 
 @include b(swiper) {
+  &.is-glass {
+    @include glass;
+  }
+
   position: relative;
 
   @include e(track) {

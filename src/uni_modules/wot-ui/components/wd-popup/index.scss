@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss'as *;
 @use '../../styles/variable.scss'as *;
 
 // 弹窗背景色
@@ -85,5 +86,9 @@ $popup-radius: var(--wot-popup-radius, $radius-large) !default;
     @include when(round) {
       border-radius: $popup-radius $popup-radius 0 0 ;
     }
+  }
+
+  &.wd-popup--glass {
+    @include glass;
   }
 }

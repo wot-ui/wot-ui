@@ -213,6 +213,7 @@ For the current form scenario, it is recommended to use `wd-form` and `wd-form-i
 | inputmode | Input mode hint, optional values are `none`, `text`, `decimal`, `numeric`, `tel`, `search`, `email`, `url` | `InputMode` | `text` |
 | enable-native | Whether to enable native input box in Alipay Mini Program, set to `false` to avoid content shifting up after the keyboard pops up | `boolean` | `true` |
 | custom-input-class | Input box custom class name | `string` | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

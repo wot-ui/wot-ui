@@ -203,6 +203,7 @@ const displayFormatTabLabel = (items: Array<{ label: string | number }>) => {
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 | custom-view-class | pickerView external custom style class | string | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 
 ## Events
 

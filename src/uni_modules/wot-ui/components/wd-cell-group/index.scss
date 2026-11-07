@@ -1,5 +1,6 @@
 @use '../../styles/variable.scss' as *;
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 // 单元格组背景色
 $cell-group-bg: var(--wot-cell-group-bg, $filled-oppo) !default;
@@ -22,6 +23,10 @@ $cell-group-insert-margin: var(--wot-cell-group-insert-margin, $spacing-zero $sp
 
 @include b(cell-group) {
   background: $cell-group-bg;
+
+  &.is-glass {
+    @include glass;
+  }
 
   @include when(border) {
     .wd-cell-group__title {

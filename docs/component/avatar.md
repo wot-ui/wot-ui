@@ -199,6 +199,7 @@ const handleClick = () => {
 | color | 文字颜色 | string | `''` |
 | alt | 图片加载失败时的占位文本 | string | `''` |
 | mode | 图片填充模式，同 uni-app image 组件的 mode | string | aspectFill |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | string | - |
 | custom-style | 根节点自定义样式 | string | - |
 

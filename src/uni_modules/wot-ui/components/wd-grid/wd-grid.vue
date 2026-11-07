@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-grid ${customClass}`" :style="rootStyle">
+  <view :class="`wd-grid ${customClass} ${glass ? 'wd-grid--glass' : ''}`" :style="rootStyle">
     <slot />
   </view>
 </template>

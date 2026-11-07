@@ -73,6 +73,8 @@ If you only want to adjust a specific component, you can also directly override 
 If you need to maintain multiple reusable themes, such as Brand A, Brand B, or want to dynamically switch themes, it is recommended to organize them using independent SCSS theme files.
 
 Currently, we provide examples of multiple themes in [src/theme/presets.scss](https://github.com/wot-ui/wot-ui/tree/main/src/theme/presets.scss), including `shadcn`, `cartoon`, `illustration`, `nutui`, `vant`, `tdesign` and other themes.
+
+The `glass` theme is a glassmorphism preset built on translucent surfaces and `backdrop-filter`. It degrades to a translucent solid surface on platforms without `backdrop-filter` support.
 ::: code-group
 ```scss [css]
 /* src/theme/brand-a.scss */
@@ -124,3 +126,38 @@ If you are a `vibe coding` user, we also provide [Skills](https://github.com/wot
 - [useConfigProvider](/en-US/component/use-config-provider)
 - [UnoCSS Preset](/en-US/guide/unocss-preset)
 - [Dark Mode](/en-US/guide/dark-mode)
+
+
+### Glass theme usage
+
+```scss
+@use '@wot-ui/ui/styles/theme/index.scss' as *;
+@use './theme/presets.scss' as *;
+
+page,
+.wd-root-portal {
+  @include glass-theme-vars();
+}
+```
+
+Use `glass-dark-theme-vars()` for dark mode. The glass effect relies on `backdrop-filter` and degrades to a translucent solid surface where unsupported.
+
+
+### Glass on any component
+
+Components without a `glass` prop can use the global `.wd-glass` utility class or `custom-class`:
+
+```html
+<view class="wd-glass">Any container</view>
+<wd-cell title="Glass cell" custom-class="wd-glass"></wd-cell>
+```
+
+Or reuse the shared mixin in your own styles:
+
+```scss
+@use '@wot-ui/ui/styles/mixin/glass.scss' as *;
+
+.my-panel {
+  @include glass;
+}
+```

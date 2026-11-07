@@ -220,6 +220,7 @@ function changeSearchType({ item }) {
 | focus-when-clear | 是否在点击清空按钮后聚焦输入框 | `boolean` | `false` |
 | placeholder-style | 原生属性，指定 placeholder 的样式，目前仅支持 `color`、`font-size` 和 `font-weight` | `string` | - |
 | placeholder-class | 原生属性，指定 placeholder 的样式类 | `string` | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

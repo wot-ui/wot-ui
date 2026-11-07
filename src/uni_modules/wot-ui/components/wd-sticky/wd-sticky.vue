@@ -1,6 +1,6 @@
 <template>
   <view :style="`${rootStyle};display: inline-block;`">
-    <view :class="`wd-sticky ${customClass}`" :style="stickyStyle" :id="styckyId">
+    <view :class="`wd-sticky ${customClass} ${glass ? 'is-glass' : ''}`" :style="stickyStyle" :id="styckyId">
       <view class="wd-sticky__container" :style="containerStyle">
         <wd-resize @resize="handleResize" custom-style="display: inline-block;">
           <slot />

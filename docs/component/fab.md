@@ -151,6 +151,7 @@ const handleClick = () => {
 | z-index | 自定义悬浮按钮层级 | `number` | `99` |
 | gap | 自定义悬浮按钮与可视区域边缘的间距 | `FabGap` | `{ top: 16, right: 16, bottom: 16, left: 16 }` |
 | expandable | 用于控制点击时是否展开菜单，设置为 `false` 时触发 `click` 事件 | `boolean` | `true` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

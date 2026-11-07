@@ -28,6 +28,10 @@ const designSystemNavItems = [
     link: '/guide/custom-theme',
   },
   {
+    text: '玻璃效果',
+    link: '/guide/glass',
+  },
+  {
     text: '深色模式',
     link: '/guide/dark-mode',
   },
@@ -182,7 +186,7 @@ export default defineConfig({
       },
       {
         text: '设计系统',
-        activeMatch: '/guide/(design|custom-theme|dark-mode|unocss-preset|custom-style)',
+        activeMatch: '/guide/(design|custom-theme|glass|dark-mode|unocss-preset|custom-style)',
         items: designSystemNavItems
       },
       {

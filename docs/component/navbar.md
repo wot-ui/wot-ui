@@ -184,6 +184,7 @@ function handleBackHome() {
 | right-disabled | 是否禁用右侧按钮，禁用时透明度降低，且无法点击 | `boolean` | `false` |
 | custom-class | 根节点样式类名 | `string` | - |
 | custom-style | 根节点样式 | `string` | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | `boolean` | `false` |
 
 ## Events
 
@@ -207,6 +208,7 @@ function handleBackHome() {
 | --- | --- | --- | --- |
 | custom-class | 根节点样式类名 | `string` | - |
 | custom-style | 根节点样式 | `string` | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | `boolean` | `false` |
 
 ## NavbarCapsule Events
 

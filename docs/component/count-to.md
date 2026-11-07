@@ -70,6 +70,7 @@ const reset = () => countTo.value?.reset()
 | prefix | 前缀文本 | string | `''` |
 | suffix | 后缀文本 | string | `''` |
 | use-easing | 是否使用缓动动画 | boolean | true |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 

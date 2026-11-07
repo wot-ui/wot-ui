@@ -88,6 +88,17 @@
 </wd-card>
 ```
 
+
+### 玻璃卡片
+
+设置 `glass` 启用玻璃（glassmorphism）样式，建议配合 `glass` 主题使用。
+
+```html
+<wd-card title="玻璃卡片" glass>
+  <view class="content-text">半透明磨砂玻璃效果卡片。</view>
+</wd-card>
+```
+
 ## Attributes
 
 | 参数 | 说明 | 类型 | 默认值 |
@@ -99,6 +110,7 @@
 | custom-footer-class | 底部区域自定义类名 | string | `''` |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ## Slots
 

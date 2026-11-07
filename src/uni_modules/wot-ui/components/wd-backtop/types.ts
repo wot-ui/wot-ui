@@ -1,5 +1,5 @@
 import type { ExtractPropTypes } from 'vue'
-import { baseProps, makeNumberProp, makeRequiredProp, makeStringProp } from '../../common/props'
+import { baseProps, makeBooleanProp, makeNumberProp, makeRequiredProp, makeStringProp } from '../../common/props'
 
 /**
  * 回到顶部按钮形状
@@ -57,7 +57,13 @@ export const backtopProps = {
    * 距离屏幕右侧的距离，单位 px
    * 默认值: 20
    */
-  right: makeNumberProp(20)
+  right: makeNumberProp(20),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 /**

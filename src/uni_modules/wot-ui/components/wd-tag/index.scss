@@ -1,6 +1,7 @@
 @use "sass:map";
 @use '../../styles/variable.scss' as *;
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 // 基础文字颜色
 $tag-color: var(--wot-tag-color, $text-white) !default;
@@ -224,6 +225,10 @@ $tag-sizes: (
   align-items: center;
   color: $tag-color;
   border-radius: $tag-radius;
+
+  &.is-glass {
+    @include glass;
+  }
 
   @include e(input) {
     width: $tag-input-width;

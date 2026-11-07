@@ -274,7 +274,13 @@ export const swiperProps = {
    * 自定义文字标题样式
    * 类型：string
    */
-  customTextStyle: makeStringProp('')
+  customTextStyle: makeStringProp(''),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type SwiperProps = ExtractPropTypes<typeof swiperProps>

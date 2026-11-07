@@ -83,7 +83,13 @@ export const popoverProps = {
    * 可选值: 'normal' | 'menu'
    * 默认值: 'normal'
    */
-  mode: makeStringProp<PopoverMode>('normal')
+  mode: makeStringProp<PopoverMode>('normal'),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type PopoverProps = ExtractPropTypes<typeof popoverProps>

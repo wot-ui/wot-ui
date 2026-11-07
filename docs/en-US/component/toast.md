@@ -150,6 +150,7 @@ toast.success({
 | closed | Callback after fully closed | `() => void` | - |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 
 ## Toast Options
 

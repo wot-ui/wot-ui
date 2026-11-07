@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-sidebar ${customClass}`" :style="customStyle">
+  <view :class="`wd-sidebar ${customClass} ${glass ? 'wd-sidebar--glass' : ''}`" :style="customStyle">
     <slot></slot>
     <view class="wd-sidebar__padding"></view>
   </view>

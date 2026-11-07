@@ -177,6 +177,7 @@ function startControlTour() {
 | show-tour-buttons | 是否显示引导按钮 | `boolean` | `true` |
 | scope | 查询作用域，限定选择器查找范围 | `unknown` | - |
 | missing-strategy | 目标元素缺失时的处理策略，可选值为 `skip`、`stop`、`hide` | `MissingStrategy` | `stop` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

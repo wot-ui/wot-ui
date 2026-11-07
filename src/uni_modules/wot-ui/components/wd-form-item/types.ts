@@ -145,7 +145,13 @@ export const formItemProps = {
   /**
    * title 使用 slot 时的自定义样式
    */
-  customTitleClass: makeStringProp('')
+  customTitleClass: makeStringProp(''),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type FormItemProps = ExtractPropTypes<typeof formItemProps>

@@ -104,6 +104,7 @@ onShow(() => {
 | --- | --- | --- | --- |
 | z-index | 层级 | `number` | `1` |
 | offset-top | 吸顶距离 | `number` | `0` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

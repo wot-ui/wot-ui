@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 // 组件最小高度
@@ -25,6 +26,10 @@ $loadmore-refresh-line-height: var(--wot-loadmore-refresh-line-height, $typograp
 $loadmore-retry-spacing: var(--wot-loadmore-retry-spacing, 0 $spacing-extra-tight) !default;
 
 @include b(loadmore) {
+  &.is-glass {
+    @include glass;
+  }
+
   display: flex;
   justify-content: center;
   align-items: center;

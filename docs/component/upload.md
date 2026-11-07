@@ -306,6 +306,7 @@ function buildFormData({ file, formData }) {
 | reupload | 是否开启覆盖上传，开启后会关闭图片预览 | `boolean` | `false` |
 | upload-method | 自定义上传方法 | `UploadMethod` | - |
 | extension | 根据文件拓展名过滤，H5 支持全部类型过滤，微信小程序支持 `all` 和 `file` 场景过滤 | `string[]` | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义样式类 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

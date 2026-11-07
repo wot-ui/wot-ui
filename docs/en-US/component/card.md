@@ -99,6 +99,7 @@ Bottom area will not render when `footer` slot is not passed.
 | custom-footer-class | Bottom area custom class name | string | `''` |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 
 ## Slots
 

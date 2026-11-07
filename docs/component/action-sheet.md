@@ -261,6 +261,7 @@ function close() {
 | safe-area-inset-bottom | 弹出面板是否设置底部安全距离（iPhone X 类型机型） | boolean | true |
 | root-portal | 是否从页面中脱离出来（H5: teleport，App: renderjs，小程序: root-portal） | boolean | false |
 | custom-title-class | 标题区域自定义类名 | string | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | string | - |
 | custom-style | 根节点自定义样式 | string | - |
 

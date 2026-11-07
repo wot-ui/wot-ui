@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 浮层背景色
@@ -93,6 +94,10 @@ $popover-menu-icon-margin-right: var(--wot-popover-menu-icon-margin-right, $spac
     box-shadow: $popover-box-shadow;
     border-radius: $popover-radius;
     background: $popover-bg;
+
+    &.wd-popover--glass {
+      @include glass;
+    }
   }
 
   @include e(inner) {

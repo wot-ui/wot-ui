@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 // 输入区域高度
@@ -63,6 +64,10 @@ $password-input-cursor-duration: var(--wot-password-input-cursor-duration, 1s) !
     font-size: $password-input-font-size;
     line-height: $password-input-line-height;
     background: $password-input-bg;
+
+  &.is-glass {
+    @include glass;
+  }
 
     @include when(border) {
       border: $password-input-border-width solid $password-input-border-color;

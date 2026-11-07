@@ -108,6 +108,7 @@ watch(value, (newVal) => {
 | gutter | 输入框格子之间的间距，默认单位为 `px` | `number \| string` | `0` |
 | length | 密码长度 | `number` | `6` |
 | focused | 是否处于聚焦状态；聚焦时显示光标，通常与键盘显隐状态联动 | `boolean` | `true` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

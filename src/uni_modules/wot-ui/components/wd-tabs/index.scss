@@ -1,5 +1,6 @@
 @use '../../styles/variable.scss'as *;
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 // 导航背景色
 $tabs-nav-bg: var(--wot-tabs-nav-bg, $filled-oppo) !default;
@@ -329,5 +330,9 @@ $tabs-map-body-bg: var(--wot-tabs-map-body-bg, $filled-oppo) !default;
     .wd-tabs__nav--wrap {
       padding-right: $tabs-map-btn-width;
     }
+  }
+
+  &.wd-tabs--glass {
+    @include glass;
   }
 }

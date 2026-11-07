@@ -363,6 +363,7 @@ const openOpenTypeDialog = () => {
 | --- | --- | --- | --- |
 | selector | Specify unique identifier, used to distinguish multiple instances in page | `string` | `''` |
 | root-portal | Whether to detach from page document flow rendering, used to solve fixed invalidation problem | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

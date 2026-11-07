@@ -94,7 +94,13 @@ export const fabProps = {
    * 类型: boolean
    * 默认值: true
    */
-  expandable: makeBooleanProp(true)
+  expandable: makeBooleanProp(true),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type FabProps = ExtractPropTypes<typeof fabProps>

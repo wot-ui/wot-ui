@@ -185,6 +185,7 @@ collapseRef.value?.toggleAll({ expanded: true, skipDisabled: true })
 | use-more-slot | Whether to enable `more` slot in view more mode | boolean | false |
 | line-num | Collapsed display line count in view more mode | number | 2 |
 | custom-more-slot-class | `more` slot external custom class name in view more mode | string | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 

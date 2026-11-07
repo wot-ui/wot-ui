@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss' as *;
 
 // 层级
@@ -76,6 +77,10 @@ $tour-buttons-margin-top: var(--wot-tour-buttons-margin-top, $spacing-tight) !de
     border-radius: $tour-popover-radius;
     width: fit-content;
     min-width: $tour-popover-min-width;
+
+    &.is-glass {
+      @include glass;
+    }
   }
 
   @include e(info) {

@@ -86,6 +86,7 @@ Set return to top scroll duration via `duration`, unit is milliseconds.
 | shape | Button shape, optional values are `circle`, `square` | string | `circle` |
 | bottom | Distance from screen bottom, unit is `px` | `number` | `100` |
 | right | Distance from screen right, unit is `px` | `number` | `20` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-style | Custom root node style | `string` | `''` |
 | custom-class | Custom root node style class | `string` | `''` |
 

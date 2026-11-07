@@ -230,6 +230,7 @@ function handlePopupShow() {
 | duration | 动画时长，单位毫秒 | `number` | `300` |
 | slidable | 是否开启滚动导航，可选值为 `auto`、`always` | `TabsSlidable` | `auto` |
 | show-scrollbar | 滚动时是否显示滚动条 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

@@ -226,6 +226,7 @@ Enable clickable state through `clickable` property, and set page jump through `
 | direction | Grid content arrangement direction, optional values are `horizontal`, `vertical` | `string` | `'vertical'` |
 | reverse | Whether to swap icon and text positions | `boolean` | `false` |
 | icon-size | Icon size, default unit is `px` | `string` | `'28px'` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

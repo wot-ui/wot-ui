@@ -6,6 +6,7 @@
     :z-index="state.zIndex"
     :modal="false"
     :root-portal="state.rootPortal"
+    :glass="state.glass"
     @leave="onClosed"
     @enter="onOpened"
   >
@@ -15,6 +16,7 @@
         `wd-notify--${state.type}`,
         `wd-notify--${state.position}`,
         state.variant === 'floating' ? 'wd-notify--floating' : '',
+        state.glass ? 'wd-notify--glass' : '',
         customClass
       ]"
       :style="rootStyle"

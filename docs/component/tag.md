@@ -193,6 +193,7 @@ function handleConfirm({ value }: { value: string }) {
 | round | 是否圆角 | `boolean` | `false` |
 | mark | 是否标记样式 | `boolean` | `false` |
 | variant | 标签变体，可选值为 `light`、`dark`、`plain`、`dashed`、`text` | `TagVariant` | `dark` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

@@ -1,5 +1,5 @@
 <template>
-  <view :class="['wd-table', { 'is-border': border }, customClass]" :style="tableStyle">
+  <view :class="['wd-table', { 'is-border': border, 'is-glass': glass }, customClass]" :style="tableStyle">
     <scroll-view
       class="wd-table__scroll"
       :class="{ 'is-virtual': virtual }"

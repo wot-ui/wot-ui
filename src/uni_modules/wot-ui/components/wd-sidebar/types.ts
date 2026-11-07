@@ -8,7 +8,7 @@
  * 记得注释
  */
 import { type ExtractPropTypes, type InjectionKey, type PropType } from 'vue'
-import { baseProps, makeNumericProp } from '../../common/props'
+import { baseProps, makeBooleanProp, makeNumericProp } from '../../common/props'
 
 export type SidebarProvide = {
   props: Partial<SidebarProps>
@@ -28,7 +28,13 @@ export const sidebarProps = {
   /**
    * 在改变前执行的函数
    */
-  beforeChange: Function as PropType<SidebarBeforeChange>
+  beforeChange: Function as PropType<SidebarBeforeChange>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type SidebarProps = ExtractPropTypes<typeof sidebarProps>

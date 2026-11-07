@@ -144,6 +144,7 @@ For current form scenarios, it is recommended to have `wd-form` and `wd-form-ite
 | enable-native | Whether to enable native input box in Alipay Mini Program, set to `false` to avoid content shifting up after keyboard pops up | `boolean` | `true` |
 | compact | Whether to enable compact mode; when not explicitly set, it will be automatically enabled in `wd-form-item` | `boolean` | - |
 | custom-textarea-class | Textarea custom class name | `string` | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

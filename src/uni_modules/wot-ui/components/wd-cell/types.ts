@@ -214,7 +214,13 @@ export const cellProps = {
    * 类型: string
    * 默认值: ''
    */
-  customTitleClass: makeStringProp('')
+  customTitleClass: makeStringProp(''),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type CellProps = ExtractPropTypes<typeof cellProps>

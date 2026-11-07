@@ -151,6 +151,7 @@ const handleClick = () => {
 | z-index | Custom floating button z-index | `number` | `99` |
 | gap | Custom spacing between floating button and visible area edge | `FabGap` | `{ top: 16, right: 16, bottom: 16, left: 16 }` |
 | expandable | Used to control whether to expand menu on click. When set to `false`, triggers `click` event | `boolean` | `true` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Custom class name for root node | `string` | `''` |
 | custom-style | Custom style for root node | `string` | `''` |
 

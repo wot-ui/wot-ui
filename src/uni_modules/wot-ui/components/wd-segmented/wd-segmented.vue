@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-segmented ${theme ? `wd-segmented--${theme}` : ''} ${customClass}`" :style="customStyle">
+  <view :class="`wd-segmented ${theme ? `wd-segmented--${theme}` : ''} ${glass ? 'wd-segmented--glass' : ''} ${customClass}`" :style="customStyle">
     <view
       :class="`wd-segmented__item ${state.activeIndex === index ? 'is-active' : ''} ${
         disabled || (isObj(option) ? option.disabled : false) ? 'is-disabled' : ''

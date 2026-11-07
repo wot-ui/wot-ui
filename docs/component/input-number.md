@@ -244,6 +244,7 @@ const beforeChange: InputNumberBeforeChange = (value) => {
 | input-type | 输入框类型，可选值为 `number`、`digit` | `'number' \| 'digit'` | `digit` |
 | theme | 主题风格，可选值为 `default`、`outline`、`outline-split`、`primary` | `InputNumberTheme` | `default` |
 | round | 是否启用圆角样式 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

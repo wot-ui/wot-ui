@@ -424,6 +424,7 @@ const paginationData = computed(() => {
 | virtual | 是否开启虚拟滚动，大数据量时只渲染可视区域行 | `boolean` | `false` |
 | row-height | 虚拟滚动固定行高，开启 `virtual` 时必须传入 | `number` | `44` |
 | buffer | 虚拟滚动可视区域上下各额外预渲染行数；支持 `0`，小数向下取整，负数按 `0` 处理，非有限值使用默认值 | `number` | `5` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

@@ -177,6 +177,7 @@ function startControlTour() {
 | show-tour-buttons | Whether to show guide buttons | `boolean` | `true` |
 | scope | Query scope, limits selector lookup range | `unknown` | - |
 | missing-strategy | Processing strategy when target element is missing, optional values are `skip`, `stop`, `hide` | `MissingStrategy` | `stop` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

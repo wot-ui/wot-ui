@@ -1,7 +1,7 @@
 <template>
   <!--注意阻止横向滑动的穿透：横向移动时阻止冒泡-->
   <view
-    :class="`wd-swipe-action ${customClass}`"
+    :class="`wd-swipe-action ${customClass} ${glass ? 'is-glass' : ''}`"
     :style="customStyle"
     @click.stop="handleClick()"
     @touchstart="startDrag"

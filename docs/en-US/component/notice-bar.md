@@ -198,6 +198,7 @@ function handleReset() {
 | color | Text and icon color | `string` | - |
 | background-color | Background color | `string` | - |
 | direction | Scroll direction, optional values are `horizontal`, `vertical` | `NoticeBarScrollDirection` | `horizontal` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

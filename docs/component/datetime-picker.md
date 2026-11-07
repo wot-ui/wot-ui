@@ -203,6 +203,7 @@ const displayFormatTabLabel = (items: Array<{ label: string | number }>) => {
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 | custom-view-class | pickerView 外部自定义样式类 | string | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ## Events
 

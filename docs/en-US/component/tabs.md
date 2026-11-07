@@ -230,6 +230,7 @@ function handlePopupShow() {
 | duration | Animation duration, in milliseconds | `number` | `300` |
 | slidable | Whether to enable scroll navigation, optional values are `auto`, `always` | `TabsSlidable` | `auto` |
 | show-scrollbar | Whether to show scrollbar when scrolling | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

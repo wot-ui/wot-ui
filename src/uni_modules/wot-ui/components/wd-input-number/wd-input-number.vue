@@ -1,8 +1,8 @@
 <template>
   <view
     :class="`wd-input-number wd-input-number--${theme} ${customClass} ${isDisabled ? 'is-disabled' : ''} ${withoutInput ? 'is-without-input' : ''} ${
-      round ? 'is-round' : ''
-    }`"
+      glass ? 'is-glass' : ''
+    } ${round ? 'is-round' : ''}`"
     :style="customStyle"
   >
     <!-- 减号按钮 -->

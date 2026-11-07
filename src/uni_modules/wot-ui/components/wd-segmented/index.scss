@@ -1,4 +1,5 @@
 @use '../../styles/mixin/mixin.scss'as *;
+@use '../../styles/mixin/glass.scss' as *;
 @use '../../styles/variable.scss'as *;
 
 // 组件背景色
@@ -56,6 +57,10 @@ $segmented-outline-item-bg-active-disabled: var(--wot-segmented-outline-item-bg-
   width: 100%;
   padding: $segmented-padding;
   background-color: $segmented-bg;
+
+  &.wd-segmented--glass {
+    @include glass;
+  }
   border-radius: $segmented-radius;
   box-sizing: border-box;
   overflow: hidden;

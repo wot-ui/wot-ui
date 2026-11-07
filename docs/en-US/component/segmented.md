@@ -149,6 +149,7 @@ function handlePopupShow() {
 | options | Data collection | `string[] \| number[] \| SegmentedOption[]` | `[]` |
 | theme | Segmented control theme, optional values are `card`, `outline` | `string` | `'card'` |
 | vibrate-short | Whether to trigger short vibration when switching options | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

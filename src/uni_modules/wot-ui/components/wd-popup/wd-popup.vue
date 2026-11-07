@@ -135,7 +135,7 @@ const style = computed(() => {
 const rootClass = computed(() => {
   return `wd-popup wd-popup--${props.position} ${!props.transition && props.position === 'center' ? 'is-deep' : ''} ${
     props.round ? 'is-round' : ''
-  } ${props.customClass || ''}`
+  } ${props.glass ? 'wd-popup--glass' : ''} ${props.customClass || ''}`
 })
 
 onBeforeMount(() => {

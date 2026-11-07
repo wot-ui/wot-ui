@@ -118,7 +118,13 @@ export const pickerProps = {
    * 类型: boolean
    * 默认值: false
    */
-  visible: makeBooleanProp(false)
+  visible: makeBooleanProp(false),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type PickerProps = ExtractPropTypes<typeof pickerProps>

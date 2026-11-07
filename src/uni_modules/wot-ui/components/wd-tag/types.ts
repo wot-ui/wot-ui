@@ -101,7 +101,13 @@ export const tagProps = {
    * 可选值: 'light' | 'dark' | 'plain' | 'dashed' | 'text'
    * 不传则继承全局配置
    */
-  variant: String as PropType<TagVariant>
+  variant: String as PropType<TagVariant>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type TagProps = ExtractPropTypes<typeof tagProps>

@@ -184,6 +184,7 @@ Customize the title area through the `title` slot.
 | right-disabled | Whether to disable the right button. When disabled, the opacity is reduced and it cannot be clicked | `boolean` | `false` |
 | custom-class | Root node style class name | `string` | - |
 | custom-style | Root node style | `string` | - |
+| glass | Enable glassmorphism (glass) style | `boolean` | `false` |
 
 ## Events
 
@@ -207,6 +208,7 @@ Customize the title area through the `title` slot.
 | --- | --- | --- | --- |
 | custom-class | Root node style class name | `string` | - |
 | custom-style | Root node style | `string` | - |
+| glass | Enable glassmorphism (glass) style | `boolean` | `false` |
 
 ## NavbarCapsule Events
 

@@ -188,6 +188,7 @@ const beforeConfirm = (value: string[]) => {
 | safe-area-inset-bottom | 弹出面板是否设置默认的底部安全距离 | `boolean` | `true` |
 | immediate-change | 是否在手指松开时立即触发 `change` 而非滚动结束 | `boolean` | `false` |
 | root-portal | 是否开启 `root-portal` 将组件脱离当前节点进行渲染 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 | custom-view-class | pickerView 组件的外部自定义样式类 | `string` | `''` |

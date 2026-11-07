@@ -38,5 +38,11 @@ export const passwordInputProps = {
   /**
    * 是否已聚焦，聚焦时会显示光标
    */
-  focused: makeBooleanProp(true)
+  focused: makeBooleanProp(true),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }

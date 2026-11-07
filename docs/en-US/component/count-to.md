@@ -70,6 +70,7 @@ const reset = () => countTo.value?.reset()
 | prefix | Prefix text | string | `''` |
 | suffix | Suffix text | string | `''` |
 | use-easing | Whether to use easing animation | boolean | true |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Custom class name for root node | string | `''` |
 | custom-style | Custom style for root node | string | `''` |
 

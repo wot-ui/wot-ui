@@ -137,6 +137,7 @@ Implementation methods for different platforms are as follows:
 | round | Whether to enable rounded corners; after enabling, automatically adapts based on popup position (bottom popup → top rounded corners, top popup → bottom rounded corners, center → all rounded corners) | `boolean` | `false` |
 | custom-class | Custom root node class name | `string` | - |
 | custom-style | Custom popup layer style | `string` | - |
+| glass | Enable glassmorphism (glass) style | `boolean` | `false` |
 
 ## Events
 

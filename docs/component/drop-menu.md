@@ -197,6 +197,7 @@ const handleOpened = () => {
 | duration | 菜单展开/收起动画时长，单位 ms | `number` | `200` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ## DropMenuItem Attributes
 

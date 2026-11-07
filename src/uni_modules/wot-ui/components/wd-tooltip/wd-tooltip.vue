@@ -1,5 +1,5 @@
 <template>
-  <view :class="`wd-tooltip ${customClass}`" :style="customStyle" id="tooltip" @click.stop>
+  <view :class="`wd-tooltip ${customClass} ${glass ? 'wd-tooltip--glass' : ''}`" :style="customStyle" id="tooltip" @click.stop>
     <view class="wd-tooltip__pos wd-tooltip__hidden" id="pos">
       <view :class="`wd-tooltip__container ${customPop}`">
         <view v-if="!$slots.content" class="wd-tooltip__inner">{{ content }}</view>

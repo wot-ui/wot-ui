@@ -1,5 +1,6 @@
 @use '../../styles/variable.scss' as *;
 @use '../../styles/mixin/mixin.scss' as *;
+@use '../../styles/mixin/glass.scss' as *;
 
 // 公告栏内边距
 $notice-bar-padding: var(--wot-notice-bar-padding, $padding-main $padding-loose) !default;
@@ -40,6 +41,11 @@ $notice-bar-suffix-color: var(--wot-notice-bar-suffix-color, inherit) !default;
   border-radius: $notice-bar-radius;
   position: relative;
   box-sizing: border-box;
+
+  &.wd-notice-bar--glass {
+    @include glass;
+  }
+
   @include when(warning) {
     background: $notice-bar-warning-bg;
     color: $notice-bar-warning-color;

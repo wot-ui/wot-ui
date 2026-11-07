@@ -202,6 +202,7 @@
 | value-align | 右侧内容对齐方式，支持 `left / right / center` | string | - |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ## Cell Attributes
 
@@ -233,6 +234,7 @@
 | ellipsis | 内容是否超出隐藏显示省略号 | boolean | false | - |
 | use-title-slot | 是否启用 title 插槽 | boolean | true | - |
 | use-label-slot | 是否启用 label 插槽 | boolean | true | 2.3.0 |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | string | `''` | - |
 | custom-style | 根节点自定义样式 | string | `''` | - |
 | custom-prefix-class | 前置图标自定义样式类 | string | `''` | - |

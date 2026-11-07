@@ -114,7 +114,9 @@ const transitionStyle = computed(() => {
 const rootClass = computed(() => {
   return `wd-toast ${props.customClass} wd-toast--${position.value} ${
     (iconName.value !== 'loading' || msg.value) && (iconName.value || iconClass.value || cssIcon.value) ? 'wd-toast--with-icon' : ''
-  } ${iconName.value === 'loading' && !msg.value ? 'wd-toast--loading' : ''} ${direction.value === 'vertical' ? 'is-vertical' : ''}`
+  } ${iconName.value === 'loading' && !msg.value ? 'wd-toast--loading' : ''} ${direction.value === 'vertical' ? 'is-vertical' : ''} ${
+    props.glass ? 'wd-toast--glass' : ''
+  }`
 })
 
 function handleAfterEnter() {

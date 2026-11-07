@@ -448,5 +448,11 @@ export const dialogProps = {
    * 确认前钩子，支持返回 Promise 阻断关闭
    * 类型: (options: DialogBeforeConfirmOption) => Promise<boolean> | boolean | void
    */
-  beforeConfirm: Function as PropType<DialogOptions['beforeConfirm']>
+  beforeConfirm: Function as PropType<DialogOptions['beforeConfirm']>,
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }

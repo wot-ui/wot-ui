@@ -99,7 +99,9 @@ onMounted(() => {
 const rootClass = computed(() => {
   const isLight = props.variant === 'light'
   const isPlain = props.variant === 'plain'
-  return `wd-search ${isLight ? 'is-light' : ''} ${isPlain ? 'is-plain' : ''} ${props.hideCancel ? 'is-without-cancel' : ''} ${props.customClass}`
+  return `wd-search ${isLight ? 'is-light' : ''} ${isPlain ? 'is-plain' : ''} ${props.hideCancel ? 'is-without-cancel' : ''} ${
+    props.glass ? 'is-glass' : ''
+  } ${props.customClass}`
 })
 
 const coverStyle = computed(() => {

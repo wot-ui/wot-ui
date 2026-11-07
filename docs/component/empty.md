@@ -82,6 +82,7 @@
 | css-icon | CSS 图标，用法参考 Icon 组件 | `boolean \| string` | `false` |
 | icon-size | 图标或图片大小，默认单位为 px | string / number | - |
 | tip | 提示文案 | string | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ## Slots
 

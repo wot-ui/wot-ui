@@ -144,6 +144,7 @@ Set string `value` to display text content other than numbers.
 | show-zero | Whether to display 0 | boolean | false |
 | shape | Badge shape, supports `circle / square / bubble` | string | circle |
 | border | Whether to display white outline | boolean | false |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | string | - |
 | custom-style | Root node custom style | string | - |
 

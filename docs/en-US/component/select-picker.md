@@ -153,6 +153,7 @@ In `radio` mode, you can hide the confirm button with `show-confirm="false"` to 
 | custom-content-class | Custom popup content area class name | `string` | `''` |
 | show-confirm | Whether to show confirm button, only effective in `radio` mode | `boolean` | `true` |
 | root-portal | Whether to detach from page structure, used to solve fixed positioning issues | `boolean` | `false` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 

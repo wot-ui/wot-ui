@@ -223,6 +223,7 @@ function openPreview() {
 | close-on-click | 是否点击图片或遮罩时关闭 | `boolean` | `true` |
 | show-menu-by-longpress | 开启长按图片显示识别小程序码菜单 | `boolean` | `true` |
 | z-index | 层级 | `number` | `1000` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 
 ## Events
 

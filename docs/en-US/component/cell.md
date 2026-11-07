@@ -202,6 +202,7 @@ When both `prefix-icon` and `suffix-icon` use CSS icons, it is recommended to se
 | value-align | Right content alignment, supports `left / right / center` | string | - |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 
 ## Cell Attributes
 
@@ -233,6 +234,7 @@ When both `prefix-icon` and `suffix-icon` use CSS icons, it is recommended to se
 | ellipsis | Whether to truncate content with ellipsis when exceeding | boolean | false | - |
 | use-title-slot | Whether to enable title slot | boolean | true | - |
 | use-label-slot | Whether to enable label slot | boolean | true | 2.3.0 |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | string | `''` | - |
 | custom-style | Root node custom style | string | `''` | - |
 | custom-prefix-class | Leading icon custom style class | string | `''` | - |

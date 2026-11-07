@@ -344,6 +344,7 @@ const videoList = ref([
 | custom-next-class | 自定义后一个轮播项类名 | `string` | `''` |
 | custom-text-class | 自定义标题类名 | `string` | `''` |
 | custom-text-style | 自定义标题样式 | `string` | `''` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义样式类 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

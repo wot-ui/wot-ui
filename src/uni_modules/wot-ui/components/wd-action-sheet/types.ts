@@ -149,7 +149,13 @@ export const actionSheetProps = {
    * 类型: boolean
    * 默认值: false
    */
-  rootPortal: makeBooleanProp(false)
+  rootPortal: makeBooleanProp(false),
+  /**
+   * 是否启用玻璃（glassmorphism）样式
+   * 类型: boolean
+   * 默认值: false
+   */
+  glass: makeBooleanProp(false)
 }
 
 export type ActionSheetProps = ExtractPropTypes<typeof actionSheetProps>

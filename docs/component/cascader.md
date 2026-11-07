@@ -139,6 +139,7 @@ const lazyLoad = (option, tabIndex, resolve) => {
 | line-height | 底部条高度，支持 number 或带单位字符串 | `number \| string` | - |
 | line-theme | 底部条位置样式，支持 `normal / text / underline / dot` | string | normal |
 | root-portal | 是否脱离文档流渲染（H5: teleport，App: renderjs，小程序: root-portal） | boolean | false |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 

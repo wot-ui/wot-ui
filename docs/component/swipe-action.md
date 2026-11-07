@@ -255,6 +255,7 @@ function handleClick({ value }: SwipeActionClickEvent) {
 | v-model | 当前滑动状态，可选值为 `left`、`close`、`right` | `SwipeActionStatus` | `close` |
 | disabled | 是否禁用滑动操作 | `boolean` | `false` |
 | before-close | 关闭前拦截函数，接收 `(reason, position)`，返回 `true` 或 `Promise<boolean>` 时继续关闭，返回 `false` 时阻止关闭 | `SwipeActionBeforeClose` | - |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

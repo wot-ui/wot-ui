@@ -83,6 +83,7 @@ const reset = () => countDown.value?.reset()
 | millisecond | Whether to enable millisecond-level rendering | boolean | false |
 | format | Countdown format string | string | `HH:mm:ss` |
 | auto-start | Whether to automatically start countdown after initialization and reset | boolean | true |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 

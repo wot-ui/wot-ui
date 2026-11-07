@@ -2,6 +2,7 @@
   <wd-cell
     :custom-class="`wd-form-item ${isDisabled ? 'is-disabled' : ''} ${customClass}`"
     :custom-style="customStyle"
+    :glass="glass"
     :use-title-slot="!!$slots.title"
     :title="title"
     :use-label-slot="!!$slots.label"

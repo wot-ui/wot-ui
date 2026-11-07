@@ -363,6 +363,7 @@ const openOpenTypeDialog = () => {
 | --- | --- | --- | --- |
 | selector | 指定唯一标识，用于区分页面中的多个实例 | `string` | `''` |
 | root-portal | 是否脱离页面文档流渲染，用于解决 fixed 失效问题 | `boolean` | `false` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 

@@ -156,6 +156,7 @@ const previewURL = blackMaoPreview
 | show-menu-by-longpress | 是否开启长按图片显示识别小程序码菜单，仅微信小程序平台有效 | `boolean` | `false` |
 | show-loading | 是否展示默认加载态 | `boolean` | `true` |
 | show-error | 是否展示默认失败态 | `boolean` | `true` |
+| glass | 是否启用玻璃（glassmorphism）样式 | boolean | `false` |
 | custom-class | 根节点自定义类名 | `string` | `''` |
 | custom-style | 根节点自定义样式 | `string` | `''` |
 | custom-image | 内部 `image` 节点自定义类名 | `string` | `''` |

@@ -139,6 +139,7 @@ After enabling `check-strictly`, clicking a node only updates the current path, 
 | line-height | Bottom line height, supports number or string with unit | `number \| string` | - |
 | line-theme | Bottom line position style, supports `normal / text / underline / dot` | string | normal |
 | root-portal | Whether to render outside document flow (H5: teleport, App: renderjs, Mini Program: root-portal) | boolean | false |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 

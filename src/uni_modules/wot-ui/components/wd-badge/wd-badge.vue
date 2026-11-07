@@ -1,5 +1,5 @@
 <template>
-  <view :class="['wd-badge', customClass]" :style="customStyle">
+  <view :class="['wd-badge', { 'is-glass': glass }, customClass]" :style="customStyle">
     <slot></slot>
     <view
       v-if="shouldShowBadge"

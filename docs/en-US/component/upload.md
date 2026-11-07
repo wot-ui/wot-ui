@@ -306,6 +306,7 @@ function buildFormData({ file, formData }) {
 | reupload | Whether to enable overwrite upload, will close image preview when enabled | `boolean` | `false` |
 | upload-method | Custom upload method | `UploadMethod` | - |
 | extension | Filter by file extension, H5 supports all type filtering, WeChat Mini Program supports `all` and `file` scenario filtering | `string[]` | - |
+| glass | Enable glassmorphism (glass) style | boolean | `false` |
 | custom-class | Root node custom style class | `string` | `''` |
 | custom-style | Root node custom style | `string` | `''` |
 
