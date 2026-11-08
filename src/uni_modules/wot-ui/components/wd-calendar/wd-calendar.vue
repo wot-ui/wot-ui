@@ -26,6 +26,7 @@
             v-for="(item, index) in shortcuts"
             :key="index"
             :custom-class="`wd-calendar__tag ${index === shortcuts.length - 1 ? 'is-last-tag' : ''}`"
+            :custom-style="getShortcutTagStyle(index)"
             :type="activeShortcutIndex === index ? 'primary' : 'default'"
             :variant="activeShortcutIndex === index ? 'dark' : 'light'"
             @click="handleShortcutClick(index)"
@@ -127,6 +128,19 @@ const calendarTabs = ref()
 const isConfirming = ref<boolean>(false)
 /** 当前激活的快捷选项索引，-1 表示无激活项 */
 const activeShortcutIndex = ref<number>(-1)
+/**
+ * 与 `$calendar-tag-spacing-right` 一致。
+ * 微信小程序里 root-portal 会把弹层移出组件，宿主 wxss 作用不到传送后的 wd-tag，需用内联间距补上。
+ * 未开启 root-portal 时返回空串，避免覆盖原有样式。
+ */
+const shortcutTagGapStyle = 'margin-right: var(--wot-calendar-tag-spacing-right, var(--wot-spacing-extra-loose, var(--wot-n-16, 16px)));'
+
+function getShortcutTagStyle(index: number) {
+  if (!props.rootPortal || index === props.shortcuts.length - 1) {
+    return ''
+  }
+  return shortcutTagGapStyle
+}
 
 const formatRange = (value: number, rangeType: 'start' | 'end', type: CalendarType) => {
   switch (type) {

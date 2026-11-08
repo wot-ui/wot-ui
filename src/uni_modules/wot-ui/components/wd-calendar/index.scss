@@ -23,6 +23,14 @@ $calendar-range-separator-height: var(--wot-calendar-range-separator-height, $st
 $calendar-confirm-padding: var(--wot-calendar-confirm-padding, $padding-tight $padding-loose) !default; // 确认区域内边距
 $calendar-confirm-border-color: var(--wot-calendar-confirm-border-color, $border-light) !default; // 确认区域上边框颜色
 
+@mixin shortcut-tag-spacing {
+  margin-right: $calendar-tag-spacing-right;
+
+  @include when(last-tag) {
+    margin-right: 0;
+  }
+}
+
 @include b(calendar) {
 
   @include e(header) {
@@ -45,11 +53,15 @@ $calendar-confirm-border-color: var(--wot-calendar-confirm-border-color, $border
     text-align: center;
   }
 
+  // 快捷项类名挂在 wd-tag 上。edeep 会生成 `.wd-calendar .wd-calendar__tag`，
+  // root-portal 把弹层移出宿主后该后代选择器不再命中，间距丢失。
+  // e() 不依赖宿主祖先，传送后仍能命中；edeep 保留未传送时的子组件穿透。
+  @include e(tag) {
+    @include shortcut-tag-spacing;
+  }
+
   @include edeep(tag) {
-    margin-right: $calendar-tag-spacing-right;
-    @include when(last-tag) {
-      margin-right: 0;
-    }
+    @include shortcut-tag-spacing;
   }
   @include e(range) {
     display: flex;
