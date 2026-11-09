@@ -166,6 +166,8 @@ $search-cancel-color: var(--wot-search-cancel-color, $primary-6) !default;
     }
   }
   @include when(without-cancel) {
-    // padding-right: $search-side-padding;
+    .wd-search__block {
+      margin-right: $spacing-zero;
+    }
   }
 }
