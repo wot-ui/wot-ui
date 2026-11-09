@@ -1,50 +1,53 @@
 <template>
   <!-- #ifdef APP-PLUS -->
-  <view v-if="state.show" :class="`wd-video-preview ${customClass}`" :style="`z-index: ${options.zIndex}; ${customStyle}`" @click="close">
-    <!-- #endif -->
-    <!-- #ifndef APP-PLUS -->
-    <wd-overlay
-      :show="state.show"
-      :z-index="options.zIndex"
-      :lock-scroll="true"
-      :custom-class="`wd-video-preview ${customClass}`"
-      :custom-style="customStyle"
-      @click="close"
-      @enter="handleEnter"
-      @after-leave="handleAfterLeave"
-    >
+  <wd-root-portal>
+    <view v-if="state.show" :class="`wd-video-preview ${customClass}`" :style="`z-index: ${options.zIndex}; ${customStyle}`" @click="close">
       <!-- #endif -->
-
-      <view :class="videoClass" @click.stop="">
-        <video
-          :id="videoId"
-          class="wd-video-preview__video-player"
-          v-if="state.visible && previewVideo.url"
-          :controls="true"
-          :poster="previewVideo.poster"
-          :title="previewVideo.title"
-          play-btn-position="center"
-          :enableNative="true"
-          :src="previewVideo.url"
-          :enable-progress-gesture="false"
-          @fullscreenchange="handleFullscreenChange"
-        ></video>
-      </view>
       <!-- #ifndef APP-PLUS -->
-      <view :class="closeClass" @click.stop="close">
-        <wd-icon name="close" custom-class="wd-video-preview__close-icon" />
-      </view>
+      <wd-overlay
+        :show="state.show"
+        :z-index="options.zIndex"
+        :lock-scroll="true"
+        :custom-class="`wd-video-preview ${customClass}`"
+        :custom-style="customStyle"
+        @click="close"
+        @enter="handleEnter"
+        @after-leave="handleAfterLeave"
+      >
+        <!-- #endif -->
+
+        <view :class="videoClass" @click.stop="">
+          <video
+            :id="videoId"
+            class="wd-video-preview__video-player"
+            v-if="state.visible && previewVideo.url"
+            :controls="true"
+            :poster="previewVideo.poster"
+            :title="previewVideo.title"
+            play-btn-position="center"
+            :enableNative="true"
+            :src="previewVideo.url"
+            :enable-progress-gesture="false"
+            :show-fullscreen-btn="showFullscreenBtn"
+            @fullscreenchange="handleFullscreenChange"
+          ></video>
+        </view>
+        <!-- #ifndef APP-PLUS -->
+        <view :class="closeClass" @click.stop="close">
+          <wd-icon name="close" custom-class="wd-video-preview__close-icon" />
+        </view>
+        <!-- #endif -->
+        <!-- #ifdef APP-PLUS -->
+        <view v-if="!isFullScreen" :class="closeClass" @click.stop="close">
+          <wd-icon name="close" custom-class="wd-video-preview__close-icon" />
+        </view>
+        <!-- #endif -->
+        <!-- #ifndef APP-PLUS -->
+      </wd-overlay>
       <!-- #endif -->
       <!-- #ifdef APP-PLUS -->
-      <view v-if="!isFullScreen" :class="closeClass" @click.stop="close">
-        <wd-icon name="close" custom-class="wd-video-preview__close-icon" />
-      </view>
-      <!-- #endif -->
-      <!-- #ifndef APP-PLUS -->
-    </wd-overlay>
-    <!-- #endif -->
-    <!-- #ifdef APP-PLUS -->
-  </view>
+    </view>
+  </wd-root-portal>
   <!-- #endif -->
 </template>
 
@@ -64,6 +67,7 @@ export default {
 <script lang="ts" setup>
 import wdIcon from '../wd-icon/wd-icon.vue'
 import wdOverlay from '../wd-overlay/wd-overlay.vue'
+import wdRootPortal from '../wd-root-portal/wd-root-portal.vue'
 import { reactive, ref, inject, watch, computed, getCurrentInstance, nextTick } from 'vue'
 import { videoPreviewProps, type PreviewVideo, type VideoPreviewOptions, type VideoPreviewExpose } from './types'
 import { defaultOptions, getVideoPreviewOptionKey } from './index'
@@ -83,6 +87,7 @@ const state = reactive({
 
 const previewVideo = reactive<PreviewVideo>({ url: '', poster: '', title: '' })
 const fullScreenValue = ref<boolean | undefined>()
+const showFullscreenBtnValue = ref<boolean | undefined>()
 const closePositionValue = ref<VideoPreviewOptions['closePosition']>()
 
 // App 端原生 video 走系统全屏，需要唯一 id 创建上下文
@@ -113,6 +118,11 @@ const closePosition = computed(() => {
 
 const videoClass = computed(() => ['wd-video-preview__video', isFullScreen.value ? 'is-fullscreen' : ''])
 const closeClass = computed(() => ['wd-video-preview__close', `is-${closePosition.value}`])
+const showFullscreenBtn = computed(() => {
+  const optionShowFullscreenBtn = videoPreviewOption.value.showFullscreenBtn
+  if (isDef(optionShowFullscreenBtn)) return optionShowFullscreenBtn!
+  return isDef(showFullscreenBtnValue.value) ? showFullscreenBtnValue.value! : props.showFullscreenBtn
+})
 
 // 监听选项变化
 watch(
@@ -160,6 +170,7 @@ function reset(option: VideoPreviewOptions) {
     previewVideo.poster = option.poster
     previewVideo.title = option.title
     fullScreenValue.value = option.fullScreen
+    showFullscreenBtnValue.value = option.showFullscreenBtn
     closePositionValue.value = option.closePosition
   }
 }
@@ -206,6 +217,7 @@ function open(video: VideoPreviewOptions) {
   previewVideo.poster = video.poster
   previewVideo.title = video.title
   fullScreenValue.value = video.fullScreen
+  showFullscreenBtnValue.value = video.showFullscreenBtn
   closePositionValue.value = video.closePosition
   state.show = true
 }

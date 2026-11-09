@@ -50,7 +50,8 @@ $video-preview-close-z-index: var(--wot-video-preview-close-z-index, 10) !defaul
     display: flex;
     justify-content: center;
     align-items: center;
-    top: $video-preview-close-margin;
+    top: calc(#{$video-preview-close-margin} + constant(safe-area-inset-top));
+    top: calc(#{$video-preview-close-margin} + env(safe-area-inset-top));
     cursor: pointer;
 
     @include when(left-top) {
