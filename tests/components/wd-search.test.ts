@@ -126,6 +126,17 @@ describe('WdSearch', () => {
     expect(wrapper.emitted('cancel')).toBeTruthy()
   })
 
+  test('hideCancel=true 时根节点含 is-without-cancel 且不渲染取消按钮', () => {
+    const wrapper = mount(WdSearch, {
+      props: {
+        hideCancel: true
+      }
+    })
+
+    expect(wrapper.classes()).toContain('is-without-cancel')
+    expect(wrapper.find('.wd-search__cancel').exists()).toBe(false)
+  })
+
   test('搜索按钮', async () => {
     const wrapper = mount(WdSearch, {
       props: {
