@@ -54,6 +54,15 @@ $table-sort-button-height: var(--wot-table-sort-button-height, $n-20) !default;
 
   @include e(body) {
     width: 100%;
+
+    // #ifdef MP-TOUTIAO
+    // 抖音小程序不支持 virtualHost，wd-table-column 的宿主节点会成为 Grid 子项，
+    // 导致单元格的 grid-column / grid-row 失效。给宿主节点设置 display: contents，
+    // 让内部单元格直接成为 Grid 子项，与 virtualHost 表现一致。
+    > wd-table-column {
+      display: contents;
+    }
+    // #endif
   }
 
   @include e(cell) {

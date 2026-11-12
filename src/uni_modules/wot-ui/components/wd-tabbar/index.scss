@@ -68,4 +68,12 @@ $tabbar-round-shadow: var(
     right: 0;
     z-index: $tabbar-z-index;
   }
+
+  // #ifdef MP-TOUTIAO
+  // 抖音小程序不支持 virtualHost，wd-tabbar-item 的宿主节点会成为 flex 子项。
+  // 通过父组件的 styleIsolation: 'shared' 让标签选择器命中宿主节点，使其均分宽度。
+  > wd-tabbar-item {
+    flex: 1;
+  }
+  // #endif
 }
