@@ -3,7 +3,7 @@
   <!-- H5端使用 teleport -->
   <teleport to="body">
     <!-- #endif -->
-    <!-- #ifdef MP-WEIXIN || MP-ALIPAY -->
+    <!-- #ifdef MP-WEIXIN || MP-ALIPAY || MP-TOUTIAO -->
     <!-- #ifndef MP-DINGTALK -->
     <!-- 小程序使用 root-portal -->
     <root-portal>
@@ -12,7 +12,7 @@
       <view :class="themeClass" :style="configProviderStyle" class="wd-root-portal">
         <slot />
       </view>
-      <!-- #ifdef MP-WEIXIN || MP-ALIPAY -->
+      <!-- #ifdef MP-WEIXIN || MP-ALIPAY || MP-TOUTIAO -->
       <!-- #ifndef MP-DINGTALK -->
     </root-portal>
     <!-- #endif -->
