@@ -12,7 +12,9 @@ export default {
   name: 'wd-table-column',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }

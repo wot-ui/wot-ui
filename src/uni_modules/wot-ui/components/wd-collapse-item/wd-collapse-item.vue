@@ -23,7 +23,9 @@ export default {
   name: 'wd-collapse-item',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }

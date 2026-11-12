@@ -26,7 +26,9 @@ export default {
   name: 'wd-tabbar-item',
   options: {
     addGlobalClass: true,
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     styleIsolation: 'shared'
   }
 }
