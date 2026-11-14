@@ -1,5 +1,5 @@
 <template>
-  <view :class="rootClass" @click="handleClick" :style="rootStyle">
+  <view :class="rootClass" @click.stop="handleClick" :style="rootStyle">
     <image
       v-if="status !== 'error'"
       :class="`wd-img__image ${customImage}`"
