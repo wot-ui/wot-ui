@@ -129,7 +129,21 @@ const transitionName = computed<TransitionName | TransitionName[]>(() => {
 const safeBottom = ref<number>(0)
 
 const style = computed(() => {
-  return `z-index:${props.zIndex}; padding-bottom: ${safeBottom.value}px;${props.customStyle}`
+  // 小程序 / App：页面视口已排除原生 tabbar，继续用挂载时读到的系统安全区
+  let safeAreaStyle = `padding-bottom: ${safeBottom.value}px;`
+  // #ifdef H5
+  // H5 的 tabbar 是 div，getSystemInfo 的 safeAreaInsets 不含它。
+  // --window-bottom 表示内容区距窗口底部的距离（有 tabbar 时含 tabbar，部分版本还含安全区）。
+  // 取它和 env(safe-area-inset-bottom) 的较大值，tabbar 页能让开 tabbar，无 tabbar 时仍保留刘海屏安全区。
+  if (props.safeAreaInsetBottom && props.position === 'bottom') {
+    safeAreaStyle =
+      'padding-bottom: constant(safe-area-inset-bottom);' +
+      'padding-bottom: env(safe-area-inset-bottom);' +
+      'padding-bottom: max(var(--window-bottom, 0px), constant(safe-area-inset-bottom));' +
+      'padding-bottom: max(var(--window-bottom, 0px), env(safe-area-inset-bottom));'
+  }
+  // #endif
+  return `z-index:${props.zIndex}; ${safeAreaStyle}${props.customStyle}`
 })
 
 const rootClass = computed(() => {

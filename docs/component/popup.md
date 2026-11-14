@@ -68,7 +68,7 @@
 
 ### 底部安全区
 
-通过设置 `safe-area-inset-bottom="true"`，可以确保底部弹层在刘海屏机型上不会被安全区域遮挡。
+通过设置 `safe-area-inset-bottom="true"`，可以确保底部弹层在刘海屏机型上不会被安全区域遮挡。H5 且页面带有 tabbar 时，底部弹层会同时避让 `--window-bottom`（tabbar 高度）。小程序与 App 仍使用系统安全区。
 
 ```html
 <wd-popup v-model="show" position="bottom" :safe-area-inset-bottom="true" custom-style="height: 200px;" @close="handleClose"></wd-popup>

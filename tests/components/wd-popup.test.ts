@@ -8,6 +8,14 @@ const globalComponents = {
   WdOverlay
 }
 
+/** 弹出层自身的 transition。遮罩内部也有 wd-transition，不能取第一个。 */
+function getPopupCustomStyle(wrapper: ReturnType<typeof mount>) {
+  const popupTransition = wrapper
+    .findAllComponents({ name: 'wd-transition' })
+    .find((item) => String(item.props('customClass') || '').includes('wd-popup'))
+  return String(popupTransition?.props('customStyle') || '')
+}
+
 describe('WdPopup', () => {
   // 测试基本渲染
   test('基本渲染', () => {
@@ -173,6 +181,66 @@ describe('WdPopup', () => {
 
     // 检查遮罩层样式
     expect(wrapper.findComponent({ name: 'wd-overlay' }).props('customStyle')).toBe(modalStyle)
+  })
+
+  // H5 条件编译后使用 --window-bottom；小程序 / App 仍是 getSystemInfo 算出的像素值。
+  // 测试文件里的条件编译注释会被 esbuild 去掉，因此按实际样式分支断言。
+  test('底部弹层安全区在 H5 避让 --window-bottom，在其它端使用系统安全区', () => {
+    const wrapper = mount(WdPopup, {
+      props: {
+        modelValue: true,
+        position: 'bottom',
+        safeAreaInsetBottom: true,
+        customStyle: 'height: 200px;'
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    const customStyle = getPopupCustomStyle(wrapper)
+    expect(customStyle.endsWith('height: 200px;')).toBe(true)
+    if (customStyle.includes('--window-bottom')) {
+      expect(customStyle).toContain('padding-bottom: max(var(--window-bottom, 0px), env(safe-area-inset-bottom))')
+      expect(customStyle).not.toContain('padding-bottom: 20px')
+    } else {
+      // setup 里 safeAreaInsets.bottom 为 20；微信端为 screenHeight - safeArea.bottom，同样是 20
+      expect(customStyle).toContain('padding-bottom: 20px')
+    }
+  })
+
+  test('未开启底部安全区时不追加 --window-bottom', () => {
+    const wrapper = mount(WdPopup, {
+      props: {
+        modelValue: true,
+        position: 'bottom',
+        safeAreaInsetBottom: false
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    const customStyle = getPopupCustomStyle(wrapper)
+    expect(customStyle).toContain('padding-bottom: 0px')
+    expect(customStyle).not.toContain('--window-bottom')
+  })
+
+  test('非底部弹层仍使用系统安全区数值', () => {
+    const wrapper = mount(WdPopup, {
+      props: {
+        modelValue: true,
+        position: 'center',
+        safeAreaInsetBottom: true
+      },
+      global: {
+        components: globalComponents
+      }
+    })
+
+    const customStyle = getPopupCustomStyle(wrapper)
+    expect(customStyle).toContain('padding-bottom: 20px')
+    expect(customStyle).not.toContain('--window-bottom')
   })
 
   // 测试锁定滚动
