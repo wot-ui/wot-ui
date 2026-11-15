@@ -608,4 +608,51 @@ describe('Calendar SubComponents', () => {
     expect(beforeTitle).not.toBe('')
     expect(afterTitle).not.toBe('')
   })
+
+  test('month-panel: scrollIntoView 将超出可选范围的日期夹到边界月份', async () => {
+    vi.setSystemTime(new Date(2026, 5, 15))
+
+    const minDate = new Date(2026, 0, 1).getTime()
+    const maxDate = new Date(2026, 11, 31, 23, 59, 59).getTime()
+
+    const readScrollTop = async (value: number | number[] | null, type: 'date' | 'daterange' = 'date') => {
+      const wrapper = mount(monthPanel as any, {
+        props: {
+          type,
+          value,
+          minDate,
+          maxDate,
+          firstDayOfWeek: 0,
+          switchMode: 'none'
+        }
+      })
+
+      await nextTick()
+      await vi.runAllTimersAsync()
+      await nextTick()
+
+      const scrollView = wrapper.findComponent({ name: 'uni-scroll-view' })
+      const props = scrollView.props() as Record<string, number>
+      return props.scrollTop ?? props['scroll-top']
+    }
+
+    const atMin = await readScrollTop(minDate)
+    const beforeRange = await readScrollTop(new Date(2020, 0, 1).getTime())
+    const beforeRangeList = await readScrollTop([new Date(2020, 0, 1).getTime(), new Date(2020, 0, 2).getTime()], 'daterange')
+
+    expect(beforeRange).toBe(atMin)
+    expect(beforeRangeList).toBe(atMin)
+
+    const atMax = await readScrollTop(maxDate)
+    const afterRange = await readScrollTop(new Date(2030, 0, 1).getTime())
+
+    expect(afterRange).toBe(atMax)
+    expect(afterRange).not.toBe(atMin)
+
+    vi.setSystemTime(new Date(2020, 5, 1))
+    expect(await readScrollTop(null)).toBe(atMin)
+
+    vi.setSystemTime(new Date(2030, 5, 1))
+    expect(await readScrollTop(null)).toBe(atMax)
+  })
 })
