@@ -78,6 +78,26 @@
             @confirm="handleConfirm"
           />
         </demo-group-item>
+        <demo-group-item :title="$t('zi-ding-yi-xuan-xiang-yang-shi')" no-padding>
+          <wd-cell-group border>
+            <wd-cell :title="$t('zi-ding-yi-xuan-xiang-yang-shi')" :value="getRadioDisplayValue(value19)" is-link @click="show19 = true" />
+          </wd-cell-group>
+          <wd-select-picker
+            type="checkbox"
+            :show-confirm="false"
+            v-model="value19"
+            v-model:visible="show19"
+            :columns="columns3"
+            @confirm="handleConfirm"
+          >
+            <template #label="{ item, label }">
+              <view>
+                {{ label }}
+                <wd-tag type="primary" size="small">{{ item.source }}</wd-tag>
+              </view>
+            </template>
+          </wd-select-picker>
+        </demo-group-item>
       </demo-group>
     </view>
     <wd-toast />
@@ -154,6 +174,23 @@ const columns2 = ref<Record<string, any>[]>([
   {
     value: '103',
     label: t('nv-zhuang-0')
+  }
+])
+const columns3 = ref<Record<string, any>[]>([
+  {
+    value: '101',
+    label: t('nan-zhuang-0'),
+    source: 'ad'
+  },
+  {
+    value: '102',
+    label: t('she-chi-pin'),
+    source: 'wc'
+  },
+  {
+    value: '103',
+    label: t('nv-zhuang-0'),
+    source: 'nc'
   }
 ])
 const value1 = ref<string[]>(['101'])
