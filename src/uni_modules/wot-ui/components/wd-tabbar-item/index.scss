@@ -28,14 +28,12 @@ $tabbar-item-icon-size: var(--wot-tabbar-item-icon-size, $n-24) !default;
     padding: 0;
     position: relative;
 
-    :deep() {
-      @include when(active) {
-        color: $tabbar-item-color-active;
-      }
+    @include when(active) {
+      color: $tabbar-item-color-active;
+    }
 
-      @include when(inactive) {
-        color: $tabbar-item-color-inactive;
-      }
+    @include when(inactive) {
+      color: $tabbar-item-color-inactive;
     }
   }
 
