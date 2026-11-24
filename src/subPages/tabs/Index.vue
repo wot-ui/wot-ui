@@ -52,6 +52,15 @@
           </block>
         </wd-tabs>
       </demo-group-item>
+      <demo-group-item no-padding :title="$t('nian-xing-bu-ju-qie-huan-dong-hua')">
+        <wd-tabs v-model="tabStickyAnimated" sticky animated @change="handleChange">
+          <block v-for="item in 8" :key="item">
+            <wd-tab :title="$t('biao-qian-item') + item">
+              <view class="page-tabs__content page-tabs__content--wide">{{ $t('nei-rong') }}{{ item }}</view>
+            </wd-tab>
+          </block>
+        </wd-tabs>
+      </demo-group-item>
       <demo-group-item no-padding :title="$t('jin-yong-tab')">
         <wd-tabs v-model="tab3" @change="handleChange">
           <block v-for="item in 4" :key="item">
@@ -218,6 +227,7 @@ const tab7 = ref<number>(0)
 const tab8 = ref<number>(0)
 const tab9 = ref<number>(0)
 const tab10 = ref<number>(3)
+const tabStickyAnimated = ref<number>(0)
 
 const toast = useToast()
 function handleClick({ index, name }: any) {
@@ -266,6 +276,11 @@ function handlePopupShow() {
 
     &--large {
       line-height: 320px;
+    }
+
+    &--wide {
+      // 固有最小宽度超过一屏，用于暴露 sticky + animated 时 tabs 被逐次撑宽的问题
+      min-width: 200px;
     }
   }
 

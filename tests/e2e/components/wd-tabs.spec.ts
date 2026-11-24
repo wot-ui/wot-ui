@@ -126,3 +126,20 @@ test('Chromium 连续触摸按相邻数字名称切换并保留禁用和边界�
     await cdp.detach()
   }
 })
+
+test('sticky + animated 反复切换不撑宽 tabs', async ({ page }) => {
+  const item = demoItem(page, t('nian-xing-bu-ju-qie-huan-dong-hua'))
+  const tabs = item.locator('.wd-tabs')
+  const initialWidth = await tabs.evaluate((el) => el.getBoundingClientRect().width)
+
+  const nav = item.locator('.wd-tabs__nav-item')
+  for (let i = 0; i < 8; i++) {
+    await nav.nth(i).click()
+    await expect(item.locator('.wd-tabs__nav-item').nth(i)).toHaveClass(/is-active/)
+  }
+
+  // 切换动画与 wd-resize 的尺寸回写均异步完成，等待稳定后再断言
+  await page.waitForTimeout(600)
+  const finalWidth = await tabs.evaluate((el) => el.getBoundingClientRect().width)
+  expect(Math.abs(finalWidth - initialWidth)).toBeLessThanOrEqual(1)
+})

@@ -186,6 +186,10 @@ $tabs-map-body-bg: var(--wot-tabs-map-body-bg, $filled-oppo) !default;
     @include when(animated) {
       display: flex;
       transition-property: left;
+      // 各面板并排渲染（未激活面板不再 display:none），flex 容器的最小内容宽度会随已访问面板累加；
+      // sticky 模式下 wd-resize 的 shrink-to-fit 容器会取该宽度，导致 tabs 被逐次撑宽。
+      // 行向尺寸包含 containment 使其不再向祖先传播固有尺寸，不影响自身布局与动画。
+      contain: inline-size;
     }
   }
 
