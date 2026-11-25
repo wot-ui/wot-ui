@@ -166,6 +166,9 @@ $search-cancel-color: var(--wot-search-cancel-color, $primary-6) !default;
     }
   }
   @include when(without-cancel) {
-    // padding-right: $search-side-padding;
+    // 无取消按钮时无需为取消区域预留间距，否则搜索框左右不对称
+    .wd-search__block {
+      margin-right: 0;
+    }
   }
 }
