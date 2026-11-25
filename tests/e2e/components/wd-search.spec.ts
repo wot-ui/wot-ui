@@ -35,6 +35,10 @@ test('禁用搜索不可编辑且隐藏取消，长度限制为四字', async ({
   await expect(disabled.locator('input')).toHaveCount(0)
   await expect(page.locator('uni-toast')).toContainText(t('jin-yong-dian-ji'))
   await expect(disabled.locator('.wd-search__cancel')).toHaveCount(0)
+  // 隐藏取消按钮后搜索框不再为取消区域预留右间距，保持左右居中
+  await expect(disabled.locator('.wd-search__block')).toHaveCSS('margin-right', '0px')
+  const normal = demoItem(page, t('ji-chu-yong-fa-0'))
+  await expect(normal.locator('.wd-search__block')).not.toHaveCSS('margin-right', '0px')
   const limited = demoItem(page, t('she-zhi-zui-da-chang-du')).locator('input')
   await fillUniField(page, limited, '123456')
   await expect(limited).toHaveValue('1234')
