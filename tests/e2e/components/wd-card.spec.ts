@@ -13,3 +13,10 @@ test('卡片标题、正文、页脚按顺序展示', async ({ page }) => {
   expect(positions[0]).toBeLessThan(positions[1])
   expect(positions[1]).toBeLessThan(positions[2])
 })
+
+test('点击卡片触发 click 事件', async ({ page }) => {
+  await openDemo(page, 'card', '.wd-card')
+  const item = demoItem(page, t('dian-ji-shi-jian'))
+  await item.locator('.wd-card').click()
+  await expect(page.locator('uni-toast')).toContainText(t('dian-ji-le-ka-pian'))
+})

@@ -165,6 +165,11 @@
       </demo-group>
 
       <demo-group :title="$t('te-shu-yang-shi')" transparent>
+        <demo-group-item :title="$t('dian-ji-shi-jian')" no-padding>
+          <wd-card :title="$t('jing-cai-shun-jian')" @click="handleCardClick">
+            <view class="page-card__content-text">{{ $t('dian-ji-ka-pian-chu-fa-click-shi-jian') }}</view>
+          </wd-card>
+        </demo-group-item>
         <demo-group-item :title="$t('qu-chu-footer-0')" no-padding>
           <wd-card :title="$t('jing-cai-shun-jian')" type="rectangle">
             <view class="moment-card">
@@ -219,6 +224,16 @@
 
 <script lang="ts" setup>
 import blackMao from '../static/images/black-mao.png'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
+/**
+ * 点击卡片展示轻提示
+ */
+function handleCardClick() {
+  uni.showToast({ title: t('dian-ji-le-ka-pian') })
+}
 </script>
 
 <style lang="scss" scoped>

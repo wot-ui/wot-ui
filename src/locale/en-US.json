@@ -480,6 +480,8 @@
   "dian-ji-shang-chuan-cai-jian-hou-de-tou-xiang": "Click to upload the cropped avatar",
   "dian-ji-shang-chuan-tou-xiang": "Click to upload avatar",
   "dian-ji-shi-jian": "Click Event",
+  "dian-ji-ka-pian-chu-fa-click-shi-jian": "Clicking any area of the card (title, content, footer) triggers the click event.",
+  "dian-ji-le-ka-pian": "Card clicked",
   "dian-ji-tou-xiang": "Click on the avatar",
   "dian-ji-value-guan-bi-cao-zuo-an-niu": "Click the {0} close operation button",
   "dian-ji-xia-fang-an-niu-fen-bie-da-kai-pu-tong-zi-dan-chuang-he-qi-yong-rootportal-de-zi-dan-chuang": "Click the button below to open the normal pop-up window and the pop-up window with root-portal enabled.",

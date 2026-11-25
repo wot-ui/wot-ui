@@ -242,3 +242,19 @@ describe('WdCard', () => {
     expect(wrapper.find('.action-btn').text()).toBe('操作按钮')
   })
 })
+
+describe('WdCard 事件', () => {
+  test('点击根节点触发 click 事件', async () => {
+    const wrapper = mount(WdCard, {
+      props: {
+        title: '点击事件'
+      }
+    })
+
+    await wrapper.trigger('click')
+    expect(wrapper.emitted('click')).toHaveLength(1)
+
+    await wrapper.find('.wd-card__content').trigger('click')
+    expect(wrapper.emitted('click')).toHaveLength(2)
+  })
+})
