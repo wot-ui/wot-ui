@@ -480,6 +480,8 @@
   "dian-ji-shang-chuan-cai-jian-hou-de-tou-xiang": "点击上传裁剪后的头像",
   "dian-ji-shang-chuan-tou-xiang": "点击上传头像",
   "dian-ji-shi-jian": "点击事件",
+  "dian-ji-ka-pian-chu-fa-click-shi-jian": "点击卡片任意区域（标题、内容、底部）都会触发 click 事件。",
+  "dian-ji-le-ka-pian": "点击了卡片",
   "dian-ji-tou-xiang": "点击头像",
   "dian-ji-value-guan-bi-cao-zuo-an-niu": "点击{0}关闭操作按钮",
   "dian-ji-xia-fang-an-niu-fen-bie-da-kai-pu-tong-zi-dan-chuang-he-qi-yong-rootportal-de-zi-dan-chuang": "点击下方按钮，分别打开普通子弹窗和启用 root-portal 的子弹窗。",

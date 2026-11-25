@@ -100,6 +100,12 @@
 | custom-class | 根节点自定义类名 | string | `''` |
 | custom-style | 根节点自定义样式 | string | `''` |
 
+## Events
+
+| 事件名称 | 说明 | 参数 |
+| --- | --- | --- |
+| click | 点击卡片时触发（含标题、内容、底部区域） | - |
+
 ## Slots
 
 | name | 说明 |

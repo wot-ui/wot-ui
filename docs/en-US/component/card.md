@@ -100,6 +100,12 @@ Bottom area will not render when `footer` slot is not passed.
 | custom-class | Root node custom class name | string | `''` |
 | custom-style | Root node custom style | string | `''` |
 
+## Events
+
+| Event Name | Description | Parameters |
+| --- | --- | --- |
+| click | Triggered when the card is clicked (including title, content and footer areas) | - |
+
 ## Slots
 
 | name | Description |
